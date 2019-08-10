@@ -19,12 +19,13 @@ import { EopooListComponent } from './components/eopoo/eopoo-list/eopoo-list.com
 import { EopooHeaderComponent } from './components/eopoo/eopoo-header.component';
 import { EopooListTableComponent } from './components/eopoo/eopoo-list/eopoo-list-table.component';
 import { EopooService } from './services/eopoo.service';
-import { EopooNewComponent } from './components/eopoo/eopoo-new.component';
+import { EopooNewComponent } from './components/eopoo/eopoo-new/eopoo-new.component';
 import { EopooTypeResolver } from './services/eopoo-type.resolver';
 import { CityResolver } from './services/city.resolver';
 import { EopooTypeService } from './services/eopoo-type.service';
 import { CityService } from './services/city.service';
 import { ApiModule } from './test';
+import { EopooDetailComponent } from './components/eopoo/eopoo-detail/eopoo-detail.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ApiModule } from './test';
         EopooListComponent,
         EopooHeaderComponent,
         EopooListTableComponent,
-        EopooNewComponent
+        EopooNewComponent,
+        EopooDetailComponent
     ],
     imports: [
         RouterModule.forChild(apiGestRoute),

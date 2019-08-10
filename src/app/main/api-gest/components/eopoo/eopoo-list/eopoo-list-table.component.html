@@ -21,7 +21,7 @@
 
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element"></mat-cell>
+        <mat-cell *matCellDef="let element"><button mat-stroked-button color="accent" (click)="detailEopoo(element.id)">Details</button></mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

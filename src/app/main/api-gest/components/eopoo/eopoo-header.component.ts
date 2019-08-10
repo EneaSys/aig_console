@@ -12,6 +12,7 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 })
 export class EopooHeaderComponent {
     @Input() sidebar: boolean;
+    @Input() search: boolean;
 
     searchInput: FormControl;
 

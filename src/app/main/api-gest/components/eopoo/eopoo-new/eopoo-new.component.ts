@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DefaultService, EopooCreationRequest } from '../../test';
+import { DefaultService, EopooCreationRequest } from '../../../test';
 
 @Component({
     templateUrl: './eopoo-new.component.html',
@@ -22,7 +22,8 @@ export class EopooNewComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private _formBuilder: FormBuilder,
-        private service: DefaultService
+        private service: DefaultService,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -115,7 +116,10 @@ export class EopooNewComponent implements OnInit {
         };
 
         this.service.addEopoo(eopooCreationRequest, 'body').subscribe(
-            (eopoo) => console.log("Eopoo creata: ", eopoo)
+            (eopoo) => {
+                console.log("Eopoo creata: ", eopoo);
+                this.detailEopoo(eopoo.id+"")
+            }
         );
     }
     createOrganization() {
@@ -130,7 +134,15 @@ export class EopooNewComponent implements OnInit {
         };
 
         this.service.addEopoo(eopooCreationRequest, 'body').subscribe(
-            (eopoo) => console.log("Eopoo creata: ", eopoo)
+            (eopoo) => {
+                console.log("Eopoo creata: ", eopoo);
+                this.detailEopoo(eopoo.id+"")
+            }
         );
+    }
+
+    detailEopoo(idEopoo: string){
+        console.log(idEopoo)
+        this.router.navigate(['/api-gest', 'eopoo', 'detail', idEopoo]);
     }
 }

@@ -1,0 +1,19 @@
+<div id="eopoo-new" class="page-layout simple fullwidth" fxLayout="column">
+
+    <aig-eopoo-header [sidebar]="true" [search]="false"></aig-eopoo-header>
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div class="h1">
+            Dettagli Anagrafica
+        </div>
+
+        <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+
+            <div class="mat-card form-errors-model p-24 mat-elevation-z4">
+                {{ id | json }}
+            </div>
+
+        </div>
+    </div>
