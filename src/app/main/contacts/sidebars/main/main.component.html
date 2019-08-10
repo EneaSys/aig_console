@@ -1,0 +1,30 @@
+<div class="sidebar-content">
+
+    <div class="card">
+
+        <!-- SIDEBAR HEADER -->
+        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+            <span class="h5">Filters</span>
+        </div>
+        <!-- / SIDEBAR HEADER -->
+
+        <!-- SIDEBAR CONTENT -->
+        <div class="content py-16" fusePerfectScrollbar>
+
+            <div class="nav material2">
+
+                <div class="nav-item" aria-label="inbox">
+                    <a class="nav-link" matRipple (click)="changeFilter('all')"
+                       [ngClass]="{'active accent':filterBy ==='all'}">
+                        <span class="title">All Contacts</span>
+                    </a>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- / SIDEBAR CONTENT -->

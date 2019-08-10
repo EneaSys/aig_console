@@ -1,0 +1,1 @@
+export const SERVER_API_URL = 'https://be.api-gest.eneasys.com/api/entity-manager/';
