@@ -23,12 +23,13 @@ import { NotValidArgument } from '../model/notValidArgument';
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 import { Observable } from 'rxjs';
+import { SERVER_API_URL } from 'app/app.constants';
 
 
 @Injectable()
 export class DefaultService {
 
-    protected basePath = 'https://be.api-gest.eneasys.com/api/entity-manager/ws';
+    protected basePath = SERVER_API_URL + 'ws';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

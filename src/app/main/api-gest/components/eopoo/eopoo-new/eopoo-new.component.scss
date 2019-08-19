@@ -1,23 +1,26 @@
 :host {
 
-    .content {
+    #eopoo-new {
 
-        #aig-eopoo-new-form-container {
-            width: 100%;
-            max-width: 800px !important;
-        }
+        .content {
 
-        .form-errors-model {
-            flex: 1;
-
-            code {
-                background: none !important;
+            #new-eopoo-form-container {
+                min-width: 600px;
             }
-        }
 
-        .horizontal-stepper-wrapper,
-        .vertical-stepper-wrapper {
-            max-width: 800px;
+            .form-errors-model {
+                flex: 1;
+
+                code {
+                    background: none !important;
+                }
+            }
+
+            .horizontal-stepper-wrapper,
+            .vertical-stepper-wrapper {
+                max-width: 800px;
+            }
         }
     }
 }
+

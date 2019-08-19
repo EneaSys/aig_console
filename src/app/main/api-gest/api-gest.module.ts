@@ -26,6 +26,7 @@ import { EopooTypeService } from './services/eopoo-type.service';
 import { CityService } from './services/city.service';
 import { ApiModule } from './test';
 import { EopooDetailComponent } from './components/eopoo/eopoo-detail/eopoo-detail.component';
+import { PersonService } from './services/person.service';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { EopooDetailComponent } from './components/eopoo/eopoo-detail/eopoo-deta
         EopooService,
         EopooTypeService,
         EopooTypeResolver,
+        PersonService,
         CityService,
         CityResolver
     ],

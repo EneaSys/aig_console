@@ -34,6 +34,10 @@ export const apiGestRoute: Routes = [{
                     }
                 },
                 {
+                    path: 'detail',
+                    redirectTo: 'list'
+                },
+                {
                     path: 'detail/:id',
                     component: EopooDetailComponent,
                     resolve: {
