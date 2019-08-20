@@ -1,0 +1,29 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="taxid">
+        <mat-header-cell *matHeaderCellDef> TaxID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.taxNumber}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.eopooTypeName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"><button mat-stroked-button color="accent" (click)="detailEopoo(element.id)">Details</button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let eopoo; columns: displayedColumns;"></mat-row>
+</mat-table>

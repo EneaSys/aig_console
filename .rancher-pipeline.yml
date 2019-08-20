@@ -1,0 +1,38 @@
+stages:
+- name: compile
+  steps:
+  - runScriptConfig:
+      image: node:latest
+      shellScript: |-
+        npm install
+        node_modules/@angular/cli/bin/ng build
+- name: publish
+  steps:
+  - runScriptConfig:
+      image: gcr.io/api-gest/deployer
+      shellScript: |-
+        ssh -p1980 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
+        scp -P1980 -r dist/public_html/ $user@$url:$path
+    env:
+      path: api-gest.eneasys.com/public_html
+      url: cpanel.eneasys.net
+      user: eneasys
+    when:
+      branch:
+        include:
+        - master
+  - runScriptConfig:
+      image: gcr.io/api-gest/deployer
+      shellScript: |-
+        ssh -p1980 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
+        scp -P1980 -r dist/public_html/ $user@$url:$path
+    env:
+      path: stage.eneasys.com/api-gest/public_html
+      url: cpanel.eneasys.net
+      user: eneasys
+    when:
+      branch:
+        include:
+        - develop
+timeout: 60
+notification: {}

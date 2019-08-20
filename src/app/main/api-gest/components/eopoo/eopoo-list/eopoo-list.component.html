@@ -1,0 +1,69 @@
+<div id="eopoo-list" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <aig-eopoo-header [sidebar]="true" [search]="true"></aig-eopoo-header>
+    
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- SIDEBAR -->
+        <fuse-sidebar class="sidebar" name="contacts-main-sidebar" position="left" lockedOpen="gt-sm">
+
+            <!-- SIDEBAR CONTENT -->
+            <div class="content" fusePerfectScrollbar>
+                <div class="sidebar-content">
+
+                    <div class="card">
+
+                        <!-- SIDEBAR HEADER -->
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Filtri</span>
+                        </div>
+                        <!-- / SIDEBAR HEADER -->
+
+                        <!-- SIDEBAR CONTENT -->
+                        <div class="content py-16" fusePerfectScrollbar>
+
+                            <div class="nav material2">
+
+                                <div class="nav-item" aria-label="inbox">
+                                    <a class="nav-link accent" matRipple >
+                                        <span class="title">Tutto</span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- / SIDEBAR CONTENT -->
+
+        </fuse-sidebar>
+        <!-- / SIDEBAR -->
+
+        <!-- CENTER -->
+        <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
+
+            <!-- CONTENT -->
+            <div class="content">
+                <aig-eopoo-list-table></aig-eopoo-list-table>
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CENTER -->
+
+    </div>
+    <!-- / CONTENT-->
+
+</div>
+
+<!-- ADD CONTACT BUTTON -->
+<button mat-fab class="accent" id="add-contact-button" (click)="newEopoo()" aria-label="add contact"
+    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+    <mat-icon>person_add</mat-icon>
+</button>
+<!-- / ADD CONTACT BUTTON -->

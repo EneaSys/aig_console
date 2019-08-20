@@ -1,0 +1,26 @@
+:host {
+
+    #eopoo-new {
+
+        .content {
+
+            #new-eopoo-form-container {
+                min-width: 600px;
+            }
+
+            .form-errors-model {
+                flex: 1;
+
+                code {
+                    background: none !important;
+                }
+            }
+
+            .horizontal-stepper-wrapper,
+            .vertical-stepper-wrapper {
+                max-width: 800px;
+            }
+        }
+    }
+}
+
