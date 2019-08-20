@@ -9,10 +9,14 @@ stages:
 - name: publish
   steps:
   - runScriptConfig:
-      image: alpine
-      shellScript: |
-        apk add ncftp
-        ncftpput -u "pipeline@eneasys.net" -p "2@kwH+6mk47k" -R cpanel.eneasys.net api-gest.eneasys.com/public_html dist/fuse/*
+      image: gcr.io/api-gest/deployer
+      shellScript: |-
+        ssh -p1980 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
+        scp -P1980 -r dist/public_html/ $user@$url:$path
+    env:
+      path: api-gest.eneasys.com/public_html
+      url: cpanel.eneasys.net
+      user: eneasys
     when:
       branch:
         include:
@@ -20,7 +24,7 @@ stages:
   - runScriptConfig:
       image: gcr.io/api-gest/deployer
       shellScript: |-
-        ssh -p1980 -oStrictHostKeyChecking=no $user@$url "rm -rf $path/*"
+        ssh -p1980 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
         scp -P1980 -r dist/public_html/ $user@$url:$path
     env:
       path: stage.eneasys.com/api-gest/public_html
