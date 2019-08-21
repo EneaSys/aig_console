@@ -24,7 +24,7 @@ import { EopooTypeResolver } from './services/eopoo-type.resolver';
 import { CityResolver } from './services/city.resolver';
 import { EopooTypeService } from './services/eopoo-type.service';
 import { CityService } from './services/city.service';
-import { ApiModule } from './test';
+import { ApiModule } from './services/test';
 import { EopooDetailComponent } from './components/eopoo/eopoo-detail/eopoo-detail.component';
 import { PersonService } from './services/person.service';
 

@@ -81,16 +81,12 @@ $typography: mat-typography-config(
 @import "src/app/layout/components/chat-panel/chat-panel.theme";
 @import "src/app/layout/components/toolbar/toolbar.theme";
 
-@import "src/app/main/contacts/contacts.theme";
-
 // Define a mixin for easier access
 @mixin components-theme($theme) {
 
     // Layout components
     @include chat-panel-theme($theme);
     @include toolbar-theme($theme);
-
-    @include contacts-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------

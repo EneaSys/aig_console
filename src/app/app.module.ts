@@ -19,12 +19,8 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { AuthModule } from 'app/auth/auth.module';
 import { ApiGestModule } from './main/api-gest/api-gest.module';
-import { ContactsModule } from './main/contacts/contacts.module';
 
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeDbService } from './fake-db/fake-db.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { UIFormsModule } from './main/forms/forms.module';
 
 const appRoutes: Routes = [
     {
@@ -43,11 +39,6 @@ const appRoutes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
 
-        InMemoryWebApiModule.forRoot(FakeDbService, {
-            delay: 0,
-            passThruUnknownUrl: true
-        }),
-
         TranslateModule.forRoot(),
 
         // Material moment date module
@@ -62,16 +53,13 @@ const appRoutes: Routes = [
         FuseProgressBarModule,
         FuseSharedModule,
         FuseSidebarModule,
+        LayoutModule,
 
         AuthModule,
 
         // App modules
-        LayoutModule,
-
-        ApiGestModule,
-        ContactsModule,
+        ApiGestModule,        
         SampleModule,
-        UIFormsModule
     ],
     providers: [
         {

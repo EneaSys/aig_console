@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DefaultService, EopooCreationRequest } from '../../../test';
+import { DefaultService, EopooCreationRequest } from '../../../services/test';
 
 @Component({
     templateUrl: './eopoo-new.component.html',
