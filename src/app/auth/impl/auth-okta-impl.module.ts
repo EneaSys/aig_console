@@ -9,6 +9,7 @@ import {
 
 import { AuthOktaImplService } from './auth-okta-impl.service';
 import { RouterModule } from '@angular/router';
+import { AuthGuardOktaImplService } from './auth-guard-okta-impl.service';
 
 var url = location.protocol + '//' + location.host;
 
@@ -38,7 +39,8 @@ const routes = [
     exports: [],
     providers: [
         { provide: OKTA_CONFIG, useValue: oktaConfig },
-        AuthOktaImplService
+        AuthOktaImplService,
+        AuthGuardOktaImplService,
     ],
 })
 export class AuthOktaImplModule { }
