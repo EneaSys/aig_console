@@ -3,6 +3,7 @@ import { EopooService } from 'app/main/api-gest/services/eopoo.service';
 import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { fuseAnimations } from '@fuse/animations';
 import { Router } from '@angular/router';
+import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 
 @Component({
     selector: 'aig-eopoo-list-table',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
     encapsulation: ViewEncapsulation.None
 })
 export class EopooListTableComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'name', 'taxid', 'type', 'buttons'];
+    displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
     dataSource: any[];
     totalItems: number;
 
@@ -38,7 +39,6 @@ export class EopooListTableComponent implements OnInit {
     }
     
     detailEopoo(idEopoo: string){
-        console.log(idEopoo)
         this.router.navigate(['/api-gest', 'eopoo', 'detail', idEopoo]);
     }
 }

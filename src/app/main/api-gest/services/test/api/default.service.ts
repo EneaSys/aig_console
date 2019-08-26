@@ -16,14 +16,15 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 
+
 import { EopooCreationRequest } from '../model/eopooCreationRequest';
 import { EopooCreationResponse } from '../model/eopooCreationResponse';
 import { NotValidArgument } from '../model/notValidArgument';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
-import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
+import { Observable } from 'rxjs';
 
 
 @Injectable()

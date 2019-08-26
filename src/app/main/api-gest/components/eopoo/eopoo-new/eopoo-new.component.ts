@@ -111,7 +111,7 @@ export class EopooNewComponent implements OnInit {
                 lastname: this.person.value.lastName,
                 sex: this.person.value.sex,
                 bornCityId: this.person.value.bornCity.id,
-                bornDate: this.person.value.bornDate
+                bornDate: this.person.value.bornDate,
             }
         };
 
@@ -130,7 +130,9 @@ export class EopooNewComponent implements OnInit {
         var eopooCreationRequest: EopooCreationRequest = {
             eopooTypeId: this._eopooType.id,
             taxNumber: this.organization.value.taxId,
-            name: this.organization.value.name
+            generic: {
+                name: this.organization.value.name
+            },
         };
 
         this.service.addEopoo(eopooCreationRequest, 'body').subscribe(

@@ -11,14 +11,13 @@ import { PersonService } from 'app/main/api-gest/services/person.service';
 })
 export class EopooDetailComponent implements OnInit {
     id: number;
-    eopoo: any;
-    person: any;
+    eopoo: any = {};
 
     constructor(
         private route: ActivatedRoute,
-        private router: Router,
+        //private router: Router,
         private eopooService: EopooService,
-        private personService: PersonService,
+        //private personService: PersonService,
     ) { }
 
     ngOnInit(): void {
@@ -28,14 +27,6 @@ export class EopooDetailComponent implements OnInit {
             this.eopooService.find(this.id).subscribe(
                 (res: HttpResponse<any>) => {
                     this.eopoo = res.body;
-
-                    if(res.body.eopooTypeId === 1){
-                        this.personService.find(res.body.personId).subscribe(
-                            (res: HttpResponse<any>) => {
-                                this.person = res.body;
-                            }
-                        );
-                    }
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
@@ -49,7 +40,12 @@ export class EopooDetailComponent implements OnInit {
         console.log("Errore: ", errorMessage);
     }
 
-
-
+    private ready() {
+        if(this.eopoo.id > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

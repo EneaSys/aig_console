@@ -27,6 +27,7 @@ import { CityService } from './services/city.service';
 import { ApiModule } from './services/test';
 import { EopooDetailComponent } from './components/eopoo/eopoo-detail/eopoo-detail.component';
 import { PersonService } from './services/person.service';
+import { EopooNamePipe } from './pipe/eopoo-name.pipe';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { PersonService } from './services/person.service';
         EopooHeaderComponent,
         EopooListTableComponent,
         EopooNewComponent,
-        EopooDetailComponent
+        EopooDetailComponent,
+        EopooNamePipe,
     ],
     imports: [
         RouterModule.forChild(apiGestRoute),

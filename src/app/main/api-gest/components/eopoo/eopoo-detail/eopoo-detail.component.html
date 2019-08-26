@@ -11,25 +11,27 @@
         
         <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
 
-            <div id="eopoo-details-container" class="mat-card mat-elevation-z4 p-24" fxLayout="column">
+            <div *ngIf="ready()" id="eopoo-details-container" class="mat-card mat-elevation-z4 p-24" fxLayout="column">
                 <div class="p-16">
-                    <div class="h1">name</div>
-                    <div class="h4 secondary-text">tax number</div>
-                    <div class="h4 secondary-text">type</div>
+                    <div class="h4 secondary-text">ID: {{ eopoo.id }} - {{ eopoo.eopooType.name }}</div>
+                    <div class="h1">{{ eopoo | eopooName }}</div>
+                    <div class="h4 secondary-text">{{ eopoo.taxNumber }}</div>
                 </div>
 
-                <div fxLayout="row">
-                    
-                    
+                <div [ngSwitch]="eopoo.eopooType.eopooCategory" fxLayout="row">
+                    <div *ngSwitchCase="'GENERIC'">
+                        generic
+                    </div>
+                    <div *ngSwitchCase="'PERSON'">
+                        -sesso
+                        -città nascita
+                        -data nascita
+                    </div>
+                    <p *ngSwitchDefault>
+                        INVALID
+                    </p>
                 </div>
 
-                <div fxLayout="row">
-                    person
-                </div>
-
-                <div fxLayout="row">
-                    other
-                </div>
             </div>
 
             <div class="mr-24 mb-24"></div>
@@ -38,8 +40,7 @@
                 <div class="h2 mb-24">Reactive Form Model</div>
                 Eopoo:
                 <pre><code>{{ eopoo | json }}</code></pre>
-                Person:
-                <pre><code>{{ person | json }}</code></pre>
+                
             </div>
 
         </div>
