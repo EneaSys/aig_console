@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, SimpleChange, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
@@ -13,32 +13,45 @@ import { ApolloDocumentService } from '../../../_common/services/document.servic
     animations: fuseAnimations,
     encapsulation: ViewEncapsulation.None,
 })
-export class AigApolloDocumentListTableComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'idcompany', 'type', 'protocol', 'date', 'customer', 'buttons'];
-    dataSource: any[];
-
+export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
     constructor(
         private apolloDocumentService: ApolloDocumentService,
         private router: Router,
     ) { }
 
+    @Input() requestFilter: any;
+
+    displayedColumns: string[] = ['id', 'number', 'date', 'customer', 'total', 'buttons'];
+    dataSource: any[];
+    
     ngOnInit(): void {
-        this.apolloDocumentService.query().subscribe(
+        
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        this.loadApolloDocument();
+    }
+
+    private loadApolloDocument(){
+        this.apolloDocumentService.query(this.requestFilter).subscribe(
             (res: HttpResponse<any[]>) => this.paginateApolloDocuments(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
 
-    protected paginateApolloDocuments(data: any[], headers: HttpHeaders) {
+    private paginateApolloDocuments(data: any[], headers: HttpHeaders) {
         this.dataSource = data;
     }
 
-    protected onError(errorMessage: string) {
+    private onError(errorMessage: string) {
         console.log("Errore: ", errorMessage);
     }
-    
-    detailApolloDocument(idApolloDocument: string){
+
+    public detailApolloDocument(idApolloDocument: string){
         console.log(idApolloDocument);
         //this.router.navigate(['document', 'detail', idApolloDocument]);
+    }
+    public xmlApolloDocument(idApolloDocument: string){
+        console.log("GET FATTURA ELETTRONICA: " + idApolloDocument);
     }
 }

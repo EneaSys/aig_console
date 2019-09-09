@@ -9,9 +9,47 @@ import { fuseAnimations } from '@fuse/animations';
     animations   : fuseAnimations,
     encapsulation: ViewEncapsulation.None,
 })
-export class AigApolloDocumentListComponent{
+export class AigApolloDocumentListComponent implements OnInit {
     constructor(
         private router: Router,
     ) { }
     
+    private requestFilter: any;
+
+    private companys: any = [
+        {n:"Eragon", id:5},
+        {n:"Genesi", id:11},
+        {n:"Unyon", id:16},
+        {n:"Fato", id:17},
+    ]
+
+    private types: any = [
+        {n:"FA", id:21},
+        {n:"FE", id:29},
+        {n:"NCC", id:46},
+        {n:"NFC", id:47},
+        {n:"PRO", id:78},
+        {n:"FEPA", id:83},
+        {n:"ND", id:85},
+        {n:"FdR", id:89},
+    ]
+
+    ngOnInit(){
+        this.requestFilter = this.requestFilter = {
+            size: 101,
+            sort: ["protocollo,DESC","data,DESC"],
+        }
+    }
+    
+    public filterAzienda(idAzienda: Number){
+        let _requestFilter = Object.assign({}, this.requestFilter);
+        _requestFilter['idazienda.equals'] = idAzienda;
+        this.requestFilter = _requestFilter;
+    }
+
+    public filterTipo(tipo: Number){
+        let _requestFilter = Object.assign({}, this.requestFilter);
+        _requestFilter['tipo.equals'] = tipo;
+        this.requestFilter = _requestFilter;
+    }
 }

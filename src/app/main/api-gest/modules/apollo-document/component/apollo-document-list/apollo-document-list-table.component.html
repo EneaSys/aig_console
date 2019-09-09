@@ -10,14 +10,9 @@
         <mat-cell *matCellDef="let element"> {{ element.idazienda }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="type">
-        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.tipo }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="protocol">
-        <mat-header-cell *matHeaderCellDef> Protocollo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.protocollo }} </mat-cell>
+    <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef> Numero </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.tipo | ApolloDocumentType }} - {{ element.protocollo }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="date">
@@ -30,9 +25,17 @@
         <mat-cell *matCellDef="let element"> {{element.intestazione}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> Importo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.totale}} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element"><button mat-stroked-button color="accent" (click)="detailApolloDocument(element.id)">Details</button></mat-cell>
+        <mat-cell *matCellDef="let element">
+            <button class="mr-8" mat-stroked-button color="accent" (click)="detailApolloDocument(element.id)">Details</button>
+            <button *ngIf="element.tipo === '29'" class="mr-8" mat-stroked-button color="accent" (click)="xmlApolloDocument(element.id)">XML</button>
+        </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

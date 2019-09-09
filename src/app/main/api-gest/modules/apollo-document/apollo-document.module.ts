@@ -18,6 +18,7 @@ import { AigCommonModule } from '../_common/common.module';
 import { AigApolloDocumentListTableComponent } from './component/apollo-document-list/apollo-document-list-table.component';
 import { AigApolloDocumentHeaderComponent } from './component/apollo-document-header.component';
 import { AigApolloDocumentListComponent } from './component/apollo-document-list/apollo-document-list.component';
+import { ApolloDocumentTypePipe } from './pipe/ApolloDocumentType.pipe';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { AigApolloDocumentListComponent } from './component/apollo-document-list
         AigApolloDocumentListComponent,
         AigApolloDocumentListTableComponent,
 
+        ApolloDocumentTypePipe,
     ],
     imports: [
         AigCommonModule,
