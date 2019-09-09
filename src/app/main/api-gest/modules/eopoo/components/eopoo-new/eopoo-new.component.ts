@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DefaultService, EopooCreationRequest } from '../../../services/test';
+import { DefaultService, EopooCreationRequest } from 'app/main/api-gest/modules/_common/services/test';
 
 @Component({
     templateUrl: './eopoo-new.component.html',
@@ -145,6 +145,6 @@ export class EopooNewComponent implements OnInit {
 
     detailEopoo(idEopoo: string){
         console.log(idEopoo)
-        this.router.navigate(['/api-gest', 'eopoo', 'detail', idEopoo]);
+        this.router.navigate(['eopoo', 'detail', idEopoo]);
     }
 }

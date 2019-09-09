@@ -10,12 +10,15 @@
  * Do not edit the class manually.
  */
 
-export interface EopooCreationResponse { 
-    eopooTypeId?: number;
-    eopooTypeName?: string;
+export interface ResponseEopooTypeDTO { 
+    eopooCategory: ResponseEopooTypeDTO.EopooCategoryEnum;
     id?: number;
     name: string;
-    personFirstname?: string;
-    personId?: number;
-    taxNumber: string;
+}
+export namespace ResponseEopooTypeDTO {
+    export type EopooCategoryEnum = 'GENERIC' | 'PERSON';
+    export const EopooCategoryEnum = {
+        GENERIC: 'GENERIC' as EopooCategoryEnum,
+        PERSON: 'PERSON' as EopooCategoryEnum
+    };
 }

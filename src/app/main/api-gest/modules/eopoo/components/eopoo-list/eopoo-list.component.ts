@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { fuseAnimations } from '@fuse/animations';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
     templateUrl: './eopoo-list.component.html',
     styleUrls: ['./eopoo-list.component.scss'],
     animations   : fuseAnimations,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class EopooListComponent{
     constructor(
@@ -15,6 +15,6 @@ export class EopooListComponent{
     ) { }
 
     newEopoo(){
-        this.router.navigate(['/api-gest', 'eopoo', 'new']);
+        this.router.navigate(['eopoo', 'new']);
     }
 }

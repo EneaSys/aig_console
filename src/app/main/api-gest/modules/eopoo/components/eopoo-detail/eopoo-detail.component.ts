@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { EopooService } from 'app/main/api-gest/services/eopoo.service';
-import { PersonService } from 'app/main/api-gest/services/person.service';
+import { EopooService } from 'app/main/api-gest/modules/_common/services/eopoo.service';
+import { PersonService } from 'app/main/api-gest/modules/_common/services/person.service';
 
 
 @Component({

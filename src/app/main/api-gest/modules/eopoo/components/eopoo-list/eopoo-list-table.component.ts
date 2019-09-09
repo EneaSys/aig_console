@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { EopooService } from 'app/main/api-gest/services/eopoo.service';
-import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { fuseAnimations } from '@fuse/animations';
 import { Router } from '@angular/router';
-import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
+import { HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+
+import { fuseAnimations } from '@fuse/animations';
+
+import { EopooService } from 'app/main/api-gest/modules/_common/services/eopoo.service';
 
 @Component({
     selector: 'aig-eopoo-list-table',
     templateUrl: './eopoo-list-table.component.html',
     styleUrls: ['./eopoo-list-table.component.scss'],
     animations: fuseAnimations,
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class EopooListTableComponent implements OnInit {
     displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
@@ -39,6 +40,6 @@ export class EopooListTableComponent implements OnInit {
     }
     
     detailEopoo(idEopoo: string){
-        this.router.navigate(['/api-gest', 'eopoo', 'detail', idEopoo]);
+        this.router.navigate(['eopoo', 'detail', idEopoo]);
     }
 }

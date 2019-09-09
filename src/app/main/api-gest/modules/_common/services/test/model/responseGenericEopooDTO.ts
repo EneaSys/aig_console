@@ -9,14 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { NotValidArgumentFieldErrors } from './notValidArgumentFieldErrors';
 
-
-export interface NotValidArgument { 
-    type?: string;
-    title?: string;
-    status?: number;
-    path?: string;
-    message?: string;
-    fieldErrors?: Array<NotValidArgumentFieldErrors>;
+export interface ResponseGenericEopooDTO { 
+    id?: number;
+    name: string;
 }

@@ -1,0 +1,40 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.iddocumento }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="idcompany">
+        <mat-header-cell *matHeaderCellDef> Azienda </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.idazienda }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.tipo }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="protocol">
+        <mat-header-cell *matHeaderCellDef> Protocollo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.protocollo }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.data }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="customer">
+        <mat-header-cell *matHeaderCellDef> Intestazione </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.intestazione}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"><button mat-stroked-button color="accent" (click)="detailApolloDocument(element.id)">Details</button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let apolloDocument; columns: displayedColumns;"></mat-row>
+</mat-table>
