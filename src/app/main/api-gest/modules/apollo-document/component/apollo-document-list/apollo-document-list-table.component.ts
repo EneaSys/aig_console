@@ -5,6 +5,7 @@ import { HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/ht
 import { fuseAnimations } from '@fuse/animations';
 
 import { ApolloDocumentService } from '../../../_common/services/apollo-document.service';
+import { SERVER_API_URL } from 'app/app.constants';
 
 @Component({
     selector: 'aig-apollo-document-list-table',
@@ -23,6 +24,8 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
 
     displayedColumns: string[] = ['id', 'number', 'date', 'customer', 'total', 'buttons'];
     dataSource: any[];
+
+    likForDownloadXml = SERVER_API_URL + "ws/generate-fattura-pa?type=apollo-document&id=";
     
     ngOnInit(): void {
         
@@ -49,8 +52,5 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
 
     public detailApolloDocument(idApolloDocument: string){
         this.router.navigate(['apollo-document', 'detail', idApolloDocument]);
-    }
-    public xmlApolloDocument(idApolloDocument: string){
-        console.log("GET FATTURA ELETTRONICA: " + idApolloDocument);
     }
 }
