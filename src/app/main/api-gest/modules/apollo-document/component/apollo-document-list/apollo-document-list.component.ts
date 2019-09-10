@@ -37,7 +37,7 @@ export class AigApolloDocumentListComponent implements OnInit {
     ngOnInit(){
         this.requestFilter = this.requestFilter = {
             size: 101,
-            sort: ["protocollo,DESC","data,DESC"],
+            sort: ["data,DESC","protocollo,DESC",],
         }
     }
     
