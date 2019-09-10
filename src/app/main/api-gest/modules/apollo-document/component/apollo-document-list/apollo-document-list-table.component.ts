@@ -4,7 +4,7 @@ import { HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/ht
 
 import { fuseAnimations } from '@fuse/animations';
 
-import { ApolloDocumentService } from '../../../_common/services/document.service';
+import { ApolloDocumentService } from '../../../_common/services/apollo-document.service';
 
 @Component({
     selector: 'aig-apollo-document-list-table',
@@ -48,8 +48,7 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
     }
 
     public detailApolloDocument(idApolloDocument: string){
-        console.log(idApolloDocument);
-        //this.router.navigate(['document', 'detail', idApolloDocument]);
+        this.router.navigate(['apollo-document', 'detail', idApolloDocument]);
     }
     public xmlApolloDocument(idApolloDocument: string){
         console.log("GET FATTURA ELETTRONICA: " + idApolloDocument);

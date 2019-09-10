@@ -7,7 +7,10 @@ import { EopooTypeResolver } from './services/eopoo-type.resolver';
 import { PersonService } from './services/person.service';
 import { CityService } from './services/city.service';
 import { ApiModule } from './services/test';
-import { ApolloDocumentService } from './services/document.service';
+import { ApolloDocumentService } from './services/apollo-document.service';
+import { ApolloDocumentResolver } from './services/apollo-document.resolver';
+import { ApolloDocumentLineService } from './services/apollo-document-line.service';
+import { ApolloDocumentLineResolver } from './services/apollo-document-line.resolver';
 
 @NgModule({
     declarations: [
@@ -22,12 +25,20 @@ import { ApolloDocumentService } from './services/document.service';
     ],
     providers: [
         EopooService,
+
         EopooTypeService,
         EopooTypeResolver,
+
         PersonService,
+        
         CityService,
         CityResolver,
+        
         ApolloDocumentService,
+        ApolloDocumentResolver,
+        
+        ApolloDocumentLineService,
+        ApolloDocumentLineResolver,
     ],
 })
 export class AigCommonModule {}

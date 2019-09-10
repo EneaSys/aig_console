@@ -6,6 +6,9 @@ import { EopooListComponent } from './modules/eopoo/components/eopoo-list/eopoo-
 import { EopooNewComponent } from './modules/eopoo/components/eopoo-new/eopoo-new.component';
 import { EopooDetailComponent } from './modules/eopoo/components/eopoo-detail/eopoo-detail.component';
 import { AigApolloDocumentListComponent } from './modules/apollo-document/component/apollo-document-list/apollo-document-list.component';
+import { ApolloDocumentDetailComponent } from './modules/apollo-document/component/apollo-document-detail/apollo-document-detail.component';
+import { ApolloDocumentResolver } from './modules/_common/services/apollo-document.resolver';
+import { ApolloDocumentLineResolver } from './modules/_common/services/apollo-document-line.resolver';
 
 export const apiGestRoute: Routes = [
     {
@@ -27,7 +30,7 @@ export const apiGestRoute: Routes = [
                 canActivate: [ AuthGuardService ],
                 resolve: {
                     eopooType: EopooTypeResolver,
-                    city: CityResolver
+                    city: CityResolver,
                 },
             },
             {
@@ -38,10 +41,6 @@ export const apiGestRoute: Routes = [
                 path: 'detail/:id',
                 component: EopooDetailComponent,
                 canActivate: [ AuthGuardService ],
-                resolve: {
-                    eopooType: EopooTypeResolver,
-                    city: CityResolver
-                },
             }
         ]
     },
@@ -58,6 +57,19 @@ export const apiGestRoute: Routes = [
                 component: AigApolloDocumentListComponent,
                 canActivate: [ AuthGuardService ],
             },
+            {
+                path: 'detail',
+                redirectTo: 'list',
+            },
+            {
+                path: 'detail/:id',
+                component: ApolloDocumentDetailComponent,
+                canActivate: [ AuthGuardService ],
+                resolve: {
+                    apolloDocument: ApolloDocumentResolver,
+                    apolloDocumentLine: ApolloDocumentLineResolver,
+                },
+            }
         ]
     }
 ];

@@ -34,7 +34,7 @@
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
             <button class="mr-8" mat-stroked-button color="accent" (click)="detailApolloDocument(element.id)">Details</button>
-            <button *ngIf="element.tipo === '29'" class="mr-8" mat-stroked-button color="accent" (click)="xmlApolloDocument(element.id)">XML</button>
+            <button *ngIf="element.tipo === '29' || element.tipo === '83'" class="mr-8" mat-stroked-button color="accent" (click)="xmlApolloDocument(element.id)">XML</button>
         </mat-cell>
     </ng-container>
 
