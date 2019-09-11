@@ -22,12 +22,12 @@
 
     <ng-container matColumnDef="customer">
         <mat-header-cell *matHeaderCellDef> Intestazione </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.intestazione}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.intestazione }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="total">
         <mat-header-cell *matHeaderCellDef> Importo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.totale}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.totale | currency:'EUR':true }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="buttons">
