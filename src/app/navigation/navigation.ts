@@ -12,7 +12,14 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Anagrafiche',
                 type     : 'item',
                 icon     : 'list',
-                url      : '/api-gest'
+                url      : '/eopoo'
+            },
+            {
+                id       : 'apollo-document-list',
+                title    : 'Documenti Apollo',
+                type     : 'item',
+                icon     : 'archive',
+                url      : '/apollo-document'
             }
         ]
     }

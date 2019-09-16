@@ -1,0 +1,47 @@
+<div id="eopoo-detail" class="page-layout simple fullwidth" fxLayout="column">
+
+    <aig-eopoo-header [sidebar]="true" [search]="false"></aig-eopoo-header>
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div class="h1 mb-32">
+            Dettagli Anagrafica
+        </div>
+        
+        <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+
+            <div *ngIf="ready()" id="eopoo-details-container" class="mat-card mat-elevation-z4 p-24" fxLayout="column">
+                <div class="p-16">
+                    <div class="h4 secondary-text">ID: {{ eopoo.id }} - {{ eopoo.eopooType.name }}</div>
+                    <div class="h1">{{ eopoo | eopooName }}</div>
+                    <div class="h4 secondary-text">{{ eopoo.taxNumber }}</div>
+                </div>
+
+                <div [ngSwitch]="eopoo.eopooType.eopooCategory" fxLayout="row">
+                    <div *ngSwitchCase="'GENERIC'">
+                        generic
+                    </div>
+                    <div *ngSwitchCase="'PERSON'">
+                        -sesso
+                        -città nascita
+                        -data nascita
+                    </div>
+                    <p *ngSwitchDefault>
+                        INVALID
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="mr-24 mb-24"></div>
+
+            <div class="mat-card form-errors-model p-24 mat-elevation-z4">
+                <div class="h2 mb-24">Reactive Form Model</div>
+                Eopoo:
+                <pre><code>{{ eopoo | json }}</code></pre>
+                
+            </div>
+
+        </div>
+    </div>

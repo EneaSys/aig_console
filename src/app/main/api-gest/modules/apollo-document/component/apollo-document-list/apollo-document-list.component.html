@@ -1,0 +1,66 @@
+<div id="aig-apollo-document-list" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <aig-apollo-document-header [sidebar]="true"></aig-apollo-document-header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- SIDEBAR -->
+        <fuse-sidebar class="sidebar" name="aig-apollo-document-list-filter-sidebar" position="left" lockedOpen="gt-sm">
+            <!-- SIDEBAR CONTENT -->
+            <div class="content" fusePerfectScrollbar>
+                <div class="sidebar-content">
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Aziende</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <div class="nav material2">
+                                <div class="nav-item" aria-label="inbox" *ngFor="let company of companys">
+                                    <a class="nav-link" matRipple (click)="filterAzienda(company.id)"
+                                        [ngClass]="{'accent':requestFilter['idazienda.equals'] === company.id}">
+                                        <span class="title">{{ company.n }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Tipo Documento</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <div class="nav material2">
+                                <div class="nav-item" aria-label="inbox" *ngFor="let type of types">
+                                    <a class="nav-link" matRipple (click)="filterTipo(type.id)"
+                                        [ngClass]="{'accent':requestFilter['tipo.equals'] === type.id}">
+                                        <span class="title">{{ type.n }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / SIDEBAR CONTENT -->
+        </fuse-sidebar>
+        <!-- / SIDEBAR -->
+
+        <!-- CENTER -->
+        <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
+
+            <!-- CONTENT -->
+            <div class="content">
+                <aig-apollo-document-list-table [requestFilter]="requestFilter"></aig-apollo-document-list-table>
+
+                
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CENTER -->
+
+    </div>
+    <!-- / CONTENT-->
+
+</div>

@@ -1,0 +1,35 @@
+<div id="aig-apollo-document-detail" class="page-layout simple fullwidth" fxLayout="column">
+
+    <aig-apollo-document-header [sidebar]="false"></aig-apollo-document-header>
+
+    <!-- CONTENT -->
+    <div class="content p-24">
+
+        <div class="h1 mb-32">
+            Dettagli Documento
+        </div>
+        
+        <div class="mb-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-md="row">
+
+            <div class="mat-card mat-elevation-z4 p-24" fxLayout="column">
+                <div class="p-16">
+                    <div class="h4 secondary-text">Id: {{ apolloDocument.id }}</div>
+                    <div class="h1">{{ apolloDocument.tipo | ApolloDocumentType }} - {{ apolloDocument.protocollo }}</div>
+                    <div class="h4 secondary-text">Id Apollo: {{ apolloDocument.iddocumento }}</div>
+                </div>
+
+                <div fxLayout="row">
+                    <pre>{{ apolloDocument | json }}</pre>
+                </div>
+
+            </div>
+
+            <div class="mr-24 mb-24"></div>
+
+            <div class="mat-card form-errors-model p-24 mat-elevation-z4">
+                <div class="h2 mb-24">Voci di documento</div>
+                <aig-apollo-document-line-list-table [dataSource]="apolloDocumentLine" [displayedColumns]="displayedColumns"></aig-apollo-document-line-list-table>
+            </div>
+
+        </div>
+    </div>
