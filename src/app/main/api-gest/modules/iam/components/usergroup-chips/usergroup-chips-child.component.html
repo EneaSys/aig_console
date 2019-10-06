@@ -1,0 +1,4 @@
+<div *ngFor="let group of userGroups">
+    <mat-chip>{{ composeName(group) }}</mat-chip>
+    <aig-usergroup-chip *ngIf="group.groupMemberOfs != ''" [parent]="composeName(group)" [userGroups]="group.groupMemberOfs"></aig-usergroup-chip>
+</div>
