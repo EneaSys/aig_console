@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
+import { UserResourceService, UserDTO } from 'api-gest';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'aig-users-table',
@@ -9,7 +11,10 @@ import { fuseAnimations } from '@fuse/animations';
     encapsulation: ViewEncapsulation.None,
 })
 export class AigUserTableComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private userResourceService: UserResourceService,
+        private _snackBar: MatSnackBar
+    ) { }
 
     @Input()
     displayedColumns: string[];
@@ -17,4 +22,22 @@ export class AigUserTableComponent implements OnInit {
     dataSource: any[];
 
     ngOnInit(): void { }
+
+    private disactivate(userCode: string):void {
+        this.userResourceService.deactivateUserUsingDELETE(userCode).subscribe(
+            (userDTO: UserDTO) => {
+                console.log("Ricarica la linea con: ", userDTO);
+                this._snackBar.open("User Deactivated", null, {duration: 2000,});
+            }
+        );
+    }
+
+    private reactivate(userCode: string):void {
+        this.userResourceService.reactivateUserUsingPUT(userCode).subscribe(
+            (userDTO: UserDTO) => {
+                console.log("Ricarica la linea con: ", userDTO);
+                this._snackBar.open("User Reactivated", null, {duration: 2000,});
+            }
+        );
+    }
 }
