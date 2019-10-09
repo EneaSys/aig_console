@@ -2,7 +2,7 @@ stages:
 - name: compile
   steps:
   - runScriptConfig:
-      image: node:latest
+      image: node:lts-alpine
       shellScript: |-
         npm install
         node_modules/@angular/cli/bin/ng build
