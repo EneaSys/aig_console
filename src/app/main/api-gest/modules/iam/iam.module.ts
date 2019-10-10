@@ -29,7 +29,7 @@ import { AigGroupListComponent } from './components/group-list/group-list.compon
 import { AigGroupTableComponent } from './components/group-table/group-table.component';
 import { AigUserNewComponent } from './components/user-new/user-new.component';
 import { AigUserNewDialogComponent } from './components/user-new-dialog/user-new-dialog.component';
-import { SERVER_API_URL } from 'app/app.constants';
+import { API_URL } from 'app/app.constants';
 
 /*
 export function apiConfigFactory (): Configuration => {
