@@ -29,6 +29,7 @@ import { AigGroupListComponent } from './components/group-list/group-list.compon
 import { AigGroupTableComponent } from './components/group-table/group-table.component';
 import { AigUserNewComponent } from './components/user-new/user-new.component';
 import { AigUserNewDialogComponent } from './components/user-new-dialog/user-new-dialog.component';
+import { SERVER_API_URL } from 'app/app.constants';
 
 /*
 export function apiConfigFactory (): Configuration => {
@@ -90,7 +91,7 @@ export function apiConfigFactory (): Configuration => {
         AigUserNewDialogComponent,
     ],
     providers: [
-        { provide: BASE_PATH,  useValue: 'http://localhost:8181' }
+        { provide: BASE_PATH,  useValue: SERVER_API_URL }
     ],
 })
 export class AigIamModule {}
