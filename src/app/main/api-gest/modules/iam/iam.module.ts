@@ -91,7 +91,7 @@ export function apiConfigFactory (): Configuration => {
         AigUserNewDialogComponent,
     ],
     providers: [
-        { provide: BASE_PATH,  useValue: SERVER_API_URL }
+        { provide: BASE_PATH,  useValue: API_URL }
     ],
 })
 export class AigIamModule {}
