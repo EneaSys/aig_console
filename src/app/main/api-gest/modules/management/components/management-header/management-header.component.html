@@ -1,0 +1,40 @@
+<!-- HEADER -->
+<div id="aig-management-header">
+    <div class="header accent p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start" fxLayout.gt-xs="row"
+        fxLayoutAlign.gt-xs="space-between center">
+
+        <!-- APP TITLE -->
+        <div fxLayout="row" fxLayoutAlign="start center">
+
+            <button *ngIf="activateSidebar" mat-icon-button class="sidebar-toggle mr-12" fxHide.gt-sm
+                (click)="toggleSidebar(sidebar)">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <div class="logo" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">archive
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    Management <span *ngIf="sectionName"> > {{ sectionName }}</span>
+                </span>
+            </div>
+
+        </div>
+        <!-- / APP TITLE -->
+
+        <!-- SEARCH -->
+        <div *ngIf="search" class="ml-sm-32" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+            <div class="search-wrapper mt-16 mt-sm-0">
+
+                <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input [formControl]="searchInput" placeholder="Cerca in management">
+                </div>
+
+            </div>
+        </div>
+        <!-- / SEARCH -->
+
+    </div>
+</div>
+<!-- / HEADER -->

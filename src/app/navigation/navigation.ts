@@ -8,19 +8,42 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'eopoo-list',
-                title    : 'Anagrafiche',
-                type     : 'item',
-                icon     : 'list',
-                url      : '/eopoo'
-            },
-            {
                 id       : 'apollo-document-list',
                 title    : 'Documenti Apollo',
                 type     : 'item',
                 icon     : 'archive',
                 url      : '/apollo-document'
-            }
+            },
         ]
-    }
+    },
+    {
+        id       : 'iam',
+        title    : 'Identity and Access Management',
+        translate: 'NAV.IAM',
+        type     : 'group',
+        children : [
+            {
+                id       : 'user-list',
+                title    : 'Utenti',
+                type     : 'item',
+                icon     : 'person',
+                url      : '/iam/user'
+            },
+        ]
+    },
+    {
+        id       : 'management',
+        title    : 'Management',
+        translate: 'NAV.MANAGEMENT',
+        type     : 'group',
+        children : [
+            {
+                id       : 'context-list',
+                title    : 'Contesti',
+                type     : 'item',
+                icon     : 'control_camera',
+                url      : '/m8t/context'
+            },
+        ]
+    },
 ];

@@ -9,6 +9,10 @@ import { AigApolloDocumentListComponent } from './modules/apollo-document/compon
 import { ApolloDocumentDetailComponent } from './modules/apollo-document/component/apollo-document-detail/apollo-document-detail.component';
 import { ApolloDocumentResolver } from './modules/_common/services/apollo-document.resolver';
 import { ApolloDocumentLineResolver } from './modules/_common/services/apollo-document-line.resolver';
+import { AigUserListComponent } from './modules/iam/components/user-list/user-list.component';
+import { AigRoleListComponent } from './modules/iam/components/role/role-list.component';
+import { AigGroupListComponent } from './modules/iam/components/group-list/group-list.component';
+import { AigContextListComponent } from './modules/management/components/context-list/context-list.component';
 
 export const apiGestRoute: Routes = [
     {
@@ -71,5 +75,75 @@ export const apiGestRoute: Routes = [
                 },
             }
         ]
-    }
+    },
+    {
+        path: 'iam',
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'user/list'
+            },
+            {
+                path: 'user',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigUserListComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
+                ]
+            },
+            {
+                path: 'group',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigGroupListComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
+                ]
+            },
+            {
+                path: 'role',
+                component: AigRoleListComponent,
+                canActivate: [ AuthGuardService ],
+            }
+        ]
+    },
+    {
+        path: 'm8t',
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'context/list'
+            },
+            {
+                path: 'context',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigContextListComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
+                ]
+            },
+        ]
+    },
 ];
