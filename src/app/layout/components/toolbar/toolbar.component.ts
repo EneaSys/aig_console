@@ -189,6 +189,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
 
     setCurrentContext(context: IContext): void {
-        this.aigContextRepositoryService.setCurrentContext(context);
+        this.aigContextRepositoryService.setDefaultContext(context);
+        //this.aigContextRepositoryService.setCurrentContext(context);
     }
 }

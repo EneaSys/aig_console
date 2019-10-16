@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Observable, Subscriber, from, Subscription } from 'rxjs';
 
 import { IContext } from './Context.model';
@@ -192,14 +192,15 @@ export class AigContextRepositoryService {
     private reloadWithThisContext(context: IContext) {
         var currentUrl = this.router.url;
         var currentUrlArray = currentUrl.split("?");
-
-        var queryParams = this.urlToObjectParams(currentUrl);
-        queryParams.context = context.contextCode;
-        
-        this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });
+        if(currentUrlArray[0] != '/'){
+            var queryParams = this.urlQueryStringToObjectParams(currentUrl);
+            queryParams.context = context.contextCode;
+    
+            this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });   
+        }
     }
 
-    private urlToObjectParams(currentUrl: String) {
+    private urlQueryStringToObjectParams(currentUrl: String) {
         var queryParams: any = {};
 
         var currentUrlArray = currentUrl.split("?");
