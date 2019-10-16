@@ -6,6 +6,7 @@ import { Observable, Subscriber, from, Subscription } from 'rxjs';
 
 import { IContext } from './Context.model';
 import { CurrentUserService, ResponseMyContexts } from 'api-gest';
+import { AuthService } from 'app/auth/auth.service';
 
 @Injectable()
 export class AigContextRepositoryService {
@@ -13,13 +14,15 @@ export class AigContextRepositoryService {
         private localStorage: LocalStorageService,
         private route: ActivatedRoute,
         private router: Router,
-        private currentUserService: CurrentUserService
+        private currentUserService: CurrentUserService,
+        private authService: AuthService,
     ) { }
 
     async getCurrentContext() {
+        const isLogged: boolean = await this.authService.isAuthenticated();
         // Se non c'è un default context
         if (this.getDefaultContext() == null) {
-            if(this.isSelectContextPage()){
+            if (this.isSelectContextPage() || !isLogged) {
                 return new Observable((observer: Subscriber<IContext>) => {
                     observer.next({
                         contextName: "",
@@ -34,6 +37,7 @@ export class AigContextRepositoryService {
         }
         const contextCodeInQueryParam: string = await this.getContextCodeInQueryParam().toPromise();
         return this.examine(contextCodeInQueryParam).toPromise();
+
     }
 
     private getContextCodeInQueryParam(): Observable<string> {
@@ -112,7 +116,7 @@ export class AigContextRepositoryService {
                 (contexts: ResponseMyContexts[]) => {
                     var validContext: ResponseMyContexts = null;
                     contexts.forEach(context => {
-                        if(context.contextCode == contextCodeInQueryParam){
+                        if (context.contextCode == contextCodeInQueryParam) {
                             validContext = context;
                         }
                     });
@@ -135,12 +139,12 @@ export class AigContextRepositoryService {
             inMemoryContexts = [];
         } else {
             inMemoryContexts.forEach(contextInMemory => {
-                if(contextInMemory.contextCode == context.contextCode){
+                if (contextInMemory.contextCode == context.contextCode) {
                     isPresent = true;
                 }
             });
         }
-        if(!isPresent){
+        if (!isPresent) {
             inMemoryContexts.push(context);
             this.localStorage.store('aig-context-in-memory', inMemoryContexts);
         }
@@ -152,7 +156,7 @@ export class AigContextRepositoryService {
 
     public setDefaultContext(context: IContext) {
         this.chekValidContext(context.contextCode).subscribe((context: IContext) => {
-            if(context != null){
+            if (context != null) {
                 this.localStorage.store('aig-default-context', context);
                 this.reloadWithThisContext(context);
                 this.setInMemoryContext(context);
@@ -167,7 +171,7 @@ export class AigContextRepositoryService {
     public setCurrentContext(context: IContext) {
         this.reloadWithThisContext(context);
         this.chekValidContext(context.contextCode).subscribe((context: IContext) => {
-            if(context == null){
+            if (context == null) {
                 this.reloadWithDefaultContext();
             }
         })
@@ -175,11 +179,24 @@ export class AigContextRepositoryService {
 
     // UTILS
 
-    private isSelectContextPage(){
+    private isSelectContextPage() {
         var currentUrl = this.router.url;
         var currentUrlArray = currentUrl.split("?");
 
-        if(currentUrlArray[0] == "/m8t/context/list"){
+        if (currentUrlArray[0] == "/m8t/context/list") {
+            return true;
+        }
+        return false;
+    }
+
+    private isSelectLoginPage() {
+        var currentUrl = this.router.url;
+        var currentUrlArray = currentUrl.split("#");
+
+        console.log(currentUrl, currentUrlArray);
+
+        alert("stop");
+        if (currentUrlArray[0] == "/implicit/callback") {
             return true;
         }
         return false;
@@ -192,11 +209,11 @@ export class AigContextRepositoryService {
     private reloadWithThisContext(context: IContext) {
         var currentUrl = this.router.url;
         var currentUrlArray = currentUrl.split("?");
-        if(currentUrlArray[0] != '/'){
+        if (currentUrlArray[0] != '/') {
             var queryParams = this.urlQueryStringToObjectParams(currentUrl);
             queryParams.context = context.contextCode;
-    
-            this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });   
+
+            this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });
         }
     }
 
