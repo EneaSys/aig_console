@@ -28,6 +28,10 @@ export class AigUserTableComponent implements OnInit {
             (userDTO: UserDTO) => {
                 console.log("Ricarica la linea con: ", userDTO);
                 this._snackBar.open("User Deactivated", null, {duration: 2000,});
+            },
+            (error: any) => {
+                console.log("ERR" + error);
+                this._snackBar.open("User not Deactivated: " + error, null, {duration: 2000,});
             }
         );
     }

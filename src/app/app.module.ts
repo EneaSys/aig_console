@@ -21,6 +21,7 @@ import { AuthModule } from 'app/auth/auth.module';
 import { ApiGestModule } from './main/api-gest/api-gest.module';
 
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AigContextModule } from './context/context.module';
 
 const appRoutes: Routes = [
     {

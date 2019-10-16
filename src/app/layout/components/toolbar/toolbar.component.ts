@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, from } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -11,6 +11,8 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
 import { AuthService } from 'app/auth/auth.service';
+import { AigContextRepositoryService } from 'app/context/context-repository.service';
+import { IContext, Context } from 'app/context/Context.model';
 
 
 @Component({
@@ -33,6 +35,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     loadedUserInfo: boolean = false;
     loggedUser: any;
 
+    context: IContext = new Context();
+    contexts: IContext[];
+
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -47,7 +52,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private authService: AuthService
+        private authService: AuthService,
+        private aigContextRepositoryService: AigContextRepositoryService,
     ) {
         this.languages = [
             {
@@ -92,6 +98,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { id: this._translateService.currentLang });
         this.afterOnInit();
+
+        from(this.aigContextRepositoryService.getCurrentContext()).subscribe(
+            (context: IContext) => {
+                this.context = context;
+            }
+        );
+        this.contexts = this.aigContextRepositoryService.getInMemoryContexts();
     }
 
     async afterOnInit() {
@@ -120,13 +133,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         } else {
             this.login();
         }
-    }
-
-    login() {
-        this.authService.loginRedirect('/');
-    }
-    logout() {
-        this.authService.logout('/');
     }
 
     /**
@@ -172,5 +178,17 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+    }
+
+    login() {
+        this.authService.loginRedirect('/');
+    }
+    
+    logout() {
+        this.authService.logout('/');
+    }
+
+    setCurrentContext(context: IContext): void {
+        this.aigContextRepositoryService.setCurrentContext(context);
     }
 }

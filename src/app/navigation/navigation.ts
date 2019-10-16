@@ -45,4 +45,19 @@ export const navigation: FuseNavigation[] = [
             },
         ]
     },
+    {
+        id       : 'management',
+        title    : 'Management',
+        translate: 'NAV.MANAGEMENT',
+        type     : 'group',
+        children : [
+            {
+                id       : 'context-list',
+                title    : 'Contesti',
+                type     : 'item',
+                icon     : 'control_camera',
+                url      : '/m8t/context'
+            },
+        ]
+    },
 ];

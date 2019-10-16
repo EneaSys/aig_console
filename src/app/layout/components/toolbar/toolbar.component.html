@@ -22,14 +22,14 @@
                 <div>
                     <button mat-button [matMenuTriggerFor]="contextMenu" class="user-button">
                         <div fxLayout="row" fxLayoutAlign="center center">
-                            <span class="username mr-12" fxHide fxShow.gt-sm>Context</span>
+                            <span class="username mr-12" fxHide fxShow.gt-sm>{{ context.contextName }}</span>
                             <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                         </div>
                     </button>
 
                     <mat-menu #contextMenu="matMenu" [overlapTrigger]="false">
-                        <button mat-menu-item><span>Other context</span></button>
-                        <button mat-menu-item><span>Other context 2</span></button>
+                        <button mat-menu-item *ngFor="let context of contexts" (click)="setCurrentContext(context)"><span>{{ context.contextName }}</span></button>
+                        <button mat-menu-item [routerLink]="[ '/m8t/context/list' ]"><span>Other contexts</span></button>
                     </mat-menu>
                 </div>
                 
