@@ -3,6 +3,7 @@ import { UserResourceService, UserDTO } from 'api-gest';
 import { fuseAnimations } from '@fuse/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     templateUrl: './user-list.component.html',
@@ -13,7 +14,8 @@ import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.co
 export class AigUserListComponent implements OnInit {
     constructor(
         private userResourceService: UserResourceService,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        private route: ActivatedRoute
     ) { }
 
     displayedColumns: string[] = ['usercode', 'firstName', 'lastName', 'email', 'status', 'type', 'buttons'];

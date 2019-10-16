@@ -19,11 +19,26 @@
 
             <div class="px-8 px-md-16">
 
+                <div>
+                    <button mat-button [matMenuTriggerFor]="contextMenu" class="user-button">
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <span class="username mr-12" fxHide fxShow.gt-sm>{{ context.contextName }}</span>
+                            <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                        </div>
+                    </button>
+
+                    <mat-menu #contextMenu="matMenu" [overlapTrigger]="false">
+                        <button mat-menu-item *ngFor="let context of contexts" (click)="setCurrentContext(context)"><span>{{ context.contextName }}</span></button>
+                        <button mat-menu-item [routerLink]="[ '/m8t/context/list' ]"><span>Other contexts</span></button>
+                    </mat-menu>
+                </div>
+                
             </div>
 
         </div>
 
         <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+
             <div *ngIf="!isAuthenticated" class="login-button-area">
                 <button mat-stroked-button color="accent" (click)="login()">Login</button>
             </div>
@@ -47,6 +62,7 @@
 
                 </mat-menu>
             </div>
+
             <div class="toolbar-separator"></div>
 
             <fuse-search-bar (input)="search($event)"></fuse-search-bar>
