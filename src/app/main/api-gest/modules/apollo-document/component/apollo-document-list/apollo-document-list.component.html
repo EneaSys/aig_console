@@ -12,21 +12,6 @@
                 <div class="sidebar-content">
                     <div class="card mb-16">
                         <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h5">Aziende</span>
-                        </div>
-                        <div class="content py-16" fusePerfectScrollbar>
-                            <div class="nav material2">
-                                <div class="nav-item" aria-label="inbox" *ngFor="let company of companys">
-                                    <a class="nav-link" matRipple (click)="filterAzienda(company.id)"
-                                        [ngClass]="{'accent':requestFilter['idazienda.equals'] === company.id}">
-                                        <span class="title">{{ company.n }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-16">
-                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h5">Tipo Documento</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>

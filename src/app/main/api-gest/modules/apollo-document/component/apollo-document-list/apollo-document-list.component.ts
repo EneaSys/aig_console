@@ -16,10 +16,6 @@ export class AigApolloDocumentListComponent implements OnInit {
     
     private requestFilter: any;
 
-    private companys: any = [
-        {n:"Unyon", id:16},
-    ]
-
     private types: any = [
         {n:"FA", id:21},
         {n:"FE", id:29},
