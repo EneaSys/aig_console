@@ -58,7 +58,7 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
         this.router.navigate(['apollo-document', 'detail', idApolloDocument]);
     }
 
-    public async downloadXml(idApolloDocument: string){
+    public async downloadXml(apolloDocument: any){
         const tokenPromise = this.authService.getAccessToken();
         const contextCodePromise = this.aigContextRepositoryService.getCurrentContext();
         
@@ -72,13 +72,13 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
         headers.append('X-Tenant-Code', context.contextCode);
 
         let anchor = document.createElement("a");
-        fetch(this.likForDownloadXml+idApolloDocument, { headers })
+        fetch(this.likForDownloadXml+apolloDocument.id, { headers })
             .then(response => response.blob())
             .then(blobby => {
                 let objectUrl = window.URL.createObjectURL(blobby);
         
                 anchor.href = objectUrl;
-                anchor.download = idApolloDocument + '.xml';
+                anchor.download = apolloDocument.protocollo + '.xml';
                 anchor.click();
         
                 window.URL.revokeObjectURL(objectUrl);
