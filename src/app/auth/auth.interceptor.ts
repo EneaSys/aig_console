@@ -31,16 +31,16 @@ export class AuthInterceptor implements HttpInterceptor {
         
         let res = await Promise.all([tokenPromise, contextCodePromise]);
         let token = res[0];
-        let contextCode = res[1];
+        let context = res[1];
 
-        if(contextCode == null){
+        if(context == null){
             return null;
         }
 
         request = request.clone({
             setHeaders: {
                 'Authorization': 'Bearer ' + token,
-                'X-Tenant-Code': contextCode.contextCode,
+                'X-Tenant-Code': context.contextCode,
             }
         });
 
