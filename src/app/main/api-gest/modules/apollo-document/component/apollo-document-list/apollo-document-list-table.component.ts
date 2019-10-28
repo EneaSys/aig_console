@@ -6,6 +6,8 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { ApolloDocumentService } from '../../../_common/services/apollo-document.service';
 import { SERVER_API_URL } from 'app/app.constants';
+import { AuthService } from 'app/auth/auth.service';
+import { AigContextRepositoryService } from 'app/context/context-repository.service';
 
 @Component({
     selector: 'aig-apollo-document-list-table',
@@ -18,6 +20,8 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
     constructor(
         private apolloDocumentService: ApolloDocumentService,
         private router: Router,
+        private authService: AuthService,
+        private aigContextRepositoryService: AigContextRepositoryService
     ) { }
 
     @Input() requestFilter: any;
@@ -53,4 +57,33 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
     public detailApolloDocument(idApolloDocument: string){
         this.router.navigate(['apollo-document', 'detail', idApolloDocument]);
     }
+
+    public async downloadXml(idApolloDocument: string){
+        const tokenPromise = this.authService.getAccessToken();
+        const contextCodePromise = this.aigContextRepositoryService.getCurrentContext();
+        
+        let res = await Promise.all([tokenPromise, contextCodePromise]);
+        let token = res[0];
+        let context = res[1];
+        
+
+        let headers = new Headers();
+        headers.append('Authorization', 'Bearer ' + token);
+        headers.append('X-Tenant-Code', context.contextCode);
+
+        let anchor = document.createElement("a");
+        fetch(this.likForDownloadXml+idApolloDocument, { headers })
+            .then(response => response.blob())
+            .then(blobby => {
+                let objectUrl = window.URL.createObjectURL(blobby);
+        
+                anchor.href = objectUrl;
+                anchor.download = idApolloDocument + '.xml';
+                anchor.click();
+        
+                window.URL.revokeObjectURL(objectUrl);
+            });
+    }
+
+    
 }
