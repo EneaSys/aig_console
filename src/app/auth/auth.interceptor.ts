@@ -13,27 +13,22 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return new Observable((observer: Subscriber<HttpEvent<any>>) => {
-            from(this.prepareHeader(request)).subscribe((request: HttpRequest<any>) => {
-                if(request == null){
-                    return Observable.create(empty);
-                }
-                next.handle(request).subscribe((event)=>{
-                    observer.next(event);
-                });
+        return from(this.prepareHeader(request)).pipe(
+            switchMap(request => {
+                return next.handle(request);
             })
-        });
+        );
     }
 
     private async prepareHeader(request: HttpRequest<any>): Promise<HttpRequest<any>> {
         const tokenPromise = this.authService.getAccessToken();
         const contextCodePromise = this.aigContextRepositoryService.getCurrentContext();
-        
+
         let res = await Promise.all([tokenPromise, contextCodePromise]);
         let token = res[0];
         let context = res[1];
 
-        if(context == null){
+        if (context == null) {
             return null;
         }
 
@@ -41,6 +36,8 @@ export class AuthInterceptor implements HttpInterceptor {
             setHeaders: {
                 'Authorization': 'Bearer ' + token,
                 'X-Tenant-Code': context.contextCode,
+                //'Cache-Control': 'no-cache',
+                //'Pragma': 'no-cache',
             }
         });
 
