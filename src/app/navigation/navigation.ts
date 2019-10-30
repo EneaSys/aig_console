@@ -33,8 +33,15 @@ export const navigation: FuseNavigation[] = [
                 id       : 'role-list',
                 title    : 'Ruoli',
                 type     : 'item',
-                icon     : 'star_half',
+                icon     : 'assignment_ind',
                 url      : '/iam/role'
+            },
+            {
+                id       : 'permission-list',
+                title    : 'Permessi',
+                type     : 'item',
+                icon     : 'star_half',
+                url      : '/iam/permission'
             },
         ]
     },

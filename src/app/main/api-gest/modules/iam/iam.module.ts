@@ -41,6 +41,8 @@ import { AigPermissionCustomTableComponent } from './components/permission-custo
 import { AigPermissionCustomNewDialogComponent } from './components/permission-custom-new-dialog/permission-custom-new-dialog.component';
 import { AigPermissionCustomNewComponent } from './components/permission-custom-new/permission-custom-new.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AigUserDetailComponent } from './components/user-detail/user-detail.component';
+import { AigPermissionListComponent } from './components/permission-list/permission-list.component';
 
 /*
 export function apiConfigFactory (): Configuration => {
@@ -79,6 +81,8 @@ export function apiConfigFactory (): Configuration => {
         AigRoleSystemDetailComponent,
         AigRoleCustomDetailComponent,
         AigPermissionCustomNewDialogComponent,
+        AigUserDetailComponent,
+        AigPermissionListComponent,
         
     ],
     imports: [

@@ -15,9 +15,9 @@ export class AigRoleCustomDetailComponent implements OnInit {
     ) { }
 
     permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName'];
+    permissionsRoleCustom: CustomRolePermissionDTO[];
 
     customRole: CustomRoleDTO;
-    permissionsRoleCustom: CustomRolePermissionDTO[];
 
     ngOnInit(): void {
         this.customRole = this.route.snapshot.data.roleCustom;

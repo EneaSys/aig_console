@@ -18,6 +18,9 @@ import { AigRoleCustomDetailComponent } from './modules/iam/components/role-cust
 import { RoleSystemResolver } from './modules/_common/resolver/role-system.resolver';
 import { RoleCustomResolver } from './modules/_common/resolver/role-custom.resolver';
 import { PermissionsRoleCustomResolver } from './modules/_common/resolver/permission-role-custom.resolver';
+import { AigUserDetailComponent } from './modules/iam/components/user-detail/user-detail.component';
+import { UserResolver } from './modules/_common/resolver/user.resolver';
+import { AigPermissionListComponent } from './modules/iam/components/permission-list/permission-list.component';
 
 export const apiGestRoute: Routes = [
     {
@@ -101,7 +104,15 @@ export const apiGestRoute: Routes = [
                         path: 'list',
                         component: AigUserListComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: ':userCode',
+                        component: AigUserDetailComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            user: UserResolver
+                        },
+                    },
                 ]
             },
             {
@@ -148,6 +159,21 @@ export const apiGestRoute: Routes = [
                             roleCustom: RoleCustomResolver,
                             permissionsRoleCustom: PermissionsRoleCustomResolver,
                         },
+                    },
+                ]
+            },
+            {
+                path: 'permission',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPermissionListComponent,
+                        canActivate: [ AuthGuardService ],
                     },
                 ]
             }

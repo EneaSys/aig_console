@@ -17,6 +17,7 @@ import { AigRoleAssignationService } from './services/role-assignation.service';
 import { RoleSystemResolver } from './resolver/role-system.resolver';
 import { RoleCustomResolver } from './resolver/role-custom.resolver';
 import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom.resolver';
+import { UserResolver } from './resolver/user.resolver';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom
         RoleSystemResolver,
         RoleCustomResolver,
         PermissionsRoleCustomResolver,
+        UserResolver,
     ],
 })
 export class AigCommonModule {}

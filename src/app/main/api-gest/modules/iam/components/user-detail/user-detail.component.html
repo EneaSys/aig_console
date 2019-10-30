@@ -1,0 +1,27 @@
+<div id="aig-user-detail" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <aig-iam-header [search]="false"></aig-iam-header>
+
+    <div class="content">
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">User: {{ user.type }}</div>
+                <div class="h1 m-16">{{ user.lastName }} {{ user.firstName }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">UserCode: {{ user.userCode }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Status: {{ user.status }}</div>
+                <div class="h4 m-8 ml-16">Email: {{ user.email }}</div>
+            </div>
+        </div>
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-16">Membro di seguenti gruppi</div>
+            </div>
+        </div>
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-16">Ruoli diretti</div>
+            </div>
+        </div>
+    </div>
+
+</div>

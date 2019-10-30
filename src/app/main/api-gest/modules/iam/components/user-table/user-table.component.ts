@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 import { UserResourceService, UserDTO } from 'api-gest';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'aig-users-table',
@@ -13,7 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AigUserTableComponent implements OnInit {
     constructor(
         private userResourceService: UserResourceService,
-        private _snackBar: MatSnackBar
+        private _snackBar: MatSnackBar,
+        private router: Router,
     ) { }
 
     @Input()
@@ -43,5 +45,9 @@ export class AigUserTableComponent implements OnInit {
                 this._snackBar.open("User Reactivated", null, {duration: 2000,});
             }
         );
+    }
+
+    userDetail(userCode: String) {
+        this.router.navigate(['iam', 'user', userCode]);
     }
 }

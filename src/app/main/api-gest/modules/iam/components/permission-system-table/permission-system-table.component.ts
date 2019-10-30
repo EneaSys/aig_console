@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PermissionDTO } from 'api-gest';
 
 @Component({
     selector: 'aig-permission-system-table',
@@ -9,13 +10,13 @@ export class AigPermissionSystemTableComponent implements OnInit {
     @Input()
     displayedColumns: string[];
     @Input()
-    dataSource: any[];
+    dataSource: PermissionDTO[];
     
     constructor() { }
 
     ngOnInit(): void { }
 
-    detailPermissionSystem(permissionSystem: any) {
+    detailPermissionSystem(permissionSystem: PermissionDTO) {
         console.log(permissionSystem);
     }
 }
