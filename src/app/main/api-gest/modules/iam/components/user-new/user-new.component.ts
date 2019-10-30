@@ -20,9 +20,9 @@ export class AigUserNewComponent implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
-        private userResourceService: UserResourceService,
         private _snackBar: MatSnackBar,
-        private _fuseProgressBarService: FuseProgressBarService
+        private _fuseProgressBarService: FuseProgressBarService,
+        private userResourceService: UserResourceService,
     ) { }
 
     ngOnInit(): void {

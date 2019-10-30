@@ -1,0 +1,28 @@
+<mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="roleCode">
+        <mat-header-cell *matHeaderCellDef> Role Code </mat-header-cell>
+        <mat-cell *matCellDef="let e"> {{ e.roleCode }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let e">
+            <button class="mr-8" mat-stroked-button color="accent" (click)="detailSystemRole(e.id)">Details</button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+</mat-table>

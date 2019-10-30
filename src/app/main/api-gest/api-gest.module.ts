@@ -8,7 +8,6 @@ import { AigIamModule } from './modules/iam/iam.module';
 import { AigManagementModule } from './modules/management/management.module';
 import { AigContextModule } from 'app/context/context.module';
 
-
 @NgModule({
     declarations: [
         

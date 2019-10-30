@@ -13,6 +13,11 @@ import { AigUserListComponent } from './modules/iam/components/user-list/user-li
 import { AigRoleListComponent } from './modules/iam/components/role/role-list.component';
 import { AigGroupListComponent } from './modules/iam/components/group-list/group-list.component';
 import { AigContextListComponent } from './modules/management/components/context-list/context-list.component';
+import { AigRoleSystemDetailComponent } from './modules/iam/components/role-system-detail/role-system-detail.component';
+import { AigRoleCustomDetailComponent } from './modules/iam/components/role-custom-detail/role-custom-detail.component';
+import { RoleSystemResolver } from './modules/_common/resolver/role-system.resolver';
+import { RoleCustomResolver } from './modules/_common/resolver/role-custom.resolver';
+import { PermissionsRoleCustomResolver } from './modules/_common/resolver/permission-role-custom.resolver';
 
 export const apiGestRoute: Routes = [
     {
@@ -116,8 +121,35 @@ export const apiGestRoute: Routes = [
             },
             {
                 path: 'role',
-                component: AigRoleListComponent,
-                canActivate: [ AuthGuardService ],
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigRoleListComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/s/:id',
+                        component: AigRoleSystemDetailComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            roleSystem: RoleSystemResolver
+                        },
+                    },
+                    {
+                        path: 'detail/c/:id',
+                        component: AigRoleCustomDetailComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            roleCustom: RoleCustomResolver,
+                            permissionsRoleCustom: PermissionsRoleCustomResolver,
+                        },
+                    },
+                ]
             }
         ]
     },

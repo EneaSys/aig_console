@@ -1,0 +1,37 @@
+<div id="aig-iam-role-custom-detail" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <aig-iam-header></aig-iam-header>
+
+    <div class="content">
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Custom Role</div>
+                <div class="h1 m-16">{{ customRole.name }}</div>
+                <div class="h4 m-8 ml-16 secondary-text">ID: {{ customRole.id }}</div>
+            </div>
+        </div>
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-16">Lista dei permessi</div>
+                <aig-permission-custom-table [displayedColumns]="permissionsCustomDisplayedColumns" [dataSource]="permissionsRoleCustom"></aig-permission-custom-table>
+                <div style="height: 45px;"></div>
+                <button mat-fab class="accent" id="add-custom-permission-button" (click)="newCustomPermission()" aria-label="add permission">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-16">Utenti che hanno questo ruolo</div>
+            </div>
+        </div>
+        <div class="center p-16" fusePerfectScrollbar>
+            <div class="content">
+                <div class="h4 m-16">Gruppi che hanno questo ruolo</div>
+            </div>
+        </div>
+    </div>
+
+</div>

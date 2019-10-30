@@ -14,6 +14,9 @@ import { ApolloDocumentLineResolver } from './services/apollo-document-line.reso
 import { AigUserService } from './services/context-user.service';
 import { AigGroupService } from './services/group.service';
 import { AigRoleAssignationService } from './services/role-assignation.service';
+import { RoleSystemResolver } from './resolver/role-system.resolver';
+import { RoleCustomResolver } from './resolver/role-custom.resolver';
+import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom.resolver';
 
 @NgModule({
     declarations: [
@@ -45,7 +48,12 @@ import { AigRoleAssignationService } from './services/role-assignation.service';
 
         AigUserService,
         AigGroupService,
-        AigRoleAssignationService
+        AigRoleAssignationService,
+
+
+        RoleSystemResolver,
+        RoleCustomResolver,
+        PermissionsRoleCustomResolver,
     ],
 })
 export class AigCommonModule {}
