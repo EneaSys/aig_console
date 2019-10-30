@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CustomRoleDTO, CustomRolePermissionDTO } from 'api-gest';
+import { CustomRoleDTO, CustomRolePermissionDTO, RoleAssignationResourceService, RoleAssignationDTO } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
 
@@ -12,6 +12,7 @@ export class AigRoleCustomDetailComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private dialog: MatDialog,
+        private roleAssignationResourceService: RoleAssignationResourceService,
     ) { }
 
     permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName'];
@@ -19,9 +20,24 @@ export class AigRoleCustomDetailComponent implements OnInit {
 
     customRole: CustomRoleDTO;
 
+    datasourceUser: any;
+    datasourceGroup: any;
+
     ngOnInit(): void {
         this.customRole = this.route.snapshot.data.roleCustom;
         this.permissionsRoleCustom = this.route.snapshot.data.permissionsRoleCustom;
+
+        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null).subscribe(
+            (value: RoleAssignationDTO[]) => {
+                this.datasourceUser = value;
+            }
+        );
+
+        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).subscribe(
+            (value: RoleAssignationDTO[]) => {
+                this.datasourceGroup = value;
+            }
+        );
     }
 
     newCustomPermission() {
