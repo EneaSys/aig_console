@@ -30,6 +30,13 @@ export const navigation: FuseNavigation[] = [
                 url      : '/iam/user'
             },
             {
+                id       : 'group-list',
+                title    : 'Gruppi',
+                type     : 'item',
+                icon     : 'group',
+                url      : '/iam/group'
+            },
+            {
                 id       : 'role-list',
                 title    : 'Ruoli',
                 type     : 'item',

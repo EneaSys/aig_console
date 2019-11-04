@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoleDTO, RoleAssignationResourceService, RoleAssignationDTO } from 'api-gest';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
     templateUrl: './role-system-detail.component.html',
@@ -12,25 +13,20 @@ export class AigRoleSystemDetailComponent implements OnInit {
         private roleAssignationResourceService: RoleAssignationResourceService,
     ) { }
 
-    roleSystem: RoleDTO;
+    
     permissionSystemDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName'];
+    usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];
+    groupsDisplayedColumns: string[] = ['id', 'name'];
 
-    datasourceUser: any;
-    datasourceGroup: any;
+
+    roleSystem: RoleDTO;
+    users: Observable<RoleAssignationDTO[]>;
+    groups: Observable<RoleAssignationDTO[]>;
 
     ngOnInit(): void {
         this.roleSystem = this.route.snapshot.data.roleSystem;
 
-        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.roleSystem.roleCode, null, null, null, null, null, 0, null, null, null, null, null, null).subscribe(
-            (value: RoleAssignationDTO[]) => {
-                this.datasourceUser = value;
-            }
-        );
-
-        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.roleSystem.roleCode, null, null, null, null, null, null, null, null, null, null, null, null).subscribe(
-            (value: RoleAssignationDTO[]) => {
-                this.datasourceGroup = value;
-            }
-        );
+        this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.roleSystem.roleCode, null, null, null, null, null, 0, null, null, null, null, null, null);
+        this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.roleSystem.roleCode, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 }

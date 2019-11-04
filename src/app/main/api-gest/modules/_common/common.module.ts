@@ -18,17 +18,27 @@ import { RoleSystemResolver } from './resolver/role-system.resolver';
 import { RoleCustomResolver } from './resolver/role-custom.resolver';
 import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom.resolver';
 import { UserResolver } from './resolver/user.resolver';
+import { GroupResolver } from './resolver/group.resolver';
+import { AigRoleAssignationToGroupPipe, AigRoleAssignationsToGroupsPipe } from './pipe/role-assignation-to-group.pipe';
+import { AigRoleAssignationsToUsersPipe, AigRoleAssignationToUserPipe } from './pipe/role-assignation-to-user.pipe';
 
 @NgModule({
     declarations: [
         EopooNamePipe,
+        AigRoleAssignationsToGroupsPipe,
+        AigRoleAssignationToGroupPipe,
+        AigRoleAssignationsToUsersPipe,
+        AigRoleAssignationToUserPipe,
     ],
     imports: [
         ApiModule
     ],
     exports: [
         EopooNamePipe,
-        
+        AigRoleAssignationsToGroupsPipe,
+        AigRoleAssignationToGroupPipe,
+        AigRoleAssignationsToUsersPipe,
+        AigRoleAssignationToUserPipe,
     ],
     providers: [
         EopooService,
@@ -56,6 +66,7 @@ import { UserResolver } from './resolver/user.resolver';
         RoleCustomResolver,
         PermissionsRoleCustomResolver,
         UserResolver,
+        GroupResolver,
     ],
 })
 export class AigCommonModule {}

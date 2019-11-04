@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'aig-group-table',
@@ -9,7 +10,9 @@ import { fuseAnimations } from '@fuse/animations';
     encapsulation: ViewEncapsulation.None,
 })
 export class AigGroupTableComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private router: Router
+    ) { }
 
     @Input()
     displayedColumns: string[];
@@ -17,4 +20,8 @@ export class AigGroupTableComponent implements OnInit {
     dataSource: any[];
 
     ngOnInit(): void { }
+
+    public groupDetails(idGroup: number) {
+        this.router.navigate(['iam', 'group', idGroup]);
+    }
 }

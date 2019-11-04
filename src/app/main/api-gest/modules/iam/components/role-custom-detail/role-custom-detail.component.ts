@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CustomRoleDTO, CustomRolePermissionDTO, RoleAssignationResourceService, RoleAssignationDTO } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
     templateUrl: './role-custom-detail.component.html',
@@ -16,28 +17,20 @@ export class AigRoleCustomDetailComponent implements OnInit {
     ) { }
 
     permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName'];
-    permissionsRoleCustom: CustomRolePermissionDTO[];
-
+    usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];
+    groupsDisplayedColumns: string[] = ['id', 'name'];
+    
     customRole: CustomRoleDTO;
-
-    datasourceUser: any;
-    datasourceGroup: any;
+    permissionsRoleCustom: CustomRolePermissionDTO[];
+    users: Observable<RoleAssignationDTO[]>;
+    groups: Observable<RoleAssignationDTO[]>;
 
     ngOnInit(): void {
         this.customRole = this.route.snapshot.data.roleCustom;
         this.permissionsRoleCustom = this.route.snapshot.data.permissionsRoleCustom;
 
-        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null).subscribe(
-            (value: RoleAssignationDTO[]) => {
-                this.datasourceUser = value;
-            }
-        );
-
-        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).subscribe(
-            (value: RoleAssignationDTO[]) => {
-                this.datasourceGroup = value;
-            }
-        );
+        this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null);
+        this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     newCustomPermission() {

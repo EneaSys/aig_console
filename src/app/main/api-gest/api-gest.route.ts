@@ -21,6 +21,8 @@ import { PermissionsRoleCustomResolver } from './modules/_common/resolver/permis
 import { AigUserDetailComponent } from './modules/iam/components/user-detail/user-detail.component';
 import { UserResolver } from './modules/_common/resolver/user.resolver';
 import { AigPermissionListComponent } from './modules/iam/components/permission-list/permission-list.component';
+import { AigGroupDetailComponent } from './modules/iam/components/group-detail/group-detail.component';
+import { GroupResolver } from './modules/_common/resolver/group.resolver';
 
 export const apiGestRoute: Routes = [
     {
@@ -127,7 +129,15 @@ export const apiGestRoute: Routes = [
                         path: 'list',
                         component: AigGroupListComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: ':id',
+                        component: AigGroupDetailComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            group: GroupResolver,
+                        },
+                    },
                 ]
             },
             {

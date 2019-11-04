@@ -24,17 +24,18 @@ export class AigPermissionCustomNewComponent implements OnInit {
         private customRoleResourceService: CustomRoleResourceService,
     ) { }
 
-    addPermissionToCustomRoleForm: FormGroup;
-    permissions: PermissionDTO[];
-    roles: CustomRoleDTO[];
-    filteredPermissions: Observable<PermissionDTO[]>;
-    filteredRoles: Observable<CustomRoleDTO[]>;
-
     step: any = {
         form: true,
         loading: false,
         complete: false
     };
+    addPermissionToCustomRoleForm: FormGroup;
+
+    permissions: PermissionDTO[];
+    roles: CustomRoleDTO[];
+    filteredPermissions: Observable<PermissionDTO[]>;
+    filteredRoles: Observable<CustomRoleDTO[]>;
+    
     customRolePermissionDTO: CustomRolePermissionDTO;
 
     ngOnInit(): void {
@@ -89,11 +90,11 @@ export class AigPermissionCustomNewComponent implements OnInit {
         }
     }
 
-    public roleDisplayFn(customRole?: CustomRoleDTO): string | undefined {
+    roleDisplayFn(customRole?: CustomRoleDTO): string | undefined {
         return customRole ? customRole.name : undefined;
     }
 
-    public permissionDisplayFn(permission?: PermissionDTO): string | undefined {
+    permissionDisplayFn(permission?: PermissionDTO): string | undefined {
         return permission ? permission.name : undefined;
     }
 

@@ -1,7 +1,7 @@
-<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+<mat-table #table [dataSource]="dataSource">
 
     <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
         <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
     </ng-container>
 
@@ -10,17 +10,15 @@
         <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="groups">
-        <mat-header-cell *matHeaderCellDef> Groups </mat-header-cell>
-        <mat-cell *matCellDef="let e">
-            <aig-usergroup-chips [userGroups]="e.groupMemberOfs"></aig-usergroup-chips>
-        </mat-cell>
+    <ng-container matColumnDef="roleCode">
+        <mat-header-cell *matHeaderCellDef> Role Code </mat-header-cell>
+        <mat-cell *matCellDef="let e"> {{ e.roleCode }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let e">
-            <button class="mr-8" mat-stroked-button color="accent" (click)="groupDetails(e.id)">Details</button>
+            <button class="mr-8" mat-stroked-button color="accent" (click)="detailSystemRole(e.id)">Details</button>
         </mat-cell>
     </ng-container>
 

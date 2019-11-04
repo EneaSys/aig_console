@@ -14,8 +14,8 @@ export class AigRoleListComponent implements OnInit {
         private customRoleResourceService: CustomRoleResourceService,
     ) { }
 
-    roleDisplayedColumns: string[] = ['id', 'name', 'roleCode', 'buttons'];
-    roleDataSource: any[];
+    roleSystemDisplayedColumns: string[] = ['id', 'name', 'roleCode', 'buttons'];
+    roleSystemDataSource: any[];
 
     roleCustomDisplayedColumns: string[] = ['id', 'name', 'buttons'];
     roleCustomDataSource: any[];
@@ -23,7 +23,7 @@ export class AigRoleListComponent implements OnInit {
     ngOnInit(): void {
         this.roleResourceService.getAllRolesUsingGET().subscribe(
             (value: RoleDTO[]) => {
-                this.roleDataSource = value;
+                this.roleSystemDataSource = value;
             }
         );
         this.customRoleResourceService.getAllCustomRolesUsingGET({}).subscribe(
