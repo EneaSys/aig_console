@@ -25,7 +25,7 @@ export class AigUserTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    private disactivate(userCode: string):void {
+    disactivate(userCode: string):void {
         this.userResourceService.deactivateUserUsingDELETE(userCode).subscribe(
             (userDTO: UserDTO) => {
                 console.log("Ricarica la linea con: ", userDTO);
@@ -38,7 +38,7 @@ export class AigUserTableComponent implements OnInit {
         );
     }
 
-    private reactivate(userCode: string):void {
+    reactivate(userCode: string):void {
         this.userResourceService.reactivateUserUsingPUT(userCode).subscribe(
             (userDTO: UserDTO) => {
                 console.log("Ricarica la linea con: ", userDTO);

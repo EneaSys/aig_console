@@ -1,31 +1,42 @@
-<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+<div *ngIf="dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="dataSource != null">
 
-    <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-        <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
-    </ng-container>
+    <mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
 
-    <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="groups">
-        <mat-header-cell *matHeaderCellDef> Groups </mat-header-cell>
-        <mat-cell *matCellDef="let e">
-            <aig-usergroup-chips [userGroups]="e.groupMemberOfs"></aig-usergroup-chips>
-        </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="buttons">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let e">
-            <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent" (click)="groupDetails(e.id)">Details</button>
-            <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent" (click)="removeFromGroup(e)">Remove</button>
-        </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="groups">
+            <mat-header-cell *matHeaderCellDef> Groups </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <aig-usergroup-chips [userGroups]="e.groupMemberOfs"></aig-usergroup-chips>
+            </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent"
+                    (click)="groupDetails(e.id)">Details</button>
+                <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeFromGroup(e)">Remove</button>
+            </mat-cell>
+        </ng-container>
 
-</mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+</div>
