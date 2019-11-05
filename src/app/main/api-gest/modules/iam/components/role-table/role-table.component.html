@@ -27,8 +27,14 @@
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let e">
-            <button *ngIf="e.customRoleId != null" class="mr-8" mat-stroked-button color="accent" (click)="detailCustomRole(e)">Details</button>
-            <button *ngIf="e.roleCode != null" class="mr-8" mat-stroked-button color="accent" (click)="detailSystemRole(e)">Details</button>
+            <div *ngIf="buttonConfig.details != false">
+                <button *ngIf="e.customRoleId != null" class="mr-8" mat-stroked-button color="accent" (click)="detailCustomRole(e)">Details</button>
+                <button *ngIf="e.roleCode != null" class="mr-8" mat-stroked-button color="accent" (click)="detailSystemRole(e)">Details</button>
+            </div>
+            
+            <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent" (click)="removeFromGroup(e)">Remove</button>
+            <button *ngIf="buttonConfig.removeFromUser != null" class="mr-8" mat-stroked-button color="accent" (click)="removeFromUser(e)">Remove</button>
+            
         </mat-cell>
     </ng-container>
 

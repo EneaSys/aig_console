@@ -13,13 +13,5 @@ export class AigGroupAssociateDialogComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
-    public groupParent: ContextGroupDTO;
-    public groupChild: ContextGroupDTO;
-    public user: UserDTO;
-
-    ngOnInit(): void {
-        this.groupParent = this.data.groupParent;
-        this.groupChild = this.data.groupChild;
-        this.user = this.data.user;
-    }
+    ngOnInit(): void { }
 }

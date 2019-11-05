@@ -2,24 +2,23 @@
 
     <aig-iam-header></aig-iam-header>
 
-    <div class="content">
-
-        <div class="center p-16" fusePerfectScrollbar>
-            <div class="content">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
                 <aig-role-system-table [displayedColumns]="roleSystemDisplayedColumns" [dataSource]="roleSystemDataSource"></aig-role-system-table>
             </div>
         </div>
-
-        <div class="center p-16" fusePerfectScrollbar>
-            <div class="content">
-                <aig-role-custom-table [displayedColumns]="roleCustomDisplayedColumns" [dataSource]="roleCustomDataSource"></aig-role-custom-table>
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16" id="role-custom-list">
+                <div class="h4 m-16 mt-0 mb-0">Gruppi che hanno questo gruppo</div>
+                <aig-role-custom-table [displayedColumns]="roleCustomDisplayedColumns"
+                    [dataSource]="roleCustomDataSource"></aig-role-custom-table>
                 <div style="height: 45px;"></div>
-                <button mat-fab class="accent" id="add-custom-role-button" (click)="newCustomRole()" aria-label="add role">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newCustomRole()" aria-label="add role">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
         </div>
-
     </div>
 
 </div>

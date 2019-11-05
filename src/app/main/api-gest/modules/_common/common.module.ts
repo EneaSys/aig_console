@@ -21,6 +21,9 @@ import { UserResolver } from './resolver/user.resolver';
 import { GroupResolver } from './resolver/group.resolver';
 import { AigRoleAssignationToGroupPipe, AigRoleAssignationsToGroupsPipe } from './pipe/role-assignation-to-group.pipe';
 import { AigRoleAssignationsToUsersPipe, AigRoleAssignationToUserPipe } from './pipe/role-assignation-to-user.pipe';
+import { AigAutocompleteFilterService } from './services/form/autocomplete-filter.service';
+import { AigAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { AigValidatorService } from './services/form/validator.service';
 
 @NgModule({
     declarations: [
@@ -41,6 +44,11 @@ import { AigRoleAssignationsToUsersPipe, AigRoleAssignationToUserPipe } from './
         AigRoleAssignationToUserPipe,
     ],
     providers: [
+        AigAutocompleteFilterService,
+        AigAutocompleteFunctionService,
+        
+        AigValidatorService,
+
         EopooService,
 
         EopooTypeService,

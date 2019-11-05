@@ -16,10 +16,12 @@ export class AigRoleCustomDetailComponent implements OnInit {
         private roleAssignationResourceService: RoleAssignationResourceService,
     ) { }
 
-    permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName'];
+    permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
     usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];
     groupsDisplayedColumns: string[] = ['id', 'name'];
     
+    permissionButtonConfig: any;
+
     customRole: CustomRoleDTO;
     permissionsRoleCustom: CustomRolePermissionDTO[];
     users: Observable<RoleAssignationDTO[]>;
@@ -28,6 +30,11 @@ export class AigRoleCustomDetailComponent implements OnInit {
     ngOnInit(): void {
         this.customRole = this.route.snapshot.data.roleCustom;
         this.permissionsRoleCustom = this.route.snapshot.data.permissionsRoleCustom;
+
+        this.permissionButtonConfig = {
+            details: false,
+            removeFromCustomRole: this.customRole,
+        }
 
         this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null);
         this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);

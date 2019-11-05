@@ -49,6 +49,8 @@ import { AigGroupNewDialogComponent } from './components/group-new-dialog/group-
 import { AigRoleAssociateDialogComponent } from './components/role-associate-dialog/role-associate-dialog.component';
 import { AigGroupAssociateDialogComponent } from './components/group-associate-dialog/group-associate-dialog.component';
 import { AigGroupAssociateComponent } from './components/group-associate/group-associate.component';
+import { AigRoleAssociateComponent } from './components/role-associate/role-associate.component';
+import { AigGroupNewComponent } from './components/group-new/group-new.component';
 
 /*
 export function apiConfigFactory (): Configuration => {
@@ -68,6 +70,8 @@ export function apiConfigFactory (): Configuration => {
         AigRoleCustomNewComponent,
         AigPermissionCustomNewComponent,
         AigGroupAssociateComponent,
+        AigRoleAssociateComponent,
+        AigGroupNewComponent,
         
 
         //table
@@ -127,6 +131,8 @@ export function apiConfigFactory (): Configuration => {
         AigRoleCustomNewComponent,
         AigPermissionCustomNewComponent,
         AigGroupAssociateComponent,
+        AigRoleAssociateComponent,
+        AigGroupNewComponent,
 
         AigUserTableComponent,
         AigGroupTableComponent,

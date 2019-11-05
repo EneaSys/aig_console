@@ -23,6 +23,9 @@ export class AigGroupDetailComponent implements OnInit {
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
     userDisplayedColumns: string[] = ['usercode', 'email', 'type',];
     membersDisplayedColumns: string[] = ['id', 'name'];
+    
+    memberOfButtonConfig: any;
+    roleButtonConfig: any;
 
     group: ContextGroupDTO;
     roles: Observable<RoleAssignationDTO[]>;
@@ -31,6 +34,16 @@ export class AigGroupDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.group = this.route.snapshot.data.group;
+
+        this.memberOfButtonConfig = {
+            details: false,
+            removeFromGroup: this.group,
+        }
+
+        this.roleButtonConfig = {
+            details: false,
+            removeFromGroup: this.group,
+        }
 
         this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
         this.users = this.userResourceService.getAllUsersUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null);

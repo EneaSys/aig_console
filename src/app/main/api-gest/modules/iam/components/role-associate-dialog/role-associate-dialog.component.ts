@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ContextGroupDTO, UserDTO, RoleDTO } from 'api-gest';
+import { ContextGroupDTO, UserDTO, RoleDTO, CustomRoleDTO } from 'api-gest';
 
 @Component({
     selector: 'aig-role-associate-dialog',
@@ -13,13 +13,5 @@ export class AigRoleAssociateDialogComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
-    public role: RoleDTO;
-    public group: ContextGroupDTO;
-    public user: UserDTO;
-
-    ngOnInit(): void {
-        this.role = this.data.role;
-        this.group = this.data.group;
-        this.user = this.data.user;
-    }
+    ngOnInit(): void { }
 }

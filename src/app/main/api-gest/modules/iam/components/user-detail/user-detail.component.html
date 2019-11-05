@@ -18,7 +18,7 @@
                 <div class="h4 m-16 mt-0 mb-0">Membro di</div>
                 <aig-group-table [displayedColumns]="memberOfDisplayedColumns" [dataSource]="user.userMemberOfs"></aig-group-table>
                 <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addToGroup()"
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToGroup()"
                     aria-label="add to group">
                     <mat-icon>add</mat-icon>
                 </button>
@@ -27,9 +27,9 @@
         <div class="widget p-16" fxFlex.gt-sm="40">
             <div class="fuse-card auto-width p-16" id="role-list">
                 <div class="h4 m-16 mt-0 mb-0">Lista dei ruoli</div>
-                <aig-role-table [displayedColumns]="roleDisplayedColumns" [dataSource]="roles | async"></aig-role-table>
+                <aig-role-table [displayedColumns]="roleDisplayedColumns" [dataSource]="roles | async" [buttonConfig]="roleButtonConfig"></aig-role-table>
                 <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addRole()"
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToRole()"
                     aria-label="add role">
                     <mat-icon>add</mat-icon>
                 </button>

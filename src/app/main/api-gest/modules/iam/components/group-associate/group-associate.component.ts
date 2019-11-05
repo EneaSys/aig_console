@@ -6,6 +6,9 @@ import { ContextGroupDTO, ContextGroupResourceService, UserDTO, UserResourceServ
 import { Observable, of } from 'rxjs';
 import { switchMap, startWith, distinctUntilChanged } from 'rxjs/operators';
 import { filter } from 'minimatch';
+import { AigAutocompleteFilterService } from '../../../_common/services/form/autocomplete-filter.service';
+import { AigAutocompleteFunctionService } from '../../../_common/services/form/autocomplete-function.service';
+import { AigValidatorService } from '../../../_common/services/form/validator.service';
 
 @Component({
     selector: 'aig-group-associate',
@@ -13,19 +16,14 @@ import { filter } from 'minimatch';
     styleUrls: ['./group-associate.component.scss']
 })
 export class AigGroupAssociateComponent implements OnInit {
-    @Input()
-    groupParent: any;
-    @Input()
-    groupChild: any;
-    @Input()
-    user: any;
-
     constructor(
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
+        private aigAutocompleteFilterService: AigAutocompleteFilterService,
+        public aigAutocompleteFunctionService: AigAutocompleteFunctionService,
+        private aigValidatorService: AigValidatorService,
         private contextGroupResourceService: ContextGroupResourceService,
-        private userResourceService: UserResourceService,
     ) { }
 
     // Form preparation Objects
@@ -38,16 +36,29 @@ export class AigGroupAssociateComponent implements OnInit {
 
 
     // Precompile Objects
+    @Input()
+    groupParent: ContextGroupDTO;
+    @Input()
+    groupChild: ContextGroupDTO;
+    @Input()
+    user: UserDTO;
 
 
     // Iteractions Objects
-    filteredParentGroups: Observable<any[]>;
-    filteredChildGroups: Observable<any[]>;
-    filteredUsers: Observable<any[]>;
+    filteredParentGroups: Observable<ContextGroupDTO[]>;
+    filteredChildGroups: Observable<ContextGroupDTO[]>;
+    filteredUsers: Observable<UserDTO[]>;
 
 
-    // Return Objects
-    //createdElement: TYPE;
+
+
+
+
+
+
+
+
+
 
     ngOnInit(): void {
         // PREPARE FORM
@@ -55,7 +66,11 @@ export class AigGroupAssociateComponent implements OnInit {
             groupParent: ['', Validators.required],
             groupChild: [''],
             user: [''],
-        }, { validator: this.groupChildOrUserValidator });
+        },{ 
+            validator: [
+                this.aigValidatorService.getFirstOrSecondValidator('groupChild', 'user'),
+            ]
+        });
 
 
         // PRECOMPILE
@@ -71,66 +86,30 @@ export class AigGroupAssociateComponent implements OnInit {
 
 
         // EVENT ON ITERACTION
-        this.filteredParentGroups = this.filterGroups(this.formGroup.controls['groupParent'].valueChanges);
-        this.filteredChildGroups = this.filterGroups(this.formGroup.controls['groupChild'].valueChanges);
-        this.filteredUsers = this.filterUsers(this.formGroup.controls['user'].valueChanges);
-    }
-
-    // FORM VALIDATORS
-    private groupChildOrUserValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
-        const groupChild = formGroup.controls['groupChild'];
-        const user = formGroup.controls['user'];
-        if (groupChild.value == "" && user.value == "") {
-            groupChild.setErrors({ notEquivalent: true });
-            user.setErrors({ notEquivalent: true });
-        }
-        if (groupChild.value != "" && user.value != "") {
-            groupChild.setErrors({ notEquivalent: true });
-            user.setErrors({ notEquivalent: true });
-        }
-        else {
-            groupChild.setErrors(null);
-            user.setErrors(null);
-        }
-        return;
-    };
-
-    // FILTER OF ITERACTIONS
-    private filterGroups(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 4) {
-                    return this.contextGroupResourceService.getAllContextGroupsUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, 10, null, null, null, null, null, null, null, null);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
-
-    private filterUsers(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 5) {
-                    return this.userResourceService.getAllUsersUsingGET({}, null, null, null, null, null, null, null, null, 10, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
-
-    groupDisplayFn(contextGroup?: ContextGroupDTO): string | undefined {
-        return contextGroup ? contextGroup.name : undefined;
-    }
-
-    userDisplayFn(user?: UserDTO): string | undefined {
-        return user ? user.email : undefined;
+        this.filteredParentGroups = this.aigAutocompleteFilterService.filterGroups(this.formGroup.controls['groupParent'].valueChanges);
+        this.filteredChildGroups = this.aigAutocompleteFilterService.filterGroups(this.formGroup.controls['groupChild'].valueChanges);
+        this.filteredUsers = this.aigAutocompleteFilterService.filterUsers(this.formGroup.controls['user'].valueChanges);
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+    // SUBMIT
     submit() {
         if (!this.formGroup.valid) {
             return;
@@ -162,6 +141,7 @@ export class AigGroupAssociateComponent implements OnInit {
             this.setStep("form");
         }
     }
+
 
     private setStep(step: string) {
         this.step.form = false;

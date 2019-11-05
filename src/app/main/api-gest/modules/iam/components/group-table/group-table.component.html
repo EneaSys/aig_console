@@ -20,7 +20,8 @@
     <ng-container matColumnDef="buttons">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let e">
-            <button class="mr-8" mat-stroked-button color="accent" (click)="groupDetails(e.id)">Details</button>
+            <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent" (click)="groupDetails(e.id)">Details</button>
+            <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent" (click)="removeFromGroup(e)">Remove</button>
         </mat-cell>
     </ng-container>
 
