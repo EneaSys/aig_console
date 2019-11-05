@@ -4,6 +4,7 @@
     </div>
 </div>
 <div *ngIf="dataSource != null">
+
     <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="usercode">
@@ -58,4 +59,5 @@
         <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
 
     </mat-table>
+    
 </div>

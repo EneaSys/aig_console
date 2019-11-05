@@ -21,6 +21,7 @@ import { AigApolloDocumentListComponent } from './component/apollo-document-list
 import { ApolloDocumentTypePipe } from './pipe/ApolloDocumentType.pipe';
 import { ApolloDocumentDetailComponent } from './component/apollo-document-detail/apollo-document-detail.component';
 import { ApolloDocumentLineListTableComponent } from './component/apollo-document-line-list/apollo-document-line-list.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -50,6 +51,7 @@ import { ApolloDocumentLineListTableComponent } from './component/apollo-documen
         MatStepperModule,
         MatDatepickerModule,
         MatAutocompleteModule,
+        MatProgressSpinnerModule,
 
     ],
     exports: [

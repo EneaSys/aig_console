@@ -20,6 +20,7 @@ import { EopooListComponent } from './components/eopoo-list/eopoo-list.component
 import { EopooListTableComponent } from './components/eopoo-list/eopoo-list-table.component';
 import { EopooNewComponent } from './components/eopoo-new/eopoo-new.component';
 import { EopooDetailComponent } from './components/eopoo-detail/eopoo-detail.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { EopooDetailComponent } from './components/eopoo-detail/eopoo-detail.com
         MatStepperModule,
         MatDatepickerModule,
         MatAutocompleteModule,
+        MatProgressSpinnerModule,
 
     ],
     exports: [
