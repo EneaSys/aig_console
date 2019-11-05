@@ -1,0 +1,20 @@
+<form *ngIf="step.form" [formGroup]="roleCustomNewForm" (ngSubmit)="createRoleCustom()">
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Role Custom Name</mat-label>
+            <mat-icon matSuffix class="secondary-text">assignment_ind</mat-icon>
+            <input name="name" formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ customRoleDTO | json }}</pre>
+</div>

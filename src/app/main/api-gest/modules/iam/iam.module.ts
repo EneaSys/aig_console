@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
+import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 
 import { ApiGestModule, BASE_PATH } from 'api-gest';
 
@@ -30,6 +30,27 @@ import { AigGroupTableComponent } from './components/group-table/group-table.com
 import { AigUserNewComponent } from './components/user-new/user-new.component';
 import { AigUserNewDialogComponent } from './components/user-new-dialog/user-new-dialog.component';
 import { API_URL } from 'app/app.constants';
+import { AigRoleSystemTableComponent } from './components/role-system-table/role-system-table.component';
+import { AigRoleCustomTableComponent } from './components/role-custom-table/role-custom-table.component';
+import { AigRoleCustomNewDialogComponent } from './components/role-new-dialog/role-new-dialog.component';
+import { AigRoleCustomNewComponent } from './components/role-custom-new/role-custom-new.component';
+import { AigRoleCustomDetailComponent } from './components/role-custom-detail/role-custom-detail.component';
+import { AigRoleSystemDetailComponent } from './components/role-system-detail/role-system-detail.component';
+import { AigPermissionSystemTableComponent } from './components/permission-system-table/permission-system-table.component';
+import { AigPermissionCustomTableComponent } from './components/permission-custom-table/permission-custom-table.component';
+import { AigPermissionCustomNewDialogComponent } from './components/permission-custom-new-dialog/permission-custom-new-dialog.component';
+import { AigPermissionCustomNewComponent } from './components/permission-custom-new/permission-custom-new.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AigUserDetailComponent } from './components/user-detail/user-detail.component';
+import { AigPermissionListComponent } from './components/permission-list/permission-list.component';
+import { AigGroupDetailComponent } from './components/group-detail/group-detail.component';
+import { AigRoleTableComponent } from './components/role-table/role-table.component';
+import { AigGroupNewDialogComponent } from './components/group-new-dialog/group-new-dialog.component';
+import { AigRoleAssociateDialogComponent } from './components/role-associate-dialog/role-associate-dialog.component';
+import { AigGroupAssociateDialogComponent } from './components/group-associate-dialog/group-associate-dialog.component';
+import { AigGroupAssociateComponent } from './components/group-associate/group-associate.component';
+import { AigRoleAssociateComponent } from './components/role-associate/role-associate.component';
+import { AigGroupNewComponent } from './components/group-new/group-new.component';
 
 /*
 export function apiConfigFactory (): Configuration => {
@@ -46,10 +67,21 @@ export function apiConfigFactory (): Configuration => {
         AigUserGroupChipsComponent,
         AigUserGroupChipsChildComponent,
         AigUserNewComponent,
+        AigRoleCustomNewComponent,
+        AigPermissionCustomNewComponent,
+        AigGroupAssociateComponent,
+        AigRoleAssociateComponent,
+        AigGroupNewComponent,
+        
 
         //table
         AigUserTableComponent,
         AigGroupTableComponent,
+        AigRoleSystemTableComponent,
+        AigRoleCustomTableComponent,
+        AigPermissionSystemTableComponent,
+        AigPermissionCustomTableComponent,
+        AigRoleTableComponent,
 
         //INTERNAL
         AigIamHeaderComponent,
@@ -58,6 +90,16 @@ export function apiConfigFactory (): Configuration => {
         AigUserNewDialogComponent,
         AigGroupListComponent,
         AigRoleListComponent,
+        AigRoleCustomNewDialogComponent,
+        AigRoleSystemDetailComponent,
+        AigRoleCustomDetailComponent,
+        AigPermissionCustomNewDialogComponent,
+        AigUserDetailComponent,
+        AigPermissionListComponent,
+        AigGroupDetailComponent,
+        AigGroupNewDialogComponent,
+        AigRoleAssociateDialogComponent,
+        AigGroupAssociateDialogComponent
         
     ],
     imports: [
@@ -65,6 +107,7 @@ export function apiConfigFactory (): Configuration => {
 
         FuseSharedModule,
         FuseSidebarModule,
+        FuseWidgetModule,
 
         ApiGestModule,
         HttpClientModule,
@@ -77,18 +120,35 @@ export function apiConfigFactory (): Configuration => {
         MatChipsModule,
         MatSnackBarModule,
         MatToolbarModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatAutocompleteModule,
         
     ],
     exports: [
         AigUserGroupChipsComponent,
         AigUserGroupChipsChildComponent,
         AigUserNewComponent,
+        AigRoleCustomNewComponent,
+        AigPermissionCustomNewComponent,
+        AigGroupAssociateComponent,
+        AigRoleAssociateComponent,
+        AigGroupNewComponent,
 
         AigUserTableComponent,
+        AigGroupTableComponent,
+        AigRoleSystemTableComponent,
+        AigRoleCustomTableComponent,
+        AigPermissionSystemTableComponent,
+        AigPermissionCustomTableComponent,
+        AigRoleTableComponent,
     ],
     entryComponents:[
         AigUserNewDialogComponent,
+        AigRoleCustomNewDialogComponent,
+        AigPermissionCustomNewDialogComponent,
+        AigGroupNewDialogComponent,
+        AigRoleAssociateDialogComponent,
+        AigGroupAssociateDialogComponent,
     ],
     providers: [
         { provide: BASE_PATH,  useValue: API_URL }

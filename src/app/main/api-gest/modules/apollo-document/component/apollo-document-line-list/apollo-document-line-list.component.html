@@ -1,45 +1,54 @@
-<mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
+<div *ngIf="dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="dataSource != null">
 
-    <ng-container matColumnDef="descrizione">
-        <mat-header-cell *matHeaderCellDef> Descrizione </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.descrizione }} </mat-cell>
-    </ng-container>
+    <mat-table #table [dataSource]="dataSource">
 
-    <ng-container matColumnDef="prezzo">
-        <mat-header-cell *matHeaderCellDef> Prezzo </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.prezzo | currency:'EUR':true }} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="descrizione">
+            <mat-header-cell *matHeaderCellDef> Descrizione </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.descrizione }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="qta">
-        <mat-header-cell *matHeaderCellDef> Quantità </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.qta }} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="prezzo">
+            <mat-header-cell *matHeaderCellDef> Prezzo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.prezzo | currency:'EUR':true }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="importo">
-        <mat-header-cell *matHeaderCellDef> Importo </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.importo | currency:'EUR':true }} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="qta">
+            <mat-header-cell *matHeaderCellDef> Quantità </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.qta }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="aliquota">
-        <mat-header-cell *matHeaderCellDef> Aliquota </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.aliquota }} % </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="importo">
+            <mat-header-cell *matHeaderCellDef> Importo </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.importo | currency:'EUR':true }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="iva">
-        <mat-header-cell *matHeaderCellDef> IVA </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.iva | currency:'EUR':true }} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="aliquota">
+            <mat-header-cell *matHeaderCellDef> Aliquota </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.aliquota }} % </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="totale">
-        <mat-header-cell *matHeaderCellDef> Totale </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.importo + element.iva | currency:'EUR':true }} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="iva">
+            <mat-header-cell *matHeaderCellDef> IVA </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.iva | currency:'EUR':true }} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="buttons">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element"></mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="totale">
+            <mat-header-cell *matHeaderCellDef> Totale </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.importo + element.iva | currency:'EUR':true }} </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let apolloDocument; columns: displayedColumns;"></mat-row>
-</mat-table>
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element"></mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let apolloDocument; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    
+</div>

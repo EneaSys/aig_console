@@ -14,19 +14,41 @@ import { ApolloDocumentLineResolver } from './services/apollo-document-line.reso
 import { AigUserService } from './services/context-user.service';
 import { AigGroupService } from './services/group.service';
 import { AigRoleAssignationService } from './services/role-assignation.service';
+import { RoleSystemResolver } from './resolver/role-system.resolver';
+import { RoleCustomResolver } from './resolver/role-custom.resolver';
+import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom.resolver';
+import { UserResolver } from './resolver/user.resolver';
+import { GroupResolver } from './resolver/group.resolver';
+import { AigRoleAssignationToGroupPipe, AigRoleAssignationsToGroupsPipe } from './pipe/role-assignation-to-group.pipe';
+import { AigRoleAssignationsToUsersPipe, AigRoleAssignationToUserPipe } from './pipe/role-assignation-to-user.pipe';
+import { AigAutocompleteFilterService } from './services/form/autocomplete-filter.service';
+import { AigAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { AigValidatorService } from './services/form/validator.service';
 
 @NgModule({
     declarations: [
         EopooNamePipe,
+        AigRoleAssignationsToGroupsPipe,
+        AigRoleAssignationToGroupPipe,
+        AigRoleAssignationsToUsersPipe,
+        AigRoleAssignationToUserPipe,
     ],
     imports: [
         ApiModule
     ],
     exports: [
         EopooNamePipe,
-        
+        AigRoleAssignationsToGroupsPipe,
+        AigRoleAssignationToGroupPipe,
+        AigRoleAssignationsToUsersPipe,
+        AigRoleAssignationToUserPipe,
     ],
     providers: [
+        AigAutocompleteFilterService,
+        AigAutocompleteFunctionService,
+        
+        AigValidatorService,
+
         EopooService,
 
         EopooTypeService,
@@ -45,7 +67,14 @@ import { AigRoleAssignationService } from './services/role-assignation.service';
 
         AigUserService,
         AigGroupService,
-        AigRoleAssignationService
+        AigRoleAssignationService,
+
+
+        RoleSystemResolver,
+        RoleCustomResolver,
+        PermissionsRoleCustomResolver,
+        UserResolver,
+        GroupResolver,
     ],
 })
 export class AigCommonModule {}

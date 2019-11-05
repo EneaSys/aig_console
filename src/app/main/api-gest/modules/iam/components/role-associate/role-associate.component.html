@@ -1,0 +1,60 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="step.form">
+
+    <div class="h4 mb-4 ">ASSOCIATE</div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field class="mr-8 ml-8" appearance="outline" fxFlex>
+            <mat-label>System role da associare</mat-label>
+            <mat-icon matSuffix class="secondary-text">group</mat-icon>
+            <input type="text" matInput formControlName="roleSystem" required [matAutocomplete]="roleSystemAutocomplete">
+            <mat-autocomplete #roleSystemAutocomplete="matAutocomplete" [displayWith]="aigAutocompleteFunctionService.roleSystemDisplayFn">
+                <mat-option *ngFor="let group of filteredSystemRoles | async" [value]="group">{{ group.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>E' necessario selezionare un system role o un custom role!</mat-error>
+        </mat-form-field>
+        <div class="h4 mt-20 mr-8 ml-8">OR</div>
+        <mat-form-field class="mr-8 ml-8" appearance="outline" fxFlex>
+            <mat-label>Custom role da associare</mat-label>
+            <mat-icon matSuffix class="secondary-text">person</mat-icon>
+            <input type="text" matInput formControlName="roleCustom" required [matAutocomplete]="roleCustomAutocomplete">
+            <mat-autocomplete #roleCustomAutocomplete="matAutocomplete" [displayWith]="aigAutocompleteFunctionService.roleCustomDisplayFn">
+                <mat-option *ngFor="let user of filteredCustomRoles | async" [value]="user">{{ user.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>E' necessario selezionare un custom role o un system role!</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="h4 mb-4 mt-8">TO</div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field class="mr-8 ml-8" appearance="outline" fxFlex>
+            <mat-label>Gruppo da associare</mat-label>
+            <mat-icon matSuffix class="secondary-text">group</mat-icon>
+            <input type="text" matInput formControlName="group" required [matAutocomplete]="groupAutocomplete">
+            <mat-autocomplete #groupAutocomplete="matAutocomplete" [displayWith]="aigAutocompleteFunctionService.groupDisplayFn">
+                <mat-option *ngFor="let group of filteredGroups | async" [value]="group">{{ group.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>E' necessario selezionare un gruppo o un utente!</mat-error>
+        </mat-form-field>
+        <div class="h4 mt-20 mr-8 ml-8">OR</div>
+        <mat-form-field class="mr-8 ml-8" appearance="outline" fxFlex>
+            <mat-label>Utente da associare</mat-label>
+            <mat-icon matSuffix class="secondary-text">person</mat-icon>
+            <input type="text" matInput formControlName="user" required [matAutocomplete]="userAutocomplete">
+            <mat-autocomplete #userAutocomplete="matAutocomplete" [displayWith]="aigAutocompleteFunctionService.userDisplayFn">
+                <mat-option *ngFor="let user of filteredUsers | async" [value]="user">{{ user.email }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>E' necessario selezionare un utente o un gruppo!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Aggiungi</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    Associazione effettuata
+</div>
