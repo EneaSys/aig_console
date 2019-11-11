@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { ContextGroupDTO, ContextGroupResourceService, UserDTO, UserResourceService } from 'api-gest';
+import { ContextGroupDTO, ContextGroupResourceService, UserDTO, UserResourceService, ContextUserResourceService, ContextUserDTO } from 'api-gest';
 import { Observable, of } from 'rxjs';
 import { switchMap, startWith, distinctUntilChanged } from 'rxjs/operators';
 import { filter } from 'minimatch';
@@ -24,6 +24,7 @@ export class AigGroupAssociateComponent implements OnInit {
         public aigAutocompleteFunctionService: AigAutocompleteFunctionService,
         private aigValidatorService: AigValidatorService,
         private contextGroupResourceService: ContextGroupResourceService,
+        private contextUserResourceService: ContextUserResourceService,
     ) { }
 
     // Form preparation Objects
@@ -136,9 +137,21 @@ export class AigGroupAssociateComponent implements OnInit {
                 },
             );
         } else {
-            this._snackBar.open("Add user to group not implemented.", null, { duration: 5000, });
-            this._fuseProgressBarService.hide();
-            this.setStep("form");
+            let user: any = this.formGroup.controls['user'].value;
+            user.userMemberOfs.push(this.formGroup.controls['groupParent'].value);
+
+            this.contextUserResourceService.updateContextUserUsingPUT(user).subscribe(
+                (value: ContextUserDTO) => {
+                    this._snackBar.open("User " + user.firstName + " " + user.lastName + ", added to: " + parentName + ".", null, { duration: 5000, });
+                    this._fuseProgressBarService.hide();
+                    this.setStep("complete");
+                },
+                (error: any) => {
+                    this._snackBar.open("Error: " + error.error.detail, null, { duration: 10000, });
+                    this._fuseProgressBarService.hide();
+                    this.setStep("form");
+                }
+            );
         }
     }
 

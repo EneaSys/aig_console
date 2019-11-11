@@ -37,7 +37,7 @@ export class AigGroupDetailComponent implements OnInit {
 
         this.memberOfButtonConfig = {
             details: false,
-            removeFromGroup: this.group,
+            removeGroupFromGroup: this.group,
         }
 
         this.roleButtonConfig = {

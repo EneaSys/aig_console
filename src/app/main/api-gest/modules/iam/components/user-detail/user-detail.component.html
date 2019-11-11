@@ -16,7 +16,7 @@
         <div class="widget p-16" fxFlex.gt-sm="30">
             <div class="fuse-card auto-width p-16" id="group-member-list">
                 <div class="h4 m-16 mt-0 mb-0">Membro di</div>
-                <aig-group-table [displayedColumns]="memberOfDisplayedColumns" [dataSource]="user.userMemberOfs"></aig-group-table>
+                <aig-group-table [displayedColumns]="memberOfDisplayedColumns" [dataSource]="user.userMemberOfs" [buttonConfig]="memberOfButtonConfig"></aig-group-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToGroup()"
                     aria-label="add to group">

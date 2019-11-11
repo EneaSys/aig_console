@@ -15,12 +15,12 @@ export class AigUserDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
-        private contextGroupResourceService: ContextGroupResourceService,
     ) { }
 
     memberOfDisplayedColumns: string[] = ['id', 'name', 'buttons'];
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
 
+    memberOfButtonConfig: any;
     roleButtonConfig: any;
 
     user: any; //UserDTO
@@ -28,6 +28,11 @@ export class AigUserDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.user = this.route.snapshot.data.user;
+
+        this.memberOfButtonConfig = {
+            details: false,
+            removeUserFromGroup: this.user,
+        }
 
         this.roleButtonConfig = {
             details: true,

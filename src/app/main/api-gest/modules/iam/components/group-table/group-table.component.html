@@ -29,8 +29,10 @@
             <mat-cell *matCellDef="let e">
                 <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent"
                     (click)="groupDetails(e.id)">Details</button>
-                <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent"
-                    (click)="removeFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeGroupFromGroup != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeGroupFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeUserFromGroup != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeUserFromGroup(e)">Remove</button>
             </mat-cell>
         </ng-container>
 
