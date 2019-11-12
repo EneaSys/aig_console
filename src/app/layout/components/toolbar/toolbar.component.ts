@@ -72,10 +72,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
-
-        this.authService.$authenticationState.subscribe(
-            (isAuthenticated: boolean) => this.authChange(isAuthenticated)
-        );
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -97,33 +93,44 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { id: this._translateService.currentLang });
-        this.afterOnInit();
-       
-        this.aigContextRepositoryService.getCurrentContextObservable().subscribe(
-            (context: IContext) => {
-                this.context = context;
-            }
+
+        this.authService.$authenticationState.subscribe(
+            (isAuthenticated: boolean) => this.authChange(isAuthenticated)
         );
 
-        this.aigContextRepositoryService.getAvailableContexts().subscribe(
-            (value: IContext[]) => {
-                this.contexts = value;
-            },
-        );
+        this.afterOnInit();
     }
 
     async afterOnInit() {
         this.isAuthenticated = await this.authService.isAuthenticated();
         this.loadUserInfo();
+        this.loadContextMenu();
     }
-    private authChange(isAuthenticated) {
+
+    private authChange(isAuthenticated: boolean) {
         this.isAuthenticated = isAuthenticated
         this.loadUserInfo();
+        this.loadContextMenu();
     }
 
     private loadUserInfo() {
         if (this.isAuthenticated) {
             this.authService.getUser().then((user: any) => this.loggedUserInfo(user));
+        }
+    }
+
+    private loadContextMenu() {
+        if (this.isAuthenticated) {
+            this.aigContextRepositoryService.getCurrentContextObservable().subscribe(
+                (context: IContext) => {
+                    this.context = context;
+                }
+            );
+            this.aigContextRepositoryService.getAvailableContexts().subscribe(
+                (value: IContext[]) => {
+                    this.contexts = value;
+                },
+            );
         }
     }
 
@@ -188,7 +195,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     login() {
         this.authService.loginRedirect('/');
     }
-    
+
     logout() {
         this.authService.logout('/');
     }

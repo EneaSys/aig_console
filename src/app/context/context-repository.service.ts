@@ -85,8 +85,7 @@ export class AigContextRepositoryService {
         // Controlla se query params è vuoto
         if (contextCodeInQueryParam == null || contextCodeInQueryParam == "") {
             // ContextCodeInQueryParams vuoto ricarico con current
-            this.reloadWithCurrentContext();
-            return this.currentContext;
+            return this.reloadWithCurrentContext();
         }
 
         // Controlla se current (in query params) è uguale a default
@@ -328,16 +327,20 @@ export class AigContextRepositoryService {
     private reloadWithCurrentContext() {
         if (this.currentContext != null) {
             this.reloadWithThisContext(this.currentContext);
-            return;
+            return this.currentContext;
         }
-        this.reloadWithDefaultContext();
-        return;
+        return this.reloadWithDefaultContext();
     }
 
     private reloadWithDefaultContext() {
-        console.log("Obbliga utente alla scelta del context");
-        this.router.navigate(['/m8t', 'context', 'list']);
-        this.reloadWithThisContext(this.getDefaultContextInMemory());
+        var defaultContext = this.getDefaultContextInMemory();
+        if(defaultContext == null) {
+            console.log("Obbliga utente alla scelta del context");
+            this.router.navigate(['/m8t', 'context', 'list']);
+        }
+        this.currentContext = defaultContext;
+        this.reloadWithThisContext(defaultContext);
+        return defaultContext;
     }
 
     private reloadWithThisContext(context: IContext) {

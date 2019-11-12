@@ -1,5 +1,30 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div id="home" fxLayout="column">
 
-    <h2>{{'SAMPLE.HELLO' | translate}}</h2>
+    <div id="home-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="home-wrapper-container">
+
+            <div class="logo">
+                <mat-icon class="mat-accent s-96">email</mat-icon>
+            </div>
+
+            <div class="title">Welcome to ApiGest</div>
+
+            <div class="subtitle">
+                <p>
+                    For use the software you need <a class="link" [routerLink]="'/m8t/context'">login.</a>
+                </p>
+                <p>
+                    Check your inbox and click on the "Confirm my email" link to confirm your email address.
+                </p>
+            </div>
+
+            <div class="message">
+                
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

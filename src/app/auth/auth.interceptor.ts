@@ -4,6 +4,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } fro
 import { AuthService } from 'app/auth/auth.service';
 import { switchMap } from 'rxjs/operators';
 import { AigContextRepositoryService } from 'app/context/context-repository.service';
+import { API_URL } from 'app/app.constants';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -21,10 +22,14 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private async prepareHeader(request: HttpRequest<any>): Promise<HttpRequest<any>> {
-        if(request.url.endsWith("my/contexts")) {
-            return this.prepareHeaderAuthorized(request);
-        } else {
+        if (request.url.startsWith(API_URL)) {
+            if(request.url.endsWith("my/contexts")) {
+                return this.prepareHeaderAuthorized(request);
+            }
             return this.prepareHeaderWithContext(request);
+        }
+        else {
+            return request;
         }
     }
 
