@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalStorageService } from 'ngx-webstorage';
-import { Observable, Subscriber, from, Subscription } from 'rxjs';
+import { Observable, Subscriber, from, Subscription, Subject } from 'rxjs';
 
 import { IContext } from './Context.model';
 import { CurrentUserService, ResponseMyContexts } from 'api-gest';
@@ -18,26 +18,91 @@ export class AigContextRepositoryService {
         private authService: AuthService,
     ) { }
 
-    async getCurrentContext() {
-        const isLogged: boolean = await this.authService.isAuthenticated();
-        // Se non c'è un default context
-        if (this.getDefaultContext() == null) {
-            if (this.isSelectContextPage() || !isLogged) {
-                return new Observable((observer: Subscriber<IContext>) => {
-                    observer.next({
-                        contextName: "",
-                        contextCode: "select-context"
-                    });
-                    observer.complete();
-                }).toPromise();
-            } else {
-                this.router.navigate(["m8t", "context", "list"]);
-                return;
-            }
-        }
-        const contextCodeInQueryParam: string = await this.getContextCodeInQueryParam().toPromise();
-        return this.examine(contextCodeInQueryParam).toPromise();
+    private currentContextObservable: Subject<IContext> = new Subject<IContext>();
+    private availableContextObservable: Subject<IContext[]> = new Subject<IContext[]>();
 
+    private currentContext: IContext;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    setDefaultContext(context: IContext) {
+        this.getContextByContextCodeFromBackend(context.contextCode).subscribe((context: IContext) => {
+            if (context != null) {
+                this.setDefaultContextInMemory(context);
+                this._setCurrentContext(context);
+            }
+        })
+    }
+
+    setCurrentContext(context: IContext) {
+        from(this.loadValidContext(context.contextCode)).subscribe(
+            (value: IContext) => {
+                if (value == null) {
+                    this.reloadWithDefaultContext();
+                }
+                this._setCurrentContext(context);
+            }
+        );
+    }
+
+    getAvailableContexts(): Observable<IContext[]> {
+        setTimeout(() => {
+            this.availableContextObservable.next(this.getAvailableContextsInMemory());
+        }, 1);
+        return this.availableContextObservable.asObservable();
+    }
+
+    getCurrentContextObservable(): Observable<IContext> {
+        setTimeout(async () => {
+            var currentContext = await this.getCurrentContext();
+            this.currentContextObservable.next(currentContext);
+        }, 1);
+        return this.currentContextObservable.asObservable();
+    }
+
+
+
+    async getCurrentContext() {
+        const contextCodeInQueryParam: string = await this.getContextCodeInQueryParam().toPromise();
+        const defaultContext = this.getDefaultContextInMemory();
+
+        // Controlla se query params è vuoto
+        if (contextCodeInQueryParam == null || contextCodeInQueryParam == "") {
+            // ContextCodeInQueryParams vuoto ricarico con current
+            this.reloadWithCurrentContext();
+            return this.currentContext;
+        }
+
+        // Controlla se current (in query params) è uguale a default
+        if (contextCodeInQueryParam != defaultContext.contextCode) {
+            // Current diverso da default
+            var currentContext: IContext = await this.loadValidContext(contextCodeInQueryParam);
+            if (currentContext == null) {
+                this.reloadWithDefaultContext();
+                return defaultContext;
+            }
+            this._setCurrentContext(currentContext);
+            return currentContext;
+        }
+
+        // Current è uguale a default
+        return defaultContext;
     }
 
     private getContextCodeInQueryParam(): Observable<string> {
@@ -49,74 +114,69 @@ export class AigContextRepositoryService {
         });
     }
 
-    private examine(contextCodeInQueryParam: string): Observable<IContext> {
-        return new Observable((observer: Subscriber<IContext>) => {
-            // Controlla se query params è vuoto
-            if (contextCodeInQueryParam == null || contextCodeInQueryParam == "") {
-                //contextCodeInQueryParams vuoto lo metto
-                this.reloadWithDefaultContext();
-            } else {
-                // Controlla se default è current in query params
-                if (this.getDefaultContext().contextCode != contextCodeInQueryParam) {
-                    //contextCodeInQueryParams diverso da default
-                    return this.currentContextNotIsDefault(contextCodeInQueryParam);
-                }
-            }
-            observer.next(this.getDefaultContext());
-            observer.complete();
-        });
+
+
+
+    private _setCurrentContext(context: IContext) {
+        this.currentContext = context;
+
+        this.addAvailableContextInMemory(context);
+        this.currentContextObservable.next(context);
+        this.reloadWithThisContext(context);
     }
 
 
 
-    private currentContextNotIsDefault(contextCodeInQueryParam: string): Subscription {
-        var currentContext: IContext;
 
+
+
+
+
+
+
+
+    private async loadValidContext(contextCode: string) {
         //Controllo se è presente in quelli alternativi
-        var inMemoryContexts: IContext[] = this.getInMemoryContexts();
+        var inMemoryContexts: IContext[] = this.getAvailableContextsInMemory();
         if (inMemoryContexts != null) {
-            inMemoryContexts.forEach(function (context: IContext) {
-                if (context.contextCode == contextCodeInQueryParam) {
+            var currentContext: IContext;
+            inMemoryContexts.forEach((context: IContext) => {
+                if (context.contextCode == contextCode) {
+                    // Se è uno dei alternativi lo setto come currentContext
                     currentContext = context;
                 }
             });
+            if (currentContext != null) {
+                return currentContext;
+            }
         }
 
-        // Se è uno dei alternativi lo retituisco
-        if (currentContext != null) {
-            //"Lo tengo in memoria"
-            return new Observable((observer: Subscriber<IContext>) => {
-                observer.next(currentContext);
-                observer.complete();
-            }).subscribe();
-        }
-        else {
-            return new Observable((observer: Subscriber<IContext>) => {
-                // Non è uno degli alternativi vede se è valido
-                this.chekValidContext(contextCodeInQueryParam).subscribe((context: IContext) => {
-                    if (context != null) {
-                        // salvalo in alternativi
-                        this.setInMemoryContext(context);
-                        // Ritorno il context
-                        observer.next(context);
-                        observer.complete();
-                    } else {
-                        console.debug("Non valido ricarico");
-                        this.reloadWithDefaultContext();
-                    }
-                });
-            }).subscribe();
-        }
+        // Non è uno degli alternativi
 
+        // Prendo contesto da backend
+        return await this.getContextByContextCodeFromBackend(contextCode).toPromise();
     }
 
-    private chekValidContext(contextCodeInQueryParam: String) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private getContextByContextCodeFromBackend(contextCode: String) {
         return new Observable((observer: Subscriber<IContext>) => {
             this.currentUserService.getMyContexts().subscribe(
                 (contexts: ResponseMyContexts[]) => {
                     var validContext: ResponseMyContexts = null;
                     contexts.forEach(context => {
-                        if (context.contextCode == contextCodeInQueryParam) {
+                        if (context.contextCode == contextCode) {
                             validContext = context;
                         }
                     });
@@ -127,12 +187,28 @@ export class AigContextRepositoryService {
         });
     }
 
-    private cleanInMemoryContext() {
-        var inMemoryContexts: IContext[] = [];
-        this.localStorage.store('aig-context-in-memory', inMemoryContexts);
-    }
 
-    private setInMemoryContext(context: IContext) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private addAvailableContextInMemory(context: IContext) {
         var inMemoryContexts: IContext[] = this.localStorage.retrieve('aig-context-in-memory');
         var isPresent: boolean = false;
         if (inMemoryContexts == null) {
@@ -148,36 +224,49 @@ export class AigContextRepositoryService {
             inMemoryContexts.push(context);
             this.localStorage.store('aig-context-in-memory', inMemoryContexts);
         }
+        this.availableContextObservable.next(inMemoryContexts);
     }
-
-    public getInMemoryContexts(): IContext[] {
+    private getAvailableContextsInMemory(): IContext[] {
         return this.localStorage.retrieve('aig-context-in-memory');
     }
 
-    public setDefaultContext(context: IContext) {
-        this.chekValidContext(context.contextCode).subscribe((context: IContext) => {
-            if (context != null) {
-                this.localStorage.store('aig-default-context', context);
-                this.reloadWithThisContext(context);
-                this.setInMemoryContext(context);
-            }
-        })
+
+
+
+
+    private setDefaultContextInMemory(context: IContext) {
+        this.localStorage.store('aig-default-context', context);
     }
 
-    private getDefaultContext(): IContext {
+    private getDefaultContextInMemory(): IContext {
         return this.localStorage.retrieve('aig-default-context');
     }
 
-    public setCurrentContext(context: IContext) {
-        this.reloadWithThisContext(context);
-        this.chekValidContext(context.contextCode).subscribe((context: IContext) => {
-            if (context == null) {
-                this.reloadWithDefaultContext();
-            }
-        })
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // UTILS
+
+    private cleanInMemoryContext() {
+        var inMemoryContexts: IContext[] = [];
+        this.localStorage.store('aig-context-in-memory', inMemoryContexts);
+    }
 
     private isSelectContextPage() {
         var currentUrl = this.router.url;
@@ -202,8 +291,53 @@ export class AigContextRepositoryService {
         return false;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private reloadWithCurrentContext() {
+        if (this.currentContext != null) {
+            this.reloadWithThisContext(this.currentContext);
+            return;
+        }
+        this.reloadWithDefaultContext();
+        return;
+    }
+
     private reloadWithDefaultContext() {
-        this.reloadWithThisContext(this.getDefaultContext());
+        console.log("Obbliga utente alla scelta del context");
+        this.router.navigate(['/m8t', 'context', 'list']);
+        this.reloadWithThisContext(this.getDefaultContextInMemory());
     }
 
     private reloadWithThisContext(context: IContext) {
@@ -236,4 +370,15 @@ export class AigContextRepositoryService {
 
         return queryParams;
     }
+
+
+
+
+
+
+
+
+
+
+
 }

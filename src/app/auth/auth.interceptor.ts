@@ -21,6 +21,29 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private async prepareHeader(request: HttpRequest<any>): Promise<HttpRequest<any>> {
+        if(request.url.endsWith("my/contexts")) {
+            return this.prepareHeaderAuthorized(request);
+        } else {
+            return this.prepareHeaderWithContext(request);
+        }
+    }
+
+    private async prepareHeaderAuthorized(request: HttpRequest<any>): Promise<HttpRequest<any>> {
+        const tokenPromise = this.authService.getAccessToken();
+
+        let res = await Promise.all([tokenPromise]);
+        let token = res[0];
+
+        request = request.clone({
+            setHeaders: {
+                'Authorization': 'Bearer ' + token,
+            }
+        });
+
+        return request;
+    }
+
+    private async prepareHeaderWithContext(request: HttpRequest<any>): Promise<HttpRequest<any>> {
         const tokenPromise = this.authService.getAccessToken();
         const contextCodePromise = this.aigContextRepositoryService.getCurrentContext();
 
@@ -36,8 +59,6 @@ export class AuthInterceptor implements HttpInterceptor {
             setHeaders: {
                 'Authorization': 'Bearer ' + token,
                 'X-Tenant-Code': context.contextCode,
-                //'Cache-Control': 'no-cache',
-                //'Pragma': 'no-cache',
             }
         });
 

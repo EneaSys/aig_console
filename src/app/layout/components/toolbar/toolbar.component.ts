@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject, from } from 'rxjs';
+import { Subject, from, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -98,13 +98,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { id: this._translateService.currentLang });
         this.afterOnInit();
-
-        from(this.aigContextRepositoryService.getCurrentContext()).subscribe(
+       
+        this.aigContextRepositoryService.getCurrentContextObservable().subscribe(
             (context: IContext) => {
                 this.context = context;
             }
         );
-        this.contexts = this.aigContextRepositoryService.getInMemoryContexts();
+
+        this.aigContextRepositoryService.getAvailableContexts().subscribe(
+            (value: IContext[]) => {
+                this.contexts = value;
+            },
+        );
     }
 
     async afterOnInit() {
@@ -189,7 +194,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
 
     setCurrentContext(context: IContext): void {
-        this.aigContextRepositoryService.setDefaultContext(context);
-        //this.aigContextRepositoryService.setCurrentContext(context);
+        this.aigContextRepositoryService.setCurrentContext(context);
     }
 }
