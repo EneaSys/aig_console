@@ -335,11 +335,10 @@ export class AigContextRepositoryService {
     private reloadWithDefaultContext() {
         var defaultContext = this.getDefaultContextInMemory();
         if(defaultContext == null) {
-            console.log("Obbliga utente alla scelta del context");
             this.router.navigate(['/m8t', 'context', 'list']);
+            return null;
         }
-        this.currentContext = defaultContext;
-        this.reloadWithThisContext(defaultContext);
+        this._setCurrentContext(defaultContext);
         return defaultContext;
     }
 
