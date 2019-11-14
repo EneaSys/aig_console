@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="px-8 px-md-16">
+            <div class="px-8 px-md-16" *ngIf="isAuthenticated && context != null">
                 <div>
                     <button mat-button [matMenuTriggerFor]="contextMenu" class="user-button">
                         <div fxLayout="row" fxLayoutAlign="center center" *ngIf="context">

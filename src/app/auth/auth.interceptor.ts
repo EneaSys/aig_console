@@ -23,7 +23,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private async prepareHeader(request: HttpRequest<any>): Promise<HttpRequest<any>> {
         if (request.url.startsWith(API_URL)) {
-            if(request.url.endsWith("my/contexts")) {
+            if(request.url.startsWith(API_URL + "/my/")) {
+                return this.prepareHeaderAuthorized(request);
+            }
+            if(request.url.startsWith(API_URL + "/m8t/")) {
                 return this.prepareHeaderAuthorized(request);
             }
             return this.prepareHeaderWithContext(request);
@@ -57,6 +60,7 @@ export class AuthInterceptor implements HttpInterceptor {
         let context = res[1];
 
         if (context == null) {
+            console.log("BHO");
             return null;
         }
 

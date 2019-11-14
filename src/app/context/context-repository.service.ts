@@ -5,7 +5,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { Observable, Subscriber, from, Subscription, Subject } from 'rxjs';
 
 import { IContext } from './Context.model';
-import { CurrentUserService, ResponseMyContexts } from 'api-gest';
+import { CurrentUserService, ResponseMyContexts, TenantContextResourceService, TenantContextDTO } from 'api-gest';
 import { AuthService } from 'app/auth/auth.service';
 
 @Injectable()
@@ -16,6 +16,7 @@ export class AigContextRepositoryService {
         private router: Router,
         private currentUserService: CurrentUserService,
         private authService: AuthService,
+        private tenantContextResourceService: TenantContextResourceService,
     ) { }
 
     private currentContextObservable: Subject<IContext> = new Subject<IContext>();
@@ -169,16 +170,14 @@ export class AigContextRepositoryService {
 
 
 
-    private getContextByContextCodeFromBackend(contextCode: String) {
+    private getContextByContextCodeFromBackend(contextCode: string) {
         return new Observable((observer: Subscriber<IContext>) => {
-            this.currentUserService.getMyContexts().subscribe(
-                (contexts: ResponseMyContexts[]) => {
-                    var validContext: ResponseMyContexts = null;
-                    contexts.forEach(context => {
-                        if (context.contextCode == contextCode) {
-                            validContext = context;
-                        }
-                    });
+            this.tenantContextResourceService.getAllTenantContextsUsingGET(null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).subscribe(
+                (TenantContextDTOs: TenantContextDTO[]) => {
+                    var validContext: IContext = {
+                        contextName: TenantContextDTOs[0].name,
+                        contextCode: TenantContextDTOs[0].contextCode,
+                    };
                     observer.next(validContext);
                     observer.complete();
                 }
