@@ -39,11 +39,6 @@ export class AigUserDetailComponent implements OnInit {
     user: any; //UserDTO
     roles: Observable<RoleAssignationDTO[]>;
 
-    reload() {
-        this.router.navigated = false;
-        this.router.navigate(['/iam', 'user', this.user.userCode]);
-    }
-
     ngOnInit(): void {
         this.user = this.route.snapshot.data.user;
 
