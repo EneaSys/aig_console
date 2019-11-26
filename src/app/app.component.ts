@@ -153,13 +153,14 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
+        
         var previousUrl = null
 
         this.router.events.pipe(
             filter((event: RouterEvent) => event instanceof NavigationEnd)
         ).subscribe(async (event: any) => {
             if(previousUrl === event.url) {
-                // Same url
+                //Same url
             }
             
             if(previousUrl != null && previousUrl !== event.url && event.url.includes('context=')) {
@@ -167,8 +168,9 @@ export class AppComponent implements OnInit, OnDestroy {
             }
 
             await this.aigContextRepositoryService.getCurrentContext();
+
             previousUrl = event.url;
-        });
+        });   
     }
 
     /**

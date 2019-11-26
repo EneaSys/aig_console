@@ -74,9 +74,11 @@ export class AigContextRepositoryService {
         return this.currentContextObservable.asObservable();
     }
 
-
-
     async getCurrentContext(): Promise<IContext> {
+        if(this.isPageWithoutContext()) {
+            return null;
+        }
+
         if (this.currentContext == null) {
             this.reloadWithDefaultContext();
             return this.getDefaultContextInMemory();
@@ -262,6 +264,16 @@ export class AigContextRepositoryService {
 
 
     // UTILS
+
+    private isPageWithoutContext(): boolean {
+        if(this.router.url.startsWith('/implicit/callback')) {
+            return true;
+        }
+        if(this.router.url.startsWith('/m8t/context/list')) {
+            return true;
+        }
+        return false;
+    }
 
     private cleanInMemoryContext() {
         var inMemoryContexts: IContext[] = [];

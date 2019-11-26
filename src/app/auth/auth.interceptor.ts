@@ -5,6 +5,7 @@ import { AuthService } from 'app/auth/auth.service';
 import { switchMap } from 'rxjs/operators';
 import { AigContextRepositoryService } from 'app/context/context-repository.service';
 import { API_URL } from 'app/app.constants';
+import { Alert } from 'selenium-webdriver';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

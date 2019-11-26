@@ -31,7 +31,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     selectedLanguage: any;
     userStatusOptions: any[];
 
-    isAuthenticated: boolean;
+    isAuthenticated: boolean = false;
     loadedUserInfo: boolean = false;
     loggedUser: any;
 
