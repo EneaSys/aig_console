@@ -17,7 +17,6 @@ import { AigRoleSystemDetailComponent } from './modules/iam/components/role-syst
 import { AigRoleCustomDetailComponent } from './modules/iam/components/role-custom-detail/role-custom-detail.component';
 import { RoleSystemResolver } from './modules/_common/resolver/role-system.resolver';
 import { RoleCustomResolver } from './modules/_common/resolver/role-custom.resolver';
-import { PermissionsRoleCustomResolver } from './modules/_common/resolver/permission-role-custom.resolver';
 import { AigUserDetailComponent } from './modules/iam/components/user-detail/user-detail.component';
 import { UserResolver } from './modules/_common/resolver/user.resolver';
 import { AigPermissionListComponent } from './modules/iam/components/permission-list/permission-list.component';
@@ -100,7 +99,7 @@ export const apiGestRoute: Routes = [
                     {
                         path: '',
                         pathMatch: 'full',
-                        redirectTo: 'list'
+                        redirectTo: 'list',
                     },
                     {
                         path: 'list',
@@ -167,7 +166,6 @@ export const apiGestRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             roleCustom: RoleCustomResolver,
-                            permissionsRoleCustom: PermissionsRoleCustomResolver,
                         },
                     },
                 ]

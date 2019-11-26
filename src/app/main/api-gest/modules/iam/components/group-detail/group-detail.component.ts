@@ -5,27 +5,43 @@ import { RoleAssignationResourceService, ContextGroupDTO, ContextGroupResourceSe
 import { Observable } from 'rxjs';
 import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/group-associate-dialog.component';
 import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     templateUrl: './group-detail.component.html',
     styleUrls: ['./group-detail.component.scss']
 })
 export class AigGroupDetailComponent implements OnInit {
+    loaded: boolean = false;
+
     constructor(
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
         private userResourceService: UserResourceService,
         private contextGroupResourceService: ContextGroupResourceService,
-    ) { }
+        private eventService: EventService,
+    ) {
+        this.eventService.reloadPage$.subscribe((data?: any) => {
+            if(this.loaded) {
+                this.loadPage();
+            }
+        });
+    }
 
     memberOfDisplayedColumns: string[] = ['name', 'buttons'];
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
-    userDisplayedColumns: string[] = ['usercode', 'email', 'type',];
-    membersDisplayedColumns: string[] = ['id', 'name'];
+    userDisplayedColumns: string[] = ['usercode', 'email', 'type', 'buttons'];
+    membersDisplayedColumns: string[] = ['id', 'name', 'buttons'];
     
-    memberOfButtonConfig: any;
-    roleButtonConfig: any;
+    memberOfButtonConfig = {
+        details: true,
+        removeGroupFromGroup: null,
+    }
+    roleButtonConfig = {
+        details: false,
+        removeFromGroup: null,
+    }
 
     group: ContextGroupDTO;
     roles: Observable<RoleAssignationDTO[]>;
@@ -33,21 +49,20 @@ export class AigGroupDetailComponent implements OnInit {
     groups: Observable<ContextGroupDTO[]>;
 
     ngOnInit(): void {
+        this.loadPage();
+    }
+
+    loadPage() {
         this.group = this.route.snapshot.data.group;
 
-        this.memberOfButtonConfig = {
-            details: false,
-            removeGroupFromGroup: this.group,
-        }
-
-        this.roleButtonConfig = {
-            details: false,
-            removeFromGroup: this.group,
-        }
-
-        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
-        this.users = this.userResourceService.getAllUsersUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null);
-        this.groups = this.contextGroupResourceService.getAllContextGroupsUsingGET({}, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.memberOfButtonConfig.removeGroupFromGroup = this.group;
+        this.roleButtonConfig.removeFromGroup = this.group;
+        
+        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+        this.users = this.userResourceService.getAllUsersUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null);
+        this.groups = this.contextGroupResourceService.getAllContextGroupsUsingGET("", this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        
+        this.loaded = true;
     }
 
     associateToGroup() {

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AigAutocompleteFilterService } from '../../../_common/services/form/autocomplete-filter.service';
 import { AigAutocompleteFunctionService } from '../../../_common/services/form/autocomplete-function.service';
 import { AigValidatorService } from '../../../_common/services/form/validator.service';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-role-associate',
@@ -22,6 +23,7 @@ export class AigRoleAssociateComponent implements OnInit {
         public aigAutocompleteFunctionService: AigAutocompleteFunctionService,
         private aigValidatorService: AigValidatorService,
         private roleAssignationResourceService: RoleAssignationResourceService,
+        private eventService: EventService,
     ) { }
 
     // Form preparation Objects
@@ -144,6 +146,7 @@ export class AigRoleAssociateComponent implements OnInit {
 
         this.roleAssignationResourceService.createRoleAssignationUsingPOST(roleAssignation).subscribe(
             (value: RoleAssignationDTO) => {
+                this.eventService.reloadCurrentPage();
                 let userOrGroup = (value.groupId == null) ? 'user' : 'group';
                 this._snackBar.open("Role added to " + userOrGroup + ".", null, { duration: 5000, });
                 this._fuseProgressBarService.hide();

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AigGroupService } from '../../../_common/services/group.service';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { AigGroupNewDialogComponent } from '../group-new-dialog/group-new-dialog.component';
+import { EventService } from 'app/main/api-gest/event.service';
+import { ContextGroupResourceService, ContextGroupDTO } from 'api-gest';
+import { Observable } from 'rxjs';
 
 @Component({
     templateUrl: './group-list.component.html',
@@ -10,22 +11,20 @@ import { AigGroupNewDialogComponent } from '../group-new-dialog/group-new-dialog
 })
 export class AigGroupListComponent implements OnInit {
     constructor(
-        private groupService : AigGroupService,
+        private contextGroupResourceService: ContextGroupResourceService,
         public dialog: MatDialog,
-    ) { }
-
-    displayedColumns: string[] = ['id', 'name', 'buttons'];
-    dataSource: any[];
-
-    ngOnInit(): void {
-        this.loadGroups();
+        private eventService: EventService,
+    ) {
+        this.eventService.reloadPage$.subscribe(() => {
+            this.ngOnInit()
+        });
     }
 
-    private loadGroups() {
-        this.groupService.query().subscribe(
-            (res: HttpResponse<any[]>) => this.dataSource = res.body,
-            (res: HttpErrorResponse) => console.log("Errore: ", res.message)
-        );
+    displayedColumns: string[] = ['id', 'name', 'buttons'];
+    contextGroupDataSource: Observable<ContextGroupDTO[]>;
+
+    ngOnInit(): void {
+        this.contextGroupDataSource = this.contextGroupResourceService.getAllContextGroupsUsingGET("");
     }
 
     newGroup() {

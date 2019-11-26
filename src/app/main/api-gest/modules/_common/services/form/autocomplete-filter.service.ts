@@ -17,7 +17,7 @@ export class AigAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 4) {
-                    return this.contextGroupResourceService.getAllContextGroupsUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, 10, null, null, null, null, null, null, null, null);
+                    return this.contextGroupResourceService.getAllContextGroupsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, 10, null, null, null, null, null, null, null, null);
                 } else {
                     return of([]);
                 }
@@ -30,7 +30,7 @@ export class AigAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 4) {
-                    return this.userResourceService.getAllUsersUsingGET({}, null, null, null, null, null, null, null, null, 10, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null);
+                    return this.userResourceService.getAllUsersUsingGET("", null, null, null, null, null, null, null, null, 10, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null);
                 } else {
                     return of([]);
                 }
@@ -56,7 +56,7 @@ export class AigAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 4) {
-                    return this.customRoleResourceService.getAllCustomRolesUsingGET({}, null, null, null, null, null, null, null, value, null, null, null, null, 10, null);
+                    return this.customRoleResourceService.getAllCustomRolesUsingGET("", null, null, null, null, null, null, null, value, null, null, null, null, 10, null);
                 } else {
                     return of([]);
                 }

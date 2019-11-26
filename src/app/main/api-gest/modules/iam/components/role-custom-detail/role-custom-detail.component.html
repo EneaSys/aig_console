@@ -14,7 +14,7 @@
             <div class="fuse-card auto-width p-16" id="permission-list">
                 <div class="h4 m-16">Lista dei permessi</div>
                 <aig-permission-custom-table [displayedColumns]="permissionsCustomDisplayedColumns"
-                    [dataSource]="permissionsRoleCustom" [buttonConfig]="permissionButtonConfig"></aig-permission-custom-table>
+                    [dataSource]="permissionsRoleCustom | async" [buttonConfig]="permissionButtonConfig"></aig-permission-custom-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="newCustomPermission()" aria-label="add permission">
                     <mat-icon>add</mat-icon>

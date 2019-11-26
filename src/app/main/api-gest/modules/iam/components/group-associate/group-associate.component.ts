@@ -9,6 +9,7 @@ import { filter } from 'minimatch';
 import { AigAutocompleteFilterService } from '../../../_common/services/form/autocomplete-filter.service';
 import { AigAutocompleteFunctionService } from '../../../_common/services/form/autocomplete-function.service';
 import { AigValidatorService } from '../../../_common/services/form/validator.service';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-group-associate',
@@ -25,6 +26,7 @@ export class AigGroupAssociateComponent implements OnInit {
         private aigValidatorService: AigValidatorService,
         private contextGroupResourceService: ContextGroupResourceService,
         private contextUserResourceService: ContextUserResourceService,
+        private eventService: EventService,
     ) { }
 
     // Form preparation Objects
@@ -67,7 +69,7 @@ export class AigGroupAssociateComponent implements OnInit {
             groupParent: ['', Validators.required],
             groupChild: [''],
             user: [''],
-        },{ 
+        }, {
             validator: [
                 this.aigValidatorService.getFirstOrSecondValidator('groupChild', 'user'),
             ]
@@ -104,7 +106,7 @@ export class AigGroupAssociateComponent implements OnInit {
 
 
 
-    
+
 
 
 
@@ -122,10 +124,15 @@ export class AigGroupAssociateComponent implements OnInit {
 
         if (this.formGroup.controls['groupChild'].value.id != null) {
             let groupChild: ContextGroupDTO = this.formGroup.controls['groupChild'].value;
-            groupChild.groupMemberOfs.push(this.formGroup.controls['groupParent'].value);
+
+            let _groupChild: ContextGroupDTO = JSON.parse(JSON.stringify(groupChild));
+            _groupChild.groupMemberOfs.push(this.formGroup.controls['groupParent'].value);
+
+            groupChild.groupMemberOfs = _groupChild.groupMemberOfs;
 
             this.contextGroupResourceService.updateContextGroupUsingPUT(groupChild).subscribe(
                 (value: ContextGroupDTO) => {
+                    this.eventService.reloadCurrentPage();
                     this._snackBar.open("Group " + value.name + ", added to: " + parentName + ".", null, { duration: 5000, });
                     this._fuseProgressBarService.hide();
                     this.setStep("complete");
@@ -137,11 +144,16 @@ export class AigGroupAssociateComponent implements OnInit {
                 },
             );
         } else {
-            let user: any = this.formGroup.controls['user'].value;
-            user.userMemberOfs.push(this.formGroup.controls['groupParent'].value);
+            let user = this.formGroup.controls['user'].value;
+
+            let _user = JSON.parse(JSON.stringify(user));
+            _user.userMemberOfs.push(this.formGroup.controls['groupParent'].value);
+
+            user.userMemberOfs = _user.userMemberOfs;
 
             this.contextUserResourceService.updateContextUserUsingPUT(user).subscribe(
                 (value: ContextUserDTO) => {
+                    this.eventService.reloadCurrentPage();
                     this._snackBar.open("User " + user.firstName + " " + user.lastName + ", added to: " + parentName + ".", null, { duration: 5000, });
                     this._fuseProgressBarService.hide();
                     this.setStep("complete");

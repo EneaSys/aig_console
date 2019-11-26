@@ -5,6 +5,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { CustomRolePermissionResourceService, CustomRolePermissionDTO, PermissionResourceService, PermissionDTO, CustomRoleResourceService, CustomRoleDTO } from 'api-gest';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-permission-custom-new',
@@ -22,6 +23,7 @@ export class AigPermissionCustomNewComponent implements OnInit {
         private customRolePermissionResourceService: CustomRolePermissionResourceService,
         private permissionResourceService: PermissionResourceService,
         private customRoleResourceService: CustomRoleResourceService,
+        private eventService: EventService,
     ) { }
 
     step: any = {
@@ -44,7 +46,7 @@ export class AigPermissionCustomNewComponent implements OnInit {
             permission: ['', Validators.required],
         });
 
-        this.customRoleResourceService.getAllCustomRolesUsingGET({}).subscribe(
+        this.customRoleResourceService.getAllCustomRolesUsingGET("").subscribe(
             (value: CustomRoleDTO[]) => {
                 this.roles = value;
                 if(this.customRole != null){
@@ -114,6 +116,7 @@ export class AigPermissionCustomNewComponent implements OnInit {
 
         this.customRolePermissionResourceService.createCustomRolePermissionUsingPOST(customRolePermissionDTO).subscribe(
             (value: CustomRolePermissionDTO) => {
+                this.eventService.reloadCurrentPage();
                 this.customRolePermissionDTO = value;
                 this._snackBar.open("Added permission with code: " + value.permissionCode + ", to custom role.", null, {duration: 5000,});
                 this._fuseProgressBarService.hide();

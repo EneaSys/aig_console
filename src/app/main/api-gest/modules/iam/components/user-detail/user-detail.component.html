@@ -11,6 +11,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ user.id }}</div>
                 <div class="h4 m-8 ml-16 mb-0">Status: {{ user.status }}</div>
                 <div class="h4 m-8 ml-16">Email: {{ user.email }}</div>
+                <button (click)="reload()">reload</button>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="30">

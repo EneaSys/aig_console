@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { PermissionDTO, CustomRoleDTO, CustomRolePermissionResourceService } from 'api-gest';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-permission-custom-table',
@@ -12,7 +13,8 @@ export class AigPermissionCustomTableComponent implements OnInit {
     constructor(
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
-        private customRolePermissionResourceService: CustomRolePermissionResourceService
+        private customRolePermissionResourceService: CustomRolePermissionResourceService,
+        private eventService: EventService,
     ) { }
 
     @Input()
@@ -35,6 +37,7 @@ export class AigPermissionCustomTableComponent implements OnInit {
 
         this.customRolePermissionResourceService.deleteCustomRolePermissionUsingDELETE(permission.id).subscribe(
             () => {
+                this.eventService.reloadCurrentPage();
                 this._snackBar.open("Removed permission: '" + permission.permissionDetail.name + "' from custom role: " + customRole.name, null, { duration: 5000, });
                 this._fuseProgressBarService.hide();
             }

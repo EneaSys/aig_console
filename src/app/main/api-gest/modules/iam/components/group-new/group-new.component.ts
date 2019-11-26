@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ContextGroupDTO, ContextGroupResourceService } from 'api-gest';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-group-new',
@@ -15,6 +16,7 @@ export class AigGroupNewComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private contextGroupResourceService: ContextGroupResourceService,
+        private eventService: EventService,
     ) { }
 
     private formGroup: FormGroup;
@@ -50,9 +52,9 @@ export class AigGroupNewComponent implements OnInit {
 
         this.contextGroupResourceService.createContextGroupUsingPOST(contextGroup).subscribe(
             (value: ContextGroupDTO) => {
+                this.eventService.reloadCurrentPage();
                 this.contextGroup = value;
                 this._snackBar.open("Group: " + value.name + " created.", null, {duration: 2000,});
-
                 this._fuseProgressBarService.hide();
                 this.setStep("complete");
             },

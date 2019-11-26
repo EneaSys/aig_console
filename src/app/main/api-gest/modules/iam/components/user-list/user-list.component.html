@@ -27,7 +27,7 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-users-table [displayedColumns]="displayedColumns" [dataSource]="dataSource"></aig-users-table>
+                <aig-users-table [displayedColumns]="displayedColumns" [dataSource]="userDataSource | async"></aig-users-table>
             </div>
         </div>
         <!-- /CENTER -->

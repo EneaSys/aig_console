@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserResourceService, UserDTO } from 'api-gest';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { EventService, EsEventType } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-user-new',
@@ -23,6 +24,7 @@ export class AigUserNewComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
         private userResourceService: UserResourceService,
+        private eventService: EventService,
     ) { }
 
     ngOnInit(): void {
@@ -33,7 +35,7 @@ export class AigUserNewComponent implements OnInit {
         });
     }
 
-    private createUser(){
+    createUser(){
         if (!this.userNerForm.valid) {
             return;
         }
@@ -49,7 +51,7 @@ export class AigUserNewComponent implements OnInit {
 
         this.userResourceService.createUserUsingPOST(userDTO).subscribe(
             (userDTO: UserDTO) => {
-                console.log("Route alla pagina di: ", userDTO);
+                this.eventService.reloadCurrentPage();
                 this.userDTO = userDTO;
                 this._snackBar.open("User " + userDTO.email + " created.", null, {duration: 2000,});
                 this._fuseProgressBarService.hide();

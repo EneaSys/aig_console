@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UserDTO, ContextGroupDTO, RoleAssignationDTO, UserResourceService, RoleAssignationResourceService, ContextGroupResourceService } from 'api-gest';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RoleAssignationDTO, RoleAssignationResourceService } from 'api-gest';
 import { Observable } from 'rxjs';
 import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/group-associate-dialog.component';
 import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     templateUrl: './user-detail.component.html',
@@ -15,31 +16,41 @@ export class AigUserDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
-    ) { }
+        private router: Router,
+        private eventService: EventService,
+    ) {
+        this.eventService.reloadPage$.subscribe((data?: any) => {
+            this.ngOnInit()
+        });
+    }
 
     memberOfDisplayedColumns: string[] = ['id', 'name', 'buttons'];
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
 
-    memberOfButtonConfig: any;
-    roleButtonConfig: any;
+    memberOfButtonConfig = {
+        details: true,
+        removeUserFromGroup: null,
+    }
+    roleButtonConfig = {
+        details: true,
+        removeFromUser: null,
+    }
 
     user: any; //UserDTO
     roles: Observable<RoleAssignationDTO[]>;
 
+    reload() {
+        this.router.navigated = false;
+        this.router.navigate(['/iam', 'user', this.user.userCode]);
+    }
+
     ngOnInit(): void {
         this.user = this.route.snapshot.data.user;
 
-        this.memberOfButtonConfig = {
-            details: false,
-            removeUserFromGroup: this.user,
-        }
+        this.memberOfButtonConfig.removeUserFromGroup = this.user;
+        this.roleButtonConfig.removeFromUser = this.user;
 
-        this.roleButtonConfig = {
-            details: true,
-            removeFromUser: this.user,
-        }
-
-        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET({}, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.user.id, null, null, null, null, null, null)
+        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.user.id, null, null, null, null, null, null)
     }
 
     associateToGroup() {

@@ -5,13 +5,12 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
-                <aig-role-system-table [displayedColumns]="roleSystemDisplayedColumns" [dataSource]="roleSystemDataSource"></aig-role-system-table>
+                <aig-role-system-table [displayedColumns]="roleSystemDisplayedColumns" [dataSource]="roleSystemDataSource | async"></aig-role-system-table>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16" id="role-custom-list">
-                <aig-role-custom-table [displayedColumns]="roleCustomDisplayedColumns"
-                    [dataSource]="roleCustomDataSource"></aig-role-custom-table>
+                <aig-role-custom-table [displayedColumns]="roleCustomDisplayedColumns" [dataSource]="roleCustomDataSource | async"></aig-role-custom-table>
                 <div style="height: 45px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="newCustomRole()" aria-label="add role">
                     <mat-icon>add</mat-icon>

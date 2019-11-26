@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalStorageService } from 'ngx-webstorage';
-import { Observable, Subscriber, from, Subscription, Subject } from 'rxjs';
+import { Observable, Subscriber, from, Subject } from 'rxjs';
 
 import { IContext } from './Context.model';
-import { CurrentUserService, ResponseMyContexts, TenantContextResourceService, TenantContextDTO } from 'api-gest';
-import { AuthService } from 'app/auth/auth.service';
+import { TenantContextResourceService, TenantContextDTO } from 'api-gest';
 
 @Injectable()
 export class AigContextRepositoryService {
@@ -14,8 +13,6 @@ export class AigContextRepositoryService {
         private localStorage: LocalStorageService,
         private route: ActivatedRoute,
         private router: Router,
-        private currentUserService: CurrentUserService,
-        private authService: AuthService,
         private tenantContextResourceService: TenantContextResourceService,
     ) { }
 
@@ -79,30 +76,28 @@ export class AigContextRepositoryService {
 
 
 
-    async getCurrentContext() {
+    async getCurrentContext(): Promise<IContext> {
+        if (this.currentContext == null) {
+            this.reloadWithDefaultContext();
+            return this.getDefaultContextInMemory();
+        }
+
         const contextCodeInQueryParam: string = await this.getContextCodeInQueryParam().toPromise();
-        const defaultContext = this.getDefaultContextInMemory();
 
         // Controlla se query params è vuoto
         if (contextCodeInQueryParam == null || contextCodeInQueryParam == "") {
             // ContextCodeInQueryParams vuoto ricarico con current
-            return this.reloadWithCurrentContext();
+            return this.reloadWithCurrentContextOrDefault();
         }
 
-        // Controlla se current (in query params) è uguale a default
-        if (contextCodeInQueryParam != defaultContext.contextCode) {
-            // Current diverso da default
-            var currentContext: IContext = await this.loadValidContext(contextCodeInQueryParam);
-            if (currentContext == null) {
-                this.reloadWithDefaultContext();
-                return defaultContext;
-            }
-            this._setCurrentContext(currentContext);
-            return currentContext;
+        // Controlla se current (in query params) è uguale a current
+        if (contextCodeInQueryParam != this.currentContext.contextCode) {
+            var newCurrentContext: IContext = await this.loadValidContext(contextCodeInQueryParam);
+            // contextCodeInQueryParam diverso da current
+            this._setCurrentContext(newCurrentContext);
         }
 
-        // Current è uguale a default
-        return defaultContext;
+        return this.currentContext;
     }
 
     private getContextCodeInQueryParam(): Observable<string> {
@@ -117,6 +112,11 @@ export class AigContextRepositoryService {
 
 
 
+
+
+
+
+
     private _setCurrentContext(context: IContext) {
         this.currentContext = context;
 
@@ -124,6 +124,8 @@ export class AigContextRepositoryService {
         this.currentContextObservable.next(context);
         this.reloadWithThisContext(context);
     }
+
+
 
 
 
@@ -280,9 +282,6 @@ export class AigContextRepositoryService {
         var currentUrl = this.router.url;
         var currentUrlArray = currentUrl.split("#");
 
-        console.log(currentUrl, currentUrlArray);
-
-        alert("stop");
         if (currentUrlArray[0] == "/implicit/callback") {
             return true;
         }
@@ -323,7 +322,7 @@ export class AigContextRepositoryService {
 
 
 
-    private reloadWithCurrentContext() {
+    private reloadWithCurrentContextOrDefault() {
         if (this.currentContext != null) {
             this.reloadWithThisContext(this.currentContext);
             return this.currentContext;
@@ -333,7 +332,7 @@ export class AigContextRepositoryService {
 
     private reloadWithDefaultContext() {
         var defaultContext = this.getDefaultContextInMemory();
-        if(defaultContext == null) {
+        if (defaultContext == null) {
             this.router.navigate(['/m8t', 'context', 'list']);
             return null;
         }

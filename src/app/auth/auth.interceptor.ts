@@ -59,9 +59,9 @@ export class AuthInterceptor implements HttpInterceptor {
         let token = res[0];
         let context = res[1];
 
-        if (context == null) {
+        if (context == null || token == null) {
             console.log("BHO");
-            return null;
+            return request;
         }
 
         request = request.clone({

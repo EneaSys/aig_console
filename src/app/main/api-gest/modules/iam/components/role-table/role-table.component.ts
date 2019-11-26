@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ContextGroupDTO, RoleAssignationResourceService, RoleAssignationDTO, UserDTO } from 'api-gest';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-role-table',
@@ -13,6 +14,7 @@ export class AigRoleTableComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
         private roleAssignationResourceService: RoleAssignationResourceService,
+        private eventService: EventService,
     ) { }
     
     @Input()
@@ -47,6 +49,7 @@ export class AigRoleTableComponent implements OnInit {
     private remove(roleAssignation: any, message: string) {
         this.roleAssignationResourceService.deleteRoleAssignationUsingDELETE(roleAssignation.id).subscribe(
             () => {
+                this.eventService.reloadCurrentPage();
                 this._snackBar.open(message, null, { duration: 5000, });
                 this._fuseProgressBarService.hide();
             }

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CustomRoleResourceService, CustomRoleDTO } from 'api-gest';
+import { EventService } from 'app/main/api-gest/event.service';
 
 @Component({
     selector: 'aig-role-custom-new',
@@ -15,6 +16,7 @@ export class AigRoleCustomNewComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private customRoleResourceService: CustomRoleResourceService,
+        private eventService: EventService,
     ) { }
 
     private roleCustomNewForm: FormGroup;
@@ -44,9 +46,9 @@ export class AigRoleCustomNewComponent implements OnInit {
 
         this.customRoleResourceService.createCustomRoleUsingPOST(customRoleDTO).subscribe(
             (value: CustomRoleDTO) => {
+                this.eventService.reloadCurrentPage();
                 this.customRoleDTO = value;
                 this._snackBar.open("RoleCustom: " + value.name + " created.", null, {duration: 2000,});
-
                 this._fuseProgressBarService.hide();
                 this.setStep("complete");
             },

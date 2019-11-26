@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { UserResourceService, UserDTO } from 'api-gest';
 import { fuseAnimations } from '@fuse/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
+import { EventService, EsEvent, EsEventType } from 'app/main/api-gest/event.service';
+import { Observable } from 'rxjs';
 
 @Component({
     templateUrl: './user-list.component.html',
@@ -10,29 +12,27 @@ import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.co
     animations: fuseAnimations,
     encapsulation: ViewEncapsulation.None
 })
-export class AigUserListComponent implements OnInit {
+export class AigUserListComponent implements OnInit, OnDestroy {
     constructor(
         private userResourceService: UserResourceService,
-        public dialog: MatDialog,
-    ) { }
+        private dialog: MatDialog,
+        private eventService: EventService,
+    ) {
+        this.eventService.reloadPage$.subscribe(() => this.ngOnInit());
+    }
 
     displayedColumns: string[] = ['usercode', 'firstName', 'lastName', 'email', 'status', 'type', 'buttons'];
-    dataSource: any[];
+    userDataSource: Observable<UserDTO[]>;
 
     ngOnInit(): void {
-        this.loadUsers();
+        this.userDataSource = this.userResourceService.getAllUsersUsingGET("");
     }
 
-    private loadUsers() {
-        var queryParams: any = "";
-        this.userResourceService.getAllUsersUsingGET(queryParams).subscribe(
-            (users: UserDTO[]) => {
-                this.dataSource = users;
-            }
-        );
+    ngOnDestroy(): void {
+        
     }
 
-    public newUser() {
+    newUser() {
         this.dialog.open(AigUserNewDialogComponent);
     }
 }

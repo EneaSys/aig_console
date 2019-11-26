@@ -7,6 +7,7 @@ import { AigApolloDocumentModule } from './modules/apollo-document/apollo-docume
 import { AigIamModule } from './modules/iam/iam.module';
 import { AigManagementModule } from './modules/management/management.module';
 import { AigContextModule } from 'app/context/context.module';
+import { EventService } from './event.service';
 
 @NgModule({
     declarations: [
@@ -23,14 +24,12 @@ import { AigContextModule } from 'app/context/context.module';
 
         AigEopooModule,
         AigApolloDocumentModule,
-        
-        
     ],
     exports: [
         
     ],
     providers: [
-        
+        EventService,
     ],
 })
 export class ApiGestModule { }
