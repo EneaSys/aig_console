@@ -9,10 +9,12 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
+import { IContext, Context } from 'aig-common/context-browser-repository/Context.model';
+import { AuthService } from 'auth/auth.service';
+import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
+
 import { navigation } from 'app/navigation/navigation';
-import { AuthService } from 'app/auth/auth.service';
-import { AigContextRepositoryService } from 'app/context/context-repository.service';
-import { IContext, Context } from 'app/context/Context.model';
+
 
 
 @Component({

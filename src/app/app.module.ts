@@ -11,16 +11,23 @@ import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+import { FuseProgressBarModule, FuseSidebarModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
-import { AuthModule } from 'app/auth/auth.module';
-import { ApiGestModule } from './main/api-gest/api-gest.module';
 
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { ApiGestConsoleModule } from './main/api-gest-console/api-gest-console.module';
+import { SampleModule } from 'app/main/sample/sample.module';
+import { BASE_PATH } from 'api-gest';
+import { API_URL } from './app.constants';
+import { AigApolloDocumentModule } from './main/api-gest-console/modules/apollo-document/apollo-document.module';
+import { AigEopooModule } from './main/api-gest-console/modules/eopoo/eopoo.module';
+import { AigIamModule } from './main/api-gest-console/modules/iam/iam.module';
+import { AigManagementModule } from './main/api-gest-console/modules/management/management.module';
+
+import { AigCommonModule } from 'aig-common/common.module';
+import { AuthInterceptor } from 'aig-common/auth.interceptor';
 
 const appRoutes: Routes = [
     {
@@ -37,7 +44,7 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
+        RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' }),
 
         TranslateModule.forRoot(),
 
@@ -55,10 +62,21 @@ const appRoutes: Routes = [
         FuseSidebarModule,
         LayoutModule,
 
-        AuthModule,
+        // Serve per interceptor
+        AigCommonModule,
+
+        // Serve per i route
+        ApiGestConsoleModule,
 
         // App modules
-        ApiGestModule,        
+        AigApolloDocumentModule,
+        AigEopooModule,
+
+        AigIamModule,
+        AigManagementModule,
+
+
+
         SampleModule,
     ],
     providers: [
@@ -66,6 +84,10 @@ const appRoutes: Routes = [
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
+        },
+        { 
+            provide: BASE_PATH,
+            useValue: API_URL
         },
     ],
     bootstrap: [

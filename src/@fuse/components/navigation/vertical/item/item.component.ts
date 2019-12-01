@@ -4,8 +4,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { FuseNavigationItem } from '@fuse/types';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
-import { Context, IContext } from 'app/context/Context.model';
-import { AigContextRepositoryService } from 'app/context/context-repository.service';
+import { IContext } from 'aig-common/context-browser-repository/Context.model';
+import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 
 @Component({
     selector: 'fuse-nav-vertical-item',
