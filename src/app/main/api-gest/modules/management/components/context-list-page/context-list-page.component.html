@@ -1,0 +1,37 @@
+<div id="aig-context-list" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+
+    <aig-management-header [sectionName]="'Contesti'" [sidebar]="'aig-context-list-filters-sidebar'" [search]="false"></aig-management-header>
+
+    <div class="content">
+        <!-- SIDEBAR -->
+        <fuse-sidebar class="sidebar" name="aig-context-list-filters-sidebar" position="left" lockedOpen="gt-sm">
+            <div class="content" fusePerfectScrollbar>
+                <div class="sidebar-content">
+
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Filters</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <div class="nav material2">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </fuse-sidebar>
+        <!-- / SIDEBAR -->
+
+        <!-- CENTER -->
+        <div class="center p-24 pb-56" fusePerfectScrollbar>
+            <div class="content">
+                <aig-context-table [displayedColumns]="displayedColumns" [dataSource]="dataSource"></aig-context-table>
+            </div>
+        </div>
+        <!-- /CENTER -->
+
+    </div>
+
+</div>

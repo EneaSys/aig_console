@@ -1,9 +1,4 @@
 import { NgModule } from '@angular/core';
-
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
-
-import { ApiGestModule, BASE_PATH } from 'api-gest';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -16,20 +11,33 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { AigCommonModule } from '../_common/common.module';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSidebarModule } from '@fuse/components';
 
-import { AigContextListComponent } from './components/context-list/context-list.component';
-import { AigManagementHeaderComponent } from './components/management-header/management-header.component';
+import { ApiGestModule, BASE_PATH } from 'api-gest';
+
 import { API_URL } from 'app/app.constants';
-import { AigContextTableComponent } from './components/context-table/context-table.component';
 
+import { AigCommonModule } from '../_common/common.module';
+import { AigCommonManagementModule } from '../_common/modules/management/common-management.module';
+
+import { AigManagementHeaderComponent } from './components/management-header/management-header.component';
+import { AigPermissionListPageComponent } from './components/permission-list-page/permission-list-page.component';
+import { AigRoleDetailPageComponent } from './components/role-detail-page/role-page-detail.component';
+import { AigRoleListPageComponent } from './components/role-list-page/role-list-page.component';
+import { AigContextListPageComponent } from './components/context-list-page/context-list-page.component';
 
 @NgModule({
     declarations: [
-        AigContextTableComponent,
-
         AigManagementHeaderComponent,
-        AigContextListComponent,
+
+        AigContextListPageComponent,
+
+        AigPermissionListPageComponent,
+
+        AigRoleListPageComponent,
+        AigRoleDetailPageComponent,
+        
     ],
     imports: [
         AigCommonModule,
@@ -48,11 +56,11 @@ import { AigContextTableComponent } from './components/context-table/context-tab
         MatChipsModule,
         MatSnackBarModule,
         MatToolbarModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+
+        AigCommonManagementModule,
     ],
-    exports: [
-        AigContextTableComponent,
-    ],
+    exports: [ ],
     providers: [
         { provide: BASE_PATH,  useValue: API_URL }
     ],

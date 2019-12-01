@@ -1,0 +1,39 @@
+<form [formGroup]="userNewForm" (ngSubmit)="createUser()" *ngIf="step.form">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Firstname</mat-label>
+            <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+            <input name="firstName" formControlName="firstName" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Lastname</mat-label>
+            <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+            <input name="lastName" formControlName="lastName" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Email</mat-label>
+            <mat-icon matSuffix class="secondary-text">email</mat-icon>
+            <input name="email" formControlName="email" matInput type="email" required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ userDTO | json }}</pre>
+</div>
