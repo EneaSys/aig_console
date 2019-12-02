@@ -91,7 +91,7 @@ import { AigRoleCustomDetailComponent } from './components/custom-role-custom-de
         AigUserGroupChipsComponent,
         AigUserGroupChipsChildComponent,
     ],
-    entryComponents:[
+    entryComponents: [
         AigUserNewDialogComponent,
         AigRoleCustomNewDialogComponent,
         AigPermissionCustomNewDialogComponent,

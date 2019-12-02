@@ -23,6 +23,8 @@ import { AigRoleListPageComponent } from './components/role-list-page/role-list-
 import { AigContextListPageComponent } from './components/context-list-page/context-list-page.component';
 import { AigCommonModule } from 'aig-common/common.module';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
+import { AigPermissionNewDialogComponent } from './components/permission-new-dialog/permission-new-dialog.component';
+import { AigRoleNewDialogComponent } from './components/role-new-dialog/role-new-dialog.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +37,8 @@ import { AigCommonManagementModule } from 'aig-common/modules/management/common-
         AigRoleListPageComponent,
         AigRoleDetailPageComponent,
         
+        AigPermissionNewDialogComponent,
+        AigRoleNewDialogComponent,
     ],
     imports: [
         AigCommonModule,
@@ -58,5 +62,9 @@ import { AigCommonManagementModule } from 'aig-common/modules/management/common-
     ],
     exports: [ ],
     providers: [ ],
+    entryComponents: [
+        AigPermissionNewDialogComponent,
+        AigRoleNewDialogComponent,
+    ],
 })
 export class AigManagementModule {}

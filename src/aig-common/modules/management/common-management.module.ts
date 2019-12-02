@@ -8,27 +8,51 @@ import { AigRoleTableComponent } from './components/role-table/role-table.compon
 import { MatButtonModule } from '@angular/material/button';
 import { AigPermissionTableComponent } from './components/permission-table/permission-table.component';
 import { AigCommonModule } from '../../common.module';
+import { AigRoleNewFormComponent } from './components/role-new-form/role-new-form.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AigPermissionNewFormComponent } from './components/permission-new-form/permission-new-form.component';
 
 @NgModule({
-    declarations: [
-        AigContextTableComponent,
-        AigRoleTableComponent,
-        AigPermissionTableComponent,
-    ],
     imports: [
         AigCommonModule,
         
         CommonModule,
 
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+
         MatTableModule,
         MatProgressSpinnerModule,
+
         MatButtonModule,
+        MatIconModule,
         
+        MatInputModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        
+    ],
+    declarations: [
+        AigContextTableComponent,
+        AigRoleTableComponent,
+        AigPermissionTableComponent,
+
+        AigRoleNewFormComponent,
+        AigPermissionNewFormComponent,
     ],
     exports: [
         AigContextTableComponent,
         AigRoleTableComponent,
         AigPermissionTableComponent,
+
+        AigRoleNewFormComponent,
+        AigPermissionNewFormComponent,
     ],
     providers: [],
 })
