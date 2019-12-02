@@ -209,7 +209,7 @@ export const apiGestRoute: Routes = [
                         component: AigRoleDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            roleSystem: RoleSystemResolver,
+                            role: RoleSystemResolver,
                         },
                     },
                 ]

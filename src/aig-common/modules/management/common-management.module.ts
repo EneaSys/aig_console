@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AigPermissionNewFormComponent } from './components/permission-new-form/permission-new-form.component';
+import { AigAssociateRolePermissionFormComponent } from './components/associate-role-permission-form/associate-role-permission-form.component';
+import { AigManagementAutocompleteFilterService } from './services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [
@@ -37,6 +41,8 @@ import { AigPermissionNewFormComponent } from './components/permission-new-form/
         MatFormFieldModule,
         MatAutocompleteModule,
         
+        FlexLayoutModule,
+        
     ],
     declarations: [
         AigContextTableComponent,
@@ -45,6 +51,7 @@ import { AigPermissionNewFormComponent } from './components/permission-new-form/
 
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
+        AigAssociateRolePermissionFormComponent,
     ],
     exports: [
         AigContextTableComponent,
@@ -53,7 +60,12 @@ import { AigPermissionNewFormComponent } from './components/permission-new-form/
 
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
+        AigAssociateRolePermissionFormComponent,
     ],
-    providers: [],
+    providers: [
+        AigManagementAutocompleteFilterService,
+        AigManagementAutocompleteFunctionService,
+
+    ],
 })
 export class AigCommonManagementModule {}

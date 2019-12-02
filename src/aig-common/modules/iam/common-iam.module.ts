@@ -30,6 +30,7 @@ import { AigCommonModule } from '../../common.module';
 import { AigAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 import { AigValidatorService } from './services/form/validator.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [
@@ -50,6 +51,8 @@ import { AigValidatorService } from './services/form/validator.service';
         MatInputModule,
         MatFormFieldModule,
         MatAutocompleteModule,
+
+        FlexLayoutModule,
 
     ],
     declarations: [

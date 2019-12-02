@@ -25,21 +25,9 @@ import { AigCommonModule } from 'aig-common/common.module';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
 import { AigPermissionNewDialogComponent } from './components/permission-new-dialog/permission-new-dialog.component';
 import { AigRoleNewDialogComponent } from './components/role-new-dialog/role-new-dialog.component';
+import { AigAssociateRoleToPermissionDialogComponent } from './components/associate-role-premission-dialog/associate-role-premission-dialog.component';
 
 @NgModule({
-    declarations: [
-        AigManagementHeaderComponent,
-
-        AigContextListPageComponent,
-
-        AigPermissionListPageComponent,
-
-        AigRoleListPageComponent,
-        AigRoleDetailPageComponent,
-        
-        AigPermissionNewDialogComponent,
-        AigRoleNewDialogComponent,
-    ],
     imports: [
         AigCommonModule,
         AigCommonManagementModule,
@@ -60,11 +48,26 @@ import { AigRoleNewDialogComponent } from './components/role-new-dialog/role-new
         MatToolbarModule,
         MatProgressSpinnerModule,
     ],
+    declarations: [
+        AigManagementHeaderComponent,
+
+        AigContextListPageComponent,
+
+        AigPermissionListPageComponent,
+
+        AigRoleListPageComponent,
+        AigRoleDetailPageComponent,
+        
+        AigPermissionNewDialogComponent,
+        AigRoleNewDialogComponent,
+        AigAssociateRoleToPermissionDialogComponent,
+    ],
     exports: [ ],
     providers: [ ],
     entryComponents: [
         AigPermissionNewDialogComponent,
         AigRoleNewDialogComponent,
+        AigAssociateRoleToPermissionDialogComponent,
     ],
 })
 export class AigManagementModule {}
