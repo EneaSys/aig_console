@@ -16,7 +16,7 @@ export class AigRoleAssociationTableComponent implements OnInit {
         private roleAssignationResourceService: RoleAssignationResourceService,
         private eventService: EventService,
     ) { }
-    
+
     @Input()
     displayedColumns: string[];
     @Input()
@@ -29,19 +29,24 @@ export class AigRoleAssociationTableComponent implements OnInit {
     removeFromGroup(roleAssignation: any) {
         this._fuseProgressBarService.show();
 
-        let groupChild: ContextGroupDTO = this.buttonConfig.removeFromGroup;
-        let roleName = (roleAssignation.customRoleId != null) ? roleAssignation.customRole.name : roleAssignation.systemRole.name;
-        let message = "Removed role: " + roleName + " to group: " + groupChild.name + ".";
-
+        let message = "Removed role";
+        if (roleAssignation.customRole != null || roleAssignation.systemRole != null) {
+            let groupChild: ContextGroupDTO = this.buttonConfig.removeFromGroup;
+            let roleName = (roleAssignation.customRoleId != null) ? roleAssignation.customRole.name : roleAssignation.systemRole.name;
+            let message = "Removed role: " + roleName + " to group: " + groupChild.name + ".";
+        }
         this.remove(roleAssignation, message);
     }
 
     removeFromUser(roleAssignation: any) {
         this._fuseProgressBarService.show();
 
-        let userChild: UserDTO = this.buttonConfig.removeFromUser;
-        let roleName = (roleAssignation.customRoleId != null) ? roleAssignation.customRole.name : roleAssignation.systemRole.name;
-        let message = "Removed role: " + roleName + " to user: " + userChild.firstName + ".";
+        let message = "Removed role";
+        if (roleAssignation.customRole != null || roleAssignation.systemRole != null) {
+            let user: UserDTO = this.buttonConfig.removeFromUser;
+            let roleName = (roleAssignation.customRoleId != null) ? roleAssignation.customRole.name : roleAssignation.systemRole.name;
+            message = "Removed role: " + roleName + " to user: " + user.firstName + ".";
+        }
 
         this.remove(roleAssignation, message);
     }

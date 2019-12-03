@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+import { AigCommonModule } from '../../common.module';
 
 import { AigRoleAssignationsToGroupsPipe, AigRoleAssignationToGroupPipe } from './pipe/role-assignation-to-group.pipe';
 import { AigRoleAssignationsToUsersPipe, AigRoleAssignationToUserPipe } from './pipe/role-assignation-to-user.pipe';
@@ -26,11 +28,9 @@ import { AigGroupAssociateComponent } from './components/group-associate/group-a
 import { AigRoleAssociateComponent } from './components/role-associate/role-associate.component';
 import { AigGroupNewComponent } from './components/group-new/group-new.component';
 import { AigRoleAssociationTableComponent } from './components/role-association-table/role-association-table.component';
-import { AigCommonModule } from '../../common.module';
 import { AigAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 import { AigValidatorService } from './services/form/validator.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     imports: [

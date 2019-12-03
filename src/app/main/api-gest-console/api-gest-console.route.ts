@@ -13,7 +13,6 @@ import { AigRoleDetailPageComponent } from './modules/management/components/role
 import { AigPermissionListPageComponent } from './modules/management/components/permission-list-page/permission-list-page.component';
 import { AigRoleListPageComponent } from './modules/management/components/role-list-page/role-list-page.component';
 import { AigContextListPageComponent } from './modules/management/components/context-list-page/context-list-page.component';
-import { AigRoleCustomDetailComponent } from './modules/iam/components/custom-role-custom-detail/custom-role-custom-detail.component';
 
 import { AuthGuardService } from 'auth/auth-guard.service';
 
@@ -25,6 +24,7 @@ import { UserResolver } from 'aig-common/old-common/resolver/user.resolver';
 import { GroupResolver } from 'aig-common/old-common/resolver/group.resolver';
 import { RoleCustomResolver } from 'aig-common/old-common/resolver/role-custom.resolver';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
+import { AigRoleCustomDetailComponent } from './modules/iam/components/custom-role-detail-page/custom-role-detail-page.component';
 
 
 export const apiGestRoute: Routes = [

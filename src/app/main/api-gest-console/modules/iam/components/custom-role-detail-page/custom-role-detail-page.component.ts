@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    templateUrl: './custom-role-custom-detail.component.html',
-    styleUrls: ['./custom-role-custom-detail.component.scss']
+    templateUrl: './custom-role-detail-page.component.html',
+    styleUrls: ['./custom-role-detail-page.component.scss']
 })
 export class AigRoleCustomDetailComponent implements OnInit {
     constructor(
@@ -31,8 +31,10 @@ export class AigRoleCustomDetailComponent implements OnInit {
 
     customRole: CustomRoleDTO;
     permissionsRoleCustom: Observable<CustomRolePermissionDTO[]>;
-    users: Observable<RoleAssignationDTO[]>;
+    users: RoleAssignationDTO[];
     groups: Observable<RoleAssignationDTO[]>;
+
+    userTableError: any;
 
     ngOnInit(): void {
         this.customRole = this.route.snapshot.data.roleCustom;
@@ -43,7 +45,12 @@ export class AigRoleCustomDetailComponent implements OnInit {
         }
 
         this.permissionsRoleCustom = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null, null);
-        this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null);
+        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
+            .subscribe(
+                res => this.users = res,
+                err => this.userTableError = err,
+            );
+
         this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 

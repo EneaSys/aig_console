@@ -27,7 +27,8 @@
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span *ngIf="e.customRoleId != null">{{ e.customRole.name }}</span>
-                <span *ngIf="e.roleCode != null">{{ e.systemRole.name }}</span>
+                <span *ngIf="e.roleCode != null && e.systemRole != null">{{ e.systemRole.name }}</span>
+                <span *ngIf="e.roleCode != null && e.systemRole == null">Not found role</span>
             </mat-cell>
         </ng-container>
 
@@ -37,7 +38,7 @@
                 <div *ngIf="buttonConfig.details != false">
                     <button *ngIf="e.customRoleId != null" class="mr-8" mat-stroked-button color="accent"
                         (click)="detailCustomRole(e)">Details</button>
-                    <button *ngIf="e.roleCode != null" class="mr-8" mat-stroked-button color="accent"
+                    <button *ngIf="e.roleCode != null && e.systemRole != null" class="mr-8" mat-stroked-button color="accent"
                         (click)="detailSystemRole(e)">Details</button>
                 </div>
 

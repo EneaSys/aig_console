@@ -14,9 +14,11 @@
             <div class="fuse-card auto-width p-16" id="permission-list">
                 <div class="h4 m-16">Lista dei permessi</div>
                 <aig-permission-custom-table [displayedColumns]="permissionsCustomDisplayedColumns"
-                    [dataSource]="permissionsRoleCustom | async" [buttonConfig]="permissionButtonConfig"></aig-permission-custom-table>
+                    [dataSource]="permissionsRoleCustom | async" [buttonConfig]="permissionButtonConfig">
+                </aig-permission-custom-table>
                 <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newCustomPermission()" aria-label="add permission">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newCustomPermission()"
+                    aria-label="add permission">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -26,7 +28,12 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-16">Utenti che hanno questo ruolo</div>
-                <aig-users-table [displayedColumns]="usersDisplayedColumns" [dataSource]="users | async | roleAssignationsToUsers"></aig-users-table>
+                <div *ngIf="userTableError != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+                    <span *ngIf="userTableError.status == 401">No access to this info</span>
+                </div>
+                <div *ngIf="userTableError == null">
+                    <aig-users-table [displayedColumns]="usersDisplayedColumns" [dataSource]="users | roleAssignationsToUsers"></aig-users-table>
+                </div>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="50">

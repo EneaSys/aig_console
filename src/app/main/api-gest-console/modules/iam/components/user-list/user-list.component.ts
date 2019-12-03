@@ -3,7 +3,7 @@ import { UserResourceService, UserDTO } from 'api-gest';
 import { fuseAnimations } from '@fuse/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -22,10 +22,14 @@ export class AigUserListComponent implements OnInit, OnDestroy {
     }
 
     displayedColumns: string[] = ['usercode', 'firstName', 'lastName', 'email', 'status', 'type', 'buttons'];
-    userDataSource: Observable<UserDTO[]>;
+    userDataSource: UserDTO[];
+    error: any;
 
     ngOnInit(): void {
-        this.userDataSource = this.userResourceService.getAllUsersUsingGET("");
+        this.userResourceService.getAllUsersUsingGET("").subscribe(
+            res => this.userDataSource = res,
+            err => this.error = err,
+        );
     }
 
     ngOnDestroy(): void {

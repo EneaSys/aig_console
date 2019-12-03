@@ -46,12 +46,16 @@ export class AigGroupTableComponent implements OnInit {
             if (group.id == groupParent.id) _groupChild.groupMemberOfs.splice(index, 1);
         });
 
-        groupChild.groupMemberOfs = _groupChild.groupMemberOfs;
-
-        this.contextGroupResourceService.updateContextGroupUsingPUT(groupChild).subscribe(
+        this.contextGroupResourceService.updateContextGroupUsingPUT(_groupChild).subscribe(
             (value: ContextGroupDTO) => {
+                groupChild.groupMemberOfs = _groupChild.groupMemberOfs;
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Group " + groupParent.name + " removed from " + groupChild.name + ".", null, { duration: 5000, });
+                this._fuseProgressBarService.hide();
+            },
+            (error: any) => {
+                console.log(error);
+                this._snackBar.open("Error: " + error.error.title + ".", null, { duration: 5000, });
                 this._fuseProgressBarService.hide();
             }
         )
@@ -67,12 +71,15 @@ export class AigGroupTableComponent implements OnInit {
             if (group.id == groupToRemove.id) _user.userMemberOfs.splice(index, 1);
         });
 
-        user.userMemberOfs = _user.userMemberOfs;
-
-        this.contextUserResourceService.updateContextUserUsingPUT(user).subscribe(
+        this.contextUserResourceService.updateContextUserUsingPUT(_user).subscribe(
             (value: ContextUserDTO) => {
+                user.userMemberOfs = _user.userMemberOfs;
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Group " + groupToRemove.name + " removed from " + user.firstName + " " + user.lastName + ".", null, { duration: 5000, });
+                this._fuseProgressBarService.hide();
+            },
+            (error: any) => {
+                this._snackBar.open("Error: " + error.error.title + ".", null, { duration: 5000, });
                 this._fuseProgressBarService.hide();
             }
         )

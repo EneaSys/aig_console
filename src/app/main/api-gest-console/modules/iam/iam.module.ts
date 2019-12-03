@@ -36,7 +36,8 @@ import { AigRoleAssociateDialogComponent } from './components/role-associate-dia
 import { AigGroupAssociateDialogComponent } from './components/group-associate-dialog/group-associate-dialog.component';
 import { AigCustomRolePageComponent } from './components/custom-role-page/custom-role-page.component';
 import { AigRoleCustomNewDialogComponent } from './components/custom-role-new-dialog/custom-role-new-dialog.component';
-import { AigRoleCustomDetailComponent } from './components/custom-role-custom-detail/custom-role-custom-detail.component';
+import { AigRoleCustomDetailComponent } from './components/custom-role-detail-page/custom-role-detail-page.component';
+
 
 
 @NgModule({
