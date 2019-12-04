@@ -7,12 +7,14 @@ import { PermissionDTO } from 'api-gest';
     styleUrls: ['./permission-table.component.scss']
 })
 export class AigPermissionTableComponent implements OnInit {
+    constructor() { }
+
+    @Input()
+    error: any;
     @Input()
     displayedColumns: string[];
     @Input()
     dataSource: PermissionDTO[];
-    
-    constructor() { }
 
     ngOnInit(): void { }
 

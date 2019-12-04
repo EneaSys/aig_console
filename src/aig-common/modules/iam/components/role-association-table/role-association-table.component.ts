@@ -18,6 +18,8 @@ export class AigRoleAssociationTableComponent implements OnInit {
     ) { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];

@@ -1,4 +1,7 @@
-<div *ngIf="dataSource == null" class="p-48">
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
         <mat-spinner></mat-spinner>
     </div>

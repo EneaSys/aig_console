@@ -26,6 +26,7 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
 
     @Input() requestFilter: any;
 
+    error: any;
     displayedColumns: string[] = ['id', 'number', 'date', 'customer', 'total', 'buttons'];
     dataSource: any[];
 
@@ -42,16 +43,12 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
     private loadApolloDocument(){
         this.apolloDocumentService.query(this.requestFilter).subscribe(
             (res: HttpResponse<any[]>) => this.paginateApolloDocuments(res.body, res.headers),
-            (res: HttpErrorResponse) => this.onError(res.message)
+            (res: HttpErrorResponse) => this.error = res,
         );
     }
 
     private paginateApolloDocuments(data: any[], headers: HttpHeaders) {
         this.dataSource = data;
-    }
-
-    private onError(errorMessage: string) {
-        console.log("Errore: ", errorMessage);
     }
 
     public detailApolloDocument(idApolloDocument: string){

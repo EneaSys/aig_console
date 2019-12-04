@@ -31,7 +31,7 @@
                     <span *ngIf="error.status == 401">No access to this info</span>
                 </div>
                 <div *ngIf="error == null">
-                    <aig-users-table [displayedColumns]="displayedColumns" [dataSource]="userDataSource"></aig-users-table>
+                    <aig-users-table [displayedColumns]="displayedColumns" [dataSource]="userDataSource" [error]="error"></aig-users-table>
                 </div>
             </div>
         </div>
@@ -42,8 +42,7 @@
 </div>
 
 <!-- ADD CONTACT BUTTON -->
-<button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add user"
-    [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
+<button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add user">
     <mat-icon>person_add</mat-icon>
 </button>
 <!-- / ADD CONTACT BUTTON -->

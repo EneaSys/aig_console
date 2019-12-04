@@ -22,6 +22,8 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
     ) { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];

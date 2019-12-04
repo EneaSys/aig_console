@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomRoleResourceService, CustomRoleDTO } from 'api-gest';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { Observable } from 'rxjs';
 import { AigRoleCustomNewDialogComponent } from '../custom-role-new-dialog/custom-role-new-dialog.component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component';
 
 @Component({
     templateUrl: './custom-role-page.component.html',
     styleUrls: ['./custom-role-page.component.scss']
 })
-export class AigCustomRolePageComponent implements OnInit {
+export class AigCustomRolePageComponent extends GenericComponent {
     constructor(
         private dialog: MatDialog,
         private customRoleResourceService: CustomRoleResourceService,
-        private eventService: EventService,
-    ) {
-        this.eventService.reloadPage$.subscribe(() => this.ngOnInit());
-    }
-    roleCustomDisplayedColumns: string[] = ['id', 'name', 'buttons'];
-    roleCustomDataSource: Observable<CustomRoleDTO[]>;
+        eventService: EventService,
+    ) { super(eventService) }
 
-    ngOnInit(): void {
-        this.roleCustomDataSource = this.customRoleResourceService.getAllCustomRolesUsingGET("");
+    roleCustomDisplayedColumns: string[] = ['id', 'name', 'buttons'];
+    roleCustomDataSource: CustomRoleDTO[];
+    error: any;
+
+    loadComponent(): void {
+        var destructor = this.customRoleResourceService.getAllCustomRolesUsingGET("").subscribe(
+            value => this.roleCustomDataSource = value,
+            error => this.error = error,
+        );
+        this._destructors.push(destructor);
     }
 
     newCustomRole(): void {

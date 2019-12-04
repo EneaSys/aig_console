@@ -24,6 +24,8 @@ export class AigGroupTableComponent implements OnInit {
     ) { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];

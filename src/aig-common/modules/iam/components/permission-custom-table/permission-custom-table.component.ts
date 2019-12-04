@@ -18,6 +18,8 @@ export class AigPermissionCustomTableComponent implements OnInit {
     ) { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];
