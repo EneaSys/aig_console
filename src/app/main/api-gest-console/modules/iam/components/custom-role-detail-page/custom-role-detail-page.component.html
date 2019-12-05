@@ -14,7 +14,7 @@
             <div class="fuse-card auto-width p-16" id="permission-list">
                 <div class="h4 m-16">Lista dei permessi</div>
                 <aig-permission-custom-table [displayedColumns]="permissionsCustomDisplayedColumns"
-                    [dataSource]="permissionsRoleCustom | async" [buttonConfig]="permissionButtonConfig">
+                    [dataSource]="permissionsRoleCustom" [buttonConfig]="permissionButtonConfig" [error]=permissionsRoleCustomError>
                 </aig-permission-custom-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="newCustomPermission()"
@@ -28,18 +28,13 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-16">Utenti che hanno questo ruolo</div>
-                <div *ngIf="userTableError != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
-                    <span *ngIf="userTableError.status == 401">No access to this info</span>
-                </div>
-                <div *ngIf="userTableError == null">
-                    <aig-users-table [displayedColumns]="usersDisplayedColumns" [dataSource]="users | roleAssignationsToUsers"></aig-users-table>
-                </div>
+                <aig-users-table [displayedColumns]="usersDisplayedColumns" [dataSource]="users | roleAssignationsToUsers" [error]=usersError></aig-users-table>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-16">Gruppi che hanno questo ruolo</div>
-                <aig-group-table [displayedColumns]="groupsDisplayedColumns" [dataSource]="groups | async | roleAssignationsToGroups"></aig-group-table>
+                <aig-group-table [displayedColumns]="groupsDisplayedColumns" [dataSource]="groups | roleAssignationsToGroups" [error]=groupsError></aig-group-table>
             </div>
         </div>
     </div>

@@ -5,23 +5,20 @@ import { MatDialog } from '@angular/material/dialog';
 import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
 import { Observable } from 'rxjs';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component';
 
 @Component({
     templateUrl: './custom-role-detail-page.component.html',
     styleUrls: ['./custom-role-detail-page.component.scss']
 })
-export class AigRoleCustomDetailComponent implements OnInit {
+export class AigRoleCustomDetailComponent extends GenericComponent {
     constructor(
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
         private customRolePermissionResourceService: CustomRolePermissionResourceService,
-        private eventService: EventService,
-    ) {
-        this.eventService.reloadPage$.subscribe((data?: any) => {
-            this.ngOnInit()
-        });
-    }
+        eventService: EventService,
+    ) { super(eventService) }
 
     permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
     usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];
@@ -30,28 +27,44 @@ export class AigRoleCustomDetailComponent implements OnInit {
     permissionButtonConfig: any;
 
     customRole: CustomRoleDTO;
-    permissionsRoleCustom: Observable<CustomRolePermissionDTO[]>;
+    permissionsRoleCustom: CustomRolePermissionDTO[];
     users: RoleAssignationDTO[];
-    groups: Observable<RoleAssignationDTO[]>;
+    groups: RoleAssignationDTO[];
 
-    userTableError: any;
+    permissionsRoleCustomError: any;
+    usersError: any;
+    groupsError: any;
 
-    ngOnInit(): void {
+    loadComponent(): void {
         this.customRole = this.route.snapshot.data.roleCustom;
 
         this.permissionButtonConfig = {
             details: false,
             removeFromCustomRole: this.customRole,
         }
+        let destructor = null;
+        
+        destructor = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null, null)
+            .subscribe(
+                res => this.permissionsRoleCustom = res,
+                error => this.permissionsRoleCustomError = error,
+            );
+        this._destructors.push(destructor);
 
-        this.permissionsRoleCustom = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null, null);
-        this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
+        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
             .subscribe(
                 res => this.users = res,
-                err => this.userTableError = err,
+                error => this.usersError = error,
             );
+        this._destructors.push(destructor);
 
-        this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+            .subscribe(
+                res => this.groups = res,
+                error => this.groupsError = error,
+            );
+        this._destructors.push(destructor);
     }
 
     newCustomPermission() {
