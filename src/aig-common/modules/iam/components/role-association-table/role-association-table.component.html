@@ -1,0 +1,61 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef>Role Type</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.customRoleId != null">CUSTOM</span>
+                <span *ngIf="e.roleCode != null">SYSTEM</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id or Code </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.customRoleId != null">{{ e.customRoleId }}</span>
+                <span *ngIf="e.roleCode != null">{{ e.roleCode }}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.customRoleId != null">{{ e.customRole.name }}</span>
+                <span *ngIf="e.roleCode != null && e.systemRole != null">{{ e.systemRole.name }}</span>
+                <span *ngIf="e.roleCode != null && e.systemRole == null">Not found role</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <div *ngIf="buttonConfig.details != false">
+                    <button *ngIf="e.customRoleId != null" class="mr-8" mat-stroked-button color="accent"
+                        (click)="detailCustomRole(e)">Details</button>
+                    <button *ngIf="e.roleCode != null && e.systemRole != null" class="mr-8" mat-stroked-button color="accent"
+                        (click)="detailSystemRole(e)">Details</button>
+                </div>
+
+                <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeFromUser != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeFromUser(e)">Remove</button>
+
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+</div>

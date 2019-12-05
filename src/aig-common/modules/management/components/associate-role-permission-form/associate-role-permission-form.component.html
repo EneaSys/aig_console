@@ -1,0 +1,40 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()" *ngIf="step.form">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Ruolo</mat-label>
+            <mat-icon matSuffix class="secondary-text">assignment_ind</mat-icon>
+            <input type="text" matInput formControlName="role" required [matAutocomplete]="filteredRolesAuto">
+            <mat-autocomplete #filteredRolesAuto="matAutocomplete" [displayWith]="aigManagementAutocompleteFunctionService.roleDisplayFn">
+                <mat-option *ngFor="let filteredRole of filteredRoles | async" [value]="filteredRole">{{ filteredRole.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>E' necessario selezionare un ruolo!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Permesso</mat-label>
+            <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
+            <input type="text" matInput formControlName="permission" required [matAutocomplete]="filteredPermissionsAuto">
+            <mat-autocomplete #filteredPermissionsAuto="matAutocomplete" [displayWith]="aigManagementAutocompleteFunctionService.permissionDisplayFn">
+                <mat-option *ngFor="let filteredPermission of filteredPermissions | async" [value]="filteredPermission">{{ filteredPermission.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>E' necessario selezionare un permesso!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Aggiungi</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <h3>Associazione effettuata</h3>
+    <button (click)="new()" mat-raised-button color="accent">Nuovo</button>
+</div>

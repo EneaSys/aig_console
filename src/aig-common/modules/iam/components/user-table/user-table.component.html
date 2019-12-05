@@ -1,0 +1,59 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="usercode">
+            <mat-header-cell *matHeaderCellDef> UserCode </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.userCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef> FirstName </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.firstName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef> LastName </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.lastName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.email }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.type }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.status }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button class="mr-8" mat-stroked-button color="accent" (click)="userDetail(e.userCode)">Details</button>
+                <button class="mr-8" mat-stroked-button color="accent" *ngIf="e.status === 'ACTIVE'"
+                    (click)="disactivate(e.userCode)">Disactivate</button>
+                <button class="mr-8" mat-stroked-button color="accent" *ngIf="e.status === 'DISABLED'"
+                    (click)="reactivate(e.userCode)">Reactivate</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    
+</div>

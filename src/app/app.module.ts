@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -11,16 +11,14 @@ import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+import { FuseProgressBarModule, FuseSidebarModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
-import { AuthModule } from 'app/auth/auth.module';
-import { ApiGestModule } from './main/api-gest/api-gest.module';
 
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { ApiGestConsoleModule } from './main/api-gest-console/api-gest-console.module';
+import { SampleModule } from 'app/main/sample/sample.module';
 
 const appRoutes: Routes = [
     {
@@ -37,7 +35,7 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' }),
 
         TranslateModule.forRoot(),
 
@@ -55,19 +53,12 @@ const appRoutes: Routes = [
         FuseSidebarModule,
         LayoutModule,
 
-        AuthModule,
+        // Application
+        ApiGestConsoleModule,
 
-        // App modules
-        ApiGestModule,        
         SampleModule,
     ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        },
-    ],
+    providers: [ ],
     bootstrap: [
         AppComponent
     ]

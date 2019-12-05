@@ -1,0 +1,58 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.iddocumento }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="idcompany">
+            <mat-header-cell *matHeaderCellDef> Azienda </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.idazienda }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="number">
+            <mat-header-cell *matHeaderCellDef> Numero </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.tipo | ApolloDocumentType }} - {{ element.protocollo }}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.data }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="customer">
+            <mat-header-cell *matHeaderCellDef> Intestazione </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.intestazione }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef> Importo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.totale | currency:'EUR':true }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button class="mr-8" mat-stroked-button color="accent"
+                    (click)="detailApolloDocument(element.id)">Details</button>
+                <button *ngIf="element.tipo === '29' || element.tipo === '83'" class="mr-8" mat-stroked-button
+                    color="accent" (click)="downloadXml(element)">XML</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let apolloDocument; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    
+</div>

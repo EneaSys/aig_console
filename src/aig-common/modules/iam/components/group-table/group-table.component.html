@@ -1,0 +1,40 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent"
+                    (click)="groupDetails(e.id)">Details</button>
+                <button *ngIf="buttonConfig.removeGroupFromGroup != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeGroupFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeUserFromGroup != null" class="mr-8" mat-stroked-button color="accent"
+                    (click)="removeUserFromGroup(e)">Remove</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+</div>

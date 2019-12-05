@@ -1,0 +1,49 @@
+<div id="aig-iam-group-detail" class="page-layout blank">
+
+    <aig-iam-header></aig-iam-header>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Group</div>
+                <div class="h1 m-16">{{ group.name }}</div>
+                <div class="h4 m-8 ml-16 secondary-text">ID: {{ group.id }}</div>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-16" id="group-member-list">
+                <div class="h4 m-16 mt-0 mb-0">Membro di</div>
+                <aig-group-table [displayedColumns]="memberOfDisplayedColumns" [dataSource]="group.groupMemberOfs" [buttonConfig]="memberOfButtonConfig"></aig-group-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToGroup()" aria-label="add to group">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16" id="role-list">
+                <div class="h4 m-16 mt-0 mb-0">Lista dei ruoli</div>
+                <aig-role-association-table [displayedColumns]="roleDisplayedColumns" [dataSource]="roles | async" [buttonConfig]="roleButtonConfig"></aig-role-association-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToRole()" aria-label="add role">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-16 mt-0 mb-0">Utenti che hanno questo gruppo</div>
+                <aig-users-table [displayedColumns]="userDisplayedColumns" [dataSource]="users | async"></aig-users-table>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-16 mt-0 mb-0">Gruppi che hanno questo gruppo</div>
+                <aig-group-table [displayedColumns]="membersDisplayedColumns" [dataSource]="groups | async"></aig-group-table>
+            </div>
+        </div>
+    </div>
+
+</div>

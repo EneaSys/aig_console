@@ -2,7 +2,7 @@
 
     <!-- item.url -->
     <a class="nav-link" [ngClass]="item.classes" *ngIf="item.url && !item.externalUrl && !item.function"
-       [routerLink]="[item.url]" [routerLinkActive]="['active', 'accent']"
+       [routerLink]="[item.url]" [queryParams]="{context: ($context | async)?.contextCode}" [routerLinkActive]="['active', 'accent']"
        [routerLinkActiveOptions]="{exact: item.exactMatch || false}"
        [target]="item.openInNewTab ? '_blank' : '_self'">
         <ng-container *ngTemplateOutlet="itemContent"></ng-container>

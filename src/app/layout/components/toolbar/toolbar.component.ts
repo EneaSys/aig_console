@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subject, from } from 'rxjs';
+import { Subject, from, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
@@ -9,10 +9,12 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
+import { IContext, Context } from 'aig-common/context-browser-repository/Context.model';
+import { AuthService } from 'auth/auth.service';
+import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
+
 import { navigation } from 'app/navigation/navigation';
-import { AuthService } from 'app/auth/auth.service';
-import { AigContextRepositoryService } from 'app/context/context-repository.service';
-import { IContext, Context } from 'app/context/Context.model';
+
 
 
 @Component({
@@ -31,7 +33,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     selectedLanguage: any;
     userStatusOptions: any[];
 
-    isAuthenticated: boolean;
+    isAuthenticated: boolean = false;
     loadedUserInfo: boolean = false;
     loggedUser: any;
 
@@ -72,10 +74,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
-
-        this.authService.$authenticationState.subscribe(
-            (isAuthenticated: boolean) => this.authChange(isAuthenticated)
-        );
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -97,28 +95,44 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, { id: this._translateService.currentLang });
-        this.afterOnInit();
 
-        from(this.aigContextRepositoryService.getCurrentContext()).subscribe(
-            (context: IContext) => {
-                this.context = context;
-            }
+        this.authService.$authenticationState.subscribe(
+            (isAuthenticated: boolean) => this.authChange(isAuthenticated)
         );
-        this.contexts = this.aigContextRepositoryService.getInMemoryContexts();
+
+        this.afterOnInit();
     }
 
     async afterOnInit() {
         this.isAuthenticated = await this.authService.isAuthenticated();
         this.loadUserInfo();
+        this.loadContextMenu();
     }
-    private authChange(isAuthenticated) {
+
+    private authChange(isAuthenticated: boolean) {
         this.isAuthenticated = isAuthenticated
         this.loadUserInfo();
+        this.loadContextMenu();
     }
 
     private loadUserInfo() {
         if (this.isAuthenticated) {
             this.authService.getUser().then((user: any) => this.loggedUserInfo(user));
+        }
+    }
+
+    private loadContextMenu() {
+        if (this.isAuthenticated) {
+            this.aigContextRepositoryService.getCurrentContextObservable().subscribe(
+                (context: IContext) => {
+                    this.context = context;
+                }
+            );
+            this.aigContextRepositoryService.getAvailableContexts().subscribe(
+                (value: IContext[]) => {
+                    this.contexts = value;
+                },
+            );
         }
     }
 
@@ -183,13 +197,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     login() {
         this.authService.loginRedirect('/');
     }
-    
+
     logout() {
         this.authService.logout('/');
     }
 
     setCurrentContext(context: IContext): void {
-        this.aigContextRepositoryService.setDefaultContext(context);
-        //this.aigContextRepositoryService.setCurrentContext(context);
+        this.aigContextRepositoryService.setCurrentContext(context);
     }
 }

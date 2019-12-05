@@ -17,13 +17,12 @@
                 </div>
             </div>
 
-            <div class="px-8 px-md-16">
-
+            <div class="px-8 px-md-16" *ngIf="isAuthenticated && context != null">
                 <div>
                     <button mat-button [matMenuTriggerFor]="contextMenu" class="user-button">
-                        <div fxLayout="row" fxLayoutAlign="center center">
-                            <span class="username mr-12" fxHide fxShow.gt-sm *ngIf="context">{{ context.contextName }}</span>
-                            <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="context">
+                            <span class="username mr-12">{{ context.contextName }}</span>
+                            <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
                         </div>
                     </button>
 
@@ -32,7 +31,6 @@
                         <button mat-menu-item [routerLink]="[ '/m8t/context/list' ]"><span>Other contexts</span></button>
                     </mat-menu>
                 </div>
-                
             </div>
 
         </div>

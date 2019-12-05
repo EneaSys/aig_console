@@ -1,0 +1,30 @@
+<form *ngIf="step.form" [formGroup]="permissionNewForm" (ngSubmit)="createPermission()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Permission Name</mat-label>
+            <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
+            <input name="name" formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Permission Code</mat-label>
+            <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
+            <input name="permissionCode" formControlName="permissionCode" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ permissionDTO | json }}</pre>
+</div>

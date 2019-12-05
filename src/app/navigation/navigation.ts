@@ -38,17 +38,10 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'role-list',
-                title    : 'Ruoli',
+                title    : 'Ruoli Personalizzati',
                 type     : 'item',
                 icon     : 'assignment_ind',
                 url      : '/iam/role'
-            },
-            {
-                id       : 'permission-list',
-                title    : 'Permessi',
-                type     : 'item',
-                icon     : 'star_half',
-                url      : '/iam/permission'
             },
         ]
     },
@@ -58,6 +51,20 @@ export const navigation: FuseNavigation[] = [
         translate: 'NAV.MANAGEMENT',
         type     : 'group',
         children : [
+            {
+                id       : 'context-list',
+                title    : 'Ruoli',
+                type     : 'item',
+                icon     : 'assignment_ind',
+                url      : '/m8t/role'
+            },
+            {
+                id       : 'permission-list',
+                title    : 'Permessi',
+                type     : 'item',
+                icon     : 'star_half',
+                url      : '/m8t/permission'
+            },
             {
                 id       : 'context-list',
                 title    : 'Contesti',
