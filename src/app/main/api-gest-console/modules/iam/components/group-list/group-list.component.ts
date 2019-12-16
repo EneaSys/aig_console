@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AigGroupNewDialogComponent } from '../group-new-dialog/group-new-dialog.component';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { ContextGroupResourceService, ContextGroupDTO } from 'api-gest';
-import { Observable } from 'rxjs';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component';
 
 @Component({
@@ -18,10 +17,15 @@ export class AigGroupListComponent extends GenericComponent {
     ) { super(eventService) }
 
     displayedColumns: string[] = ['id', 'name', 'buttons'];
-    contextGroupDataSource: Observable<ContextGroupDTO[]>;
+    contextGroupDataSource: ContextGroupDTO[];
+    error: any;
 
     loadComponent(): void {
-        this.contextGroupDataSource = this.contextGroupResourceService.getAllContextGroupsUsingGET("");
+        var destructor = this.contextGroupResourceService.getAllContextGroupsUsingGET("").subscribe(
+            res => this.contextGroupDataSource = res,
+            err => this.error = err,
+        );
+        this._destructors.push(destructor);
     }
 
     newGroup() {
