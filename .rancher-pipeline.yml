@@ -24,8 +24,8 @@ stages:
   - runScriptConfig:
       image: gcr.io/api-gest/deployer
       shellScript: |-
-        ssh -p1980 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
-        scp -P1980 -r dist/public_html/ $user@$url:$path
+        ssh -p1088 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
+        scp -P1088 -r dist/public_html/ $user@$url:$path
     env:
       path: stage.eneasys.com/api-gest/public_html
       url: cpanel.eneasys.net
