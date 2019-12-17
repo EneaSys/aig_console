@@ -28,7 +28,7 @@ stages:
         scp -P1088 -r dist/public_html/ $user@$url:$path
     env:
       path: stage.eneasys.com/api-gest/public_html
-      url: cpanel.eneasys.net
+      url: cpanel.sm-host.com
       user: eneasys
     when:
       branch:
