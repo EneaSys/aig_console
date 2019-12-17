@@ -16,7 +16,7 @@ import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
-import { EventService } from 'aig-common/event-manager/event.service';
+import { EventService, EsEvent } from 'aig-common/event-manager/event.service';
 
 @Component({
     selector: 'app',
@@ -164,7 +164,10 @@ export class AppComponent implements OnInit, OnDestroy {
             }
             
             if(previousUrl != null && previousUrl !== event.url && event.url.includes('context=')) {
-                this.eventService.reloadCurrentPage();
+                var esEvent: EsEvent = {
+                    reason: "urlIsChanged"
+                }
+                this.eventService.reloadCurrentPage(esEvent);
             }
 
             await this.aigContextRepositoryService.getCurrentContext();

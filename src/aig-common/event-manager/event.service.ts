@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-export enum EsEventType {
-    REFRESH
-}
-
 export interface EsEvent {
-    type: EsEventType,
+    reason: string,
     data?: any,
 }
 
