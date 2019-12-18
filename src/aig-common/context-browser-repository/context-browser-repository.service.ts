@@ -357,6 +357,9 @@ export class AigContextRepositoryService {
     }
 
     private reloadWithThisContext(context: IContext) {
+        if(this.isPageWithoutContext()) {
+            return;
+        }
         var currentUrl = this.router.url;
         var currentUrlArray = currentUrl.split("?");
         if (currentUrlArray[0] != '/') {
