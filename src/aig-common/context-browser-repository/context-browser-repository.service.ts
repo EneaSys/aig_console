@@ -69,7 +69,9 @@ export class AigContextRepositoryService {
     getCurrentContextObservable(): Observable<IContext> {
         setTimeout(async () => {
             var currentContext = await this.getCurrentContext();
-            this.currentContextObservable.next(currentContext);
+            if(currentContext != null) {
+                this.currentContextObservable.next(currentContext);
+            }
         }, 1);
         return this.currentContextObservable.asObservable();
     }
@@ -99,6 +101,7 @@ export class AigContextRepositoryService {
             this._setCurrentContext(newCurrentContext);
         }
 
+        this.currentContextObservable.next(this.currentContext);
         return this.currentContext;
     }
 
@@ -176,7 +179,8 @@ export class AigContextRepositoryService {
 
     private getContextByContextCodeFromBackend(contextCode: string) {
         return new Observable((observer: Subscriber<IContext>) => {
-            this.tenantContextResourceService.getAllTenantContextsUsingGET(null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).subscribe(
+            this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+            .subscribe(
                 (TenantContextDTOs: TenantContextDTO[]) => {
                     var validContext: IContext = {
                         contextName: TenantContextDTOs[0].name,

@@ -21,7 +21,7 @@ export class AigGroupListComponent extends GenericComponent {
     error: any;
 
     loadComponent(): void {
-        var destructor = this.contextGroupResourceService.getAllContextGroupsUsingGET("").subscribe(
+        var destructor = this.contextGroupResourceService.getAllContextGroupsUsingGET(null).subscribe(
             res => this.contextGroupDataSource = res,
             err => this.error = err,
         );

@@ -31,8 +31,8 @@ export class AigRoleDetailPageComponent implements OnInit {
     ngOnInit(): void {
         this.role = this.route.snapshot.data.role;
 
-        this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.role.roleCode, null, null, null, null, null, 0, null, null, null, null, null, null);
-        this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.role.roleCode, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.role.roleCode, null, null, null, null, null, null, 0, null);
+        this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,  this.role.roleCode, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     addPermissionToRole(): void {

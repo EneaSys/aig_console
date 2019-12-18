@@ -37,7 +37,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     loadedUserInfo: boolean = false;
     loggedUser: any;
 
-    context: IContext = new Context();
+    context: IContext;
     contexts: IContext[];
 
     // Private
@@ -97,7 +97,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.selectedLanguage = _.find(this.languages, { id: this._translateService.currentLang });
 
         this.authService.$authenticationState.subscribe(
-            (isAuthenticated: boolean) => this.authChange(isAuthenticated)
+            (isAuthenticated: boolean) => {
+                this.authChange(isAuthenticated);
+            }
         );
 
         this.afterOnInit();
@@ -117,7 +119,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     private loadUserInfo() {
         if (this.isAuthenticated) {
-            this.authService.getUser().then((user: any) => this.loggedUserInfo(user));
+            this.authService.getUser().then((user: any) => {
+                this.loggedUserInfo(user)
+            });   
         }
     }
 
@@ -204,5 +208,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     setCurrentContext(context: IContext): void {
         this.aigContextRepositoryService.setCurrentContext(context);
+    }
+
+    reloadPermissions(): void {
+        
     }
 }

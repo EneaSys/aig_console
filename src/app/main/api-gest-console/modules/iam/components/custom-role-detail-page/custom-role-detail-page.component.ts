@@ -44,14 +44,14 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         }
         let destructor = null;
         
-        destructor = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null, null)
+        destructor = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null)
             .subscribe(
                 res => this.permissionsRoleCustom = res,
                 error => this.permissionsRoleCustomError = error,
             );
         this._destructors.push(destructor);
 
-        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
+        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
             .subscribe(
                 res => this.users = res,
                 error => this.usersError = error,
@@ -59,7 +59,7 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         this._destructors.push(destructor);
 
 
-        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
             .subscribe(
                 res => this.groups = res,
                 error => this.groupsError = error,

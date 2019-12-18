@@ -58,9 +58,9 @@ export class AigGroupDetailComponent implements OnInit {
         this.memberOfButtonConfig.removeGroupFromGroup = this.group;
         this.roleButtonConfig.removeFromGroup = this.group;
         
-        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
-        this.users = this.userResourceService.getAllUsersUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null);
-        this.groups = this.contextGroupResourceService.getAllContextGroupsUsingGET("", this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.users = this.userResourceService.getAllUsersUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null);
+        this.groups = this.contextGroupResourceService.getAllContextGroupsUsingGET(this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         
         this.loaded = true;
     }

@@ -46,7 +46,7 @@ export class AigPermissionCustomNewComponent implements OnInit {
             permission: ['', Validators.required],
         });
 
-        this.customRoleResourceService.getAllCustomRolesUsingGET("").subscribe(
+        this.customRoleResourceService.getAllCustomRolesUsingGET().subscribe(
             (value: CustomRoleDTO[]) => {
                 this.roles = value;
                 if(this.customRole != null){

@@ -21,7 +21,7 @@ export class AigCustomRolePageComponent extends GenericComponent {
     error: any;
 
     loadComponent(): void {
-        var destructor = this.customRoleResourceService.getAllCustomRolesUsingGET("").subscribe(
+        var destructor = this.customRoleResourceService.getAllCustomRolesUsingGET().subscribe(
             value => this.roleCustomDataSource = value,
             error => this.error = error,
         );
