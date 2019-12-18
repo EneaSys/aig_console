@@ -45,7 +45,7 @@ export class AigUserDetailComponent implements OnInit {
         this.memberOfButtonConfig.removeUserFromGroup = this.user;
         this.roleButtonConfig.removeFromUser = this.user;
 
-        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.user.id, null, null, null, null, null, null)
+        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null, this.user.id, null, null, null, null, null, null, null);
     }
 
     associateToGroup() {

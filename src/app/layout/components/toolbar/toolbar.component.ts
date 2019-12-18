@@ -14,6 +14,7 @@ import { AuthService } from 'auth/auth.service';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { UserPermissionMemoryResourceService } from 'api-gest';
 
 
 
@@ -56,6 +57,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _translateService: TranslateService,
         private authService: AuthService,
         private aigContextRepositoryService: AigContextRepositoryService,
+        private userPermissionMemoryResourceService: UserPermissionMemoryResourceService,
     ) {
         this.languages = [
             {
@@ -211,6 +213,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
 
     reloadPermissions(): void {
-        
+        this.userPermissionMemoryResourceService.cleanUserPermission1()
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe(
+            (value: any) => {
+                console.log("pulito");
+            }
+        );
     }
 }
