@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { RoleDTO, RoleAssignationResourceService, RoleAssignationDTO } from 'api-gest';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { EventService } from 'aig-common/event-manager/event.service';
 import { AigAssociateRoleToPermissionDialogComponent } from '../associate-role-premission-dialog/associate-role-premission-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
-import { GenericComponent } from '../../../generic-component/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './role-page-detail.component.html',

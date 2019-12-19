@@ -12,7 +12,8 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Documenti Apollo',
                 type     : 'item',
                 icon     : 'archive',
-                url      : '/apollo-document'
+                url      : '/apollo-document',
+                permission: ['e4y2.apollo.get'],
             },
         ]
     },
@@ -27,21 +28,24 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Utenti',
                 type     : 'item',
                 icon     : 'person',
-                url      : '/iam/user'
+                url      : '/iam/user',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : 'group-list',
                 title    : 'Gruppi',
                 type     : 'item',
                 icon     : 'group',
-                url      : '/iam/group'
+                url      : '/iam/group',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : 'role-list',
                 title    : 'Ruoli Personalizzati',
                 type     : 'item',
                 icon     : 'assignment_ind',
-                url      : '/iam/role'
+                url      : '/iam/role',
+                permission: ['e4y.role.get'],
             },
         ]
     },

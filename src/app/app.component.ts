@@ -17,6 +17,7 @@ import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 import { EventService, EsEvent } from 'aig-common/event-manager/event.service';
+import { AigModuleNavigationService } from './main/api-gest-console/navigation/navigation.service';
 
 @Component({
     selector: 'app',
@@ -45,27 +46,20 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(
         @Inject(DOCUMENT) private document: any,
         private _fuseConfigService: FuseConfigService,
-        private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
         private _platform: Platform,
         private router: Router,
         private eventService: EventService,
         private aigContextRepositoryService: AigContextRepositoryService,
+        private aigModuleNavigationService: AigModuleNavigationService,
     ) {
         // Get default navigation
-        this.navigation = navigation;
-
-        // Register the navigation to the service
-        this._fuseNavigationService.register('main', this.navigation);
-
-        // Set the main navigation as our current navigation
-        this._fuseNavigationService.setCurrentNavigation('main');
+        this.aigModuleNavigationService.loadNavigation();
 
         // Add languages
-        this._translateService.addLangs(['en', 'tr']);
+        this._translateService.addLangs(['en', 'it']);
 
         // Set the default language
         this._translateService.setDefaultLang('en');
@@ -153,9 +147,9 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
+            console.log("AppComponent")
         
         var previousUrl = null
-
         this.router.events.pipe(
             filter((event: RouterEvent) => event instanceof NavigationEnd)
         ).subscribe(async (event: any) => {

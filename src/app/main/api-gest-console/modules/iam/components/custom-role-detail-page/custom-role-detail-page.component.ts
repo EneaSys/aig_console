@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CustomRoleDTO, CustomRolePermissionDTO, RoleAssignationResourceService, RoleAssignationDTO, CustomRolePermissionResourceService } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
-import { GenericComponent } from 'app/main/api-gest-console/modules/generic-component/generic-component';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './custom-role-detail-page.component.html',

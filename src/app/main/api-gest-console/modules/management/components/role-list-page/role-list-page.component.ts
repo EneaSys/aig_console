@@ -4,8 +4,8 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AigRoleNewDialogComponent } from '../role-new-dialog/role-new-dialog.component';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
-import { GenericComponent } from '../../../generic-component/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './role-list-page.component.html',

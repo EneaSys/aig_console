@@ -5,6 +5,7 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { locale as english } from './i18n/en';
 import { locale as turkish } from './i18n/tr';
 import { FuseConfigService } from '@fuse/services/config.service';
+import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 
 @Component({
     selector   : 'sample',
@@ -19,7 +20,8 @@ export class SampleComponent
      * @param {FuseTranslationLoaderService} _fuseTranslationLoaderService
      */
     constructor(
-        private _fuseConfigService: FuseConfigService
+        private _fuseConfigService: FuseConfigService,
+        public fuseSplashScreenService: FuseSplashScreenService,
     )
     {
         // Configure the layout
@@ -39,5 +41,7 @@ export class SampleComponent
                 }
             }
         };
+
+        this.fuseSplashScreenService.hide();
     }
 }

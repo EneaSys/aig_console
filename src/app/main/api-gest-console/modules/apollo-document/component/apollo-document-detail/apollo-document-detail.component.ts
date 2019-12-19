@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
-import { GenericComponent } from '../../../generic-component/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+
 
 @Component({
     templateUrl: './apollo-document-detail.component.html',

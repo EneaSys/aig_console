@@ -5,9 +5,8 @@ import { RoleAssignationResourceService, ContextGroupDTO, ContextGroupResourceSe
 import { Observable } from 'rxjs';
 import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/group-associate-dialog.component';
 import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
-import { EventService } from 'aig-common/event-manager/event.service';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
-import { GenericComponent } from '../../../generic-component/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './group-detail.component.html',

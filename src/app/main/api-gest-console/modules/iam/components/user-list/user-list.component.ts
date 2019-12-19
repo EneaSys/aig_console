@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { UserResourceService, UserDTO } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
-import { GenericComponent } from 'app/main/api-gest-console/modules/generic-component/generic-component';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './user-list.component.html',

@@ -2,8 +2,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { fuseAnimations } from '@fuse/animations';
-import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
-import { GenericComponent } from '../../../generic-component/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './apollo-document-list.component.html',
