@@ -8,10 +8,10 @@ import { filter, take } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
-export class FuseSplashScreenService
-{
+export class FuseSplashScreenService {
     splashScreenEl: any;
     player: AnimationPlayer;
+    private _visible: boolean;
 
     /**
      * Constructor
@@ -24,8 +24,7 @@ export class FuseSplashScreenService
         private _animationBuilder: AnimationBuilder,
         @Inject(DOCUMENT) private _document: any,
         private _router: Router
-    )
-    {
+    ) {
         // Initialize
         this._init();
     }
@@ -39,15 +38,15 @@ export class FuseSplashScreenService
      *
      * @private
      */
-    private _init(): void
-    {
+    private _init(): void {
         // Get the splash screen element
         this.splashScreenEl = this._document.body.querySelector('#fuse-splash-screen');
 
         // If the splash screen element exists...
-        if ( this.splashScreenEl )
-        {
+        if (this.splashScreenEl) {
+            this._visible = true;
             // Hide it on the first NavigationEnd event
+            /**
             this._router.events
                 .pipe(
                     filter((event => event instanceof NavigationEnd)),
@@ -58,6 +57,7 @@ export class FuseSplashScreenService
                         this.hide();
                     });
                 });
+             */
         }
     }
 
@@ -68,40 +68,51 @@ export class FuseSplashScreenService
     /**
      * Show the splash screen
      */
-    show(): void
-    {
-        this.player =
-            this._animationBuilder
-                .build([
-                    style({
-                        opacity: '0',
-                        zIndex : '99999'
-                    }),
-                    animate('400ms ease', style({opacity: '1'}))
-                ]).create(this.splashScreenEl);
+    show(): void {
+        if (!this._visible) {
+            this.player =
+                this._animationBuilder
+                    .build([
+                        style({
+                            opacity: '0',
+                            zIndex: '99999'
+                        }),
+                        animate('400ms ease', style({ opacity: '1' }))
+                    ]).create(this.splashScreenEl);
 
-        setTimeout(() => {
-            this.player.play();
-        }, 0);
+            setTimeout(() => {
+                this.player.play();
+                this._visible = true;
+            }, 0);
+        }
     }
 
     /**
      * Hide the splash screen
      */
-    hide(): void
-    {
-        this.player =
-            this._animationBuilder
-                .build([
-                    style({opacity: '1'}),
-                    animate('400ms ease', style({
-                        opacity: '0',
-                        zIndex : '-10'
-                    }))
-                ]).create(this.splashScreenEl);
+    hide(): void {
+        if (this._visible) {
+            this.player =
+                this._animationBuilder
+                    .build([
+                        style({ opacity: '1' }),
+                        animate('400ms ease', style({
+                            opacity: '0',
+                            zIndex: '-10'
+                        }))
+                    ]).create(this.splashScreenEl);
 
-        setTimeout(() => {
-            this.player.play();
-        }, 0);
+            setTimeout(() => {
+                this.player.play();
+                this._visible = false;
+            }, 0);
+        }
+    }
+
+    visible(): boolean {
+        if (this._visible) {
+            return true;
+        }
+        return false;
     }
 }
