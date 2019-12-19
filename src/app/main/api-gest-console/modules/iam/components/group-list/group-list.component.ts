@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AigGroupNewDialogComponent } from '../group-new-dialog/group-new-dialog.component';
-import { EventService } from 'aig-common/event-manager/event.service';
 import { ContextGroupResourceService, ContextGroupDTO } from 'api-gest';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/modules/generic-component/generic-component';
+import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
 
 @Component({
     templateUrl: './group-list.component.html',
@@ -13,8 +13,8 @@ export class AigGroupListComponent extends GenericComponent {
     constructor(
         private contextGroupResourceService: ContextGroupResourceService,
         public dialog: MatDialog,
-        eventService: EventService,
-    ) { super(eventService) }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     displayedColumns: string[] = ['id', 'name', 'buttons'];
     contextGroupDataSource: ContextGroupDTO[];

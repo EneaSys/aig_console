@@ -6,12 +6,14 @@ import { Observable } from 'rxjs';
 import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/group-associate-dialog.component';
 import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
+import { GenericComponent } from '../../../generic-component/generic-component';
 
 @Component({
     templateUrl: './group-detail.component.html',
     styleUrls: ['./group-detail.component.scss']
 })
-export class AigGroupDetailComponent implements OnInit {
+export class AigGroupDetailComponent extends GenericComponent {
     loaded: boolean = false;
 
     constructor(
@@ -20,14 +22,8 @@ export class AigGroupDetailComponent implements OnInit {
         private roleAssignationResourceService: RoleAssignationResourceService,
         private userResourceService: UserResourceService,
         private contextGroupResourceService: ContextGroupResourceService,
-        private eventService: EventService,
-    ) {
-        this.eventService.reloadPage$.subscribe((data?: any) => {
-            if(this.loaded) {
-                this.loadPage();
-            }
-        });
-    }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     memberOfDisplayedColumns: string[] = ['name', 'buttons'];
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
@@ -48,7 +44,7 @@ export class AigGroupDetailComponent implements OnInit {
     users: Observable<UserDTO[]>;
     groups: Observable<ContextGroupDTO[]>;
 
-    ngOnInit(): void {
+    loadComponent(): void {
         this.loadPage();
     }
 

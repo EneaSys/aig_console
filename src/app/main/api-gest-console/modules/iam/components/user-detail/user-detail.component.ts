@@ -6,23 +6,20 @@ import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/grou
 import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
+import { GenericComponent } from '../../../generic-component/generic-component';
 
 @Component({
     templateUrl: './user-detail.component.html',
     styleUrls: ['./user-detail.component.scss']
 })
-export class AigUserDetailComponent implements OnInit {
+export class AigUserDetailComponent extends GenericComponent {
     constructor(
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
-        private router: Router,
-        private eventService: EventService,
-    ) {
-        this.eventService.reloadPage$.subscribe((data?: any) => {
-            this.ngOnInit()
-        });
-    }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     memberOfDisplayedColumns: string[] = ['id', 'name', 'buttons'];
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
@@ -39,7 +36,7 @@ export class AigUserDetailComponent implements OnInit {
     user: any; //UserDTO
     roles: Observable<RoleAssignationDTO[]>;
 
-    ngOnInit(): void {
+    loadComponent(): void {
         this.user = this.route.snapshot.data.user;
 
         this.memberOfButtonConfig.removeUserFromGroup = this.user;

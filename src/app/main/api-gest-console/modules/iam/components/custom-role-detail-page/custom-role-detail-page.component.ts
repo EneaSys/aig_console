@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomRoleDTO, CustomRolePermissionDTO, RoleAssignationResourceService, RoleAssignationDTO, CustomRolePermissionResourceService } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
-import { Observable } from 'rxjs';
-import { EventService } from 'aig-common/event-manager/event.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/modules/generic-component/generic-component';
+import { AigGenericComponentService } from '../../../generic-component/generic-component.service';
 
 @Component({
     templateUrl: './custom-role-detail-page.component.html',
@@ -17,8 +16,8 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
         private customRolePermissionResourceService: CustomRolePermissionResourceService,
-        eventService: EventService,
-    ) { super(eventService) }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
     usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];

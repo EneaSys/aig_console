@@ -12,6 +12,7 @@ import { AigApolloDocumentModule } from './modules/apollo-document/apollo-docume
 import { AigEopooModule } from './modules/eopoo/eopoo.module';
 import { AigIamModule } from './modules/iam/iam.module';
 import { AigManagementModule } from './modules/management/management.module';
+import { AigGenericComponentService } from './modules/generic-component/generic-component.service';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { AigManagementModule } from './modules/management/management.module';
     ],
     exports: [],
     providers: [
+        AigGenericComponentService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
