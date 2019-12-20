@@ -55,9 +55,6 @@ export class AppComponent implements OnInit, OnDestroy {
         private aigContextRepositoryService: AigContextRepositoryService,
         private aigModuleNavigationService: AigModuleNavigationService,
     ) {
-        // Get default navigation
-        this.aigModuleNavigationService.loadNavigation();
-
         // Add languages
         this._translateService.addLangs(['en', 'it']);
 
@@ -147,8 +144,6 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
-            console.log("AppComponent")
-        
         var previousUrl = null
         this.router.events.pipe(
             filter((event: RouterEvent) => event instanceof NavigationEnd)

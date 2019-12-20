@@ -78,7 +78,7 @@ export class AigContextRepositoryService {
 
     async getCurrentContext(): Promise<IContext> {
         if(this.isPageWithoutContext()) {
-            return null;
+            return this.currentContext;
         }
 
         if (this.currentContext == null) {
