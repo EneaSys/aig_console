@@ -53,11 +53,15 @@ export class AigContextRepositoryService {
             (value: IContext) => {
                 if (value == null) {
                     this.reloadWithDefaultContext();
+                } else {
+                    this._setCurrentContext(context);
                 }
-                this._setCurrentContext(context);
             }
         );
     }
+
+
+
 
     getAvailableContexts(): Observable<IContext[]> {
         setTimeout(() => {
@@ -77,6 +81,10 @@ export class AigContextRepositoryService {
     }
 
     async getCurrentContext(): Promise<IContext> {
+        return this.currentContext;
+    }
+
+    async examineUrlAndGetCurrentContext(): Promise<IContext> {
         if(this.isPageWithoutContext()) {
             return this.currentContext;
         }
@@ -126,8 +134,8 @@ export class AigContextRepositoryService {
         this.currentContext = context;
 
         this.addAvailableContextInMemory(context);
-        this.currentContextObservable.next(context);
         this.reloadWithThisContext(context);
+        this.currentContextObservable.next(context);
     }
 
 
@@ -367,6 +375,7 @@ export class AigContextRepositoryService {
             queryParams.context = context.contextCode;
 
             this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });
+            alert("Settato: " + queryParams.context);
         }
     }
 

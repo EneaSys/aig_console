@@ -158,8 +158,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 }
                 this.eventService.reloadCurrentPage(esEvent);
             }
-
-            await this.aigContextRepositoryService.getCurrentContext();
+            this.aigContextRepositoryService.examineUrlAndGetCurrentContext();
 
             previousUrl = event.url;
         });   
