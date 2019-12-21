@@ -98,7 +98,7 @@ export class AigContextRepositoryService {
 
 
 
-    
+
     async examineUrlAndGetCurrentContext(): Promise<IContext> {
         if(this.isPageWithoutContext()) {
             return this.currentContext;
@@ -344,7 +344,6 @@ export class AigContextRepositoryService {
             queryParams.context = context.contextCode;
 
             this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });
-            alert("Settato: " + queryParams.context);
         }
     }
 
