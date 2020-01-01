@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private router: Router,
         private eventService: EventService,
         private aigContextRepositoryService: AigContextRepositoryService,
-        private aigModuleNavigationService: AigModuleNavigationService,
+        private location: Location,
     ) {
         // Add languages
         this._translateService.addLangs(['en', 'it']);
@@ -144,24 +144,28 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
-        var previousUrl = null
-        this.router.events.pipe(
-            filter((event: RouterEvent) => event instanceof NavigationEnd)
-        ).subscribe(async (event: any) => {
-            if(previousUrl === event.url) {
-                //Same url
-            }
-            
-            if(previousUrl != null && previousUrl !== event.url && event.url.includes('context=')) {
-                var esEvent: EsEvent = {
-                    reason: "urlIsChanged"
-                }
-                this.eventService.reloadCurrentPage(esEvent);
-            }
-            this.aigContextRepositoryService.examineUrlAndGetCurrentContext();
+        /*
+         *  Esamina url per settare il contesto current
+         *  Se il contesto nella url è null
+         *      Se ha un contesto di default lo setta come current e reload con contesto nella url
+         *      Se NON ha un contesto di default redirect alla pagina per settare contesto
+         */
+        this.aigContextRepositoryService.examineUrlAndGetCurrentContext();
+        
+        {
+            this.router.events.pipe(
+                filter((event: RouterEvent) => event instanceof NavigationEnd)
+            ).subscribe(async (event: any) => {
+                this.aigContextRepositoryService.examineUrlAndGetCurrentContext();
 
-            previousUrl = event.url;
-        });   
+                if(event.url.includes('context=')) {
+                    var esEvent: EsEvent = {
+                        reason: "urlIsChanged"
+                    }
+                    this.eventService.reloadCurrentPage(esEvent);
+                }
+            });   
+        }
     }
 
     /**
