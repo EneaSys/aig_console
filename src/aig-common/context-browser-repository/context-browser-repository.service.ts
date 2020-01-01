@@ -60,7 +60,7 @@ export class AigContextRepositoryService {
 
 
 
-    getAvailableContexts(): Observable<IContext[]> {
+    getAvailableContextsObservable(): Observable<IContext[]> {
         setTimeout(() => {
             this.availableContextObservable.next(this.getAvailableContextsInMemory());
         }, 1);
@@ -158,6 +158,7 @@ export class AigContextRepositoryService {
         this.reloadWithThisContext(context);
         this.currentContextObservable.next(context);
     }
+
     private async loadValidContext(contextCode: string) {
         //Controllo se è presente in quelli alternativi
         let inMemoryContexts: IContext[] = this.getAvailableContextsInMemory();

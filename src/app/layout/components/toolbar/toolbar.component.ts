@@ -136,7 +136,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                     this.context = context;
                 }
             );
-            this.aigContextRepositoryService.getAvailableContexts().subscribe(
+            this.aigContextRepositoryService.getAvailableContextsObservable().subscribe(
                 (value: IContext[]) => {
                     this.contexts = value;
                 },
