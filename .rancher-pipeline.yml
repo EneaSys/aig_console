@@ -12,7 +12,7 @@ stages:
       image: gcr.io/api-gest/deployer
       shellScript: |-
         ssh -p1088 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
-        scp -p1088 -r dist/public_html/ $user@$url:$path
+        scp -P1088 -r dist/public_html/ $user@$url:$path
     env:
       path: api-gest.eneasys.com/public_html
       url: cpanel.sm-host.com
@@ -25,7 +25,7 @@ stages:
       image: gcr.io/api-gest/deployer
       shellScript: |-
         ssh -p1088 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
-        scp -p1088 -r dist/public_html/ $user@$url:$path
+        scp -P1088 -r dist/public_html/ $user@$url:$path
     env:
       path: stage.eneasys.com/api-gest/public_html
       url: cpanel.sm-host.com
