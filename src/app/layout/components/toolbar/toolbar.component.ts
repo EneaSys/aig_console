@@ -14,6 +14,8 @@ import { AuthService } from 'auth/auth.service';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { UserPermissionMemoryResourceService } from 'api-gest';
+import { AigModuleNavigationService } from 'app/main/api-gest-console/navigation/navigation.service';
 
 
 
@@ -37,7 +39,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     loadedUserInfo: boolean = false;
     loggedUser: any;
 
-    context: IContext = new Context();
+    context: IContext;
     contexts: IContext[];
 
     // Private
@@ -56,6 +58,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _translateService: TranslateService,
         private authService: AuthService,
         private aigContextRepositoryService: AigContextRepositoryService,
+        private userPermissionMemoryResourceService: UserPermissionMemoryResourceService,
+        private aigModuleNavigationService: AigModuleNavigationService,
     ) {
         this.languages = [
             {
@@ -97,7 +101,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.selectedLanguage = _.find(this.languages, { id: this._translateService.currentLang });
 
         this.authService.$authenticationState.subscribe(
-            (isAuthenticated: boolean) => this.authChange(isAuthenticated)
+            (isAuthenticated: boolean) => {
+                this.authChange(isAuthenticated);
+            }
         );
 
         this.afterOnInit();
@@ -117,7 +123,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     private loadUserInfo() {
         if (this.isAuthenticated) {
-            this.authService.getUser().then((user: any) => this.loggedUserInfo(user));
+            this.authService.getUser().then((user: any) => {
+                this.loggedUserInfo(user)
+            });   
         }
     }
 
@@ -128,7 +136,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
                     this.context = context;
                 }
             );
-            this.aigContextRepositoryService.getAvailableContexts().subscribe(
+            this.aigContextRepositoryService.getAvailableContextsObservable().subscribe(
                 (value: IContext[]) => {
                     this.contexts = value;
                 },
@@ -204,5 +212,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     setCurrentContext(context: IContext): void {
         this.aigContextRepositoryService.setCurrentContext(context);
+    }
+
+    reloadPermissions(): void {
+        this.userPermissionMemoryResourceService.cleanUserPermission1()
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe(
+            (value: any) => this.aigModuleNavigationService.reloadNavigation()
+        );
     }
 }

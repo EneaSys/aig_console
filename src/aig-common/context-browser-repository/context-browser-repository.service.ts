@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable, Subscriber, from, Subject } from 'rxjs';
@@ -11,8 +12,8 @@ import { IContext } from './Context.model';
 export class AigContextRepositoryService {
     constructor(
         private localStorage: LocalStorageService,
-        private route: ActivatedRoute,
         private router: Router,
+        private location: Location,
         private tenantContextResourceService: TenantContextResourceService,
     ) { }
 
@@ -39,27 +40,27 @@ export class AigContextRepositoryService {
 
 
 
-    setDefaultContext(context: IContext) {
-        this.getContextByContextCodeFromBackend(context.contextCode).subscribe((context: IContext) => {
-            if (context != null) {
-                this.setDefaultContextInMemory(context);
-                this._setCurrentContext(context);
-            }
-        })
+    async setDefaultContext(context: IContext) {
+        try {
+            let secureContext: IContext = await this.loadValidContext(context.contextCode);
+            this.setDefaultContextInMemory(secureContext);
+            this._setCurrentContext(secureContext);
+        } catch(e) { }
     }
 
-    setCurrentContext(context: IContext) {
-        from(this.loadValidContext(context.contextCode)).subscribe(
-            (value: IContext) => {
-                if (value == null) {
-                    this.reloadWithDefaultContext();
-                }
-                this._setCurrentContext(context);
-            }
-        );
+    async setCurrentContext(context: IContext) {
+        try {
+            let secureContext: IContext = await this.loadValidContext(context.contextCode);
+            this._setCurrentContext(secureContext);
+        } catch(e) {
+            this.reloadWithDefaultContext();
+        }
     }
 
-    getAvailableContexts(): Observable<IContext[]> {
+
+
+
+    getAvailableContextsObservable(): Observable<IContext[]> {
         setTimeout(() => {
             this.availableContextObservable.next(this.getAvailableContextsInMemory());
         }, 1);
@@ -68,48 +69,79 @@ export class AigContextRepositoryService {
 
     getCurrentContextObservable(): Observable<IContext> {
         setTimeout(async () => {
-            var currentContext = await this.getCurrentContext();
-            this.currentContextObservable.next(currentContext);
+            let currentContext = await this.getCurrentContext();
+            if(currentContext != null) {
+                this.currentContextObservable.next(currentContext);
+            }
         }, 1);
         return this.currentContextObservable.asObservable();
     }
 
     async getCurrentContext(): Promise<IContext> {
+        return this.currentContext;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    async examineUrlAndGetCurrentContext(): Promise<IContext> {
         if(this.isPageWithoutContext()) {
             return null;
         }
 
-        if (this.currentContext == null) {
-            this.reloadWithDefaultContext();
-            return this.getDefaultContextInMemory();
-        }
+        let queryParams = this.getQueryParams();
 
-        const contextCodeInQueryParam: string = await this.getContextCodeInQueryParam().toPromise();
-
-        // Controlla se query params è vuoto
-        if (contextCodeInQueryParam == null || contextCodeInQueryParam == "") {
-            // ContextCodeInQueryParams vuoto ricarico con current
+        if (queryParams.context == null || queryParams.context == "") {
+            // ContextCodeInQueryParams vuoto ricarico con current o default, altrimenti redirigo alla pagina di scelta del contesto
             return this.reloadWithCurrentContextOrDefault();
         }
 
-        // Controlla se current (in query params) è uguale a current
-        if (contextCodeInQueryParam != this.currentContext.contextCode) {
-            var newCurrentContext: IContext = await this.loadValidContext(contextCodeInQueryParam);
-            // contextCodeInQueryParam diverso da current
+        /*
+         *  Se 
+         *      Non è stato ancora settato current
+         *  Oppure
+         *      Il contextCode in queryParam NON è uguale a current (contextCodeInQueryParam diverso da current)
+         */
+        if (this.currentContext == null || queryParams.context != this.currentContext.contextCode) {
+            // Lo prende da queryParam e lo setta come current (se valido)
+            let newCurrentContext: IContext = await this.loadValidContext(queryParams.context);
             this._setCurrentContext(newCurrentContext);
         }
 
+        this.currentContextObservable.next(this.currentContext);
         return this.currentContext;
     }
 
-    private getContextCodeInQueryParam(): Observable<string> {
-        return new Observable((observer: Subscriber<string>) => {
-            this.route.queryParams.subscribe(params => {
-                observer.next(params['context']);
-                observer.complete();
-            })
-        });
-    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -123,27 +155,15 @@ export class AigContextRepositoryService {
         this.currentContext = context;
 
         this.addAvailableContextInMemory(context);
-        this.currentContextObservable.next(context);
         this.reloadWithThisContext(context);
+        this.currentContextObservable.next(context);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     private async loadValidContext(contextCode: string) {
         //Controllo se è presente in quelli alternativi
-        var inMemoryContexts: IContext[] = this.getAvailableContextsInMemory();
+        let inMemoryContexts: IContext[] = this.getAvailableContextsInMemory();
         if (inMemoryContexts != null) {
-            var currentContext: IContext;
+            let currentContext: IContext;
             inMemoryContexts.forEach((context: IContext) => {
                 if (context.contextCode == contextCode) {
                     // Se è uno dei alternativi lo setto come currentContext
@@ -160,25 +180,12 @@ export class AigContextRepositoryService {
         // Prendo contesto da backend
         return await this.getContextByContextCodeFromBackend(contextCode).toPromise();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private getContextByContextCodeFromBackend(contextCode: string) {
         return new Observable((observer: Subscriber<IContext>) => {
-            this.tenantContextResourceService.getAllTenantContextsUsingGET(null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).subscribe(
+            this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+            .subscribe(
                 (TenantContextDTOs: TenantContextDTO[]) => {
-                    var validContext: IContext = {
+                    let validContext: IContext = {
                         contextName: TenantContextDTOs[0].name,
                         contextCode: TenantContextDTOs[0].contextCode,
                     };
@@ -201,6 +208,7 @@ export class AigContextRepositoryService {
 
 
 
+    
 
 
 
@@ -210,9 +218,23 @@ export class AigContextRepositoryService {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Memory
     private addAvailableContextInMemory(context: IContext) {
-        var inMemoryContexts: IContext[] = this.localStorage.retrieve('aig-context-in-memory');
-        var isPresent: boolean = false;
+        let inMemoryContexts: IContext[] = this.localStorage.retrieve('aig-context-in-memory');
+        let isPresent: boolean = false;
         if (inMemoryContexts == null) {
             inMemoryContexts = [];
         } else {
@@ -232,10 +254,6 @@ export class AigContextRepositoryService {
         return this.localStorage.retrieve('aig-context-in-memory');
     }
 
-
-
-
-
     private setDefaultContextInMemory(context: IContext) {
         this.localStorage.store('aig-default-context', context);
     }
@@ -244,61 +262,11 @@ export class AigContextRepositoryService {
         return this.localStorage.retrieve('aig-default-context');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // UTILS
-
-    private isPageWithoutContext(): boolean {
-        if(this.router.url.startsWith('/implicit/callback')) {
-            return true;
-        }
-        if(this.router.url.startsWith('/m8t/context/list')) {
-            return true;
-        }
-        return false;
-    }
-
     private cleanInMemoryContext() {
-        var inMemoryContexts: IContext[] = [];
+        let inMemoryContexts: IContext[] = [];
         this.localStorage.store('aig-context-in-memory', inMemoryContexts);
     }
 
-    private isSelectContextPage() {
-        var currentUrl = this.router.url;
-        var currentUrlArray = currentUrl.split("?");
-
-        if (currentUrlArray[0] == "/m8t/context/list") {
-            return true;
-        }
-        return false;
-    }
-
-    private isSelectLoginPage() {
-        var currentUrl = this.router.url;
-        var currentUrlArray = currentUrl.split("#");
-
-        if (currentUrlArray[0] == "/implicit/callback") {
-            return true;
-        }
-        return false;
-    }
 
 
 
@@ -334,6 +302,16 @@ export class AigContextRepositoryService {
 
 
 
+
+
+
+
+
+
+
+
+
+    // Reload with context
     private reloadWithCurrentContextOrDefault() {
         if (this.currentContext != null) {
             this.reloadWithThisContext(this.currentContext);
@@ -343,7 +321,7 @@ export class AigContextRepositoryService {
     }
 
     private reloadWithDefaultContext() {
-        var defaultContext = this.getDefaultContextInMemory();
+        let defaultContext = this.getDefaultContextInMemory();
         if (defaultContext == null) {
             this.router.navigate(['/m8t', 'context', 'list']);
             return null;
@@ -353,41 +331,79 @@ export class AigContextRepositoryService {
     }
 
     private reloadWithThisContext(context: IContext) {
-        var currentUrl = this.router.url;
-        var currentUrlArray = currentUrl.split("?");
-        if (currentUrlArray[0] != '/') {
-            var queryParams = this.urlQueryStringToObjectParams(currentUrl);
+        if(this.isPageWithoutContext()) {
+            return;
+        }
+        //console.log("Ricarico con context: ", context);
+        let queryParams = this.getQueryParams();
+        
+        if(queryParams != null) {
             queryParams.context = context.contextCode;
 
+            let currentUrlArray = this.location.path().split("?");
             this.router.navigate([currentUrlArray[0]], { queryParams: queryParams });
+        } else {
+            console.warn("SITUAZIONE ASSURDA");
         }
     }
 
-    private urlQueryStringToObjectParams(currentUrl: String) {
-        var queryParams: any = {};
+    
 
-        var currentUrlArray = currentUrl.split("?");
-        var currentParamsString = currentUrlArray[1];
-        if (currentParamsString != null && currentParamsString != "") {
-            var currentParamsArray = currentParamsString.split("&");
 
-            currentParamsArray.forEach(function (value) {
-                var currentParameterArray = value.split("=");
-                var key = currentParameterArray[0];
-                var value = currentParameterArray[1];
 
-                queryParams[key] = value;
-            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // UTILS
+
+        private isPageWithoutContext(): boolean {
+            if(this.location.path().startsWith('/implicit/callback')) {
+                return true;
+            }
+            if(this.location.path().startsWith('/m8t/context/list')) {
+                return true;
+            }
+            return false;
+        }
+    
+        private getQueryParams(): any {
+            return this.urlQueryStringToObjectParams(this.location.path());
         }
 
-        return queryParams;
-    }
+        private urlQueryStringToObjectParams(currentUrl: String): any {
+            let queryParams: any = {};
+    
+            if(currentUrl == "/") {
+                return null;
+            }
 
-
-
-
-
-
+            let currentUrlArray = currentUrl.split("?");
+            let currentParamsString = currentUrlArray[1];
+            if (currentParamsString != null && currentParamsString != "") {
+                let currentParamsArray = currentParamsString.split("&");
+    
+                currentParamsArray.forEach((currentParam) => {
+                    let currentParamArray = currentParam.split("=");
+                    let key = currentParamArray[0];
+                    let value = currentParamArray[1];
+    
+                    queryParams[key] = value;
+                });
+            }
+    
+            return queryParams;
+        }
 
 
 

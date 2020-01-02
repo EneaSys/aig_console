@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { PermissionResourceService, PermissionDTO } from 'api-gest';
-import { EventService } from 'aig-common/event-manager/event.service';
 import { AigPermissionNewDialogComponent } from '../permission-new-dialog/permission-new-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './permission-list-page.component.html',
@@ -13,8 +13,8 @@ export class AigPermissionListPageComponent extends GenericComponent {
     constructor(
         private permissionResourceService: PermissionResourceService,
         private dialog: MatDialog,
-        eventService: EventService,
-    ) { super(eventService) }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     permissionsDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName'];
     permissionsDataSource: PermissionDTO[] = [];

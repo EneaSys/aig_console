@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomRoleDTO, CustomRolePermissionDTO, RoleAssignationResourceService, RoleAssignationDTO, CustomRolePermissionResourceService } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
-import { Observable } from 'rxjs';
-import { EventService } from 'aig-common/event-manager/event.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './custom-role-detail-page.component.html',
@@ -17,8 +16,8 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         private dialog: MatDialog,
         private roleAssignationResourceService: RoleAssignationResourceService,
         private customRolePermissionResourceService: CustomRolePermissionResourceService,
-        eventService: EventService,
-    ) { super(eventService) }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
     usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];
@@ -44,14 +43,14 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         }
         let destructor = null;
         
-        destructor = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null, null)
+        destructor = this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.customRole.id, null, null, null, null, null, null, null, null, null)
             .subscribe(
                 res => this.permissionsRoleCustom = res,
                 error => this.permissionsRoleCustomError = error,
             );
         this._destructors.push(destructor);
 
-        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
+        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(this.customRole.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null)
             .subscribe(
                 res => this.users = res,
                 error => this.usersError = error,
@@ -59,7 +58,7 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         this._destructors.push(destructor);
 
 
-        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+        destructor = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(this.customRole.id, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
             .subscribe(
                 res => this.groups = res,
                 error => this.groupsError = error,

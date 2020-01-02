@@ -9,6 +9,6 @@ export class PermissionsRoleCustomResolver implements Resolve<Observable<CustomR
 
     resolve(route: ActivatedRouteSnapshot) {
         var idRoleCustom: number = +route.paramMap.get('id');
-        return this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, idRoleCustom, null, null, null, null, null, null, null, null, null, null);
+        return this.customRolePermissionResourceService.getAllCustomRolePermissionsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, idRoleCustom, null, null, null, null, null, null, null, null, null);
     }
 }

@@ -3,6 +3,7 @@ export interface FuseNavigationItem
     id: string;
     title: string;
     type: 'item' | 'group' | 'collapsable';
+    permission?: string[];
     translate?: string;
     icon?: string;
     hidden?: boolean;

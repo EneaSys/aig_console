@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { fuseAnimations } from '@fuse/animations';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './apollo-document-list.component.html',
@@ -9,10 +11,11 @@ import { fuseAnimations } from '@fuse/animations';
     animations   : fuseAnimations,
     encapsulation: ViewEncapsulation.None,
 })
-export class AigApolloDocumentListComponent implements OnInit {
+export class AigApolloDocumentListComponent extends GenericComponent {
     constructor(
         private router: Router,
-    ) { }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
     
     private requestFilter: any;
 
@@ -27,7 +30,7 @@ export class AigApolloDocumentListComponent implements OnInit {
         {n:"FdR", id:89},
     ]
 
-    ngOnInit(){
+    loadComponent(): void {
         this.requestFilter = this.requestFilter = {
             size: 101,
             sort: ["data,DESC","protocollo,DESC",],

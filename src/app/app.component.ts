@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
@@ -16,7 +16,8 @@ import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
-import { EventService } from 'aig-common/event-manager/event.service';
+import { EventService, EsEvent } from 'aig-common/event-manager/event.service';
+import { AigModuleNavigationService } from './main/api-gest-console/navigation/navigation.service';
 
 @Component({
     selector: 'app',
@@ -45,27 +46,17 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(
         @Inject(DOCUMENT) private document: any,
         private _fuseConfigService: FuseConfigService,
-        private _fuseNavigationService: FuseNavigationService,
         private _fuseSidebarService: FuseSidebarService,
-        private _fuseSplashScreenService: FuseSplashScreenService,
         private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private _translateService: TranslateService,
         private _platform: Platform,
         private router: Router,
         private eventService: EventService,
         private aigContextRepositoryService: AigContextRepositoryService,
+        private location: Location,
     ) {
-        // Get default navigation
-        this.navigation = navigation;
-
-        // Register the navigation to the service
-        this._fuseNavigationService.register('main', this.navigation);
-
-        // Set the main navigation as our current navigation
-        this._fuseNavigationService.setCurrentNavigation('main');
-
         // Add languages
-        this._translateService.addLangs(['en', 'tr']);
+        this._translateService.addLangs(['en', 'it']);
 
         // Set the default language
         this._translateService.setDefaultLang('en');
@@ -153,24 +144,28 @@ export class AppComponent implements OnInit, OnDestroy {
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
 
+        /*
+         *  Esamina url per settare il contesto current
+         *  Se il contesto nella url è null
+         *      Se ha un contesto di default lo setta come current e reload con contesto nella url
+         *      Se NON ha un contesto di default redirect alla pagina per settare contesto
+         */
+        this.aigContextRepositoryService.examineUrlAndGetCurrentContext();
         
-        var previousUrl = null
+        {
+            this.router.events.pipe(
+                filter((event: RouterEvent) => event instanceof NavigationEnd)
+            ).subscribe(async (event: any) => {
+                this.aigContextRepositoryService.examineUrlAndGetCurrentContext();
 
-        this.router.events.pipe(
-            filter((event: RouterEvent) => event instanceof NavigationEnd)
-        ).subscribe(async (event: any) => {
-            if(previousUrl === event.url) {
-                //Same url
-            }
-            
-            if(previousUrl != null && previousUrl !== event.url && event.url.includes('context=')) {
-                this.eventService.reloadCurrentPage();
-            }
-
-            await this.aigContextRepositoryService.getCurrentContext();
-
-            previousUrl = event.url;
-        });   
+                if(event.url.includes('context=')) {
+                    var esEvent: EsEvent = {
+                        reason: "urlIsChanged"
+                    }
+                    this.eventService.reloadCurrentPage(esEvent);
+                }
+            });   
+        }
     }
 
     /**

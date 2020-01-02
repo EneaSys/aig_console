@@ -5,13 +5,14 @@ import { RoleAssignationResourceService, ContextGroupDTO, ContextGroupResourceSe
 import { Observable } from 'rxjs';
 import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/group-associate-dialog.component';
 import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
-import { EventService } from 'aig-common/event-manager/event.service';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './group-detail.component.html',
     styleUrls: ['./group-detail.component.scss']
 })
-export class AigGroupDetailComponent implements OnInit {
+export class AigGroupDetailComponent extends GenericComponent {
     loaded: boolean = false;
 
     constructor(
@@ -20,14 +21,8 @@ export class AigGroupDetailComponent implements OnInit {
         private roleAssignationResourceService: RoleAssignationResourceService,
         private userResourceService: UserResourceService,
         private contextGroupResourceService: ContextGroupResourceService,
-        private eventService: EventService,
-    ) {
-        this.eventService.reloadPage$.subscribe((data?: any) => {
-            if(this.loaded) {
-                this.loadPage();
-            }
-        });
-    }
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     memberOfDisplayedColumns: string[] = ['name', 'buttons'];
     roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
@@ -48,7 +43,7 @@ export class AigGroupDetailComponent implements OnInit {
     users: Observable<UserDTO[]>;
     groups: Observable<ContextGroupDTO[]>;
 
-    ngOnInit(): void {
+    loadComponent(): void {
         this.loadPage();
     }
 
@@ -58,9 +53,9 @@ export class AigGroupDetailComponent implements OnInit {
         this.memberOfButtonConfig.removeGroupFromGroup = this.group;
         this.roleButtonConfig.removeFromGroup = this.group;
         
-        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET("", null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
-        this.users = this.userResourceService.getAllUsersUsingGET("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null);
-        this.groups = this.contextGroupResourceService.getAllContextGroupsUsingGET("", this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.roles = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.users = this.userResourceService.getAllUsersUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.group.id, null, null, null, null, null, null, null);
+        this.groups = this.contextGroupResourceService.getAllContextGroupsUsingGET(this.group.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         
         this.loaded = true;
     }

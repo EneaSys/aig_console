@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUserService, ResponseMyContexts } from 'api-gest';
+import { WsUserContextService, ResponseMyContexts } from 'api-gest';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
     templateUrl: './context-list-page.component.html',
     styleUrls: ['./context-list-page.component.scss']
 })
-export class AigContextListPageComponent implements OnInit {
+export class AigContextListPageComponent extends GenericComponent {
     constructor(
-        private currentUserService: CurrentUserService
-    ) { }
+        private wsUserContextService: WsUserContextService,
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
 
     displayedColumns: string[] = ['name', 'contextCode', 'buttons'];
     dataSource: any[];
 
-    ngOnInit(): void {
-        this.loadUsers();
-    }
-
-    private loadUsers(){
-        this.currentUserService.getMyContexts().subscribe(
+    loadComponent(): void {
+        this.wsUserContextService.getMyContexts().subscribe(
             (contexts: ResponseMyContexts[])=>{
                 this.dataSource = contexts;
             }

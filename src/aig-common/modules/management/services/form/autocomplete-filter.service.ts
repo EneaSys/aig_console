@@ -15,7 +15,7 @@ export class AigManagementAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 4) {
-                    return this.roleResourceService.getAllRolesUsingGET(null, null, null, null, null, null, null, value, null, null,  null, null, null, null, null, null, null, null, null, null, null, null, null, 10);
+                    return this.roleResourceService.getAllRolesUsingGET(null, null, null, null, null, null, null, null, value, null,  null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null);
                 } else {
                     return of([]);
                 }
@@ -28,7 +28,7 @@ export class AigManagementAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 4) {
-                    return this.permissionResourceService.getAllPermissionsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10);
+                    return this.permissionResourceService.getAllPermissionsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null);
                 } else {
                     return of([]);
                 }

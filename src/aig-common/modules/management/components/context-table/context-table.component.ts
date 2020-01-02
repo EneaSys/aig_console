@@ -24,7 +24,7 @@ export class AigContextTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    private setDefaultContext(context: IContext) {
+    setDefaultContext(context: IContext) {
         this.aigContextRepositoryService.setDefaultContext(context);
     }
 }
