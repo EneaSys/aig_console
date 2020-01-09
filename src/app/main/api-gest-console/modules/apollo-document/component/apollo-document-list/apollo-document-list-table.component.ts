@@ -30,17 +30,17 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
     displayedColumns: string[] = ['id', 'number', 'date', 'customer', 'total', 'buttons'];
     dataSource: any[];
 
-    likForDownloadXml = SERVER_API_URL + "ws/generate-fattura-pa?type=apollo-document&id=";
-    
+    likForDownloadXml = SERVER_API_URL + "api/ws/generate-fattura-pa?type=apollo-document&id=";
+
     ngOnInit(): void {
-        
+
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         this.loadApolloDocument();
     }
 
-    private loadApolloDocument(){
+    private loadApolloDocument() {
         this.apolloDocumentService.query(this.requestFilter).subscribe(
             (res: HttpResponse<any[]>) => this.paginateApolloDocuments(res.body, res.headers),
             (res: HttpErrorResponse) => this.error = res,
@@ -51,36 +51,36 @@ export class AigApolloDocumentListTableComponent implements OnInit, OnChanges {
         this.dataSource = data;
     }
 
-    public detailApolloDocument(idApolloDocument: string){
+    public detailApolloDocument(idApolloDocument: string) {
         this.router.navigate(['apollo-document', 'detail', idApolloDocument]);
     }
 
-    public async downloadXml(apolloDocument: any){
+    public async downloadXml(apolloDocument: any) {
         const tokenPromise = this.authService.getAccessToken();
         const contextCodePromise = this.aigContextRepositoryService.getCurrentContext();
-        
+
         let res = await Promise.all([tokenPromise, contextCodePromise]);
         let token = res[0];
         let context = res[1];
-        
+
 
         let headers = new Headers();
         headers.append('Authorization', 'Bearer ' + token);
         headers.append('X-Tenant-Code', context.contextCode);
 
         let anchor = document.createElement("a");
-        fetch(this.likForDownloadXml+apolloDocument.id, { headers })
+        fetch(this.likForDownloadXml + apolloDocument.id, { headers })
             .then(response => response.blob())
             .then(blobby => {
                 let objectUrl = window.URL.createObjectURL(blobby);
-        
+
                 anchor.href = objectUrl;
                 anchor.download = apolloDocument.protocollo + '.xml';
                 anchor.click();
-        
+
                 window.URL.revokeObjectURL(objectUrl);
             });
     }
 
-    
+
 }
