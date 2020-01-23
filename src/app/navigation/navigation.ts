@@ -50,10 +50,25 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
+        id       : 'aig-standard',
+        title    : 'Aig Standard',
+        translate: 'NAV.STANDARD',
+        type     : 'collapsable',
+        children : [
+            {
+                id       : '',
+                title    : 'City',
+                type     : 'item',
+                icon     : 'location_city',
+                url      : '/s6d/city'
+            },
+        ]
+    },
+    {
         id       : 'management',
         title    : 'Management',
         translate: 'NAV.MANAGEMENT',
-        type     : 'group',
+        type     : 'collapsable',
         children : [
             {
                 id       : 'context-list',

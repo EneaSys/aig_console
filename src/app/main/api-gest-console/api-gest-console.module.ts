@@ -14,6 +14,9 @@ import { AigIamModule } from './modules/iam/iam.module';
 import { AigManagementModule } from './modules/management/management.module';
 import { AigGenericComponentService } from './generic-component/generic-component.service';
 import { AigModuleNavigationService } from './navigation/navigation.service';
+import { AigGenericModule } from './modules/aig-generic/aig-generic.module';
+import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
+import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { AigModuleNavigationService } from './navigation/navigation.service';
         AigIamModule,
         AigManagementModule,
 
+        AigGenericModule,
+        AigStandardModule,
+
     ],
     exports: [],
     providers: [
@@ -49,6 +55,10 @@ import { AigModuleNavigationService } from './navigation/navigation.service';
         {
             provide: BASE_PATH,
             useValue: API_URL
+        },
+        {
+            provide: AIG_STANDARD_BASE_PATH,
+            useValue: API_URL + "/s6d"
         },
     ],
 })
