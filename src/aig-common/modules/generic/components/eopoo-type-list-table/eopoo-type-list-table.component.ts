@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EopooTypeDTO } from 'api-gest';
+import { EopooTypeDTO } from 'aig-generic';
 
 @Component({
     selector: 'aig-eopoo-type-list-table',

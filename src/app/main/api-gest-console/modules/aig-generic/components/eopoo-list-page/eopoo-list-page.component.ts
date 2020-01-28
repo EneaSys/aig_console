@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { EopooResourceService, EopooDTO } from 'api-gest';
+import { EopooResourceService, EopooDTO } from 'aig-generic';
 import { MatDialog } from '@angular/material/dialog';
 import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 

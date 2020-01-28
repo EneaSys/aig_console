@@ -15,6 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AigEopooTypeListTableComponent } from './components/eopoo-type-list-table/eopoo-type-list-table.component';
+import { AigGenericClientModule } from 'aig-generic';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [
@@ -39,7 +41,7 @@ import { AigEopooTypeListTableComponent } from './components/eopoo-type-list-tab
         FormsModule,
         ReactiveFormsModule,
 
-        // inserire dipendenza da modulo delle api
+        AigGenericClientModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -50,6 +52,8 @@ import { AigEopooTypeListTableComponent } from './components/eopoo-type-list-tab
         MatSelectModule,
         MatDatepickerModule,
         MatAutocompleteModule,
+
+        FlexLayoutModule,
     ],
     providers: [],
 })

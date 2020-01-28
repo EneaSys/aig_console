@@ -17,6 +17,7 @@ import { AigModuleNavigationService } from './navigation/navigation.service';
 import { AigGenericModule } from './modules/aig-generic/aig-generic.module';
 import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
 import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
+import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
 
 
 @NgModule({
@@ -59,6 +60,10 @@ import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
         {
             provide: AIG_STANDARD_BASE_PATH,
             useValue: API_URL + "/s6d"
+        },
+        {
+            provide: AIG_GENERIC_BASE_PATH,
+            useValue: API_URL + "/g5c"
         },
     ],
 })

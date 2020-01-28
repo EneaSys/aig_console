@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { MatDialog } from '@angular/material/dialog';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { EopooTypeResourceService, EopooTypeDTO } from 'api-gest';
+import { EopooTypeResourceService, EopooTypeDTO } from 'aig-generic';
 
 @Component({
     templateUrl: './eopoo-type-list-page.component.html',

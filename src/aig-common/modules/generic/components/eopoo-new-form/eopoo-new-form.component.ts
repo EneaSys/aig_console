@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DefaultService, EopooCreationRequest } from 'aig-common/old-common/services/test';
-import { EopooTypeResourceService, EopooTypeDTO } from 'api-gest';
+import { EopooTypeResourceService, EopooTypeDTO } from 'aig-generic';
 
 @Component({
     selector: 'aig-eopoo-new-form',
@@ -27,7 +26,6 @@ export class AigEopooNewFormComponent implements OnInit {
         private eopooTypeResourceService: EopooTypeResourceService,
         private route: ActivatedRoute,
         private _formBuilder: FormBuilder,
-        private service: DefaultService,
         private router: Router,
     ) { }
 

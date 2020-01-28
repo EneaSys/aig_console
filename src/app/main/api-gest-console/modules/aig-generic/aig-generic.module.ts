@@ -11,6 +11,7 @@ import { AigEopooNewModalComponent } from './components/eopoo-new-modal/eopoo-ne
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigEopooTypeListPageComponent } from './components/eopoo-type-list-page/eopoo-type-list-page.component';
+import { AigGenericClientModule } from 'aig-generic';
 
 
 @NgModule({
@@ -29,8 +30,9 @@ import { AigEopooTypeListPageComponent } from './components/eopoo-type-list-page
         RouterModule.forChild(aigGenericRoute),
 
         CommonGenericModule,
-        // inserire dipendenza da modulo delle api
-
+        
+        AigGenericClientModule,
+        
         FuseSharedModule,
         FuseSidebarModule,
 
