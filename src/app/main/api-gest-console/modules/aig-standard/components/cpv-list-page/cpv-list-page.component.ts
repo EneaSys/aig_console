@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { CpvDTO, CpvResourceService } from 'aig-standard';
 
 @Component({
     templateUrl: './cpv-list-page.component.html',
@@ -8,10 +9,13 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 export class AigCpvListPageComponent extends GenericComponent {
     constructor(
+        private cpvResourceService: CpvResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    loadComponent() {
-        
+    cpvs: CpvDTO[];
+
+    async loadComponent() {
+        this.cpvs = await this.cpvResourceService.getAllCpvsUsingGET().toPromise();
     }
 }

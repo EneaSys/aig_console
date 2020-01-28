@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCategoryResourceService } from 'aig-standard';
 
 @Component({
     templateUrl: './ipp-lot-category-list-page.component.html',
@@ -8,10 +9,13 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 export class AigIppLotCategoryListPageComponent extends GenericComponent {
     constructor(
+        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    loadComponent() {
-        
+    ippLotCategoryDTOs: ItalianPublicProcurementLotCategoryDTO[];
+
+    async loadComponent() {
+        this.ippLotCategoryDTOs = await this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET().toPromise();
     }
 }

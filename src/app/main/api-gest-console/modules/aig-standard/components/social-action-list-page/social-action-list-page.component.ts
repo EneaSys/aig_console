@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
 
 @Component({
     templateUrl: './social-action-list-page.component.html',
@@ -8,10 +9,13 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 export class AigSocialActionListPageComponent extends GenericComponent {
     constructor(
+        private socialActionResourceService: SocialActionResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    loadComponent() {
-        
+    socialActionDTOs: SocialActionDTO[];
+
+    async loadComponent() {
+        this.socialActionDTOs = await this.socialActionResourceService.getAllSocialActionsUsingGET().toPromise();
     }
 }
