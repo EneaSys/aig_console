@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AigEopooTypeListTableComponent } from './components/eopoo-type-list-table/eopoo-type-list-table.component';
 
 @NgModule({
     declarations: [
@@ -21,10 +22,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
         
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
+        
+        AigEopooTypeListTableComponent,
     ],
     exports: [
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
+
+        AigEopooTypeListTableComponent,
     ],
     imports: [
         AigCommonModule,
