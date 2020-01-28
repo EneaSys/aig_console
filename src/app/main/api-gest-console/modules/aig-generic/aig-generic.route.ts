@@ -1,19 +1,20 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
+import { AigEopooListPageComponent } from './components/eopoo-list-page/eopoo-list-page.component';
 
 export const aigGenericRoute: Routes = [
     {
-        path: 'aig-generic',
+        path: 'g5c',
         children: [
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'city/list'
+                redirectTo: 'eopoo/list'
             },
             {
-                path: 'city',
+                path: 'eopoo',
                 children: [
-                    /*
+                    
                     {
                         path: '',
                         pathMatch: 'full',
@@ -21,9 +22,10 @@ export const aigGenericRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigCityListPageComponent,
+                        component: AigEopooListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
+                    /*
                     {
                         path: 'detail/:id',
                         component: AigRoleDetailPageComponent,

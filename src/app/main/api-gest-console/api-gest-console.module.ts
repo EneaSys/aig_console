@@ -34,7 +34,7 @@ import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
 
         // App modules
         AigApolloDocumentModule,
-        AigEopooModule,
+        //AigEopooModule,
 
         AigIamModule,
         AigManagementModule,

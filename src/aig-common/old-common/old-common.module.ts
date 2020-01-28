@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { EopooNamePipe } from './pipe/eopoo-name.pipe';
 import { CityResolver } from './services/city.resolver';
 import { EopooService } from './services/eopoo.service';
 import { EopooTypeService } from './services/eopoo-type.service';
@@ -23,14 +22,14 @@ import { AigCommonModule } from '../common.module';
 
 @NgModule({
     declarations: [
-        EopooNamePipe,
+        
     ],
     imports: [
         AigCommonModule,
         ApiModule,
     ],
     exports: [
-        EopooNamePipe,
+        
     ],
     providers: [
         EopooService,

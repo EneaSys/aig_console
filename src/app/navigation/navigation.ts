@@ -15,6 +15,13 @@ export const navigation: FuseNavigation[] = [
                 url      : '/apollo-document',
                 permission: ['e4y2.apollo.get'],
             },
+            {
+                id       : 'eopoo-list-page',
+                title    : 'Eopoo',
+                type     : 'item',
+                icon     : 'how_to_reg',
+                url      : '/g5c/eopoo/list',
+            },
         ]
     },
     {

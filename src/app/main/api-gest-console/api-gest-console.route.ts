@@ -16,8 +16,6 @@ import { AigContextListPageComponent } from './modules/management/components/con
 
 import { AuthGuardService } from 'auth/auth-guard.service';
 
-import { EopooTypeResolver } from 'aig-common/old-common/services/eopoo-type.resolver';
-import { CityResolver } from 'aig-common/old-common/services/city.resolver';
 import { ApolloDocumentResolver } from 'aig-common/old-common/services/apollo-document.resolver';
 import { ApolloDocumentLineResolver } from 'aig-common/old-common/services/apollo-document-line.resolver';
 import { UserResolver } from 'aig-common/old-common/resolver/user.resolver';
@@ -28,39 +26,6 @@ import { AigRoleCustomDetailComponent } from './modules/iam/components/custom-ro
 
 
 export const apiGestRoute: Routes = [
-    {
-        path: 'eopoo',
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                redirectTo: 'list'
-            },
-            {
-                path: 'list',
-                component: EopooListComponent,
-                canActivate: [ AuthGuardService ],
-            },
-            {
-                path: 'new',
-                component: EopooNewComponent,
-                canActivate: [ AuthGuardService ],
-                resolve: {
-                    eopooType: EopooTypeResolver,
-                    city: CityResolver,
-                },
-            },
-            {
-                path: 'detail',
-                redirectTo: 'list',
-            },
-            {
-                path: 'detail/:id',
-                component: EopooDetailComponent,
-                canActivate: [ AuthGuardService ],
-            }
-        ]
-    },
     {
         path: 'apollo-document',
         children: [
