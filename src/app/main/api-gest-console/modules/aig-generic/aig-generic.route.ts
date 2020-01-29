@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigEopooListPageComponent } from './components/eopoo-list-page/eopoo-list-page.component';
 import { AigEopooTypeListPageComponent } from './components/eopoo-type-list-page/eopoo-type-list-page.component';
+import { EopooTypeResolver } from 'aig-common/modules/generic/resolver/eopoo-type.resolver';
+import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-page/eopoo-type-detail-page.component';
 
 export const aigGenericRoute: Routes = [
     {
@@ -52,16 +54,14 @@ export const aigGenericRoute: Routes = [
                         component: AigEopooTypeListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*
                     {
                         path: 'detail/:id',
-                        component: AigRoleDetailPageComponent,
+                        component: AigEopooTypeDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: RoleSystemResolver,
+                            eopooType: EopooTypeResolver,
                         },
                     },
-                    */
                 ]
             },
         ]

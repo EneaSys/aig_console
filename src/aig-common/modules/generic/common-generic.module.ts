@@ -17,6 +17,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AigEopooTypeListTableComponent } from './components/eopoo-type-list-table/eopoo-type-list-table.component';
 import { AigGenericClientModule } from 'aig-generic';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { EopooTypeResolver } from './resolver/eopoo-type.resolver';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -41,6 +43,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         FormsModule,
         ReactiveFormsModule,
 
+        RouterModule,
         AigGenericClientModule,
 
         MatTableModule,
@@ -55,6 +58,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
         FlexLayoutModule,
     ],
-    providers: [],
+    providers: [
+        EopooTypeResolver,
+    ],
 })
 export class CommonGenericModule {}

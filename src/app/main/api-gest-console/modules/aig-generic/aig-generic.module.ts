@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigEopooTypeListPageComponent } from './components/eopoo-type-list-page/eopoo-type-list-page.component';
 import { AigGenericClientModule } from 'aig-generic';
+import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-page/eopoo-type-detail-page.component';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { AigGenericClientModule } from 'aig-generic';
         AigGenericHeaderComponent,
 
         AigEopooListPageComponent,
+
         AigEopooTypeListPageComponent,
+        AigEopooTypeDetailPageComponent,
 
         AigEopooNewModalComponent,
     ],
