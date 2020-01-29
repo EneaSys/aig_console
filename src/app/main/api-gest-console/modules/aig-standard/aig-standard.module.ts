@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AigStandardClientModule  } from 'aig-standard';
 import { aigStandardRoute } from './aig-standard.route';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSidebarModule } from '@fuse/components';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { AigStandardHeaderComponent } from './components/standard-header/standard-header.component';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
@@ -15,6 +21,7 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
 
 @NgModule({
     declarations: [
+        AigStandardHeaderComponent,
 
         AigCityListPageComponent,
         
@@ -30,9 +37,6 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
         AigIppLotTypeListPageComponent,
         AigIppLotCategoryListPageComponent,
         
-        
-
-
     ],
     imports: [
         RouterModule.forChild(aigStandardRoute),
@@ -40,6 +44,13 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
         CommonModule,
 
         AigStandardClientModule,
+
+        FuseSharedModule,
+        FuseSidebarModule,
+
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
     ],
     exports: [],
     providers: [],
