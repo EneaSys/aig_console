@@ -1,0 +1,115 @@
+<div id="eopoo-new-form">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Tipo Anagrafica</mat-label>
+            <mat-select required (selectionChange)="onEopooTypeChange($event.value)">
+                <mat-option *ngFor="let eopooType of eopooTypes" [value]="eopooType">
+                    {{ eopooType.name }}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix class="secondary-text">list</mat-icon>
+            <mat-error>Seleziona tipo anagrafica!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="isCreatePerson() || isCreateOrganization()">
+<!--
+        <form *ngIf="isCreatePerson()" (ngSubmit)="createPerson()" fxLayout="column" name="form" [formGroup]="person">
+            <div fxLayout="row">
+                <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="firstName" required>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>Il nome è obbligatorio!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                    <mat-label>Cognome</mat-label>
+                    <input matInput formControlName="lastName" required>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>Il cognome è obbligatorio!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field appearance="outline" fxFlex="70" class="pr-4">
+                    <mat-label>Codice Fiscale</mat-label>
+                    <input matInput #taxIdP formControlName="taxId" maxlength="17" required>
+                    <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                    <mat-hint align="end">{{taxIdP.value.length}} / 16 or 17</mat-hint>
+                    <mat-error>Il Codice fiscale obbligatorio!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+                    <mat-label>Sesso</mat-label>
+                    <mat-select required formControlName="sex">
+                        <mat-option [value]="'MALE'">Maschio</mat-option>
+                        <mat-option [value]="'FEMALE'">Femmina</mat-option>
+                    </mat-select>
+                    <mat-error>Seleziona il sesso!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field appearance="outline" fxFlex="40" class="pr-4">
+                    <mat-label>Data di nascita</mat-label>
+                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="bornDate"
+                        required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error>La data di nascita è obbligatoria!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" fxFlex="60" class="pl-4">
+                    <mat-label>Comune di nascita</mat-label>
+                    <input type="text" matInput formControlName="bornCity" required [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let city of filteredCitysOptions | async" [value]="city">
+                            {{ city.name }}</mat-option>
+                    </mat-autocomplete>
+                    <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                    <mat-error>La città di nascita è obbligatoria!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <button type="submit" mat-raised-button color="accent">Crea</button>
+            </div>
+        </form>
+    -->
+        <form *ngIf="isCreateOrganization()" (ngSubmit)="createOrganization()" fxLayout="column" name="form"
+            [formGroup]="organization">
+            <div fxLayout="row">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Partita IVA</mat-label>
+                    <input matInput #taxIdO formControlName="taxId" maxlength="10" required>
+                    <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                    <mat-hint align="end">{{taxIdO.value.length}} / 10</mat-hint>
+                    <mat-error>La partita Iva è obbligatoria!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Denominazione</mat-label>
+                    <input matInput formControlName="name" required>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <mat-error>La denominazione è obbligatoria!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <button type="submit" mat-raised-button color="accent">Crea</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    Person:
+    <pre><code>{{person.getRawValue() | json}}</code></pre>
+    Organization:
+    <pre><code>{{organization.getRawValue() | json}}</code></pre>
+
+</div>
