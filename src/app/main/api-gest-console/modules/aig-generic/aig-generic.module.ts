@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigEopooTypeListPageComponent } from './components/eopoo-type-list-page/eopoo-type-list-page.component';
 import { AigGenericClientModule } from 'aig-generic';
 import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-page/eopoo-type-detail-page.component';
+import { AigEopooTypeNewModalComponent } from './components/eopoo-type-new-modal/eopoo-type-new-modal.component';
 
 
 @NgModule({
@@ -23,11 +24,13 @@ import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-
 
         AigEopooTypeListPageComponent,
         AigEopooTypeDetailPageComponent,
+        AigEopooTypeNewModalComponent,
 
         AigEopooNewModalComponent,
     ],
     entryComponents: [
         AigEopooNewModalComponent,
+        AigEopooTypeNewModalComponent,
     ],
     imports: [
         RouterModule.forChild(aigGenericRoute),
