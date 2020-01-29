@@ -13,6 +13,17 @@ import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+
 @NgModule({
     declarations: [
 
@@ -40,6 +51,16 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
         CommonModule,
 
         AigStandardClientModule,
+
+        MatIconModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatTableModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
     ],
     exports: [],
     providers: [],

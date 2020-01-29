@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CityResourceService, CityDTO } from 'aig-standard';
+
+import { PermissionDTO } from 'api-gest';
 
 @Component({
     templateUrl: './city-list-page.component.html',
@@ -14,6 +16,9 @@ export class AigCityListPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     citys: CityDTO[];
+    displayedColumns = ['id', 'name', 'code', 'wikicode'];
+    
+    @Input() error: any;
 
     async loadComponent() {
         this.citys = await this.cityResourceService.getAllCitiesUsingGET().toPromise();

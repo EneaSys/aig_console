@@ -1,0 +1,20 @@
+.city-table {
+    border-radius: 8px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.4);
+
+    &.mat-table {
+        background: transparent;
+    }
+
+    .mat-header-row {
+        background-color: white;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .mat-row {
+        background-color: white;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+}
+
