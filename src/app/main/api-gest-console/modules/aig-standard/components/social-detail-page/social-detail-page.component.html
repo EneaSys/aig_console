@@ -6,21 +6,10 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Social</div>
-                <div class="h1 m-16">{{ role.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ role.id }}</div>
-                <div class="h4 m-8 ml-16">RoleCode: {{ role.roleCode }}</div>
-            </div>
-        </div>
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16" id="permission-list">
-                <div class="h4 m-16">Lista dei permessi</div>
-                <aig-social-list-table [displayedColumns]="socialdisplayedColumns"
-                    [dataSource]="role"></aig-social-list-table>
-                <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPermissionToRole()"
-                    aria-label="add permission to role">
-                    <mat-icon>add</mat-icon>
-                </button>
+                <div class="h1 m-16">{{ socialDTO.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ socialDTO.id }}</div>
+                <div class="h4 m-8 ml-16">Code: {{ socialDTO.code }}</div>
+                <div class="h4 m-8 ml-16">WikiCode: {{ socialDTO.wikiCode }}</div>
             </div>
         </div>
     </div>

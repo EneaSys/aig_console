@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RoleDTO, RoleAssignationResourceService, RoleAssignationDTO } from 'api-gest';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 // import { AigAssociateRoleToPermissionDialogComponent } from '../associate-role-premission-dialog/associate-role-premission-dialog.component';
@@ -20,17 +19,12 @@ export class AigSocialDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    socialdisplayedColumns: string[] = ['id', 'name', 'code', 'buttons'];
+    // socialdisplayedColumns: string[] = ['id', 'name', 'code', 'buttons'];
 
-    role: SocialActionDTO;
+    socialDTO: SocialActionDTO;
     
     loadComponent(): void {
-        console.log(this.route.snapshot);
-        this.role = this.route.snapshot.data.role;
-        console.log(this.role);
+        this.socialDTO = this.route.snapshot.data.social;
+        console.log(this.socialDTO);
     }
-
-    // addPermissionToRole(): void {
-    //     this.dialog.open(AigAssociateRoleToPermissionDialogComponent, { data: { role: this.role } });
-    // }
 }

@@ -53,6 +53,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         
 
     ],
+    entryComponents: [
+
+        AigSocialDialogComponent,
+        
+    ],
     imports: [
         RouterModule.forChild(aigStandardRoute),
 

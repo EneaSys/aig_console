@@ -14,6 +14,7 @@ import { CityResolver } from 'aig-common/old-common/services/city.resolver';
 import { AigSocialDetailPageComponent } from './components/social-detail-page/social-detail-page.component';
 import { CityService } from 'aig-common/old-common/services/city.service';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
+import { SocialResolver } from 'aig-common/old-common/services/social.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -66,7 +67,7 @@ export const aigStandardRoute: Routes = [
                         component: AigSocialDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: CityResolver,
+                            social: SocialResolver,
                         },
                     },
                 ]

@@ -18,8 +18,4 @@ export class AigSocialListTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    public detailSocial(idSocial: string){
-        this.router.navigate(['s6d', 'social', 'detail', idSocial]);
-    }
-
 }

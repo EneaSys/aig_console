@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { RoleResourceService, RoleDTO } from 'api-gest';
-import { EventService } from 'aig-common/event-manager/event.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SocialDTO, SocialResourceService } from 'aig-standard';
 
 @Component({
     selector: 'aig-social-form',
@@ -11,64 +10,147 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./social-form.component.scss']
 })
 export class AigSocialFormComponent implements OnInit {
+    person: FormGroup;
+    organization: FormGroup;
+
+    socialDTO: SocialDTO[];
+
+    citys: any[];
+
+    filteredCitysOptions: Observable<any[]>;
+
+    private _eopooType: any;
+    private _isCreatePerson: boolean;
+
     constructor(
+        private socialResourceService: SocialResourceService,
+        private route: ActivatedRoute,
         private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
-        private roleResourceService: RoleResourceService,
-        private eventService: EventService,
+        private router: Router,
     ) { }
 
-    private roleNewForm: FormGroup;
-    private step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
-    public roleDTO: RoleDTO;
+    async ngOnInit() {
+        this.socialDTO = await this.socialResourceService.getAllSocialsUsingGET().toPromise();
+        
+        this.person = this._formBuilder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
+            taxId: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
+            sex: ['', Validators.required],
+            bornDate: ['', Validators.required],
+            bornCity: ['', this.cityValidation]
+        });
 
-    ngOnInit(): void {
-        this.roleNewForm = this._formBuilder.group({
-            name: ['', Validators.required],
-            roleCode: ['', Validators.required],
-        })
+        this.organization = this._formBuilder.group({
+            taxId: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+            name: ['', Validators.required]
+        });
+
+/*
+        this.filteredCitysOptions = this.person.controls['bornCity'].valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value))
+            );
+            */
     }
 
-    public createRole(){
-        if (!this.roleNewForm.valid) {
+    cityValidation(c: FormControl) {
+        if (c.value.id == null) {
+            return {
+                cityValidation: {
+                    valid: false
+                }
+            };
+        }
+    }
+
+    private displayFn(city?: any): string | undefined {
+        return city ? city.name : undefined;
+    }
+
+    private _filter(value: any): any[] {
+        if (typeof value === "string") {
+            if (value.length > 3) {
+                const filterValue = value.toLowerCase();
+                return this.citys.filter(option => option.name.toLowerCase().includes(filterValue));
+            }
+        }
+    }
+
+    onEopooTypeChange(eopooType: any) {
+        if (eopooType.eopooCategory == "PERSON") {
+            this._isCreatePerson = true;
+        } else {
+            this._isCreatePerson = false;
+        }
+        this._eopooType = eopooType;
+    }
+    isCreatePerson() {
+        if (this._isCreatePerson === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    isCreateOrganization() {
+        if (this._isCreatePerson === false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    createPerson() {
+        if (!this.person.valid) {
             return;
         }
-        this._fuseProgressBarService.show();
-        this.setStep("loading");
-
-        let roleDTO: RoleDTO = {
-            name: this.roleNewForm.value.name,
-            roleCode: this.roleNewForm.value.roleCode,
+        console.log("createPerson");
+/*
+        var eopooCreationRequest: EopooCreationRequest = {
+            eopooTypeId: this._eopooType.id,
+            taxNumber: this.person.value.taxId,
+            person: {
+                firstname: this.person.value.firstName,
+                lastname: this.person.value.lastName,
+                sex: this.person.value.sex,
+                bornCityId: this.person.value.bornCity.id,
+                bornDate: this.person.value.bornDate,
+            }
         };
 
-        this.roleResourceService.createRoleUsingPOST(roleDTO).subscribe(
-            (value: RoleDTO) => {
-                this.roleDTO = value;
-
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Role: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.detail, null, {duration: 5000,});
-
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
+        this.service.addEopoo(eopooCreationRequest, 'body').subscribe(
+            (eopoo) => {
+                console.log("Eopoo creata: ", eopoo);
+                this.detailEopoo(eopoo.id+"")
             }
         );
+        */
     }
 
-    private setStep(step: string){
-        this.step.form = false;
-        this.step.loading = false;
-        this.step.complete = false;
+    createOrganization() {
+        if (!this.organization.valid) {
+            return;
+        }
 
-        this.step[step] = true;
+        console.log("createOrganization");
+/*
+        var eopooCreationRequest: EopooCreationRequest = {
+            eopooTypeId: this._eopooType.id,
+            taxNumber: this.organization.value.taxId,
+            generic: {
+                name: this.organization.value.name
+            },
+        };
+
+        this.service.addEopoo(eopooCreationRequest, 'body').subscribe(
+            (eopoo) => {
+                console.log("Eopoo creata: ", eopoo);
+                this.detailEopoo(eopoo.id+"")
+            }
+        );
+        */
     }
+
+    
 }

@@ -19,6 +19,7 @@ export class AigCityDetailPageComponent extends GenericComponent {
     
     loadComponent(): void {
         this.cityDTO = this.route.snapshot.data.city;
+        console.log(this.cityDTO);
     }
 
 }

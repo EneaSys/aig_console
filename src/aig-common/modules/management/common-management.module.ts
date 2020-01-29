@@ -55,7 +55,7 @@ import { AigSocialFormComponent } from './components/social-form/social-form.com
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
         AigAssociateRolePermissionFormComponent,
-        AigSocialFormComponent
+        AigSocialFormComponent,
     ],
     exports: [
         AigContextTableComponent,
@@ -65,6 +65,7 @@ import { AigSocialFormComponent } from './components/social-form/social-form.com
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
         AigAssociateRolePermissionFormComponent,
+        AigSocialFormComponent,
     ],
     providers: [
         AigManagementAutocompleteFilterService,

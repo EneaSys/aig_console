@@ -19,6 +19,7 @@ import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom
 import { UserResolver } from './resolver/user.resolver';
 import { GroupResolver } from './resolver/group.resolver';
 import { AigCommonModule } from '../common.module';
+import { SocialResolver } from './services/social.resolver';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,8 @@ import { AigCommonModule } from '../common.module';
         
         CityService,
         CityResolver,
+
+        SocialResolver,
         
         ApolloDocumentService,
         ApolloDocumentResolver,

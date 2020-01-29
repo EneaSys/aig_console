@@ -27,7 +27,7 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-social-list-table [dataSource]="socialDataSource" [displayedColumns]="displayedColumns"></aig-social-list-table>
+                <aig-social-list-table [dataSource]="socialActionDTOs" [displayedColumns]="displayedColumns"></aig-social-list-table>
             </div>
         </div>
         <!-- /CENTER -->
@@ -36,6 +36,6 @@
 
 </div>
 
-<button mat-fab class="accent" id="add-social-button" (click)="newRole()" aria-label="add role">
+<button mat-fab class="accent" id="add-social-button" (click)="newSocial()" aria-label="add social">
     <mat-icon>add</mat-icon>
 </button>
