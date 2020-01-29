@@ -18,6 +18,7 @@ import { AigIppProcedureListPageComponent } from './components/ipp-procedure-lis
 import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page/ipp-sector-list-page.component';
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
+import { AigCommonStandardModule } from 'aig-common/modules/standard/common-standard.module';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
         RouterModule.forChild(aigStandardRoute),
 
         CommonModule,
+        AigCommonStandardModule,
 
         AigStandardClientModule,
 

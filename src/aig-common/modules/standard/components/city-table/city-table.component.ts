@@ -17,6 +17,6 @@ export class AigCityTableComponent implements OnInit {
     ngOnInit(): void { }
 
     public detailCity(idCity: string){
-        this.router.navigate(['m8t', 'city', 'detail', idCity]);
+        // this.router.navigate(['m8t', 'city', 'detail', idCity]);
     }
 }
