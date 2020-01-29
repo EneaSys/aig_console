@@ -42,7 +42,7 @@ export const aigStandardRoute: Routes = [
                         component: AigCityDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: CityResolver,
+                            city: CityResolver,
                         },
                     },
                 ]

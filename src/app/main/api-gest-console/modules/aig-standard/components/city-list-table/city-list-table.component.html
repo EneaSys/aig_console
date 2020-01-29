@@ -28,7 +28,7 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button class="mr-8" mat-stroked-button color="accent" (click)="detailCity(e.id)">Details</button>
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/s6d/city/detail/' + e.id">Details</button>
             </mat-cell>
         </ng-container>
 
