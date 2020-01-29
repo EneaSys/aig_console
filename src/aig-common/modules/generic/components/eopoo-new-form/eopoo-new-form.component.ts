@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EopooTypeResourceService, EopooTypeDTO } from 'aig-generic';
@@ -31,7 +31,7 @@ export class AigEopooNewFormComponent implements OnInit {
 
     async ngOnInit() {
         this.eopooTypes = await this.eopooTypeResourceService.getAllEopooTypesUsingGET().toPromise();
-        /*
+        
         this.person = this._formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
@@ -46,7 +46,7 @@ export class AigEopooNewFormComponent implements OnInit {
             name: ['', Validators.required]
         });
 
-
+/*
         this.filteredCitysOptions = this.person.controls['bornCity'].valueChanges
             .pipe(
                 startWith(''),
@@ -54,7 +54,7 @@ export class AigEopooNewFormComponent implements OnInit {
             );
             */
     }
-/*
+
     cityValidation(c: FormControl) {
         if (c.value.id == null) {
             return {
@@ -105,7 +105,8 @@ export class AigEopooNewFormComponent implements OnInit {
         if (!this.person.valid) {
             return;
         }
-
+        console.log("createPerson");
+/*
         var eopooCreationRequest: EopooCreationRequest = {
             eopooTypeId: this._eopooType.id,
             taxNumber: this.person.value.taxId,
@@ -124,12 +125,16 @@ export class AigEopooNewFormComponent implements OnInit {
                 this.detailEopoo(eopoo.id+"")
             }
         );
+        */
     }
+
     createOrganization() {
         if (!this.organization.valid) {
             return;
         }
 
+        console.log("createOrganization");
+/*
         var eopooCreationRequest: EopooCreationRequest = {
             eopooTypeId: this._eopooType.id,
             taxNumber: this.organization.value.taxId,
@@ -144,11 +149,8 @@ export class AigEopooNewFormComponent implements OnInit {
                 this.detailEopoo(eopoo.id+"")
             }
         );
+        */
     }
 
-    detailEopoo(idEopoo: string){
-        console.log(idEopoo)
-        this.router.navigate(['eopoo', 'detail', idEopoo]);
-    }
-    */
+    
 }

@@ -1,0 +1,15 @@
+<div id="aig-eopoo-type-detail-page" class="page-layout blank">
+
+    <aig-generic-header [sectionName]="eopooType.name" [search]="false"></aig-generic-header>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                <pre>{{ eopooType | json }}</pre>
+            </div>
+        </div>
+    </div>
+
+</div>
+

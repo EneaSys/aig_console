@@ -22,7 +22,7 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-stroked-button color="accent">Details</button>
+                <button mat-stroked-button color="accent" [routerLink]="'/g5c/eopoo-type/detail/' + element.id">Details</button>
             </mat-cell>
         </ng-container>
 
