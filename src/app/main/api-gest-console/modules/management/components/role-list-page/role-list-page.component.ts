@@ -24,6 +24,7 @@ export class AigRoleListPageComponent extends GenericComponent {
 
     loadComponent(): void {
         this.roleSystemDataSource = this.roleResourceService.getAllRolesUsingGET();
+        console.log(this.roleSystemDataSource);
     }
 
     newRole(): void {

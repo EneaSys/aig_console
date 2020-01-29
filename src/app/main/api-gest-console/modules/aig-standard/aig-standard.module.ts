@@ -12,14 +12,29 @@ import { AigIppProcedureListPageComponent } from './components/ipp-procedure-lis
 import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page/ipp-sector-list-page.component';
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
-
+import { AigCityListTableComponent } from './components/city-list-table/city-list-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { FuseSidebarModule } from '@fuse/components';
+import { MatButtonModule } from '@angular/material/button';
+import { AigSocialListTableComponent } from './components/social-list-table/social-list-table.component';
+import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
+import { AigSocialActionListTableComponent } from './components/social-action-list-table/social-action-list-table.component';
+import { AigSocialDetailPageComponent } from "./components/social-detail-page/social-detail-page.component";
+import { AigSocialDialogComponent } from './components/social-dialog/social-dialog.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+  
 @NgModule({
     declarations: [
 
         AigCityListPageComponent,
+        AigCityDetailPageComponent, 
         
         AigSocialListPageComponent,
         AigSocialActionListPageComponent,
+        AigSocialDetailPageComponent,
+        AigSocialDialogComponent,
 
         AigCpvListPageComponent,
 
@@ -31,12 +46,27 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
         AigIppLotCategoryListPageComponent,
         
         
+        AigCityListTableComponent,
+        AigSocialListTableComponent,
+        AigSocialActionListTableComponent,
 
+        
 
     ],
     imports: [
         RouterModule.forChild(aigStandardRoute),
 
+
+
+        MatTableModule,
+        MatProgressSpinnerModule,
+
+        FuseSidebarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+
+        
         CommonModule,
 
         AigStandardClientModule,

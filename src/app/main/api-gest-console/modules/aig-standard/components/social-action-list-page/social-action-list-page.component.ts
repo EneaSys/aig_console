@@ -13,6 +13,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
     socialActionDTOs: SocialActionDTO[];
 
     async loadComponent() {

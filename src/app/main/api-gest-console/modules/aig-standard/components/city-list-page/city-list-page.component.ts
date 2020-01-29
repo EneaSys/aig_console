@@ -13,6 +13,7 @@ export class AigCityListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
     citys: CityDTO[];
 
     async loadComponent() {

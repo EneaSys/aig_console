@@ -9,6 +9,11 @@ import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
+import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
+import { CityResolver } from 'aig-common/old-common/services/city.resolver';
+import { AigSocialDetailPageComponent } from './components/social-detail-page/social-detail-page.component';
+import { CityService } from 'aig-common/old-common/services/city.service';
+import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -32,16 +37,14 @@ export const aigStandardRoute: Routes = [
                         component: AigCityListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*
                     {
                         path: 'detail/:id',
-                        component: AigRoleDetailPageComponent,
+                        component: AigCityDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: RoleSystemResolver,
+                            role: CityResolver,
                         },
                     },
-                    */
                 ]
             },
             {
@@ -57,16 +60,15 @@ export const aigStandardRoute: Routes = [
                         component: AigSocialListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*
+                    
                     {
                         path: 'detail/:id',
-                        component: AigRoleDetailPageComponent,
+                        component: AigSocialDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: RoleSystemResolver,
+                            role: CityResolver,
                         },
                     },
-                    */
                 ]
             },
             {

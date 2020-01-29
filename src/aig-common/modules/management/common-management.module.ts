@@ -22,6 +22,7 @@ import { AigPermissionNewFormComponent } from './components/permission-new-form/
 import { AigAssociateRolePermissionFormComponent } from './components/associate-role-permission-form/associate-role-permission-form.component';
 import { AigManagementAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigManagementAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { AigSocialFormComponent } from './components/social-form/social-form.component';
 
 @NgModule({
     imports: [
@@ -54,6 +55,7 @@ import { AigManagementAutocompleteFunctionService } from './services/form/autoco
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
         AigAssociateRolePermissionFormComponent,
+        AigSocialFormComponent
     ],
     exports: [
         AigContextTableComponent,
