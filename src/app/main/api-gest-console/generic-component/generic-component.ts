@@ -9,7 +9,6 @@ export class GenericComponent implements OnInit, OnDestroy {
         private _gcs: AigGenericComponentService,
     ) { }
     protected _destructors: Subscription[] = [];
-    protected firstLoad = true;
 
     ngOnInit(): void {
         this.loadComponent();
@@ -17,8 +16,6 @@ export class GenericComponent implements OnInit, OnDestroy {
         var destructor = this._gcs.eventService.reloadPage$.subscribe(() => { this.loadComponent(); });
         this._destructors.push(destructor);
 
-        this.firstLoad = false
-        
         this._gcs.fuseSplashScreenService.hide();
     }
 

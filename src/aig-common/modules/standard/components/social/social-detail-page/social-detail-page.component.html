@@ -1,0 +1,35 @@
+<div id="aig-social-detail-page" class="page-layout blank">
+
+    <!-- <aig-management-header [sectionName]="'Role Detail > ' + role.name" [search]="false"></aig-management-header> -->
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Social</div>
+                <div class="h1 m-16">{{ socialDTO.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ socialDTO.id }}</div>
+                <div class="h4 m-8 ml-16">Code: {{ socialDTO.code }}</div>
+                <div class="h4 m-8 ml-16">WikiCode: {{ socialDTO.wikiCode }}</div>
+            </div>
+        </div>
+    </div>
+
+    
+        <!--
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+            <div class="widget p-16" fxFlex.gt-sm="50">
+                <div class="fuse-card auto-width p-16">
+                    <div class="h4 m-16">Utenti che hanno questo ruolo</div>
+                    <aig-users-table [displayedColumns]="usersDisplayedColumns" [dataSource]="users | async | roleAssignationsToUsers"></aig-users-table>
+                </div>
+            </div>
+            <div class="widget p-16" fxFlex.gt-sm="50">
+                <div class="fuse-card auto-width p-16">
+                    <div class="h4 m-16">Gruppi che hanno questo ruolo</div>
+                    <aig-group-table [displayedColumns]="groupsDisplayedColumns" [dataSource]="groups | async | roleAssignationsToGroups"></aig-group-table>
+                </div>
+            </div>
+        </div>
+        -->
+
+</div>

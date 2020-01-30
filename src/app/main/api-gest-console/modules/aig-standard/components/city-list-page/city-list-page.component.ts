@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CityResourceService, CityDTO } from 'aig-standard';
+import { AigCityDialogComponent } from 'aig-common/modules/standard/components/city/city-dialog-page/city-dialog-page.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     templateUrl: './city-list-page.component.html',
@@ -10,12 +12,18 @@ import { CityResourceService, CityDTO } from 'aig-standard';
 export class AigCityListPageComponent extends GenericComponent {
     constructor(
         private cityResourceService: CityResourceService,
+        private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
     citys: CityDTO[];
 
     async loadComponent() {
         this.citys = await this.cityResourceService.getAllCitiesUsingGET().toPromise();
+    }
+
+    newCity(){
+        this.dialog.open(AigCityDialogComponent);
     }
 }

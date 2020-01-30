@@ -11,12 +11,14 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./user-new.component.scss']
 })
 export class AigUserNewComponent implements OnInit {
+    private userNewForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    
+    private userDTO: UserDTO;
+
     constructor(
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
@@ -24,9 +26,6 @@ export class AigUserNewComponent implements OnInit {
         private userResourceService: UserResourceService,
         private eventService: EventService,
     ) { }
-
-    private userNewForm: FormGroup;
-    private userDTO: UserDTO;
 
     ngOnInit(): void {
         this.userNewForm = this._formBuilder.group({

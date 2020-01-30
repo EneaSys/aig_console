@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ActivatedRoute } from '@angular/router';
-import { EopooTypeDTO, EopooTypeResourceService } from 'aig-generic';
-import { MatDialog } from '@angular/material/dialog';
-import { AigEopooTypeNewUpdateModalComponent } from '../eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
+import { EopooTypeDTO } from 'aig-generic';
 
 @Component({
     templateUrl: './eopoo-type-detail-page.component.html',
@@ -12,23 +10,13 @@ import { AigEopooTypeNewUpdateModalComponent } from '../eopoo-type-new-update-mo
 })
 export class AigEopooTypeDetailPageComponent extends GenericComponent {
     constructor(
-        private eopooTypeResourceService: EopooTypeResourceService,
         private route: ActivatedRoute,
-        private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    eopooTypeDTO: EopooTypeDTO;
+    eopooType: EopooTypeDTO;
 
-    async loadComponent() {
-        if(this.firstLoad) {
-            this.eopooTypeDTO = this.route.snapshot.data.eopooType;
-        } else {
-            this.eopooTypeDTO = await this.eopooTypeResourceService.getEopooTypeUsingGET(this.eopooTypeDTO.id).toPromise();
-        }
-    }
-
-    editEopooType(eopooTypeDTO: EopooTypeDTO) {
-        this.dialog.open(AigEopooTypeNewUpdateModalComponent, { data: { eopooType: eopooTypeDTO } });
+    loadComponent() {
+        this.eopooType = this.route.snapshot.data.eopooType;
     }
 }

@@ -12,7 +12,14 @@ import { AigIppProcedureListPageComponent } from './components/ipp-procedure-lis
 import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page/ipp-sector-list-page.component';
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { FuseSidebarModule } from '@fuse/components';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { AigCommonStandardModule } from 'aig-common/modules/standard/common-standard.module';
+  
 @NgModule({
     declarations: [
 
@@ -30,13 +37,25 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
         AigIppLotTypeListPageComponent,
         AigIppLotCategoryListPageComponent,
         
+    ],
+    entryComponents: [
         
-
-
     ],
     imports: [
         RouterModule.forChild(aigStandardRoute),
 
+
+        AigCommonStandardModule,
+
+        MatTableModule,
+        MatProgressSpinnerModule,
+
+        FuseSidebarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+
+        
         CommonModule,
 
         AigStandardClientModule,

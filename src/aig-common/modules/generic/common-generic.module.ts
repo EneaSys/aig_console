@@ -19,8 +19,6 @@ import { AigGenericClientModule } from 'aig-generic';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EopooTypeResolver } from './resolver/eopoo-type.resolver';
 import { RouterModule } from '@angular/router';
-import { AigEopooTypeNewUpdateFormComponent } from './components/eopoo-type-new-update-form/eopoo-type-new-update-form.component';
-import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [
@@ -30,14 +28,12 @@ import { MatInputModule } from '@angular/material/input';
         AigEopooNewFormComponent,
         
         AigEopooTypeListTableComponent,
-        AigEopooTypeNewUpdateFormComponent,
     ],
     exports: [
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
 
         AigEopooTypeListTableComponent,
-        AigEopooTypeNewUpdateFormComponent,
     ],
     imports: [
         AigCommonModule,
@@ -47,22 +43,20 @@ import { MatInputModule } from '@angular/material/input';
         FormsModule,
         ReactiveFormsModule,
 
-        AigGenericClientModule,
-
-        FlexLayoutModule,
         RouterModule,
+        AigGenericClientModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
+        
         MatButtonModule,
         MatIconModule,
-        MatInputModule,
         MatFormFieldModule,
-        MatAutocompleteModule,
         MatSelectModule,
         MatDatepickerModule,
+        MatAutocompleteModule,
 
-
+        FlexLayoutModule,
     ],
     providers: [
         EopooTypeResolver,

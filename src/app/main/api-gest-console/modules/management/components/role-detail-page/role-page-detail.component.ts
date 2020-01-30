@@ -28,7 +28,11 @@ export class AigRoleDetailPageComponent extends GenericComponent {
     groups: Observable<RoleAssignationDTO[]>;
 
     loadComponent(): void {
+        console.log(this.route);
+        console.log('ddd');
+        console.log(this.route.snapshot);
         this.role = this.route.snapshot.data.role;
+        console.log(this.role);
 
         this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.role.roleCode, null, null, null, null, null, null, 0, null);
         this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,  this.role.roleCode, null, null, null, null, null, null, null, null, null, null, null, null, null);

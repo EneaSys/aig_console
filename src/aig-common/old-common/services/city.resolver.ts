@@ -1,18 +1,14 @@
-import { Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CityService } from './city.service';
-
-type EntityArrayResponseType = HttpResponse<any[]>;
+import { CityResourceService, CityDTO } from 'aig-standard';
 
 @Injectable()
-export class CityResolver implements Resolve<Observable<EntityArrayResponseType>> {
-  constructor(
-    private cityService: CityService
-  ) {}
+export class CityResolver implements Resolve<Observable<CityDTO>> {
+    constructor(private roleResourceService: CityResourceService) { }
 
-  resolve() {
-    return this.cityService.query();
-  }
+    resolve(route: ActivatedRouteSnapshot) {
+        var id: number = +route.paramMap.get('id');
+        return this.roleResourceService.getCityUsingGET(id);
+    }
 }
