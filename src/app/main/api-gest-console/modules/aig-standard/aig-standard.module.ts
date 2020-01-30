@@ -25,8 +25,7 @@ import { AigSocialDetailPageComponent } from './components/social-detail-page/so
 import { AigSocialDialogComponent } from './components/social-dialog/social-dialog.component';
 import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
 import { AigLotCategoryDialogComponent } from './components/ipp-lot-category-dialog-page/lot-category-dialog-page.component';
-import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
-import { AigCpvDialogComponent } from './components/cpv-dialog-page/cpv-dialog-page.component';
+
 import { AigIppLotTypeDetailPageComponent } from './components/ipp-lot-type-detail-page/ipp-lot-type-detail-page.component';
 import { AigIppLotTypeDialogComponent } from './components/ipp-lot-type-dialog-page/ipp-lot-type-dialog-page.component';
 import { AigIppModalityDetailPageComponent } from './components/ipp-modality-detail-page/ipp-modality-detail-page.component';
@@ -54,8 +53,7 @@ import { MatInputModule } from '@angular/material/input';
         AigSocialDialogComponent,
 
         AigCpvListPageComponent,
-        AigCpvDetailPageComponent,
-        AigCpvDialogComponent,
+        
 
         AigIppModalityListPageComponent,
         AigIppProcedureListPageComponent,
@@ -85,7 +83,6 @@ import { MatInputModule } from '@angular/material/input';
         AigCityNewUpdateDialogComponent,
         AigSocialDialogComponent,
         AigLotCategoryDialogComponent,
-        AigCpvDialogComponent,
         AigIppLotTypeDialogComponent,
         AigIppModalityDialogComponent,
         AigIppProcedureDialogComponent,

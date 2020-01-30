@@ -23,7 +23,6 @@ import { CategoryResolver } from 'aig-common/old-common/services/category.resolv
 import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigSocialDetailPageComponent } from './components/social-detail-page/social-detail-page.component';
 import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
-import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
 import { AigIppLotTypeDetailPageComponent } from './components/ipp-lot-type-detail-page/ipp-lot-type-detail-page.component';
 import { AigIppModalityDetailPageComponent } from './components/ipp-modality-detail-page/ipp-modality-detail-page.component';
 import { AigIppProcedureDetailPageComponent } from './components/ipp-procedure-detail-page/ipp-procedure-detail-page.component';
@@ -122,6 +121,7 @@ export const aigStandardRoute: Routes = [
                         component: AigCpvListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
+                    /*
                     {
                         path: 'detail/:id',
                         component: AigCpvDetailPageComponent,
@@ -129,7 +129,7 @@ export const aigStandardRoute: Routes = [
                         resolve: {
                             cpv: CpvResolver,
                         },
-                    },
+                    },*/
                 ]
             },
             {

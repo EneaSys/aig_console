@@ -10,7 +10,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
     templateUrl: './ipp-lot-type-form.component.html',
     styleUrls: ['./ipp-lot-type-form.component.scss']
 })
-export class AigIppLotTypeFormComponent implements OnInit {
+export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,

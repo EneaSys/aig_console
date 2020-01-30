@@ -10,7 +10,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
     templateUrl: './lot-category-form.component.html',
     styleUrls: ['./lot-category-form.component.scss']
 })
-export class AigLotCategoryFormComponent implements OnInit {
+export class AigLotCategoryNewUpdateFormComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -19,16 +19,16 @@ export class AigLotCategoryFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private categoryNewForm: FormGroup;
+    private lotcategoryNewForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    public categoryDTO: ItalianPublicProcurementLotCategoryDTO;
+    public ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO;
 
     ngOnInit(): void {
-        this.categoryNewForm = this._formBuilder.group({
+        this.lotcategoryNewForm = this._formBuilder.group({
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['', Validators.required]
@@ -36,21 +36,21 @@ export class AigLotCategoryFormComponent implements OnInit {
     }
 
     public createCategory(){
-        if (!this.categoryNewForm.valid) {
+        if (!this.lotcategoryNewForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let categoryDTO: ItalianPublicProcurementLotCategoryDTO = {
-            name: this.categoryNewForm.value.name,
-            code: this.categoryNewForm.value.code,
-            wikiCode: this.categoryNewForm.value.wikiCode
+        let ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO = {
+            name: this.lotcategoryNewForm.value.name,
+            code: this.lotcategoryNewForm.value.code,
+            wikiCode: this.lotcategoryNewForm.value.wikiCode
         };
 
-        this.categoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(categoryDTO).subscribe(
+        this.categoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(ippLotCategoryDTO).subscribe(
             (value: ItalianPublicProcurementLotCategoryDTO) => {
-                this.categoryDTO = value;
+                this.ippLotCategoryDTO = value;
 
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Lot Category: " + value.name + " created.", null, {duration: 2000,});

@@ -18,17 +18,16 @@ import { MatInputModule } from '@angular/material/input';
 import { AigCityFormComponent } from "./components/city/city-form/city-form.component";
 import { AigSocialActionListTableComponent } from './components/social-action/social-action-list-table/social-action-list-table.component';
 import { AigSocialActionFormComponent } from './components/social-action/social-action-form/social-action-form.component';
-import { AigCpvListTableComponent } from './components/cpv/cpv-list-table/cpv-list-table.component';
-import { AigCpvFormComponent } from './components/cpv/cpv-form/cpv-form.component';
+
 import { AigIppModalityFormComponent } from './components/ipp-modality/ipp-modality-form/ipp-modality-form.component';
 import { AigIppModalityListTableComponent } from './components/ipp-modality/ipp-modality-list-table/ipp-modality-list-table.component';
 import { AigIppProcedureListTableComponent } from './components/ipp-procedure/ipp-procedure-list-table/ipp-procedure-list-table.component';
 import { AigIppProcedureFormComponent } from "./components/ipp-procedure/ipp-procedure-form/ipp-procedure-form.component";
 import { AigIppSectorFormComponent } from './components/ipp-sector/ipp-sector-form/ipp-sector-form.component';
 import { AigIppSectorListTableComponent } from './components/ipp-sector/ipp-sector-list-table/ipp-sector-list-table.component';
-import { AigIppLotTypeFormComponent } from './components/ipp-lot-type/ipp-lot-type-form/ipp-lot-type-form.component';
+import { AigIppLotTypeNewUpdateFormComponent } from './components/ipp-lot-type/ipp-lot-type-form/ipp-lot-type-form.component';
 import { AigIppLotTypeListTableComponent } from './components/ipp-lot-type/ipp-lot-type-list-table/ipp-lot-type-list-table.component';
-import { AigLotCategoryFormComponent } from './components/ipp-lot-category/lot-category-form/lot-category-form.component';
+import { AigLotCategoryNewUpdateFormComponent } from './components/ipp-lot-category/lot-category-form/lot-category-form.component';
 import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/lot-category-list-table/lot-category-list-table.component';
 
 @NgModule({
@@ -43,9 +42,6 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
         AigSocialActionListTableComponent,
         AigSocialActionFormComponent,
         
-        AigCpvListTableComponent,
-        AigCpvFormComponent,
-
         AigIppModalityFormComponent,
         AigIppModalityListTableComponent,
 
@@ -55,11 +51,11 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
         AigIppSectorFormComponent,
         AigIppSectorListTableComponent,
 
-        AigIppLotTypeFormComponent,
+        AigIppLotTypeNewUpdateFormComponent,
         AigIppLotTypeListTableComponent,
         
 
-        AigLotCategoryFormComponent,
+        AigLotCategoryNewUpdateFormComponent,
         AigLotCategoryListTableComponent
         
     ],
@@ -101,9 +97,6 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
         AigSocialActionListTableComponent,
         AigSocialActionFormComponent,
         
-        AigCpvListTableComponent,
-        AigCpvFormComponent,
-       
         AigIppModalityListTableComponent,
         AigIppModalityFormComponent,
 
@@ -111,13 +104,13 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
         AigIppSectorFormComponent,
 
         AigIppLotTypeListTableComponent,
-        AigIppLotTypeFormComponent,
+        AigIppLotTypeNewUpdateFormComponent,
 
         AigIppProcedureListTableComponent,
         AigIppProcedureFormComponent,
 
         AigLotCategoryListTableComponent,
-        AigLotCategoryFormComponent
+        AigLotCategoryNewUpdateFormComponent
 
     ],
     entryComponents: [

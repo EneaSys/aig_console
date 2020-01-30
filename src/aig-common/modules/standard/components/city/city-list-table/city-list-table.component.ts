@@ -9,6 +9,8 @@ export class AigCityListTableComponent implements OnInit {
     constructor() { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];
