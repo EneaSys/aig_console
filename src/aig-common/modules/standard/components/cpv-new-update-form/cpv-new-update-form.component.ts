@@ -6,11 +6,11 @@ import { CpvResourceService, CpvDTO } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-cpv-new-form',
-    templateUrl: './cpv-new-form.component.html',
-    styleUrls: ['./cpv-new-form.component.scss']
+    selector: 'aig-cpv-new-update-form',
+    templateUrl: './cpv-new-update-form.component.html',
+    styleUrls: ['./cpv-new-update-form.component.scss']
 })
-export class AigCpvNewFormComponent implements OnInit {
+export class AigCpvNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -30,29 +30,29 @@ export class AigCpvNewFormComponent implements OnInit {
     @Input()
     cpv: CpvDTO;
 
-    cpvNewForm: FormGroup;
+    cpvNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.cpvNewForm = this._formBuilder.group({
+        this.cpvNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
-            cpv: ['', Validators.required],
+            code: ['', Validators.required],
+            wikiCode: ['', Validators.required],
             cpvCategory: ['', Validators.required],
         })
 
         if (this.cpv != null) {
-            this.cpvNewForm.patchValue(this.cpv);
+            this.cpvNewUpdateForm.patchValue(this.cpv);
         }
     }
-
     async submit() {
-        if (!this.cpvNewForm.valid) {
+        if (!this.cpvNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let cpv = this.cpvNewForm.value;
+        let cpv = this.cpvNewUpdateForm.value;
 
         try {
             let postOrPut;

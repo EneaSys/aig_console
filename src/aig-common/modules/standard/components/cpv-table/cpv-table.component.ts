@@ -17,13 +17,14 @@ export class AigCpvTableComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        // const test = {
-        //     id: 1,
-        //     name: 'test',
-        //     cpv: 'test'
-        // }
-        // this.testDataSource = [];
-        // this.testDataSource.push(test);
+        const test = {
+            id: 1,
+            name: 'test',
+            code: 'test',
+            wikiCode: 'test',
+        }
+        this.testDataSource = [];
+        this.testDataSource.push(test);
     }
 
     public detailCpv(idCpv: string){

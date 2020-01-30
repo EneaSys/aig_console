@@ -1,4 +1,4 @@
-<form *ngIf="step.form" [formGroup]="cpvNewForm" (ngSubmit)="submit()">
+<form *ngIf="step.form" [formGroup]="cpvNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -10,8 +10,15 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Cpv Type</mat-label>
-            <input formControlName="cpv" matInput />
+            <mat-label>Cpv Type Code</mat-label>
+            <input formControlName="code" matInput />
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Cpv Type WikiCode</mat-label>
+            <input formControlName="wikiCode" matInput />
         </mat-form-field>
     </div>
 
@@ -37,6 +44,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ cpvNewForm.value | json }}</pre>
-    <button *ngIf="!cpvNewForm.value.id" mat-stroked-button color="primary" (click)="newCpv()">Create New</button>
+    <pre>{{ cpvNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!cpvNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newCpv()">Create New</button>
 </div>

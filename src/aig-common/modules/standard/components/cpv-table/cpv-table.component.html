@@ -21,9 +21,14 @@
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="cpv">
-            <mat-header-cell *matHeaderCellDef> Cpv </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.cpv }} </mat-cell>
+        <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="wikiCode">
+            <mat-header-cell *matHeaderCellDef> WikiCode </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.wikiCode }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

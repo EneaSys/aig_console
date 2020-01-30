@@ -17,7 +17,7 @@ import { AigCommonModule } from 'aig-common/common.module';
 import { AigCityTableComponent } from './components/city-table/city-table.component';
 import { AigCityNewFormComponent } from './components/city-new-form/city-new-form.component';
 import { AigCpvTableComponent } from './components/cpv-table/cpv-table.component';
-import { AigCpvNewFormComponent } from './components/cpv-new-form/cpv-new-form.component';
+import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/cpv-new-update-form.component';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { AigCpvNewFormComponent } from './components/cpv-new-form/cpv-new-form.c
         AigCityTableComponent,
         AigCityNewFormComponent,
         AigCpvTableComponent,
-        AigCpvNewFormComponent,
+        AigCpvNewUpdateFormComponent,
     ],
     imports: [ 
         AigCommonModule,
@@ -52,7 +52,7 @@ import { AigCpvNewFormComponent } from './components/cpv-new-form/cpv-new-form.c
         AigCityTableComponent,
         AigCityNewFormComponent,
         AigCpvTableComponent,
-        AigCpvNewFormComponent,
+        AigCpvNewUpdateFormComponent,
     ],
     providers: [],
 })

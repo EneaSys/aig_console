@@ -19,7 +19,7 @@ export class AigCpvListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    cpvDisplayedColumns: string[] = ['id', 'name', 'cpv', 'buttons'];
+    cpvDisplayedColumns: string[] = ['id', 'name', 'code', 'wikiCode', 'buttons'];
     cpvDataSource: Observable<CpvDTO[]>;
 
     loadComponent(): void {
