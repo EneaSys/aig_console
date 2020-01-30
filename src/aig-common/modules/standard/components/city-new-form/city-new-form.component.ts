@@ -15,7 +15,7 @@ export class AigCityNewFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private roleResourceService: CityResourceService,
+        private cityResourceService: CityResourceService,
         private eventService: EventService,
     ) { }
 
@@ -25,12 +25,13 @@ export class AigCityNewFormComponent implements OnInit {
         loading: false,
         complete: false
     };
-    public cityDTO: CityDTO;
+
 
     ngOnInit(): void {
         this.cityNewForm = this._formBuilder.group({
             name: ['', Validators.required],
-            cityCode: ['', Validators.required],
+            code: ['', Validators.required],
+            wikiCode: ['', Validators.required],
         })
     }
 
@@ -41,9 +42,10 @@ export class AigCityNewFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        // let cityDTO: CityDTO = {
+        // let cityDTO = {
         //     name: this.cityNewForm.value.name,
-        //     cityCode: this.cityNewForm.value.code,
+        //     code: this.cityNewForm.value.code,
+        //     wikiCode: this.cityNewForm.value.wikiCode,
         // };
 
         // this.cityResourceService.createCityUsingPOST(cityDTO).subscribe(
