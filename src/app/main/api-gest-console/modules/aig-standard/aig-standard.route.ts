@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
+import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
 import { AigIppLotTypeListPageComponent } from './components/ipp-lot-type-list-page/ipp-lot-type-list-page.component';
 import { AigIppModalityListPageComponent } from './components/ipp-modality-list-page/ipp-modality-list-page.component';
@@ -9,6 +10,7 @@ import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
+import { CitySystemResolver } from 'aig-common/old-common/resolver/city-system.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -32,16 +34,14 @@ export const aigStandardRoute: Routes = [
                         component: AigCityListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*
                     {
                         path: 'detail/:id',
-                        component: AigRoleDetailPageComponent,
+                        component: AigCityDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: RoleSystemResolver,
+                            city: CitySystemResolver,
                         },
                     },
-                    */
                 ]
             },
             {

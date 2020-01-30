@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigStandardHeaderComponent } from './components/standard-header/standard-header.component';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
 import { AigCityNewDialogComponent } from './components/city-new-dialog/city-new-dialog.component';
+import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigIppLotTypeListPageComponent } from './components/ipp-lot-type-list-page/ipp-lot-type-list-page.component';
@@ -27,6 +28,7 @@ import { AigCommonStandardModule } from 'aig-common/modules/standard/common-stan
 
         AigCityListPageComponent,
         AigCityNewDialogComponent,
+        AigCityDetailPageComponent,
         
         AigSocialListPageComponent,
         AigSocialActionListPageComponent,

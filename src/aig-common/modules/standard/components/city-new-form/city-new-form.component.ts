@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { RoleResourceService, RoleDTO } from 'api-gest';
+import { CityResourceService, CityDTO } from 'api-gest';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class AigCityNewFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private roleResourceService: RoleResourceService,
+        private roleResourceService: CityResourceService,
         private eventService: EventService,
     ) { }
 
@@ -25,7 +25,7 @@ export class AigCityNewFormComponent implements OnInit {
         loading: false,
         complete: false
     };
-    public cityDTO: cityDTO;
+    public cityDTO: CityDTO;
 
     ngOnInit(): void {
         this.cityNewForm = this._formBuilder.group({
@@ -41,27 +41,27 @@ export class AigCityNewFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let cityDTO: CityDTO = {
-            name: this.cityNewForm.value.name,
-            cityCode: this.cityNewForm.value.cityCode,
-        };
+        // let cityDTO: CityDTO = {
+        //     name: this.cityNewForm.value.name,
+        //     cityCode: this.cityNewForm.value.code,
+        // };
 
-        this.cityResourceService.createCityUsingPOST(cityDTO).subscribe(
-            (value: CityDTO) => {
-                this.cityDTO = value;
+        // this.cityResourceService.createCityUsingPOST(cityDTO).subscribe(
+        //     (value: CityDTO) => {
+        //         this.cityDTO = value;
 
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("City: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.detail, null, {duration: 5000,});
+        //         this.eventService.reloadCurrentPage();
+        //         this._snackBar.open("City: " + value.name + " created.", null, {duration: 2000,});
+        //         this._fuseProgressBarService.hide();
+        //         this.setStep("complete");
+        //     },
+        //     (error: any) => {
+        //         this._snackBar.open("Error: " + error.error.detail, null, {duration: 5000,});
 
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
-            }
-        );
+        //         this._fuseProgressBarService.hide();
+        //         this.setStep("form");
+        //     }
+        // );
     }
 
     private setStep(step: string){

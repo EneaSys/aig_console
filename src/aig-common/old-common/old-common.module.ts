@@ -15,6 +15,7 @@ import { AigGroupService } from './services/group.service';
 import { AigRoleAssignationService } from './services/role-assignation.service';
 import { RoleSystemResolver } from './resolver/role-system.resolver';
 import { RoleCustomResolver } from './resolver/role-custom.resolver';
+import { CitySystemResolver } from './resolver/city-system.resolver';
 import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom.resolver';
 import { UserResolver } from './resolver/user.resolver';
 import { GroupResolver } from './resolver/group.resolver';
@@ -55,6 +56,7 @@ import { AigCommonModule } from '../common.module';
 
         RoleSystemResolver,
         RoleCustomResolver,
+        CitySystemResolver,
         PermissionsRoleCustomResolver,
         UserResolver,
         GroupResolver,
