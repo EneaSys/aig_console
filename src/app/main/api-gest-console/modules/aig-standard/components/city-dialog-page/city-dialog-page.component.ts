@@ -5,9 +5,9 @@ import { MatDialogRef } from '@angular/material/dialog';
     templateUrl: './city-dialog-page.component.html',
     styleUrls: ['./city-dialog-page.component.scss']
 })
-export class AigCityDialogComponent implements OnInit {
+export class AigCityNewUpdateDialogComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigCityDialogComponent>,
+        public matDialogRef: MatDialogRef<AigCityNewUpdateDialogComponent>,
     ) { }
 
     ngOnInit(): void { 

@@ -4,7 +4,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { SocialResourceService, SocialDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { AigSocialDialogComponent } from 'aig-common/modules/standard/components/social/social-dialog/social-dialog.component';
+import { AigSocialDialogComponent } from '../social-dialog/social-dialog.component';
 
 @Component({
     templateUrl: './social-list-page.component.html',

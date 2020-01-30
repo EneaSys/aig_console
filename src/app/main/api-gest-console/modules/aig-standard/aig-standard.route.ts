@@ -9,26 +9,26 @@ import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
-import { AigCityDetailPageComponent } from '../../../../../aig-common/modules/standard/components/city/city-detail-page/city-detail-page.component';
 import { CityResolver } from 'aig-common/old-common/services/city.resolver';
 import { CityService } from 'aig-common/old-common/services/city.service';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
 import { SocialResolver } from 'aig-common/old-common/services/social.resolver';
-import { AigSocialDetailPageComponent } from 'aig-common/modules/standard/components/social/social-detail-page/social-detail-page.component';
-import { AigSocialActionDetailPageComponent } from 'aig-common/modules/standard/components/social-action/social-action-detail/social-action-detail.component';
 import { ActionResolver } from 'aig-common/old-common/services/social-action.resolver';
-import { AigCpvDetailPageComponent } from 'aig-common/modules/standard/components/cpv/cpv-detail-page/cpv-detail-page.component';
 import { CpvResolver } from 'aig-common/old-common/services/cpv.resolver';
-import { AigIppModalityDetailPageComponent } from 'aig-common/modules/standard/components/ipp-modality/ipp-modality-detail-page/ipp-modality-detail-page.component';
 import { IppModalityResolver } from 'aig-common/old-common/services/ipp-modality.resolver';
-import { AigIppProcedureDetailPageComponent } from 'aig-common/modules/standard/components/ipp-procedure/ipp-procedure-detail-page/ipp-procedure-detail-page.component';
 import { IppProcedureResolver } from 'aig-common/old-common/services/procedure.resolver';
-import { AigIppSectorDetailPageComponent } from 'aig-common/modules/standard/components/ipp-sector/ipp-sector-detail-page/ipp-sector-detail-page.component';
 import { SectorResolver } from 'aig-common/old-common/services/sector.resolver';
-import { AigIppLotTypeDetailPageComponent } from 'aig-common/modules/standard/components/ipp-lot-type/ipp-lot-type-detail-page/ipp-lot-type-detail-page.component';
 import { LotResolver } from 'aig-common/old-common/services/lot.resolver';
-import { AigLotCategoryDetailPageComponent } from 'aig-common/modules/standard/components/ipp-lot-category/lot-category-detail-page/lot-category-detail-page.component';
 import { CategoryResolver } from 'aig-common/old-common/services/category.resolver';
+import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
+import { AigSocialDetailPageComponent } from './components/social-detail-page/social-detail-page.component';
+import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
+import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
+import { AigIppLotTypeDetailPageComponent } from './components/ipp-lot-type-detail-page/ipp-lot-type-detail-page.component';
+import { AigIppModalityDetailPageComponent } from './components/ipp-modality-detail-page/ipp-modality-detail-page.component';
+import { AigIppProcedureDetailPageComponent } from './components/ipp-procedure-detail-page/ipp-procedure-detail-page.component';
+import { AigIppSectorDetailPageComponent } from './components/ipp-sector-detail-page/ipp-sector-detail-page.component';
+import { AigSocialActionDetailPageComponent } from './components/social-action-detail/social-action-detail.component';
 
 export const aigStandardRoute: Routes = [
     {
@@ -54,7 +54,7 @@ export const aigStandardRoute: Routes = [
                     },
                     {
                         path: 'detail/:id',
-                        component: AigCityDetailPageComponent,
+                        component: AigCityDetailPageComponent   ,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             city: CityResolver,

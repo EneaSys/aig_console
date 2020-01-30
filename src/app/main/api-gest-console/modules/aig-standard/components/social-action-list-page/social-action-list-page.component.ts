@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigSocialActionDialogComponent } from 'aig-common/modules/standard/components/social-action/social-action-dialog/social-action-dialog.component';
+import { AigSocialActionDialogComponent } from '../social-action-dialog/social-action-dialog.component';
 
 @Component({
     templateUrl: './social-action-list-page.component.html',

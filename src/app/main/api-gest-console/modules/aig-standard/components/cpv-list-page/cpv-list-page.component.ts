@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CpvDTO, CpvResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCpvDialogComponent } from 'aig-common/modules/standard/components/cpv/cpv-dialog-page/cpv-dialog-page.component';
+import { AigCpvDialogComponent } from '../cpv-dialog-page/cpv-dialog-page.component';
 
 @Component({
     templateUrl: './cpv-list-page.component.html',
