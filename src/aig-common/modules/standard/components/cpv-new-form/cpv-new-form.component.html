@@ -1,0 +1,42 @@
+<form *ngIf="step.form" [formGroup]="cpvNewForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error>Indicare il nome del tipo anagrafica!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Cpv Type</mat-label>
+            <input formControlName="cpv" matInput />
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Cpv Type Category</mat-label>
+            <mat-select formControlName="cpvCategory">
+                <mat-option *ngFor="let cpvCategory of cpvCategorys" [value]="cpvCategory">
+                    {{ cpvCategory }}
+                </mat-option>
+            </mat-select>
+            <mat-error>Seleziona la categoria del tipo anagrafica!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ cpvNewForm.value | json }}</pre>
+    <button *ngIf="!cpvNewForm.value.id" mat-stroked-button color="primary" (click)="newCpv()">Create New</button>
+</div>

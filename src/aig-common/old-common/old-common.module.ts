@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CityResolver } from './services/city.resolver';
 import { EopooService } from './services/eopoo.service';
 import { EopooTypeService } from './services/eopoo-type.service';
 import { EopooTypeResolver } from './services/eopoo-type.resolver';
 import { PersonService } from './services/person.service';
 import { CityService } from './services/city.service';
+import { CityResolver } from './services/city.resolver';
+import { CitySystemResolver } from './resolver/city-system.resolver';
+import { CpvService } from './services/cpv.service';
+import { CpvResolver } from './services/cpv.resolver';
+import { CpvSystemResolver } from './resolver/cpv-system.resolver';
 import { ApiModule } from './services/test';
 import { ApolloDocumentService } from './services/apollo-document.service';
 import { ApolloDocumentResolver } from './services/apollo-document.resolver';
@@ -15,7 +19,6 @@ import { AigGroupService } from './services/group.service';
 import { AigRoleAssignationService } from './services/role-assignation.service';
 import { RoleSystemResolver } from './resolver/role-system.resolver';
 import { RoleCustomResolver } from './resolver/role-custom.resolver';
-import { CitySystemResolver } from './resolver/city-system.resolver';
 import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom.resolver';
 import { UserResolver } from './resolver/user.resolver';
 import { GroupResolver } from './resolver/group.resolver';
@@ -42,6 +45,11 @@ import { AigCommonModule } from '../common.module';
         
         CityService,
         CityResolver,
+        CitySystemResolver,
+
+        CpvService,
+        CpvResolver,
+        CpvSystemResolver,
         
         ApolloDocumentService,
         ApolloDocumentResolver,
@@ -56,7 +64,6 @@ import { AigCommonModule } from '../common.module';
 
         RoleSystemResolver,
         RoleCustomResolver,
-        CitySystemResolver,
         PermissionsRoleCustomResolver,
         UserResolver,
         GroupResolver,

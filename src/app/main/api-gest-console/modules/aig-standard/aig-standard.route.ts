@@ -3,6 +3,7 @@ import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
 import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
+import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
 import { AigIppLotTypeListPageComponent } from './components/ipp-lot-type-list-page/ipp-lot-type-list-page.component';
 import { AigIppModalityListPageComponent } from './components/ipp-modality-list-page/ipp-modality-list-page.component';
 import { AigIppProcedureListPageComponent } from './components/ipp-procedure-list-page/ipp-procedure-list-page.component';
@@ -11,6 +12,7 @@ import { AigSocialActionListPageComponent } from './components/social-action-lis
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
 import { CitySystemResolver } from 'aig-common/old-common/resolver/city-system.resolver';
+import { CpvSystemResolver } from 'aig-common/old-common/resolver/cpv-system.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -107,16 +109,14 @@ export const aigStandardRoute: Routes = [
                         component: AigCpvListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*
                     {
                         path: 'detail/:id',
-                        component: AigRoleDetailPageComponent,
+                        component: AigCpvDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: RoleSystemResolver,
+                            role: CpvSystemResolver,
                         },
                     },
-                    */
                 ]
             },
             {

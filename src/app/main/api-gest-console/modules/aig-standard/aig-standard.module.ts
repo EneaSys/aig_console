@@ -13,6 +13,8 @@ import { AigCityListPageComponent } from './components/city-list-page/city-list-
 import { AigCityNewDialogComponent } from './components/city-new-dialog/city-new-dialog.component';
 import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
+import { AigCpvNewDialogComponent } from './components/cpv-new-dialog/cpv-new-dialog.component';
+import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigIppLotTypeListPageComponent } from './components/ipp-lot-type-list-page/ipp-lot-type-list-page.component';
 import { AigIppModalityListPageComponent } from './components/ipp-modality-list-page/ipp-modality-list-page.component';
@@ -34,6 +36,8 @@ import { AigCommonStandardModule } from 'aig-common/modules/standard/common-stan
         AigSocialActionListPageComponent,
 
         AigCpvListPageComponent,
+        AigCpvNewDialogComponent,
+        AigCpvDetailPageComponent,
 
         AigIppModalityListPageComponent,
         AigIppProcedureListPageComponent,
@@ -62,6 +66,7 @@ import { AigCommonStandardModule } from 'aig-common/modules/standard/common-stan
     providers: [],
     entryComponents: [
         AigCityNewDialogComponent,
+        AigCpvNewDialogComponent,
     ]
 })
 export class AigStandardModule {}
