@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
-import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
 import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
 import { AigIppLotTypeListPageComponent } from './components/ipp-lot-type-list-page/ipp-lot-type-list-page.component';
@@ -36,6 +35,7 @@ export const aigStandardRoute: Routes = [
                         component: AigCityListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
+                    /*
                     {
                         path: 'detail/:id',
                         component: AigCityDetailPageComponent,
@@ -44,6 +44,7 @@ export const aigStandardRoute: Routes = [
                             city: CitySystemResolver,
                         },
                     },
+                    */
                 ]
             },
             {

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CpvDTO, CpvResourceService } from 'aig-standard';
-import { AigCpvNewDialogComponent } from '../cpv-new-dialog/cpv-new-dialog.component';
+import { AigCpvNewUpdateDialogComponent } from '../cpv-new-update-dialog/cpv-new-update-dialog.component';
 
 @Component({
     templateUrl: './cpv-list-page.component.html',
@@ -19,14 +19,14 @@ export class AigCpvListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    cpvDisplayedColumns: string[] = ['id', 'name', 'code', 'wikiCode', 'buttons'];
-    cpvDataSource: Observable<CpvDTO[]>;
+    cpvDisplayedColumns: string[] = ['id', 'name', 'code', 'buttons'];
+    cpvDataSource: CpvDTO[];
 
-    loadComponent(): void {
-        this.cpvDataSource = this.cpvResourceService.getAllCpvsUsingGET();
+    async loadComponent() {
+        this.cpvDataSource = await this.cpvResourceService.getAllCpvsUsingGET().toPromise();
     }
     
     newCpv(): void {
-        this.dialog.open(AigCpvNewDialogComponent);
+        this.dialog.open(AigCpvNewUpdateDialogComponent);
     }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,20 +15,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AigCommonModule } from 'aig-common/common.module';
-import { AigCityTableComponent } from './components/city-table/city-table.component';
-import { AigCityNewFormComponent } from './components/city-new-form/city-new-form.component';
-import { AigCpvTableComponent } from './components/cpv-table/cpv-table.component';
+import { AigCpvListTableComponent } from './components/cpv-list-table/cpv-list-table.component';
 import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/cpv-new-update-form.component';
 
 
 @NgModule({
     declarations: [
-        AigCityTableComponent,
-        AigCityNewFormComponent,
-        AigCpvTableComponent,
+        AigCpvListTableComponent,
         AigCpvNewUpdateFormComponent,
     ],
     imports: [ 
+        RouterModule,
+
         AigCommonModule,
         CommonModule,
 
@@ -49,9 +48,7 @@ import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/c
         FlexLayoutModule,
     ],
     exports: [
-        AigCityTableComponent,
-        AigCityNewFormComponent,
-        AigCpvTableComponent,
+        AigCpvListTableComponent,
         AigCpvNewUpdateFormComponent,
     ],
     providers: [],

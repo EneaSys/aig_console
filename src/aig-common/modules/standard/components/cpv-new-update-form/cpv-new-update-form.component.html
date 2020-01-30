@@ -15,25 +15,6 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Cpv Type WikiCode</mat-label>
-            <input formControlName="wikiCode" matInput />
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Cpv Type Category</mat-label>
-            <mat-select formControlName="cpvCategory">
-                <mat-option *ngFor="let cpvCategory of cpvCategorys" [value]="cpvCategory">
-                    {{ cpvCategory }}
-                </mat-option>
-            </mat-select>
-            <mat-error>Seleziona la categoria del tipo anagrafica!</mat-error>
-        </mat-form-field>
-    </div>
-
     <div fxLayout="row" fxLayoutAlign="end top">
         <button type="submit" mat-raised-button color="accent">Crea</button>
     </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CpvDTO } from 'aig-standard';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CpvDTO, CpvResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -12,18 +12,19 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 export class AigCpvDetailPageComponent extends GenericComponent {
     constructor(
+        private cpvResourceService: CpvResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    cpv: CpvDTO;
+    cpvDTO: CpvDTO;
 
-    loadComponent(): void {
-        this.cpv = this.route.snapshot.data.cpv;
-    }
-
-    addPermissionToCpv(): void {
-        // this.dialog.open(AigAssociateCpvToPermissionDialogComponent, { data: { cpv: this.cpv } });
+    async loadComponent() {
+        if(this.firstLoad) {
+            this.cpvDTO = this.route.snapshot.data.cpvDTO;
+        } else {
+            this.cpvDTO = await this.cpvResourceService.getCpvUsingGET(this.cpvDTO.id).toPromise();
+        }
     }
 }

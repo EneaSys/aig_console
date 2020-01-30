@@ -1,4 +1,4 @@
-<div id="aig-cpv-list" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
+<div id="aig-cpv-list-page" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
 
     <aig-standard-header [sectionName]="'Cpv'" [search]="false"></aig-standard-header>
 
@@ -27,7 +27,7 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-cpv-table [displayedColumns]="cpvDisplayedColumns" [dataSource]="cpvDataSource | async"></aig-cpv-table>
+                <aig-cpv-list-table [displayedColumns]="cpvDisplayedColumns" [dataSource]="cpvDataSource"></aig-cpv-list-table>
             </div>
         </div>
         <!-- /CENTER -->
