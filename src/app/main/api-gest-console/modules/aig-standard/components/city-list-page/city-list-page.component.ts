@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CityResourceService, CityDTO } from 'aig-standard';
-// import { AigRoleNewDialogComponent } from '../role-new-dialog/role-new-dialog.component';
+import { AigCityNewDialogComponent } from '../city-new-dialog/city-new-dialog.component';
 
 @Component({
     templateUrl: './city-list-page.component.html',
@@ -27,6 +27,6 @@ export class AigCityListPageComponent extends GenericComponent {
     }
 
     newCity(): void {
-        // this.dialog.open(AigCityNewDialogComponent);
+        this.dialog.open(AigCityNewDialogComponent);
     }
 }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -12,15 +14,21 @@ import { MatInputModule } from '@angular/material/input';
 
 import { AigCommonModule } from 'aig-common/common.module';
 import { AigCityTableComponent } from './components/city-table/city-table.component';
+import { AigCityNewFormComponent } from './components/city-new-form/city-new-form.component';
 
 
 @NgModule({
     declarations: [
         AigCityTableComponent,
+        AigCityNewFormComponent,
     ],
     imports: [ 
         AigCommonModule,
         CommonModule,
+
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -36,6 +44,7 @@ import { AigCityTableComponent } from './components/city-table/city-table.compon
     ],
     exports: [
         AigCityTableComponent,
+        AigCityNewFormComponent,
     ],
     providers: [],
 })
