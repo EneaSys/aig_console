@@ -37,6 +37,7 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
             id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
+            wikiCode: ['', Validators.required],
         })
 
         if (this.cpv != null) {
@@ -72,7 +73,7 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newEopooType() {
+    newCpv() {
         this.setStep("form");
     }
 

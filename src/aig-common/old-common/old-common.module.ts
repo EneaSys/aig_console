@@ -5,10 +5,6 @@ import { EopooTypeResolver } from './services/eopoo-type.resolver';
 import { PersonService } from './services/person.service';
 import { CityService } from './services/city.service';
 import { CityResolver } from './services/city.resolver';
-import { CitySystemResolver } from './resolver/city-system.resolver';
-import { CpvService } from './services/cpv.service';
-import { CpvResolver } from './services/cpv.resolver';
-import { CpvSystemResolver } from './resolver/cpv-system.resolver';
 import { ApiModule } from './services/test';
 import { ApolloDocumentService } from './services/apollo-document.service';
 import { ApolloDocumentResolver } from './services/apollo-document.resolver';
@@ -45,11 +41,6 @@ import { AigCommonModule } from '../common.module';
         
         CityService,
         CityResolver,
-        CitySystemResolver,
-
-        CpvService,
-        CpvResolver,
-        CpvSystemResolver,
         
         ApolloDocumentService,
         ApolloDocumentResolver,

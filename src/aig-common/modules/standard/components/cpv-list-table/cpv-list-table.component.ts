@@ -11,11 +11,12 @@ export class AigCpvListTableComponent implements OnInit {
     displayedColumns: string[];
     @Input() 
     dataSource: any[];
+    @Input()
+    error: any[];
     
     constructor(
         private router: Router,
     ) { }
-
 
     ngOnInit(): void {
     }

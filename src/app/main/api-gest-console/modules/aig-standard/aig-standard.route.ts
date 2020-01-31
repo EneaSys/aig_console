@@ -10,8 +10,8 @@ import { AigIppSectorListPageComponent } from './components/ipp-sector-list-page
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
-import { CitySystemResolver } from 'aig-common/old-common/resolver/city-system.resolver';
-import { CpvSystemResolver } from 'aig-common/old-common/resolver/cpv-system.resolver';
+
+import { CpvResolver } from 'aig-common/modules/generic/resolver/cpv.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -115,7 +115,7 @@ export const aigStandardRoute: Routes = [
                         component: AigCpvDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: CpvSystemResolver,
+                            role: CpvResolver,
                         },
                     },
                 ]
