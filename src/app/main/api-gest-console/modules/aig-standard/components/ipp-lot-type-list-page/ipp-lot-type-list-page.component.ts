@@ -16,7 +16,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
     
-    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
+    displayedColumns: string[] = ['id', 'code', 'name', 'wikiCode' ,'buttons'];
     ippLotTypeDTOs: ItalianPublicProcurementLotTypeDTO[];
 
     async loadComponent() {

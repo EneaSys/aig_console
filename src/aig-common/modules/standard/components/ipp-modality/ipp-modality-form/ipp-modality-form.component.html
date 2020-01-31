@@ -1,7 +1,7 @@
 
 
 
-<form *ngIf="step.form" [formGroup]="ippModalityNewForm" (ngSubmit)="createIppModality()">
+<form *ngIf="step.form" [formGroup]="ippModalityNewForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -37,5 +37,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ ippModalityDTO | json }}</pre>
+    <pre>{{ ippModalityNewForm.value | json }}</pre>
 </div>

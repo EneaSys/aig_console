@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -10,7 +10,13 @@ import { EventService } from 'aig-common/event-manager/event.service';
     templateUrl: './city-form.component.html',
     styleUrls: ['./city-form.component.scss']
 })
-export class AigCityFormComponent implements OnInit {
+export class AigCityNewUpdateFormComponent implements OnInit {
+    private step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
+
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -18,14 +24,11 @@ export class AigCityFormComponent implements OnInit {
         private cityResourceService: CityResourceService,
         private eventService: EventService,
     ) { }
+    
+    @Input()
+    cityDTO: CityDTO;
 
-    private cityNewForm: FormGroup;
-    private step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
-    public cityDTO: CityDTO;
+    cityNewForm: FormGroup;
 
     ngOnInit(): void {
         this.cityNewForm = this._formBuilder.group({
@@ -34,36 +37,42 @@ export class AigCityFormComponent implements OnInit {
             code: ['', Validators.required], 
             wikiCode:['']
         })
+        if (this.cityDTO != null) {
+            this.cityNewForm.patchValue(this.cityDTO);
+        }
     }
 
-    public createCity(){
+    async submit() {
         if (!this.cityNewForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let cityDTO: CityDTO = {
-            name: this.cityNewForm.value.name,
-            code: this.cityNewForm.value.code,
-            wikiCode: this.cityNewForm.value.wikiCode
-        };
+        let cityDTO = this.cityNewForm.value;
 
-        this.cityResourceService.createCityUsingPOST(cityDTO).subscribe(
-            (value: CityDTO) => {
-                this.cityDTO = value;
-
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("City: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.title, null, {duration: 5000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
+        try {
+            let postOrPut;
+            if (cityDTO.id != null && cityDTO.id != "") {
+                await this.cityResourceService.updateCityUsingPUT(cityDTO).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.cityResourceService.createCityUsingPOST(cityDTO).toPromise();
+                postOrPut = "created";
             }
-        );
+            this.eventService.reloadCurrentPage();
+
+            this._snackBar.open(`City: '${cityDTO.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this.setStep("complete");
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+            this.setStep("form");
+        }
+        this._fuseProgressBarService.hide();
+    }
+
+    newEopooType() {
+        this.setStep("form");
     }
 
     private setStep(step: string){

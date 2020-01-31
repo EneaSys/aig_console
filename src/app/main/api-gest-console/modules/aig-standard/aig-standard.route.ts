@@ -28,6 +28,7 @@ import { AigIppModalityDetailPageComponent } from './components/ipp-modality-det
 import { AigIppProcedureDetailPageComponent } from './components/ipp-procedure-detail-page/ipp-procedure-detail-page.component';
 import { AigIppSectorDetailPageComponent } from './components/ipp-sector-detail-page/ipp-sector-detail-page.component';
 import { AigSocialActionDetailPageComponent } from './components/social-action-detail/social-action-detail.component';
+import { AigRoleDetailPageComponent } from '../management/components/role-detail-page/role-page-detail.component';
 
 export const aigStandardRoute: Routes = [
     {
@@ -53,7 +54,7 @@ export const aigStandardRoute: Routes = [
                     },
                     {
                         path: 'detail/:id',
-                        component: AigCityDetailPageComponent   ,
+                        component: AigCityDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             city: CityResolver,

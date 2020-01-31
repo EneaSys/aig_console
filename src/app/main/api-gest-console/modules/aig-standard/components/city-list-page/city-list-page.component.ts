@@ -16,11 +16,12 @@ export class AigCityListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
+    displayedColumns: string[] = ['id', 'code', 'name','wikiCode', 'buttons'];
     citys: CityDTO[];
 
     async loadComponent() {
         this.citys = await this.cityResourceService.getAllCitiesUsingGET().toPromise();
+        console.log(this.citys);
     }
 
     newCity(){

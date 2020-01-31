@@ -15,7 +15,7 @@ import { AigSocialListTableComponent } from './components/social/social-list-tab
 import { AigSocialFormComponent } from './components/social/social-form/social-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AigCityFormComponent } from "./components/city/city-form/city-form.component";
+import { AigCityNewUpdateFormComponent } from "./components/city/city-form/city-form.component";
 import { AigSocialActionListTableComponent } from './components/social-action/social-action-list-table/social-action-list-table.component';
 import { AigSocialActionFormComponent } from './components/social-action/social-action-form/social-action-form.component';
 
@@ -34,7 +34,7 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
     declarations: [
 
         AigCityListTableComponent,
-        AigCityFormComponent,
+        AigCityNewUpdateFormComponent,
 
         AigSocialListTableComponent,
         AigSocialFormComponent,
@@ -89,7 +89,7 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
     exports: [
 
         AigCityListTableComponent,
-        AigCityFormComponent,
+        AigCityNewUpdateFormComponent,
 
         AigSocialListTableComponent,
         AigSocialFormComponent,

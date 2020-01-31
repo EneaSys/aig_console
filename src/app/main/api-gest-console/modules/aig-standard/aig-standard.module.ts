@@ -104,9 +104,7 @@ import { MatInputModule } from '@angular/material/input';
         MatFormFieldModule,
         MatInputModule,
     ],
-    exports: [
-        AigCityNewUpdateDialogComponent,
-    ],
+    exports: [],
     providers: [],
 })
 export class AigStandardModule {}

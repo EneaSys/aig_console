@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -11,6 +11,13 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./lot-category-form.component.scss']
 })
 export class AigLotCategoryNewUpdateFormComponent implements OnInit {
+
+    private step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
+
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -19,50 +26,51 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private lotcategoryNewForm: FormGroup;
-    private step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
-    public ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO;
+    @Input()
+    ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO;
+
+    lotcategoryNewForm: FormGroup;
 
     ngOnInit(): void {
         this.lotcategoryNewForm = this._formBuilder.group({
+            id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
-            wikiCode:['', Validators.required]
+            wikiCode:['']
         })
+
+        if (this.ippLotCategoryDTO != null) {
+            this.lotcategoryNewForm.patchValue(this.ippLotCategoryDTO);
+        }
     }
 
-    public createCategory(){
+    async submit() {
         if (!this.lotcategoryNewForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO = {
-            name: this.lotcategoryNewForm.value.name,
-            code: this.lotcategoryNewForm.value.code,
-            wikiCode: this.lotcategoryNewForm.value.wikiCode
-        };
+        let ippLotCategoryDTO = this.lotcategoryNewForm.value;
 
-        this.categoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(ippLotCategoryDTO).subscribe(
-            (value: ItalianPublicProcurementLotCategoryDTO) => {
-                this.ippLotCategoryDTO = value;
-
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Lot Category: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.title, null, {duration: 5000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
+        try {
+            let postOrPut;
+            if (ippLotCategoryDTO.id != null && ippLotCategoryDTO.id != "") {
+                await this.categoryResourceService.updateItalianPublicProcurementLotCategoryUsingPUT(ippLotCategoryDTO).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.categoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(ippLotCategoryDTO).toPromise();
+                postOrPut = "created";
             }
-        );
+            this.eventService.reloadCurrentPage();
+
+            this._snackBar.open(`Lot Category: '${ippLotCategoryDTO.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this.setStep("complete");
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+            this.setStep("form");
+        }
+        this._fuseProgressBarService.hide();
     }
 
     private setStep(step: string){

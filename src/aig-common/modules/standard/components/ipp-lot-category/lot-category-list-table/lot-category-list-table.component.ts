@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AigLotCategoryListTableComponent implements OnInit {
     constructor() { }
-    @Input() error: any;
+    @Input() 
+    error: any;
     @Input()
     displayedColumns: string[];
     @Input()
