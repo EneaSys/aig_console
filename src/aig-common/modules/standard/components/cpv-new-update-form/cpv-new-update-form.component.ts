@@ -37,7 +37,7 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
             id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
-            wikiCode: ['', Validators.required],
+            wikiCode: [''],
         })
 
         if (this.cpv != null) {
