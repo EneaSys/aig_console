@@ -29,9 +29,10 @@ export class AigSocialFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.socialNewForm = this._formBuilder.group({
+            id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
-            wikiCode:['', Validators.required]
+            wikiCode:['']
         })
     }
 

@@ -15,7 +15,7 @@ export class AigIppProcedureFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private cpvResourceService: ItalianPublicProcurementProcedureResourceService,
+        private ippProcedureResourceService: ItalianPublicProcurementProcedureResourceService,
         private eventService: EventService,
     ) { }
 
@@ -25,13 +25,15 @@ export class AigIppProcedureFormComponent implements OnInit {
         loading: false,
         complete: false
     };
+    
     public procedureDTO: ItalianPublicProcurementProcedureDTO;
 
     ngOnInit(): void {
         this.procedureNewForm = this._formBuilder.group({
+            id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
-            wikiCode:['', Validators.required]
+            wikiCode:['']
         })
     }
 
@@ -48,7 +50,7 @@ export class AigIppProcedureFormComponent implements OnInit {
             wikiCode: this.procedureNewForm.value.wikiCode
         };
 
-        this.cpvResourceService.createItalianPublicProcurementProcedureUsingPOST(procedureDTO).subscribe(
+        this.ippProcedureResourceService.createItalianPublicProcurementProcedureUsingPOST(procedureDTO).subscribe(
             (value: ItalianPublicProcurementProcedureDTO) => {
                 this.procedureDTO = value;
 

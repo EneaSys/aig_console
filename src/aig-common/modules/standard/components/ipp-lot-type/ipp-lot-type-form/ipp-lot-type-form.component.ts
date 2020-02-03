@@ -22,50 +22,50 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private lotResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    lotDTO: ItalianPublicProcurementLotTypeDTO;
+    ippLotType: ItalianPublicProcurementLotTypeDTO;
 
-    lotNewForm: FormGroup;
+    ippLotTypeNewUpdateForm: FormGroup;
     
 
     ngOnInit(): void {
-        this.lotNewForm = this._formBuilder.group({
+        this.ippLotTypeNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['']
         })
 
-        if (this.lotDTO != null) {
-            this.lotNewForm.patchValue(this.lotDTO);
+        if (this.ippLotType != null) {
+            this.ippLotTypeNewUpdateForm.patchValue(this.ippLotType);
         }
     }
 
     async submit() {
-        if (!this.lotNewForm.valid) {
+        if (!this.ippLotTypeNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let lotDTO = this.lotNewForm.value;
+        let ippLotType = this.ippLotTypeNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (lotDTO.id != null && lotDTO.id != "") {
-                await this.lotResourceService.updateItalianPublicProcurementLotTypeUsingPUT(lotDTO).toPromise();
+            if (ippLotType.id != null && ippLotType.id != "") {
+                await this.ippLotTypeResourceService.updateItalianPublicProcurementLotTypeUsingPUT(ippLotType).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.lotResourceService.createItalianPublicProcurementLotTypeUsingPOST(lotDTO).toPromise();
+                await this.ippLotTypeResourceService.createItalianPublicProcurementLotTypeUsingPOST(ippLotType).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp LotType: '${lotDTO.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Ipp LotType: '${ippLotType.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

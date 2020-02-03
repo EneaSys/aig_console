@@ -1,4 +1,4 @@
-<form *ngIf="step.form" [formGroup]="lotNewForm" (ngSubmit)="submit()">
+<form *ngIf="step.form" [formGroup]="ippLotTypeNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -34,5 +34,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ lotNewForm.value | json }}</pre>
+    <pre>{{ ippLotTypeNewUpdateForm.value | json }}</pre>
 </div>

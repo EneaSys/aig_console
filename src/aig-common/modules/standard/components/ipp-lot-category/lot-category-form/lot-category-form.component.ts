@@ -22,49 +22,48 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private categoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO;
+    ippLotCategory: ItalianPublicProcurementLotCategoryDTO;
 
-    lotcategoryNewForm: FormGroup;
+    ippLotCategoryNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.lotcategoryNewForm = this._formBuilder.group({
+        this.ippLotCategoryNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['']
         })
 
-        if (this.ippLotCategoryDTO != null) {
-            this.lotcategoryNewForm.patchValue(this.ippLotCategoryDTO);
+        if (this.ippLotCategory != null) {
+            this.ippLotCategoryNewUpdateForm.patchValue(this.ippLotCategory);
         }
     }
 
     async submit() {
-        if (!this.lotcategoryNewForm.valid) {
+        if (!this.ippLotCategoryNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
-
-        let ippLotCategoryDTO = this.lotcategoryNewForm.value;
+        let ippLotCategory = this.ippLotCategoryNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (ippLotCategoryDTO.id != null && ippLotCategoryDTO.id != "") {
-                await this.categoryResourceService.updateItalianPublicProcurementLotCategoryUsingPUT(ippLotCategoryDTO).toPromise();
+            if (ippLotCategory.id != null && ippLotCategory.id != "") {
+                await this.ippLotCategoryResourceService.updateItalianPublicProcurementLotCategoryUsingPUT(ippLotCategory).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.categoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(ippLotCategoryDTO).toPromise();
+                await this.ippLotCategoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(ippLotCategory).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Lot Category: '${ippLotCategoryDTO.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Lot Category: '${ippLotCategory.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

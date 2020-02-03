@@ -1,4 +1,4 @@
-<form *ngIf="step.form" [formGroup]="categoryNewForm" (ngSubmit)="submit()">
+<form *ngIf="step.form" [formGroup]="ippLotCategoryNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -20,7 +20,7 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Wiki Code</mat-label>
             <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
-            <input name="wikiCode" formControlName="wikiCode" matInput required>
+            <input name="wikiCode" formControlName="wikiCode" matInput>
         </mat-form-field>
     </div>
 
