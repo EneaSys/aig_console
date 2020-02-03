@@ -16,7 +16,7 @@ export class AigEopooListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
+    displayedColumns: string[] = ['id', 'taxid', 'buttons'];
     
     eopooDTOs: EopooDTO[];
 

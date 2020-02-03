@@ -19,9 +19,9 @@ export class AigEopooTypeNewUpdateFormComponent implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
+        private eopooTypeResourceService: EopooTypeResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private eopooTypeResourceService: EopooTypeResourceService,
         private eventService: EventService,
     ) { }
 

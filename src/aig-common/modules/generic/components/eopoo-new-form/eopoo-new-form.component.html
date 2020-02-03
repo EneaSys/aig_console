@@ -17,9 +17,9 @@
     
     <div *ngIf="selectedEopooType" [ngSwitch]="selectedEopooType.eopooCategory">
         
-        <aig-eopoo-generic-new-update-form *ngSwitchCase="'GENERIC'">GENERIC</aig-eopoo-generic-new-update-form>
+        <aig-eopoo-generic-new-update-form *ngSwitchCase="'GENERIC'" [eopooType]="selectedEopooType">GENERIC</aig-eopoo-generic-new-update-form>
         
-        <aig-eopoo-person-new-update-form *ngSwitchCase="'PERSON'">PERSON</aig-eopoo-person-new-update-form>
+        <aig-eopoo-person-new-update-form *ngSwitchCase="'PERSON'" [eopooType]="selectedEopooType">PERSON</aig-eopoo-person-new-update-form>
 
     </div>
 

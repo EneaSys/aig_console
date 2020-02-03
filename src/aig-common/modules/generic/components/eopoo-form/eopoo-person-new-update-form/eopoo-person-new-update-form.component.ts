@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EopooTypeDTO } from 'aig-generic';
 
 @Component({
     selector: 'aig-eopoo-person-new-update-form',
@@ -10,6 +11,9 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
     ) { }
+
+    @Input()
+    eopooType: EopooTypeDTO;
 
     eopooPersonNewUpdateForm: FormGroup;
     
