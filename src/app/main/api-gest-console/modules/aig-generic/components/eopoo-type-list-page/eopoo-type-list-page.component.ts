@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { MatDialog } from '@angular/material/dialog';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { EopooTypeResourceService, EopooTypeDTO } from 'aig-generic';
-import { AigEopooTypeNewModalComponent } from '../eopoo-type-new-modal/eopoo-type-new-modal.component';
+import { AigEopooTypeNewUpdateModalComponent } from '../eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
 
 @Component({
     templateUrl: './eopoo-type-list-page.component.html',
@@ -24,6 +24,6 @@ export class AigEopooTypeListPageComponent extends GenericComponent {
     }
 
     newEopooType() {
-        this.dialog.open(AigEopooTypeNewModalComponent);
+        this.dialog.open(AigEopooTypeNewUpdateModalComponent, { data: { eopooType: {} } });
     }
 }

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CityResolver } from './services/city.resolver';
 import { EopooService } from './services/eopoo.service';
 import { EopooTypeService } from './services/eopoo-type.service';
 import { EopooTypeResolver } from './services/eopoo-type.resolver';
@@ -40,8 +39,7 @@ import { AigCommonModule } from '../common.module';
         PersonService,
         
         CityService,
-        CityResolver,
-
+        
         ApolloDocumentService,
         ApolloDocumentResolver,
         

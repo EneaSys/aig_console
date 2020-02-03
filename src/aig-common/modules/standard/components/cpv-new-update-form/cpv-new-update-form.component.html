@@ -1,0 +1,37 @@
+<form *ngIf="step.form" [formGroup]="cpvNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error>Indicare il nome del tipo anagrafica!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Cpv Type Code</mat-label>
+            <input formControlName="code" matInput />
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Cpv Type WikiCode</mat-label>
+            <input formControlName="wikiCode" matInput />
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ cpvNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!cpvNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newCpv()">Create New</button>
+</div>
