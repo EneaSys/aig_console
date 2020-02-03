@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
+import { CpvResolver } from 'aig-common/modules/standard/resolver/cpv.resolver';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
 import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
@@ -112,9 +113,9 @@ export const aigStandardRoute: Routes = [
                         path: 'detail/:id',
                         component: AigCpvDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        // resolve: {
-                        //     role: CpvResolver,
-                        // },
+                        resolve: {
+                            role: CpvResolver,
+                        },
                     },
                 ]
             },

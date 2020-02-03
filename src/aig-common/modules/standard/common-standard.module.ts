@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AigCommonModule } from 'aig-common/common.module';
 import { AigCpvListTableComponent } from './components/cpv-list-table/cpv-list-table.component';
 import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/cpv-new-update-form.component';
+import { CpvResolver } from './resolver/cpv.resolver';
 
 
 @NgModule({
@@ -51,6 +52,8 @@ import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/c
         AigCpvListTableComponent,
         AigCpvNewUpdateFormComponent,
     ],
-    providers: [],
+    providers: [
+        CpvResolver,
+    ],
 })
 export class AigCommonStandardModule {}
