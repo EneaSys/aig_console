@@ -29,6 +29,12 @@ import { AigIppLotTypeNewUpdateFormComponent } from './components/ipp-lot-type/i
 import { AigIppLotTypeListTableComponent } from './components/ipp-lot-type/ipp-lot-type-list-table/ipp-lot-type-list-table.component';
 import { AigLotCategoryNewUpdateFormComponent } from './components/ipp-lot-category/lot-category-form/lot-category-form.component';
 import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/lot-category-list-table/lot-category-list-table.component';
+import { SocialResolver } from "./resolver/social.resolver";
+import { ActionResolver } from "./resolver/social-action.resolver";
+import { SectorResolver } from "./resolver/sector.resolver";
+import { IppProcedureResolver } from "./resolver/procedure.resolver";
+import { LotResolver } from "./resolver/lot.resolver";
+import { IppModalityResolver } from "./resolver/ipp-modality.resolver";
 
 @NgModule({
     declarations: [
@@ -116,6 +122,13 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
     entryComponents: [
 
     ],
-    providers: [],
+    providers: [
+        SocialResolver,
+        ActionResolver,
+        SectorResolver,
+        IppProcedureResolver,
+        LotResolver,
+        IppModalityResolver
+    ],
 })
 export class AigCommonStandardModule {}

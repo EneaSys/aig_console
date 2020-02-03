@@ -12,13 +12,6 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
 import { CityResolver } from 'aig-common/old-common/services/city.resolver';
 import { CityService } from 'aig-common/old-common/services/city.service';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
-import { SocialResolver } from 'aig-common/old-common/services/social.resolver';
-import { ActionResolver } from 'aig-common/old-common/services/social-action.resolver';
-import { CpvResolver } from 'aig-common/old-common/services/cpv.resolver';
-import { IppModalityResolver } from 'aig-common/old-common/services/ipp-modality.resolver';
-import { IppProcedureResolver } from 'aig-common/old-common/services/procedure.resolver';
-import { SectorResolver } from 'aig-common/old-common/services/sector.resolver';
-import { LotResolver } from 'aig-common/old-common/services/lot.resolver';
 import { CategoryResolver } from 'aig-common/old-common/services/category.resolver';
 import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigSocialDetailPageComponent } from './components/social-detail-page/social-detail-page.component';
@@ -29,6 +22,12 @@ import { AigIppProcedureDetailPageComponent } from './components/ipp-procedure-d
 import { AigIppSectorDetailPageComponent } from './components/ipp-sector-detail-page/ipp-sector-detail-page.component';
 import { AigSocialActionDetailPageComponent } from './components/social-action-detail/social-action-detail.component';
 import { AigRoleDetailPageComponent } from '../management/components/role-detail-page/role-page-detail.component';
+import { SocialResolver } from 'aig-common/modules/standard/resolver/social.resolver';
+import { ActionResolver } from 'aig-common/modules/standard/resolver/social-action.resolver';
+import { SectorResolver } from 'aig-common/modules/standard/resolver/sector.resolver';
+import { IppProcedureResolver } from 'aig-common/modules/standard/resolver/procedure.resolver';
+import { LotResolver } from 'aig-common/modules/standard/resolver/lot.resolver';
+import { IppModalityResolver } from 'aig-common/modules/standard/resolver/ipp-modality.resolver';
 
 export const aigStandardRoute: Routes = [
     {

@@ -19,13 +19,6 @@ import { PermissionsRoleCustomResolver } from './resolver/permission-role-custom
 import { UserResolver } from './resolver/user.resolver';
 import { GroupResolver } from './resolver/group.resolver';
 import { AigCommonModule } from '../common.module';
-import { SocialResolver } from './services/social.resolver';
-import { ActionResolver } from './services/social-action.resolver';
-import { CpvResolver } from './services/cpv.resolver';
-import { IppModalityResolver } from './services/ipp-modality.resolver';
-import { IppProcedureResolver } from "./services/procedure.resolver";
-import { SectorResolver } from "./services/sector.resolver";
-import { LotResolver } from './services/lot.resolver';
 
 @NgModule({
     declarations: [
@@ -49,14 +42,6 @@ import { LotResolver } from './services/lot.resolver';
         CityService,
         CityResolver,
 
-        SocialResolver,
-        ActionResolver,
-        CpvResolver,
-        IppModalityResolver,
-        IppProcedureResolver,
-        SectorResolver,
-        LotResolver,
-        
         ApolloDocumentService,
         ApolloDocumentResolver,
         
