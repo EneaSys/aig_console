@@ -19,16 +19,16 @@ export class AigSocialActionFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private actionNewForm: FormGroup;
+    private ippSocialActionNewUpdateForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    public actionDTO: SocialActionDTO;
+    public ippSocialAction: SocialActionDTO;
 
     ngOnInit(): void {
-        this.actionNewForm = this._formBuilder.group({
+        this.ippSocialActionNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -37,21 +37,21 @@ export class AigSocialActionFormComponent implements OnInit {
     }
 
     public createAction(){
-        if (!this.actionNewForm.valid) {
+        if (!this.ippSocialActionNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let actionDTO: SocialActionDTO = {
-            name: this.actionNewForm.value.name,
-            code: this.actionNewForm.value.code,
-            wikiCode: this.actionNewForm.value.wikiCode
+        let ippSocialAction: SocialActionDTO = {
+            name: this.ippSocialActionNewUpdateForm.value.name,
+            code: this.ippSocialActionNewUpdateForm.value.code,
+            wikiCode: this.ippSocialActionNewUpdateForm.value.wikiCode
         };
 
-        this.actionResourceService.createSocialActionUsingPOST(actionDTO).subscribe(
+        this.actionResourceService.createSocialActionUsingPOST(ippSocialAction).subscribe(
             (value: SocialActionDTO) => {
-                this.actionDTO = value;
+                this.ippSocialAction = value;
 
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Social Action: " + value.name + " created.", null, {duration: 2000,});

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import {  ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementProcedureDTO  } from 'aig-standard';
+import { ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementProcedureDTO  } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -19,17 +19,17 @@ export class AigIppProcedureFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private procedureNewForm: FormGroup;
+    private ippProcedureNewUpdateForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
     
-    public procedureDTO: ItalianPublicProcurementProcedureDTO;
+    public ippProcedure: ItalianPublicProcurementProcedureDTO;
 
     ngOnInit(): void {
-        this.procedureNewForm = this._formBuilder.group({
+        this.ippProcedureNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -38,21 +38,21 @@ export class AigIppProcedureFormComponent implements OnInit {
     }
 
     public createProcedure(){
-        if (!this.procedureNewForm.valid) {
+        if (!this.ippProcedureNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procedureDTO: ItalianPublicProcurementProcedureDTO = {
-            name: this.procedureNewForm.value.name,
-            code: this.procedureNewForm.value.code,
-            wikiCode: this.procedureNewForm.value.wikiCode
+        let ippProcedure: ItalianPublicProcurementProcedureDTO = {
+            name: this.ippProcedureNewUpdateForm.value.name,
+            code: this.ippProcedureNewUpdateForm.value.code,
+            wikiCode: this.ippProcedureNewUpdateForm.value.wikiCode
         };
 
-        this.ippProcedureResourceService.createItalianPublicProcurementProcedureUsingPOST(procedureDTO).subscribe(
+        this.ippProcedureResourceService.createItalianPublicProcurementProcedureUsingPOST(ippProcedure).subscribe(
             (value: ItalianPublicProcurementProcedureDTO) => {
-                this.procedureDTO = value;
+                this.ippProcedure = value;
 
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Cpv: " + value.name + " created.", null, {duration: 2000,});

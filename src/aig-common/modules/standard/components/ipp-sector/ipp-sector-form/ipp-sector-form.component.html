@@ -1,4 +1,4 @@
-<form *ngIf="step.form" [formGroup]="sectorNewForm" (ngSubmit)="createSector()">
+<form *ngIf="step.form" [formGroup]="ippSectorNewUpdateForm" (ngSubmit)="createSector()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -34,5 +34,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ sectorDTO | json }}</pre>
+    <pre>{{ ippSectorNewUpdateForm.value | json }}</pre>
 </div>

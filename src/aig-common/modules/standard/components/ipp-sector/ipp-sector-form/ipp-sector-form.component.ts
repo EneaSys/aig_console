@@ -15,20 +15,20 @@ export class AigIppSectorFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private sectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
         private eventService: EventService,
     ) { }
 
-    private sectorNewForm: FormGroup;
+    private ippSectorNewUpdateForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    public sectorDTO: ItalianPublicProcurementSectorDTO;
+    public sector: ItalianPublicProcurementSectorDTO;
 
     ngOnInit(): void {
-        this.sectorNewForm = this._formBuilder.group({
+        this.ippSectorNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -37,21 +37,21 @@ export class AigIppSectorFormComponent implements OnInit {
     }
 
     public createSector(){
-        if (!this.sectorNewForm.valid) {
+        if (!this.ippSectorNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let sectorDTO: ItalianPublicProcurementSectorDTO = {
-            name: this.sectorNewForm.value.name,
-            code: this.sectorNewForm.value.code,
-            wikiCode: this.sectorNewForm.value.wikiCode
+        let sector: ItalianPublicProcurementSectorDTO = {
+            name: this.ippSectorNewUpdateForm.value.name,
+            code: this.ippSectorNewUpdateForm.value.code,
+            wikiCode: this.ippSectorNewUpdateForm.value.wikiCode
         };
 
-        this.sectorResourceService.createItalianPublicProcurementSectorUsingPOST(sectorDTO).subscribe(
+        this.ippSectorResourceService.createItalianPublicProcurementSectorUsingPOST(sector).subscribe(
             (value: ItalianPublicProcurementSectorDTO) => {
-                this.sectorDTO = value;
+                this.sector = value;
 
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Ipp Sector: " + value.name + " created.", null, {duration: 2000,});

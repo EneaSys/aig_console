@@ -1,4 +1,4 @@
-<form *ngIf="step.form" [formGroup]="actionNewForm" (ngSubmit)="createAction()">
+<form *ngIf="step.form" [formGroup]="ippSocialActionNewUpdateForm" (ngSubmit)="createAction()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -34,5 +34,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ actionDTO | json }}</pre>
+    <pre>{{ ippSocialActionNewUpdateForm.value | json }}</pre>
 </div>

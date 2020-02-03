@@ -13,3 +13,5 @@ export class CityResolver implements Resolve<Observable<CityDTO>> {
         return this.roleResourceService.getCityUsingGET(id);
     }
 }
+
+

@@ -12,7 +12,6 @@ import { AigSocialListPageComponent } from './components/social-list-page/social
 import { CityResolver } from 'aig-common/old-common/services/city.resolver';
 import { CityService } from 'aig-common/old-common/services/city.service';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
-import { CategoryResolver } from 'aig-common/old-common/services/category.resolver';
 import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
 import { AigSocialDetailPageComponent } from './components/social-detail-page/social-detail-page.component';
 import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
@@ -28,6 +27,7 @@ import { SectorResolver } from 'aig-common/modules/standard/resolver/sector.reso
 import { IppProcedureResolver } from 'aig-common/modules/standard/resolver/procedure.resolver';
 import { LotResolver } from 'aig-common/modules/standard/resolver/lot.resolver';
 import { IppModalityResolver } from 'aig-common/modules/standard/resolver/ipp-modality.resolver';
+import { CategoryResolver } from 'aig-common/modules/standard/resolver/category.resolver';
 
 export const aigStandardRoute: Routes = [
     {

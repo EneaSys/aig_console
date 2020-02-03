@@ -1,4 +1,4 @@
-<form *ngIf="step.form" [formGroup]="procedureNewForm" (ngSubmit)="createProcedure()">
+<form *ngIf="step.form" [formGroup]="ippProcedureNewUpdateForm" (ngSubmit)="createProcedure()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -34,5 +34,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ cpvDTO | json }}</pre>
+    <pre>{{ ippProcedureNewUpdateForm.value | json }}</pre>
 </div>

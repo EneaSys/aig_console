@@ -19,16 +19,16 @@ export class AigSocialFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private socialNewForm: FormGroup;
+    private ippSocialNewUpdateForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    public socialDTO: SocialDTO;
+    public social: SocialDTO;
 
     ngOnInit(): void {
-        this.socialNewForm = this._formBuilder.group({
+        this.ippSocialNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -37,21 +37,21 @@ export class AigSocialFormComponent implements OnInit {
     }
 
     public createSocial(){
-        if (!this.socialNewForm.valid) {
+        if (!this.ippSocialNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let socialDTO: SocialDTO = {
-            name: this.socialNewForm.value.name,
-            code: this.socialNewForm.value.code,
-            wikiCode: this.socialNewForm.value.wikiCode
+        let social: SocialDTO = {
+            name: this.ippSocialNewUpdateForm.value.name,
+            code: this.ippSocialNewUpdateForm.value.code,
+            wikiCode: this.ippSocialNewUpdateForm.value.wikiCode
         };
 
-        this.socialResourceService.createSocialUsingPOST(socialDTO).subscribe(
+        this.socialResourceService.createSocialUsingPOST(social).subscribe(
             (value: SocialDTO) => {
-                this.socialDTO = value;
+                this.social = value;
 
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("Social: " + value.name + " created.", null, {duration: 2000,});

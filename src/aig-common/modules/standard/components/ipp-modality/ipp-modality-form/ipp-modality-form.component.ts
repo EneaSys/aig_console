@@ -27,44 +27,44 @@ export class AigIppModalityFormComponent implements OnInit {
     ) { }
     
     @Input()
-    ippModalityDTO: ItalianPublicProcurementModalityDTO;
+    ippModality: ItalianPublicProcurementModalityDTO;
 
-    ippModalityNewForm: FormGroup;
+    ippModalityNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.ippModalityNewForm = this._formBuilder.group({
+        this.ippModalityNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['']
         })
 
-        if (this.ippModalityDTO != null) {
-            this.ippModalityNewForm.patchValue(this.ippModalityDTO);
+        if (this.ippModality != null) {
+            this.ippModalityNewUpdateForm.patchValue(this.ippModality);
         }
     }
 
     async submit() {
-        if (!this.ippModalityNewForm.valid) {
+        if (!this.ippModalityNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippModalityDTO = this.ippModalityNewForm.value;
+        let ippModality = this.ippModalityNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (ippModalityDTO.id != null && ippModalityDTO.id != "") {
-                await this.ippModalityResourceService.updateItalianPublicProcurementModalityUsingPUT(ippModalityDTO).toPromise();
+            if (ippModality.id != null && ippModality.id != "") {
+                await this.ippModalityResourceService.updateItalianPublicProcurementModalityUsingPUT(ippModality).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.ippModalityResourceService.createItalianPublicProcurementModalityUsingPOST(ippModalityDTO).toPromise();
+                await this.ippModalityResourceService.createItalianPublicProcurementModalityUsingPOST(ippModality).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Modality: '${ippModalityDTO.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Ipp Modality: '${ippModality.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

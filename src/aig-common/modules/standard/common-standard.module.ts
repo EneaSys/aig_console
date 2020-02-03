@@ -35,6 +35,7 @@ import { SectorResolver } from "./resolver/sector.resolver";
 import { IppProcedureResolver } from "./resolver/procedure.resolver";
 import { LotResolver } from "./resolver/lot.resolver";
 import { IppModalityResolver } from "./resolver/ipp-modality.resolver";
+import { CategoryResolver } from "./resolver/category.resolver";
 
 @NgModule({
     declarations: [
@@ -128,7 +129,8 @@ import { IppModalityResolver } from "./resolver/ipp-modality.resolver";
         SectorResolver,
         IppProcedureResolver,
         LotResolver,
-        IppModalityResolver
+        IppModalityResolver,
+        CategoryResolver
     ],
 })
 export class AigCommonStandardModule {}
