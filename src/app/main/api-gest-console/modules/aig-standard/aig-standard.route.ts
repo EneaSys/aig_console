@@ -114,7 +114,7 @@ export const aigStandardRoute: Routes = [
                         component: AigCpvDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: CpvResolver,
+                            cpv: CpvResolver,
                         },
                     },
                 ]
