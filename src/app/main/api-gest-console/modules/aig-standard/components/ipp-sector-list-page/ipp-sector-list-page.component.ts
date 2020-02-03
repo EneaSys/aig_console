@@ -15,7 +15,7 @@ export class AigIppSectorListPageComponent extends GenericComponent {
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
-    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
+    displayedColumns: string[] = ['id', 'code', 'name', 'wikiCode', 'buttons'];
     ippSectorDTOs: ItalianPublicProcurementSectorDTO[];
 
     async loadComponent() {

@@ -9,6 +9,8 @@ export class AigIppSectorListTableComponent implements OnInit {
     constructor() { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];

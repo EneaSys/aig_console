@@ -21,7 +21,6 @@ export class AigCityListPageComponent extends GenericComponent {
 
     async loadComponent() {
         this.citys = await this.cityResourceService.getAllCitiesUsingGET().toPromise();
-        console.log(this.citys);
     }
 
     newCity(){

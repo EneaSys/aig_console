@@ -16,7 +16,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['id', 'code', 'name', 'buttons'];
+    displayedColumns: string[] = ['id', 'code', 'name','wikiCode', 'buttons'];
     socialActionDTOs: SocialActionDTO[];
 
     async loadComponent() {

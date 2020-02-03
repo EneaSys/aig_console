@@ -9,6 +9,8 @@ export class AigIppProcedureListTableComponent implements OnInit {
     constructor() { }
 
     @Input()
+    error: any;
+    @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];

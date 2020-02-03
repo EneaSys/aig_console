@@ -7,14 +7,16 @@ import { Router } from '@angular/router';
     styleUrls: ['./social-list-table.component.scss']
 })
 export class AigSocialListTableComponent implements OnInit {
+    constructor(
+        private router: Router,
+    ) { }
+
+    @Input()
+    error: any;
     @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];
-    
-    constructor(
-        private router: Router,
-    ) { }
 
     ngOnInit(): void { }
 
