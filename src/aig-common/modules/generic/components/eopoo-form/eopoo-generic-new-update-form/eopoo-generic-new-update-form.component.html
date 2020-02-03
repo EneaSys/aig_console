@@ -1,0 +1,33 @@
+<div fxLayout="column">
+    <form [formGroup]="eopooOrganizationNewUpdateForm" (ngSubmit)="submit()">
+        
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Partita IVA</mat-label>
+                <input matInput #taxIdO formControlName="taxId" maxlength="10">
+                <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                <mat-hint align="end">{{taxIdO.value.length}} / 10</mat-hint>
+                <mat-error>La partita Iva è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Denominazione</mat-label>
+                <input matInput formControlName="name">
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>La denominazione è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button type="submit" mat-raised-button color="accent">Crea</button>
+        </div>
+
+        Organization:
+        <pre><code>{{ eopooOrganizationNewUpdateForm.getRawValue() | json }}</code></pre>
+
+    </form>
+</div>
+
+

@@ -21,6 +21,8 @@ import { EopooTypeResolver } from './resolver/eopoo-type.resolver';
 import { RouterModule } from '@angular/router';
 import { AigEopooTypeNewUpdateFormComponent } from './components/eopoo-type-new-update-form/eopoo-type-new-update-form.component';
 import { MatInputModule } from '@angular/material/input';
+import { AigEopooGenericNewUpdateFormComponent } from './components/eopoo-form/eopoo-generic-new-update-form/eopoo-generic-new-update-form.component';
+import { AigEopooPersonNewUpdateFormComponent } from './components/eopoo-form/eopoo-person-new-update-form/eopoo-person-new-update-form.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import { MatInputModule } from '@angular/material/input';
         
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
+        AigEopooGenericNewUpdateFormComponent,
+        AigEopooPersonNewUpdateFormComponent,
         
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
@@ -35,6 +39,8 @@ import { MatInputModule } from '@angular/material/input';
     exports: [
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
+        AigEopooGenericNewUpdateFormComponent,
+        AigEopooPersonNewUpdateFormComponent,
 
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
