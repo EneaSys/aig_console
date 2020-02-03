@@ -11,8 +11,6 @@ import { AigSocialActionListPageComponent } from './components/social-action-lis
 import { AigIppLotCategoryListPageComponent } from './components/ipp-lot-category-list-page/ipp-lot-category-list-page.component';
 import { AigSocialListPageComponent } from './components/social-list-page/social-list-page.component';
 
-import { CpvResolver } from 'aig-common/modules/generic/resolver/cpv.resolver';
-
 export const aigStandardRoute: Routes = [
     {
         path: 's6d',
@@ -114,9 +112,9 @@ export const aigStandardRoute: Routes = [
                         path: 'detail/:id',
                         component: AigCpvDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        resolve: {
-                            role: CpvResolver,
-                        },
+                        // resolve: {
+                        //     role: CpvResolver,
+                        // },
                     },
                 ]
             },

@@ -4,7 +4,6 @@ import { EopooTypeService } from './services/eopoo-type.service';
 import { EopooTypeResolver } from './services/eopoo-type.resolver';
 import { PersonService } from './services/person.service';
 import { CityService } from './services/city.service';
-import { CityResolver } from './services/city.resolver';
 import { ApiModule } from './services/test';
 import { ApolloDocumentService } from './services/apollo-document.service';
 import { ApolloDocumentResolver } from './services/apollo-document.resolver';
@@ -40,7 +39,6 @@ import { AigCommonModule } from '../common.module';
         PersonService,
         
         CityService,
-        CityResolver,
         
         ApolloDocumentService,
         ApolloDocumentResolver,

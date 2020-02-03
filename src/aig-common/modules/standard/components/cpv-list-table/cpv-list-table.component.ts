@@ -20,8 +20,4 @@ export class AigCpvListTableComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
-    public detailCpv(idCpv: string){
-        this.router.navigate(['s6d', 'cpv', 'detail', idCpv]);
-    }
 }
