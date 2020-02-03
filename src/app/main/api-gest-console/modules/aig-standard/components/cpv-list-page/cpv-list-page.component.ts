@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { EventService } from 'aig-common/event-manager/event.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CpvDTO, CpvResourceService } from 'aig-standard';
+import { AigCpvNewUpdateDialogComponent } from '../cpv-new-update-dialog/cpv-new-update-dialog.component';
 
 @Component({
     templateUrl: './cpv-list-page.component.html',
@@ -10,12 +14,19 @@ import { CpvDTO, CpvResourceService } from 'aig-standard';
 export class AigCpvListPageComponent extends GenericComponent {
     constructor(
         private cpvResourceService: CpvResourceService,
+        private eventService: EventService,
+        private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    cpvs: CpvDTO[];
+    cpvDisplayedColumns: string[] = ['id', 'name', 'code', 'wikiCode', 'buttons'];
+    cpvDataSource: CpvDTO[];
 
     async loadComponent() {
-        this.cpvs = await this.cpvResourceService.getAllCpvsUsingGET().toPromise();
+        this.cpvDataSource = await this.cpvResourceService.getAllCpvsUsingGET().toPromise();
+    }
+    
+    newCpv(): void {
+        this.dialog.open(AigCpvNewUpdateDialogComponent);
     }
 }
