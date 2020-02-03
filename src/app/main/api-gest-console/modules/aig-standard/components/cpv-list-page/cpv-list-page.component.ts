@@ -27,6 +27,6 @@ export class AigCpvListPageComponent extends GenericComponent {
     }
     
     newCpv(): void {
-        this.dialog.open(AigCpvNewUpdateDialogComponent, { data: { eopooType: {} } });
+        this.dialog.open(AigCpvNewUpdateDialogComponent, { data: {} });
     }
 }
