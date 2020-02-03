@@ -51,11 +51,11 @@ export class AigIppModalityFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippModality = this.ippModalityNewUpdateForm.value;
+        let ippModality: ItalianPublicProcurementModalityDTO = this.ippModalityNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (ippModality.id != null && ippModality.id != "") {
+            if (ippModality.id != null) { // && ippModality.id != "") {
                 await this.ippModalityResourceService.updateItalianPublicProcurementModalityUsingPUT(ippModality).toPromise();
                 postOrPut = "updated";
             } else {

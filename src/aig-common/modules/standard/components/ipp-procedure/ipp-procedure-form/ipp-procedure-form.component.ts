@@ -11,6 +11,12 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./ipp-procedure-form.component.scss']
 })
 export class AigIppProcedureFormComponent implements OnInit {
+    private step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
+
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -20,11 +26,6 @@ export class AigIppProcedureFormComponent implements OnInit {
     ) { }
 
     private ippProcedureNewUpdateForm: FormGroup;
-    private step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
     
     public ippProcedure: ItalianPublicProcurementProcedureDTO;
 
@@ -44,11 +45,7 @@ export class AigIppProcedureFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippProcedure: ItalianPublicProcurementProcedureDTO = {
-            name: this.ippProcedureNewUpdateForm.value.name,
-            code: this.ippProcedureNewUpdateForm.value.code,
-            wikiCode: this.ippProcedureNewUpdateForm.value.wikiCode
-        };
+        let ippProcedure: ItalianPublicProcurementProcedureDTO = this.ippProcedureNewUpdateForm.value;
 
         this.ippProcedureResourceService.createItalianPublicProcurementProcedureUsingPOST(ippProcedure).subscribe(
             (value: ItalianPublicProcurementProcedureDTO) => {

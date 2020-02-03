@@ -2,7 +2,7 @@ import { Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CityService } from './city.service';
+import { CityService } from 'aig-common/old-common/services/city.service';
 
 type EntityArrayResponseType = HttpResponse<any[]>;
 

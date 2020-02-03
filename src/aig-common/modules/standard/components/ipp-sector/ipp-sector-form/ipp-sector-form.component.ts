@@ -11,6 +11,11 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./ipp-sector-form.component.scss']
 })
 export class AigIppSectorFormComponent implements OnInit {
+    private step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -20,11 +25,6 @@ export class AigIppSectorFormComponent implements OnInit {
     ) { }
 
     private ippSectorNewUpdateForm: FormGroup;
-    private step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
     public sector: ItalianPublicProcurementSectorDTO;
 
     ngOnInit(): void {
