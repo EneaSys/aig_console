@@ -20,14 +20,14 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Eopoo',
                 type     : 'item',
                 icon     : 'how_to_reg',
-                url      : '/g5c/eopoo/list',
+                url      : '/g5c/eopoo',
             },
             {
                 id       : 'eopoo-type-list-page',
                 title    : 'Eopoo Type',
                 type     : 'item',
                 icon     : 'how_to_reg',
-                url      : '/g5c/eopoo-type/list',
+                url      : '/g5c/eopoo-type',
             },
         ]
     },
@@ -42,7 +42,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Utenti',
                 type     : 'item',
                 icon     : 'person',
-                url      : '/iam/user/list',
+                url      : '/iam/user',
                 permission: ['e4y.account.get'],
             },
             {
@@ -50,7 +50,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Gruppi',
                 type     : 'item',
                 icon     : 'group',
-                url      : '/iam/group/list',
+                url      : '/iam/group',
                 permission: ['e4y.account.get'],
             },
             {
@@ -58,7 +58,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Ruoli Personalizzati',
                 type     : 'item',
                 icon     : 'assignment_ind',
-                url      : '/iam/role/list',
+                url      : '/iam/role',
                 permission: ['e4y.role.get'],
             },
         ]
@@ -74,63 +74,63 @@ export const navigation: FuseNavigation[] = [
                 title    : 'City',
                 type     : 'item',
                 icon     : 'location_city',
-                url      : '/s6d/city/list'
+                url      : '/s6d/city'
             },
             {
                 id       : '',
                 title    : 'Social',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/social/list'
+                url      : '/s6d/social'
             },
             {
                 id       : '',
                 title    : 'Social Action',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/social-action/list'
+                url      : '/s6d/social-action'
             },
             {
                 id       : '',
                 title    : 'Cpv',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/cpv/list'
+                url      : '/s6d/cpv'
             },
             {
                 id       : '',
                 title    : 'Ipp Modality',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-modality/list'
+                url      : '/s6d/ipp-modality'
             },
             {
                 id       : '',
                 title    : 'Ipp Procedure',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-procedure/list'
+                url      : '/s6d/ipp-procedure'
             },
             {
                 id       : '',
                 title    : 'Ipp Sector',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-sector/list'
+                url      : '/s6d/ipp-sector'
             },
             {
                 id       : '',
                 title    : 'Ipp Lot Type',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-lot-type/list'
+                url      : '/s6d/ipp-lot-type'
             },
             {
                 id       : '',
                 title    : 'Ipp Lot Category',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-lot-category/list'
+                url      : '/s6d/ipp-lot-category'
             },
         ]
     },
@@ -145,21 +145,21 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Ruoli',
                 type     : 'item',
                 icon     : 'assignment_ind',
-                url      : '/m8t/role/list'
+                url      : '/m8t/role'
             },
             {
                 id       : 'permission-list',
                 title    : 'Permessi',
                 type     : 'item',
                 icon     : 'star_half',
-                url      : '/m8t/permission/list'
+                url      : '/m8t/permission'
             },
             {
                 id       : 'context-list',
                 title    : 'Contesti',
                 type     : 'item',
                 icon     : 'control_camera',
-                url      : '/m8t/context/list'
+                url      : '/m8t/context'
             },
         ]
     },
