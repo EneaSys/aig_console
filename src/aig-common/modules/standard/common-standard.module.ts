@@ -25,17 +25,17 @@ import { AigSocialActionListTableComponent } from './components/social-action/so
 import { AigSocialActionNewUpdateFormComponent } from './components/social-action/social-action-new-update-form/social-action-new-update-form.component';
 import { AigCityNewUpdateFormComponent } from "./components/city/city-form/city-form.component";
 import { AigCityListTableComponent } from './components/city/city-list-table/city-list-table.component';
-import { AigCpvListTableComponent } from './components/cpv-list-table/cpv-list-table.component';
-import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/cpv-new-update-form.component';
+import { AigCpvListTableComponent } from './components/cpv/cpv-list-table/cpv-list-table.component';
+import { AigCpvNewUpdateFormComponent } from './components/cpv/cpv-new-update-form/cpv-new-update-form.component';
 import { AigIppModalityNewUpdateFormComponent } from './components/ipp-modality/ipp-modality-new-update-form/ipp-modality-new-update-form.component';
 import { AigIppModalityListTableComponent } from './components/ipp-modality/ipp-modality-list-table/ipp-modality-list-table.component';
 import { AigIppProcedureListTableComponent } from './components/ipp-procedure/ipp-procedure-list-table/ipp-procedure-list-table.component';
 import { AigIppProcedureNewUpdateFormComponent } from "./components/ipp-procedure/ipp-procedure-new-update-form/ipp-procedure-new-update-form.component";
 import { AigIppSectorNewUpdateFormComponent } from './components/ipp-sector/ipp-sector-new-update-form/ipp-sector-new-update-form.component';
 import { AigIppSectorListTableComponent } from './components/ipp-sector/ipp-sector-list-table/ipp-sector-list-table.component';
-import { AigIppLotTypeNewUpdateFormComponent } from './components/ipp-lot-type/ipp-lot-type-form/ipp-lot-type-form.component';
+import { AigIppLotTypeNewUpdateFormComponent } from './components/ipp-lot-type/ipp-lot-type-new-update-form/ipp-lot-type-new-update-form.component';
 import { AigIppLotTypeListTableComponent } from './components/ipp-lot-type/ipp-lot-type-list-table/ipp-lot-type-list-table.component';
-import { AigLotCategoryNewUpdateFormComponent } from './components/ipp-lot-category/lot-category-form/lot-category-form.component';
+import { AigLotCategoryNewUpdateFormComponent } from './components/ipp-lot-category/lot-category-new-update-form/lot-category-new-update-form.component';
 import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/lot-category-list-table/lot-category-list-table.component';
 
 import { SocialResolver } from "./resolver/social.resolver";

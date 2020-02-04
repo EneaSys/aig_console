@@ -6,9 +6,9 @@ import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeReso
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-ipp-lot-type-form',
-    templateUrl: './ipp-lot-type-form.component.html',
-    styleUrls: ['./ipp-lot-type-form.component.scss']
+    selector: 'aig-ipp-lot-type-new-update-form',
+    templateUrl: './ipp-lot-type-new-update-form.component.html',
+    styleUrls: ['./ipp-lot-type-new-update-form.component.scss']
 })
 export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
     step: any = {

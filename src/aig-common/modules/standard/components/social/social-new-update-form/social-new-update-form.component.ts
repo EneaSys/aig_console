@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -11,21 +11,24 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./social-new-update-form.component.scss']
 })
 export class AigSocialNewUpdateFormComponent implements OnInit {
-    constructor(
-        private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
-        private socialResourceService: SocialResourceService,
-        private eventService: EventService,
-    ) { }
-
-    private ippSocialNewUpdateForm: FormGroup;
-    private step: any = {
+    step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    public social: SocialDTO;
+
+    constructor(
+        private _formBuilder: FormBuilder,
+        private _fuseProgressBarService: FuseProgressBarService,
+        private _snackBar: MatSnackBar,
+        private ippSocialResourceService: SocialResourceService,
+        private eventService: EventService,
+    ) { }
+
+    @Input()
+    ippSocial: SocialDTO;
+
+    ippSocialNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.ippSocialNewUpdateForm = this._formBuilder.group({
@@ -36,34 +39,37 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         })
     }
 
-    public createSocial(){
+    async submit() {
         if (!this.ippSocialNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let social: SocialDTO = {
+        let ippSocial: SocialDTO = {
             name: this.ippSocialNewUpdateForm.value.name,
             code: this.ippSocialNewUpdateForm.value.code,
             wikiCode: this.ippSocialNewUpdateForm.value.wikiCode
         };
 
-        this.socialResourceService.createSocialUsingPOST(social).subscribe(
-            (value: SocialDTO) => {
-                this.social = value;
-
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Social: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.title, null, {duration: 5000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
+        try {
+            let postOrPut;
+            if (ippSocial.id != 0) {
+                await this.ippSocialResourceService.updateSocialUsingPUT(ippSocial).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.ippSocialResourceService.createSocialUsingPOST(ippSocial).toPromise();
+                postOrPut = "created";
             }
-        );
+            this.eventService.reloadCurrentPage();
+
+            this._snackBar.open(`Ipp Social: '${ippSocial.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this.setStep("complete");
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+            this.setStep("form");
+        }
+        this._fuseProgressBarService.hide();
     }
 
     private setStep(step: string){

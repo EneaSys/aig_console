@@ -1,15 +1,16 @@
 <div id="aig-city-detail-page" class="page-layout blank">
     
-    <aig-standard-header [sectionName]="procedureDTO.name" [search]="false"></aig-standard-header>
+    <aig-standard-header [sectionName]="ippProcedureDTO.name" [search]="false"></aig-standard-header>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                <div class="h4 m-8 ml-16 mb-0 secondary-text">City</div>
-                <div class="h1 m-16">{{ procedureDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ procedureDTO.id }}</div>
-                <div class="h4 m-8 ml-16">Code: {{ procedureDTO.code }}</div>
-                <div class="h4 m-8 ml-16">WikiCode: {{ procedureDTO.wikiCode }}</div>
+                <div class="h1 m-16">{{ ippProcedureDTO.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ ippProcedureDTO.id }}</div>
+                <div class="h4 m-8 ml-16">Code: {{ ippProcedureDTO.code }}</div>
+                <div class="h4 m-8 ml-16">WikiCode: {{ ippProcedureDTO.wikiCode }}</div>
+                <button mat-stroked-button color="primary" (click)="editIppProcedureDTO(ippProcedureDTO)">Edit</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -24,8 +24,10 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private ippSectorNewUpdateForm: FormGroup;
-    public sector: ItalianPublicProcurementSectorDTO;
+    @Input()
+    ippSector: ItalianPublicProcurementSectorDTO;
+
+    ippSectorNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.ippSectorNewUpdateForm = this._formBuilder.group({
@@ -34,36 +36,43 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             wikiCode:['']
         })
+
+        if (this.ippSector != null) {
+            this.ippSectorNewUpdateForm.patchValue(this.ippSector);
+        }
     }
 
-    public createSector(){
+    async submit() {
         if (!this.ippSectorNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let sector: ItalianPublicProcurementSectorDTO = {
+        let ippSector: ItalianPublicProcurementSectorDTO = {
             name: this.ippSectorNewUpdateForm.value.name,
             code: this.ippSectorNewUpdateForm.value.code,
             wikiCode: this.ippSectorNewUpdateForm.value.wikiCode
         };
 
-        this.ippSectorResourceService.createItalianPublicProcurementSectorUsingPOST(sector).subscribe(
-            (value: ItalianPublicProcurementSectorDTO) => {
-                this.sector = value;
-
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Ipp Sector: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.title, null, {duration: 5000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
+        try {
+            let postOrPut;
+            if (ippSector.id != 0) {
+                await this.ippSectorResourceService.updateItalianPublicProcurementSectorUsingPUT(ippSector).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.ippSectorResourceService.createItalianPublicProcurementSectorUsingPOST(ippSector).toPromise();
+                postOrPut = "created";
             }
-        );
+            this.eventService.reloadCurrentPage();
+
+            this._snackBar.open(`Ipp Sector: '${ippSector.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this.setStep("complete");
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+            this.setStep("form");
+        }
+        this._fuseProgressBarService.hide();
     }
 
     private setStep(step: string){

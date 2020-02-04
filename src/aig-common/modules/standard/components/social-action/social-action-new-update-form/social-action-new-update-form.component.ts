@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -11,21 +11,24 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./social-action-new-update-form.component.scss']
 })
 export class AigSocialActionNewUpdateFormComponent implements OnInit {
-    constructor(
-        private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
-        private actionResourceService: SocialActionResourceService,
-        private eventService: EventService,
-    ) { }
-
-    private ippSocialActionNewUpdateForm: FormGroup;
-    private step: any = {
+    step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    public ippSocialAction: SocialActionDTO;
+
+    constructor(
+        private _formBuilder: FormBuilder,
+        private _fuseProgressBarService: FuseProgressBarService,
+        private _snackBar: MatSnackBar,
+        private ippSocialActionResourceService: SocialActionResourceService,
+        private eventService: EventService,
+    ) { }
+
+    @Input()
+    ippSocialAction: SocialActionDTO;
+
+    ippSocialActionNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.ippSocialActionNewUpdateForm = this._formBuilder.group({
@@ -36,7 +39,7 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
         })
     }
 
-    public createAction(){
+    async submit() {
         if (!this.ippSocialActionNewUpdateForm.valid) {
             return;
         }
@@ -49,21 +52,24 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
             wikiCode: this.ippSocialActionNewUpdateForm.value.wikiCode
         };
 
-        this.actionResourceService.createSocialActionUsingPOST(ippSocialAction).subscribe(
-            (value: SocialActionDTO) => {
-                this.ippSocialAction = value;
-
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Social Action: " + value.name + " created.", null, {duration: 2000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("complete");
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.title, null, {duration: 5000,});
-                this._fuseProgressBarService.hide();
-                this.setStep("form");
+        try {
+            let postOrPut;
+            if (ippSocialAction.id != 0) {
+                await this.ippSocialActionResourceService.updateSocialActionUsingPUT(ippSocialAction).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.ippSocialActionResourceService.createSocialActionUsingPOST(ippSocialAction).toPromise();
+                postOrPut = "created";
             }
-        );
+            this.eventService.reloadCurrentPage();
+
+            this._snackBar.open(`Ipp SocialAction: '${ippSocialAction.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this.setStep("complete");
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+            this.setStep("form");
+        }
+        this._fuseProgressBarService.hide();
     }
 
     private setStep(step: string){

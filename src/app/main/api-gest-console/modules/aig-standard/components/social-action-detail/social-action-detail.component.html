@@ -1,0 +1,16 @@
+<div id="aig-social-action-detail-page" class="page-layout blank">
+
+    <aig-standard-header [sectionName]="socialActionDTO.name" [search]="false"></aig-standard-header>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                <pre>{{ socialActionDTO | json }}</pre>
+                <button mat-stroked-button color="primary" (click)="editSocialAction(socialActionDTO)">Edit</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

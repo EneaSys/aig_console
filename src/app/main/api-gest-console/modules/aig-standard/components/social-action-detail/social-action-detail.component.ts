@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-// import { AigAssociateRoleToPermissionDialogComponent } from '../associate-role-premission-dialog/associate-role-premission-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+
+import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
+
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
+import { AigSocialActionDialogComponent } from '../social-action-dialog/social-action-dialog.component';
 
 @Component({
     templateUrl: './social-action-detail.component.html',
@@ -19,11 +21,18 @@ export class AigSocialActionDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    // socialdisplayedColumns: string[] = ['id', 'name', 'code', 'buttons'];
-
     socialActionDTO: SocialActionDTO;
     
-    loadComponent(): void {
-        this.socialActionDTO = this.route.snapshot.data.social;
+    async loadComponent() {
+        if(this.firstLoad) {
+            this.socialActionDTO = this.route.snapshot.data.socialAction;
+        } else {
+            this.socialActionDTO = await this.socialActionResourceService.getSocialActionUsingGET(this.socialActionDTO.id).toPromise();
+        }
     }
+
+    editSocialAction(socialActionDTO: SocialActionDTO) {
+        this.dialog.open(AigSocialActionDialogComponent, { data: { socialAction: socialActionDTO } });
+    }
+
 }

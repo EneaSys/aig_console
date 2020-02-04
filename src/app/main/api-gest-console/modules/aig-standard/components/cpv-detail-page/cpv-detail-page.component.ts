@@ -6,7 +6,7 @@ import { CpvDTO, CpvResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { AigCpvNewUpdateDialogComponent } from '../cpv-new-update-dialog/cpv-new-update-dialog.component';
 
-@Component({
+@Component({    
     templateUrl: './cpv-detail-page.component.html',
     styleUrls: ['./cpv-detail-page.component.scss']
 })

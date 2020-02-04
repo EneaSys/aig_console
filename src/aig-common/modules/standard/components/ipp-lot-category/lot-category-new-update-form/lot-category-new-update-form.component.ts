@@ -6,9 +6,9 @@ import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCate
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-lot-category-form',
-    templateUrl: './lot-category-form.component.html',
-    styleUrls: ['./lot-category-form.component.scss']
+    selector: 'aig-lot-category-new-update-form',
+    templateUrl: './lot-category-new-update-form.component.html',
+    styleUrls: ['./lot-category-new-update-form.component.scss']
 })
 export class AigLotCategoryNewUpdateFormComponent implements OnInit {
 

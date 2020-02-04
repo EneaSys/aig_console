@@ -1,14 +1,15 @@
 <div id="aig-city-detail-page" class="page-layout blank">
-    <aig-standard-header [sectionName]="lotTypeDTO.name" [search]="false"></aig-standard-header>
+    <aig-standard-header [sectionName]="ippLotTypeDTO.name" [search]="false"></aig-standard-header>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                <div class="h4 m-8 ml-16 mb-0 secondary-text">City</div>
-                <div class="h1 m-16">{{ lotTypeDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ lotTypeDTO.id }}</div>
-                <div class="h4 m-8 ml-16">Code: {{ lotTypeDTO.code }}</div>
-                <div class="h4 m-8 ml-16">WikiCode: {{ lotTypeDTO.wikiCode }}</div>
+                <div class="h1 m-16">{{ ippLotTypeDTO.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ ippLotTypeDTO.id }}</div>
+                <div class="h4 m-8 ml-16">Code: {{ ippLotTypeDTO.code }}</div>
+                <div class="h4 m-8 ml-16">WikiCode: {{ ippLotTypeDTO.wikiCode }}</div>
+                <button mat-stroked-button color="primary" (click)="editIppLotType(ippLotTypeDTO)">Edit</button>
             </div>
         </div>
     </div>
