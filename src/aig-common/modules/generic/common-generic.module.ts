@@ -24,30 +24,12 @@ import { MatInputModule } from '@angular/material/input';
 import { AigEopooGenericNewUpdateFormComponent } from './components/eopoo-form/eopoo-generic-new-update-form/eopoo-generic-new-update-form.component';
 import { AigEopooPersonNewUpdateFormComponent } from './components/eopoo-form/eopoo-person-new-update-form/eopoo-person-new-update-form.component';
 import { EopooResolver } from './resolver/eopoo.resolver';
+import { AigCommonStandardModule } from '../standard/common-standard.module';
 
 @NgModule({
-    declarations: [
-        EopooNamePipe,
-        
-        AigEopooListTableComponent,
-        AigEopooNewFormComponent,
-        AigEopooGenericNewUpdateFormComponent,
-        AigEopooPersonNewUpdateFormComponent,
-        
-        AigEopooTypeListTableComponent,
-        AigEopooTypeNewUpdateFormComponent,
-    ],
-    exports: [
-        AigEopooListTableComponent,
-        AigEopooNewFormComponent,
-        AigEopooGenericNewUpdateFormComponent,
-        AigEopooPersonNewUpdateFormComponent,
-
-        AigEopooTypeListTableComponent,
-        AigEopooTypeNewUpdateFormComponent,
-    ],
     imports: [
         AigCommonModule,
+        AigCommonStandardModule,
         CommonModule,
 
         BrowserModule,
@@ -74,6 +56,26 @@ import { EopooResolver } from './resolver/eopoo.resolver';
     providers: [
         EopooResolver,
         EopooTypeResolver,
+    ],
+    declarations: [
+        EopooNamePipe,
+        
+        AigEopooListTableComponent,
+        AigEopooNewFormComponent,
+        AigEopooGenericNewUpdateFormComponent,
+        AigEopooPersonNewUpdateFormComponent,
+        
+        AigEopooTypeListTableComponent,
+        AigEopooTypeNewUpdateFormComponent,
+    ],
+    exports: [
+        AigEopooListTableComponent,
+        AigEopooNewFormComponent,
+        AigEopooGenericNewUpdateFormComponent,
+        AigEopooPersonNewUpdateFormComponent,
+
+        AigEopooTypeListTableComponent,
+        AigEopooTypeNewUpdateFormComponent,
     ],
 })
 export class CommonGenericModule {}

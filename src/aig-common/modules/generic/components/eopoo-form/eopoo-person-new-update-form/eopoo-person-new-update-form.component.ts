@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EopooDTO, EopooResourceService, EopooTypeDTO } from 'aig-generic';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 @Component({
     selector: 'aig-eopoo-person-new-update-form',
@@ -20,6 +22,8 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private eopooResourceService: EopooResourceService,
+        private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+        public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
     ) { }
 
     @Input()
@@ -32,6 +36,7 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     filteredCitys: Observable<CityDTO[]>;
 
     ngOnInit(): void {
+        // PREPARE FORM
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
@@ -48,10 +53,18 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
             this.eopooPersonNewUpdateForm.patchValue(newEopoo);
         }
 
+
+
+        // PRECOMPILE
         // Is update
         if (this.eopoo != null) {
             this.eopooPersonNewUpdateForm.patchValue(this.eopoo);
         }
+
+
+
+        // EVENT ON ITERACTION
+        this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['bornCity'].valueChanges);
     }
 
     submit() {

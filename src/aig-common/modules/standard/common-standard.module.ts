@@ -18,7 +18,8 @@ import { AigCommonModule } from 'aig-common/common.module';
 import { AigCpvListTableComponent } from './components/cpv-list-table/cpv-list-table.component';
 import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/cpv-new-update-form.component';
 import { CpvResolver } from './resolver/cpv.resolver';
-
+import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
+import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,10 @@ import { CpvResolver } from './resolver/cpv.resolver';
     ],
     providers: [
         CpvResolver,
+
+        
+        AigStandardAutocompleteFilterService,
+        AigStandardAutocompleteFunctionService,
     ],
 })
 export class AigCommonStandardModule {}
