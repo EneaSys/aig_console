@@ -14,24 +14,10 @@ import { AigEopooTypeListPageComponent } from './components/eopoo-type-list-page
 import { AigGenericClientModule } from 'aig-generic';
 import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-page/eopoo-type-detail-page.component';
 import { AigEopooTypeNewUpdateModalComponent } from './components/eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
+import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
 
 
 @NgModule({
-    declarations: [
-        AigGenericHeaderComponent,
-
-        AigEopooListPageComponent,
-
-        AigEopooTypeListPageComponent,
-        AigEopooTypeDetailPageComponent,
-        AigEopooTypeNewUpdateModalComponent,
-
-        AigEopooNewModalComponent,
-    ],
-    entryComponents: [
-        AigEopooNewModalComponent,
-        AigEopooTypeNewUpdateModalComponent,
-    ],
     imports: [
         RouterModule.forChild(aigGenericRoute),
 
@@ -46,9 +32,27 @@ import { AigEopooTypeNewUpdateModalComponent } from './components/eopoo-type-new
         MatButtonModule,
         MatToolbarModule,
 
-        
     ],
-    exports: [],
-    providers: [],
+    declarations: [
+        AigGenericHeaderComponent,
+
+        AigEopooListPageComponent,
+        AigEopooDetailPageComponent,
+        AigEopooNewModalComponent,
+
+        AigEopooTypeListPageComponent,
+        AigEopooTypeDetailPageComponent,
+        AigEopooTypeNewUpdateModalComponent,
+    ],
+    entryComponents: [
+        AigEopooNewModalComponent,
+        AigEopooTypeNewUpdateModalComponent,
+    ],
+    exports: [
+
+    ],
+    providers: [
+
+    ],
 })
 export class AigGenericModule {}

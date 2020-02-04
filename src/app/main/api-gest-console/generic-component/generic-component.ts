@@ -1,7 +1,5 @@
 import { OnInit, OnDestroy } from '@angular/core';
-import { EventService } from 'aig-common/event-manager/event.service';
 import { Subscription } from 'rxjs';
-import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { AigGenericComponentService } from './generic-component.service';
 
 export class GenericComponent implements OnInit, OnDestroy {
@@ -13,13 +11,14 @@ export class GenericComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.loadComponent();
+        this._loadPage();
 
-        var destructor = this._gcs.eventService.reloadPage$.subscribe(() => { this.loadComponent(); });
+        var destructor = this._gcs.eventService.reloadPage$.subscribe(() => { this.loadComponent(); this._loadPage(); });
         this._destructors.push(destructor);
 
-        this.firstLoad = false
-        
         this._gcs.fuseSplashScreenService.hide();
+
+        this.firstLoad = false
     }
 
     ngOnDestroy(): void {
@@ -31,4 +30,16 @@ export class GenericComponent implements OnInit, OnDestroy {
     loadComponent() { }
 
     destroyComponent() { }
+
+    loadPage() { }
+
+    reloadPage() { }
+
+    private _loadPage() {
+        if(this.firstLoad) {
+            this.loadPage();
+        } else {
+            this.reloadPage();
+        }
+    }
 }
