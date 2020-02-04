@@ -6,11 +6,11 @@ import { ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurem
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-ipp-procedure-form',
-    templateUrl: './ipp-procedure-form.component.html',
-    styleUrls: ['./ipp-procedure-form.component.scss']
+    selector: 'aig-ipp-procedure-new-update-form',
+    templateUrl: './ipp-procedure-new-update-form.component.html',
+    styleUrls: ['./ipp-procedure-new-update-form.component.scss']
 })
-export class AigIppProcedureFormComponent implements OnInit {
+export class AigIppProcedureNewUpdateFormComponent implements OnInit {
     private step: any = {
         form: true,
         loading: false,

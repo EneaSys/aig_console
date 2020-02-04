@@ -2,33 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { ItalianPublicProcurementSectorDTO, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { SocialActionDTO, SocialActionResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-ipp-sector-form',
-    templateUrl: './ipp-sector-form.component.html',
-    styleUrls: ['./ipp-sector-form.component.scss']
+    selector: 'aig-social-action-new-update-form',
+    templateUrl: './social-action-new-update-form.component.html',
+    styleUrls: ['./social-action-new-update-form.component.scss']
 })
-export class AigIppSectorFormComponent implements OnInit {
+export class AigSocialActionNewUpdateFormComponent implements OnInit {
+    constructor(
+        private _formBuilder: FormBuilder,
+        private _fuseProgressBarService: FuseProgressBarService,
+        private _snackBar: MatSnackBar,
+        private actionResourceService: SocialActionResourceService,
+        private eventService: EventService,
+    ) { }
+
+    private ippSocialActionNewUpdateForm: FormGroup;
     private step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    constructor(
-        private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
-        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
-        private eventService: EventService,
-    ) { }
-
-    private ippSectorNewUpdateForm: FormGroup;
-    public sector: ItalianPublicProcurementSectorDTO;
+    public ippSocialAction: SocialActionDTO;
 
     ngOnInit(): void {
-        this.ippSectorNewUpdateForm = this._formBuilder.group({
+        this.ippSocialActionNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -36,25 +36,25 @@ export class AigIppSectorFormComponent implements OnInit {
         })
     }
 
-    public createSector(){
-        if (!this.ippSectorNewUpdateForm.valid) {
+    public createAction(){
+        if (!this.ippSocialActionNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let sector: ItalianPublicProcurementSectorDTO = {
-            name: this.ippSectorNewUpdateForm.value.name,
-            code: this.ippSectorNewUpdateForm.value.code,
-            wikiCode: this.ippSectorNewUpdateForm.value.wikiCode
+        let ippSocialAction: SocialActionDTO = {
+            name: this.ippSocialActionNewUpdateForm.value.name,
+            code: this.ippSocialActionNewUpdateForm.value.code,
+            wikiCode: this.ippSocialActionNewUpdateForm.value.wikiCode
         };
 
-        this.ippSectorResourceService.createItalianPublicProcurementSectorUsingPOST(sector).subscribe(
-            (value: ItalianPublicProcurementSectorDTO) => {
-                this.sector = value;
+        this.actionResourceService.createSocialActionUsingPOST(ippSocialAction).subscribe(
+            (value: SocialActionDTO) => {
+                this.ippSocialAction = value;
 
                 this.eventService.reloadCurrentPage();
-                this._snackBar.open("Ipp Sector: " + value.name + " created.", null, {duration: 2000,});
+                this._snackBar.open("Social Action: " + value.name + " created.", null, {duration: 2000,});
                 this._fuseProgressBarService.hide();
                 this.setStep("complete");
             },
@@ -70,7 +70,6 @@ export class AigIppSectorFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
         this.step[step] = true;
     }
 }

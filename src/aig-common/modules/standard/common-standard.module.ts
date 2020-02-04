@@ -20,18 +20,18 @@ import { FuseSidebarModule } from '@fuse/components';
 import { AigCommonModule } from 'aig-common/common.module';
 
 import { AigSocialListTableComponent } from './components/social/social-list-table/social-list-table.component';
-import { AigSocialFormComponent } from './components/social/social-form/social-form.component';
+import { AigSocialNewUpdateFormComponent } from './components/social/social-new-update-form/social-new-update-form.component';
 import { AigSocialActionListTableComponent } from './components/social-action/social-action-list-table/social-action-list-table.component';
-import { AigSocialActionFormComponent } from './components/social-action/social-action-form/social-action-form.component';
+import { AigSocialActionNewUpdateFormComponent } from './components/social-action/social-action-new-update-form/social-action-new-update-form.component';
 import { AigCityNewUpdateFormComponent } from "./components/city/city-form/city-form.component";
 import { AigCityListTableComponent } from './components/city/city-list-table/city-list-table.component';
 import { AigCpvListTableComponent } from './components/cpv-list-table/cpv-list-table.component';
 import { AigCpvNewUpdateFormComponent } from './components/cpv-new-update-form/cpv-new-update-form.component';
-import { AigIppModalityFormComponent } from './components/ipp-modality/ipp-modality-form/ipp-modality-form.component';
+import { AigIppModalityNewUpdateFormComponent } from './components/ipp-modality/ipp-modality-new-update-form/ipp-modality-new-update-form.component';
 import { AigIppModalityListTableComponent } from './components/ipp-modality/ipp-modality-list-table/ipp-modality-list-table.component';
 import { AigIppProcedureListTableComponent } from './components/ipp-procedure/ipp-procedure-list-table/ipp-procedure-list-table.component';
-import { AigIppProcedureFormComponent } from "./components/ipp-procedure/ipp-procedure-form/ipp-procedure-form.component";
-import { AigIppSectorFormComponent } from './components/ipp-sector/ipp-sector-form/ipp-sector-form.component';
+import { AigIppProcedureNewUpdateFormComponent } from "./components/ipp-procedure/ipp-procedure-new-update-form/ipp-procedure-new-update-form.component";
+import { AigIppSectorNewUpdateFormComponent } from './components/ipp-sector/ipp-sector-new-update-form/ipp-sector-new-update-form.component';
 import { AigIppSectorListTableComponent } from './components/ipp-sector/ipp-sector-list-table/ipp-sector-list-table.component';
 import { AigIppLotTypeNewUpdateFormComponent } from './components/ipp-lot-type/ipp-lot-type-form/ipp-lot-type-form.component';
 import { AigIppLotTypeListTableComponent } from './components/ipp-lot-type/ipp-lot-type-list-table/ipp-lot-type-list-table.component';
@@ -51,10 +51,10 @@ import { CategoryResolver } from "./resolver/category.resolver";
     declarations: [
 
         AigSocialListTableComponent,
-        AigSocialFormComponent,
+        AigSocialNewUpdateFormComponent,
 
         AigSocialActionListTableComponent,
-        AigSocialActionFormComponent,
+        AigSocialActionNewUpdateFormComponent,
         
         AigCityListTableComponent,
         AigCityNewUpdateFormComponent,
@@ -62,13 +62,13 @@ import { CategoryResolver } from "./resolver/category.resolver";
         AigCpvListTableComponent,
         AigCpvNewUpdateFormComponent,
 
-        AigIppModalityFormComponent,
+        AigIppModalityNewUpdateFormComponent,
         AigIppModalityListTableComponent,
 
         AigIppProcedureListTableComponent,
-        AigIppProcedureFormComponent,
+        AigIppProcedureNewUpdateFormComponent,
 
-        AigIppSectorFormComponent,
+        AigIppSectorNewUpdateFormComponent,
         AigIppSectorListTableComponent,
 
         AigIppLotTypeNewUpdateFormComponent,
@@ -105,10 +105,10 @@ import { CategoryResolver } from "./resolver/category.resolver";
     exports: [
 
         AigSocialListTableComponent,
-        AigSocialFormComponent,
+        AigSocialNewUpdateFormComponent,
 
         AigSocialActionListTableComponent,
-        AigSocialActionFormComponent,
+        AigSocialActionNewUpdateFormComponent,
 
         AigCityListTableComponent,
         AigCityNewUpdateFormComponent,
@@ -117,16 +117,16 @@ import { CategoryResolver } from "./resolver/category.resolver";
         AigCpvNewUpdateFormComponent,
         
         AigIppModalityListTableComponent,
-        AigIppModalityFormComponent,
+        AigIppModalityNewUpdateFormComponent,
 
         AigIppSectorListTableComponent,
-        AigIppSectorFormComponent,
+        AigIppSectorNewUpdateFormComponent,
 
         AigIppLotTypeListTableComponent,
         AigIppLotTypeNewUpdateFormComponent,
 
         AigIppProcedureListTableComponent,
-        AigIppProcedureFormComponent,
+        AigIppProcedureNewUpdateFormComponent,
 
         AigLotCategoryListTableComponent,
         AigLotCategoryNewUpdateFormComponent

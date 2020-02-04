@@ -8,7 +8,6 @@ export class CategoryResolver implements Resolve<Observable<ItalianPublicProcure
     constructor(private roleResourceService: ItalianPublicProcurementLotCategoryResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
-        console.log('fdsafdsa');
         var id: number = +route.paramMap.get('id');
         return this.roleResourceService.getItalianPublicProcurementLotCategoryUsingGET(id);
     }

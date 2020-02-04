@@ -8,7 +8,6 @@ export class IppProcedureResolver implements Resolve<Observable<ItalianPublicPro
     constructor(private roleResourceService: ItalianPublicProcurementProcedureResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
-        console.log('fdsafdsa');
         var id: number = +route.paramMap.get('id');
         return this.roleResourceService.getItalianPublicProcurementProcedureUsingGET(id);
     }

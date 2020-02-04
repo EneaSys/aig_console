@@ -6,11 +6,11 @@ import { ItalianPublicProcurementModalityResourceService, ItalianPublicProcureme
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-ipp-modality-form',
-    templateUrl: './ipp-modality-form.component.html',
-    styleUrls: ['./ipp-modality-form.component.scss']
+    selector: 'aig-ipp-modality-new-update-form',
+    templateUrl: './ipp-modality-new-update-form.component.html',
+    styleUrls: ['./ipp-modality-new-update-form.component.scss']
 })
-export class AigIppModalityFormComponent implements OnInit {
+export class AigIppModalityNewUpdateFormComponent implements OnInit {
 
     step: any = {
         form: true,
@@ -55,7 +55,7 @@ export class AigIppModalityFormComponent implements OnInit {
 
         try {
             let postOrPut;
-            if (ippModality.id != null) { // && ippModality.id != "") {
+            if (ippModality.id != 0) {
                 await this.ippModalityResourceService.updateItalianPublicProcurementModalityUsingPUT(ippModality).toPromise();
                 postOrPut = "updated";
             } else {

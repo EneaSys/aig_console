@@ -8,7 +8,6 @@ export class SocialResolver implements Resolve<Observable<SocialDTO>> {
     constructor(private roleResourceService: SocialResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
-        console.log('fdsafdsa');
         var id: number = +route.paramMap.get('id');
         return this.roleResourceService.getSocialUsingGET(id);
     }

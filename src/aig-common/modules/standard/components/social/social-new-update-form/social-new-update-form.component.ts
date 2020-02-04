@@ -6,11 +6,11 @@ import { SocialDTO, SocialResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-social-form',
-    templateUrl: './social-form.component.html',
-    styleUrls: ['./social-form.component.scss']
+    selector: 'aig-social-new-update-form',
+    templateUrl: './social-new-update-form.component.html',
+    styleUrls: ['./social-new-update-form.component.scss']
 })
-export class AigSocialFormComponent implements OnInit {
+export class AigSocialNewUpdateFormComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
