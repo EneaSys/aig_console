@@ -41,12 +41,14 @@ export class AigEopooGenericNewUpdateFormComponent implements OnInit {
             eopooTypeId: [''],
         });
 
+        // Is creation
         if(this.eopoo == undefined && this.eopooType != null) {
             let newEopoo: any = {}
             newEopoo.eopooTypeId = this.eopooType.id;
             this.eopooOrganizationNewUpdateForm.patchValue(newEopoo);
         }
 
+        // Is update
         if (this.eopoo != null) {
             this.eopooOrganizationNewUpdateForm.patchValue(this.eopoo);    
         }
@@ -64,7 +66,7 @@ export class AigEopooGenericNewUpdateFormComponent implements OnInit {
 
         try {
             let postOrPut;
-            if (eopooOrganization.id == null) {
+            if (eopooOrganization.id != 0) {
                 await this.eopooResourceService.updateEopooUsingPUT(eopooOrganization).toPromise();
                 postOrPut = "updated";
             } else {
