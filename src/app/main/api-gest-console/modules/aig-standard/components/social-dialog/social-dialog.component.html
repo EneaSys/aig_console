@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">Add Social</span>
+            <span *ngIf="data.social.id" class="title dialog-title">Update Social </span>
+            <span *ngIf="!data.social.id" class="title dialog-title">Create new Social </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -9,6 +10,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-social-new-update-form></aig-social-new-update-form>
+        <aig-social-new-update-form [social]="data.social"></aig-social-new-update-form>
     </div>
 </div>

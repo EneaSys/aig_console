@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     templateUrl: './lot-category-dialog-page.component.html',
@@ -8,6 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AigLotCategoryDialogComponent implements OnInit {
     constructor(
         public matDialogRef: MatDialogRef<AigLotCategoryDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
     ngOnInit(): void { 

@@ -21,17 +21,17 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private ippSocialResourceService: SocialResourceService,
+        private socialResourceService: SocialResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    ippSocial: SocialDTO;
+    social: SocialDTO;
 
-    ippSocialNewUpdateForm: FormGroup;
+    socialNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.ippSocialNewUpdateForm = this._formBuilder.group({
+        this.socialNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -40,30 +40,30 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
     }
 
     async submit() {
-        if (!this.ippSocialNewUpdateForm.valid) {
+        if (!this.socialNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippSocial: SocialDTO = {
-            name: this.ippSocialNewUpdateForm.value.name,
-            code: this.ippSocialNewUpdateForm.value.code,
-            wikiCode: this.ippSocialNewUpdateForm.value.wikiCode
+        let social: SocialDTO = {
+            name: this.socialNewUpdateForm.value.name,
+            code: this.socialNewUpdateForm.value.code,
+            wikiCode: this.socialNewUpdateForm.value.wikiCode
         };
 
         try {
             let postOrPut;
-            if (ippSocial.id != 0) {
-                await this.ippSocialResourceService.updateSocialUsingPUT(ippSocial).toPromise();
+            if (social.id != 0) {
+                await this.socialResourceService.updateSocialUsingPUT(social).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.ippSocialResourceService.createSocialUsingPOST(ippSocial).toPromise();
+                await this.socialResourceService.createSocialUsingPOST(social).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Social: '${ippSocial.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Ipp Social: '${social.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

@@ -21,8 +21,6 @@ export class AigSocialListPageComponent extends GenericComponent {
     
     socialActionDTOs: SocialDTO[];
 
-    // socialDataSource: Observable<SocialActionDTO[]>;
-
     async loadComponent() {
         this.socialActionDTOs = await this.socialResourceService.getAllSocialsUsingGET().toPromise();
     }

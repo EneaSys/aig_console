@@ -11,12 +11,12 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./ipp-lot-type-new-update-form.component.scss']
 })
 export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
+    
     step: any = {
         form: true,
         loading: false,
         complete: false
     };
-
     
     constructor(
         private _formBuilder: FormBuilder,
@@ -30,7 +30,6 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
     ippLotType: ItalianPublicProcurementLotTypeDTO;
 
     ippLotTypeNewUpdateForm: FormGroup;
-    
 
     ngOnInit(): void {
         this.ippLotTypeNewUpdateForm = this._formBuilder.group({

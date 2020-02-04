@@ -12,7 +12,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 })
 export class AigLotCategoryNewUpdateFormComponent implements OnInit {
 
-    private step: any = {
+    step: any = {
         form: true,
         loading: false,
         complete: false

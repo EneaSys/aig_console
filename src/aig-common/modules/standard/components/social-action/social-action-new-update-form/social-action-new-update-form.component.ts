@@ -21,17 +21,17 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private ippSocialActionResourceService: SocialActionResourceService,
+        private socialActionResourceService: SocialActionResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    ippSocialAction: SocialActionDTO;
+    socialAction: SocialActionDTO;
 
-    ippSocialActionNewUpdateForm: FormGroup;
+    socialActionNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.ippSocialActionNewUpdateForm = this._formBuilder.group({
+        this.socialActionNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
@@ -40,30 +40,30 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
     }
 
     async submit() {
-        if (!this.ippSocialActionNewUpdateForm.valid) {
+        if (!this.socialActionNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippSocialAction: SocialActionDTO = {
-            name: this.ippSocialActionNewUpdateForm.value.name,
-            code: this.ippSocialActionNewUpdateForm.value.code,
-            wikiCode: this.ippSocialActionNewUpdateForm.value.wikiCode
+        let socialAction: SocialActionDTO = {
+            name: this.socialActionNewUpdateForm.value.name,
+            code: this.socialActionNewUpdateForm.value.code,
+            wikiCode: this.socialActionNewUpdateForm.value.wikiCode
         };
 
         try {
             let postOrPut;
-            if (ippSocialAction.id != 0) {
-                await this.ippSocialActionResourceService.updateSocialActionUsingPUT(ippSocialAction).toPromise();
+            if (socialAction.id != 0) {
+                await this.socialActionResourceService.updateSocialActionUsingPUT(socialAction).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.ippSocialActionResourceService.createSocialActionUsingPOST(ippSocialAction).toPromise();
+                await this.socialActionResourceService.createSocialActionUsingPOST(socialAction).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp SocialAction: '${ippSocialAction.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Ipp SocialAction: '${socialAction.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

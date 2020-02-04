@@ -11,7 +11,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./ipp-procedure-new-update-form.component.scss']
 })
 export class AigIppProcedureNewUpdateFormComponent implements OnInit {
-    private step: any = {
+    step: any = {
         form: true,
         loading: false,
         complete: false
