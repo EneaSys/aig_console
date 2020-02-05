@@ -22,9 +22,9 @@ import { AigCommonStandardModule } from 'aig-common/modules/standard/common-stan
 import { AigStandardHeaderComponent } from './components/standard-header/standard-header.component';
 import { AigCityListPageComponent } from './components/city-list-page/city-list-page.component';
 import { AigCityDetailPageComponent } from './components/city-detail-page/city-detail-page.component';
-import { AigCityNewUpdateDialogComponent } from './components/city-dialog-page/city-dialog-page.component';
+import { AigCityDialogComponent } from './components/city-dialog-page/city-dialog-page.component';
 import { AigCpvListPageComponent } from './components/cpv-list-page/cpv-list-page.component';
-import { AigCpvNewUpdateDialogComponent } from './components/cpv-new-update-dialog/cpv-new-update-dialog.component';
+import { AigCpvDialogComponent } from './components/cpv-dialog-page/cpv-dialog-page.component';
 import { AigCpvDetailPageComponent } from './components/cpv-detail-page/cpv-detail-page.component';
 import { AigSocialActionListPageComponent } from './components/social-action-list-page/social-action-list-page.component';
 import { AigSocialActionDetailPageComponent } from './components/social-action-detail/social-action-detail.component';
@@ -54,7 +54,7 @@ import { AigLotCategoryDialogComponent } from './components/ipp-lot-category-dia
 
         AigCityListPageComponent,
         AigCityDetailPageComponent,
-        AigCityNewUpdateDialogComponent,
+        AigCityDialogComponent,
         
         AigSocialListPageComponent,
         AigSocialActionListPageComponent,
@@ -62,7 +62,7 @@ import { AigLotCategoryDialogComponent } from './components/ipp-lot-category-dia
         AigSocialDialogComponent,
 
         AigCpvListPageComponent,
-        AigCpvNewUpdateDialogComponent,
+        AigCpvDialogComponent,
         AigCpvDetailPageComponent,
 
         AigIppModalityListPageComponent,
@@ -113,8 +113,8 @@ import { AigLotCategoryDialogComponent } from './components/ipp-lot-category-dia
     entryComponents: [
         AigSocialDialogComponent,
         AigSocialActionDialogComponent,
-        AigCityNewUpdateDialogComponent,
-        AigCpvNewUpdateDialogComponent,
+        AigCityDialogComponent,
+        AigCpvDialogComponent,
         AigIppLotTypeDialogComponent,
         AigIppModalityDialogComponent,
         AigIppProcedureDialogComponent,

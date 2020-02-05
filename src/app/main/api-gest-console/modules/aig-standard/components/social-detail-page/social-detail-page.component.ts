@@ -21,17 +21,17 @@ export class AigSocialDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    socialDTO: SocialDTO;
+    social: SocialDTO;
 
     async loadComponent() {
         if(this.firstLoad) {
-            this.socialDTO = this.route.snapshot.data.social;
+            this.social = this.route.snapshot.data.social;
         } else {
-            this.socialDTO = await this.socialResourceService.getSocialUsingGET(this.socialDTO.id).toPromise();
+            this.social = await this.socialResourceService.getSocialUsingGET(this.social.id).toPromise();
         }
     }
 
-    editSocial(socialDTO: SocialDTO) {
-        this.dialog.open(AigSocialDialogComponent, { data: { social: socialDTO } });
+    editSocial(social: SocialDTO) {
+        this.dialog.open(AigSocialDialogComponent, { data: { social: social } });
     }
 }

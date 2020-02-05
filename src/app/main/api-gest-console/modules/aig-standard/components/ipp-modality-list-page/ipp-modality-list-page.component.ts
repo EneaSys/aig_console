@@ -24,6 +24,6 @@ export class AigIppModalityListPageComponent extends GenericComponent {
     }
 
     newIppModality(){
-        this.dialog.open(AigIppModalityDialogComponent);
+        this.dialog.open(AigIppModalityDialogComponent, { data: { ippModality: {} } });
     }
 }

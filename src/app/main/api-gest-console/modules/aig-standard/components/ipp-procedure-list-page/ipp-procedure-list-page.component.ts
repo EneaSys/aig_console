@@ -24,6 +24,6 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
     }
 
     newIppProcedure(){
-        this.dialog.open(AigIppProcedureDialogComponent);
+        this.dialog.open(AigIppProcedureDialogComponent, {data: { ippProcedure: {} } });
     }
 }

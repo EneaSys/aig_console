@@ -1,9 +1,8 @@
-<form *ngIf="step.form" [formGroup]="cityNewForm" (ngSubmit)="submit()">
+<form *ngIf="step.form" [formGroup]="cityNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>City Name</mat-label>
-            <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
             <input name="name" formControlName="name" matInput required>
         </mat-form-field>
     </div>
@@ -11,7 +10,6 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Code</mat-label>
-            <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
             <input name="code" formControlName="code" matInput required>
         </mat-form-field>
     </div>
@@ -19,7 +17,6 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Wiki Code</mat-label>
-            <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
             <input name="wikiCode" formControlName="wikiCode" matInput>
         </mat-form-field>
     </div>
@@ -34,5 +31,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ cityNewForm.value | json }}</pre>
+    <pre>{{ cityNewUpdateForm.value | json }}</pre>
 </div>

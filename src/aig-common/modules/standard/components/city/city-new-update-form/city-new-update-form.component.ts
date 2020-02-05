@@ -6,12 +6,12 @@ import { CityDTO, CityResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-city-form',
-    templateUrl: './city-form.component.html',
-    styleUrls: ['./city-form.component.scss']
+    selector: 'aig-city-new-update-form',
+    templateUrl: './city-new-update-form.component.html',
+    styleUrls: ['./city-new-update-form.component.scss']
 })
 export class AigCityNewUpdateFormComponent implements OnInit {
-    private step: any = {
+    step: any = {
         form: true,
         loading: false,
         complete: false
@@ -26,53 +26,49 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     ) { }
     
     @Input()
-    cityDTO: CityDTO;
+    city: CityDTO;
 
-    cityNewForm: FormGroup;
+    cityNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.cityNewForm = this._formBuilder.group({
+        this.cityNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required], 
             code: ['', Validators.required], 
             wikiCode:['']
         })
-        if (this.cityDTO != null) {
-            this.cityNewForm.patchValue(this.cityDTO);
+        if (this.city != null) {
+            this.cityNewUpdateForm.patchValue(this.city);
         }
     }
 
     async submit() {
-        if (!this.cityNewForm.valid) {
+        if (!this.cityNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let cityDTO = this.cityNewForm.value;
+        let city = this.cityNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (cityDTO.id != null && cityDTO.id != "") {
-                await this.cityResourceService.updateCityUsingPUT(cityDTO).toPromise();
+            if (city.id != null && city.id != "") {
+                await this.cityResourceService.updateCityUsingPUT(city).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.cityResourceService.createCityUsingPOST(cityDTO).toPromise();
+                await this.cityResourceService.createCityUsingPOST(city).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`City: '${cityDTO.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`City: '${city.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();
-    }
-
-    newEopooType() {
-        this.setStep("form");
     }
 
     private setStep(step: string){

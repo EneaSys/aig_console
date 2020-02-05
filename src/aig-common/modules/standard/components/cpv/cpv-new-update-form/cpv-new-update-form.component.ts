@@ -25,8 +25,6 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    cpvCategorys = ['GENERIC', 'PERSON'];
-
     @Input()
     cpv: CpvDTO;
 
@@ -44,6 +42,7 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
             this.cpvNewUpdateForm.patchValue(this.cpv);
         }
     }
+    
     async submit() {
         if (!this.cpvNewUpdateForm.valid) {
             return;

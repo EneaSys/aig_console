@@ -24,6 +24,6 @@ export class AigSocialActionListPageComponent extends GenericComponent {
     }
 
     newAction(){
-        this.dialog.open(AigSocialActionDialogComponent);
+        this.dialog.open(AigSocialActionDialogComponent, { data: { socialAction: {} } });
     }
 }

@@ -4,7 +4,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { ActivatedRoute } from '@angular/router';
 import { CpvDTO, CpvResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCpvNewUpdateDialogComponent } from '../cpv-new-update-dialog/cpv-new-update-dialog.component';
+import { AigCpvDialogComponent } from '../cpv-dialog-page/cpv-dialog-page.component';
 
 @Component({    
     templateUrl: './cpv-detail-page.component.html',
@@ -29,6 +29,6 @@ export class AigCpvDetailPageComponent extends GenericComponent {
     }
 
     editCpv(cpvDTO: CpvDTO) {
-        this.dialog.open(AigCpvNewUpdateDialogComponent, { data: { cpv: cpvDTO } });
+        this.dialog.open(AigCpvDialogComponent, { data: { cpv: cpvDTO } });
     }
 }

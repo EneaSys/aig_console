@@ -24,6 +24,6 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
     }
 
     newIppLotType(){
-        this.dialog.open(AigIppLotTypeDialogComponent);
+        this.dialog.open(AigIppLotTypeDialogComponent, {data: { ippLotType: {} } });
     }
 }

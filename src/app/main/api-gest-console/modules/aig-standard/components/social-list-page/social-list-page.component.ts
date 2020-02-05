@@ -19,13 +19,13 @@ export class AigSocialListPageComponent extends GenericComponent {
 
     displayedColumns: string[] = ['id', 'code', 'name', 'wikiCode', 'buttons'];
     
-    socialActionDTOs: SocialDTO[];
+    socialDTOs: SocialDTO[];
 
     async loadComponent() {
-        this.socialActionDTOs = await this.socialResourceService.getAllSocialsUsingGET().toPromise();
+        this.socialDTOs = await this.socialResourceService.getAllSocialsUsingGET().toPromise();
     }
 
-    newSocial() {
-        this.dialog.open(AigSocialDialogComponent);
+    newSocial(): void {
+        this.dialog.open(AigSocialDialogComponent, { data: { social: {} } });
     }
 }

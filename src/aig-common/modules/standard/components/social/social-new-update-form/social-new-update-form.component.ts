@@ -37,6 +37,10 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             wikiCode:['']
         })
+
+        if (this.social != null) {
+            this.socialNewUpdateForm.patchValue(this.social);
+        }
     }
 
     async submit() {
@@ -46,11 +50,7 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let social: SocialDTO = {
-            name: this.socialNewUpdateForm.value.name,
-            code: this.socialNewUpdateForm.value.code,
-            wikiCode: this.socialNewUpdateForm.value.wikiCode
-        };
+        let social = this.socialNewUpdateForm.value;
 
         try {
             let postOrPut;

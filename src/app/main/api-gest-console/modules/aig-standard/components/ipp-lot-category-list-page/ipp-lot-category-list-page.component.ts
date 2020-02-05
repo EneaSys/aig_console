@@ -24,6 +24,6 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
     }
 
     newIppLotCategory(){
-        this.dialog.open(AigLotCategoryDialogComponent);
+        this.dialog.open(AigLotCategoryDialogComponent, {data: { ippLotCategory: {} } });
     }
 }

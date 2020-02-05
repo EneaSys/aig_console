@@ -23,7 +23,7 @@ import { AigSocialListTableComponent } from './components/social/social-list-tab
 import { AigSocialNewUpdateFormComponent } from './components/social/social-new-update-form/social-new-update-form.component';
 import { AigSocialActionListTableComponent } from './components/social-action/social-action-list-table/social-action-list-table.component';
 import { AigSocialActionNewUpdateFormComponent } from './components/social-action/social-action-new-update-form/social-action-new-update-form.component';
-import { AigCityNewUpdateFormComponent } from "./components/city/city-form/city-form.component";
+import { AigCityNewUpdateFormComponent } from "./components/city/city-new-update-form/city-new-update-form.component";
 import { AigCityListTableComponent } from './components/city/city-list-table/city-list-table.component';
 import { AigCpvListTableComponent } from './components/cpv/cpv-list-table/cpv-list-table.component';
 import { AigCpvNewUpdateFormComponent } from './components/cpv/cpv-new-update-form/cpv-new-update-form.component';
@@ -39,6 +39,7 @@ import { AigLotCategoryNewUpdateFormComponent } from './components/ipp-lot-categ
 import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/lot-category-list-table/lot-category-list-table.component';
 
 import { SocialResolver } from "./resolver/social.resolver";
+import { CityResolver } from './resolver/city.resolver';
 import { CpvResolver } from './resolver/cpv.resolver';
 import { ActionResolver } from "./resolver/social-action.resolver";
 import { SectorResolver } from "./resolver/sector.resolver";
@@ -137,6 +138,7 @@ import { CategoryResolver } from "./resolver/category.resolver";
     ],
     providers: [
         SocialResolver,
+        CityResolver,
         CpvResolver,
         ActionResolver,
         SectorResolver,

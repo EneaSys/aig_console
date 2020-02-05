@@ -23,6 +23,6 @@ export class AigIppSectorListPageComponent extends GenericComponent {
     }
 
     newIppSector(){
-        this.dialog.open(AigIppSectorDialogComponent);
+        this.dialog.open(AigIppSectorDialogComponent, {data: { ippSector: {} } });
     }
 }
