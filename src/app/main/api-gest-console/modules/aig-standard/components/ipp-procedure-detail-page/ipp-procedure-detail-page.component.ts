@@ -28,6 +28,7 @@ export class AigIppProcedureDetailPageComponent extends GenericComponent {
             this.ippProcedureDTO = await this.ippProcedureResourceService.getItalianPublicProcurementProcedureUsingGET(this.ippProcedureDTO.id).toPromise();
         }
     }
+    
 
     editIppProcedureDTO(ippProcedureDTO: ItalianPublicProcurementProcedureDTO) {
         this.dialog.open(AigIppProcedureDialogComponent, { data: { ippProcedure: ippProcedureDTO } });
