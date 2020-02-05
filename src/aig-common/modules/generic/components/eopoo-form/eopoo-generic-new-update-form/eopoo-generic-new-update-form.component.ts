@@ -31,51 +31,60 @@ export class AigEopooGenericNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
-    eopooOrganizationNewUpdateForm: FormGroup;
+    eopooGenericNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.eopooOrganizationNewUpdateForm = this._formBuilder.group({
+        // PREPARE FORM
+        this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
             taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-            name: ['', Validators.required],
             eopooTypeId: [''],
+
+            name: ['', Validators.required],
         });
 
         // Is creation
         if(this.eopoo == undefined && this.eopooType != null) {
             let newEopoo: any = {}
             newEopoo.eopooTypeId = this.eopooType.id;
-            this.eopooOrganizationNewUpdateForm.patchValue(newEopoo);
+            this.eopooGenericNewUpdateForm.patchValue(newEopoo);
         }
 
+        // PRECOMPILE
         // Is update
-        if (this.eopoo != null) {
-            this.eopooOrganizationNewUpdateForm.patchValue(this.eopoo);    
+        if (this.eopoo != null && this.eopoo.genericEopoo != null) {
+            this.eopooGenericNewUpdateForm.patchValue(this.eopoo.genericEopoo);
+            this.eopooGenericNewUpdateForm.patchValue(this.eopoo);
         }
     }
 
     async submit() {
-        if (!this.eopooOrganizationNewUpdateForm.valid) {
+        if (!this.eopooGenericNewUpdateForm.valid) {
             return;
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let eopooOrganization: EopooDTO = this.eopooOrganizationNewUpdateForm.value;
+        let eopooGeneric: EopooDTO = {
+            id: this.eopooGenericNewUpdateForm.value.id,
+            taxNumber: this.eopooGenericNewUpdateForm.value.taxNumber,
+            eopooTypeId: this.eopooGenericNewUpdateForm.value.eopooTypeId,
+            genericEopoo: this.eopooGenericNewUpdateForm.value,
+        };
 
         try {
             let postOrPut;
-            if (eopooOrganization.id != 0) {
-                await this.eopooResourceService.updateEopooUsingPUT(eopooOrganization).toPromise();
+            if (eopooGeneric.id != 0) {
+                await this.eopooResourceService.updateEopooUsingPUT(eopooGeneric).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.eopooResourceService.createEopooUsingPOST(eopooOrganization).toPromise();
+                await this.eopooResourceService.createEopooUsingPOST(eopooGeneric).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Eopoo with tax id: '${eopooOrganization.taxNumber}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Eopoo with tax id: '${eopooGeneric.taxNumber}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

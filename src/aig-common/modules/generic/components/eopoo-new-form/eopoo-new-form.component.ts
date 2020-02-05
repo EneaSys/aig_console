@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EopooTypeResourceService, EopooTypeDTO } from 'aig-generic';
+import { EopooDTO } from 'api-gest';
 
 @Component({
     selector: 'aig-eopoo-new-form',
@@ -11,11 +12,20 @@ export class AigEopooNewFormComponent implements OnInit {
         private eopooTypeResourceService: EopooTypeResourceService,
     ) { }
 
+    @Input()
+    eopoo: EopooDTO;
+    
     eopooTypeDTOs: EopooTypeDTO[];
     selectedEopooType: EopooTypeDTO;
+    isUpdate: boolean = false;
 
     async ngOnInit() {
         this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET().toPromise();
+        
+        if(this.eopoo != null && this.eopoo.eopooType != null) {
+            this.isUpdate = true;
+            this.selectedEopooType = this.eopoo.eopooType;
+        }
     }
 
     onEopooTypeChange(eopooType: any) {

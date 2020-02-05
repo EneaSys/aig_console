@@ -16,7 +16,7 @@ export class AigEopooListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['id', 'taxid', 'buttons'];
+    displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
     
     eopooDTOs: EopooDTO[];
 
@@ -25,6 +25,6 @@ export class AigEopooListPageComponent extends GenericComponent {
     }
 
     newEopoo() {
-        this.dialog.open(AigEopooNewModalComponent);
+        this.dialog.open(AigEopooNewModalComponent, { data: { } });
     }
 }

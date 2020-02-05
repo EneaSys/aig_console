@@ -6,6 +6,7 @@ import { EopooResourceService, EopooDTO } from 'aig-generic';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 
 
 @Component({
@@ -31,6 +32,6 @@ export class AigEopooDetailPageComponent extends GenericComponent {
     }
 
     editEopoo(eopooDTO: EopooDTO) {
-        //this.dialog.open(AigEopooTypeNewUpdateModalComponent, { data: { eopooType: eopooTypeDTO } });
+        this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: eopooDTO } });
     }
 }
