@@ -35,4 +35,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ socialActionNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!socialActionNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newSocialAction()">Create New</button>
 </div>

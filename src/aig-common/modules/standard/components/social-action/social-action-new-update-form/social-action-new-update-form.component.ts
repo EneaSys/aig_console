@@ -72,6 +72,10 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
+    newSocialAction() {
+        this.setStep("form");
+    }
+
     private setStep(step: string){
         this.step.form = false;
         this.step.loading = false;
