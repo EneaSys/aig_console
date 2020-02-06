@@ -73,6 +73,10 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
+    newIppLotType() {
+        this.setStep("form");
+    }
+
     private setStep(step: string){
         this.step.form = false;
         this.step.loading = false;

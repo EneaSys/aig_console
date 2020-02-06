@@ -35,4 +35,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ ippLotTypeNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!ippLotTypeNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newIppLotType()">Create New</button>
 </div>
