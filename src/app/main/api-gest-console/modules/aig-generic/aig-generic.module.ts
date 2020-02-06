@@ -15,6 +15,7 @@ import { AigGenericClientModule } from 'aig-generic';
 import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-page/eopoo-type-detail-page.component';
 import { AigEopooTypeNewUpdateModalComponent } from './components/eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
 import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
+import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
 
 
 @NgModule({
@@ -43,10 +44,13 @@ import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopo
         AigEopooTypeListPageComponent,
         AigEopooTypeDetailPageComponent,
         AigEopooTypeNewUpdateModalComponent,
+
+        AigAddressNewUpdateModalComponent,
     ],
     entryComponents: [
         AigEopooNewModalComponent,
         AigEopooTypeNewUpdateModalComponent,
+        AigAddressNewUpdateModalComponent,
     ],
     exports: [
 

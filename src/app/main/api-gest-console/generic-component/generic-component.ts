@@ -23,17 +23,24 @@ export class GenericComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.destroyComponent();
+        this.destroyPage();
 
         this._destructors.forEach(destructor => { destructor.unsubscribe(); });
     }
 
+    // deprecated
     loadComponent() { }
 
+    // deprecated
     destroyComponent() { }
 
     loadPage() { }
 
     reloadPage() { }
+
+    afterLoad() { }
+
+    destroyPage() { }
 
     private _loadPage() {
         if(this.firstLoad) {
@@ -41,5 +48,6 @@ export class GenericComponent implements OnInit, OnDestroy {
         } else {
             this.reloadPage();
         }
+        this.afterLoad();
     }
 }
