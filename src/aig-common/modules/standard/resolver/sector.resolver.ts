@@ -5,10 +5,10 @@ import { ItalianPublicProcurementSectorDTO, ItalianPublicProcurementSectorResour
 
 @Injectable()
 export class SectorResolver implements Resolve<Observable<ItalianPublicProcurementSectorDTO>> {
-    constructor(private roleResourceService: ItalianPublicProcurementSectorResourceService) { }
+    constructor(private ippSectorResourceService: ItalianPublicProcurementSectorResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.roleResourceService.getItalianPublicProcurementSectorUsingGET(id);
+        return this.ippSectorResourceService.getItalianPublicProcurementSectorUsingGET(id);
     }
 }

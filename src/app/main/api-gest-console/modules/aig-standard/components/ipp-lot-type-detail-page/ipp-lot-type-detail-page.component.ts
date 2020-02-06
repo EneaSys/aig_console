@@ -20,18 +20,18 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippLotTypeDTO: ItalianPublicProcurementLotTypeDTO;
+    ippLotType: ItalianPublicProcurementLotTypeDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.ippLotTypeDTO = this.route.snapshot.data.lotType;
+            this.ippLotType = this.route.snapshot.data.ippLotType;
         } else {
-            this.ippLotTypeDTO = await this.ippLotTypeResourceService.getItalianPublicProcurementLotTypeUsingGET(this.ippLotTypeDTO.id).toPromise();
+            this.ippLotType = await this.ippLotTypeResourceService.getItalianPublicProcurementLotTypeUsingGET(this.ippLotType.id).toPromise();
         }
     }
 
-    editIppLotType(ippLotTypeDTO: ItalianPublicProcurementLotTypeDTO) {
-        this.dialog.open(AigIppLotTypeNewUpdateModalComponent, { data: { lotType: ippLotTypeDTO } });
+    editIppLotType(ippLotType: ItalianPublicProcurementLotTypeDTO) {
+        this.dialog.open(AigIppLotTypeNewUpdateModalComponent, { data: { ippLotType: ippLotType } });
     }
 
 }

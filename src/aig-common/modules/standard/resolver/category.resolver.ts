@@ -5,10 +5,10 @@ import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCate
 
 @Injectable()
 export class CategoryResolver implements Resolve<Observable<ItalianPublicProcurementLotCategoryDTO>> {
-    constructor(private roleResourceService: ItalianPublicProcurementLotCategoryResourceService) { }
+    constructor(private ippCategotyResourceService: ItalianPublicProcurementLotCategoryResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.roleResourceService.getItalianPublicProcurementLotCategoryUsingGET(id);
+        return this.ippCategotyResourceService.getItalianPublicProcurementLotCategoryUsingGET(id);
     }
 }

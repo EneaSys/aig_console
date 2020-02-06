@@ -5,10 +5,10 @@ import { ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurem
 
 @Injectable()
 export class IppProcedureResolver implements Resolve<Observable<ItalianPublicProcurementProcedureDTO>> {
-    constructor(private roleResourceService: ItalianPublicProcurementProcedureResourceService) { }
+    constructor(private ippProcedureResourceService: ItalianPublicProcurementProcedureResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.roleResourceService.getItalianPublicProcurementProcedureUsingGET(id);
+        return this.ippProcedureResourceService.getItalianPublicProcurementProcedureUsingGET(id);
     }
 }

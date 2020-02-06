@@ -23,9 +23,8 @@ export class AigLotCategoryDetailPageComponent extends GenericComponent {
     ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO;
     
     async loadComponent() {
-        this.ippLotCategoryDTO = this.route.snapshot.data.category;
         if(this.firstLoad) {
-            this.ippLotCategoryDTO = this.route.snapshot.data.cpv;
+            this.ippLotCategoryDTO = this.route.snapshot.data.ippCategory;
         } else {
             this.ippLotCategoryDTO = await this.ippLotCategoryResourceService.getItalianPublicProcurementLotCategoryUsingGET(this.ippLotCategoryDTO.id).toPromise();
         }

@@ -5,10 +5,10 @@ import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
 
 @Injectable()
 export class ActionResolver implements Resolve<Observable<SocialActionDTO>> {
-    constructor(private roleResourceService: SocialActionResourceService) { }
+    constructor(private socialActionResourceService: SocialActionResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.roleResourceService.getSocialActionUsingGET(id);
+        return this.socialActionResourceService.getSocialActionUsingGET(id);
     }
 }

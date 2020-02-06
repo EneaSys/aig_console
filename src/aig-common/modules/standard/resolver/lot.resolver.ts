@@ -5,10 +5,10 @@ import { ItalianPublicProcurementLotTypeResourceService, ItalianPublicProcuremen
 
 @Injectable()
 export class LotResolver implements Resolve<Observable<ItalianPublicProcurementLotTypeDTO>> {
-    constructor(private roleResourceService: ItalianPublicProcurementLotTypeResourceService) { }
+    constructor(private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.roleResourceService.getItalianPublicProcurementLotTypeUsingGET(id);
+        return this.ippLotTypeResourceService.getItalianPublicProcurementLotTypeUsingGET(id);
     }
 }

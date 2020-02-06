@@ -176,7 +176,7 @@ export const aigStandardRoute: Routes = [
                         component: AigIppProcedureDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            procedure: IppProcedureResolver,
+                            ippProcedure: IppProcedureResolver,
                         },
                     },
                 ]
@@ -199,7 +199,7 @@ export const aigStandardRoute: Routes = [
                         component: AigIppSectorDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            sector: SectorResolver,
+                            ippSector: SectorResolver,
                         },
                     },
                 ]
@@ -222,7 +222,7 @@ export const aigStandardRoute: Routes = [
                         component: AigIppLotTypeDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            lottype: LotResolver,
+                            ippLotType: LotResolver,
                         },
                     },
                 ]
@@ -245,7 +245,7 @@ export const aigStandardRoute: Routes = [
                         component: AigLotCategoryDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            category: CategoryResolver,
+                            ippCategory: CategoryResolver,
                         },
                     },
                 ]
