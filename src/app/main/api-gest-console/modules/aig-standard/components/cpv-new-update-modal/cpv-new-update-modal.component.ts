@@ -2,12 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    templateUrl: './cpv-dialog-page.component.html',
-    styleUrls: ['./cpv-dialog-page.component.scss']
+    templateUrl: './cpv-new-update-modal.component.html',
+    styleUrls: ['./cpv-new-update-modal.component.scss']
 })
-export class AigCpvDialogComponent implements OnInit {
+export class AigCpvNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigCpvDialogComponent>,
+        public matDialogRef: MatDialogRef<AigCpvNewUpdateModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 

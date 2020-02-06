@@ -48,6 +48,9 @@ import { IppModalityResolver } from "./resolver/ipp-modality.resolver";
 import { LotResolver } from "./resolver/lot.resolver";
 import { CategoryResolver } from "./resolver/category.resolver";
 
+import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
+import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
+
 @NgModule({
     declarations: [
 
@@ -145,7 +148,10 @@ import { CategoryResolver } from "./resolver/category.resolver";
         IppProcedureResolver,
         IppModalityResolver,
         LotResolver,
-        CategoryResolver
+        CategoryResolver,
+        
+        AigStandardAutocompleteFilterService,
+        AigStandardAutocompleteFunctionService,
     ],
 })
 export class AigCommonStandardModule {}

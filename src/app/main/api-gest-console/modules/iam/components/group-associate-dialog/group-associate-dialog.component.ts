@@ -5,9 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     templateUrl: './group-associate-dialog.component.html',
     styleUrls: ['./group-associate-dialog.component.scss']
 })
-export class AigGroupAssociateDialogComponent implements OnInit {
+export class AigGroupAssociateNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigGroupAssociateDialogComponent>,
+        public matDialogRef: MatDialogRef<AigGroupAssociateNewUpdateModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 

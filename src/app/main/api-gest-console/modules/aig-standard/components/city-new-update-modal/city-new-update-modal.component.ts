@@ -2,12 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    templateUrl: './ipp-lot-type-dialog-page.component.html',
-    styleUrls: ['./ipp-lot-type-dialog-page.component.scss']
+    templateUrl: './city-new-update-modal.component.html',
+    styleUrls: ['./city-new-update-modal.component.scss']
 })
-export class AigIppLotTypeDialogComponent implements OnInit {
+export class AigCityNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigIppLotTypeDialogComponent>,
+        public matDialogRef: MatDialogRef<AigCityNewUpdateModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 

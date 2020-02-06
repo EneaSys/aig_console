@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomRoleResourceService, CustomRoleDTO } from 'api-gest';
-import { AigRoleCustomNewDialogComponent } from '../custom-role-new-dialog/custom-role-new-dialog.component';
+import { AigRoleCustomNewNewUpdateModalComponent } from '../custom-role-new-dialog/custom-role-new-dialog.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
@@ -29,6 +29,6 @@ export class AigCustomRolePageComponent extends GenericComponent {
     }
 
     newCustomRole(): void {
-        this.dialog.open(AigRoleCustomNewDialogComponent);
+        this.dialog.open(AigRoleCustomNewNewUpdateModalComponent);
     }
 }

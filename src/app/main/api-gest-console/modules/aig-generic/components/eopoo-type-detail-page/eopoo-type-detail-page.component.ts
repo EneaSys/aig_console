@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
+import { EopooTypeDTO, EopooTypeResourceService } from 'aig-generic';
+
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { ActivatedRoute } from '@angular/router';
-import { EopooTypeDTO, EopooTypeResourceService } from 'aig-generic';
-import { MatDialog } from '@angular/material/dialog';
 import { AigEopooTypeNewUpdateModalComponent } from '../eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
 
 @Component({

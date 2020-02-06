@@ -7,7 +7,7 @@ import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigSocialActionDialogComponent } from '../social-action-dialog/social-action-dialog.component';
+import { AigSocialActionNewUpdateModalComponent } from '../social-action-new-update-modal/social-action-new-update-modal.component';
 
 @Component({
     templateUrl: './social-action-detail.component.html',
@@ -21,18 +21,18 @@ export class AigSocialActionDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    socialActionDTO: SocialActionDTO;
+    socialAction: SocialActionDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.socialActionDTO = this.route.snapshot.data.socialAction;
+            this.socialAction = this.route.snapshot.data.socialAction;
         } else {
-            this.socialActionDTO = await this.socialActionResourceService.getSocialActionUsingGET(this.socialActionDTO.id).toPromise();
+            this.socialAction = await this.socialActionResourceService.getSocialActionUsingGET(this.socialAction.id).toPromise();
         }
     }
 
-    editSocialAction(socialActionDTO: SocialActionDTO) {
-        this.dialog.open(AigSocialActionDialogComponent, { data: { socialAction: socialActionDTO } });
+    editSocialAction(socialAction: SocialActionDTO) {
+        this.dialog.open(AigSocialActionNewUpdateModalComponent, { data: { socialAction: socialAction } });
     }
 
 }

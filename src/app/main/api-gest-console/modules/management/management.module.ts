@@ -23,9 +23,9 @@ import { AigRoleListPageComponent } from './components/role-list-page/role-list-
 import { AigContextListPageComponent } from './components/context-list-page/context-list-page.component';
 import { AigCommonModule } from 'aig-common/common.module';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
-import { AigPermissionNewDialogComponent } from './components/permission-new-dialog/permission-new-dialog.component';
-import { AigRoleNewDialogComponent } from './components/role-new-dialog/role-new-dialog.component';
-import { AigAssociateRoleToPermissionDialogComponent } from './components/associate-role-premission-dialog/associate-role-premission-dialog.component';
+import { AigPermissionNewNewUpdateModalComponent } from './components/permission-new-dialog/permission-new-dialog.component';
+import { AigRoleNewNewUpdateModalComponent } from './components/role-new-dialog/role-new-dialog.component';
+import { AigAssociateRoleToPermissionNewUpdateModalComponent } from './components/associate-role-premission-dialog/associate-role-premission-dialog.component';
 
 @NgModule({
     imports: [
@@ -58,16 +58,16 @@ import { AigAssociateRoleToPermissionDialogComponent } from './components/associ
         AigRoleListPageComponent,
         AigRoleDetailPageComponent,
         
-        AigPermissionNewDialogComponent,
-        AigRoleNewDialogComponent,
-        AigAssociateRoleToPermissionDialogComponent,
+        AigPermissionNewNewUpdateModalComponent,
+        AigRoleNewNewUpdateModalComponent,
+        AigAssociateRoleToPermissionNewUpdateModalComponent,
     ],
     exports: [ ],
     providers: [ ],
     entryComponents: [
-        AigPermissionNewDialogComponent,
-        AigRoleNewDialogComponent,
-        AigAssociateRoleToPermissionDialogComponent,
+        AigPermissionNewNewUpdateModalComponent,
+        AigRoleNewNewUpdateModalComponent,
+        AigAssociateRoleToPermissionNewUpdateModalComponent,
     ],
 })
 export class AigManagementModule {}

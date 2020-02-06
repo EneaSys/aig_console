@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ItalianPublicProcurementSectorResourceService, ItalianPublicProcurementSectorDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigIppSectorDialogComponent } from '../ipp-sector-dialog-page/ipp-sector-dialog-page.component';
+import { AigIppSectorNewUpdateModalComponent } from '../ipp-sector-new-update-modal/ipp-sector-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-sector-list-page.component.html',
@@ -23,6 +23,6 @@ export class AigIppSectorListPageComponent extends GenericComponent {
     }
 
     newIppSector(){
-        this.dialog.open(AigIppSectorDialogComponent, {data: { ippSector: {} } });
+        this.dialog.open(AigIppSectorNewUpdateModalComponent, {data: { ippSector: {} } });
     }
 }

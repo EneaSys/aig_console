@@ -5,9 +5,9 @@ import { MatDialogRef } from '@angular/material/dialog';
     templateUrl: './role-new-dialog.component.html',
     styleUrls: ['./role-new-dialog.component.scss']
 })
-export class AigRoleNewDialogComponent implements OnInit {
+export class AigRoleNewNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigRoleNewDialogComponent>,
+        public matDialogRef: MatDialogRef<AigRoleNewNewUpdateModalComponent>,
     ) { }
 
     ngOnInit(): void { }

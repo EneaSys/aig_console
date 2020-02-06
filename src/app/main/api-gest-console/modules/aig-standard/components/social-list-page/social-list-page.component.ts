@@ -4,7 +4,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { SocialResourceService, SocialDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { AigSocialDialogComponent } from '../social-dialog/social-dialog.component';
+import { AigSocialNewUpdateModalComponent } from '../social-new-update-modal/social-new-update-modal.component';
 
 @Component({
     templateUrl: './social-list-page.component.html',
@@ -26,6 +26,6 @@ export class AigSocialListPageComponent extends GenericComponent {
     }
 
     newSocial(): void {
-        this.dialog.open(AigSocialDialogComponent, { data: { social: {} } });
+        this.dialog.open(AigSocialNewUpdateModalComponent, { data: { social: {} } });
     }
 }

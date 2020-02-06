@@ -6,7 +6,7 @@ import { CityDTO, CityResourceService } from 'aig-standard';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { AigCityDialogComponent } from '../city-dialog-page/city-dialog-page.component';
+import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 
 @Component({
     templateUrl: './city-detail-page.component.html',
@@ -32,7 +32,7 @@ export class AigCityDetailPageComponent extends GenericComponent {
     }
 
     editCity(city: CityDTO) {
-        this.dialog.open(AigCityDialogComponent, { data: { city: city } });
+        this.dialog.open(AigCityNewUpdateModalComponent, { data: { city: city } });
     }
 
 }

@@ -7,7 +7,7 @@ import { SocialResourceService, SocialDTO } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigSocialDialogComponent } from '../social-dialog/social-dialog.component';
+import { AigSocialNewUpdateModalComponent } from '../social-new-update-modal/social-new-update-modal.component';
 
 @Component({
     templateUrl: './social-detail-page.component.html',
@@ -32,6 +32,6 @@ export class AigSocialDetailPageComponent extends GenericComponent {
     }
 
     editSocial(social: SocialDTO) {
-        this.dialog.open(AigSocialDialogComponent, { data: { social: social } });
+        this.dialog.open(AigSocialNewUpdateModalComponent, { data: { social: social } });
     }
 }

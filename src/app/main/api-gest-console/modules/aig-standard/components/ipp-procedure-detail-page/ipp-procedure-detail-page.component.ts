@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementProcedureDTO } from 'aig-standard';
-import { AigIppProcedureDialogComponent } from '../ipp-procedure-dialog-page/ipp-procedure-dialog-page.component';
+import { AigIppProcedureNewUpdateModalComponent } from '../ipp-procedure-new-update-modal/ipp-procedure-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-procedure-detail-page.component.html',
@@ -19,19 +19,20 @@ export class AigIppProcedureDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippProcedureDTO: ItalianPublicProcurementProcedureDTO;
+    ippProcedure: ItalianPublicProcurementProcedureDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.ippProcedureDTO = this.route.snapshot.data.ippProcedure;
+            console.log(this.ippProcedure)
+            this.ippProcedure = this.route.snapshot.data.ippProcedure;
         } else {
-            this.ippProcedureDTO = await this.ippProcedureResourceService.getItalianPublicProcurementProcedureUsingGET(this.ippProcedureDTO.id).toPromise();
+            this.ippProcedure = await this.ippProcedureResourceService.getItalianPublicProcurementProcedureUsingGET(this.ippProcedure.id).toPromise();
         }
     }
     
 
-    editIppProcedureDTO(ippProcedureDTO: ItalianPublicProcurementProcedureDTO) {
-        this.dialog.open(AigIppProcedureDialogComponent, { data: { ippProcedure: ippProcedureDTO } });
+    editIppProcedureDTO(ippProcedure: ItalianPublicProcurementProcedureDTO) {
+        this.dialog.open(AigIppProcedureNewUpdateModalComponent, { data: { ippProcedure: ippProcedure } });
     }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AigGroupNewDialogComponent } from '../group-new-dialog/group-new-dialog.component';
+import { AigGroupNewNewUpdateModalComponent } from '../group-new-dialog/group-new-dialog.component';
 import { ContextGroupResourceService, ContextGroupDTO } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -29,6 +29,6 @@ export class AigGroupListComponent extends GenericComponent {
     }
 
     newGroup() {
-        this.dialog.open(AigGroupNewDialogComponent);
+        this.dialog.open(AigGroupNewNewUpdateModalComponent);
     }
 }

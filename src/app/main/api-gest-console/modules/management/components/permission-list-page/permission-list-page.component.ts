@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PermissionResourceService, PermissionDTO } from 'api-gest';
-import { AigPermissionNewDialogComponent } from '../permission-new-dialog/permission-new-dialog.component';
+import { AigPermissionNewNewUpdateModalComponent } from '../permission-new-dialog/permission-new-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -29,6 +29,6 @@ export class AigPermissionListPageComponent extends GenericComponent {
     }
 
     newPermission(): void {
-        this.dialog.open(AigPermissionNewDialogComponent);
+        this.dialog.open(AigPermissionNewNewUpdateModalComponent);
     }
 }

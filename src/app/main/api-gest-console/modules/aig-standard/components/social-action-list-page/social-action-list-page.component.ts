@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { SocialActionResourceService, SocialActionDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigSocialActionDialogComponent } from '../social-action-dialog/social-action-dialog.component';
+import { AigSocialActionNewUpdateModalComponent } from '../social-action-new-update-modal/social-action-new-update-modal.component';
 
 @Component({
     templateUrl: './social-action-list-page.component.html',
@@ -24,6 +24,6 @@ export class AigSocialActionListPageComponent extends GenericComponent {
     }
 
     newAction(){
-        this.dialog.open(AigSocialActionDialogComponent, { data: { socialAction: {} } });
+        this.dialog.open(AigSocialActionNewUpdateModalComponent, { data: { socialAction: {} } });
     }
 }

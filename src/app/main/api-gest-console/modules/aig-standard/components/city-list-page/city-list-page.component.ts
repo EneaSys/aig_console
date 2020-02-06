@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CityResourceService, CityDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityDialogComponent } from '../city-dialog-page/city-dialog-page.component';
+import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 
 @Component({
     templateUrl: './city-list-page.component.html',
@@ -24,6 +24,6 @@ export class AigCityListPageComponent extends GenericComponent {
     }
 
     newCity(){
-        this.dialog.open(AigCityDialogComponent, { data: { city: {} } });
+        this.dialog.open(AigCityNewUpdateModalComponent, { data: { city: {} } });
     }
 }

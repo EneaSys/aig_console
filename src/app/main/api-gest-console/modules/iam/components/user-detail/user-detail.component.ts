@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoleAssignationDTO, RoleAssignationResourceService } from 'api-gest';
 import { Observable } from 'rxjs';
-import { AigGroupAssociateDialogComponent } from '../group-associate-dialog/group-associate-dialog.component';
-import { AigRoleAssociateDialogComponent } from '../role-associate-dialog/role-associate-dialog.component';
+import { AigGroupAssociateNewUpdateModalComponent } from '../group-associate-dialog/group-associate-dialog.component';
+import { AigRoleAssociateNewUpdateModalComponent } from '../role-associate-dialog/role-associate-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -45,10 +45,10 @@ export class AigUserDetailComponent extends GenericComponent {
     }
 
     associateToGroup() {
-        this.dialog.open(AigGroupAssociateDialogComponent, { data: { user: this.user } });
+        this.dialog.open(AigGroupAssociateNewUpdateModalComponent, { data: { user: this.user } });
     }
 
     associateToRole() {
-        this.dialog.open(AigRoleAssociateDialogComponent, { data: { user: this.user } });
+        this.dialog.open(AigRoleAssociateNewUpdateModalComponent, { data: { user: this.user } });
     }
 }

@@ -6,7 +6,7 @@ import { ItalianPublicProcurementSectorResourceService, ItalianPublicProcurement
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigIppSectorDialogComponent } from '../ipp-sector-dialog-page/ipp-sector-dialog-page.component';
+import { AigIppSectorNewUpdateModalComponent } from '../ipp-sector-new-update-modal/ipp-sector-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-sector-detail-page.component.html',
@@ -20,18 +20,18 @@ export class AigIppSectorDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippSectorDTO: ItalianPublicProcurementSectorDTO;
+    ippSector: ItalianPublicProcurementSectorDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.ippSectorDTO = this.route.snapshot.data.ippSector;
+            this.ippSector = this.route.snapshot.data.ippSector;
         } else {
-            this.ippSectorDTO = await this.ippSectorResourceService.getItalianPublicProcurementSectorUsingGET(this.ippSectorDTO.id).toPromise();
+            this.ippSector = await this.ippSectorResourceService.getItalianPublicProcurementSectorUsingGET(this.ippSector.id).toPromise();
         }
     }
 
-    editIppSector(ippSectorDTO: ItalianPublicProcurementSectorDTO) {
-        this.dialog.open(AigIppSectorDialogComponent, { data: { ippSector: ippSectorDTO } });
+    editIppSector(ippSector: ItalianPublicProcurementSectorDTO) {
+        this.dialog.open(AigIppSectorNewUpdateModalComponent, { data: { ippSector: ippSector } });
     }
 
 }

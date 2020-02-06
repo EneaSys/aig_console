@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementProcedureDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigIppProcedureDialogComponent } from '../ipp-procedure-dialog-page/ipp-procedure-dialog-page.component';
+import { AigIppProcedureNewUpdateModalComponent } from '../ipp-procedure-new-update-modal/ipp-procedure-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-procedure-list-page.component.html',
@@ -24,6 +24,6 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
     }
 
     newIppProcedure(){
-        this.dialog.open(AigIppProcedureDialogComponent, {data: { ippProcedure: {} } });
+        this.dialog.open(AigIppProcedureNewUpdateModalComponent, {data: { ippProcedure: {} } });
     }
 }

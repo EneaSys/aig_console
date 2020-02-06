@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigIppLotTypeDialogComponent } from '../ipp-lot-type-dialog-page/ipp-lot-type-dialog-page.component';
+import { AigIppLotTypeNewUpdateModalComponent } from '../ipp-lot-type-new-update-modal/ipp-lot-type-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-lot-type-list-page.component.html',
@@ -24,6 +24,6 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
     }
 
     newIppLotType(){
-        this.dialog.open(AigIppLotTypeDialogComponent, {data: { ippLotType: {} } });
+        this.dialog.open(AigIppLotTypeNewUpdateModalComponent, {data: { ippLotType: {} } });
     }
 }

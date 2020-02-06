@@ -11,12 +11,12 @@
     <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.eopooType.name}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{ element.eopooType.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -32,7 +32,7 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-stroked-button color="accent">Details</button>
+                <button mat-stroked-button color="accent" [routerLink]="'/g5c/eopoo/detail/' + element.id">Details</button>
             </mat-cell>
         </ng-container>
 

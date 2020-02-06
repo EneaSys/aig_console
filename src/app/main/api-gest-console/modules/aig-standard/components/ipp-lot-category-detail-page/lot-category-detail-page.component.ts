@@ -6,7 +6,7 @@ import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCate
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigLotCategoryDialogComponent } from '../ipp-lot-category-dialog-page/lot-category-dialog-page.component';
+import { AigLotCategoryNewUpdateModalComponent } from '../ipp-lot-category-new-update-modal/lot-category-new-update-modal.component';
 
 @Component({
     templateUrl: './lot-category-detail-page.component.html',
@@ -32,7 +32,7 @@ export class AigLotCategoryDetailPageComponent extends GenericComponent {
     }
 
     editIppLotCategory(ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO) {
-        this.dialog.open(AigLotCategoryDialogComponent, { data: { ippLotCategory: ippLotCategoryDTO } });
+        this.dialog.open(AigLotCategoryNewUpdateModalComponent, { data: { ippLotCategory: ippLotCategoryDTO } });
     }
 
 }

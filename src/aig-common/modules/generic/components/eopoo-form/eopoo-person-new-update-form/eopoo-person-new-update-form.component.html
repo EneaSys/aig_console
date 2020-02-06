@@ -1,0 +1,68 @@
+<div fxLayout="column">
+    <form [formGroup]="eopooPersonNewUpdateForm" (ngSubmit)="submit()">
+        
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="firstName" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>Il nome è obbligatorio!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                <mat-label>Cognome</mat-label>
+                <input matInput formControlName="lastName" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>Il cognome è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="70" class="pr-4">
+                <mat-label>Codice Fiscale</mat-label>
+                <input matInput #taxIdP formControlName="taxId" maxlength="17" required>
+                <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                <mat-hint align="end">{{taxIdP.value.length}} / 16 or 17</mat-hint>
+                <mat-error>Il Codice fiscale obbligatorio!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+                <mat-label>Sesso</mat-label>
+                <mat-select required formControlName="sex">
+                    <mat-option [value]="'MALE'">Maschio</mat-option>
+                    <mat-option [value]="'FEMALE'">Femmina</mat-option>
+                </mat-select>
+                <mat-error>Seleziona il sesso!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="40" class="pr-4">
+                <mat-label>Data di nascita</mat-label>
+                <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="bornDate"
+                    required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>La data di nascita è obbligatoria!</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" fxFlex="60" class="pl-4">
+                <mat-label>Comune di nascita</mat-label>
+                <input type="text" matInput formControlName="bornCity" required [matAutocomplete]="cityAutocomplete">
+                <mat-autocomplete #cityAutocomplete="matAutocomplete" [displayWith]="aigStandardAutocompleteFunctionService.cityDisplayFn">
+                    <mat-option *ngFor="let city of filteredCitys | async" [value]="city">{{ city.name }}</mat-option>
+                </mat-autocomplete>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>La città di nascita è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button type="submit" mat-raised-button color="accent">Crea</button>
+        </div>
+
+        Person:
+        <pre><code>{{ eopooPersonNewUpdateForm.getRawValue() | json }}</code></pre>
+
+    </form>
+</div>

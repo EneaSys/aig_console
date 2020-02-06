@@ -5,9 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     templateUrl: './associate-role-premission-dialog.component.html',
     styleUrls: ['./associate-role-premission-dialog.component.scss']
 })
-export class AigAssociateRoleToPermissionDialogComponent implements OnInit {
+export class AigAssociateRoleToPermissionNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigAssociateRoleToPermissionDialogComponent>,
+        public matDialogRef: MatDialogRef<AigAssociateRoleToPermissionNewUpdateModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
 

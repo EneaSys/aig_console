@@ -5,9 +5,9 @@ import { MatDialogRef } from '@angular/material/dialog';
     templateUrl: './permission-new-dialog.component.html',
     styleUrls: ['./permission-new-dialog.component.scss']
 })
-export class AigPermissionNewDialogComponent implements OnInit {
+export class AigPermissionNewNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigPermissionNewDialogComponent>,
+        public matDialogRef: MatDialogRef<AigPermissionNewNewUpdateModalComponent>,
     ) { }
 
     ngOnInit(): void { }

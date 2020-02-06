@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementModalityDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigIppModalityDialogComponent } from '../ipp-modality-dialog-page/ipp-modality-dialog-page.component';
+import { AigIppModalityNewUpdateModalComponent } from '../ipp-modality-new-update-modal/ipp-modality-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-modality-list-page.component.html',
@@ -24,6 +24,6 @@ export class AigIppModalityListPageComponent extends GenericComponent {
     }
 
     newIppModality(){
-        this.dialog.open(AigIppModalityDialogComponent, { data: { ippModality: {} } });
+        this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: { ippModality: {} } });
     }
 }

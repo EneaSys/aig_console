@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CpvDTO, CpvResourceService } from 'aig-standard';
-import { AigCpvDialogComponent } from '../cpv-dialog-page/cpv-dialog-page.component';
+import { AigCpvNewUpdateModalComponent } from '../cpv-new-update-modal/cpv-new-update-modal.component';
 
 @Component({
     templateUrl: './cpv-list-page.component.html',
@@ -27,7 +27,7 @@ export class AigCpvListPageComponent extends GenericComponent {
     }
     
     newCpv(): void {
-        this.dialog.open(AigCpvDialogComponent, { data: { cpv: {} } });
+        this.dialog.open(AigCpvNewUpdateModalComponent, { data: { cpv: {} } });
     }
 
 }

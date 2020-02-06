@@ -6,9 +6,9 @@ import { MatDialogRef } from '@angular/material/dialog';
     templateUrl: './group-new-dialog.component.html',
     styleUrls: ['./group-new-dialog.component.scss']
 })
-export class AigGroupNewDialogComponent implements OnInit {
+export class AigGroupNewNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigGroupNewDialogComponent>,
+        public matDialogRef: MatDialogRef<AigGroupNewNewUpdateModalComponent>,
     ) { }
 
     ngOnInit(): void { }

@@ -6,7 +6,7 @@ import { ItalianPublicProcurementModalityResourceService, ItalianPublicProcureme
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigIppModalityDialogComponent } from '../ipp-modality-dialog-page/ipp-modality-dialog-page.component';
+import { AigIppModalityNewUpdateModalComponent } from '../ipp-modality-new-update-modal/ipp-modality-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-modality-detail-page.component.html',
@@ -31,7 +31,7 @@ export class AigIppModalityDetailPageComponent extends GenericComponent {
     }
 
     editIppModality(ippModalityDTO: ItalianPublicProcurementModalityDTO) {
-        this.dialog.open(AigIppModalityDialogComponent, { data: { ippModality: ippModalityDTO } });
+        this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: { ippModality: ippModalityDTO } });
     }
 
 }

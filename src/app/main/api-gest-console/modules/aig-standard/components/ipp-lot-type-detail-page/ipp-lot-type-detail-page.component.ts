@@ -6,7 +6,7 @@ import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeReso
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigIppLotTypeDialogComponent } from '../ipp-lot-type-dialog-page/ipp-lot-type-dialog-page.component';
+import { AigIppLotTypeNewUpdateModalComponent } from '../ipp-lot-type-new-update-modal/ipp-lot-type-new-update-modal.component';
 
 @Component({
     templateUrl: './ipp-lot-type-detail-page.component.html',
@@ -31,7 +31,7 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
     }
 
     editIppLotType(ippLotTypeDTO: ItalianPublicProcurementLotTypeDTO) {
-        this.dialog.open(AigIppLotTypeDialogComponent, { data: { lotType: ippLotTypeDTO } });
+        this.dialog.open(AigIppLotTypeNewUpdateModalComponent, { data: { lotType: ippLotTypeDTO } });
     }
 
 }
