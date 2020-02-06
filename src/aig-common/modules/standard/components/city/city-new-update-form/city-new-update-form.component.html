@@ -32,4 +32,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ cityNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!cityNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newCity()">Create New</button>
 </div>

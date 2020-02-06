@@ -71,6 +71,10 @@ export class AigCityNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
+    newCity() {
+        this.setStep("form");
+    }
+
     private setStep(step: string){
         this.step.form = false;
         this.step.loading = false;
