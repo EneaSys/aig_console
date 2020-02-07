@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomRoleDTO, CustomRolePermissionDTO, RoleAssignationResourceService, RoleAssignationDTO, CustomRolePermissionResourceService } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
-import { AigPermissionCustomNewNewUpdateModalComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
+import { AigPermissionCustomNewDialogComponent } from '../permission-custom-new-dialog/permission-custom-new-dialog.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
@@ -67,6 +67,6 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
     }
 
     newCustomPermission() {
-        this.dialog.open(AigPermissionCustomNewNewUpdateModalComponent, { data: this.customRole });
+        this.dialog.open(AigPermissionCustomNewDialogComponent, { data: this.customRole });
     }
 }

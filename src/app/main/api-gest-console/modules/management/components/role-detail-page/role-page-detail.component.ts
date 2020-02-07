@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoleDTO, RoleAssignationResourceService, RoleAssignationDTO } from 'api-gest';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AigAssociateRoleToPermissionNewUpdateModalComponent } from '../associate-role-premission-dialog/associate-role-premission-dialog.component';
+import { AigAssociateRoleToPermissionDialogComponent } from '../associate-role-premission-dialog/associate-role-premission-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -39,6 +39,6 @@ export class AigRoleDetailPageComponent extends GenericComponent {
     }
 
     addPermissionToRole(): void {
-        this.dialog.open(AigAssociateRoleToPermissionNewUpdateModalComponent, { data: { role: this.role } });
+        this.dialog.open(AigAssociateRoleToPermissionDialogComponent, { data: { role: this.role } });
     }
 }

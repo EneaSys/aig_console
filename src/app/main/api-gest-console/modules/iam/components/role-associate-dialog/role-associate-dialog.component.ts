@@ -6,9 +6,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     templateUrl: './role-associate-dialog.component.html',
     styleUrls: ['./role-associate-dialog.component.scss']
 })
-export class AigRoleAssociateNewUpdateModalComponent implements OnInit {
+export class AigRoleAssociateDialogComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigRoleAssociateNewUpdateModalComponent>,
+        public matDialogRef: MatDialogRef<AigRoleAssociateDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 

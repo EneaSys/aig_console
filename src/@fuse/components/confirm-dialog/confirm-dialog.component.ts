@@ -6,17 +6,17 @@ import { MatDialogRef } from '@angular/material/dialog';
     templateUrl: './confirm-dialog.component.html',
     styleUrls  : ['./confirm-dialog.component.scss']
 })
-export class FuseConfirmNewUpdateModalComponent
+export class FuseConfirmDialogComponent
 {
     public confirmMessage: string;
 
     /**
      * Constructor
      *
-     * @param {MatDialogRef<FuseConfirmNewUpdateModalComponent>} dialogRef
+     * @param {MatDialogRef<FuseConfirmDialogComponent>} dialogRef
      */
     constructor(
-        public dialogRef: MatDialogRef<FuseConfirmNewUpdateModalComponent>
+        public dialogRef: MatDialogRef<FuseConfirmDialogComponent>
     )
     {
     }

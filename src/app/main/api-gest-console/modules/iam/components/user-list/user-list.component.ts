@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserResourceService, UserDTO } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
-import { AigUserNewNewUpdateModalComponent } from '../user-new-dialog/user-new-dialog.component';
+import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
@@ -29,7 +29,7 @@ export class AigUserListComponent extends GenericComponent {
     }
 
     newUser() {
-        this.dialog.open(AigUserNewNewUpdateModalComponent);
+        this.dialog.open(AigUserNewDialogComponent);
     }
 }
 

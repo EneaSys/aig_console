@@ -3,7 +3,7 @@ import { RoleResourceService, RoleDTO } from 'api-gest';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { AigRoleNewNewUpdateModalComponent } from '../role-new-dialog/role-new-dialog.component';
+import { AigRoleNewDialogComponent } from '../role-new-dialog/role-new-dialog.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
@@ -27,6 +27,6 @@ export class AigRoleListPageComponent extends GenericComponent {
     }
 
     newRole(): void {
-        this.dialog.open(AigRoleNewNewUpdateModalComponent);
+        this.dialog.open(AigRoleNewDialogComponent);
     }
 }

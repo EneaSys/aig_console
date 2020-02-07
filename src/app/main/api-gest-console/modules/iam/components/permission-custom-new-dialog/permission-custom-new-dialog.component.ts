@@ -7,9 +7,9 @@ import { CustomRoleDTO } from 'api-gest';
     templateUrl: './permission-custom-new-dialog.component.html',
     styleUrls: ['./permission-custom-new-dialog.component.scss']
 })
-export class AigPermissionCustomNewNewUpdateModalComponent implements OnInit {
+export class AigPermissionCustomNewDialogComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigPermissionCustomNewNewUpdateModalComponent>,
+        public matDialogRef: MatDialogRef<AigPermissionCustomNewDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public customRole: CustomRoleDTO,
     ) { }
 
