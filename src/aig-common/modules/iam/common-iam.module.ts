@@ -97,6 +97,8 @@ import { RouterModule } from '@angular/router';
         AigGroupAssociateComponent,
         AigRoleAssociateComponent,
 
+
+        
     ],
     providers: [
         AigAutocompleteFilterService,

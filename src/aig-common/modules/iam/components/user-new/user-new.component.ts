@@ -11,7 +11,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./user-new.component.scss']
 })
 export class AigUserNewComponent implements OnInit {
-    private step: any = {
+    step: any = {
         form: true,
         loading: false,
         complete: false
@@ -25,9 +25,9 @@ export class AigUserNewComponent implements OnInit {
         private eventService: EventService,
     ) { }
 
-    private userNewForm: FormGroup;
+    userNewForm: FormGroup;
     private userDTO: UserDTO;
-
+    
     ngOnInit(): void {
         this.userNewForm = this._formBuilder.group({
             firstName: ['', Validators.required],

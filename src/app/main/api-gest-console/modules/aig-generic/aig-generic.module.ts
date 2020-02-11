@@ -17,15 +17,14 @@ import { AigEopooTypeNewUpdateModalComponent } from './components/eopoo-type-new
 import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
 import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
 
-
 @NgModule({
     imports: [
         RouterModule.forChild(aigGenericRoute),
 
         CommonGenericModule,
-        
+
         AigGenericClientModule,
-        
+
         FuseSharedModule,
         FuseSidebarModule,
 
@@ -44,12 +43,13 @@ import { AigAddressNewUpdateModalComponent } from './components/address-new-upda
         AigEopooTypeListPageComponent,
         AigEopooTypeDetailPageComponent,
         AigEopooTypeNewUpdateModalComponent,
-
+        AigEopooDetailPageComponent,
         AigAddressNewUpdateModalComponent,
     ],
     entryComponents: [
         AigEopooNewModalComponent,
         AigEopooTypeNewUpdateModalComponent,
+        AigEopooDetailPageComponent,
         AigAddressNewUpdateModalComponent,
     ],
     exports: [

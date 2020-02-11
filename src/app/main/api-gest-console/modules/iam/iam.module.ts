@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -48,7 +48,7 @@ import { AigRoleCustomDetailComponent } from './components/custom-role-detail-pa
 
         //INTERNAL
         AigIamHeaderComponent,
-        
+
         AigCustomRolePageComponent,
 
         AigUserListComponent,
@@ -62,7 +62,7 @@ import { AigRoleCustomDetailComponent } from './components/custom-role-detail-pa
         AigGroupNewDialogComponent,
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
-        
+
     ],
     imports: [
         AigCommonModule,
