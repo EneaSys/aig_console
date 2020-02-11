@@ -1,5 +1,5 @@
 <div *ngIf="step.form" fxLayout="column">
-    <form [formGroup]="eopooOrganizationNewUpdateForm" (ngSubmit)="submit()">
+    <form [formGroup]="eopooGenericNewUpdateForm" (ngSubmit)="submit()">
         
         <div fxLayout="row">
             <mat-form-field appearance="outline" fxFlex="100">
@@ -32,6 +32,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ eopooOrganizationNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!eopooOrganizationNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEopoo()">Create New</button>
+    <pre>{{ eopooGenericNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!eopooGenericNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEopoo()">Create New</button>
 </div>

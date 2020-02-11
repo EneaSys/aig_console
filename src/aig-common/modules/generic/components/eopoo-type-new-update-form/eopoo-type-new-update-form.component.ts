@@ -19,10 +19,10 @@ export class AigEopooTypeNewUpdateFormComponent implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
-        private eopooTypeResourceService: EopooTypeResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private eventService: EventService,
+        private eopooTypeResourceService: EopooTypeResourceService,
     ) { }
 
     eopooTypeCategorys = ['GENERIC', 'PERSON'];

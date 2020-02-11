@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { EventService } from 'aig-common/event-manager/event.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'aig-eopoo-person-new-update-form',
@@ -22,8 +25,11 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
         private eopooResourceService: EopooResourceService,
+        private _fuseProgressBarService: FuseProgressBarService,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
+        private eventService: EventService,
+        private _snackBar: MatSnackBar,
     ) { }
 
     @Input()
@@ -38,9 +44,12 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         // PREPARE FORM
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            taxId: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
+            id: [''],
+            taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
+            eopooTypeId: [''],
+
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
             sex: ['', Validators.required],
             bornDate: ['', Validators.required],
             bornCity: ['', Validators.required],
@@ -57,7 +66,8 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
 
         // PRECOMPILE
         // Is update
-        if (this.eopoo != null) {
+        if (this.eopoo != null && this.eopoo.person != null) {
+            this.eopooPersonNewUpdateForm.patchValue(this.eopoo.person);
             this.eopooPersonNewUpdateForm.patchValue(this.eopoo);
         }
 
@@ -67,13 +77,53 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['bornCity'].valueChanges);
     }
 
-    submit() {
+    async submit() {
         if (!this.eopooPersonNewUpdateForm.valid) {
             return;
         }
 
-        console.log("create Person");
+        this._fuseProgressBarService.show();
+        this.setStep("loading");
 
+        let formValue = this.eopooPersonNewUpdateForm.value;
+        
+        let eopooPerson: EopooDTO = {
+            id: formValue.id,
+            taxNumber: formValue.taxNumber,
+            eopooTypeId: formValue.eopooTypeId,
+            person: formValue,
+        };
+        eopooPerson.person.cityCode = formValue.bornCity.code;
 
+        try {
+            let postOrPut;
+            if (eopooPerson.id != 0) {
+                await this.eopooResourceService.updateEopooUsingPUT(eopooPerson).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.eopooResourceService.createEopooUsingPOST(eopooPerson).toPromise();
+                postOrPut = "created";
+            }
+            this.eventService.reloadCurrentPage();
+
+            this._snackBar.open(`Eopoo with tax id: '${eopooPerson.taxNumber}' ${postOrPut}.`, null, { duration: 2000, });
+            this.setStep("complete");
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+            this.setStep("form");
+        }
+        this._fuseProgressBarService.hide();
+    }
+
+    newEopoo() {
+        this.setStep("form");
+    }
+
+    private setStep(step: string) {
+        this.step.form = false;
+        this.step.loading = false;
+        this.step.complete = false;
+
+        this.step[step] = true;
     }
 }

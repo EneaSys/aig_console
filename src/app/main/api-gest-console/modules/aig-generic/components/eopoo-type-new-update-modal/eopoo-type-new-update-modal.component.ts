@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AigEopooTypeNewUpdateModalComponent implements OnInit {
     constructor(
         public matDialogRef: MatDialogRef<AigEopooTypeNewUpdateModalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any
+        @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
 
     ngOnInit(): void { }

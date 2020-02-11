@@ -25,6 +25,8 @@ import { AigEopooGenericNewUpdateFormComponent } from './components/eopoo-form/e
 import { AigEopooPersonNewUpdateFormComponent } from './components/eopoo-form/eopoo-person-new-update-form/eopoo-person-new-update-form.component';
 import { EopooResolver } from './resolver/eopoo.resolver';
 import { AigCommonStandardModule } from '../standard/common-standard.module';
+import { AigEopooAddressListTableComponent } from './components/address-list-table/address-list-table.component';
+import { AigAddressNewUpdateFormComponent } from './components/address-new-update-form/address-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -65,14 +67,22 @@ import { AigCommonStandardModule } from '../standard/common-standard.module';
         AigEopooGenericNewUpdateFormComponent,
         AigEopooPersonNewUpdateFormComponent,
         
+        AigEopooAddressListTableComponent,
+        AigAddressNewUpdateFormComponent,
+        
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
     ],
     exports: [
+        EopooNamePipe,
+        
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
         AigEopooGenericNewUpdateFormComponent,
         AigEopooPersonNewUpdateFormComponent,
+
+        AigEopooAddressListTableComponent,
+        AigAddressNewUpdateFormComponent,
 
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
