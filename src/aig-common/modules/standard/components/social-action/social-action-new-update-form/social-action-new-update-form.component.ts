@@ -31,6 +31,13 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
     socialActionNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
+        this.socialActionNewUpdateForm = this._formBuilder.group({
+            id:[''],
+            name: ['', Validators.required],
+            code: ['', Validators.required],
+            wikiCode:['']
+        })
+
         if (this.socialAction != null) {
             this.socialActionNewUpdateForm.patchValue(this.socialAction);
         }
@@ -43,11 +50,7 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let socialAction: SocialActionDTO = {
-            name: this.socialActionNewUpdateForm.value.name,
-            code: this.socialActionNewUpdateForm.value.code,
-            wikiCode: this.socialActionNewUpdateForm.value.wikiCode
-        };
+        let socialAction: SocialActionDTO = this.socialActionNewUpdateForm.value;
 
         try {
             let postOrPut;
