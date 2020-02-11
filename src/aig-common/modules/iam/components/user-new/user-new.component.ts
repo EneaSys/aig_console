@@ -11,8 +11,8 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./user-new.component.scss']
 })
 export class AigUserNewComponent implements OnInit {
-    private userNewForm: FormGroup;
-    private step: any = {
+    userNewForm: FormGroup;
+    step: any = {
         form: true,
         loading: false,
         complete: false

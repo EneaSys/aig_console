@@ -24,7 +24,7 @@ export class AigCityNewUpdateFormComponent implements OnInit {
         private cityResourceService: CityResourceService,
         private eventService: EventService,
     ) { }
-    
+
     @Input()
     city: CityDTO;
 
@@ -33,8 +33,8 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.cityNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', Validators.required], 
-            code: ['', Validators.required], 
+            name: ['', Validators.required],
+            code: ['', Validators.required],
             wikiCode:['']
         })
         if (this.city != null) {
@@ -49,11 +49,11 @@ export class AigCityNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let city = this.cityNewUpdateForm.value;
+        let city: CityDTO = this.cityNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (city.id != null && city.id != "") {
+            if (city.id != 0) {
                 await this.cityResourceService.updateCityUsingPUT(city).toPromise();
                 postOrPut = "updated";
             } else {

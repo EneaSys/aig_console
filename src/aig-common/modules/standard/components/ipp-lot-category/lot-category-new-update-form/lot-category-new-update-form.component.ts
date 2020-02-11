@@ -50,11 +50,11 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
-        let ippLotCategory = this.ippLotCategoryNewUpdateForm.value;
+        let ippLotCategory: ItalianPublicProcurementLotCategoryDTO = this.ippLotCategoryNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (ippLotCategory.id != null && ippLotCategory.id != "") {
+            if (ippLotCategory.id != 0) {
                 await this.ippLotCategoryResourceService.updateItalianPublicProcurementLotCategoryUsingPUT(ippLotCategory).toPromise();
                 postOrPut = "updated";
             } else {
