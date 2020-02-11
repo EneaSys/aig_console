@@ -11,13 +11,13 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./ipp-lot-type-new-update-form.component.scss']
 })
 export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
-    
+
     step: any = {
         form: true,
         loading: false,
         complete: false
     };
-    
+
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -51,11 +51,11 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippLotType = this.ippLotTypeNewUpdateForm.value;
+        let ippLotType: ItalianPublicProcurementLotTypeDTO = this.ippLotTypeNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (ippLotType.id != null && ippLotType.id != "") {
+            if (ippLotType.id != 0) {
                 await this.ippLotTypeResourceService.updateItalianPublicProcurementLotTypeUsingPUT(ippLotType).toPromise();
                 postOrPut = "updated";
             } else {

@@ -55,7 +55,7 @@ import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-cate
         AigCityListPageComponent,
         AigCityDetailPageComponent,
         AigCityNewUpdateModalComponent,
-        
+
         AigSocialListPageComponent,
         AigSocialActionListPageComponent,
         AigSocialDetailPageComponent,
@@ -68,7 +68,7 @@ import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-cate
         AigIppModalityListPageComponent,
         AigIppProcedureListPageComponent,
         AigIppSectorListPageComponent,
-        
+
         AigIppLotTypeListPageComponent,
         AigIppLotTypeDetailPageComponent,
         AigIppLotTypeNewUpdateModalComponent,
@@ -92,14 +92,14 @@ import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-cate
     imports: [
         RouterModule.forChild(aigStandardRoute),
         CommonModule,
-        
+
         FlexLayoutModule,
         FuseSidebarModule,
         FuseSharedModule,
-        
+
         AigCommonStandardModule,
         AigStandardClientModule,
-        
+
         MatTableModule,
         MatProgressSpinnerModule,
         MatIconModule,

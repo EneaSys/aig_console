@@ -31,12 +31,9 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
     socialActionNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.socialActionNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            name: ['', Validators.required],
-            code: ['', Validators.required],
-            wikiCode:['']
-        })
+        if (this.socialAction != null) {
+            this.socialActionNewUpdateForm.patchValue(this.socialAction);
+        }
     }
 
     async submit() {

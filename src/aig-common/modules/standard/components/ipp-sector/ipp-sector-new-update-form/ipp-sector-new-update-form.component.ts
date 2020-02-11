@@ -49,11 +49,7 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippSector: ItalianPublicProcurementSectorDTO = {
-            name: this.ippSectorNewUpdateForm.value.name,
-            code: this.ippSectorNewUpdateForm.value.code,
-            wikiCode: this.ippSectorNewUpdateForm.value.wikiCode
-        };
+        let ippSector: ItalianPublicProcurementSectorDTO = this.ippSectorNewUpdateForm.value;
 
         try {
             let postOrPut;
