@@ -52,7 +52,7 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
             lastname: ['', Validators.required],
             sex: ['', Validators.required],
             bornDate: ['', Validators.required],
-            bornCity: ['', Validators.required],
+            city: ['', Validators.required],
         });
 
         // Is creation
@@ -74,7 +74,7 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
 
 
         // EVENT ON ITERACTION
-        this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['bornCity'].valueChanges);
+        this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['city'].valueChanges);
     }
 
     async submit() {
@@ -93,7 +93,7 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
             eopooTypeId: formValue.eopooTypeId,
             person: formValue,
         };
-        eopooPerson.person.cityCode = formValue.bornCity.code;
+        eopooPerson.person.cityCode = formValue.city.code;
 
         try {
             let postOrPut;
