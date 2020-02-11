@@ -45,7 +45,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex="60" class="pl-4">
                 <mat-label>Comune di nascita</mat-label>
-                <input type="text" matInput formControlName="bornCity" required [matAutocomplete]="cityAutocomplete">
+                <input type="text" matInput formControlName="city" required [matAutocomplete]="cityAutocomplete">
                 <mat-autocomplete #cityAutocomplete="matAutocomplete"
                     [displayWith]="aigStandardAutocompleteFunctionService.cityDisplayFn">
                     <mat-option *ngFor="let city of filteredCitys | async" [value]="city">{{ city.name }}</mat-option>
