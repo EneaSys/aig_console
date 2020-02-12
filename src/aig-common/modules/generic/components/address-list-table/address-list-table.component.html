@@ -26,7 +26,7 @@
 
         <ng-container matColumnDef="city">
             <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.cityCode}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
