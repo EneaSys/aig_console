@@ -17,11 +17,15 @@ export class AigEopooListPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
-    
     eopooDTOs: EopooDTO[];
+    error: any;
 
     async loadComponent() {
-        this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET().toPromise();
+        try {
+            this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET().toPromise();
+        } catch(error) {
+            this.error = error;
+        }
     }
 
     newEopoo() {

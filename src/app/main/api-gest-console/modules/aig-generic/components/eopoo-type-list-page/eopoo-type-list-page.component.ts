@@ -15,12 +15,17 @@ export class AigEopooTypeListPageComponent extends GenericComponent {
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
-    
+
     displayedColumns = ["id", "name", "buttons"];
     eopooTypeDTOs: EopooTypeDTO[];
+    error: any;
 
     async loadComponent() {
-        this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET().toPromise();
+        try {
+            this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET().toPromise();
+        } catch (error) {
+            this.error = error;
+        }
     }
 
     newEopooType() {
