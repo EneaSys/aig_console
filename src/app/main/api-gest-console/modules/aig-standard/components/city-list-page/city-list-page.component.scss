@@ -1,0 +1,60 @@
+@import "src/@fuse/scss/fuse";
+
+#aig-city-list-page {
+
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        @include media-breakpoint(gt-sm) {
+            padding: 24px 4px 24px 24px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            flex: 0 1 auto;
+            padding: 0;
+            border-radius: 8px;
+
+            @include media-breakpoint(gt-sm) {
+                @include mat-elevation(1);
+            }
+
+            > .header {
+                flex: 0 1 auto;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            }
+
+            > .content {
+                flex: 0 1 auto;
+            }
+        }
+
+    }
+
+    .content {
+        overflow: hidden;
+
+        .sidebar {
+
+            &:not(.locked-open) {
+                background: white;
+            }
+
+            .card {
+                background: white;
+            }
+        }
+    }
+    
+}
+
+#add-city-button {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    padding: 0;
+    z-index: 99;
+}

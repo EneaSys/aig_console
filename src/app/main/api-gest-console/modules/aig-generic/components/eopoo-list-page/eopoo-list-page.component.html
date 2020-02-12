@@ -1,0 +1,45 @@
+<div id="aig-eopoo-list-page" class="page-layout simple left-sidebar inner-sidebar">
+
+    <aig-generic-header [sectionName]="'Anagrafiche'" [search]="false"></aig-generic-header>
+    
+    <div class="content">
+        <!-- SIDEBAR -->
+        <fuse-sidebar class="sidebar" name="aig-user-list-filters-sidebar" position="left" lockedOpen="gt-sm">
+            <div class="content" fusePerfectScrollbar>
+                <div class="sidebar-content">
+
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Filters</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <div class="nav material2">
+                                <div class="nav-item" aria-label="inbox">
+                                    <a class="nav-link accent" matRipple >
+                                        <span class="title">Tutto</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </fuse-sidebar>
+        <!-- / SIDEBAR -->
+
+        <!-- CENTER -->
+        <div class="center p-24 pb-56" fusePerfectScrollbar>
+            <div class="content">
+                <aig-eopoo-list-table [displayedColumns]="displayedColumns" [dataSource]="eopooDTOs"></aig-eopoo-list-table>
+            </div>
+        </div>
+        <!-- /CENTER -->
+
+    </div>
+
+</div>
+
+<button mat-fab class="accent" id="add-eopoo-button" (click)="newEopoo()" aria-label="add eopoo">
+    <mat-icon>how_to_reg</mat-icon>
+</button>

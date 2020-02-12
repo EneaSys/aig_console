@@ -14,7 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseSidebarModule } from '@fuse/components';
 
-import { ApiGestModule, BASE_PATH } from 'api-gest';
+import { ApiGestModule } from 'api-gest';
 
 import { AigManagementHeaderComponent } from './components/management-header/management-header.component';
 import { AigPermissionListPageComponent } from './components/permission-list-page/permission-list-page.component';

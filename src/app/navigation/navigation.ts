@@ -15,6 +15,20 @@ export const navigation: FuseNavigation[] = [
                 url      : '/apollo-document',
                 permission: ['e4y2.apollo.get'],
             },
+            {
+                id       : 'eopoo-list-page',
+                title    : 'Eopoo',
+                type     : 'item',
+                icon     : 'how_to_reg',
+                url      : '/g5c/eopoo',
+            },
+            {
+                id       : 'eopoo-type-list-page',
+                title    : 'Eopoo Type',
+                type     : 'item',
+                icon     : 'how_to_reg',
+                url      : '/g5c/eopoo-type',
+            },
         ]
     },
     {
@@ -50,10 +64,81 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
+        id       : 'aig-standard',
+        title    : 'Aig Standard',
+        translate: 'NAV.STANDARD',
+        type     : 'collapsable',
+        children : [
+            {
+                id       : '',
+                title    : 'City',
+                type     : 'item',
+                icon     : 'location_city',
+                url      : '/s6d/city'
+            },
+            {
+                id       : '',
+                title    : 'Social',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/social'
+            },
+            {
+                id       : '',
+                title    : 'Social Action',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/social-action'
+            },
+            {
+                id       : '',
+                title    : 'Cpv',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/cpv'
+            },
+            {
+                id       : '',
+                title    : 'Ipp Modality',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/ipp-modality'
+            },
+            {
+                id       : '',
+                title    : 'Ipp Procedure',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/ipp-procedure'
+            },
+            {
+                id       : '',
+                title    : 'Ipp Sector',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/ipp-sector'
+            },
+            {
+                id       : '',
+                title    : 'Ipp Lot Type',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/ipp-lot-type'
+            },
+            {
+                id       : '',
+                title    : 'Ipp Lot Category',
+                type     : 'item',
+                icon     : 'arrow_right',
+                url      : '/s6d/ipp-lot-category'
+            },
+        ]
+    },
+    {
         id       : 'management',
         title    : 'Management',
         translate: 'NAV.MANAGEMENT',
-        type     : 'group',
+        type     : 'collapsable',
         children : [
             {
                 id       : 'context-list',

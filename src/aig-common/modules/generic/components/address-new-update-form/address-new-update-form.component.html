@@ -1,0 +1,42 @@
+<form *ngIf="step.form" [formGroup]="addressNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required />
+            <mat-error>Indicare il nome dell'indirizzo!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Address</mat-label>
+            <input formControlName="address" matInput required />
+            <mat-error>Indicare l'indirizzo!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Comune</mat-label>
+            <input type="text" matInput formControlName="city" required [matAutocomplete]="cityAutocomplete">
+            <mat-autocomplete #cityAutocomplete="matAutocomplete" [displayWith]="aigStandardAutocompleteFunctionService.cityDisplayFn">
+                <mat-option *ngFor="let city of filteredCitys | async" [value]="city">{{ city.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+            <mat-error>La città è obbligatoria!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Salva</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <button *ngIf="!addressNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newAddress()">Create New</button>
+</div>

@@ -31,28 +31,29 @@ import { AigRoleAssociationTableComponent } from './components/role-association-
 import { AigAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 import { AigValidatorService } from './services/form/validator.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         AigCommonModule,
-
         CommonModule,
 
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
 
+        FlexLayoutModule,
+        RouterModule,
+
         MatTableModule,
         MatProgressSpinnerModule,
-
         MatButtonModule,
         MatIconModule,
-        
         MatInputModule,
         MatFormFieldModule,
         MatAutocompleteModule,
 
-        FlexLayoutModule,
+        
 
     ],
     declarations: [
@@ -96,6 +97,8 @@ import { AigValidatorService } from './services/form/validator.service';
         AigGroupAssociateComponent,
         AigRoleAssociateComponent,
 
+
+        
     ],
     providers: [
         AigAutocompleteFilterService,

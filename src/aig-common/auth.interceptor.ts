@@ -27,6 +27,9 @@ export class AuthInterceptor implements HttpInterceptor {
             if(request.url.startsWith(API_URL + "/m8t/")) {
                 return this.prepareHeaderAuthorized(request);
             }
+            if(request.url.startsWith(API_URL + "/s6d/")) {
+                return this.prepareHeaderAuthorized(request);
+            }
             return this.prepareHeaderWithContext(request);
         }
         else {

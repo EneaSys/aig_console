@@ -35,6 +35,7 @@ export class AigModuleNavigationService {
         try {
             // controlla se loggato e se contesto settato
             var permissions: string[] = await this.userPermissionMemoryResourceService.getUserPermission().toPromise();
+            // potrei aggiungere anche permessi da jwt ad esempio i roles
             this.userPermissions = permissions;
     
             this.navigation = [];
@@ -67,7 +68,7 @@ export class AigModuleNavigationService {
             }
         }
 
-        if (navigationItem.type == 'group' && savedChild > 0) {
+        if ((navigationItem.type == 'group' || navigationItem.type == 'collapsable') && savedChild > 0) {
             navigationItem.children = childs
             this.navigation.push(navigationItem);
         }

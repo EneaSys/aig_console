@@ -1,0 +1,42 @@
+<form *ngIf="step.form" [formGroup]="eopooTypeNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error>Indicare il nome del tipo anagrafica!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo Type Code</mat-label>
+            <input formControlName="eopooTypeCode" matInput />
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo Type Category</mat-label>
+            <mat-select formControlName="eopooCategory">
+                <mat-option *ngFor="let eopooTypeCategory of eopooTypeCategorys" [value]="eopooTypeCategory">
+                    {{ eopooTypeCategory }}
+                </mat-option>
+            </mat-select>
+            <mat-error>Seleziona la categoria del tipo anagrafica!</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ eopooTypeNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!eopooTypeNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEopooType()">Create New</button>
+</div>
