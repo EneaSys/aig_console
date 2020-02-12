@@ -21,6 +21,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'how_to_reg',
                 url      : '/g5c/eopoo',
+                permission: ['g5c.eopoo.get'],
             },
             {
                 id       : 'eopoo-type-list-page',
@@ -28,6 +29,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'how_to_reg',
                 url      : '/g5c/eopoo-type',
+                permission: ['g5c.eopoo.get'],
             },
         ]
     },
