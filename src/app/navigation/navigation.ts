@@ -31,6 +31,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo-type',
                 permission: ['g5c.eopoo.get'],
             },
+            {
+                id       : 'procurement-list-page',
+                title    : 'Procurement',
+                type     : 'item',
+                icon     : 'build',
+                url      : '/ipp/procurement',
+                permission: ['ipp.p9t.get'],
+            },
         ]
     },
     {
