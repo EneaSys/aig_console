@@ -6,15 +6,13 @@
         <!-- APP TITLE -->
         <div fxLayout="row" fxLayoutAlign="start center">
 
-            <button *ngIf="activateSidebar" mat-icon-button class="sidebar-toggle mr-12" fxHide.gt-sm
-                (click)="toggleSidebar(sidebar)">
+            <button *ngIf="activateSidebar" mat-icon-button class="sidebar-toggle mr-12" fxHide.gt-sm (click)="toggleSidebar(sidebar)">
                 <mat-icon>menu</mat-icon>
             </button>
 
             <div class="logo" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">archive
-                </mat-icon>
-                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                <mat-icon class="logo-icon mr-16">archive</mat-icon>
+                <span class="logo-text h1">
                     Iam
                 </span>
             </div>

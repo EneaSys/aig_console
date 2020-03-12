@@ -1,0 +1,60 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.totalAmount }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="SA">
+            <mat-header-cell *matHeaderCellDef> SA </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.contractorEopooCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sector">
+            <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.ippSectorCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procedure">
+            <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.ippProcedureCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="modality">
+            <mat-header-cell *matHeaderCellDef> Modality </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.ippModalityCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/ipp/procurement/detail/' + e.id">Details</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+</div>

@@ -6,18 +6,20 @@ import { AigCommonModule } from 'aig-common/common.module';
 import { AigOldCommonModule } from 'aig-common/old-common/old-common.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'aig-common/auth.interceptor';
-import { BASE_PATH } from 'api-gest';
 import { API_URL } from 'app/app.constants';
 import { AigApolloDocumentModule } from './modules/apollo-document/apollo-document.module';
-import { AigEopooModule } from './modules/eopoo/eopoo.module';
 import { AigIamModule } from './modules/iam/iam.module';
 import { AigManagementModule } from './modules/management/management.module';
 import { AigGenericComponentService } from './generic-component/generic-component.service';
 import { AigModuleNavigationService } from './navigation/navigation.service';
 import { AigGenericModule } from './modules/aig-generic/aig-generic.module';
 import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
+import { AigIppModule } from './modules/ipp/ipp.module';
+
+import { BASE_PATH } from 'api-gest';
 import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
 import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
+import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 
 
 @NgModule({
@@ -40,8 +42,10 @@ import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
         AigIamModule,
         AigManagementModule,
 
-        AigGenericModule,
         AigStandardModule,
+        
+        AigGenericModule,
+        AigIppModule,
 
     ],
     exports: [],
@@ -64,6 +68,10 @@ import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
         {
             provide: AIG_GENERIC_BASE_PATH,
             useValue: API_URL + "/g5c"
+        },
+        {
+            provide: AIG_IPP_BASE_PATH,
+            useValue: API_URL + "/ipp"
         },
     ],
 })

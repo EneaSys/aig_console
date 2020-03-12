@@ -1,14 +1,11 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { fuseAnimations } from '@fuse/animations';
 import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'aig-iam-header',
     templateUrl: './iam-header.component.html',
-    styleUrls: ['./iam-header.component.scss'],
-    animations   : fuseAnimations,
-    encapsulation: ViewEncapsulation.None
+    styleUrls: ['./iam-header.component.scss']
 })
 export class AigIamHeaderComponent implements OnInit {
     constructor(
