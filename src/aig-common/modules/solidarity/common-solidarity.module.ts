@@ -13,10 +13,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AigSolidarityRequestListTableComponent } from './components/solidarity-request-list-table/solidarity-request-list-table.component';
 import { AigSolidarityRequestNewUpdateFormComponent } from './components/solidarity-request-new-update-form/solidarity-request-new-update-form.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { AigCommonStandardModule } from '../standard/common-standard.module';
 
 @NgModule({
     imports: [
         AigCommonModule,
+        AigCommonStandardModule,
         
         CommonModule,
 
@@ -26,13 +30,13 @@ import { AigSolidarityRequestNewUpdateFormComponent } from './components/solidar
 
         MatTableModule,
         MatProgressSpinnerModule,
-
         MatButtonModule,
         MatIconModule,
-        
         MatInputModule,
         MatFormFieldModule,
         MatAutocompleteModule,
+        MatSelectModule,
+        MatDatepickerModule,
         
         FlexLayoutModule,
 

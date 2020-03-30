@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { Observable } from 'rxjs';
+import { CityDTO } from 'aig-standard';
 
 @Component({
     selector: 'aig-solidarity-request-new-update-form',
@@ -20,7 +24,8 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-
+        private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+        public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
         private eventService: EventService,
     ) { }
 
@@ -29,16 +34,46 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
 
     solidarityRequestNewUpdateForm: FormGroup;
 
+    filteredBornCitys: Observable<CityDTO[]>;
+    filteredCitys: Observable<CityDTO[]>;
+
     ngOnInit(): void {
         this.solidarityRequestNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', Validators.required],
-            code: ['', Validators.required],
-            wikiCode:['']
+
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
+            sex: ['', Validators.required],
+            bornDate: ['', Validators.required],
+            bornCity: ['', Validators.required],
+            
+            address: ['', Validators.required],
+            address2: ['', Validators.required],
+            cap: ['', Validators.required],
+            city: ['', Validators.required],
+            
+            senior: [''],
+            adults: [''],
+            childrens: [''],
+            infants: [''],
+
+            disability: [''],
+            note: [''],
         })
+
+
+
+        // PRECOMPILE
+        // Is update
         if (this.solidarityRequest != null) {
             this.solidarityRequestNewUpdateForm.patchValue(this.solidarityRequest);
         }
+
+
+
+        // EVENT ON ITERACTION
+        this.filteredBornCitys = this.aigStandardAutocompleteFilterService.filterCity(this.solidarityRequestNewUpdateForm.controls['bornCity'].valueChanges);
+        this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.solidarityRequestNewUpdateForm.controls['city'].valueChanges);
     }
 
 
@@ -51,6 +86,8 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let solidarityRequest: any = this.solidarityRequestNewUpdateForm.value;
+
+        console.log(solidarityRequest);
 
         try {
             let postOrPut;
@@ -72,7 +109,9 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-
+    newSolidarityRequest() {
+        this.setStep("form");
+    }
 
 
     private setStep(step: string){
