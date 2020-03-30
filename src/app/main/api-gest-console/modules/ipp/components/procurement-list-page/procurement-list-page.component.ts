@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ProcurementResourceService, ProcurementDTO } from 'aig-italian-public-procurement';
@@ -17,7 +17,8 @@ export class AigProcurementListPageComponent extends GenericComponent {
     procurementDTOs: ProcurementDTO[];
 
     async loadComponent() {
-       this.procurementDTOs = await this.procurementResourceService.getAllProcurementsUsingGET().toPromise();
+        //togliere i parametri
+        this.procurementDTOs = await this.procurementResourceService.getAllProcurementsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 300, null, null, null, null, null, null, null, null, null).toPromise();
     }
 
     newProcurement(){

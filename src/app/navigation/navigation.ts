@@ -39,6 +39,13 @@ export const navigation: FuseNavigation[] = [
                 url      : '/ipp/procurement',
                 permission: ['ipp.p9t.get'],
             },
+            {
+                id       : 'solidarity-list-page',
+                title    : 'Solidarity',
+                type     : 'item',
+                icon     : 'build',
+                url      : '/solidarity/request',
+            },
         ]
     },
     {
