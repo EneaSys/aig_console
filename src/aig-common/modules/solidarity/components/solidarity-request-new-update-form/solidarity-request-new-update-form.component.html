@@ -17,31 +17,11 @@
         </div>
 
         <div fxLayout="row">
-            <mat-form-field appearance="outline" fxFlex="20" class="pr-4">
-                <mat-label>Sesso</mat-label>
-                <mat-select required formControlName="sex">
-                    <mat-option [value]="'MALE'">Maschio</mat-option>
-                    <mat-option [value]="'FEMALE'">Femmina</mat-option>
-                </mat-select>
-                <mat-error>Seleziona il sesso!</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" fxFlex="40" class="pl-4 pr-4">
-                <mat-label>Data di nascita</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="bornDate"
-                    required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-error>La data di nascita è obbligatoria!</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
-                <mat-label>Comune di nascita</mat-label>
-                <input type="text" matInput formControlName="bornCity" required [matAutocomplete]="bornCityAutocomplete">
-                <mat-autocomplete #bornCityAutocomplete="matAutocomplete"
-                    [displayWith]="aigStandardAutocompleteFunctionService.cityDisplayFn">
-                    <mat-option *ngFor="let city of filteredBornCitys | async" [value]="city">{{ city.name }}</mat-option>
-                </mat-autocomplete>
+            <mat-form-field appearance="outline" fxFlex="70" class="pr-4">
+                <mat-label>Codice Fiscale</mat-label>
+                <input matInput formControlName="taxId" required>
                 <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
-                <mat-error>La città di nascita è obbligatoria!</mat-error>
+                <mat-error>Il Codice Fiscale è obbligatoria!</mat-error>
             </mat-form-field>
         </div>
 
@@ -82,6 +62,8 @@
         </div>
 
         <hr>
+
+        <h4>Com’è composto il tuo nucleo familiare?</h4>
 
         <div fxLayout="row">
             <mat-form-field appearance="outline" fxFlex="25" class="pr-4">

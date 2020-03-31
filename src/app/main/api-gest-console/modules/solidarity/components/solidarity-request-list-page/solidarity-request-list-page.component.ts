@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigSolidarityRequestNewDialogComponent } from '../solidarity-request-new-dialog/solidarity-request-new-dialog.component';
-
+import { ComplexApiControllerService, FoodProductRequestResourceService, FoodProductRequestDTO } from 'aig-solidarety';
 
 @Component({
     templateUrl: './solidarity-request-list-page.component.html',
@@ -11,12 +11,15 @@ import { AigSolidarityRequestNewDialogComponent } from '../solidarity-request-ne
 })
 export class AigSolidarityRequestListPageComponent extends GenericComponent {
     constructor(
+        private foodProductRequestResourceService: FoodProductRequestResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    async loadComponent() {
+    foodProductRequest: FoodProductRequestDTO[];
 
+    async loadComponent() {
+        this.foodProductRequest = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET().toPromise();
     }
 
     newSolidarityRequest() {

@@ -7,6 +7,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
+import { ComplexApiControllerService } from 'aig-solidarety';
 
 @Component({
     selector: 'aig-solidarity-request-new-update-form',
@@ -25,6 +26,7 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+        private complexApiControllerService: ComplexApiControllerService,
         public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
         private eventService: EventService,
     ) { }
@@ -43,9 +45,7 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
 
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
-            sex: ['', Validators.required],
-            bornDate: ['', Validators.required],
-            bornCity: ['', Validators.required],
+            taxId: ['', Validators.required],
             
             address: ['', Validators.required],
             address2: ['', Validators.required],
@@ -72,7 +72,6 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
 
 
         // EVENT ON ITERACTION
-        this.filteredBornCitys = this.aigStandardAutocompleteFilterService.filterCity(this.solidarityRequestNewUpdateForm.controls['bornCity'].valueChanges);
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.solidarityRequestNewUpdateForm.controls['city'].valueChanges);
     }
 
@@ -88,6 +87,12 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         let solidarityRequest: any = this.solidarityRequestNewUpdateForm.value;
 
         console.log(solidarityRequest);
+        solidarityRequest.city = solidarityRequest.city.name;
+        solidarityRequest.family = {};
+        solidarityRequest.family.senior = solidarityRequest.senior;
+        solidarityRequest.family.adults = solidarityRequest.adults;
+        solidarityRequest.family.childrens = solidarityRequest.childrens;
+        solidarityRequest.family.infants = solidarityRequest.infants;
 
         try {
             let postOrPut;
@@ -95,7 +100,7 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
                 //await this.cityResourceService.updateCityUsingPUT(city).toPromise();
                 postOrPut = "updated";
             } else {
-                //await this.cityResourceService.createCityUsingPOST(city).toPromise();
+                await this.complexApiControllerService.complexSolidarityRequestPost(solidarityRequest).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

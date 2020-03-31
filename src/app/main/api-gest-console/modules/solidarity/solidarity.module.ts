@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AigSolidarityRequestNewDialogComponent } from './components/solidarity-request-new-dialog/solidarity-request-new-dialog.component';
+import { AigSolidaretyApiModule } from 'aig-solidarety'; 
 
 @NgModule({
     imports: [ 
@@ -24,6 +25,7 @@ import { AigSolidarityRequestNewDialogComponent } from './components/solidarity-
         CommonModule,
         
         AigCommonSolidarityModule,
+        AigSolidaretyApiModule,
 
         FuseSidebarModule,
         

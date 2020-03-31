@@ -21,6 +21,7 @@ import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
 import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
 import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
+import { SOLIDARETY_BASE_PATH } from 'aig-solidarety';
 
 
 @NgModule({
@@ -74,6 +75,10 @@ import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
         {
             provide: AIG_IPP_BASE_PATH,
             useValue: API_URL + "/ipp"
+        },
+        {
+            provide: SOLIDARETY_BASE_PATH,
+            useValue: API_URL + "/solidarety"
         },
     ],
 })
