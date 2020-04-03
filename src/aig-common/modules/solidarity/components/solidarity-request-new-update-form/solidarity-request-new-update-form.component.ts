@@ -87,7 +87,9 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         let solidarityRequest: any = this.solidarityRequestNewUpdateForm.value;
 
         console.log(solidarityRequest);
-        solidarityRequest.city = solidarityRequest.city.name;
+
+        let cityName = solidarityRequest.city.name;
+        solidarityRequest.city = cityName;
         solidarityRequest.family = {};
         solidarityRequest.family.senior = solidarityRequest.senior;
         solidarityRequest.family.adults = solidarityRequest.adults;

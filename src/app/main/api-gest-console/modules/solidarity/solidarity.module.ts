@@ -17,16 +17,19 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AigSolidarityRequestNewDialogComponent } from './components/solidarity-request-new-dialog/solidarity-request-new-dialog.component';
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [ 
         RouterModule.forChild(solidarityRoute),
         
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         
         AigCommonSolidarityModule,
         AigSolidaretyApiModule,
-
+        
         FuseSidebarModule,
         
         MatIconModule,

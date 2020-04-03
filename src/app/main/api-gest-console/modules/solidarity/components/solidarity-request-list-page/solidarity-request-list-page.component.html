@@ -11,13 +11,56 @@
 
                     <div class="card mb-16">
                         <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h5">Filters</span>
+                            <span class="h5">Cerca</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <form [formGroup]="searchForm" (ngSubmit)="search()">
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                        <mat-label>Nome</mat-label>
+                                        <input matInput formControlName="firstname">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                        <mat-label>Cognome</mat-label>
+                                        <input matInput formControlName="lastname">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                        <mat-label>Codice Fiscale</mat-label>
+                                        <input matInput formControlName="taxId">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top" class="ml-8">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Filtri</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>
                             <div class="nav material2">
                                 <div class="nav-item" aria-label="inbox">
-                                    <a class="nav-link accent" matRipple >
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'all'}" (click)="showAll()">
                                         <span class="title">Tutto</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'inserted'}" (click)="showInserted()">
+                                        <span class="title">Inserita</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'valutation'}" (click)="showValutation()">
+                                        <span class="title">In valutazione</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'rejected'}" (click)="showRejected()">
+                                        <span class="title">Rigettata</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'aproved'}" (click)="showAproved()">
+                                        <span class="title">Approvata</span>
                                     </a>
                                 </div>
                             </div>
@@ -32,8 +75,7 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <pre>{{ foodProductRequest | json }}</pre>
-                <aig-solidarity-request-list-table></aig-solidarity-request-list-table>
+                <aig-solidarity-request-list-table [displayedColumns]="displayedColumns" [dataSource]="foodProductRequests"></aig-solidarity-request-list-table>
             </div>
 
             <div class="content mt-8 p-8">

@@ -1,2 +1,64 @@
-table
-<pre>{{ dataSource | json }}</pre>
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="surname">
+            <mat-header-cell *matHeaderCellDef> Cognome </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.familyUnit.surname }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.familyUnit.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cf">
+            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.familyUnit.taxId }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.requestStatusA">A</span>
+                <span *ngIf="e.requestStatusB">B</span>
+                <span *ngIf="e.requestStatusC">C</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.note == null">Inserita</span>
+                <span *ngIf="e.note == '1'">In valutazione</span>
+                <span *ngIf="e.note == '2'">Approvata</span>
+                <span *ngIf="e.note == '99'">Rigettata</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/solidarity/request/detail/' + e.id">Details</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+</div>
