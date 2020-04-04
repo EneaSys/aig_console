@@ -45,13 +45,13 @@
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Stato:</div>
                 <div class="h1 m-16">
-                    <span *ngIf="foodProductRequestDTO.note == null">NON ANCORA ISTRUITA</span>
-                    <span *ngIf="foodProductRequestDTO.note == '0'">Da rivalutare</span>
-                    <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
-                    <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
-                    <span *ngIf="foodProductRequestDTO.note == '99'">Rigettata</span>
+                    <span *ngIf="foodProductRequestDTO.note == null" style="color: gray;">NON ANCORA ISTRUITA</span>
+                    <span *ngIf="foodProductRequestDTO.note == '0'" style="color: blueviolet;">Da rivalutare</span>
+                    <span *ngIf="foodProductRequestDTO.note == '1'" style="color: blue;">In valutazione</span>
+                    <span *ngIf="foodProductRequestDTO.note == '2'" style="color: green;">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '99'" style="color: red;">Rigettata</span>
                 </div>
-                <div class="h4 mt-16 m-8 ml-16 mb-0 secondary-text">Istruttore:</div>
+                <div class="h4 mt-16 m-8 ml-16 mb-0 secondary-text" *ngIf="foodProductRequestDTO.note == null">Istruttore:</div>
                 <div class="h1 m-16" *ngIf="foodProductRequestDTO.familyUnit.note">{{ this.instructor[1] }}</div>
             </div>
             <div class="fuse-card auto-width p-16 mt-8">
