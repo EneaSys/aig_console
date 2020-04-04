@@ -42,11 +42,11 @@
         <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span *ngIf="e.note == null">Inserita</span>
-                <span *ngIf="e.note == '0'">Da rivalutare</span>
-                <span *ngIf="e.note == '1'">In valutazione</span>
-                <span *ngIf="e.note == '2'">Approvata</span>
-                <span *ngIf="e.note == '99'">Rigettata</span>
+                <span *ngIf="e.note == null" style="color: gray;">Inserita</span>
+                <span *ngIf="e.note == '0'" style="color: blueviolet;">Da rivalutare</span>
+                <span *ngIf="e.note == '1'" style="color: blue;">In valutazione</span>
+                <span *ngIf="e.note == '2'" style="color: green;">Approvata</span>
+                <span *ngIf="e.note == '99'" style="color: red;">Rigettata</span>
             </mat-cell>
         </ng-container>
 
@@ -58,7 +58,8 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/solidarity/request/detail/' + e.id">Details</button>
+                <button class="mr-8" mat-stroked-button color="accent"
+                    [routerLink]="'/solidarity/request/detail/' + e.id">Details</button>
             </mat-cell>
         </ng-container>
 
