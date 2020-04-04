@@ -43,7 +43,7 @@
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span *ngIf="e.note == null" style="color: gray;">Inserita</span>
-                <span *ngIf="e.note == '0'" style="color: blueviolet;">Da rivalutare</span>
+                <span *ngIf="e.note == '98'" style="color: blueviolet;">Da rivalutare</span>
                 <span *ngIf="e.note == '1'" style="color: blue;">In valutazione</span>
                 <span *ngIf="e.note == '2'" style="color: green;">Approvata</span>
                 <span *ngIf="e.note == '99'" style="color: red;">Rigettata</span>

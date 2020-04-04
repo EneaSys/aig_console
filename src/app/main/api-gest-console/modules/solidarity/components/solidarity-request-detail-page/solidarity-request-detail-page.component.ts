@@ -4,6 +4,7 @@ import { FoodProductRequestResourceService, FoodProductRequestDTO, FamilyUnitRes
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'auth/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     templateUrl: './solidarity-request-detail-page.component.html',
@@ -11,6 +12,7 @@ import { AuthService } from 'auth/auth.service';
 })
 export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     constructor(
+        private _formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private authService: AuthService,
         private foodProductRequestResourceService: FoodProductRequestResourceService,
@@ -22,7 +24,13 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     instructor: string[];
     user: any;
 
+    rejectForm: FormGroup;
+
     async loadComponent() {
+        this.rejectForm = this._formBuilder.group({
+            reason: ['', Validators.required],
+        });
+
         this.foodProductRequestDTO = this.route.snapshot.data.helpRequest;
         this.user = await this.authService.getUser();
 
@@ -46,15 +54,23 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
-    async reject(foodProductRequestDTO: FoodProductRequestDTO) {
+    async reject() {
+        if (!this.rejectForm.valid) {
+            return;
+        }
+
+        // Aggiunge la motivazione
+        this.foodProductRequestDTO.familyUnit.disabledPeopleNote = this.rejectForm.value.reason;
+        await this.familyUnitResourceService.updateFamilyUnitUsingPUT(this.foodProductRequestDTO.familyUnit).toPromise();
+
         // setta lo stato della domanda a 99
-        foodProductRequestDTO.note = "99";
-        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
+        this.foodProductRequestDTO.note = "99";
+        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(this.foodProductRequestDTO).toPromise();
     }
 
     async revalutate(foodProductRequestDTO: any) {
-        // setta lo stato della domanda a 0
-        foodProductRequestDTO.note = "0";
+        // setta lo stato della domanda a 98
+        foodProductRequestDTO.note = "98";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 

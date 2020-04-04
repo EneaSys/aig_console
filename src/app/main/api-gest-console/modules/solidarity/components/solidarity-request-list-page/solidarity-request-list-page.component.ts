@@ -50,7 +50,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
     }
     showToReview() {
         this.activeFilter = "toReview";
-        this.searchByState("0");
+        this.searchByState("98");
     }
     showValutation() {
         this.activeFilter = "valutation";

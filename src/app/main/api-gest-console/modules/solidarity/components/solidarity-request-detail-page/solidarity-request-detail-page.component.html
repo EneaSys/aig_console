@@ -7,7 +7,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Stato:</div>
                 <div class="h1 m-16">
                     <span *ngIf="foodProductRequestDTO.note == null" style="color: gray;">NON ANCORA ISTRUITA</span>
-                    <span *ngIf="foodProductRequestDTO.note == '0'" style="color: blueviolet;">Da rivalutare</span>
+                    <span *ngIf="foodProductRequestDTO.note == '98'" style="color: blueviolet;">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'" style="color: blue;">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'" style="color: green;">Approvata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'" style="color: red;">Rigettata</span>
@@ -16,10 +16,24 @@
                 <div class="h1 m-16" *ngIf="this.instructor">{{ this.instructor[1] }}</div>
             </div>
             <div class="fuse-card auto-width p-16 mt-8">
-                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == null || foodProductRequestDTO.note == 0" (click)="take(foodProductRequestDTO)">Prendi in carica</button>
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == null || foodProductRequestDTO.note == 98" (click)="take(foodProductRequestDTO)">Prendi in carica</button>
 
                 <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO)" (click)="aprove(foodProductRequestDTO)">Approva</button>
-                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO)" (click)="reject(foodProductRequestDTO)">Rigetta</button>
+                
+                <div *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO)">
+                    <hr>
+                    <form [formGroup]="rejectForm" (ngSubmit)="reject()">
+                        <div fxLayout="row">
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Motivazione del rigetto</mat-label>
+                                <input matInput formControlName="reason">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="end top">
+                            <button type="submit" mat-stroked-button color="primary">Rigetta</button>
+                        </div>
+                    </form>
+                </div>
 
                 <div *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO) == false">Un altro istruttore la stà lavorando</div>
 
@@ -33,7 +47,7 @@
                 <div class="h1 m-16">
                     <span>Stato: </span>
                     <span *ngIf="foodProductRequestDTO.note == null">Inserita</span>
-                    <span *ngIf="foodProductRequestDTO.note == '0'">Da rivalutare</span>
+                    <span *ngIf="foodProductRequestDTO.note == '98'">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'">Rigettata</span>
