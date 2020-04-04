@@ -16,4 +16,11 @@ export class AigSolidarityRequestListTableComponent implements OnInit {
     dataSource: any[];
     
     ngOnInit(): void { }
+
+    name(instructor) {
+        if(instructor != null) {
+            return instructor.split("|")[1];
+        }
+        return "";
+    }
 }

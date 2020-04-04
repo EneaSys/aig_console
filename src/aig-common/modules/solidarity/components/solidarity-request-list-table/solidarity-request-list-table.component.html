@@ -32,7 +32,7 @@
 
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-            <mat-cell *matCellDef="let e">
+            <mat-cell *matCellDef="let e" style="text-align: center;">
                 <span *ngIf="e.requestStatusA">A</span>
                 <span *ngIf="e.requestStatusB">B</span>
                 <span *ngIf="e.requestStatusC">C</span>
@@ -48,6 +48,11 @@
                 <span *ngIf="e.note == '2'">Approvata</span>
                 <span *ngIf="e.note == '99'">Rigettata</span>
             </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="instructor">
+            <mat-header-cell *matHeaderCellDef>Instructor</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ name(e.familyUnit.note) }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

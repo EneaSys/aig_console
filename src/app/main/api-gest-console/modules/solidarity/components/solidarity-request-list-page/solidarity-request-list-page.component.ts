@@ -20,7 +20,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
 
     searchForm: FormGroup;
 
-    displayedColumns = [ "id", "surname", "name", "cf", "type", "status", "buttons" ]
+    displayedColumns = [ "id", "surname", "name", "cf", "type", "status", "instructor", "buttons" ]
 
     foodProductRequests: FoodProductRequestDTO[];
 
@@ -44,8 +44,8 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
         this.activeFilter = "all";
         this.searchByState(null);
     }
-    showInserted() {
-        this.activeFilter = "inserted";
+    showToReview() {
+        this.activeFilter = "toReview";
         this.searchByState("0");
     }
     showValutation() {
