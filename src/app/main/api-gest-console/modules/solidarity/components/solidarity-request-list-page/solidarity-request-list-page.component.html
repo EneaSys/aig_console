@@ -14,32 +14,32 @@
                             <span class="h5">Cerca</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>
-                            <form [formGroup]="searchForm" (ngSubmit)="search()">
+                            <form [formGroup]="searchForm" (ngSubmit)="search()" class="p-8">
                                 <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                    <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                    <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Nome</mat-label>
                                         <input matInput formControlName="firstname">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                    <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Cognome</mat-label>
                                         <input matInput formControlName="lastname">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                    <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Codice Fiscale</mat-label>
                                         <input matInput formControlName="taxId">
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row" fxLayoutAlign="end top" class="ml-8">
+                                <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
                             </form>

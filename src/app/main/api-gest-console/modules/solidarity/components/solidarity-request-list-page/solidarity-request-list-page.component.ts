@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AigSolidarityRequestNewDialogComponent } from '../solidarity-request-new-dialog/solidarity-request-new-dialog.component';
 import { ComplexApiControllerService, FoodProductRequestResourceService, FoodProductRequestDTO, FamilyUnitResourceService, FamilyUnitDTO } from 'aig-solidarety';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     templateUrl: './solidarity-request-list-page.component.html',
@@ -15,6 +16,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
         private _formBuilder: FormBuilder,
         private familyUnitResourceService: FamilyUnitResourceService,
         private foodProductRequestResourceService: FoodProductRequestResourceService,
+        private _snackBar: MatSnackBar,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
@@ -76,7 +78,11 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
                     console.log(familyUnitDTO);
                 })
             }
-            this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,familyUnitIds,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
+            if(familyUnitIds.length > 0) {
+                this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,familyUnitIds,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
+            } else {
+                this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+            }
         }
     }
 
