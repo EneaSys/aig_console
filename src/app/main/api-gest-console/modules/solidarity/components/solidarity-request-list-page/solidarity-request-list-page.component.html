@@ -17,6 +17,12 @@
                             <form [formGroup]="searchForm" (ngSubmit)="search()">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100" class="ml-8">
                                         <mat-label>Nome</mat-label>
                                         <input matInput formControlName="firstname">
                                     </mat-form-field>

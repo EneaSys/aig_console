@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigSolidarityRequestNewDialogComponent } from '../solidarity-request-new-dialog/solidarity-request-new-dialog.component';
-import { ComplexApiControllerService, FoodProductRequestResourceService, FoodProductRequestDTO } from 'aig-solidarety';
+import { ComplexApiControllerService, FoodProductRequestResourceService, FoodProductRequestDTO, FamilyUnitResourceService, FamilyUnitDTO } from 'aig-solidarety';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AigSolidarityRequestListPageComponent extends GenericComponent {
     constructor(
         private _formBuilder: FormBuilder,
+        private familyUnitResourceService: FamilyUnitResourceService,
         private foodProductRequestResourceService: FoodProductRequestResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
@@ -31,6 +32,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
 
     loadComponent() {
         this.searchForm = this._formBuilder.group({
+            id: [''],
             firstname: [''],
             lastname: [''],
             taxId: [''],
@@ -62,7 +64,20 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
     }
 
     async search() {
-        this.searchForm;
+        if(this.searchForm.value.id) {
+            this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
+        } else {
+            let familyUnitIds: number[] = [];
+            {
+                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.lastname,null,null,null,null,null,this.searchForm.value.taxid,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+   
+                familyUnitDTOs.forEach(familyUnitDTO => {
+                    familyUnitIds.push(familyUnitDTO.id);
+                    console.log(familyUnitDTO);
+                })
+            }
+            this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,familyUnitIds,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
+        }
     }
 
     async searchByState(state: string) {
