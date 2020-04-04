@@ -68,14 +68,16 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
     async search() {
         if(this.searchForm.value.id) {
             this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
+            if(this.foodProductRequests.length == 0) {
+                this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+            }
         } else {
             let familyUnitIds: number[] = [];
             {
-                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.lastname,null,null,null,null,null,this.searchForm.value.taxid,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.lastname,null,null,null,null,null,this.searchForm.value.taxId,null,null,null,null,null,null,null,null,null,null,null).toPromise();
    
                 familyUnitDTOs.forEach(familyUnitDTO => {
                     familyUnitIds.push(familyUnitDTO.id);
-                    console.log(familyUnitDTO);
                 })
             }
             if(familyUnitIds.length > 0) {
