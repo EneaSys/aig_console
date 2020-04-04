@@ -18,6 +18,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AigSolidarityRequestNewDialogComponent } from './components/solidarity-request-new-dialog/solidarity-request-new-dialog.component';
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AigSolidarityRequestDetailPageComponent } from './components/solidarity-request-detail-page/solidarity-request-detail-page.component';
+import { FuseSharedModule } from '@fuse/shared.module';
 
 @NgModule({
     imports: [ 
@@ -30,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         AigCommonSolidarityModule,
         AigSolidaretyApiModule,
         
+        FuseSharedModule,
         FuseSidebarModule,
         
         MatIconModule,
@@ -47,6 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     declarations: [
         AigSolidarityRequestListPageComponent,
         AigSolidarityRequestNewDialogComponent,
+        AigSolidarityRequestDetailPageComponent,
     ],
     providers: [],
     exports: [],

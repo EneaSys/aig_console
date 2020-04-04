@@ -17,6 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { RouterModule } from '@angular/router';
+import { HelpRequestResolver } from './resolver/help-request.resolver';
 
 @NgModule({
     imports: [
@@ -43,7 +44,9 @@ import { RouterModule } from '@angular/router';
         FlexLayoutModule,
 
     ],
-    providers: [],
+    providers: [
+        HelpRequestResolver,
+    ],
     declarations: [
         AigSolidarityRequestListTableComponent,
         AigSolidarityRequestNewUpdateFormComponent,

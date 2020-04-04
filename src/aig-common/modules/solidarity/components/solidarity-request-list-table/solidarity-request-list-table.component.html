@@ -31,7 +31,7 @@
         </ng-container>
 
         <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span *ngIf="e.requestStatusA">A</span>
                 <span *ngIf="e.requestStatusB">B</span>
@@ -40,9 +40,10 @@
         </ng-container>
 
         <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span *ngIf="e.note == null">Inserita</span>
+                <span *ngIf="e.note == '0'">Da rivalutare</span>
                 <span *ngIf="e.note == '1'">In valutazione</span>
                 <span *ngIf="e.note == '2'">Approvata</span>
                 <span *ngIf="e.note == '99'">Rigettata</span>

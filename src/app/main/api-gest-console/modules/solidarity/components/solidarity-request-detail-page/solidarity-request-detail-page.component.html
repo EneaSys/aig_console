@@ -1,0 +1,68 @@
+<div id="aig-solidarity-request-detail-page" class="page-layout blank">
+
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ foodProductRequestDTO.id }}</div> 
+                <div class="h4 m-8 ml-16">Data inserimento: {{ foodProductRequestDTO.reportingDate }}</div>
+                <div class="h1 m-16">
+                    <span>Stato: </span>
+                    <span *ngIf="foodProductRequestDTO.note == null">Inserita</span>
+                    <span *ngIf="foodProductRequestDTO.note == '0'">Da rivalutare</span>
+                    <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
+                    <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '99'">Rigettata</span>
+                </div>
+                <div class="h4 m-8 ml-16">
+                    <span>Categoria: </span>
+                    <span *ngIf="foodProductRequestDTO.requestStatusA">A</span>
+                    <span *ngIf="foodProductRequestDTO.requestStatusB">B</span>
+                    <span *ngIf="foodProductRequestDTO.requestStatusC">C</span>
+                </div>
+                <div class="h4 m-8 ml-16" *ngIf="foodProductRequestDTO.requestStatusB">Reddito Febbraio: {{ foodProductRequestDTO.requestStatusBIncomeFeb }}</div>
+                <div class="h4 m-8 ml-16" *ngIf="foodProductRequestDTO.requestStatusB || foodProductRequestDTO.requestStatusC">Reddito Marzo: {{ foodProductRequestDTO.requestStatusBIncomeMar }}</div>
+                <div class="h4 m-8 ml-16" style="color: red;" *ngIf="foodProductRequestDTO.familyUnit.disabledPeopleNote != null">Note: {{ foodProductRequestDTO.familyUnit.disabledPeopleNote }}</div>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16">
+               <div class="h4 m-8 ml-16 mb-0 secondary-text">Richiedente</div>
+                <div class="h1 m-16">{{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Codice Fiscale: {{ foodProductRequestDTO.familyUnit.taxId }}</div>
+                <div class="h4 m-8 ml-16">Email: {{ foodProductRequestDTO.familyUnit.email }}</div>
+                <div class="h4 m-8 ml-16">Tel: {{ foodProductRequestDTO.familyUnit.telephone }}</div>
+                <div class="h4 m-8 ml-16">Cell: {{ foodProductRequestDTO.familyUnit.mobile }}</div>
+                <div class="h4 m-8 ml-16">Indirizzo: {{ foodProductRequestDTO.familyUnit.address }}, {{ foodProductRequestDTO.familyUnit.civicNumber }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-8">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Nucleo Familiare</div>
+                <div class="h1 m-16">Adulti: {{ foodProductRequestDTO.familyUnit.adultNumber }}</div>
+                <div class="h1 m-16">Bambini: {{ foodProductRequestDTO.familyUnit.childrenNumber }}</div>
+             </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="20">
+            <div class="fuse-card auto-width p-16">
+                <div class="h1 m-16">
+                    Stato:
+                    <span *ngIf="foodProductRequestDTO.note == null">NON ANCORA ISTRUITA</span>
+                    <span *ngIf="foodProductRequestDTO.note == '0'">Da rivalutare</span>
+                    <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
+                    <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '99'">Rigettata</span>
+                </div>
+                <hr>
+                <div class="h1 m-16" *ngIf="foodProductRequestDTO.familyUnit.note">Istruttore: {{ foodProductRequestDTO.familyUnit.note }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-8">
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == null || foodProductRequestDTO.note == 0" (click)="take(foodProductRequestDTO)">Prendi in carica</button>
+
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 1" (click)="aprove(foodProductRequestDTO)">Approva</button>
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 1" (click)="reject(foodProductRequestDTO)">Rigetta</button>
+
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 2 || foodProductRequestDTO.note == 99" (click)="revalutate(foodProductRequestDTO)">Rivaluta</button>
+             </div>
+        </div>
+    </div>
+    
+</div>
