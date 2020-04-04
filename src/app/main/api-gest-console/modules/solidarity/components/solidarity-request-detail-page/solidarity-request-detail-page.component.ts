@@ -3,6 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { FoodProductRequestResourceService, FoodProductRequestDTO, FamilyUnitResourceService } from 'aig-solidarety';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'auth/auth.service';
 
 @Component({
     templateUrl: './solidarity-request-detail-page.component.html',
@@ -11,21 +12,27 @@ import { ActivatedRoute } from '@angular/router';
 export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     constructor(
         private route: ActivatedRoute,
+        private authService: AuthService,
         private foodProductRequestResourceService: FoodProductRequestResourceService,
         private familyUnitResourceService: FamilyUnitResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
     foodProductRequestDTO: any; //FoodProductRequestDTO
+    instructor: string[];
+    user: any;
 
-    loadComponent() {
+    async loadComponent() {
         this.foodProductRequestDTO = this.route.snapshot.data.helpRequest;
+        this.user = await this.authService.getUser();
+
+        this.instructor = this.foodProductRequestDTO.familyUnit.note.split('|');
     }
 
 
     async take(foodProductRequestDTO: any) {
         // assegna la pratica all'assistente sociale
-        foodProductRequestDTO.familyUnit.note = "stefano";
+        foodProductRequestDTO.familyUnit.note = this.user.sub + "|" + this.user.lastName + " " + this.user.firstName;
         this.foodProductRequestDTO.familyUnit = await this.familyUnitResourceService.updateFamilyUnitUsingPUT(foodProductRequestDTO.familyUnit).toPromise();
 
         // setta lo stato della domanda a 1
@@ -51,5 +58,11 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
+    checkAssignation(foodProductRequestDTO: any) {
+        if(this.user != null && foodProductRequestDTO.familyUnit.note.startsWith(this.user.sub)){
+            return true;
+        }
+        return false;
+    }
 
 }
