@@ -3,9 +3,10 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigSolidarityRequestNewDialogComponent } from '../solidarity-request-new-dialog/solidarity-request-new-dialog.component';
-import { ComplexApiControllerService, FoodProductRequestResourceService, FoodProductRequestDTO, FamilyUnitResourceService, FamilyUnitDTO } from 'aig-solidarety';
+import { FoodProductRequestResourceService, FoodProductRequestDTO, FamilyUnitResourceService, FamilyUnitDTO } from 'aig-solidarety';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
     templateUrl: './solidarity-request-list-page.component.html',
@@ -14,9 +15,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AigSolidarityRequestListPageComponent extends GenericComponent {
     constructor(
         private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
         private familyUnitResourceService: FamilyUnitResourceService,
         private foodProductRequestResourceService: FoodProductRequestResourceService,
-        private _snackBar: MatSnackBar,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
@@ -25,12 +26,19 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
 
     displayedColumns = [ "id", "surname", "name", "cf", "type", "status", "instructor", "buttons" ]
 
-    foodProductRequests: FoodProductRequestDTO[];
+    foodProductRequestDTOs: FoodProductRequestDTO[] = [];
 
-    activeFilter = "";
+    length: number;
+    index: number;
 
-    size = 30;
-    page = 0;
+    filters = {
+        id: null,
+        state: null,
+        category: null,
+        familyUnitIds: [],
+        page: 0,
+        size: 30,
+    }
 
     loadComponent() {
         this.searchForm = this._formBuilder.group({
@@ -43,53 +51,87 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
         this.showAll();
     }
 
+    cleanFilters() {
+        this.filters.id = null;
+        this.filters.state = null;
+        this.filters.category = null;
+        this.filters.familyUnitIds = [];
+    }
 
     showAll() {
-        this.activeFilter = "all";
-        this.searchByState(null);
+        this.cleanFilters();
+        this.search(0);
     }
-    showToReview() {
-        this.activeFilter = "toReview";
-        this.searchByState("98");
+    searchByState(state: string) {
+        this.filters.state = state;
+        this.search(0);
     }
-    showValutation() {
-        this.activeFilter = "valutation";
-        this.searchByState("1");
-    }
-    showRejected() {
-        this.activeFilter = "rejected";
-        this.searchByState("99");
-    }
-    showAproved() {
-        this.activeFilter = "aproved";
-        this.searchByState("2");
+    searchByCategory(category: string) {
+        this.filters.category = category;
+        this.search(0);
     }
 
-    async search() {
-        if(this.searchForm.value.id) {
-            this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
-            if(this.foodProductRequests.length == 0) {
-                this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-            }
-        } else {
-            let familyUnitIds: number[] = [];
-            {
-                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.searchForm.value.lastname,null,null,null,null,null,this.searchForm.value.taxId,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-   
-                familyUnitDTOs.forEach(familyUnitDTO => {
-                    familyUnitIds.push(familyUnitDTO.id);
-                })
-            }
-            if(familyUnitIds.length > 0) {
-                this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,familyUnitIds,null,null,null,null,this.searchForm.value.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
-            } else {
-                this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-            }
+    pageEvent(event: PageEvent) {
+        this.filters.size = event.pageSize;
+        
+        this.search(event.pageIndex);
+    }
+
+    async search(page) {
+        this.index = page
+        this.filters.page = page;
+
+        let categoryFilter = {
+            A:null,
+            B:null,
+            C:null
+        }
+        if(this.filters.category == "A") {
+            categoryFilter.A = true;
+        }
+        if(this.filters.category == "B") {
+            categoryFilter.B = true;
+        }
+        if(this.filters.category == "C") {
+            categoryFilter.C = true;
+        }
+
+        this.length = await this.foodProductRequestResourceService.countFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.A,null,null,null,categoryFilter.B,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.C,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+        this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,this.filters.page,null,null,null,null,null,null,null,null,null,categoryFilter.A,null,null,null,categoryFilter.B,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.C,null,null,null,null,null,null,null,null,null,null,null,this.filters.size,null,null,null,null).toPromise();
+        
+        if(this.foodProductRequestDTOs.length == 0) {
+            this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
         }
     }
 
-    async searchByState(state: string) {
-        this.foodProductRequests = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,state,null,null,null,this.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.size,null,null,null,null).toPromise();
+    async customSearch() {
+        if(this.searchForm.value.id) {
+            this.cleanFilters();
+            this.filters.id = this.searchForm.value.id;
+            this.search(0);
+        } else if(this.searchForm.value.firstname || this.searchForm.value.lastname || this.searchForm.value.taxId) {
+            this.filters.familyUnitIds = [];
+            {
+                let firstname;
+                let lastname;
+                let taxId;
+                if(this.searchForm.value.firstname != "") firstname = this.searchForm.value.firstname;
+                if(this.searchForm.value.lastname != "") lastname = this.searchForm.value.lastname;
+                if(this.searchForm.value.taxId != "") taxId = this.searchForm.value.taxId;
+                
+                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,lastname,null,null,null,null,null,null,null,taxId,null,null,null,null,null,null,null,null,null).toPromise();
+   
+                familyUnitDTOs.forEach(familyUnitDTO => {
+                    this.filters.familyUnitIds.push(familyUnitDTO.id);
+                })
+            }
+            this.search(0);
+        } else {
+            this.filters.id = null;
+            this.filters.familyUnitIds = [];
+
+            this.search(0);
+        }
     }
 
     newSolidarityRequest() {

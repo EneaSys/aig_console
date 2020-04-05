@@ -20,6 +20,7 @@ import { AigSolidaretyApiModule } from 'aig-solidarety';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AigSolidarityRequestDetailPageComponent } from './components/solidarity-request-detail-page/solidarity-request-detail-page.component';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     imports: [ 
@@ -45,6 +46,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
         MatToolbarModule,
         MatProgressSpinnerModule,
         MatAutocompleteModule,
+        MatPaginatorModule,
         
     ],
     declarations: [

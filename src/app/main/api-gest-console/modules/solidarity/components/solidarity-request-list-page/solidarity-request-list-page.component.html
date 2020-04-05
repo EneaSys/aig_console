@@ -1,11 +1,12 @@
 <div id="aig-solidarity-request-list-page" class="page-layout simple left-sidebar inner-sidebar">
 
-    
+
 
     <div class="content">
 
         <!-- SIDEBAR -->
-        <fuse-sidebar class="sidebar" name="aig-solidarity-request-list-filters-sidebar" position="left" lockedOpen="gt-sm">
+        <fuse-sidebar class="sidebar" name="aig-solidarity-request-list-filters-sidebar" position="left"
+            lockedOpen="gt-sm">
             <div class="content" fusePerfectScrollbar>
                 <div class="sidebar-content">
 
@@ -14,7 +15,7 @@
                             <span class="h5">Cerca</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>
-                            <form [formGroup]="searchForm" (ngSubmit)="search()" class="p-8">
+                            <form [formGroup]="searchForm" (ngSubmit)="customSearch()" class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
@@ -48,25 +49,58 @@
 
                     <div class="card mb-16">
                         <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h5">Filtri</span>
+                            <span class="h5">Stato</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>
                             <div class="nav material2">
                                 <div class="nav-item" aria-label="inbox">
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'all'}" (click)="showAll()">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == null}"
+                                        (click)="searchByState(null)">
                                         <span class="title">Tutto</span>
                                     </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'toReview'}" (click)="showToReview()">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '98'}"
+                                        (click)="searchByState('98')">
                                         <span class="title">Da rivedere</span>
                                     </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'valutation'}" (click)="showValutation()">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '1'}"
+                                        (click)="searchByState('1')">
                                         <span class="title">In valutazione</span>
                                     </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'rejected'}" (click)="showRejected()">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '99'}"
+                                        (click)="searchByState('99')">
                                         <span class="title">Rigettata</span>
                                     </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': activeFilter == 'aproved'}" (click)="showAproved()">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '2'}"
+                                        (click)="searchByState('2')">
                                         <span class="title">Approvata</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Category</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <div class="nav material2">
+                                <div class="nav-item" aria-label="inbox">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.category == null}"
+                                        (click)="searchByCategory(null)">
+                                        <span class="title">Tutte</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.category == 'A'}"
+                                        (click)="searchByCategory('A')">
+                                        <span class="title">A</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.category == 'B'}"
+                                        (click)="searchByCategory('B')">
+                                        <span class="title">B</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.category == 'C'}"
+                                        (click)="searchByCategory('C')">
+                                        <span class="title">C</span>
                                     </a>
                                 </div>
                             </div>
@@ -81,7 +115,14 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-solidarity-request-list-table [displayedColumns]="displayedColumns" [dataSource]="foodProductRequests"></aig-solidarity-request-list-table>
+                <aig-solidarity-request-list-table [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOs"></aig-solidarity-request-list-table>
+                <mat-paginator #paginator 
+                    [length]="length" 
+                    [pageIndex]="index" 
+                    [pageSize]="30"
+                    [pageSizeOptions]="[10, 30, 100, 500]"
+                    (page)="pageEvent($event)">
+                </mat-paginator>
             </div>
 
             <div class="content mt-8 p-8">
@@ -94,6 +135,7 @@
 
 </div>
 
-<button mat-fab class="accent" id="add-solidarity-request-button" (click)="newSolidarityRequest()" aria-label="add solidarity request">
+<button mat-fab class="accent" id="add-solidarity-request-button" (click)="newSolidarityRequest()"
+    aria-label="add solidarity request">
     <mat-icon>add</mat-icon>
 </button>
