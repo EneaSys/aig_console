@@ -32,10 +32,10 @@
 
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-            <mat-cell *matCellDef="let e" style="text-align: center;">
-                <span *ngIf="e.requestStatusA">A</span>
-                <span *ngIf="e.requestStatusB">B</span>
-                <span *ngIf="e.requestStatusC">C</span>
+            <mat-cell *matCellDef="let e">
+                <span style="text-align: center; width: 100%;" *ngIf="e.requestStatusA">A</span>
+                <span style="text-align: center; width: 100%;" *ngIf="e.requestStatusB">B</span>
+                <span style="text-align: center; width: 100%;" *ngIf="e.requestStatusC">C</span>
             </mat-cell>
         </ng-container>
 
