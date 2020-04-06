@@ -70,6 +70,10 @@
                                         (click)="searchByState('99')">
                                         <span class="title">Rigettata</span>
                                     </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '97'}"
+                                        (click)="searchByState('97')">
+                                        <span class="title">Duplicata</span>
+                                    </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '2'}"
                                         (click)="searchByState('2')">
                                         <span class="title">Approvata</span>
