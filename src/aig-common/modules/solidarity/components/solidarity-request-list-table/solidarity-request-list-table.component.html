@@ -30,6 +30,13 @@
             <mat-cell *matCellDef="let e">{{ e.familyUnit.taxId }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="familyTotal">
+            <mat-header-cell *matHeaderCellDef> Nucleo Familiare </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span style="text-align: center; width: 100%;">{{ (e.familyUnit.adultNumber + e.familyUnit.childrenNumber) }}</span>
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e">

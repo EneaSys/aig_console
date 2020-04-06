@@ -24,7 +24,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
 
     searchForm: FormGroup;
 
-    displayedColumns = [ "id", "surname", "name", "cf", "type", "status", "instructor", "buttons" ]
+    displayedColumns = [ "id", "surname", "name", "cf", "familyTotal", "type", "status", "instructor", "buttons" ]
 
     foodProductRequestDTOs: FoodProductRequestDTO[] = [];
 
