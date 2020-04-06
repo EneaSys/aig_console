@@ -61,6 +61,8 @@
             <mat-cell *matCellDef="let e">
                 <button class="mr-8" mat-stroked-button color="accent"
                     [routerLink]="'/solidarity/request/detail/' + e.id">Details</button>
+
+                <a target="_blank" class="mr-8" mat-stroked-button color="accent" href="/solidarity/request/detail/{{ e.id }}">Details -></a>
             </mat-cell>
         </ng-container>
 
