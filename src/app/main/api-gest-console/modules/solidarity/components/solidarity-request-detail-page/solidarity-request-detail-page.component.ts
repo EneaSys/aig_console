@@ -74,6 +74,12 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
+    async duplicate(foodProductRequestDTO: any) {
+        // setta lo stato della domanda a 97
+        foodProductRequestDTO.note = "97";
+        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
+    }
+
     checkAssignation(foodProductRequestDTO: any) {
         if(this.user != null && foodProductRequestDTO.familyUnit.note.startsWith(this.user.sub)){
             return true;

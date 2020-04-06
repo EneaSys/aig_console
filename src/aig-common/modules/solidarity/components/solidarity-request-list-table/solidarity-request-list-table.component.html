@@ -42,10 +42,11 @@
         <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span *ngIf="e.note == null" style="color: gray;">Inserita</span>
+                <span *ngIf="e.note == null" style="color: gray;">NON ANCORA ISTRUITA</span>
                 <span *ngIf="e.note == '98'" style="color: blueviolet;">Da rivalutare</span>
                 <span *ngIf="e.note == '1'" style="color: blue;">In valutazione</span>
                 <span *ngIf="e.note == '2'" style="color: green;">Approvata</span>
+                <span *ngIf="e.note == '97'" style="color: red;">Duplicata</span>
                 <span *ngIf="e.note == '99'" style="color: red;">Rigettata</span>
             </mat-cell>
         </ng-container>

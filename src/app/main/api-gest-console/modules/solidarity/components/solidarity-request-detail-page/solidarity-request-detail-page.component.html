@@ -10,6 +10,7 @@
                     <span *ngIf="foodProductRequestDTO.note == '98'" style="color: blueviolet;">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'" style="color: blue;">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'" style="color: green;">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '97'" style="color: red;">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'" style="color: red;">Rigettata</span>
                 </div>
                 <div class="h4 mt-16 m-8 ml-16 mb-0 secondary-text" *ngIf="foodProductRequestDTO.note == null">Istruttore:</div>
@@ -19,7 +20,7 @@
                 <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == null || foodProductRequestDTO.note == 98" (click)="take(foodProductRequestDTO)">Prendi in carica</button>
 
                 <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO)" (click)="aprove(foodProductRequestDTO)">Approva</button>
-                
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO)" (click)="duplicate(foodProductRequestDTO)">Setta duplicata</button>
                 <div *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO)">
                     <hr>
                     <form [formGroup]="rejectForm" (ngSubmit)="reject()">
@@ -37,7 +38,7 @@
 
                 <div *ngIf="foodProductRequestDTO.note == 1 && checkAssignation(foodProductRequestDTO) == false">Un altro istruttore la stà lavorando</div>
 
-                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 2 || foodProductRequestDTO.note == 99" (click)="revalutate(foodProductRequestDTO)">Rivaluta</button>
+                <button mat-stroked-button color="primary" *ngIf="foodProductRequestDTO.note == 2 || foodProductRequestDTO.note == 99 || foodProductRequestDTO.note == 97" (click)="revalutate(foodProductRequestDTO)">Rivaluta</button>
              </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="40">
@@ -50,6 +51,7 @@
                     <span *ngIf="foodProductRequestDTO.note == '98'">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '97'">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'">Rigettata</span>
                 </div>
                 <div class="h4 m-8 ml-16">
