@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AigSolidarityRequestDetailPageComponent } from './components/solidarity-request-detail-page/solidarity-request-detail-page.component';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [ 
@@ -47,6 +48,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatProgressSpinnerModule,
         MatAutocompleteModule,
         MatPaginatorModule,
+        MatSelectModule,
         
     ],
     declarations: [

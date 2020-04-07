@@ -68,6 +68,10 @@
                                     </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '99'}"
                                         (click)="searchByState('99')">
+                                        <span class="title">Non approvata</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '96'}"
+                                        (click)="searchByState('96')">
                                         <span class="title">Rigettata</span>
                                     </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '97'}"

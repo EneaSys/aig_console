@@ -29,6 +29,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     async loadComponent() {
         this.rejectForm = this._formBuilder.group({
             reason: ['', Validators.required],
+            type: ['', Validators.required],
         });
 
         this.foodProductRequestDTO = this.route.snapshot.data.helpRequest;
@@ -64,7 +65,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         await this.familyUnitResourceService.updateFamilyUnitUsingPUT(this.foodProductRequestDTO.familyUnit).toPromise();
 
         // setta lo stato della domanda a 99
-        this.foodProductRequestDTO.note = "99";
+        this.foodProductRequestDTO.note = this.rejectForm.value.type;
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(this.foodProductRequestDTO).toPromise();
     }
 
