@@ -19,6 +19,7 @@ import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { RouterModule } from '@angular/router';
 import { HelpRequestResolver } from './resolver/help-request.resolver';
 import { AigSolidarityRequestCalculatorService } from './services/solidarityRequestCalulator.service';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     imports: [
@@ -41,6 +42,7 @@ import { AigSolidarityRequestCalculatorService } from './services/solidarityRequ
         MatAutocompleteModule,
         MatSelectModule,
         MatDatepickerModule,
+        MatSortModule,
         
         FlexLayoutModule,
 

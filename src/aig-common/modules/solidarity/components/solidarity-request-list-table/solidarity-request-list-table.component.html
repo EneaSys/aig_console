@@ -8,7 +8,7 @@
 </div>
 <div *ngIf="error == null && dataSource != null">
 
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
@@ -31,7 +31,7 @@
         </ng-container>
 
         <ng-container matColumnDef="familyTotal">
-            <mat-header-cell *matHeaderCellDef> Nucleo Familiare </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nucleo Familiare </mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span style="text-align: center; width: 100%;">{{ (e.familyUnit.adultNumber + e.familyUnit.childrenNumber) }}</span>
             </mat-cell>
@@ -64,6 +64,11 @@
             <mat-cell *matCellDef="let e">{{ name(e.familyUnit.note) }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
@@ -75,7 +80,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
     </mat-table>
 

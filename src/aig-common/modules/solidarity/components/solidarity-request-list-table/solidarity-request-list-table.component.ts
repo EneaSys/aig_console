@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AigSolidarityRequestCalculatorService } from '../../services/solidarityRequestCalulator.service';
 
 @Component({
     selector: 'aig-solidarity-request-list-table',
@@ -6,15 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./solidarity-request-list-table.component.scss']
 })
 export class AigSolidarityRequestListTableComponent implements OnInit {
-    constructor() { }
-
     @Input()
     error: any;
     @Input()
     displayedColumns: string[];
     @Input()
     dataSource: any[];
-    
+
+    constructor(
+        public aigSolidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
+    ) { }
+
     ngOnInit(): void { }
 
     name(instructor) {

@@ -134,9 +134,7 @@
                             <div fxFlex class="py-16 h3">Graduatoria A</div>
                         </div>
                         <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
-                                 <pre>{{ foodProductRequestDTOsA | json }}</pre>
-                            </div>
+                            <aig-solidarity-request-list-table style="width: 100%;" [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsA"></aig-solidarity-request-list-table>
                         </div>
                     </div>
                 </fuse-widget>
@@ -149,9 +147,7 @@
                             <div fxFlex class="py-16 h3">Graduatoria B</div>
                         </div>
                         <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
-                                <pre>{{ foodProductRequestDTOsB | json }}</pre>
-                            </div>
+                            <aig-solidarity-request-list-table style="width: 100%;" [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsB"></aig-solidarity-request-list-table>
                         </div>
                     </div>
                 </fuse-widget>
@@ -164,9 +160,7 @@
                             <div fxFlex class="py-16 h3">Graduatoria C</div>
                         </div>
                         <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
-                                <pre>{{ foodProductRequestDTOsC | json }}</pre>
-                            </div>
+                            <aig-solidarity-request-list-table style="width: 100%;" [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsC"></aig-solidarity-request-list-table>
                         </div>
                     </div>
                 </fuse-widget>

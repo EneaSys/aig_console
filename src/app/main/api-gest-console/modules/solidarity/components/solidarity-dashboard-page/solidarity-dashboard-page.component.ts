@@ -16,7 +16,9 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    foodProductRequestDTOs: FoodProductRequestDTO[];
+    displayedColumns = [ "surname", "name", "cf", "amount", "familyTotal" ]
+
+    foodProductRequestDTOs: FoodProductRequestDTO[] = [];
 
     totalAmountApproved: number = 0;
     
@@ -34,7 +36,11 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
 
     async loadComponent() {
         this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1000,null,null,null,null,null).toPromise();
-        
+
+        let foodProductRequestDTOsA: FoodProductRequestDTO[] = [];
+        let foodProductRequestDTOsB: FoodProductRequestDTO[] = [];
+        let foodProductRequestDTOsC: FoodProductRequestDTO[] = [];
+
         this.foodProductRequestDTOs.forEach(foodProductRequestDTO => {
             if(foodProductRequestDTO.note != "97") {
                 this.totalUnique = this.totalUnique + 1;
@@ -54,15 +60,18 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                 this.totalAmountApproved = this.totalAmountApproved + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
 
                 if(foodProductRequestDTO.requestStatusA) {
-                    this.foodProductRequestDTOsA.push(foodProductRequestDTO);
+                    foodProductRequestDTOsA.push(foodProductRequestDTO);
                 }
                 if(foodProductRequestDTO.requestStatusB) {
-                    this.foodProductRequestDTOsB.push(foodProductRequestDTO);
+                    foodProductRequestDTOsB.push(foodProductRequestDTO);
                 }
                 if(foodProductRequestDTO.requestStatusC) {
-                    this.foodProductRequestDTOsC.push(foodProductRequestDTO);
+                    foodProductRequestDTOsC.push(foodProductRequestDTO);
                 }
             }
         });
+        this.foodProductRequestDTOsA = foodProductRequestDTOsA;
+        this.foodProductRequestDTOsB = foodProductRequestDTOsB;
+        this.foodProductRequestDTOsC = foodProductRequestDTOsC;
     }
 }
