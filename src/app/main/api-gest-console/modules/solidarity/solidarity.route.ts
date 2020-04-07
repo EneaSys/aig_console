@@ -3,6 +3,7 @@ import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigSolidarityRequestListPageComponent } from './components/solidarity-request-list-page/solidarity-request-list-page.component';
 import { AigSolidarityRequestDetailPageComponent } from './components/solidarity-request-detail-page/solidarity-request-detail-page.component';
 import { HelpRequestResolver } from 'aig-common/modules/solidarity/resolver/help-request.resolver';
+import { AigSolidarityDashboardComponent } from './components/solidarity-dashboard-page/solidarity-dashboard-page.component';
 
 export const solidarityRoute: Routes = [
     {
@@ -11,12 +12,16 @@ export const solidarityRoute: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'procurement/list'
+                redirectTo: 'dashboard'
+            },
+            {
+                path: 'dashboard',
+                component: AigSolidarityDashboardComponent,
+                canActivate: [ AuthGuardService ],
             },
             {
                 path: 'request',
                 children: [
-                    
                     {
                         path: '',
                         pathMatch: 'full',

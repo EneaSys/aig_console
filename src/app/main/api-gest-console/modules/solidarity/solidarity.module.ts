@@ -4,7 +4,7 @@ import { AigCommonSolidarityModule } from 'aig-common/modules/solidarity/common-
 import { AigSolidarityRequestListPageComponent } from './components/solidarity-request-list-page/solidarity-request-list-page.component';
 import { RouterModule } from '@angular/router';
 import { solidarityRoute } from './solidarity.route';
-import { FuseSidebarModule } from '@fuse/components';
+import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +22,7 @@ import { AigSolidarityRequestDetailPageComponent } from './components/solidarity
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { AigSolidarityDashboardComponent } from './components/solidarity-dashboard-page/solidarity-dashboard-page.component';
 
 @NgModule({
     imports: [ 
@@ -36,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
         
         FuseSharedModule,
         FuseSidebarModule,
+        FuseWidgetModule,
         
         MatIconModule,
         MatInputModule,
@@ -55,6 +57,7 @@ import { MatSelectModule } from '@angular/material/select';
         AigSolidarityRequestListPageComponent,
         AigSolidarityRequestNewDialogComponent,
         AigSolidarityRequestDetailPageComponent,
+        AigSolidarityDashboardComponent,
     ],
     providers: [],
     exports: [],

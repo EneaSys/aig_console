@@ -5,6 +5,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'auth/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
 
 @Component({
     templateUrl: './solidarity-request-detail-page.component.html',
@@ -12,6 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     constructor(
+        private aigSolidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
         private _formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private authService: AuthService,
@@ -81,11 +83,13 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
-    checkAssignation(foodProductRequestDTO: any) {
+    checkAssignation(foodProductRequestDTO: FoodProductRequestDTO) {
         if(this.user != null && foodProductRequestDTO.familyUnit.note.startsWith(this.user.sub)){
             return true;
         }
         return false;
     }
+
+    
 
 }

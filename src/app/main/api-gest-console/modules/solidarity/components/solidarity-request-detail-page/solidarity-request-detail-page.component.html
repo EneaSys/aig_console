@@ -11,7 +11,7 @@
                     <span *ngIf="foodProductRequestDTO.note == '98'" style="color: blueviolet;">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'" style="color: blue;">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'" style="color: green;">Approvata</span>
-                    <span *ngIf="foodProductRequestDTO.note == '96'" style="color: orange;">Rigettata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '96'" style="color: red;">Non ammissibili</span>
                     <span *ngIf="foodProductRequestDTO.note == '97'" style="color: brown;">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'" style="color: orange;">Non Approvata</span>
                 </div>
@@ -72,7 +72,7 @@
                     <span *ngIf="foodProductRequestDTO.note == '98'">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
-                    <span *ngIf="foodProductRequestDTO.note == '96'">Rigettata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '96'">Non ammissibili</span>
                     <span *ngIf="foodProductRequestDTO.note == '97'">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'">Non approvata</span>
                 </div>
@@ -90,6 +90,10 @@
                 <div class="h4 m-8 ml-16" style="color: red;"
                     *ngIf="foodProductRequestDTO.familyUnit.disabledPeopleNote != null">Note:
                     {{ foodProductRequestDTO.familyUnit.disabledPeopleNote }}</div>
+            </div>
+            <div class="fuse-card auto-width mt-8 p-16" *ngIf="foodProductRequestDTO.note == '2'">
+                <div class="h4 m-8 ml-16">Importo: </div>
+                <div class="h1 m-16">€ {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }},00</div>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="40">

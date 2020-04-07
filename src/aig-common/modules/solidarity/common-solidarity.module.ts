@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { RouterModule } from '@angular/router';
 import { HelpRequestResolver } from './resolver/help-request.resolver';
+import { AigSolidarityRequestCalculatorService } from './services/solidarityRequestCalulator.service';
 
 @NgModule({
     imports: [
@@ -46,6 +47,7 @@ import { HelpRequestResolver } from './resolver/help-request.resolver';
     ],
     providers: [
         HelpRequestResolver,
+        AigSolidarityRequestCalculatorService,
     ],
     declarations: [
         AigSolidarityRequestListTableComponent,
