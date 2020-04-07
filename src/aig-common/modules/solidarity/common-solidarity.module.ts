@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { HelpRequestResolver } from './resolver/help-request.resolver';
 import { AigSolidarityRequestCalculatorService } from './services/solidarityRequestCalulator.service';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { MatSortModule } from '@angular/material/sort';
         MatSelectModule,
         MatDatepickerModule,
         MatSortModule,
+        MatTableExporterModule,
         
         FlexLayoutModule,
 
