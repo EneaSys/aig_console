@@ -17,6 +17,7 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     displayedColumns = [ "surname", "name", "cf", "amount", "familyTotal" ]
+    displayedColumnsB = [ "surname", "name", "cf", "amount", "incomeMar", "familyTotal" ]
 
     foodProductRequestDTOs: FoodProductRequestDTO[] = [];
 

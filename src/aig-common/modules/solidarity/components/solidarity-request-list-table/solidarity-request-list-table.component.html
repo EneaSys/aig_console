@@ -64,6 +64,11 @@
             <mat-cell *matCellDef="let e">{{ name(e.familyUnit.note) }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="incomeMar">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Reddito Marzo</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.requestStatusBIncomeMar }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) }}</mat-cell>
