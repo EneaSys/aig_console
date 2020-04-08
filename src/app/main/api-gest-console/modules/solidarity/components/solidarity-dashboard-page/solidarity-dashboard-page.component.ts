@@ -23,8 +23,11 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
 
     totalAmountApproved: number = 0;
     
+    totalAmountA: number = 0;
     foodProductRequestDTOsA: FoodProductRequestDTO[] = [];
+    totalAmountB: number = 0;
     foodProductRequestDTOsB: FoodProductRequestDTO[] = [];
+    totalAmountC: number = 0;
     foodProductRequestDTOsC: FoodProductRequestDTO[] = [];
 
     totalUnique: number = 0;
@@ -69,12 +72,15 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                 this.totalAmountApproved = this.totalAmountApproved + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
 
                 if(foodProductRequestDTO.requestStatusA) {
+                    this.totalAmountA = this.totalAmountA + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
                     foodProductRequestDTOsA.push(foodProductRequestDTO);
                 }
                 if(foodProductRequestDTO.requestStatusB) {
+                    this.totalAmountB = this.totalAmountB + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
                     foodProductRequestDTOsB.push(foodProductRequestDTO);
                 }
                 if(foodProductRequestDTO.requestStatusC) {
+                    this.totalAmountC = this.totalAmountC + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
                     foodProductRequestDTOsC.push(foodProductRequestDTO);
                 }
             }

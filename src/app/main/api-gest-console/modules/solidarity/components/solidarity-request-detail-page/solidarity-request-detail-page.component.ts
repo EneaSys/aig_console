@@ -22,7 +22,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    foodProductRequestDTO: any; //FoodProductRequestDTO
+    foodProductRequestDTO: FoodProductRequestDTO;
     instructor: string[];
     user: any;
 

@@ -22,7 +22,9 @@ import { AigSolidarityRequestDetailPageComponent } from './components/solidarity
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import {NgxPrintModule} from 'ngx-print';
 import { AigSolidarityDashboardComponent } from './components/solidarity-dashboard-page/solidarity-dashboard-page.component';
+import { AigSolidarityRequestModulePageComponent } from './components/solidarity-request-module-page/solidarity-request-module-page.component';
 
 @NgModule({
     imports: [ 
@@ -51,6 +53,8 @@ import { AigSolidarityDashboardComponent } from './components/solidarity-dashboa
         MatAutocompleteModule,
         MatPaginatorModule,
         MatSelectModule,
+
+        NgxPrintModule,
         
     ],
     declarations: [
@@ -58,6 +62,7 @@ import { AigSolidarityDashboardComponent } from './components/solidarity-dashboa
         AigSolidarityRequestNewDialogComponent,
         AigSolidarityRequestDetailPageComponent,
         AigSolidarityDashboardComponent,
+        AigSolidarityRequestModulePageComponent,
     ],
     providers: [],
     exports: [],

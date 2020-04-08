@@ -24,7 +24,7 @@ export class AigSolidarityRequestCalculatorService {
         }
 
         if(foodProductRequestDTO.requestStatusB) {
-            if(foodProductRequestDTO.requestStatusBIncomeMar < 700) {
+            if(foodProductRequestDTO.requestStatusBIncomeMar <= 700) {
                 
                 if(familyComponents == 1 || familyComponents == 2) {
                     return 150;

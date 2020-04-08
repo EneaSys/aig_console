@@ -4,6 +4,7 @@ import { AigSolidarityRequestListPageComponent } from './components/solidarity-r
 import { AigSolidarityRequestDetailPageComponent } from './components/solidarity-request-detail-page/solidarity-request-detail-page.component';
 import { HelpRequestResolver } from 'aig-common/modules/solidarity/resolver/help-request.resolver';
 import { AigSolidarityDashboardComponent } from './components/solidarity-dashboard-page/solidarity-dashboard-page.component';
+import { AigSolidarityRequestModulePageComponent } from './components/solidarity-request-module-page/solidarity-request-module-page.component';
 
 export const solidarityRoute: Routes = [
     {
@@ -35,6 +36,14 @@ export const solidarityRoute: Routes = [
                     {
                         path: 'detail/:id',
                         component: AigSolidarityRequestDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            helpRequest: HelpRequestResolver,
+                        },
+                    },
+                    {
+                        path: 'detail/:id/module',
+                        component: AigSolidarityRequestModulePageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             helpRequest: HelpRequestResolver,
