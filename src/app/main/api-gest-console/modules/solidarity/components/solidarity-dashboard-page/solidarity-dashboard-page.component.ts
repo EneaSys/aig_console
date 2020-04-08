@@ -35,7 +35,7 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
     totalAmountNotAproved: number = 0;
     totalNotAproved: number = 0;
 
-    totalAmountNotReleased: number = 0;
+    totalAmountReleased: number = 0;
     totalReleased: number = 0;
 
     async loadComponent() {
@@ -51,7 +51,7 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
             }
 
             if(foodProductRequestDTO.note == "95") {
-                this.totalAmountNotReleased = this.totalAmountNotReleased + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
+                this.totalAmountReleased = this.totalAmountReleased + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
                 this.totalReleased = this.totalReleased + 1;
             }
 
