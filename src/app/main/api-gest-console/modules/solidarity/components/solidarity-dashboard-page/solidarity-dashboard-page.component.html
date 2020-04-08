@@ -27,7 +27,7 @@
                                 Numero domande approvate:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsA.length + foodProductRequestDTOsB.length + foodProductRequestDTOsC.length }}
+                                {{ foodProductRequestDTOsA.length + foodProductRequestDTOsB.length + foodProductRequestDTOsC.length }} / {{ totalUnique }} di {{ foodProductRequestDTOs.length }}
                             </span>
                         </div>
                     </div>
@@ -103,22 +103,22 @@
                     <!-- Front -->
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Totali domande uniche
+                            Rifiutate
                         </div>
 
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalUnique }}
+                                {{ totalAmountNotReleased }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">domande</div>
                         </div>
 
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero totale di domande pervenute:
+                                Importo domande rifiutate:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOs.length }}
+                                € {{ totalAmountNotReleased }}
                             </span>
                         </div>
                     </div>

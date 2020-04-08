@@ -35,6 +35,9 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
     totalAmountNotAproved: number = 0;
     totalNotAproved: number = 0;
 
+    totalAmountNotReleased: number = 0;
+    totalReleased: number = 0;
+
     async loadComponent() {
         this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1000,null,null,null,null,null).toPromise();
 
@@ -45,6 +48,11 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
         this.foodProductRequestDTOs.forEach(foodProductRequestDTO => {
             if(foodProductRequestDTO.note != "97") {
                 this.totalUnique = this.totalUnique + 1;
+            }
+
+            if(foodProductRequestDTO.note == "95") {
+                this.totalAmountNotReleased = this.totalAmountNotReleased + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
+                this.totalReleased = this.totalReleased + 1;
             }
 
             if(foodProductRequestDTO.note == "96") {
