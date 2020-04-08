@@ -20,9 +20,11 @@ export class AigSolidarityRequestModulePageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     foodProductRequestDTO: FoodProductRequestDTO;
+    instructor;
 
     loadComponent() {
         this.foodProductRequestDTO = this.route.snapshot.data.helpRequest;
+        this.instructor = this.foodProductRequestDTO.familyUnit.note.split('|');
     }
 
     @ViewChild('module', { static: false }) module: ElementRef;
