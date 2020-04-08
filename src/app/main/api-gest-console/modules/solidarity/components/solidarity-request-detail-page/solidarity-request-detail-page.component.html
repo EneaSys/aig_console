@@ -11,6 +11,7 @@
                     <span *ngIf="foodProductRequestDTO.note == '98'" style="color: blueviolet;">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'" style="color: blue;">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'" style="color: green;">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '95'" style="color: gray;">Rifiutata</span>
                     <span *ngIf="foodProductRequestDTO.note == '96'" style="color: red;">Non ammissibili</span>
                     <span *ngIf="foodProductRequestDTO.note == '97'" style="color: brown;">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'" style="color: orange;">Non Approvata</span>
@@ -39,6 +40,7 @@
                                 <mat-select formControlName="type">
                                     <mat-option [value]="99">Non Approvata</mat-option>
                                     <mat-option [value]="96">Rigettata</mat-option>
+                                    <mat-option [value]="95">Rifiutata</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -58,8 +60,9 @@
                     altro istruttore la stà lavorando</div>
 
                 <button mat-stroked-button color="primary"
-                    *ngIf="foodProductRequestDTO.note == 2 || foodProductRequestDTO.note == 99 || foodProductRequestDTO.note == 97 || foodProductRequestDTO.note == 96"
+                    *ngIf="foodProductRequestDTO.note == 2 || foodProductRequestDTO.note == 99 || foodProductRequestDTO.note == 97 || foodProductRequestDTO.note == 96 || foodProductRequestDTO.note == 95"
                     (click)="revalutate(foodProductRequestDTO)">Rivaluta</button>
+                
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="40">
@@ -72,6 +75,7 @@
                     <span *ngIf="foodProductRequestDTO.note == '98'">Da rivalutare</span>
                     <span *ngIf="foodProductRequestDTO.note == '1'">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'">Approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '95'">Rifiutata</span>
                     <span *ngIf="foodProductRequestDTO.note == '96'">Non ammissibili</span>
                     <span *ngIf="foodProductRequestDTO.note == '97'">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'">Non approvata</span>
