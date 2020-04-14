@@ -78,6 +78,14 @@
                                         (click)="searchByState('96')">
                                         <span class="title">Non ammissibili</span>
                                     </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '93'}"
+                                        (click)="searchByState('93')">
+                                        <span class="title">Rifiutata dopo integarzione</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '94'}"
+                                        (click)="searchByState('94')">
+                                        <span class="title">Non ammissibili dopo integarzione</span>
+                                    </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '97'}"
                                         (click)="searchByState('97')">
                                         <span class="title">Duplicata</span>

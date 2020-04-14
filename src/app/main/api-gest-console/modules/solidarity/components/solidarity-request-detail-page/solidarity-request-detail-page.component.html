@@ -13,6 +13,8 @@
                     <span *ngIf="foodProductRequestDTO.note == '2'" style="color: green;">Approvata</span>
                     <span *ngIf="foodProductRequestDTO.note == '95'" style="color: gray;">Rifiutata</span>
                     <span *ngIf="foodProductRequestDTO.note == '96'" style="color: red;">Non ammissibili</span>
+                    <span *ngIf="foodProductRequestDTO.note == '93'" style="color: gray;">Rifiutata dopo integarzione</span>
+                    <span *ngIf="foodProductRequestDTO.note == '94'" style="color: red;">Non ammissibili dopo integarzione</span>
                     <span *ngIf="foodProductRequestDTO.note == '97'" style="color: brown;">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'" style="color: orange;">Non Approvata</span>
                 </div>
@@ -41,6 +43,8 @@
                                     <mat-option [value]="99">Non Approvata</mat-option>
                                     <mat-option [value]="96">Rigettata</mat-option>
                                     <mat-option [value]="95">Rifiutata</mat-option>
+                                    <mat-option [value]="94">Non Ammissibili dopo integrazione</mat-option>
+                                    <mat-option [value]="93">Rifiutata dopo integrazione</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -79,6 +83,8 @@
                     <span *ngIf="foodProductRequestDTO.note == '96'">Non ammissibili</span>
                     <span *ngIf="foodProductRequestDTO.note == '97'">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '99'">Non approvata</span>
+                    <span *ngIf="foodProductRequestDTO.note == '93'">Rifiutata dopo integarzione</span>
+                    <span *ngIf="foodProductRequestDTO.note == '94'">Non ammissibili dopo integarzione</span>
                 </div>
                 <div class="h4 m-8 ml-16">
                     <span>Categoria: </span>
