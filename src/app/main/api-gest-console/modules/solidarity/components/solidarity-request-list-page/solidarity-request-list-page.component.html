@@ -78,6 +78,14 @@
                                         (click)="searchByState('96')">
                                         <span class="title">Non ammissibili</span>
                                     </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '97'}"
+                                        (click)="searchByState('97')">
+                                        <span class="title">Duplicata</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '2'}"
+                                        (click)="searchByState('2')">
+                                        <span class="title">Approvata</span>
+                                    </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '93'}"
                                         (click)="searchByState('93')">
                                         <span class="title">Rifiutata dopo integarzione</span>
@@ -86,13 +94,13 @@
                                         (click)="searchByState('94')">
                                         <span class="title">Non ammissibili dopo integarzione</span>
                                     </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '97'}"
-                                        (click)="searchByState('97')">
-                                        <span class="title">Duplicata</span>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '87'}"
+                                        (click)="searchByState('87')">
+                                        <span class="title">Duplicata dopo integarzione</span>
                                     </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '2'}"
-                                        (click)="searchByState('2')">
-                                        <span class="title">Approvata</span>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '3'}"
+                                        (click)="searchByState('3')">
+                                        <span class="title">Approvata dopo integarzione</span>
                                     </a>
                                 </div>
                             </div>
@@ -135,13 +143,10 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-solidarity-request-list-table [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOs"></aig-solidarity-request-list-table>
-                <mat-paginator #paginator 
-                    [length]="length" 
-                    [pageIndex]="index" 
-                    [pageSize]="30"
-                    [pageSizeOptions]="[10, 30, 100, 500]"
-                    (page)="pageEvent($event)">
+                <aig-solidarity-request-list-table [displayedColumns]="displayedColumns"
+                    [dataSource]="foodProductRequestDTOs"></aig-solidarity-request-list-table>
+                <mat-paginator #paginator [length]="length" [pageIndex]="index" [pageSize]="30"
+                    [pageSizeOptions]="[10, 30, 100, 500]" (page)="pageEvent($event)">
                 </mat-paginator>
             </div>
 

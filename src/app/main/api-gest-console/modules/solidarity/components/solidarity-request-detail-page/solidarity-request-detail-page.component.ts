@@ -53,7 +53,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
 
     async aprove(foodProductRequestDTO: FoodProductRequestDTO) {
         // setta lo stato della domanda a 2
-        foodProductRequestDTO.note = "2";
+        foodProductRequestDTO.note = "3";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
@@ -79,7 +79,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
 
     async duplicate(foodProductRequestDTO: any) {
         // setta lo stato della domanda a 97
-        foodProductRequestDTO.note = "97";
+        foodProductRequestDTO.note = "87";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
