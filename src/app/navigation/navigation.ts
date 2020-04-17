@@ -29,7 +29,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'how_to_reg',
                 url      : '/g5c/eopoo-type',
-                permission: ['g5c.eopoo.get'],
+                permission: ['g5c.eopoo-type.post'],
             },
             {
                 id       : 'procurement-list-page',
