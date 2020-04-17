@@ -23,7 +23,7 @@ export class AigRoleListPageComponent extends GenericComponent {
     roleSystemDataSource: Observable<RoleDTO[]>;
 
     loadComponent(): void {
-        this.roleSystemDataSource = this.roleResourceService.getAllRolesUsingGET();
+        this.roleSystemDataSource = this.roleResourceService.getAllRolesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 100, null);
     }
 
     newRole(): void {

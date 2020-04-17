@@ -20,7 +20,8 @@ export class AigPermissionListPageComponent extends GenericComponent {
     permissionsDataSource: PermissionDTO[] = [];
 
     loadComponent(): void {
-        var destructor = this.permissionResourceService.getAllPermissionsUsingGET().subscribe(
+        var destructor = this.permissionResourceService.getAllPermissionsUsingGET(null, null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, 100, null)
+        .subscribe(
             (value: PermissionDTO[]) => {
                 this.permissionsDataSource = value;
             }

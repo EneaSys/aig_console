@@ -1,0 +1,130 @@
+<div id="aig-seller-manager" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar>
+
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di vendite</span>
+
+            </div>
+
+            <div fxLayout="row">
+
+                <div class="selected-seller">Macelleria Pippo Pluto S.r.l.</div>
+                <button mat-icon-button class="seller-selector" [matMenuTriggerFor]="sellerMenu"
+                    aria-label="Select seller">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+
+                <mat-menu #sellerMenu="matMenu">
+                    <button mat-menu-item>
+                        <span>Seller 2</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Seller 3</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <mat-tab-group dynamicHeight>
+
+                <mat-tab label="Acquisti">
+
+                    <!-- WIDGET GROUP -->
+                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+
+                        <!-- WIDGET 11 -->
+                        <fuse-widget class="widget" fxLayout="row" fxFlex="100">
+
+                            <!-- Front -->
+                            <div class="fuse-widget-front">
+
+                                <aig-buy-list-table [dataSource]="buys" [displayedColumns]="displayedColumns"></aig-buy-list-table>
+
+                                <mat-paginator #paginator [length]="500" [pageIndex]="0" [pageSize]="20"
+                                    [pageSizeOptions]="[10, 30, 100, 500]" (page)="pageEvent($event)">
+                                </mat-paginator>
+                            </div>
+                            <!-- / Front -->
+
+                        </fuse-widget>
+                        <!-- / WIDGET 11 -->
+
+                    </div>
+                    <!-- / WIDGET GROUP -->
+                    <button mat-fab class="accent" id="add-buy-button" (click)="newBuy()" aria-label="new buy">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-tab>
+                <!--
+                <mat-tab label="Home">
+                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                            <div class="fuse-widget-front">
+                                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    a breve disponibile
+                                </div>
+                            </div>
+                        </fuse-widget>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="Clienti">
+                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                            <div class="fuse-widget-front">
+                                <div class="p-24 mb-8 border-bottom" fxLayout="row"
+                                    fxLayoutAlign="space-between center">
+                                    <div class="h2">Acquisti</div>
+                                    <div class="text-boxed accent m-0">
+                                        a
+                                    </div>
+                                </div>
+                                ciao
+                            </div>
+                        </fuse-widget>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="Buoni spesa">
+                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                            <div class="fuse-widget-front">
+                                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    a breve disponibile
+                                </div>
+                            </div>
+                        </fuse-widget>
+                    </div>
+                </mat-tab>
+                
+                <mat-tab label="Ricevute fiscali">
+                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                            <div class="fuse-widget-front">
+                                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    a breve disponibile
+                                </div>
+                            </div>
+                        </fuse-widget>
+                    </div>
+                </mat-tab>
+-->
+            </mat-tab-group>
+
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

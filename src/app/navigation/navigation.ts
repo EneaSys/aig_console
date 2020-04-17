@@ -52,6 +52,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'dashboard',
                 url      : '/solidarity/dashboard',
+                permission: ['s8y.request.get'],
             },
             {
                 id       : 'solidarity-request-list-page',
@@ -59,6 +60,22 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/solidarity/request',
+                permission: ['s8y.request.get'],
+            },
+        ]
+    },
+    {
+        id       : 'commerce',
+        title    : 'Commerce',
+        type     : 'group',
+        children : [
+            {
+                id       : 'commerce-seller-manager',
+                title    : 'Seller Manager',
+                type     : 'item',
+                icon     : 'dashboard',
+                url      : '/commerce/seller-manager',
+                permission: ['c6e.buy.get.asSeller'],
             },
         ]
     },
