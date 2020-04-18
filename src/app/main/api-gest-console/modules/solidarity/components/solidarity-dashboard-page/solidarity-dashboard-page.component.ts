@@ -30,6 +30,16 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
     totalAmountC: number = 0;
     foodProductRequestDTOsC: FoodProductRequestDTO[] = [];
 
+    totalAmountApprovedAfter: number = 0;
+
+    totalAmountAafter: number = 0;
+    foodProductRequestDTOsAafter: FoodProductRequestDTO[] = [];
+    totalAmountBafter: number = 0;
+    foodProductRequestDTOsBafter: FoodProductRequestDTO[] = [];
+    totalAmountCafter: number = 0;
+    foodProductRequestDTOsCafter: FoodProductRequestDTO[] = [];
+
+
     totalUnique: number = 0;
 
     totalAmountInamissible: number = 0;
@@ -49,6 +59,10 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
         let foodProductRequestDTOsA: FoodProductRequestDTO[] = [];
         let foodProductRequestDTOsB: FoodProductRequestDTO[] = [];
         let foodProductRequestDTOsC: FoodProductRequestDTO[] = [];
+
+        let foodProductRequestDTOsAafter: FoodProductRequestDTO[] = [];
+        let foodProductRequestDTOsBafter: FoodProductRequestDTO[] = [];
+        let foodProductRequestDTOsCafter: FoodProductRequestDTO[] = [];
 
         this.foodProductRequestDTOs.forEach(foodProductRequestDTO => {
             if (foodProductRequestDTO.note != "97") {
@@ -86,6 +100,31 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                     foodProductRequestDTOsC.push(foodProductRequestDTO);
                 }
             }
+            this.foodProductRequestDTOsA = foodProductRequestDTOsA;
+            this.foodProductRequestDTOsB = foodProductRequestDTOsB;
+            this.foodProductRequestDTOsC = foodProductRequestDTOsC;
+
+
+
+            if (foodProductRequestDTO.note == "3") {
+                this.totalAmountApprovedAfter = this.totalAmountApprovedAfter + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
+
+                if (foodProductRequestDTO.requestStatusA) {
+                    this.totalAmountAafter = this.totalAmountAafter + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
+                    foodProductRequestDTOsAafter.push(foodProductRequestDTO);
+                }
+                if (foodProductRequestDTO.requestStatusB) {
+                    this.totalAmountBafter = this.totalAmountBafter + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
+                    foodProductRequestDTOsBafter.push(foodProductRequestDTO);
+                }
+                if (foodProductRequestDTO.requestStatusC) {
+                    this.totalAmountCafter = this.totalAmountCafter + this.aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO);
+                    foodProductRequestDTOsCafter.push(foodProductRequestDTO);
+                }
+            }
+            this.foodProductRequestDTOsAafter = foodProductRequestDTOsAafter;
+            this.foodProductRequestDTOsBafter = foodProductRequestDTOsBafter;
+            this.foodProductRequestDTOsCafter = foodProductRequestDTOsCafter;
 
             // Casi di omonimia
             /*
@@ -104,8 +143,6 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
             }
             */
         });
-        this.foodProductRequestDTOsA = foodProductRequestDTOsA;
-        this.foodProductRequestDTOsB = foodProductRequestDTOsB;
-        this.foodProductRequestDTOsC = foodProductRequestDTOsC;
+
     }
 }

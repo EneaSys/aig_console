@@ -56,6 +56,11 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         foodProductRequestDTO.note = "3";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
+    async aprovea(foodProductRequestDTO: FoodProductRequestDTO) {
+        // setta lo stato della domanda a 2
+        foodProductRequestDTO.note = "2";
+        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
+    }
 
     async reject() {
         if (!this.rejectForm.valid) {
@@ -77,6 +82,11 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
+    async duplicatea(foodProductRequestDTO: any) {
+        // setta lo stato della domanda a 97
+        foodProductRequestDTO.note = "97";
+        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
+    }
     async duplicate(foodProductRequestDTO: any) {
         // setta lo stato della domanda a 97
         foodProductRequestDTO.note = "87";
