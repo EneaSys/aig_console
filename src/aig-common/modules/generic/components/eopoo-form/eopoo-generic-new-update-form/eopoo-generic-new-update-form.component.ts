@@ -37,7 +37,7 @@ export class AigEopooGenericNewUpdateFormComponent implements OnInit {
         // PREPARE FORM
         this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
-            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
             eopooTypeId: [''],
 
             name: ['', Validators.required],
