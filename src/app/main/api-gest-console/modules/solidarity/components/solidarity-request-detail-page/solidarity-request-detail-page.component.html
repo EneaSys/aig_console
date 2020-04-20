@@ -121,7 +121,7 @@
                     *ngIf="foodProductRequestDTO.familyUnit.disabledPeopleNote != null">Note:
                     {{ foodProductRequestDTO.familyUnit.disabledPeopleNote }}</div>
             </div>
-            <div class="fuse-card auto-width mt-8 p-16" *ngIf="foodProductRequestDTO.note == '2'">
+            <div class="fuse-card auto-width mt-8 p-16" *ngIf="foodProductRequestDTO.note == '2' || foodProductRequestDTO.note == '3'">
                 <div class="h4 m-8 ml-16">Importo: </div>
                 <div class="h1 m-16">€ {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }},00</div>
             </div>

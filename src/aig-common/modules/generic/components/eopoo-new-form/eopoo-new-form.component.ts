@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EopooTypeResourceService, EopooTypeDTO } from 'aig-generic';
-import { EopooDTO } from 'api-gest';
+import { EopooTypeResourceService, EopooTypeDTO, EopooDTO } from 'aig-generic';
 
 @Component({
     selector: 'aig-eopoo-new-form',

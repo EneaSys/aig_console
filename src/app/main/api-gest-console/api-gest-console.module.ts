@@ -16,13 +16,14 @@ import { AigGenericModule } from './modules/aig-generic/aig-generic.module';
 import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
 import { AigIppModule } from './modules/ipp/ipp.module';
 
-import { BASE_PATH } from 'api-gest';
+import { AIG_PATH } from 'api-gest';
 import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
 import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
 import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
 import { AIG_SOLIDARETY_BASE_PATH } from 'aig-solidarety';
 import { AigCommerceModule } from './modules/commerce/commerce.module';
+import { COMMERCE_PATH } from 'aig-commerce';
 
 
 @NgModule({
@@ -63,7 +64,7 @@ import { AigCommerceModule } from './modules/commerce/commerce.module';
             multi: true
         },
         {
-            provide: BASE_PATH,
+            provide: AIG_PATH,
             useValue: API_URL
         },
         {
@@ -81,6 +82,10 @@ import { AigCommerceModule } from './modules/commerce/commerce.module';
         {
             provide: AIG_SOLIDARETY_BASE_PATH,
             useValue: API_URL + "/solidarety"
+        },
+        {
+            provide: COMMERCE_PATH,
+            useValue: API_URL + "/c6e"
         },
     ],
 })

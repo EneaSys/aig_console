@@ -8,6 +8,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 import { AigAddressNewUpdateModalComponent } from '../address-new-update-modal/address-new-update-modal.component';
+import { ContextUserEopooResourceService, ContextUserEopooDTO } from 'api-gest';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { AigAddressNewUpdateModalComponent } from '../address-new-update-modal/a
 export class AigEopooDetailPageComponent extends GenericComponent {
     constructor(
         private eopooResourceService: EopooResourceService,
+        private contextUserEopooResourceService: ContextUserEopooResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         private addressResourceService: AddressResourceService,
@@ -27,6 +29,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
     addressDisplayedColumns: string[] = ['name', 'address', 'city', 'buttons'];
     addressDTOs: AddressDTO[];
+    contextUserEopooDTOs: ContextUserEopooDTO[];
 
     loadPage() {
         this.eopooDTO = this.route.snapshot.data.eopoo;
@@ -38,6 +41,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
     async afterLoad() {
         this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, this.eopooDTO.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null).toPromise();
+        this.contextUserEopooDTOs = await this.contextUserEopooResourceService.getAllContextUserEopoosUsingGET(null, null, null, null, null, null, null, null, null, null, this.eopooDTO.id+"", null, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
     }
 
 

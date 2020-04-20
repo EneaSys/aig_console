@@ -3,6 +3,8 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-custom-buy-dialog.component';
+import { ValidateApiControllerService, ValidateEopooPersonRequest } from 'aig-generic';
+import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO } from 'aig-commerce';
 
 @Component({
     templateUrl: './seller-manager-page.component.html',
@@ -10,18 +12,39 @@ import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-cus
 })
 export class AigSellerManagerPageComponent extends GenericComponent {
     constructor(
+        private sellerResourceService: SellerResourceService,
+        private purchaseResourceService: PurchaseResourceService,
+        private validateApiControllerService: ValidateApiControllerService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['id', 'date', 'customer', 'amount', 'buttons'];
-    buys: any[];
+    sellerDTOs: SellerDTO[] = [];
+    selectedSeller: SellerDTO;
 
-    loadComponent() {
-        this.buys = [];
+    displayedColumns: string[] = ['id', 'date', 'customer', 'amount', 'buttons'];
+    purchaseDTOs: PurchaseDTO[];
+
+    async loadComponent() {
+        this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
+        if(this.sellerDTOs.length > 0) {
+            this.selectedSeller = this.sellerDTOs[0];
+        }
+
+        this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.selectedSeller.id, null, null, null, null, null, null, null, null, null).toPromise();
+
+
+
+
+        let validateEopooPersonRequest: ValidateEopooPersonRequest = {
+            firstname: "Catello Stefano",
+            lastname: "Cavallaro",
+            bornDate: "1992-07-25"
+        }
+        await this.validateApiControllerService.validateEopooPerson(validateEopooPersonRequest).toPromise()
     }
 
-
+    
     newBuy() {
         this.dialog.open(AigNewCustomBuyDialogComponent);
     }

@@ -8,12 +8,12 @@
             <button class="ml-8" mat-stroked-button color="accent"
                 [routerLink]="'/solidarity/request/detail/' + (foodProductRequestDTO.id + 1) + '/module'">Prossimo</button>
 
-            <h3 *ngIf="foodProductRequestDTO.note != '2'">Non stampare</h3>
-            <h3 *ngIf="foodProductRequestDTO.note == '2'">Approvata</h3>
+            <h3 *ngIf="foodProductRequestDTO.note != '2' || foodProductRequestDTO.note != '3'">Non stampare</h3>
+            <h3 *ngIf="foodProductRequestDTO.note == '2' || foodProductRequestDTO.note == '3'">Approvata</h3>
             <button class="ml-8" mat-stroked-button color="accent" printSectionId="module" ngxPrint>Stampa</button> 
         </div>
 
-        <div class="card" *ngIf="foodProductRequestDTO.note == '2'">
+        <div class="card" *ngIf="foodProductRequestDTO.note == '2' || foodProductRequestDTO.note == '3'">
 
             <div id="module" #module class="content" >
                 <h1>{{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }}</h1>

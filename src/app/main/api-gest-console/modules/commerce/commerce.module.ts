@@ -19,6 +19,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AigNewCustomBuyDialogComponent } from './components/new-custom-buy-dialog/new-custom-buy-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AigCommerceApiModule } from 'aig-commerce';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         RouterModule.forChild(commerceRoute),
         
         AigCommonCommerceModule,
+        AigCommerceApiModule,
 
         FuseSharedModule,
         FuseSidebarModule,

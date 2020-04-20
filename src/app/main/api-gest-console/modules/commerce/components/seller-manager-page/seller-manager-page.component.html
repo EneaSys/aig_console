@@ -1,7 +1,7 @@
 <div id="aig-seller-manager" class="page-layout simple right-sidebar" fxLayout="row">
 
     <!-- CENTER -->
-    <div class="center" fusePerfectScrollbar>
+    <div class="center" fusePerfectScrollbar *ngIf="selectedSeller">
 
         <!-- HEADER -->
         <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
@@ -14,20 +14,20 @@
 
             <div fxLayout="row">
 
-                <div class="selected-seller">Macelleria Pippo Pluto S.r.l.</div>
+                <div class="selected-seller">{{ selectedSeller.name }}</div>
                 <button mat-icon-button class="seller-selector" [matMenuTriggerFor]="sellerMenu"
                     aria-label="Select seller">
                     <mat-icon>more_horiz</mat-icon>
                 </button>
 
-                <mat-menu #sellerMenu="matMenu">
-                    <button mat-menu-item>
-                        <span>Seller 2</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span>Seller 3</span>
-                    </button>
+                <mat-menu #sellerMenu="matMenu" >
+                    <div *ngFor="let sellerDTO of sellerDTOs">
+                        <button mat-menu-item *ngIf="sellerDTO != selectedSeller">
+                            <span>{{ sellerDTO.name }}</span>
+                        </button>
+                    </div>
                 </mat-menu>
+
             </div>
         </div>
         <!-- / HEADER -->
@@ -48,7 +48,8 @@
                             <!-- Front -->
                             <div class="fuse-widget-front">
 
-                                <aig-buy-list-table [dataSource]="buys" [displayedColumns]="displayedColumns"></aig-buy-list-table>
+                                <aig-buy-list-table [dataSource]="purchaseDTOs" [displayedColumns]="displayedColumns">
+                                </aig-buy-list-table>
 
                                 <mat-paginator #paginator [length]="500" [pageIndex]="0" [pageSize]="20"
                                     [pageSizeOptions]="[10, 30, 100, 500]" (page)="pageEvent($event)">
@@ -124,6 +125,10 @@
         </div>
         <!-- / CONTENT -->
 
+    </div>
+
+    <div class="center" fusePerfectScrollbar *ngIf="!selectedSeller">
+        Caricando informazioni venditore
     </div>
     <!-- / CENTER -->
 
