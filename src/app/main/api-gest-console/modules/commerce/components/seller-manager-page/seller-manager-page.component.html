@@ -22,7 +22,7 @@
 
                 <mat-menu #sellerMenu="matMenu" >
                     <div *ngFor="let sellerDTO of sellerDTOs">
-                        <button mat-menu-item *ngIf="sellerDTO != selectedSeller">
+                        <button mat-menu-item *ngIf="sellerDTO != selectedSeller" (click)="setSeller(sellerDTO)">
                             <span>{{ sellerDTO.name }}</span>
                         </button>
                     </div>
