@@ -18,10 +18,10 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
+        private cityResourceService: CityResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private cityResourceService: CityResourceService,
         private eventService: EventService,
     ) { }
 

@@ -32,16 +32,6 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         }
 
         this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.selectedSeller.id, null, null, null, null, null, null, null, null, null).toPromise();
-
-
-
-
-        let validateEopooPersonRequest: ValidateEopooPersonRequest = {
-            firstname: "Catello Stefano",
-            lastname: "Cavallaro",
-            bornDate: "1992-07-25"
-        }
-        await this.validateApiControllerService.validateEopooPerson(validateEopooPersonRequest).toPromise()
     }
 
     

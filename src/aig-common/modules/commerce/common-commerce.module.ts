@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-table.component';
+import { AigCustomSmlcNewPurchaseFormComponent } from './components/custom-smlc-new-purchase-form/custom-smlc-new-purchase-form.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
     imports: [
@@ -38,16 +40,19 @@ import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-t
         MatInputModule,
         MatAutocompleteModule,
         MatSelectModule,
+        MatStepperModule,
 
     ],
     declarations: [
         AigBuyListTableComponent,
+        AigCustomSmlcNewPurchaseFormComponent,
     ],
     providers: [
 
     ],
     exports: [
         AigBuyListTableComponent,
+        AigCustomSmlcNewPurchaseFormComponent,
     ],
 })
 export class AigCommonCommerceModule {}

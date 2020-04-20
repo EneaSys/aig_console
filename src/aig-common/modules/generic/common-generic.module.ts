@@ -28,6 +28,7 @@ import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { AigEopooAddressListTableComponent } from './components/address-list-table/address-list-table.component';
 import { AigAddressNewUpdateFormComponent } from './components/address-new-update-form/address-new-update-form.component';
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
     imports: [

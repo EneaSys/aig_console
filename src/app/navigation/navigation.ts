@@ -71,7 +71,7 @@ export const navigation: FuseNavigation[] = [
         children : [
             {
                 id       : 'commerce-seller-manager',
-                title    : 'Seller Manager',
+                title    : 'Gestore Vendite',
                 type     : 'item',
                 icon     : 'dashboard',
                 url      : '/commerce/seller-manager',
