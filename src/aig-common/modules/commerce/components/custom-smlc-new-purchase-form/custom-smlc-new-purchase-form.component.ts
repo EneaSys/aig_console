@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { MatStepper } from '@angular/material/stepper';
-import { CustomSmlcApiControllerService, AddSmlcPurchaseTO, AddSmlcPurchaseTOValuePaperItems } from 'aig-commerce';
+import { CustomSmlcApiControllerService, AddSmlcPurchaseTO, AddSmlcPurchaseTOValuePaperItems, SellerDTO } from 'aig-commerce';
 
 @Component({
     selector: 'custom-smlc-new-purchase-form',
@@ -20,7 +20,7 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
     };
 
     @Input()
-    eopooCodeSeller: string;
+    seller: SellerDTO;
 
     constructor(
         private validateApiControllerService: ValidateApiControllerService,
@@ -112,7 +112,7 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
         this.setStep("loading");
 
         let addSmlcPurchaseTO: AddSmlcPurchaseTO = {
-            seller: this.eopooCodeSeller,
+            seller: this.seller.eopooCode,
             buyer: this.eopooCodeBuyer,
             fiscalTransaction: this.fiscalReceiptForm.value,
             valuePaperItems: this.addSmlcPurchaseTOValuePaperItems
@@ -125,7 +125,7 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
             this._snackBar.open(`Inserimento fallito: ${e.error.message}.`, null, { duration: 5000, });
             this.setStep("form");
         }
-        
+        this._fuseProgressBarService.hide();
     }
 
     private setStep(step: string){

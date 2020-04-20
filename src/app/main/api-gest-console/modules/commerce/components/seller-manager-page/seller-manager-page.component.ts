@@ -25,17 +25,24 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     displayedColumns: string[] = ['id', 'date', 'customer', 'amount', 'buttons'];
     purchaseDTOs: PurchaseDTO[];
 
-    async loadComponent() {
-        this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
-        if(this.sellerDTOs.length > 0) {
-            this.selectedSeller = this.sellerDTOs[0];
-        }
+    message: string = "Caricando informazioni venditore";
 
-        this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.selectedSeller.id, null, null, null, null, null, null, null, null, null).toPromise();
+    async loadComponent() {
+        try {
+            this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
+            if(this.sellerDTOs.length > 0) {
+                this.selectedSeller = this.sellerDTOs[0];
+            }
+
+            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.selectedSeller.id, null, null, null, null, null, null, null, null, null).toPromise();
+        } catch(e) {
+            this.message = "Non hai negozi associati.";
+        }
+        
     }
 
     
     newBuy() {
-        this.dialog.open(AigNewCustomBuyDialogComponent);
+        this.dialog.open(AigNewCustomBuyDialogComponent, { data: { seller: this.selectedSeller } });
     }
 }

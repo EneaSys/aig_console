@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-table.component';
 import { AigCustomSmlcNewPurchaseFormComponent } from './components/custom-smlc-new-purchase-form/custom-smlc-new-purchase-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
     imports: [
@@ -41,6 +42,7 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatAutocompleteModule,
         MatSelectModule,
         MatStepperModule,
+        MatDatepickerModule,
 
     ],
     declarations: [
