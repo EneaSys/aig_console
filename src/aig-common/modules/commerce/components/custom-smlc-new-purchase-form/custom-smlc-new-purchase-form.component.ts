@@ -111,11 +111,11 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let addSmlcPurchaseTO: AddSmlcPurchaseTO = {
+        let addSmlcPurchaseTO: any = {
             seller: this.seller.eopooCode,
             buyer: this.eopooCodeBuyer,
-            fiscalTransaction: this.fiscalReceiptForm.value,
-            valuePaperItems: this.addSmlcPurchaseTOValuePaperItems
+            "fiscal-transaction": this.fiscalReceiptForm.value,
+            "value-paper-items": this.addSmlcPurchaseTOValuePaperItems
         };
 
         try {

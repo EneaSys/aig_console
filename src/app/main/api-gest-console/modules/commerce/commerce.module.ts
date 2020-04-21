@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AigNewCustomBuyDialogComponent } from './components/new-custom-buy-dialog/new-custom-buy-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigCommerceApiModule } from 'aig-commerce';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AigCommerceApiModule } from 'aig-commerce';
         MatTabsModule,
         MatPaginatorModule,
         MatToolbarModule,
+        MatProgressSpinnerModule,
 
         
     ],

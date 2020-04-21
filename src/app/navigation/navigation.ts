@@ -122,63 +122,72 @@ export const navigation: FuseNavigation[] = [
                 title    : 'City',
                 type     : 'item',
                 icon     : 'location_city',
-                url      : '/s6d/city'
+                url      : '/s6d/city',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Social',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/social'
+                url      : '/s6d/social',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Social Action',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/social-action'
+                url      : '/s6d/social-action',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Cpv',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/cpv'
+                url      : '/s6d/cpv',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Ipp Modality',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-modality'
+                url      : '/s6d/ipp-modality',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Ipp Procedure',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-procedure'
+                url      : '/s6d/ipp-procedure',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Ipp Sector',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-sector'
+                url      : '/s6d/ipp-sector',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Ipp Lot Type',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-lot-type'
+                url      : '/s6d/ipp-lot-type',
+                permission: ['e4y.account.get'],
             },
             {
                 id       : '',
                 title    : 'Ipp Lot Category',
                 type     : 'item',
                 icon     : 'arrow_right',
-                url      : '/s6d/ipp-lot-category'
+                url      : '/s6d/ipp-lot-category',
+                permission: ['e4y.account.get'],
             },
         ]
     },
@@ -193,14 +202,16 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Ruoli',
                 type     : 'item',
                 icon     : 'assignment_ind',
-                url      : '/m8t/role'
+                url      : '/m8t/role',
+                permission: ['e4y.role.get'],
             },
             {
                 id       : 'permission-list',
                 title    : 'Permessi',
                 type     : 'item',
                 icon     : 'star_half',
-                url      : '/m8t/permission'
+                url      : '/m8t/permission',
+                permission: ['e4y.role.get'],
             },
             {
                 id       : 'context-list',

@@ -36,7 +36,6 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         } catch(e) {
             this.message = "Non hai negozi associati.";
         }
-        
     }
 
     async setSeller(selectedSeller: SellerDTO) {
