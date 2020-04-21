@@ -33,7 +33,13 @@
         </div>
         <div class="widget p-16" fxFlex.gt-sm="33">
             <div class="fuse-card auto-width p-16">
-                User for this Eopoo
+                <div class="h4 m-16 mt-0 mb-16">Negozi associati a questa anagrafica</div>
+                <div *ngFor="let sellerDTO of sellerDTOs">
+                    {{ sellerDTO.id }} - {{ sellerDTO.name }}
+                </div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div class="h4 m-16 mt-0 mb-0">Utenti per questa anagrafica</div>
                 <pre>{{ contextUserEopooDTOs | json }}</pre>
             </div>
         </div>
