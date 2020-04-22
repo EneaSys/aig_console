@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { EopooResourceService } from 'aig-generic';
+import { EopooResourceService, EopooDTO } from 'aig-generic';
 
 @Injectable()
 export class AigGenericAutocompleteFilterService {
