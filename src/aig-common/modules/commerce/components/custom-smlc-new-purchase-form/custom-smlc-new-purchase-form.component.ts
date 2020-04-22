@@ -40,6 +40,8 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
     eopooCodeBuyer: string;
     validationEopooPerson: boolean = false;
 
+    addSmlcPurchaseTO: any;
+
     ngOnInit(): void {
         this.validateCustomerAsEopooForm = this._formBuilder.group({
             firstname: ['', Validators.required],
@@ -111,15 +113,16 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let addSmlcPurchaseTO: any = {
-            seller: this.seller.eopooCode,
+        this.addSmlcPurchaseTO = {
+            seller: this.seller.id,
             buyer: this.eopooCodeBuyer,
             "fiscal-transaction": this.fiscalReceiptForm.value,
             "value-paper-items": this.addSmlcPurchaseTOValuePaperItems
         };
 
         try {
-            await this.customSmlcApiControllerService.customSmlcPurchasePost(addSmlcPurchaseTO).toPromise()
+            await this.customSmlcApiControllerService.customSmlcPurchasePost(this.addSmlcPurchaseTO).toPromise()
+            this.eventService.reloadCurrentPage();
             this.setStep("complete");
         } catch(e) {
             this._snackBar.open(`Inserimento fallito: ${e.error.message}.`, null, { duration: 5000, });

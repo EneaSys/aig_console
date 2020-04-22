@@ -27,7 +27,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
     message: string = "Caricando informazioni venditore";
 
-    async loadComponent() {
+    async loadPage() {
         try {
             this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
             if(this.sellerDTOs.length > 0) {
@@ -40,9 +40,18 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         }
     }
 
-    async setSeller(selectedSeller: SellerDTO) {
+    async reloadPage() {
+        this.loadPurchases();
+    }
+
+    private async setSeller(selectedSeller: SellerDTO) {
         this.purchaseDTOs = null;
         this.selectedSeller = selectedSeller;
+        this.loadPurchases();
+    }
+
+    private async loadPurchases() {
+        this.purchaseDTOs = null;
         this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.selectedSeller.id, null, null, null, null, null, null, null, null, null).toPromise();
     }
     
