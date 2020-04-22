@@ -38,6 +38,7 @@ import { AigCustomRolePageComponent } from './components/custom-role-page/custom
 import { AigRoleCustomNewDialogComponent } from './components/custom-role-new-dialog/custom-role-new-dialog.component';
 import { AigRoleCustomDetailComponent } from './components/custom-role-detail-page/custom-role-detail-page.component';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
+import { AiguserEopooAssociateDialogComponent } from './components/user-eopoo-associate-dialog/user-eopoo-associate-dialog.component';
 
 
 
@@ -89,6 +90,7 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
         AigGroupNewDialogComponent,
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
+        AiguserEopooAssociateDialogComponent,
 
     ],
     entryComponents: [
@@ -98,6 +100,7 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
         AigGroupNewDialogComponent,
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
+        AiguserEopooAssociateDialogComponent,
     ],
     providers: [ ],
     exports: [

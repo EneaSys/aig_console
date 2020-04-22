@@ -28,7 +28,8 @@ import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { AigEopooAddressListTableComponent } from './components/address-list-table/address-list-table.component';
 import { AigAddressNewUpdateFormComponent } from './components/address-new-update-form/address-new-update-form.component';
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
-import { MatStepperModule } from '@angular/material/stepper';
+import { AigGenericAutocompleteFilterService } from './services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 
 @NgModule({
     imports: [
@@ -58,10 +59,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 
 
     ],
-    providers: [
-        EopooResolver,
-        EopooTypeResolver,
-    ],
     declarations: [
         EopooNamePipe,
         
@@ -75,6 +72,12 @@ import { MatStepperModule } from '@angular/material/stepper';
         
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
+    ],
+    providers: [
+        EopooResolver,
+        EopooTypeResolver,
+        AigGenericAutocompleteFilterService,
+        AigGenericAutocompleteFunctionService,
     ],
     exports: [
         EopooNamePipe,

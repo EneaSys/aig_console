@@ -21,6 +21,8 @@ import { AigNewCustomBuyDialogComponent } from './components/new-custom-buy-dial
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigCommerceApiModule } from 'aig-commerce';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AigSellerListPageComponent } from './components/seller-list-page/seller-list-page.component';
+import { AigSellerNewUpdateDialogComponent } from './components/seller-new-update-dialog/seller-new-update-dialog.component';
 
 
 @NgModule({
@@ -45,7 +47,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatToolbarModule,
         MatProgressSpinnerModule,
 
-        
     ],
     providers: [
 
@@ -53,9 +54,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     declarations: [
         AigSellerManagerPageComponent,
         AigNewCustomBuyDialogComponent,
+        AigSellerListPageComponent,
+        AigSellerNewUpdateDialogComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
+        AigSellerNewUpdateDialogComponent,
     ],
     exports: [],
 })

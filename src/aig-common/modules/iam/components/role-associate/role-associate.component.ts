@@ -16,13 +16,13 @@ import { AigValidatorService } from '../../services/form/validator.service';
 })
 export class AigRoleAssociateComponent implements OnInit {
     constructor(
-        private _formBuilder: FormBuilder,
-        private _snackBar: MatSnackBar,
-        private _fuseProgressBarService: FuseProgressBarService,
         private aigAutocompleteFilterService: AigAutocompleteFilterService,
         public aigAutocompleteFunctionService: AigAutocompleteFunctionService,
         private aigValidatorService: AigValidatorService,
         private roleAssignationResourceService: RoleAssignationResourceService,
+        private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
+        private _fuseProgressBarService: FuseProgressBarService,
         private eventService: EventService,
     ) { }
 

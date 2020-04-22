@@ -70,6 +70,14 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
+                id       : 'seller',
+                title    : 'Negozi',
+                type     : 'item',
+                icon     : 'shopping_basket',
+                url      : '/commerce/seller',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'commerce-seller-manager',
                 title    : 'Gestore Vendite',
                 type     : 'item',

@@ -21,7 +21,7 @@ export class AigUserListComponent extends GenericComponent {
     error: any;
 
     loadComponent(): void {
-        var destructor = this.userResourceService.getAllUsersUsingGET(null).subscribe(
+        var destructor = this.userResourceService.getAllUsersUsingGET(null,null,null,null,null,null,null,null,null,20,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).subscribe(
             res => this.userDataSource = res,
             err => this.error = err,
         );

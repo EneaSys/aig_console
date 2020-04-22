@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
+import { EopooResourceService } from 'aig-generic';
+
+@Injectable()
+export class AigGenericAutocompleteFilterService {
+    constructor(
+        private eopooResourceService: EopooResourceService,
+    ) { }
+
+    filterEopoo(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length == 1) {
+                    return this.eopooResourceService.getAllEopoosUsingGET();
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+}

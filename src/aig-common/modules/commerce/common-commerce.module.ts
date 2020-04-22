@@ -18,12 +18,17 @@ import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-t
 import { AigCustomSmlcNewPurchaseFormComponent } from './components/custom-smlc-new-purchase-form/custom-smlc-new-purchase-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AigSellerListTableComponent } from './components/seller-list-table/seller-list-table.component';
+import { AigSellerNewUpdateFormComponent } from './components/seller-new-update-form/seller-new-update-form.component';
+import { CommonGenericModule } from '../generic/common-generic.module';
 
 @NgModule({
     imports: [
 
         AigCommonModule,
         CommonModule,
+
+        CommonGenericModule,
         
         RouterModule,
         BrowserModule,
@@ -48,6 +53,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     declarations: [
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
+        AigSellerListTableComponent,
+        AigSellerNewUpdateFormComponent,
     ],
     providers: [
 
@@ -55,6 +62,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     exports: [
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
+        AigSellerListTableComponent,
+        AigSellerNewUpdateFormComponent,
     ],
 })
 export class AigCommonCommerceModule {}

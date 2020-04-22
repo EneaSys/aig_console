@@ -32,6 +32,8 @@ export class AigSellerManagerPageComponent extends GenericComponent {
             this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
             if(this.sellerDTOs.length > 0) {
                 this.setSeller(this.sellerDTOs[0]);
+            } else {
+                throw new Error;
             }
         } catch(e) {
             this.message = "Non hai negozi associati.";

@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { EopooResourceService, EopooDTO } from 'aig-generic';
+import { AiguserEopooAssociateDialogComponent } from '../user-eopoo-associate-dialog/user-eopoo-associate-dialog.component';
 
 @Component({
     templateUrl: './user-detail.component.html',
@@ -52,7 +53,7 @@ export class AigUserDetailComponent extends GenericComponent {
 
         try {
             this.eopooDTOs = null;
-            
+
             let eopooIds: number[] = [];
             {
                 let contextUserEopooDTOs: ContextUserEopooDTO[] = await this.contextUserEopooResourceService.getAllContextUserEopoosUsingGET(this.user.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
@@ -78,6 +79,6 @@ export class AigUserDetailComponent extends GenericComponent {
         this.dialog.open(AigRoleAssociateDialogComponent, { data: { user: this.user } });
     }
     associateToEopoo() {
-        this.dialog.open(AigRoleAssociateDialogComponent, { data: { user: this.user } });
+        this.dialog.open(AiguserEopooAssociateDialogComponent, { data: { user: this.user } });
     }
 }
