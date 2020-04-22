@@ -100,6 +100,9 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
 
         this.addSmlcPurchaseTOValuePaperItems.push(this.addPaperValueForm.value);
 
+        this._snackBar.open(`Buono inserito nella spesa.`, null, { duration: 5000, });
+
+        this.addPaperValueForm.reset();
     }
 
     async submitPurchase() {

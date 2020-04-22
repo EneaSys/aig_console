@@ -24,6 +24,8 @@ import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
 import { AIG_SOLIDARETY_BASE_PATH } from 'aig-solidarety';
 import { AigCommerceModule } from './modules/commerce/commerce.module';
 import { COMMERCE_PATH } from 'aig-commerce';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -62,6 +64,14 @@ import { COMMERCE_PATH } from 'aig-commerce';
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
+        },
+        {
+            provide: MAT_DATE_LOCALE,
+            useValue: 'it-IT'
+        },
+        {
+            provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+            useValue: { useUtc: true }
         },
         {
             provide: AIG_PATH,

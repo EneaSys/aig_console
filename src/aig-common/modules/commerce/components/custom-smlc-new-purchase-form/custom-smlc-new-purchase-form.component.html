@@ -19,9 +19,10 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30" class="pr-4 pl-4">
                         <mat-label>Data Nascita</mat-label>
-                        <input matInput [matDatepicker]="picker" placeholder="Seleziona la data di nascita" formControlName="date" required>
+                        <input matInput [matDatepicker]="picker" placeholder="Seleziona la data di nascita"
+                            formControlName="date" required>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker #picker startView="year"></mat-datepicker>
                         <mat-error>Indicare la data di nascita del beneficiario Buoni Spesa!</mat-error>
                     </mat-form-field>
                 </div>
@@ -36,22 +37,21 @@
         <ng-template matStepLabel>Ricevuta Fiscale</ng-template>
         <form [formGroup]="fiscalReceiptForm">
             <div fxLayout="row">
-                <mat-form-field appearance="outline" fxFlex="50" class="pr-4 pl-4">
+                <mat-form-field appearance="outline" fxFlex="30" class="pr-4 pl-4">
                     <mat-label>Data scontrino</mat-label>
-                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data dello scontrino" formControlName="date" required>
+                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data dello scontrino"
+                        formControlName="date" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error>Indicare la data emissione dello scontrino!</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline" fxFlex="50" class="pr-4 pl-4">
+                <mat-form-field appearance="outline" fxFlex="35" class="pr-4 pl-4">
                     <mat-label>Numero scontrino</mat-label>
-                    <input name="code" formControlName="code" matInput required>
+                    <input type="number" name="code" formControlName="code" matInput required>
                     <mat-error>Indicare il numero dello scontrino!</mat-error>
                 </mat-form-field>
-            </div>
-            <div fxLayout="row">
-                <mat-form-field appearance="outline" fxFlex="100" class="pr-4 pl-4">
-                    <mat-label>Importo totale scontrino (Non inserire decimali)</mat-label>
+                <mat-form-field appearance="outline" fxFlex="35" class="pr-4 pl-4">
+                    <mat-label>Importo totale scontrino</mat-label>
                     <input type="number" name="amount" formControlName="amount" matInput required>
                     <mat-error>Indicare l'importo totale dello scontrino!</mat-error>
                 </mat-form-field>
@@ -65,6 +65,23 @@
     <mat-step>
         <ng-template matStepLabel>Buoni Spesa</ng-template>
         <div>
+            <form [formGroup]="addPaperValueForm" (ngSubmit)="addPaperValue(stepper)" class="mb-16" fxLayout="row">
+                <mat-form-field appearance="outline" fxFlex="40" class="pr-4 pl-4">
+                    <mat-label>Importo singolo buono</mat-label>
+                    <input type="number" name="amount" formControlName="amount" matInput required>
+                    <mat-error>Indicare l'importo del Buono Spesa!</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="40" class="pr-4 pl-4">
+                    <mat-label>Codice matrice buono</mat-label>
+                    <input type="number" name="code" formControlName="code" matInput required>
+                    <mat-error>Indicare il codice matrice del Buono Spesa!</mat-error>
+                </mat-form-field>
+                <div appearance="outline" fxFlex="10" class="pr-4 pl-4">
+                    <button type="submit" mat-stroked-button color="primary" aria-label="Add" class="mt-16">
+                        Aggiungi buono
+                    </button>
+                </div>
+            </form>
             <div fxLayout="row">
                 <div appearance="outline" fxFlex="50" fxLayoutAlign="center">
                     <b>Importo</b>
@@ -75,38 +92,19 @@
             </div>
             <div fxLayout="row" *ngFor="let valuePaperItem of addSmlcPurchaseTOValuePaperItems">
                 <div appearance="outline" fxFlex="50" fxLayoutAlign="center">
-                    {{ valuePaperItem.amount }},00 €
+                    <h1>{{ valuePaperItem.amount }}.00 €</h1>
                 </div>
                 <div appearance="outline" fxFlex="50" fxLayoutAlign="center">
-                    {{ valuePaperItem.code }}
+                    <h1>{{ valuePaperItem.code }}</h1>
                 </div>
             </div>
             <hr>
             <div fxLayout="row">
-                <div appearance="outline" fxFlex="50" fxLayoutAlign="center">
-                    <b>{{ totalOfValuePaperItems }},00 € di {{ fiscalReceiptForm.value.amount }},00 €</b>
+                <div appearance="outline" fxFlex="100" fxLayoutAlign="center">
+                    <b>{{ totalOfValuePaperItems }}.00 € di buoni inseriti, su {{ fiscalReceiptForm.value.amount }} € di
+                        scontrino.</b>
                 </div>
             </div>
-
-            <form [formGroup]="addPaperValueForm" (ngSubmit)="addPaperValue(stepper)">
-                <div fxLayout="row">
-                    <mat-form-field appearance="outline" fxFlex="45" class="pr-4 pl-4">
-                        <mat-label>Importo singolo buono</mat-label>
-                        <input type="number" name="amount" formControlName="amount" matInput required>
-                        <mat-error>Indicare l'importo del Buono Spesa!</mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" fxFlex="45" class="pr-4 pl-4">
-                        <mat-label>Codice matrice buono</mat-label>
-                        <input name="code" formControlName="code" matInput required>
-                        <mat-error>Indicare il codice matrice del Buono Spesa!</mat-error>
-                    </mat-form-field>
-                    <div appearance="outline" fxFlex="10" fxLayoutAlign="center">
-                        <button type="submit" mat-icon-button color="primary" aria-label="Add">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </form>
             <div fxLayout="row" fxLayoutAlign="end top" *ngIf="addSmlcPurchaseTOValuePaperItems.length > 0">
                 <button mat-raised-button mat-button matStepperNext color="primary">Avanti</button>
             </div>
@@ -114,7 +112,8 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Riepilogo</ng-template>
-        <div fxLayout="row" *ngIf="!validateCustomerAsEopooForm.valid || !fiscalReceiptForm.valid || addSmlcPurchaseTOValuePaperItems.length == 0">
+        <div fxLayout="row"
+            *ngIf="!validateCustomerAsEopooForm.valid || !fiscalReceiptForm.valid || addSmlcPurchaseTOValuePaperItems.length == 0">
             <div appearance="outline" fxFlex="100" fxLayoutAlign="center">
                 <h3>Completare la validazione di altri step</h3>
                 <ul>
@@ -124,7 +123,8 @@
                 </ul>
             </div>
         </div>
-        <div *ngIf="validateCustomerAsEopooForm.valid && fiscalReceiptForm.valid && addSmlcPurchaseTOValuePaperItems.length > 0">
+        <div
+            *ngIf="validateCustomerAsEopooForm.valid && fiscalReceiptForm.valid && addSmlcPurchaseTOValuePaperItems.length > 0">
             <form (ngSubmit)="submitPurchase()">
                 <div fxLayout="row">
                     Inseriti {{ addSmlcPurchaseTOValuePaperItems.length }} "buoni spesa" per questa spesa.
@@ -143,5 +143,5 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ addSmlcPurchaseTO | json }}</pre>
+    Inserimento della spesa avvenuto con successo.
 </div>

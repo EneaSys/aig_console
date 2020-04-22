@@ -3,7 +3,6 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-custom-buy-dialog.component';
-import { ValidateApiControllerService, ValidateEopooPersonRequest } from 'aig-generic';
 import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO } from 'aig-commerce';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -15,7 +14,6 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     constructor(
         private sellerResourceService: SellerResourceService,
         private purchaseResourceService: PurchaseResourceService,
-        private validateApiControllerService: ValidateApiControllerService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
