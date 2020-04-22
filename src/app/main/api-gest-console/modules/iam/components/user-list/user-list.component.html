@@ -27,7 +27,10 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-users-table [displayedColumns]="displayedColumns" [dataSource]="userDataSource" [error]="error"></aig-users-table>
+                <aig-users-table [displayedColumns]="displayedColumns" [dataSource]="userDTOs" [error]="error"></aig-users-table>
+
+                <mat-paginator #paginator [length]="length" [pageIndex]="index" [pageSize]="20"
+                    [pageSizeOptions]="[10,20]" (page)="pageEvent($event)"></mat-paginator>
             </div>
         </div>
         <!-- /CENTER -->

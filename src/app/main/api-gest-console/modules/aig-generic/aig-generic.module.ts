@@ -16,6 +16,7 @@ import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-
 import { AigEopooTypeNewUpdateModalComponent } from './components/eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
 import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
 import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     imports: [
@@ -31,7 +32,7 @@ import { AigAddressNewUpdateModalComponent } from './components/address-new-upda
         MatIconModule,
         MatButtonModule,
         MatToolbarModule,
-
+        MatPaginatorModule,
     ],
     declarations: [
         AigGenericHeaderComponent,

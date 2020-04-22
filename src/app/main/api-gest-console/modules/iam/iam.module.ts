@@ -39,6 +39,7 @@ import { AigRoleCustomNewDialogComponent } from './components/custom-role-new-di
 import { AigRoleCustomDetailComponent } from './components/custom-role-detail-page/custom-role-detail-page.component';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 import { AiguserEopooAssociateDialogComponent } from './components/user-eopoo-associate-dialog/user-eopoo-associate-dialog.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -67,6 +68,7 @@ import { AiguserEopooAssociateDialogComponent } from './components/user-eopoo-as
         MatToolbarModule,
         MatProgressSpinnerModule,
         MatAutocompleteModule,
+        MatPaginatorModule,
 
     ],
     declarations: [
