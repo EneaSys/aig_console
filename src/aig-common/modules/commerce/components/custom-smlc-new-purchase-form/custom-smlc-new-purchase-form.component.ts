@@ -72,7 +72,7 @@ export class AigCustomSmlcNewPurchaseFormComponent implements OnInit {
         let validateEopooPersonRequest: ValidateEopooPersonRequest = {
             firstname: this.validateCustomerAsEopooForm.value.firstname,
             lastname: this.validateCustomerAsEopooForm.value.lastname,
-            bornDate: "1992-07-25"
+            bornDate: this.validateCustomerAsEopooForm.value.date
         }
 
         try {
