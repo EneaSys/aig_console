@@ -1,30 +1,34 @@
-<form *ngIf="step.form" [formGroup]="sellerNewUpdateForm" (ngSubmit)="submit()">
+<div id="aig-seller-new-update-form" *ngIf="step.form">
+    <form [formGroup]="sellerNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Name</mat-label>
-            <input name="name" formControlName="name" matInput required>
-            <mat-error>Indicare il nome del negozio!</mat-error>
-        </mat-form-field>
-    </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Name</mat-label>
+                <input name="name" formControlName="name" matInput required>
+                <mat-error>Indicare il nome del negozio!</mat-error>
+            </mat-form-field>
+        </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Anagrafica</mat-label>
-            <input type="text" matInput formControlName="eopoo" required [matAutocomplete]="eopooPersonAutocomplete">
-            <mat-autocomplete #eopooPersonAutocomplete="matAutocomplete" [displayWith]="aigGenericAutocompleteFunctionService.eopooDisplayFn">
-                <mat-option *ngFor="let filteredEopoo of filteredEopoos | async" [value]="filteredEopoo">{{ filteredEopoo | eopooName }}</mat-option>
-            </mat-autocomplete>
-            <mat-error>E' necessario selezionare un'anagrafica!</mat-error>
-        </mat-form-field>
-    </div>
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Anagrafica</mat-label>
+                <input type="text" matInput formControlName="eopoo" required
+                    [matAutocomplete]="eopooPersonAutocomplete">
+                <mat-autocomplete #eopooPersonAutocomplete="matAutocomplete"
+                    [displayWith]="aigGenericAutocompleteFunctionService.eopooDisplayFn">
+                    <mat-option *ngFor="let filteredEopoo of filteredEopoos | async" [value]="filteredEopoo">
+                        {{ filteredEopoo | eopooName }}</mat-option>
+                </mat-autocomplete>
+                <mat-error>E' necessario selezionare un'anagrafica!</mat-error>
+            </mat-form-field>
+        </div>
 
 
-    <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
-    </div>
-</form>
-
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button type="submit" mat-raised-button color="accent">Crea</button>
+        </div>
+    </form>
+</div>
 <div *ngIf="step.loading" fxLayoutAlign="center">
     <mat-spinner></mat-spinner>
 </div>
