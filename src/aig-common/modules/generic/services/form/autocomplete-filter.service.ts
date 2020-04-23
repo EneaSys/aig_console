@@ -14,7 +14,7 @@ export class AigGenericAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length == 1) {
-                    return this.eopooResourceService.getAllEopoosUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,500,null,null,null,null,null,null,null);
+                    return this.eopooResourceService.getAllEopoosUsingGET(3,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50,null,null,null,null,null,null,null);
                 } else {
                     return of([]);
                 }
