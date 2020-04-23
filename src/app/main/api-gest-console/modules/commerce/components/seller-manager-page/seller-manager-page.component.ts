@@ -21,7 +21,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     sellerDTOs: SellerDTO[] = [];
     selectedSeller: SellerDTO;
 
-    displayedColumns: string[] = ['id', 'date', 'customer', 'amount', 'buttons'];
+    displayedColumns: string[] = ['id', 'date', 'customer', 'status'];
     purchaseDTOs: PurchaseDTO[];
 
     message: string = "Caricando informazioni venditore";
