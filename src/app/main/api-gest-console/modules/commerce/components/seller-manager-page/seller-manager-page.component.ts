@@ -39,7 +39,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
     async loadPage() {
         try {
-            this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
+            this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50,null).toPromise();
             if(this.sellerDTOs.length > 0) {
                 this.setSeller(this.sellerDTOs[0]);
             } else {
@@ -67,7 +67,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         this.filter.seller = this.selectedSeller.id;
 
         this.loadPurchases(0);
-        this.length = await this.purchaseResourceService.countPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.filter.seller, null, null, null, null, null, null, null).toPromise();
+        this.length = await this.purchaseResourceService.countPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.filter.seller, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
     }
 
     pageEvent(event: PageEvent) {
@@ -81,7 +81,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         this.index = page
         this.pageable.page = page;
         
-        this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.pageable.page, null, null, null, null, null, null, null, null, this.filter.seller, null, null, null, null, null, null, null, this.pageable.size, null).toPromise();
+        this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.pageable.page, null, null, null, null, null, null, null, null, this.filter.seller, null, null, null, null, null, null,  null, this.pageable.size, null, null, null, null, null, null).toPromise();
     }
     
     newBuy() {

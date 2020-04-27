@@ -1,0 +1,26 @@
+<div id="aig-purchase-detail-page" class="page-layout blank">
+    
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+               <div class="h4 m-8 ml-16 mb-0 secondary-text">Acquisto</div>
+                <div class="h1 m-16">aaa</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: </div>
+                <div class="h4 m-8 ml-16">Code: </div>
+                <div class="h4 m-8 ml-16">WikiCode:</div>
+                <button mat-stroked-button color="primary" (click)="editCity()">Edit</button>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                Dettagli:
+               <pre>{{ purchase | json }}</pre>
+               Scontrini:
+               <pre>{{ fiscalTransactions | json }}</pre>
+               buoni:
+               <pre>{{ payments | json }}</pre>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -23,7 +23,7 @@ import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
 import { AIG_SOLIDARETY_BASE_PATH } from 'aig-solidarety';
 import { AigCommerceModule } from './modules/commerce/commerce.module';
-import { COMMERCE_PATH } from 'aig-commerce';
+import { AIG_COMMERCE_PATH } from 'aig-commerce';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
@@ -94,7 +94,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapte
             useValue: API_URL + "/solidarety"
         },
         {
-            provide: COMMERCE_PATH,
+            provide: AIG_COMMERCE_PATH,
             useValue: API_URL + "/c6e"
         },
     ],

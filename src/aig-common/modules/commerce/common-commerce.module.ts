@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AigSellerListTableComponent } from './components/seller-list-table/seller-list-table.component';
 import { AigSellerNewUpdateFormComponent } from './components/seller-new-update-form/seller-new-update-form.component';
 import { CommonGenericModule } from '../generic/common-generic.module';
+import { PurchaseResolver } from './resolver/purchase.resolver';
 
 @NgModule({
     imports: [
@@ -57,7 +58,7 @@ import { CommonGenericModule } from '../generic/common-generic.module';
         AigSellerNewUpdateFormComponent,
     ],
     providers: [
-
+        PurchaseResolver,
     ],
     exports: [
         AigBuyListTableComponent,
