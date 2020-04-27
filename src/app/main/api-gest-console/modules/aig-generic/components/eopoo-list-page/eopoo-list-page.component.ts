@@ -5,6 +5,7 @@ import { EopooResourceService, EopooDTO } from 'aig-generic';
 import { MatDialog } from '@angular/material/dialog';
 import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 import { PageEvent } from '@angular/material/paginator';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     templateUrl: './eopoo-list-page.component.html',
@@ -13,16 +14,19 @@ import { PageEvent } from '@angular/material/paginator';
 export class AigEopooListPageComponent extends GenericComponent {
     constructor(
         private eopooResourceService: EopooResourceService,
+        private _formBuilder: FormBuilder,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    searchForm: FormGroup;
+    
     displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
     eopooDTOs: EopooDTO[];
     error: any;
 
-    filter = {
-        seller: null,
+    filters = {
+        taxId: null,
     }
 
     pageable = {
@@ -33,6 +37,11 @@ export class AigEopooListPageComponent extends GenericComponent {
     index: number;
 
     loadPage() {
+        this.searchForm = this._formBuilder.group({
+            id: [''],
+            taxId: [''],
+        });
+
         this.loadEopoo(0);
     }
 
@@ -52,7 +61,7 @@ export class AigEopooListPageComponent extends GenericComponent {
         this.pageable.page = page;
 
         try {
-            this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.pageable.page,null,null,null,null,null,null,null,null,this.pageable.size,null,null,null,null,null,null,null).toPromise();
+            this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.pageable.page,null,null,null,null,null,null,null,null,this.pageable.size,null,null,null,this.filters.taxId,null,null,null).toPromise();
         } catch(error) {
             this.error = error;
         }
@@ -60,5 +69,10 @@ export class AigEopooListPageComponent extends GenericComponent {
 
     newEopoo() {
         this.dialog.open(AigEopooNewModalComponent, { data: { } });
+    }
+
+    customSearch() {
+        this.filters.taxId = this.searchForm.value.taxId;
+        this.loadEopoo(0);
     }
 }

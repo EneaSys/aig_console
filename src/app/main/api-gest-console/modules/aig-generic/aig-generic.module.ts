@@ -17,6 +17,8 @@ import { AigEopooTypeNewUpdateModalComponent } from './components/eopoo-type-new
 import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
 import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -26,6 +28,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
         AigGenericClientModule,
 
+        FormsModule,
+        ReactiveFormsModule,
+
         FuseSharedModule,
         FuseSidebarModule,
 
@@ -33,6 +38,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatButtonModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatFormFieldModule,
+        MatInputModule,
     ],
     declarations: [
         AigGenericHeaderComponent,
