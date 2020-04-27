@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-custom-buy-dialog.component';
-import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO } from 'aig-commerce';
+import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO, FiscalTransactionDTO, FiscalTransactionResourceService } from 'aig-commerce';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -14,6 +14,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     constructor(
         private sellerResourceService: SellerResourceService,
         private purchaseResourceService: PurchaseResourceService,
+        private fiscalTransactionResourceService: FiscalTransactionResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
@@ -21,21 +22,14 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     sellerDTOs: SellerDTO[] = [];
     selectedSeller: SellerDTO;
 
-    displayedColumns: string[] = ['id', 'date', 'customer', 'status'];
-    purchaseDTOs: PurchaseDTO[];
-
     message: string = "Caricando informazioni venditore";
 
-    filter = {
-        seller: null,
-    }
 
-    pageable = {
-        page: 0,
-        size: 30,
-    }
-    length: number;
-    index: number;
+   
+
+
+
+
 
     async loadPage() {
         try {
@@ -49,42 +43,131 @@ export class AigSellerManagerPageComponent extends GenericComponent {
             this.message = "Non hai negozi associati.";
         }
     }
-
-    async reloadPage() {
-        this.loadPurchases(this.index);
-    }
-
-    private async setSeller(selectedSeller: SellerDTO) {
-        this.purchaseDTOs = null;
+    
+    private setSeller(selectedSeller: SellerDTO) {
         this.selectedSeller = selectedSeller;
-        this.setFilter('seller', this.selectedSeller.id);
+        this.setFilterPurchase('seller', this.selectedSeller.id);
+        this.setFilterFiscalTransaction('loaded', true);
+
         this.loadPurchases(0);
+        this.loadFiscalTransaction(0);
     }
 
-    private async setFilter(filterKey: string, value: any) {
-        this.filter[filterKey] = value;
+    reloadPage() {
+        this.loadPurchases(this.purchaseIndex);
+        this.loadFiscalTransaction(this.fiscalTransactionIndex);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // PURCHASE
+    purchaseDisplayedColumns: string[] = ['id', 'date', 'customer', 'status'];
+    purchaseDTOs: PurchaseDTO[];
+    purchaseError: any;
+
+    purchasePageable = {
+        page: 0,
+        size: 30,
+    }
+    purchaseLength: number;
+    purchaseIndex: number;
+
+    purchaseFilter = {
+        seller: null,
+    }
+
+    private async setFilterPurchase(filterKey: string, value: any) {
+        this.purchaseFilter[filterKey] = value;
         // Block for current seller
-        this.filter.seller = this.selectedSeller.id;
+        this.purchaseFilter.seller = this.selectedSeller.id;
 
         this.loadPurchases(0);
-        this.length = await this.purchaseResourceService.countPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.filter.seller, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+        try {
+            this.purchaseLength = await this.purchaseResourceService.countPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.purchaseFilter.seller, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+        } catch(e) { }
     }
 
-    pageEvent(event: PageEvent) {
-        this.pageable.size = event.pageSize;
+    purchasePaginatorEvent(event: PageEvent) {
+        this.purchasePageable.size = event.pageSize;
         this.loadPurchases(event.pageIndex);
     }
 
     private async loadPurchases(page) {
         this.purchaseDTOs = null;
 
-        this.index = page
-        this.pageable.page = page;
-        
-        this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.pageable.page, null, null, null, null, null, null, null, null, this.filter.seller, null, null, null, null, null, null,  null, this.pageable.size, null, null, null, null, null, null).toPromise();
+        this.purchaseIndex = page
+        this.purchasePageable.page = page;
+        try {
+            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.purchasePageable.page, null, null, null, null, null, null, null, null, this.purchaseFilter.seller, null, null, null, null, null, null,  null, this.purchasePageable.size, null, null, null, null, null, null).toPromise();
+        } catch(e) {
+            this.purchaseError = e;
+        }
     }
     
     newBuy() {
         this.dialog.open(AigNewCustomBuyDialogComponent, { data: { seller: this.selectedSeller } });
+    }
+
+
+
+
+
+
+
+
+
+    // FISCAL TRANSACTION
+    fiscalTransactionDisplayedColumns: string[] = ['date', 'code', 'amount', 'buyer', 'status', 'buttons'];
+    fiscalTransactionDTOs: FiscalTransactionDTO[];
+    fiscalTransactionError: any;
+
+    fiscalTransactionPageable = {
+        page: 0,
+        size: 30,
+    }
+    fiscalTransactionLength: number;
+    fiscalTransactionIndex: number;
+
+    fiscalTransactionFilter = {
+        seller: null,
+    }
+
+    private async setFilterFiscalTransaction(filterKey: string, value: any) {
+        this.fiscalTransactionFilter[filterKey] = value;
+        // Block for current seller
+        this.fiscalTransactionFilter.seller = this.selectedSeller.id;
+
+        this.loadPurchases(0);
+        try {
+            this.fiscalTransactionLength = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET().toPromise();
+        } catch(e) { }
+    }
+
+    fiscalTransactionPaginatorEvent(event: PageEvent) {
+        this.fiscalTransactionPageable.size = event.pageSize;
+        this.loadPurchases(event.pageIndex);
+    }
+
+    private async loadFiscalTransaction(page) {
+        this.fiscalTransactionDTOs = null;
+
+        this.fiscalTransactionIndex = page
+        this.fiscalTransactionPageable.page = page;
+        
+        try {
+            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchasePageable.page,null,null,null,null,null,null,null,null,this.purchasePageable.size,null).toPromise();
+        } catch(e) {
+            this.fiscalTransactionError = e;
+        }
     }
 }

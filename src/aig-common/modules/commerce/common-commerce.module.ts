@@ -22,6 +22,9 @@ import { AigSellerListTableComponent } from './components/seller-list-table/sell
 import { AigSellerNewUpdateFormComponent } from './components/seller-new-update-form/seller-new-update-form.component';
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { PurchaseResolver } from './resolver/purchase.resolver';
+import { AigFiscalTransactionListTableComponent } from './components/fiscal-transaction-list-table/fiscal-transaction-list-table.component';
+import { FiscalTransactionResolver } from './resolver/fiscal-transaction.resolver';
+import { AigC6eGenericStatusPipe } from './pipe/genericStatus.pipe';
 
 @NgModule({
     imports: [
@@ -56,15 +59,20 @@ import { PurchaseResolver } from './resolver/purchase.resolver';
         AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
         AigSellerNewUpdateFormComponent,
+        AigFiscalTransactionListTableComponent,
+        AigC6eGenericStatusPipe,
     ],
     providers: [
         PurchaseResolver,
+        FiscalTransactionResolver,
     ],
     exports: [
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
         AigSellerNewUpdateFormComponent,
+        AigFiscalTransactionListTableComponent,
+        AigC6eGenericStatusPipe,
     ],
 })
 export class AigCommonCommerceModule {}

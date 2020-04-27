@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AigSellerListPageComponent } from './components/seller-list-page/seller-list-page.component';
 import { AigSellerNewUpdateDialogComponent } from './components/seller-new-update-dialog/seller-new-update-dialog.component';
 import { AigPurchaseDetailPageComponent } from './components/purchase-detail-page/purchase-detail-page.component';
+import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-transaction-detail-page/fiscal-transaction-detail-page.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { AigPurchaseDetailPageComponent } from './components/purchase-detail-pag
         AigSellerListPageComponent,
         AigSellerNewUpdateDialogComponent,
         AigPurchaseDetailPageComponent,
+        AigFiscalTransactionDetailPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,

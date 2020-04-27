@@ -1,0 +1,47 @@
+<div id="aig-purchase-detail-page" class="page-layout blank">
+    
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Scontrino</div>
+                <div class="h1 m-16">n° {{ fiscalTransaction.code }} del {{ fiscalTransaction.date | date }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ fiscalTransaction.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0">Status: {{ fiscalTransaction.statusNote | AigC6eGenericStatus }}</div>
+                <div class="h4 m-8 ml-16 mb-0">Importo: {{ fiscalTransaction.amount | currency:'EUR' }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16" *ngIf="fiscalTransaction.statusNote == null || fiscalTransaction.statusNote == 1 || fiscalTransaction.statusNote == 4">
+                <div *ngIf="!uploading">
+                    <input  mat-stroked-button color="primary" type="file" (change)="fiscalTransactionValidationSelectedImage($event)" />
+                    <button mat-stroked-button color="primary" *ngIf="fiscalTransactionValidationImageFile" (click)="uploadDocument()">Carica documento</button>
+                </div>
+                <div *ngIf="uploading" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+                    <mat-spinner></mat-spinner>
+                    Caricamento file in corso
+                </div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16" *ngIf="fiscalTransaction.statusNote != null && fiscalTransaction.statusNote != 1">
+                <button mat-stroked-button color="primary" *ngIf="!fiscalTransactionValidationImageUrl" (click)="showDocument()">Mostra documento</button>
+                <div *ngIf="fiscalTransactionValidationImageUrl">
+                    <div *ngIf="loadingFiscalTransactionValidationImageUrl" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+                        <mat-spinner></mat-spinner>
+                        Caricamento file in corso
+                    </div>
+                    <img [src]="fiscalTransactionValidationImageUrl" alt="fiscalTransactionValidationImageUrl" />
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-16">
+               <pre>{{ fiscalTransaction.purchase.buyer | json }}</pre>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16">
+               <pre>{{ fiscalTransaction.purchase | json }}</pre>
+            </div>
+        </div>
+        -->
+    </div>
+
+</div>

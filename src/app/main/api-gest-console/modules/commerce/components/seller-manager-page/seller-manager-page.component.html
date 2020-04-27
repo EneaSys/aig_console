@@ -37,43 +37,54 @@
 
             <mat-tab-group dynamicHeight>
 
-                <mat-tab label="Acquisti">
-
-                    <!-- WIDGET GROUP -->
-                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-
-                        <!-- WIDGET 11 -->
-                        <fuse-widget class="widget" fxLayout="row" fxFlex="100">
-
-                            <!-- Front -->
-                            <div class="fuse-widget-front">
-
-                                <aig-buy-list-table [dataSource]="purchaseDTOs" [displayedColumns]="displayedColumns">
-                                </aig-buy-list-table>
-
-                                <mat-paginator #paginator [length]="length" [pageIndex]="index" [pageSize]="30"
-                                    [pageSizeOptions]="[30, 100, 200]" (page)="pageEvent($event)"></mat-paginator>
-
-                            </div>
-                            <!-- / Front -->
-
-                        </fuse-widget>
-                        <!-- / WIDGET 11 -->
-
-                    </div>
-                    <!-- / WIDGET GROUP -->
-                    <button mat-fab class="accent" id="add-buy-button" (click)="newBuy()" aria-label="new buy">
-                        <mat-icon>add_shopping_cart</mat-icon>
-                    </button>
-                </mat-tab>
-                <!--
                 <mat-tab label="Home">
                     <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
                         <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                            <div class="fuse-widget-front" class="p-16">
+                                <p>Benvenuto nella nuova dashboard del gestore di vendite. In alto trovi il menù delle sezioni che puoi navigare come: acquisti, clienti e scontrini.</p>
+                                <p>Inoltre su questa pagina nei prossimi giorni aggiungeremo statistiche utili e l'elenco delle adempienze da svolgere come operatore economico.</p>
+                                <p>Per dubbi non esitate a contattarci.</p>
+                            </div>
+                        </fuse-widget>
+                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
                             <div class="fuse-widget-front">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                                    a breve disponibile
+                                    Acquisti
                                 </div>
+                                <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                                    <div class="light-blue-fg font-size-72 line-height-72">
+                                        {{ purchaseLength }}
+                                    </div>
+                                    <div class="h3 secondary-text font-weight-500">acquisti inseriti</div>
+                                </div>
+                                <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                                    <span class="h4 secondary-text text-truncate">
+                                        
+                                    </span>
+                                    <span class="h4 ml-8">
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                        </fuse-widget>
+                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+                            <div class="fuse-widget-front">
+                                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    
+                                </div>
+                            </div>
+                        </fuse-widget>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="Acquisti">
+                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+                        <fuse-widget class="widget" fxLayout="row" fxFlex="100">
+                            <div class="fuse-widget-front">
+                                <aig-buy-list-table [dataSource]="purchaseDTOs" [displayedColumns]="purchaseDisplayedColumns" [error]="purchaseError"></aig-buy-list-table>
+
+                                <mat-paginator #purchasePaginator [length]="purchaseLength" [pageIndex]="purchaseIndex" [pageSize]="30"
+                                    [pageSizeOptions]="[30, 100, 200]" (page)="purchasePaginatorEvent($event)"></mat-paginator>
                             </div>
                         </fuse-widget>
                     </div>
@@ -83,23 +94,6 @@
                     <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
                         <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
                             <div class="fuse-widget-front">
-                                <div class="p-24 mb-8 border-bottom" fxLayout="row"
-                                    fxLayoutAlign="space-between center">
-                                    <div class="h2">Acquisti</div>
-                                    <div class="text-boxed accent m-0">
-                                        a
-                                    </div>
-                                </div>
-                                ciao
-                            </div>
-                        </fuse-widget>
-                    </div>
-                </mat-tab>
-
-                <mat-tab label="Buoni spesa">
-                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-                            <div class="fuse-widget-front">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
                                     a breve disponibile
                                 </div>
@@ -107,7 +101,20 @@
                         </fuse-widget>
                     </div>
                 </mat-tab>
-                
+
+                <mat-tab label="Scontrini">
+                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
+                        <fuse-widget class="widget" fxLayout="row" fxFlex="100">
+                            <div class="fuse-widget-front">
+                                <aig-fiscal-transaction-list-table [dataSource]="fiscalTransactionDTOs" [displayedColumns]="fiscalTransactionDisplayedColumns" [error]="fiscalTransactionError"></aig-fiscal-transaction-list-table>
+
+                                <mat-paginator #fiscalTransactionPaginator [length]="fiscalTransactionLength" [pageIndex]="fiscalTransactionIndex" [pageSize]="30"
+                                    [pageSizeOptions]="[30, 100, 200]" (page)="fiscalTransactionPaginatorEvent($event)"></mat-paginator>
+                            </div>
+                        </fuse-widget>
+                    </div>
+                </mat-tab>
+<!--
                 <mat-tab label="Ricevute fiscali">
                     <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
                         <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
@@ -121,6 +128,10 @@
                 </mat-tab>
 -->
             </mat-tab-group>
+
+            <button mat-fab class="accent" id="add-buy-button" (click)="newBuy()" aria-label="new buy">
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
 
         </div>
         <!-- / CONTENT -->
