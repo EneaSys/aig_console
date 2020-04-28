@@ -79,7 +79,7 @@
 
                 <mat-tab label="Acquisti">
                     <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget" fxLayout="row" fxFlex="100">
+                        <fuse-widget class="widget mb-64" fxLayout="row" fxFlex="100">
                             <div class="fuse-widget-front">
                                 <aig-buy-list-table [dataSource]="purchaseDTOs" [displayedColumns]="purchaseDisplayedColumns" [error]="purchaseError"></aig-buy-list-table>
 
@@ -92,7 +92,7 @@
 
                 <mat-tab label="Clienti">
                     <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+                        <fuse-widget class="widget mb-64" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
                             <div class="fuse-widget-front">
                                 <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
                                     a breve disponibile
@@ -104,7 +104,7 @@
 
                 <mat-tab label="Scontrini">
                     <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget" fxLayout="row" fxFlex="100">
+                        <fuse-widget class="widget mb-64" fxLayout="row" fxFlex="100">
                             <div class="fuse-widget-front">
                                 <aig-fiscal-transaction-list-table [dataSource]="fiscalTransactionDTOs" [displayedColumns]="fiscalTransactionDisplayedColumns" [error]="fiscalTransactionError"></aig-fiscal-transaction-list-table>
 
