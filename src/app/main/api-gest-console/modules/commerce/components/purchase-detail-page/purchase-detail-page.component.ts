@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService } from 'aig-commerce';
+import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO } from 'aig-commerce';
 
 @Component({
     templateUrl: './purchase-detail-page.component.html',
@@ -22,10 +22,12 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     purchase: PurchaseDTO;
-    fiscalTransactions: FiscalTransactionDTO[];
-    payments: PaymentDTO[];
-    a: any;
-    b: any;
+    
+    fiscalTransactionDisplayedColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
+    fiscalTransactionDTOs: FiscalTransactionDTO[];
+    fiscalTransactionError: any;
+
+    valuePaperPaymentItemDTOs: ValuePaperPaymentItemDTO[];
 
     loadPage() {
         this.purchase = this.route.snapshot.data.purchase;
@@ -43,13 +45,20 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
     }
 
     async loadFiscalTransactions() {
-        this.fiscalTransactions = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null).toPromise();
+        try {
+            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+        } catch(e) {
+            this.fiscalTransactionError = e;
+        }
     }
 
     async loadPayments() {
-        this.payments = await this.paymentResourceService.getAllPaymentsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-        this.a = await this.valuePaperPaymentResourceService.getValuePaperPaymentUsingGET(1).toPromise();
-        this.b = await this.valuePaperPaymentItemResourceService.getValuePaperPaymentItemUsingGET(1).toPromise();
+        let paymentDTOs: PaymentDTO[] = await this.paymentResourceService.getAllPaymentsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+        let valuePaperPaymentIds: number[] = [];
+        paymentDTOs.forEach((paymentDTO: PaymentDTO) => {
+            valuePaperPaymentIds.push(paymentDTO.valuePaperPaymentId);
+        });
+        this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,valuePaperPaymentIds,null,null,null,null).toPromise();
     }
 
 

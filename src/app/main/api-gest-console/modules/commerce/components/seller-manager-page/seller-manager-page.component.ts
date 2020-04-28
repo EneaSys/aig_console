@@ -89,7 +89,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
     // PURCHASE
-    purchaseDisplayedColumns: string[] = ['id', 'date', 'customer', 'status'];
+    purchaseDisplayedColumns: string[] = ['id', 'date', 'customer', 'status', 'buttons'];
     purchaseDTOs: PurchaseDTO[];
     purchaseError: any;
 
