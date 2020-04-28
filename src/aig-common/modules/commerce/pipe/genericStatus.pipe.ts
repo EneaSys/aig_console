@@ -7,7 +7,7 @@ export class AigC6eGenericStatusPipe implements PipeTransform {
             case "1":
                 return "Inserito"
             case "2":
-                return "In fase di conferma dell'ente"
+                return "In fase di validazione dell'ente"
             case "3":
                 return "Confermato"
             case "4":
