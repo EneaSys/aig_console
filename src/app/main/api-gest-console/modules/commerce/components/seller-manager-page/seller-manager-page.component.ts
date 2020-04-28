@@ -25,12 +25,6 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     message: string = "Caricando informazioni venditore";
 
 
-   
-
-
-
-
-
     async loadPage() {
         try {
             this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50,null).toPromise();
@@ -46,14 +40,18 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     
     private setSeller(selectedSeller: SellerDTO) {
         this.selectedSeller = selectedSeller;
-        this.setFilterPurchase('seller', this.selectedSeller.id);
-        this.setFilterFiscalTransaction('loaded', true);
 
-        this.loadPurchases(0);
-        this.loadFiscalTransaction(0);
+        this.purchaseIndex = 0;
+        this.setFilterPurchase('seller', this.selectedSeller.id);
+
+        this.fiscalTransactionIndex = 0;
+        this.setFilterFiscalTransaction('seller', this.selectedSeller.id);
+        
+        this.loadStatistics();
     }
 
     reloadPage() {
+        this.loadStatistics();
         this.loadPurchases(this.purchaseIndex);
         this.loadFiscalTransaction(this.fiscalTransactionIndex);
     }
@@ -61,6 +59,14 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
 
+
+    statistics = {
+        fiscalTransactionPending: 0
+    }
+
+    async loadStatistics() {
+        this.statistics.fiscalTransactionPending = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+    }
 
 
 
@@ -147,15 +153,15 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         // Block for current seller
         this.fiscalTransactionFilter.seller = this.selectedSeller.id;
 
-        this.loadPurchases(0);
+        this.loadFiscalTransaction(0);
         try {
-            this.fiscalTransactionLength = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET().toPromise();
+            this.fiscalTransactionLength = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
         } catch(e) { }
     }
 
     fiscalTransactionPaginatorEvent(event: PageEvent) {
         this.fiscalTransactionPageable.size = event.pageSize;
-        this.loadPurchases(event.pageIndex);
+        this.loadFiscalTransaction(event.pageIndex);
     }
 
     private async loadFiscalTransaction(page) {
@@ -165,7 +171,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         this.fiscalTransactionPageable.page = page;
         
         try {
-            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchasePageable.page,null,null,null,null,null,null,null,null,this.purchaseFilter.seller,null,null,null,null,null,null,null,this.purchasePageable.size,null,null,null,null,null,null,null).toPromise();
+            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchasePageable.page,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,this.purchasePageable.size,null,null,null,null,null,null,null).toPromise();
         } catch(e) {
             this.fiscalTransactionError = e;
         }
