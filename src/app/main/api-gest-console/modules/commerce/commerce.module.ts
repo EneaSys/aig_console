@@ -25,12 +25,19 @@ import { AigSellerListPageComponent } from './components/seller-list-page/seller
 import { AigSellerNewUpdateDialogComponent } from './components/seller-new-update-dialog/seller-new-update-dialog.component';
 import { AigPurchaseDetailPageComponent } from './components/purchase-detail-page/purchase-detail-page.component';
 import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-transaction-detail-page/fiscal-transaction-detail-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule, MatDatepickerModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
     imports: [
         RouterModule.forChild(commerceRoute),
         
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+
         AigCommonCommerceModule,
         AigCommerceApiModule,
 
@@ -38,7 +45,10 @@ import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-tra
         FuseSidebarModule,
         FuseWidgetModule,
 
+        MatIconModule,
         MatSnackBarModule,
+        MatFormFieldModule,
+        MatInputModule,
         MatButtonModule,
         MatDividerModule,
         MatIconModule,
@@ -48,6 +58,7 @@ import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-tra
         MatPaginatorModule,
         MatToolbarModule,
         MatProgressSpinnerModule,
+        MatDatepickerModule,
 
     ],
     providers: [

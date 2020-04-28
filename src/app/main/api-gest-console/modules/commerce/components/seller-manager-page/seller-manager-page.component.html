@@ -36,8 +36,8 @@
         <div class="content">
 
             <mat-tab-group dynamicHeight>
-
                 <mat-tab label="Home">
+
                     <div>
                         <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
                             <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50"
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                                         <span class="h4 secondary-text text-truncate">
-                                            
+
                                         </span>
                                         <span class="h4 ml-8">
 
@@ -76,13 +76,16 @@
                             <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50"
                                 fxFlex.gt-md="50">
                                 <div class="fuse-widget-front">
-                                    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row"
+                                        fxLayoutAlign="space-between center">
                                         Azioni richiste:
                                     </div>
                                     <div>
                                         <ul>
                                             <li *ngIf="statistics.fiscalTransactionPending > 0">
-                                                <span style="color: red;">E' necessario caricare il documento (l'immagine) di {{ statistics.fiscalTransactionPending }} scontrini!</span>
+                                                <span style="color: red;">E' necessario caricare il documento
+                                                    (l'immagine) di {{ statistics.fiscalTransactionPending }}
+                                                    scontrini!</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -92,33 +95,71 @@
                     </div>
                     <div>
                         <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                            <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+                            <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50"
+                                fxFlex.gt-md="50">
                                 <div class="fuse-widget-front">
-                                    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row"
+                                        fxLayoutAlign="space-between center">
                                         News:
                                     </div>
                                     <div>
                                         <ul>
-                                            <li>28/04/2020 | Si informa che è disponibile nella sezione "Scontrini" la possibilità di caricare la ricevuta fiscale dell'acquisto</li>
+                                            <li>28/04/2020 | Si informa che è disponibile nella sezione "Scontrini" la
+                                                possibilità di caricare la ricevuta fiscale dell'acquisto</li>
                                         </ul>
                                     </div>
                                 </div>
                             </fuse-widget>
-                            <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+                            <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50"
+                                fxFlex.gt-md="50">
                                 <div class="fuse-widget-front">
-                                    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div class="pl-16 pr-8 py-16 h-52" fxLayout="row"
+                                        fxLayoutAlign="space-between center">
                                     </div>
 
                                 </div>
                             </fuse-widget>
                         </div>
                     </div>
-                </mat-tab>
 
+                </mat-tab>
                 <mat-tab label="Acquisti">
-                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget mb-64" fxLayout="row" fxFlex="100">
-                            <div class="fuse-widget-front">
+
+                    <div class="page-layout simple left-sidebar">
+                        <!-- SIDEBAR -->
+                        <fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
+                            <!-- SIDEBAR CONTENT -->
+                            <div class="content">
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Stati</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <div class="nav-item" aria-label="inbox">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- / SIDEBAR CONTENT -->
+                        </fuse-sidebar>
+                        <!-- / SIDEBAR -->
+                        <!-- CENTER -->
+                        <div class="center">
+                            <!-- HEADER -->
+                            <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                                    (click)="toggleSidebar('purchase-sidebar')">
+                                    <mat-icon>menu</mat-icon>
+                                </button>
+                                <h2>Elenco Acquisti</h2>
+                            </div>
+                            <!-- / HEADER -->
+                            <!-- CONTENT -->
+                            <div class="content mb-48">
                                 <aig-buy-list-table [dataSource]="purchaseDTOs"
                                     [displayedColumns]="purchaseDisplayedColumns" [error]="purchaseError">
                                 </aig-buy-list-table>
@@ -127,52 +168,170 @@
                                     [pageSize]="30" [pageSizeOptions]="[30, 100, 200]"
                                     (page)="purchasePaginatorEvent($event)"></mat-paginator>
                             </div>
-                        </fuse-widget>
+                            <!-- / CONTENT -->
+                        </div>
+                        <!-- / CENTER -->
                     </div>
-                </mat-tab>
 
+                </mat-tab>
                 <mat-tab label="Clienti">
-                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget mb-64" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50"
-                            fxFlex.gt-md="25">
-                            <div class="fuse-widget-front">
-                                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                                    a breve disponibile
+
+                    <div class="page-layout simple left-sidebar">
+                        <!-- SIDEBAR -->
+                        <fuse-sidebar class="sidebar" name="buyer-sidebar" position="left" lockedOpen="gt-md">
+                            <!-- SIDEBAR CONTENT -->
+                            <div class="content">
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Filtri</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <div class="nav-item" aria-label="inbox">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- / SIDEBAR CONTENT -->
+                        </fuse-sidebar>
+                        <!-- / SIDEBAR -->
+                        <!-- CENTER -->
+                        <div class="center">
+                            <!-- HEADER -->
+                            <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                                    (click)="toggleSidebar('buyer-sidebar')">
+                                    <mat-icon>menu</mat-icon>
+                                </button>
+                                <h2>Elenco Clienti</h2>
+                            </div>
+                            <!-- / HEADER -->
+                            <!-- CONTENT -->
+                            <div class="content mb-48">
+
+                            </div>
+                            <!-- / CONTENT -->
+                        </div>
+                        <!-- / CENTER -->
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Scontrini">
+
+                    <div class="page-layout simple left-sidebar">
+                        <!-- SIDEBAR -->
+                        <fuse-sidebar class="sidebar" name="fiscal-transaction-sidebar" position="left"
+                            lockedOpen="gt-md">
+                            <!-- SIDEBAR CONTENT -->
+                            <div class="content">
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Filtri</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <div class="nav-item" aria-label="inbox">
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', null)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == null}">
+                                                    <span class="title">Tutto</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 1)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '1'}">
+                                                    <span class="title">Inseriti</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 2)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '2'}">
+                                                    <span class="title">In attesa di validazione</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 3)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '3'}">
+                                                    <span class="title">Validato</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 4)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '4'}">
+                                                    <span class="title">Da rivedere</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Cerca</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <form [formGroup]="fiscalTransactionSearchForm"
+                                                (ngSubmit)="fiscalTransactionSearch()" class="p-8">
+                                                <div fxLayout="row">
+                                                    <mat-form-field appearance="outline" fxFlex="100">
+                                                        <mat-label>Id</mat-label>
+                                                        <input matInput type="number" formControlName="id">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxLayout="row">
+                                                    <mat-form-field appearance="outline" fxFlex="100">
+                                                        <mat-label>Date</mat-label>
+                                                        <input matInput [matDatepicker]="picker"
+                                                            placeholder="Seleziona la data" formControlName="date">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxLayout="row">
+                                                    <mat-form-field appearance="outline" fxFlex="100">
+                                                        <mat-label>Numero</mat-label>
+                                                        <input matInput type="number" formControlName="code">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxLayout="row" fxLayoutAlign="end top">
+                                                    <button type="submit" mat-raised-button
+                                                        color="accent">Cerca</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </fuse-widget>
-                    </div>
-                </mat-tab>
-
-                <mat-tab label="Scontrini">
-                    <div class="widget-group" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget mb-64" fxLayout="row" fxFlex="100">
-                            <div class="fuse-widget-front">
+                            <!-- / SIDEBAR CONTENT -->
+                        </fuse-sidebar>
+                        <!-- / SIDEBAR -->
+                        <!-- CENTER -->
+                        <div class="center">
+                            <!-- HEADER -->
+                            <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                                    (click)="toggleSidebar('fiscal-transaction-sidebar')">
+                                    <mat-icon>menu</mat-icon>
+                                </button>
+                                <h2>Elenco Scontrini</h2>
+                            </div>
+                            <!-- / HEADER -->
+                            <!-- CONTENT -->
+                            <div class="content mb-48">
                                 <aig-fiscal-transaction-list-table [dataSource]="fiscalTransactionDTOs"
                                     [displayedColumns]="fiscalTransactionDisplayedColumns"
-                                    [error]="fiscalTransactionError"></aig-fiscal-transaction-list-table>
-
+                                    [error]="fiscalTransactionError">
+                                </aig-fiscal-transaction-list-table>
                                 <mat-paginator #fiscalTransactionPaginator [length]="fiscalTransactionLength"
                                     [pageIndex]="fiscalTransactionIndex" [pageSize]="30"
                                     [pageSizeOptions]="[30, 100, 200]" (page)="fiscalTransactionPaginatorEvent($event)">
                                 </mat-paginator>
                             </div>
-                        </fuse-widget>
+                            <!-- / CONTENT -->
+                        </div>
+                        <!-- / CENTER -->
                     </div>
+
                 </mat-tab>
-                <!--
-                <mat-tab label="Ricevute fiscali">
-                    <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom>
-                        <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-                            <div class="fuse-widget-front">
-                                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                                    a breve disponibile
-                                </div>
-                            </div>
-                        </fuse-widget>
-                    </div>
-                </mat-tab>
--->
             </mat-tab-group>
 
             <button mat-fab class="accent" id="add-buy-button" (click)="newBuy()" aria-label="new buy">

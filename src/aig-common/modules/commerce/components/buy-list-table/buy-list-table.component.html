@@ -17,7 +17,7 @@
 
         <ng-container matColumnDef="date">
             <mat-header-cell *matHeaderCellDef> Inserimento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.insertedDateTime }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.insertedDateTime | date }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="customer">
