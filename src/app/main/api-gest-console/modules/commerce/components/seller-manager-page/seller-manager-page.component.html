@@ -99,7 +99,7 @@
                                     </div>
                                     <div>
                                         <ul>
-                                            <li>Si informa che è disponibile nella sezione "Scontrini" la possibilità di caricare la ricevuta fiscale dell'acquisto</li>
+                                            <li>28/04/2020 | Si informa che è disponibile nella sezione "Scontrini" la possibilità di caricare la ricevuta fiscale dell'acquisto</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
     </div>
 
     <div fxLayout="row wrap" fusePerfectScrollbar *ngIf="!selectedSeller">
-        <div fxLayout="center center" fxFlex="100">
+        <div *ngIf="loadingPage" fxLayout="center center" fxFlex="100">
             <div fxLayout="row">
                 <div fxFlex="100" class="pr-4 pl-4" fxLayoutAlign="center center">
                     <mat-spinner></mat-spinner>
@@ -193,7 +193,20 @@
             </div>
             <div fxLayout="row">
                 <div class="m-16" fxFlex="100" class="pr-4 pl-4" fxLayoutAlign="center center">
-                    <h2>{{ message }}</h2>
+                    <h2>Caricando informazioni venditore</h2>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loadingPage && errorInLoading != null" fxFlex="100">
+            <div fxLayout="row" fxLayout="center center">
+                <div class="m-16" fxFlex="100" class="pr-4 pl-4">
+                    <h2>Errore!</h2>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout="center center">
+                <div class="m-16" fxFlex="100" class="pr-4 pl-4">
+                    <p>{{ errorInLoading }}</p>
+                    <p>{{ errorInLoading | json }}</p>
                 </div>
             </div>
         </div>

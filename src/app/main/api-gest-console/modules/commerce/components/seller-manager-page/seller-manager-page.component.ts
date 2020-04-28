@@ -22,20 +22,21 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     sellerDTOs: SellerDTO[] = [];
     selectedSeller: SellerDTO;
 
-    message: string = "Caricando informazioni venditore";
-
-
+    loadingPage: boolean = true;
+    errorInLoading: any;
+    
     async loadPage() {
         try {
             this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50,null).toPromise();
             if(this.sellerDTOs.length > 0) {
                 this.setSeller(this.sellerDTOs[0]);
             } else {
-                throw new Error;
+                throw new Error("Nessun negozio associato");
             }
         } catch(e) {
-            this.message = "Non hai negozi associati.";
+            this.errorInLoading = e;
         }
+        this.loadingPage = false;
     }
     
     private setSeller(selectedSeller: SellerDTO) {
