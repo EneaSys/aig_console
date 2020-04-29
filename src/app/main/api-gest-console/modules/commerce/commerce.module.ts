@@ -29,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule, MatDatepickerModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
+import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 
 @NgModule({
@@ -41,6 +42,8 @@ import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buye
 
         AigCommonCommerceModule,
         AigCommerceApiModule,
+
+        CommonGenericModule,
 
         FuseSharedModule,
         FuseSidebarModule,

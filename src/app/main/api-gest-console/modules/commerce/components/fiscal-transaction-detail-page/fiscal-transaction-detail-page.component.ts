@@ -26,8 +26,6 @@ export class AigFiscalTransactionDetailPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     fiscalTransaction: FiscalTransactionDTO;
-    uploading: boolean = false;
-    loadingFiscalTransactionValidationImageUrl: boolean = false;
 
     loadPage() {
         this.fiscalTransaction = this.route.snapshot.data.fiscalTransaction;
@@ -43,6 +41,8 @@ export class AigFiscalTransactionDetailPageComponent extends GenericComponent {
         
     }
 
+    uploading: boolean = false;
+    loadingFiscalTransactionValidationImageUrl: boolean = false;
     fiscalTransactionValidationImageUrl: string;
     async showDocument() {
         this._fuseProgressBarService.show();
