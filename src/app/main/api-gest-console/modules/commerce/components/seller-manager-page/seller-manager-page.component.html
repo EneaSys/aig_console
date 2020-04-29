@@ -114,6 +114,11 @@
                                                     (l'immagine) di {{ statistics.fiscalTransactionPending }}
                                                     scontrini!</span>
                                             </li>
+                                            <li *ngIf="statistics.buyerPending > 0">
+                                                <span style="color: red;">E' necessario caricare il documento
+                                                    (l'immagine) di {{ statistics.buyerPending }}
+                                                    clienti!</span>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -131,6 +136,8 @@
                                     </div>
                                     <div>
                                         <ul>
+                                            <li>30/04/2020 | Si informa che è disponibile nella sezione "Clienti" la
+                                                possibilità di caricare il documento del cliente e l'elenco degli acquisti del cliente</li>
                                             <li>28/04/2020 | Si informa che è disponibile nella sezione "Scontrini" la
                                                 possibilità di caricare la ricevuta fiscale dell'acquisto</li>
                                         </ul>
