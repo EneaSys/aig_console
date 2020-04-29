@@ -20,6 +20,16 @@
             <mat-cell *matCellDef="let e">{{ e.eopoo | eopooName }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="bornDate">
+            <mat-header-cell *matHeaderCellDef> Data nascita </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.eopoo.person.bornDate | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="taxid">
+            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.eopoo.taxNumber }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.statusNote | AigC6eGenericStatus }}</mat-cell>

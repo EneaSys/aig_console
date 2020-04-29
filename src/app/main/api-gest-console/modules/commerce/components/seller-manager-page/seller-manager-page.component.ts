@@ -173,7 +173,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     // BUYER
     buyerSearchForm: FormGroup;
 
-    buyerDisplayedColumns: string[] = ['id', 'eopoo', 'status', 'buttons'];
+    buyerDisplayedColumns: string[] = ['id', 'eopoo', 'status', 'bornDate', 'buttons'];
     buyerDTOs: BuyerDTO[];
     buyerError: any;
 
