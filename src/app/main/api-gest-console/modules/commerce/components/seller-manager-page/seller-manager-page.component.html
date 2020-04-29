@@ -36,6 +36,33 @@
         <div class="content">
 
             <mat-tab-group dynamicHeight>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <mat-tab label="Home">
 
                     <div>
@@ -123,6 +150,34 @@
                     </div>
 
                 </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <mat-tab label="Acquisti">
 
                     <div class="page-layout simple left-sidebar">
@@ -174,6 +229,46 @@
                     </div>
 
                 </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <mat-tab label="Clienti">
 
                     <div class="page-layout simple left-sidebar">
@@ -188,12 +283,31 @@
                                     <div class="content py-16" fusePerfectScrollbar>
                                         <div class="nav material2">
                                             <div class="nav-item" aria-label="inbox">
-                                                
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterBuyer('statusNote', null)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == null}">
+                                                    <span class="title">Tutto</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 1)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '1'}">
+                                                    <span class="title">Inseriti</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 2)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '2'}">
+                                                    <span class="title">In attesa di validazione</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 3)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '3'}">
+                                                    <span class="title">Validato</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 4)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '4'}">
+                                                    <span class="title">Da rivedere</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <!-- / SIDEBAR CONTENT -->
                         </fuse-sidebar>
@@ -211,7 +325,13 @@
                             <!-- / HEADER -->
                             <!-- CONTENT -->
                             <div class="content mb-48">
+                                <aig-buyer-list-table [dataSource]="buyerDTOs"
+                                    [displayedColumns]="buyerDisplayedColumns" [error]="buyerError">
+                                </aig-buyer-list-table>
 
+                                <mat-paginator #buyerPaginator [length]="buyerLength" [pageIndex]="buyerIndex"
+                                    [pageSize]="30" [pageSizeOptions]="[30, 100, 200]"
+                                    (page)="buyerPaginatorEvent($event)"></mat-paginator>
                             </div>
                             <!-- / CONTENT -->
                         </div>
@@ -219,6 +339,45 @@
                     </div>
 
                 </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <mat-tab label="Scontrini">
 
                     <div class="page-layout simple left-sidebar">
@@ -282,7 +441,8 @@
                                                         <mat-label>Date</mat-label>
                                                         <input matInput [matDatepicker]="picker"
                                                             placeholder="Seleziona la data" formControlName="date">
-                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                                        </mat-datepicker-toggle>
                                                         <mat-datepicker #picker></mat-datepicker>
                                                     </mat-form-field>
                                                 </div>
@@ -332,6 +492,29 @@
                     </div>
 
                 </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </mat-tab-group>
 
             <button mat-fab class="accent" id="add-buy-button" (click)="newBuy()" aria-label="new buy">

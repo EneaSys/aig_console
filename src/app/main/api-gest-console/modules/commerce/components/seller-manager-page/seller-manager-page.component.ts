@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-custom-buy-dialog.component';
-import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO, FiscalTransactionDTO, FiscalTransactionResourceService } from 'aig-commerce';
+import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO, FiscalTransactionDTO, FiscalTransactionResourceService, BuyerDTO, BuyerResourceService } from 'aig-commerce';
 import { PageEvent } from '@angular/material/paginator';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -16,6 +16,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     constructor(
         private sellerResourceService: SellerResourceService,
         private purchaseResourceService: PurchaseResourceService,
+        private buyerResourceService: BuyerResourceService,
         private fiscalTransactionResourceService: FiscalTransactionResourceService,
         private _formBuilder: FormBuilder,
         private _fuseSidebarService: FuseSidebarService,
@@ -56,6 +57,9 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         this.purchaseIndex = 0;
         this.setFilterPurchase('seller', this.selectedSeller.id);
 
+        this.buyerIndex = 0;
+        this.setFilterBuyer('seller', this.selectedSeller.id);
+
         this.fiscalTransactionIndex = 0;
         this.setFilterFiscalTransaction('seller', this.selectedSeller.id);
         
@@ -79,6 +83,11 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     async loadStatistics() {
         this.statistics.fiscalTransactionPending = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
     }
+
+
+
+
+
 
 
 
@@ -131,9 +140,120 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         }
     }
     
-    newBuy() {
-        this.dialog.open(AigNewCustomBuyDialogComponent, { data: { seller: this.selectedSeller } });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // BUYER
+    buyerSearchForm: FormGroup;
+
+    buyerDisplayedColumns: string[] = ['id', 'eopoo', 'status', 'buttons'];
+    buyerDTOs: BuyerDTO[];
+    buyerError: any;
+
+    buyerPageable = {
+        page: 0,
+        size: 30,
     }
+    buyerLength: number;
+    buyerIndex: number;
+
+    buyerFilter: any;
+
+    private async setFilterBuyer(filterKey: string, value: any) {
+        if(this.buyerFilter == null) {
+            this.cleanBuyerFilters();
+        }
+        this.buyerFilter[filterKey] = value;
+        // Block for current seller
+        this.buyerFilter.seller = this.selectedSeller.id;
+        this.loadBuyer(0);
+        try {
+            this.buyerLength = await this.buyerResourceService.countBuyersUsingGET(null,null,null,null,null,null,this.buyerFilter.eopooCode,null,null,null,this.buyerFilter.id,null,null,null,null,null,null,null,this.buyerFilter.seller,null,null,null,null,null,null,null,null,null,this.buyerFilter.statusNote,null,null,null).toPromise();
+        } catch(e) { }
+    }
+
+    buyerPaginatorEvent(event: PageEvent) {
+        this.buyerPageable.size = event.pageSize;
+        this.loadBuyer(event.pageIndex);
+    }
+
+    private async loadBuyer(page) {
+        this.buyerDTOs = null;
+
+        this.buyerIndex = page
+        this.buyerPageable.page = page;
+        
+        try {
+            this.buyerDTOs = await this.buyerResourceService.getAllBuyersUsingGET(null,null,null,null,this.buyerFilter.eopooCode,null,null,null,null,null,this.buyerFilter.id,null,null,null,null,null,null,null,this.buyerPageable.page,this.buyerFilter.seller,null,null,null,null,null,null,null,this.buyerPageable.size,null,null,null,this.buyerFilter.statusNote,null,null,null).toPromise();
+        } catch(e) {
+            this.buyerError = e;
+        }
+    }
+
+    private cleanBuyerFilters() {
+        this.buyerFilter = {
+            seller: null,
+            id: null,
+            eopooCode: null,
+            statusNote: null,
+        }
+    }
+
+    buyerSearch() {
+        if(this.buyerSearchForm.value.id) {
+            console.log("by id");
+            this.cleanBuyerFilters();
+            this.setFilterBuyer('id', this.buyerSearchForm.value.id);
+        } else {
+            if(this.buyerSearchForm.value.date != "") {
+                this.buyerFilter.date = this.buyerSearchForm.value.date;
+            }
+            if(this.buyerSearchForm.value.code != "") {
+                this.buyerFilter.code = this.buyerSearchForm.value.code;
+            }
+            
+            this.setFilterBuyer('id', null);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -161,7 +281,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
     private async setFilterFiscalTransaction(filterKey: string, value: any) {
         if(this.fiscalTransactionFilter == null) {
-            this.cleanFiscalTransactioFilters();
+            this.cleanFiscalTransactionFilters();
         }
         this.fiscalTransactionFilter[filterKey] = value;
         // Block for current seller
@@ -190,7 +310,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         }
     }
 
-    private cleanFiscalTransactioFilters() {
+    private cleanFiscalTransactionFilters() {
         this.fiscalTransactionFilter = {
             seller: null,
             id: null,
@@ -203,7 +323,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     fiscalTransactionSearch() {
         if(this.fiscalTransactionSearchForm.value.id) {
             console.log("by id");
-            this.cleanFiscalTransactioFilters();
+            this.cleanFiscalTransactionFilters();
             this.setFilterFiscalTransaction('id', this.fiscalTransactionSearchForm.value.id);
         } else {
             if(this.fiscalTransactionSearchForm.value.date != "") {
@@ -227,7 +347,16 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
 
+
+
+
+
+
+
     toggleSidebar(name): void {
         this._fuseSidebarService.getSidebar(name).toggleOpen();
+    }
+    newBuy() {
+        this.dialog.open(AigNewCustomBuyDialogComponent, { data: { seller: this.selectedSeller } });
     }
 }

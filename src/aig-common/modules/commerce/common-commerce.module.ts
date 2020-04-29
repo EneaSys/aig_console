@@ -25,6 +25,7 @@ import { PurchaseResolver } from './resolver/purchase.resolver';
 import { AigFiscalTransactionListTableComponent } from './components/fiscal-transaction-list-table/fiscal-transaction-list-table.component';
 import { FiscalTransactionResolver } from './resolver/fiscal-transaction.resolver';
 import { AigC6eGenericStatusPipe } from './pipe/genericStatus.pipe';
+import { AigBuyerListTableComponent } from './components/buyer-list-table/buyer-list-table.component';
 
 @NgModule({
     imports: [
@@ -61,6 +62,7 @@ import { AigC6eGenericStatusPipe } from './pipe/genericStatus.pipe';
         AigSellerNewUpdateFormComponent,
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
+        AigBuyerListTableComponent,
     ],
     providers: [
         PurchaseResolver,
@@ -73,6 +75,7 @@ import { AigC6eGenericStatusPipe } from './pipe/genericStatus.pipe';
         AigSellerNewUpdateFormComponent,
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
+        AigBuyerListTableComponent,
     ],
 })
 export class AigCommonCommerceModule {}
