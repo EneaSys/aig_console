@@ -26,6 +26,7 @@ import { AigFiscalTransactionListTableComponent } from './components/fiscal-tran
 import { FiscalTransactionResolver } from './resolver/fiscal-transaction.resolver';
 import { AigC6eGenericStatusPipe } from './pipe/genericStatus.pipe';
 import { AigBuyerListTableComponent } from './components/buyer-list-table/buyer-list-table.component';
+import { BuyerResolver } from './resolver/buyer.resolver';
 
 @NgModule({
     imports: [
@@ -67,6 +68,7 @@ import { AigBuyerListTableComponent } from './components/buyer-list-table/buyer-
     providers: [
         PurchaseResolver,
         FiscalTransactionResolver,
+        BuyerResolver,
     ],
     exports: [
         AigBuyListTableComponent,

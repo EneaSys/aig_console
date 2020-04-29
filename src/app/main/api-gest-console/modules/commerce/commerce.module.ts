@@ -28,6 +28,7 @@ import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-tra
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule, MatDatepickerModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { CommonModule } from '@angular/common';
         AigSellerNewUpdateDialogComponent,
         AigPurchaseDetailPageComponent,
         AigFiscalTransactionDetailPageComponent,
+        AigBuyerDetailPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,

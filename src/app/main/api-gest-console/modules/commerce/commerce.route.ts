@@ -6,6 +6,8 @@ import { AigPurchaseDetailPageComponent } from './components/purchase-detail-pag
 import { PurchaseResolver } from 'aig-common/modules/commerce/resolver/purchase.resolver';
 import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-transaction-detail-page/fiscal-transaction-detail-page.component';
 import { FiscalTransactionResolver } from 'aig-common/modules/commerce/resolver/fiscal-transaction.resolver';
+import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
+import { BuyerResolver } from 'aig-common/modules/commerce/resolver/buyer.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -60,6 +62,29 @@ export const commerceRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             purchase: PurchaseResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'buyer',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigSellerListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigBuyerDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            buyer: BuyerResolver,
                         },
                     },
                 ]
