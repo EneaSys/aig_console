@@ -105,21 +105,21 @@
                                 <div class="fuse-widget-front">
                                     <div class="pl-16 pr-8 py-16 h-52" fxLayout="row"
                                         fxLayoutAlign="space-between center">
-                                        Azioni richiste:
+                                        <h2>Azioni richieste per procedere alla rendicontazione:</h2>
                                     </div>
                                     <div>
                                         <ul>
                                             <li *ngIf="statistics.fiscalTransactionPending > 0">
-                                                <span style="color: red;">E' necessario caricare il documento
-                                                    (l'immagine) di {{ statistics.fiscalTransactionPending }}
-                                                    scontrini!</span>
+                                                <span style="color: red;"><b>E' necessario caricare {{ statistics.fiscalTransactionPending }} copie degli scontrini!</b></span>
                                             </li>
                                             <li *ngIf="statistics.buyerPending > 0">
-                                                <span style="color: red;">E' necessario caricare il documento
-                                                    (l'immagine) di {{ statistics.buyerPending }}
-                                                    clienti!</span>
+                                                <span style="color: red;"><b>E' necessario caricare {{ statistics.buyerPending }} copie di documenti di  clienti!</b></span>
                                             </li>
                                         </ul>
+                                        <hr>
+                                        <div class="pr-16 pl-16">
+                                            <h2>Inseriti i suddetti documenti si potrà procedere alla stampa della rendicontazione da presentare al Comune</h2>
+                                        </div>
                                     </div>
                                 </div>
                             </fuse-widget>
