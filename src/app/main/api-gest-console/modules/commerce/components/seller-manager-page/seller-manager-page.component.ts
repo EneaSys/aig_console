@@ -327,7 +327,6 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
     fiscalTransactionSearch() {
         if(this.fiscalTransactionSearchForm.value.id) {
-            console.log("by id");
             this.cleanFiscalTransactionFilters();
             this.setFilterFiscalTransaction('id', this.fiscalTransactionSearchForm.value.id);
         } else {
@@ -337,7 +336,6 @@ export class AigSellerManagerPageComponent extends GenericComponent {
             if(this.fiscalTransactionSearchForm.value.code != "") {
                 this.fiscalTransactionFilter.code = this.fiscalTransactionSearchForm.value.code;
             }
-            
             this.setFilterFiscalTransaction('id', null);
         }
     }

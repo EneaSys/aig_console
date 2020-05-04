@@ -10,16 +10,23 @@
                 <div class="h4 m-8 ml-16">Stato: {{ buyer.statusNote | AigC6eGenericStatus }}</div>
             </div>
             <div class="fuse-card auto-width p-16 mt-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Venditore</div>
+                <div class="h2 m-16">{{ buyer.seller.name }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
                 <div *ngIf="!loadingBuyerValidationImage">
                     <div *ngIf="buyer.statusNote != 1">
-                        <button mat-stroked-button color="primary" *ngIf="!buyerValidationImageUrl" (click)="showDocument()">Mostra documento</button>
+                        <button mat-stroked-button color="primary" *ngIf="!buyerValidationImageUrl"
+                            (click)="showDocument()">Mostra documento</button>
                         <div *ngIf="buyerValidationImageUrl">
                             <img [src]="buyerValidationImageUrl" alt="buyerValidationImageUrl" />
                         </div>
                     </div>
                     <div *ngIf="buyer.statusNote == 1 || buyer.statusNote == 4">
-                        <input  mat-stroked-button color="primary" type="file" (change)="buyerValidationSelectedImage($event)" />
-                        <button mat-stroked-button color="primary" *ngIf="buyerValidationImageFile" (click)="uploadDocument()">Carica documento</button>
+                        <input mat-stroked-button color="primary" type="file"
+                            (change)="buyerValidationSelectedImage($event)" />
+                        <button mat-stroked-button color="primary" *ngIf="buyerValidationImageFile"
+                            (click)="uploadDocument()">Carica documento</button>
                     </div>
                 </div>
 
@@ -28,10 +35,11 @@
                     Caricamento file in corso
                 </div>
             </div>
-            
+
         </div>
         <div class="widget p-16" fxFlex.gt-sm="60">
             <div class="fuse-card auto-width p-16">
+                Acquisti:
                 <aig-buy-list-table [dataSource]="purchaseDTOs" [displayedColumns]="purchaseDisplayedColumns"
                     [error]="purchaseError">
                 </aig-buy-list-table>
