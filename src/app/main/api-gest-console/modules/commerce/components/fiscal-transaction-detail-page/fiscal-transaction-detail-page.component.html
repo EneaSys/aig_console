@@ -30,18 +30,29 @@
                 </div>
             </div>
         </div>
-        <!--
         <div class="widget p-16" fxFlex.gt-sm="30">
             <div class="fuse-card auto-width p-16">
-               <pre>{{ fiscalTransaction.purchase.buyer | json }}</pre>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Venditore</div>
+                <div class="h2 m-16">{{ fiscalTransaction.purchase.buyer.seller.name }}</div>
             </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Acquirente</div>
+                <div class="h2 m-16">{{ fiscalTransaction.purchase.buyer.eopooCode }}</div>
+                <div class="hh m-16">Codice Anagrafica: {{ fiscalTransaction.purchase.buyer.eopooCode }}</div>
+                <pre>{{ fiscalTransaction.purchase.buyer.eopoo | json }}</pre>
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/buyer/detail/' + fiscalTransaction.purchase.buyer.id">Details</button>
+            </div>
+            
         </div>
         <div class="widget p-16" fxFlex.gt-sm="40">
             <div class="fuse-card auto-width p-16">
-               <pre>{{ fiscalTransaction.purchase | json }}</pre>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Acquisto</div>
+                <div class="h1 m-16">{{ fiscalTransaction.purchase.amount | currency:'EUR' }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ fiscalTransaction.purchase.id }}</div>
+                <div class="h4 m-8 ml-16">Data: {{ fiscalTransaction.purchase.insertedDateTime | date }}</div>
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/purchase/detail/' + fiscalTransaction.purchase.id">Details</button>
             </div>
         </div>
-        -->
     </div>
 
 </div>

@@ -12,6 +12,8 @@ export class AigC6eGenericStatusPipe implements PipeTransform {
                 return "Confermato"
             case "4":
                 return "Da rivedere"
+            case "5":
+                return "Cancellato"
             default:
                 return "Inserito"
         }
