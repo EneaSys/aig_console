@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { FiscalTransactionDTO, FiscalTransactionResourceService, ValidationImageReturnTO } from 'aig-commerce';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,6 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 
 @Component({
-    selector: 'fiscal-transaction-detail-page',
     templateUrl: './fiscal-transaction-detail-page.component.html',
     styleUrls: ['./fiscal-transaction-detail-page.component.scss']
 })
@@ -18,7 +17,6 @@ export class AigFiscalTransactionDetailPageComponent extends GenericComponent {
         private httpClient: HttpClient,
         private fiscalTransactionResourceService: FiscalTransactionResourceService,
         private route: ActivatedRoute,
-        private dialog: MatDialog,
         private _fuseProgressBarService: FuseProgressBarService,
         private eventService: EventService,
         private _snackBar: MatSnackBar,
@@ -37,8 +35,8 @@ export class AigFiscalTransactionDetailPageComponent extends GenericComponent {
         this.loadOther();
     }
 
-    async loadOther() {
-        
+    loadOther() {
+
     }
 
     uploading: boolean = false;

@@ -33,6 +33,7 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
 import { AigCommValidatorPageComponent } from './components/validator-page/validator-page.component';
 import { ValidateBuyerDialogComponent } from './components/validate-buyer-dialog/validate-buyer-dialog.component';
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
+import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { ValidateBuyerPageComponent } from './components/validate-buyer-page/val
         AigCommValidatorPageComponent,
         ValidateBuyerDialogComponent,
         ValidateBuyerPageComponent,
+        ValidateFiscalTransactionPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,

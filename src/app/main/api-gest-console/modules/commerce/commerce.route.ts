@@ -10,6 +10,7 @@ import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buye
 import { BuyerResolver } from 'aig-common/modules/commerce/resolver/buyer.resolver';
 import { AigCommValidatorPageComponent } from './components/validator-page/validator-page.component';
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
+import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -115,6 +116,14 @@ export const commerceRoute: Routes = [
                     {
                         path: 'detail/:id',
                         component: AigFiscalTransactionDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            fiscalTransaction: FiscalTransactionResolver,
+                        },
+                    },
+                    {
+                        path: 'detail/:id/validate',
+                        component: ValidateFiscalTransactionPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             fiscalTransaction: FiscalTransactionResolver,

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { BuyerDTO, BuyerResourceService, ValidationImageReturnTO } from 'aig-commerce';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
+
 
 @Component({
     templateUrl: './validate-buyer-page.component.html',
@@ -15,13 +15,11 @@ import { EventService } from 'aig-common/event-manager/event.service';
 export class ValidateBuyerPageComponent extends GenericComponent {
     constructor(
         private buyerResourceService: BuyerResourceService,
-        private httpClient: HttpClient,
         private _fuseProgressBarService: FuseProgressBarService,
         private eventService: EventService,
         private _snackBar: MatSnackBar,
         private route: ActivatedRoute,
         private router: Router,
-        private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 

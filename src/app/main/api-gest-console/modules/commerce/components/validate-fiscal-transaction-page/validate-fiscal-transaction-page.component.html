@@ -1,0 +1,45 @@
+<div class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Venditore</div>
+                <div class="h2 m-16">{{ fiscalTransaction.purchase.buyer.seller.name }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Acquirente</div>
+                <div class="h2 m-16">{{ fiscalTransaction.purchase.buyer.eopooCode }}</div>
+                <div class="hh m-16">Codice Anagrafica: {{ fiscalTransaction.purchase.buyer.eopooCode }}</div>
+                <pre>{{ fiscalTransaction.purchase.buyer.eopoo | json }}</pre>
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/buyer/detail/' + fiscalTransaction.purchase.buyer.id">Details</button>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Scontrino</div>
+                <div class="h1 m-16">n° {{ fiscalTransaction.code }} del {{ fiscalTransaction.date | date }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ fiscalTransaction.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0">Status: {{ fiscalTransaction.statusNote | AigC6eGenericStatus }}</div>
+                <div class="h4 m-8 ml-16 mb-0">Importo: {{ fiscalTransaction.amount | currency:'EUR' }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div *ngIf="loadingApprovationDocument">
+                    <mat-spinner></mat-spinner>
+                    Aggiornamento in corso
+                </div>
+                <div *ngIf="!loadingApprovationDocument">
+                    <h3>{{ fiscalTransaction.statusNote | AigC6eGenericStatus }}</h3>
+                    <button type="button" mat-raised-button color="primary" class="mr-16" (click)="approvationDocument('4')">NON Approvare</button>
+                    <button type="button" mat-raised-button color="accent" (click)="approvationDocument('3')">Approva</button>
+                </div>
+                <br>
+                <button type="button" mat-raised-button (click)="loadNextCustomerToValidate()">Prossimo documento da validare</button>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="60">
+            <div class="fuse-card auto-width p-16">
+                <div *ngIf="fiscalTransactionValidationImageUrl">
+                    <img [src]="fiscalTransactionValidationImageUrl" alt="fiscalTransactionValidationImageUrl" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
