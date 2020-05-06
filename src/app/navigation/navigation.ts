@@ -81,7 +81,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'comm-validator',
                 title    : 'Istruttoria',
                 type     : 'item',
-                icon     : 'shopping_basket',
+                icon     : 'check_circle_outline',
                 url      : '/commerce/validator',
                 permission: ['c6e.admin'],
             },
