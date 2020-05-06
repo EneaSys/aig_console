@@ -30,6 +30,9 @@ import { MatFormFieldModule, MatInputModule, MatDatepickerModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
+import { AigCommValidatorPageComponent } from './components/validator-page/validator-page.component';
+import { ValidateBuyerDialogComponent } from './components/validate-buyer-dialog/validate-buyer-dialog.component';
+import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 
 
 @NgModule({
@@ -76,10 +79,14 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
         AigPurchaseDetailPageComponent,
         AigFiscalTransactionDetailPageComponent,
         AigBuyerDetailPageComponent,
+        AigCommValidatorPageComponent,
+        ValidateBuyerDialogComponent,
+        ValidateBuyerPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigSellerNewUpdateDialogComponent,
+        ValidateBuyerDialogComponent,
     ],
     exports: [],
 })

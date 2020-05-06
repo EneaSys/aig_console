@@ -69,6 +69,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     reloadPage() {
         this.loadStatistics();
         this.loadPurchases(this.purchaseIndex);
+        this.loadBuyer(this.buyerIndex);
         this.loadFiscalTransaction(this.fiscalTransactionIndex);
     }
 
@@ -173,7 +174,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     // BUYER
     buyerSearchForm: FormGroup;
 
-    buyerDisplayedColumns: string[] = ['id', 'eopoo', 'status', 'bornDate', 'buttons'];
+    buyerDisplayedColumns: string[] = ['id', 'buyer', 'status', 'bornDate', 'buttons'];
     buyerDTOs: BuyerDTO[];
     buyerError: any;
 

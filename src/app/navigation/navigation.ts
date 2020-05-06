@@ -78,6 +78,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
+                id       : 'comm-validator',
+                title    : 'Istruttoria',
+                type     : 'item',
+                icon     : 'shopping_basket',
+                url      : '/commerce/validator',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'commerce-seller-manager',
                 title    : 'Gestore Vendite',
                 type     : 'item',
