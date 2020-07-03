@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'procurement-lot-list-table',
+    selector: 'ipp-lot-list-table',
     templateUrl: './procurement-lot-list-table.component.html',
     styleUrls: ['./procurement-lot-list-table.component.scss']
 })

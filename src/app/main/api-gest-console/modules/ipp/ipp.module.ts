@@ -21,6 +21,7 @@ import { AigIppClientModule } from 'aig-italian-public-procurement';
 import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
 import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
 import { FuseSharedModule } from '@fuse/shared.module';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
         MatToolbarModule,
         MatProgressSpinnerModule,
         MatAutocompleteModule,
+        MatPaginatorModule,
     ],
     providers: [
     ],

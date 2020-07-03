@@ -10,13 +10,12 @@
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <a class="nav-link" matRipple
-                                (click)="setFilterBuyer('statusNote', null)"
-                                [ngClass]="{'accent': buyerFilter.statusNote == null}">
+                            <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', null)"
+                                [ngClass]="{'accent': ippLotFilter.statusNote == null}">
                                 <span class="title">Tutto</span>
                             </a>
                             <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 1)"
-                                [ngClass]="{'accent': buyerFilter.statusNote == '1'}">
+                                [ngClass]="{'accent': ippLotFilter.statusNote == '1'}">
                                 <span class="title">Inseriti</span>
                             </a>
                         </div>
@@ -40,7 +39,10 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <procurement-lot-list-table [displayedColumns]="procurementLotDisplayedColumns" [dataSource]="procurementLotDTOs"></procurement-lot-list-table>
+            <ipp-lot-list-table [displayedColumns]="ippLotDisplayedColumns" [dataSource]="ippLotDTOs"></ipp-lot-list-table>
+
+            <mat-paginator #ippLotPaginator [length]="ippLotLength" [pageIndex]="ippLotIndex" [pageSize]="ippLotPageable.size"
+                [pageSizeOptions]="[30, 100, 200]" (page)="ippLotPaginatorEvent($event)"></mat-paginator>
         </div>
         <!-- / CONTENT -->
     </div>
