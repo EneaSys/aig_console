@@ -33,7 +33,11 @@ export class AigIppLotListPageComponent extends GenericComponent {
     }
 
     formatFilterAmountMax(event: any) {
-        this.ippLotFilters.amountMax = event.value;
+        if(event.value < 1000001) {
+            this.ippLotFilters.amountMax = event.value;
+        } else {
+            this.ippLotFilters.amountMax = null;
+        }
     }
 
     formatFilterSlider(value: number) {

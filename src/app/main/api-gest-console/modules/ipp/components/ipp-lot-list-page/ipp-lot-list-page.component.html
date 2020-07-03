@@ -47,7 +47,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                {{ ippLotFilters.amountMin | currency:'EUR' }}
+                                <span *ngIf="ippLotFilters.amountMin">{{ ippLotFilters.amountMin | currency:'EUR' }}</span>
+                                <span *ngIf="!ippLotFilters.amountMin">non definito</span>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center start">
                                 <div appearance="outline" fxFlex="100">
@@ -58,9 +59,10 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                {{ ippLotFilters.amountMax | currency:'EUR' }}
+                                <span *ngIf="ippLotFilters.amountMax">{{ ippLotFilters.amountMax | currency:'EUR' }}</span>
+                                <span *ngIf="!ippLotFilters.amountMax">illimitato</span>
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="end top">
+                            <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
                                 <button type="submit" mat-raised-button color="accent">Cerca</button>
                             </div>
                         </form>
