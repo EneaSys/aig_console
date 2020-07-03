@@ -3,6 +3,7 @@ import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italian-pu
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { PageEvent } from '@angular/material';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     templateUrl: './ipp-lot-list-page.component.html',
@@ -11,13 +12,58 @@ import { PageEvent } from '@angular/material';
 export class AigIppLotListPageComponent extends GenericComponent {
     constructor(
         private procurementLotResourceService: ProcurementLotResourceService,
+        private _formBuilder: FormBuilder,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
     
     loadComponent() {
-        this.cleanFilterIppLot();
+        this.loadForm();
+        this.cleanFiltersAndLoadIppLot();
     }
+
+
+
+
+
+
+
+    // Filters
+    ippLotSearchForm: FormGroup;
+
+
+    loadForm() {
+        this.ippLotSearchForm = this._formBuilder.group({
+            cig: [''],
+            description: [''],
+            date: [''],
+        });
+    }
+
+
+
+    ippLotSearch() {
+        if(this.ippLotSearchForm.value.cig) {
+            this.cleanFiltersIppLot();
+            this.setFilterIppLot('cig', this.ippLotSearchForm.value.cig);
+        } else {
+            if(this.ippLotSearchForm.value.description != "") {
+                this.ippLotFilters.description = this.ippLotSearchForm.value.description;
+            }
+            if(this.ippLotSearchForm.value.date != "") {
+                this.ippLotFilters.date = this.ippLotSearchForm.value.date;
+            }
+            this.reloadFilter();
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -35,27 +81,35 @@ export class AigIppLotListPageComponent extends GenericComponent {
     ippLotIndex: number;
     ippLotLength: number;
 
-    ippLotFilter: any;
+    ippLotFilters: any;
 
-    cleanFilterIppLot() {
-        this.ippLotIndex = 0;
-
-        this.ippLotFilter = {
-            seller: null,
-        }
-
+    cleanFiltersAndLoadIppLot() {
+        this.cleanFiltersIppLot();
         this.reloadFilter();
     }
 
+    private cleanFiltersIppLot() {
+        this.ippLotSearchForm.reset();
+        
+        this.ippLotIndex = 0;
+
+        this.ippLotFilters = {
+            cig: null,
+            description: null,
+            ippLotTypeCode: null,
+            ippLotCategoryCode: null,
+        }
+    }
+
     setFilterIppLot(filterKey: string, value: any) {
-        this.ippLotFilter[filterKey] = value;
+        this.ippLotFilters[filterKey] = value;
         this.reloadFilter();
     }
 
     private async reloadFilter() {
         this.loadIppLots(0);
         try {
-            this.ippLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET().toPromise();
+            this.ippLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.cig,null,null,null,null,null,null,null,null,null,this.ippLotFilters.description,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.ippLotCategoryCode,null,null,null,null,null,this.ippLotFilters.ippLotTypeCode,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
         } catch(e) { }
     }
 
@@ -70,7 +124,7 @@ export class AigIppLotListPageComponent extends GenericComponent {
         this.ippLotIndex = page
         this.ippLotPageable.page = page;
         try {
-            this.ippLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotPageable.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotPageable.size,null).toPromise();
+            this.ippLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.cig,null,null,null,null,null,null,null,null,null,this.ippLotFilters.description,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.ippLotCategoryCode,null,null,null,null,null,this.ippLotFilters.ippLotTypeCode,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotPageable.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotPageable.size,null).toPromise();
         } catch(e) {
             this.ippLotError = e;
         }

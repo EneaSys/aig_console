@@ -4,19 +4,68 @@
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
-                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="h5">Filtri</span>
+                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="center start">
+                    <button mat-raised-button (click)="cleanFiltersAndLoadIppLot()">Pulisci filtri</button>
+                </div>
+            </div>
+            <div>
+                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start start">
+                    <span class="h5">Cerca</span>
+                </div>
+                <div class="content py-16" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <form [formGroup]="ippLotSearchForm" (ngSubmit)="ippLotSearch()" class="p-8">
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Cig</mat-label>
+                                    <input matInput type="string" formControlName="cig">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Descrizione</mat-label>
+                                    <input matInput type="string" formControlName="description">
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Date</mat-label>
+                                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker">
+                                    </mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="end top">
+                                <button type="submit" mat-raised-button
+                                    color="accent">Cerca</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start start">
+                    <span class="h5">Tipo IPP Lot</span>
                 </div>
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', null)"
-                                [ngClass]="{'accent': ippLotFilter.statusNote == null}">
+                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', null)"
+                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == null}">
                                 <span class="title">Tutto</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 1)"
-                                [ngClass]="{'accent': ippLotFilter.statusNote == '1'}">
-                                <span class="title">Inseriti</span>
+                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', 'FORNITURE')"
+                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == 'FORNITURE'}">
+                                <span class="title">Forniture</span>
+                            </a>
+                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', 'LAVORI')"
+                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == 'LAVORI'}">
+                                <span class="title">Lavori</span>
+                            </a>
+                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', 'SERVIZI')"
+                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == 'SERVIZI'}">
+                                <span class="title">Servizi</span>
                             </a>
                         </div>
                     </div>
