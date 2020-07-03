@@ -1,0 +1,48 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h5">Filtri</span>
+                </div>
+                <div class="content py-16" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <a class="nav-link" matRipple
+                                (click)="setFilterBuyer('statusNote', null)"
+                                [ngClass]="{'accent': buyerFilter.statusNote == null}">
+                                <span class="title">Tutto</span>
+                            </a>
+                            <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 1)"
+                                [ngClass]="{'accent': buyerFilter.statusNote == '1'}">
+                                <span class="title">Inseriti</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                (click)="toggleSidebar('purchase-sidebar')">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h2>Elenco Lotti</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <procurement-lot-list-table [displayedColumns]="procurementLotDisplayedColumns" [dataSource]="procurementLotDTOs"></procurement-lot-list-table>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+</div>

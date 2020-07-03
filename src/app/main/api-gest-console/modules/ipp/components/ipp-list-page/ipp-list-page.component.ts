@@ -4,10 +4,10 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { ProcurementResourceService, ProcurementDTO } from 'aig-italian-public-procurement';
 
 @Component({
-    templateUrl: './procurement-list-page.component.html',
-    styleUrls: ['./procurement-list-page.component.scss']
+    templateUrl: './ipp-list-page.component.html',
+    styleUrls: ['./ipp-list-page.component.scss']
 })
-export class AigProcurementListPageComponent extends GenericComponent {
+export class AigIppListPageComponent extends GenericComponent {
     constructor(
         private procurementResourceService: ProcurementResourceService,
         aigGenericComponentService: AigGenericComponentService,

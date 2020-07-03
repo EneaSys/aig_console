@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 import { AigCommonIppModule } from 'aig-common/modules/ipp/common-ipp.module';
 
-import { AigProcurementListPageComponent } from './components/procurement-list-page/procurement-list-page.component';
 import { ippRoute } from './ipp.route';
 import { AigIppHeaderComponent } from './components/ipp-header/ipp-header.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +18,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FuseSidebarModule } from '@fuse/components';
 import { AigIppClientModule } from 'aig-italian-public-procurement';
+import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
+import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
+import { FuseSharedModule } from '@fuse/shared.module';
 
 @NgModule({
     imports: [
@@ -28,6 +30,7 @@ import { AigIppClientModule } from 'aig-italian-public-procurement';
         AigCommonIppModule,
         AigIppClientModule,
         
+        FuseSharedModule,
         FuseSidebarModule,
         
         MatIconModule,
@@ -46,7 +49,8 @@ import { AigIppClientModule } from 'aig-italian-public-procurement';
     declarations: [
         AigIppHeaderComponent,
 
-        AigProcurementListPageComponent,
+        AigIppListPageComponent,
+        AigIppLotListPageComponent,
     ],
     exports: [
 

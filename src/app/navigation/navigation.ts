@@ -31,14 +31,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo-type',
                 permission: ['g5c.eopoo-type.post'],
             },
-            {
-                id       : 'procurement-list-page',
-                title    : 'Procurement',
-                type     : 'item',
-                icon     : 'build',
-                url      : '/ipp/procurement',
-                permission: ['ipp.p9t.get'],
-            },
         ]
     },
     {
@@ -61,6 +53,29 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'child_care',
                 url      : '/solidarity/request',
                 permission: ['s8y.request.get'],
+            },
+        ]
+    },
+    {
+        id       : 'ipp',
+        title    : 'Public Procurement',
+        type     : 'group',
+        children : [
+            {
+                id       : 'procurement-list-page',
+                title    : 'Procurement',
+                type     : 'item',
+                icon     : 'build',
+                url      : '/ipp/procurement',
+                //permission: ['ipp.p9t.get'],
+            },
+            {
+                id       : 'ipp-lot-list-page',
+                title    : 'Procurement Lot',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/lot',
+                //permission: ['s8y.request.get'],
             },
         ]
     },

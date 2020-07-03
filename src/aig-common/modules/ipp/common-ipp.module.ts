@@ -16,6 +16,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AigProcurementLotListTableComponent } from './components/procurement-lot-list-table/procurement-lot-list-table.component';
 
 @NgModule({
     imports: [
@@ -44,9 +45,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ],
     declarations: [
         AigProcurementListTableComponent,
+        AigProcurementLotListTableComponent,
     ],
     exports: [
         AigProcurementListTableComponent,
+        AigProcurementLotListTableComponent,
     ],
 })
 export class AigCommonIppModule {}

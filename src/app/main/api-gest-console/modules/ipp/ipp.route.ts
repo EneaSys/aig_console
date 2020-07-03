@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
-import { AigProcurementListPageComponent } from './components/procurement-list-page/procurement-list-page.component';
+import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
+import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
 
 export const ippRoute: Routes = [
     {
@@ -22,12 +23,36 @@ export const ippRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigProcurementListPageComponent,
+                        component: AigIppListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
                         path: 'detail/:id',
-                        component: AigProcurementListPageComponent,
+                        component: AigIppListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                      //      eopoo: EopooResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'lot',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigIppLotListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigIppLotListPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                       //      eopoo: EopooResolver,
