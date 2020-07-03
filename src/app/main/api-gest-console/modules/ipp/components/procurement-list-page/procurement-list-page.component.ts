@@ -13,7 +13,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['code', 'description', 'amount', 'SA', 'sector', 'procedure', 'modality', 'buttons'];
+    displayedColumns: string[] = ['code', 'description', 'amount', 'SA', 'procedure', 'modality', 'buttons'];
     procurementDTOs: ProcurementDTO[];
 
     async loadComponent() {
