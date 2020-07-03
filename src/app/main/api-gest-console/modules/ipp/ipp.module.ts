@@ -21,7 +21,7 @@ import { AigIppClientModule } from 'aig-italian-public-procurement';
 import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
 import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { MatPaginatorModule, MatDatepickerModule } from '@angular/material';
+import { MatPaginatorModule, MatDatepickerModule, MatSliderModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -46,6 +46,7 @@ import { MatPaginatorModule, MatDatepickerModule } from '@angular/material';
         MatAutocompleteModule,
         MatPaginatorModule,
         MatDatepickerModule,
+        MatSliderModule,
     ],
     providers: [
     ],

@@ -30,15 +30,38 @@
                             <div fxLayout="row">
                                 <mat-form-field appearance="outline" fxFlex="100">
                                     <mat-label>Date</mat-label>
-                                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="date">
+                                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data"
+                                        formControlName="date">
                                     <mat-datepicker-toggle matSuffix [for]="picker">
                                     </mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                             </div>
+                            <div fxLayout="row" fxLayoutAlign="center start">
+                                <div appearance="outline" fxFlex="100">
+                                    Importo minimo<br>
+
+                                    <mat-slider class="filterSliderAmount" [displayWith]="formatFilterSlider"
+                                        (input)="formatFilterAmountMin($event)" tickInterval="1000" min="1"
+                                        max="1000000"></mat-slider>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="end start">
+                                {{ ippLotFilters.amountMin | currency:'EUR' }}
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="center start">
+                                <div appearance="outline" fxFlex="100">
+                                    Importo massimo<br>
+                                    <mat-slider class="filterSliderAmount" #matsliderAmountMax thumbLabel
+                                        [displayWith]="formatFilterSlider" (input)="formatFilterAmountMax($event)"
+                                        tickInterval="100" min="1000" max="1000001"></mat-slider>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="end start">
+                                {{ ippLotFilters.amountMax | currency:'EUR' }}
+                            </div>
                             <div fxLayout="row" fxLayoutAlign="end top">
-                                <button type="submit" mat-raised-button
-                                    color="accent">Cerca</button>
+                                <button type="submit" mat-raised-button color="accent">Cerca</button>
                             </div>
                         </form>
                     </div>
@@ -88,10 +111,12 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <ipp-lot-list-table [displayedColumns]="ippLotDisplayedColumns" [dataSource]="ippLotDTOs"></ipp-lot-list-table>
+            <ipp-lot-list-table [displayedColumns]="ippLotDisplayedColumns" [dataSource]="ippLotDTOs">
+            </ipp-lot-list-table>
 
-            <mat-paginator #ippLotPaginator [length]="ippLotLength" [pageIndex]="ippLotIndex" [pageSize]="ippLotPageable.size"
-                [pageSizeOptions]="[30, 100, 200]" (page)="ippLotPaginatorEvent($event)"></mat-paginator>
+            <mat-paginator #ippLotPaginator [length]="ippLotLength" [pageIndex]="ippLotIndex"
+                [pageSize]="ippLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
+                (page)="ippLotPaginatorEvent($event)"></mat-paginator>
         </div>
         <!-- / CONTENT -->
     </div>

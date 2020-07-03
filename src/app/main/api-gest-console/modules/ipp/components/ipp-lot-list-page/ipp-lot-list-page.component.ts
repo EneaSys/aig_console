@@ -16,11 +16,41 @@ export class AigIppLotListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    
+
     loadComponent() {
         this.loadForm();
         this.cleanFiltersAndLoadIppLot();
     }
+
+
+
+
+
+    
+
+    formatFilterAmountMin(event: any) {
+        this.ippLotFilters.amountMin = event.value;
+    }
+
+    formatFilterAmountMax(event: any) {
+        this.ippLotFilters.amountMax = event.value;
+    }
+
+    formatFilterSlider(value: number) {
+        if (value >= 1000 && value < 1000000) {
+            return Math.round(value / 1000) + 'k';
+        }
+        if (value == 1000001) {
+            return 'max';
+        }
+        if (value >= 1000000) {
+            return Math.round(value / 1000000) + 'm';
+        }    
+        return value;
+    }
+
+
+
 
 
 
@@ -43,30 +73,19 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
 
     ippLotSearch() {
-        if(this.ippLotSearchForm.value.cig) {
+        if (this.ippLotSearchForm.value.cig) {
             this.cleanFiltersIppLot();
             this.setFilterIppLot('cig', this.ippLotSearchForm.value.cig);
         } else {
-            if(this.ippLotSearchForm.value.description != "") {
+            if (this.ippLotSearchForm.value.description != "") {
                 this.ippLotFilters.description = this.ippLotSearchForm.value.description;
             }
-            if(this.ippLotSearchForm.value.date != "") {
+            if (this.ippLotSearchForm.value.date != "") {
                 this.ippLotFilters.date = this.ippLotSearchForm.value.date;
             }
             this.reloadFilter();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     // IPP LOT
@@ -90,12 +109,14 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
     private cleanFiltersIppLot() {
         this.ippLotSearchForm.reset();
-        
+
         this.ippLotIndex = 0;
 
         this.ippLotFilters = {
             cig: null,
             description: null,
+            amountMin: null,
+            amountMax: null,
             ippLotTypeCode: null,
             ippLotCategoryCode: null,
         }
@@ -109,8 +130,8 @@ export class AigIppLotListPageComponent extends GenericComponent {
     private async reloadFilter() {
         this.loadIppLots(0);
         try {
-            this.ippLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.cig,null,null,null,null,null,null,null,null,null,this.ippLotFilters.description,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.ippLotCategoryCode,null,null,null,null,null,this.ippLotFilters.ippLotTypeCode,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-        } catch(e) { }
+            this.ippLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(null, null, this.ippLotFilters.amountMin, null, null, this.ippLotFilters.amountMax, null, null, null, null, this.ippLotFilters.cig, null, null, null, null, null, null, null, null, null, this.ippLotFilters.description, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotFilters.ippLotCategoryCode, null, null, null, null, null, this.ippLotFilters.ippLotTypeCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+        } catch (e) { }
     }
 
     ippLotPaginatorEvent(event: PageEvent) {
@@ -124,8 +145,8 @@ export class AigIppLotListPageComponent extends GenericComponent {
         this.ippLotIndex = page
         this.ippLotPageable.page = page;
         try {
-            this.ippLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.cig,null,null,null,null,null,null,null,null,null,this.ippLotFilters.description,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotFilters.ippLotCategoryCode,null,null,null,null,null,this.ippLotFilters.ippLotTypeCode,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotPageable.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.ippLotPageable.size,null).toPromise();
-        } catch(e) {
+            this.ippLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(null, null, this.ippLotFilters.amountMin, null, null, this.ippLotFilters.amountMax, null, null, null, null, this.ippLotFilters.cig, null, null, null, null, null, null, null, null, null, this.ippLotFilters.description, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotFilters.ippLotCategoryCode, null, null, null, null, null, this.ippLotFilters.ippLotTypeCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotPageable.page, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotPageable.size, null).toPromise();
+        } catch (e) {
             this.ippLotError = e;
         }
     }
