@@ -78,8 +78,10 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
     ippLotSearch() {
         if (this.ippLotSearchForm.value.cig) {
+            let cig = this.ippLotSearchForm.value.cig;
             this.cleanFiltersIppLot();
-            this.setFilterIppLot('cig', this.ippLotSearchForm.value.cig);
+            this.setFilterIppLot('cig', cig);
+            this.cleanFiltersIppLot();
         } else {
             if (this.ippLotSearchForm.value.description != "") {
                 this.ippLotFilters.description = this.ippLotSearchForm.value.description;
