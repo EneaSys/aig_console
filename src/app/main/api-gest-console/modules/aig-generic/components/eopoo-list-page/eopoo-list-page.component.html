@@ -1,7 +1,7 @@
 <div id="aig-eopoo-list-page" class="page-layout simple left-sidebar inner-sidebar">
 
     <aig-generic-header [sectionName]="'Anagrafiche'" [search]="false"></aig-generic-header>
-    
+
     <div class="content">
         <!-- SIDEBAR -->
         <fuse-sidebar class="sidebar" name="aig-user-list-filters-sidebar" position="left" lockedOpen="gt-sm">
@@ -13,13 +13,23 @@
                             <span class="h5">Filters</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>
-                            <div class="nav material2">
-                                <div class="nav-item" aria-label="inbox">
-                                    <a class="nav-link accent" matRipple >
-                                        <span class="title">Tutto</span>
-                                    </a>
+                            <form [formGroup]="searchForm" (ngSubmit)="customSearch()" class="p-8">
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
                                 </div>
-                            </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>TaxId</mat-label>
+                                        <input matInput formControlName="taxId">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -29,9 +39,13 @@
         <!-- / SIDEBAR -->
 
         <!-- CENTER -->
-        <div class="center p-24 pb-56" fusePerfectScrollbar>
+        <div class="center p-24 pb-56 mb-24" fusePerfectScrollbar>
             <div class="content">
-                <aig-eopoo-list-table [displayedColumns]="displayedColumns" [dataSource]="eopooDTOs" [error]="error"></aig-eopoo-list-table>
+                <aig-eopoo-list-table [displayedColumns]="displayedColumns" [dataSource]="eopooDTOs" [error]="error">
+                </aig-eopoo-list-table>
+
+                <mat-paginator #paginator [length]="length" [pageIndex]="index" [pageSize]="30"
+                    [pageSizeOptions]="[30, 100, 200]" (page)="pageEvent($event)"></mat-paginator>
             </div>
         </div>
         <!-- /CENTER -->

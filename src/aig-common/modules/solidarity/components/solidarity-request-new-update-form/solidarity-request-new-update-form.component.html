@@ -1,0 +1,121 @@
+<div *ngIf="step.form" fxLayout="column">
+    <form [formGroup]="solidarityRequestNewUpdateForm" (ngSubmit)="submit()">
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="50" class="pr-4">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="firstname" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>Il nome è obbligatorio!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                <mat-label>Cognome</mat-label>
+                <input matInput formControlName="lastname" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>Il cognome è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100" class="pr-4">
+                <mat-label>Codice Fiscale</mat-label>
+                <input matInput formControlName="taxId" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>Il Codice Fiscale è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <hr>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="70" class="pr-4">
+                <mat-label>Via</mat-label>
+                <input matInput formControlName="address" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>La via è obbligatoria!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+                <mat-label>Civico</mat-label>
+                <input matInput formControlName="address2" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>Il civico è obbligatorio!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="30" class="pr-4">
+                <mat-label>Cap</mat-label>
+                <input matInput formControlName="cap" required>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>Il cap è obbligatorio!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="70" class="pl-4">
+                <mat-label>Comune di residenza</mat-label>
+                <input type="text" matInput formControlName="city" required [matAutocomplete]="cityAutocomplete">
+                <mat-autocomplete #cityAutocomplete="matAutocomplete"
+                    [displayWith]="aigStandardAutocompleteFunctionService.cityDisplayFn">
+                    <mat-option *ngFor="let city of filteredCitys | async" [value]="city">{{ city.name }}</mat-option>
+                </mat-autocomplete>
+                <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
+                <mat-error>La città di residenza è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <hr>
+
+        <h4>Com’è composto il tuo nucleo familiare?</h4>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="25" class="pr-4">
+                <mat-label>Anziani +65 anni</mat-label>
+                <input matInput formControlName="senior">
+                <mat-error>La via è obbligatoria!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="25" class="pr-4 pl-4">
+                <mat-label>Adulti tra 15 e 65 anni</mat-label>
+                <input matInput formControlName="adults">
+                <mat-error>La via è obbligatoria!</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="25" class="pr-4 pl-4">
+                <mat-label>Bambini tra 3 e 15 anni</mat-label>
+                <input matInput formControlName="childrens">
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
+                <mat-label>Infanti -3 anni</mat-label>
+                <input matInput formControlName="infants">
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100" class="pr-4 pl-4">
+                <mat-label>Se ci sono disabili inserire età</mat-label>
+                <input matInput formControlName="disability">
+            </mat-form-field>
+        </div>
+
+        <hr>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100" class="pr-4 pl-4">
+                <mat-label>Note</mat-label>
+                <input matInput formControlName="note">
+            </mat-form-field>
+        </div>
+
+        <hr>
+
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button type="submit" mat-raised-button color="accent">Crea</button>
+        </div>
+
+    </form>
+</div>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ solidarityRequestNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!solidarityRequestNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newSolidarityRequest()">Create New</button>
+</div>

@@ -37,10 +37,9 @@
         <div fxLayout="row">
             <mat-form-field appearance="outline" fxFlex="40" class="pr-4">
                 <mat-label>Data di nascita</mat-label>
-                <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="bornDate"
-                    required>
+                <input matInput [matDatepicker]="picker" placeholder="Seleziona la data" formControlName="bornDate" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker #picker startView="year"></mat-datepicker>
                 <mat-error>La data di nascita è obbligatoria!</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" fxFlex="60" class="pl-4">

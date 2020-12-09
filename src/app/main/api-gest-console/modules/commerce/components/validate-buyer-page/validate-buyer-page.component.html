@@ -1,0 +1,39 @@
+<div class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Venditore</div>
+                <div class="h2 m-16">{{ buyer.seller.name }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Cliente</div>
+                <div class="h1 m-16">{{ buyer.eopoo | eopooName }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ buyer.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Codice Anagrafica: {{ buyer.eopooCode }}</div>
+                <div class="h4 m-8 ml-16 mb-0">Data nascita: {{ buyer.eopoo.person.bornDate | date:'dd/MM/yyyy' }}</div>
+                <div class="h4 m-8 ml-16">Stato: {{ buyer.statusNote | AigC6eGenericStatus }}</div>
+            </div>
+            <div class="fuse-card auto-width p-16 mt-16">
+                <div *ngIf="loadingApprovationDocument">
+                    <mat-spinner></mat-spinner>
+                    Aggiornamento in corso
+                </div>
+                <div *ngIf="!loadingApprovationDocument">
+                    <h3>{{ buyer.statusNote | AigC6eGenericStatus }}</h3>
+                    <button type="button" mat-raised-button color="primary" class="mr-16" (click)="approvationDocument('4')">NON Approvare</button>
+                    <button type="button" mat-raised-button color="accent" (click)="approvationDocument('3')">Approva</button>
+                </div>
+                <br>
+                <button type="button" mat-raised-button (click)="loadNextCustomerToValidate()">Prossimo documento da validare</button>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="60">
+            <div class="fuse-card auto-width p-16">
+                <div *ngIf="buyerValidationImageUrl">
+                    <img [src]="buyerValidationImageUrl" alt="buyerValidationImageUrl" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

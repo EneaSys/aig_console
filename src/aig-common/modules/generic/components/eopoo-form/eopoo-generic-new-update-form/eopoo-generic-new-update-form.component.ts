@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EopooResourceService, EopooDTO } from 'aig-generic';
+import { EopooResourceService, EopooDTO, EopooTypeDTO } from 'aig-generic';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { EopooTypeDTO } from 'api-gest';
 
 @Component({
     selector: 'aig-eopoo-generic-new-update-form',
@@ -37,7 +36,7 @@ export class AigEopooGenericNewUpdateFormComponent implements OnInit {
         // PREPARE FORM
         this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
-            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
             eopooTypeId: [''],
 
             name: ['', Validators.required],

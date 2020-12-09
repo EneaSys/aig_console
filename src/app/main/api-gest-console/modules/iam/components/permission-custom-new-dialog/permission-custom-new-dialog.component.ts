@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomRoleDTO } from 'api-gest';
 
 @Component({
-    selector: 'aig-permission-custom-new-dialog',
     templateUrl: './permission-custom-new-dialog.component.html',
     styleUrls: ['./permission-custom-new-dialog.component.scss']
 })

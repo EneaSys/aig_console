@@ -1,0 +1,286 @@
+<div id="aig-validator-page" class="page-layout simple right-sidebar" fxLayout="row">
+    <div class="center" fusePerfectScrollbar>
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Istruttoria vendite</span>
+                <span class="mat-display-1 my-0 my-sm-24">Istruttore</span>
+            </div>
+        </div>
+        <div class="content">
+
+            <mat-tab-group dynamicHeight>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <mat-tab label="Documenti">
+                    <div class="page-layout simple left-sidebar">
+                        <!-- SIDEBAR -->
+                        <fuse-sidebar class="sidebar" name="buyer-sidebar" position="left" lockedOpen="gt-md">
+                            <!-- SIDEBAR CONTENT -->
+                            <div class="content">
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Filtri</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <div class="nav-item" aria-label="inbox">
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterBuyer('statusNote', null)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == null}">
+                                                    <span class="title">Tutto</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 1)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '1'}">
+                                                    <span class="title">Inseriti</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 2)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '2'}">
+                                                    <span class="title">In attesa di validazione</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 3)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '3'}">
+                                                    <span class="title">Validato</span>
+                                                </a>
+                                                <a class="nav-link" matRipple (click)="setFilterBuyer('statusNote', 4)"
+                                                    [ngClass]="{'accent': buyerFilter.statusNote == '4'}">
+                                                    <span class="title">Da rivedere</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / SIDEBAR CONTENT -->
+                        </fuse-sidebar>
+                        <!-- / SIDEBAR -->
+                        <!-- CENTER -->
+                        <div class="center">
+                            <!-- HEADER -->
+                            <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                                    (click)="toggleSidebar('buyer-sidebar')">
+                                    <mat-icon>menu</mat-icon>
+                                </button>
+                                <h2>Elenco Documenti</h2>
+                            </div>
+                            <!-- / HEADER -->
+                            <!-- CONTENT -->
+                            <div class="content mb-48">
+                                <aig-buyer-list-table [dataSource]="buyerDTOs"
+                                    [displayedColumns]="buyerDisplayedColumns" [error]="buyerError">
+                                </aig-buyer-list-table>
+
+                                <mat-paginator #buyerPaginator [length]="buyerLength" [pageIndex]="buyerIndex"
+                                    [pageSize]="30" [pageSizeOptions]="[30, 100, 200]"
+                                    (page)="buyerPaginatorEvent($event)"></mat-paginator>
+                            </div>
+                            <!-- / CONTENT -->
+                        </div>
+                        <!-- / CENTER -->
+                    </div>
+                </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <mat-tab label="Scontrini">
+                    
+                    <div class="page-layout simple left-sidebar">
+                        <!-- SIDEBAR -->
+                        <fuse-sidebar class="sidebar" name="fiscal-transaction-sidebar" position="left"
+                            lockedOpen="gt-md">
+                            <!-- SIDEBAR CONTENT -->
+                            <div class="content">
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Filtri</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <div class="nav-item" aria-label="inbox">
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', null)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == null}">
+                                                    <span class="title">Tutto</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 1)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '1'}">
+                                                    <span class="title">Inseriti</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 2)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '2'}">
+                                                    <span class="title">In attesa di validazione</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 3)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '3'}">
+                                                    <span class="title">Validato</span>
+                                                </a>
+                                                <a class="nav-link" matRipple
+                                                    (click)="setFilterFiscalTransaction('statusNote', 4)"
+                                                    [ngClass]="{'accent': fiscalTransactionFilter.statusNote == '4'}">
+                                                    <span class="title">Da rivedere</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="h5">Cerca</span>
+                                    </div>
+                                    <div class="content py-16" fusePerfectScrollbar>
+                                        <div class="nav material2">
+                                            <form [formGroup]="fiscalTransactionSearchForm"
+                                                (ngSubmit)="fiscalTransactionSearch()" class="p-8">
+                                                <div fxLayout="row">
+                                                    <mat-form-field appearance="outline" fxFlex="100">
+                                                        <mat-label>Id</mat-label>
+                                                        <input matInput type="number" formControlName="id">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxLayout="row">
+                                                    <mat-form-field appearance="outline" fxFlex="100">
+                                                        <mat-label>Date</mat-label>
+                                                        <input matInput [matDatepicker]="picker"
+                                                            placeholder="Seleziona la data" formControlName="date">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                                        </mat-datepicker-toggle>
+                                                        <mat-datepicker #picker></mat-datepicker>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxLayout="row">
+                                                    <mat-form-field appearance="outline" fxFlex="100">
+                                                        <mat-label>Numero</mat-label>
+                                                        <input matInput type="number" formControlName="code">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div fxLayout="row" fxLayoutAlign="end top">
+                                                    <button type="submit" mat-raised-button
+                                                        color="accent">Cerca</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- / SIDEBAR CONTENT -->
+                        </fuse-sidebar>
+                        <!-- / SIDEBAR -->
+                        <!-- CENTER -->
+                        <div class="center">
+                            <!-- HEADER -->
+                            <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                                    (click)="toggleSidebar('fiscal-transaction-sidebar')">
+                                    <mat-icon>menu</mat-icon>
+                                </button>
+                                <h2>Elenco Scontrini</h2>
+                            </div>
+                            <!-- / HEADER -->
+                            <!-- CONTENT -->
+                            <div class="content mb-48">
+                                <aig-fiscal-transaction-list-table [dataSource]="fiscalTransactionDTOs"
+                                    [displayedColumns]="fiscalTransactionDisplayedColumns"
+                                    [error]="fiscalTransactionError">
+                                </aig-fiscal-transaction-list-table>
+                                <mat-paginator #fiscalTransactionPaginator [length]="fiscalTransactionLength"
+                                    [pageIndex]="fiscalTransactionIndex" [pageSize]="30"
+                                    [pageSizeOptions]="[30, 100, 200]" (page)="fiscalTransactionPaginatorEvent($event)">
+                                </mat-paginator>
+                            </div>
+                            <!-- / CONTENT -->
+                        </div>
+                        <!-- / CENTER -->
+                    </div>
+
+                </mat-tab>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <mat-tab label="Buoni">
+                    istruisci buoni
+                </mat-tab>
+
+
+
+                <mat-tab label="Validazione">
+                    valida spesa
+                </mat-tab>
+
+                
+
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

@@ -37,10 +37,40 @@ import { AigGroupAssociateDialogComponent } from './components/group-associate-d
 import { AigCustomRolePageComponent } from './components/custom-role-page/custom-role-page.component';
 import { AigRoleCustomNewDialogComponent } from './components/custom-role-new-dialog/custom-role-new-dialog.component';
 import { AigRoleCustomDetailComponent } from './components/custom-role-detail-page/custom-role-detail-page.component';
+import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
+import { AiguserEopooAssociateDialogComponent } from './components/user-eopoo-associate-dialog/user-eopoo-associate-dialog.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
 @NgModule({
+    imports: [
+        AigCommonModule,
+        AigCommonIamModule,
+        AigCommonManagementModule,
+
+        CommonGenericModule,
+
+        FuseSharedModule,
+        FuseSidebarModule,
+        FuseWidgetModule,
+
+        ApiGestModule,
+        HttpClientModule,
+
+        MatIconModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatTableModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+        MatAutocompleteModule,
+        MatPaginatorModule,
+
+    ],
     declarations: [
         //EXTERNAL
         AigUserGroupChipsComponent,
@@ -62,35 +92,8 @@ import { AigRoleCustomDetailComponent } from './components/custom-role-detail-pa
         AigGroupNewDialogComponent,
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
+        AiguserEopooAssociateDialogComponent,
 
-    ],
-    imports: [
-        AigCommonModule,
-        AigCommonIamModule,
-        AigCommonManagementModule,
-
-        FuseSharedModule,
-        FuseSidebarModule,
-        FuseWidgetModule,
-
-        ApiGestModule,
-        HttpClientModule,
-
-        MatIconModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatTableModule,
-        MatChipsModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        MatProgressSpinnerModule,
-        MatAutocompleteModule,
-
-    ],
-    exports: [
-        AigUserGroupChipsComponent,
-        AigUserGroupChipsChildComponent,
     ],
     entryComponents: [
         AigUserNewDialogComponent,
@@ -99,7 +102,12 @@ import { AigRoleCustomDetailComponent } from './components/custom-role-detail-pa
         AigGroupNewDialogComponent,
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
+        AiguserEopooAssociateDialogComponent,
     ],
     providers: [ ],
+    exports: [
+        AigUserGroupChipsComponent,
+        AigUserGroupChipsChildComponent,
+    ],
 })
 export class AigIamModule {}

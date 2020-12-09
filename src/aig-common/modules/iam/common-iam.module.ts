@@ -32,11 +32,15 @@ import { AigAutocompleteFilterService } from './services/form/autocomplete-filte
 import { AigAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 import { AigValidatorService } from './services/form/validator.service';
 import { RouterModule } from '@angular/router';
+import { AigUserEopooAssociateFormComponent } from './components/user-eopoo-associate-form/user-eopoo-associate-form.component';
+import { CommonGenericModule } from '../generic/common-generic.module';
 
 @NgModule({
     imports: [
         AigCommonModule,
         CommonModule,
+
+        CommonGenericModule,
 
         BrowserModule,
         FormsModule,
@@ -75,6 +79,7 @@ import { RouterModule } from '@angular/router';
         
         AigGroupAssociateComponent,
         AigRoleAssociateComponent,
+        AigUserEopooAssociateFormComponent,
 
     ],
     exports: [
@@ -96,6 +101,7 @@ import { RouterModule } from '@angular/router';
         
         AigGroupAssociateComponent,
         AigRoleAssociateComponent,
+        AigUserEopooAssociateFormComponent,
 
 
         

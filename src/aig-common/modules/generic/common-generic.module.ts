@@ -27,12 +27,16 @@ import { EopooResolver } from './resolver/eopoo.resolver';
 import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { AigEopooAddressListTableComponent } from './components/address-list-table/address-list-table.component';
 import { AigAddressNewUpdateFormComponent } from './components/address-new-update-form/address-new-update-form.component';
+import { AigSolidaretyApiModule } from 'aig-solidarety'; 
+import { AigGenericAutocompleteFilterService } from './services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 
 @NgModule({
     imports: [
         AigCommonModule,
         AigCommonStandardModule,
         CommonModule,
+        AigSolidaretyApiModule,
 
         BrowserModule,
         FormsModule,
@@ -55,10 +59,6 @@ import { AigAddressNewUpdateFormComponent } from './components/address-new-updat
 
 
     ],
-    providers: [
-        EopooResolver,
-        EopooTypeResolver,
-    ],
     declarations: [
         EopooNamePipe,
         
@@ -72,6 +72,12 @@ import { AigAddressNewUpdateFormComponent } from './components/address-new-updat
         
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
+    ],
+    providers: [
+        EopooResolver,
+        EopooTypeResolver,
+        AigGenericAutocompleteFilterService,
+        AigGenericAutocompleteFunctionService,
     ],
     exports: [
         EopooNamePipe,

@@ -1,0 +1,441 @@
+<div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <div class="center" fusePerfectScrollbar>
+
+        <div class="content">
+
+            <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100">
+
+                <!-- WIDGET 1 -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApproved }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsA.length + foodProductRequestDTOsB.length + foodProductRequestDTOsC.length }}
+                                / {{ totalUnique }} di {{ foodProductRequestDTOs.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET 1 -->
+
+                <!-- WIDGET A -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Tipo A
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountA }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsA.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET A -->
+
+                <!-- WIDGET B -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Tipo B
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountB }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsB.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET B -->
+
+                <!-- WIDGET C -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Tipo C
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountC }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsC.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET C -->
+
+                <!-- WIDGET 1 -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate dopo Integrazione
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedAfter }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsAafter.length + foodProductRequestDTOsBafter.length + foodProductRequestDTOsCafter.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET 1 -->
+
+                <!-- WIDGET A -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Tipo A
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountAafter }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsAafter.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET A -->
+
+                <!-- WIDGET B -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Tipo B
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountBafter }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsBafter.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET B -->
+
+                <!-- WIDGET C -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Tipo C
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountCafter }} €
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ foodProductRequestDTOsCafter.length }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET C -->
+
+
+                <!-- WIDGET 2 -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Non Ammissibili
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="red-fg font-size-72 line-height-72">
+                                {{ totalInamissible }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">domande</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Importo domande inammisibili:
+                            </span>
+                            <span class="h4 ml-8">
+                                € {{ totalAmountInamissible }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET 2 -->
+
+                <!-- WIDGET 3 -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Non approvate
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="red-fg font-size-72 line-height-72">
+                                {{ totalNotAproved }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">domande</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Importo domande non approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                € {{ totalAmountNotAproved }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET 3 -->
+
+
+                <!-- WIDGET 4 -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
+
+                    <!-- Front -->
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Rifiutate
+                        </div>
+
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalReleased }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">domande</div>
+                        </div>
+
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Importo domande rifiutate:
+                            </span>
+                            <span class="h4 ml-8">
+                                € {{ totalAmountReleased }}
+                            </span>
+                        </div>
+                    </div>
+                    <!-- / Front -->
+
+                </fuse-widget>
+                <!-- / WIDGET 4 -->
+
+
+
+                <pre>{{ omonimi | json }}</pre>
+
+                <!-- WIDGET 5 -->
+                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                    <div class="fuse-widget-front">
+                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex class="py-16 h3">Graduatoria A</div>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start">
+                            <aig-solidarity-request-list-table style="width: 100%;"
+                                [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsA">
+                            </aig-solidarity-request-list-table>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / WIDGET 5 -->
+
+                <!-- WIDGET 6 -->
+                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                    <div class="fuse-widget-front">
+                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex class="py-16 h3">Graduatoria B</div>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start">
+                            <aig-solidarity-request-list-table style="width: 100%;"
+                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsB">
+                            </aig-solidarity-request-list-table>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / WIDGET 6 -->
+
+                <!-- WIDGET 7 -->
+                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                    <div class="fuse-widget-front">
+                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex class="py-16 h3">Graduatoria C</div>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start">
+                            <aig-solidarity-request-list-table style="width: 100%;"
+                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsC">
+                            </aig-solidarity-request-list-table>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / WIDGET 7 -->
+
+                <!-- WIDGET 5 -->
+                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                    <div class="fuse-widget-front">
+                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex class="py-16 h3">Graduatoria A</div>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start">
+                            <aig-solidarity-request-list-table style="width: 100%;"
+                                [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsAafter">
+                            </aig-solidarity-request-list-table>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / WIDGET 5 -->
+
+                <!-- WIDGET 6 -->
+                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                    <div class="fuse-widget-front">
+                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex class="py-16 h3">Graduatoria B</div>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start">
+                            <aig-solidarity-request-list-table style="width: 100%;"
+                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsBafter">
+                            </aig-solidarity-request-list-table>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / WIDGET 6 -->
+
+                <!-- WIDGET 7 -->
+                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                    <div class="fuse-widget-front">
+                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex class="py-16 h3">Graduatoria C</div>
+                        </div>
+                        <div fxLayout="row wrap" fxLayoutAlign="start start">
+                            <aig-solidarity-request-list-table style="width: 100%;"
+                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsCafter">
+                            </aig-solidarity-request-list-table>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <!-- / WIDGET 7 -->
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
