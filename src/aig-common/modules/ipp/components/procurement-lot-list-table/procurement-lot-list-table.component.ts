@@ -16,4 +16,8 @@ export class AigProcurementLotListTableComponent implements OnInit {
     dataSource: any[];
 
     ngOnInit(): void { }
+
+    test() {
+        alert("ciao");
+    }
 }

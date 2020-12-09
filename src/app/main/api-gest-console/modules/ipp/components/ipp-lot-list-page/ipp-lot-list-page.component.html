@@ -1,6 +1,6 @@
 <div class="page-layout simple left-sidebar">
     <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
+    <fuse-sidebar class="sidebar" name="ipp-lot-filter-sidebar" position="left" lockedOpen="gt-md">
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
@@ -105,7 +105,7 @@
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                (click)="toggleSidebar('purchase-sidebar')">
+                (click)="toggleSidebar('ipp-lot-filter-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
             <h2>Elenco Lotti</h2>
@@ -113,6 +113,18 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
+            <agm-map [zoom]="5" [latitude]="lat" [longitude]="lng" (mapReady)="onMapReady($event)"></agm-map>
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let point of pointList">
+                  {{ point.lat.toPrecision(5) }},
+                  {{ point.lng.toPrecision(5) }}</mat-list-item
+                >
+              </mat-list>
+              <mat-card *ngIf="selectedArea > 0">
+                  <button (click)="deleteSelectedShape()">cancella</button>
+                Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup></mat-card
+              >
+
             <ipp-lot-list-table [displayedColumns]="ippLotDisplayedColumns" [dataSource]="ippLotDTOs">
             </ipp-lot-list-table>
 

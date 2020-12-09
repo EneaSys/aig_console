@@ -11,8 +11,13 @@
     <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="cig">
-            <mat-header-cell *matHeaderCellDef> CIG </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef (click)="test()"> CIG </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.cig }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sa">
+            <mat-header-cell *matHeaderCellDef> Stazione Appaltante </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurement.contractorEopooCode }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="description">
@@ -33,6 +38,11 @@
         <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.baseAmount | currency:'EUR' }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="locality">
+            <mat-header-cell *matHeaderCellDef> Località </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.istatCode }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="offerExpiryDate">
