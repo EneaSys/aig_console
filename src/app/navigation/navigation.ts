@@ -67,7 +67,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'build',
                 url      : '/ipp/procurement',
-                //permission: ['ipp.p9t.get'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'ipp-lot-list-page',
@@ -75,7 +75,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/lot',
-                //permission: ['s8y.request.get'],
+                permission: ['s8y.request.get'],
             },
         ]
     },
