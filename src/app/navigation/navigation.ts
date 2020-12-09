@@ -75,7 +75,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/lot',
-                permission: ['s8y.request.get'],
+                permission: ['ipp.p9t.get'],
             },
         ]
     },
