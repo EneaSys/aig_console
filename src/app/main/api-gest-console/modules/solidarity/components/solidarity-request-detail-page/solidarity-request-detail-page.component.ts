@@ -25,6 +25,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     foodProductRequestDTO: FoodProductRequestDTO;
     instructor: string[];
     user: any;
+    showRejectFrom: boolean;
 
     rejectForm: FormGroup;
 
