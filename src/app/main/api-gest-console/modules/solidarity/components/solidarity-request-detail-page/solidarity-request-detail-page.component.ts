@@ -37,7 +37,9 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = this.route.snapshot.data.helpRequest;
         this.user = await this.authService.getUser();
 
-        this.instructor = this.foodProductRequestDTO.familyUnit.note.split('|');
+        if(this.foodProductRequestDTO.familyUnit.note) {
+            this.instructor = this.foodProductRequestDTO.familyUnit.note.split('|');
+        }
     }
 
 
@@ -47,18 +49,13 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO.familyUnit = await this.familyUnitResourceService.updateFamilyUnitUsingPUT(foodProductRequestDTO.familyUnit).toPromise();
 
         // setta lo stato della domanda a 1
-        foodProductRequestDTO.note = "1";
+        foodProductRequestDTO.note = "2";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
     async aprove(foodProductRequestDTO: FoodProductRequestDTO) {
         // setta lo stato della domanda a 2
         foodProductRequestDTO.note = "3";
-        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
-    }
-    async aprovea(foodProductRequestDTO: FoodProductRequestDTO) {
-        // setta lo stato della domanda a 2
-        foodProductRequestDTO.note = "2";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 

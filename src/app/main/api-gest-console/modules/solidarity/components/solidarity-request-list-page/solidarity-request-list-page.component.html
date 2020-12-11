@@ -56,51 +56,35 @@
                                 <div class="nav-item" aria-label="inbox">
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == null}"
                                         (click)="searchByState(null)">
-                                        <span class="title">Tutto</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '98'}"
-                                        (click)="searchByState('98')">
-                                        <span class="title">Da rivedere</span>
+                                        <span class="title">Tutte</span>
                                     </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '1'}"
                                         (click)="searchByState('1')">
-                                        <span class="title">In valutazione</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '99'}"
-                                        (click)="searchByState('99')">
-                                        <span class="title">Non approvata</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '95'}"
-                                        (click)="searchByState('95')">
-                                        <span class="title">Rifiutata</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '96'}"
-                                        (click)="searchByState('96')">
-                                        <span class="title">Non ammissibili</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '97'}"
-                                        (click)="searchByState('97')">
-                                        <span class="title">Duplicata</span>
+                                        <span class="title">Pervenuta</span>
                                     </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '2'}"
                                         (click)="searchByState('2')">
-                                        <span class="title">Approvata</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '93'}"
-                                        (click)="searchByState('93')">
-                                        <span class="title">Ritirata dopo integrazione</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '94'}"
-                                        (click)="searchByState('94')">
-                                        <span class="title">Non ammissibili dopo integrazione</span>
-                                    </a>
-                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '87'}"
-                                        (click)="searchByState('87')">
-                                        <span class="title">Duplicata dopo integrazione</span>
+                                        <span class="title">In valutazione</span>
                                     </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '3'}"
                                         (click)="searchByState('3')">
-                                        <span class="title">Approvata dopo integrazione</span>
+                                        <span class="title">Approvata</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '4'}"
+                                        (click)="searchByState('4')">
+                                        <span class="title">Non ammissibile</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '5'}"
+                                        (click)="searchByState('5')">
+                                        <span class="title">Duplicata</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '6'}"
+                                        (click)="searchByState('6')">
+                                        <span class="title">Da integrare</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '7'}"
+                                        (click)="searchByState('7')">
+                                        <span class="title">Soccorso istruttorio</span>
                                     </a>
                                 </div>
                             </div>
