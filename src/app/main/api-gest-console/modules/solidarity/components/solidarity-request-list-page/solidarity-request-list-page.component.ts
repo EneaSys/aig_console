@@ -81,11 +81,14 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
         this.index = page
         this.filters.page = page;
 
+        //e.familyUnit.postalCode
+
         let categoryFilter = {
             A:null,
             B:null,
             C:null
         }
+/*
         if(this.filters.category == "A") {
             categoryFilter.A = true;
         }
@@ -95,7 +98,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
         if(this.filters.category == "C") {
             categoryFilter.C = true;
         }
-
+*/
         this.length = await this.foodProductRequestResourceService.countFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.A,null,null,null,categoryFilter.B,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.C,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
         this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,this.filters.page,null,null,null,null,null,null,null,null,null,categoryFilter.A,null,null,null,categoryFilter.B,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.C,null,null,null,null,null,null,null,null,null,null,null,this.filters.size,null,null,null,null).toPromise();
         

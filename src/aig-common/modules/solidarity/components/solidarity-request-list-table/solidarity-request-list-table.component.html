@@ -43,27 +43,20 @@
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span style="text-align: center; width: 100%;" *ngIf="e.requestStatusA">A</span>
-                <span style="text-align: center; width: 100%;" *ngIf="e.requestStatusB">B</span>
-                <span style="text-align: center; width: 100%;" *ngIf="e.requestStatusC">C</span>
+                <span style="text-align: center; width: 100%;">{{ e.familyUnit.postalCode }}</span>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span *ngIf="e.note == null" style="color: gray;">NON ANCORA ISTRUITA</span>
-                <span *ngIf="e.note == '98'" style="color: blueviolet;">Da rivalutare</span>
-                <span *ngIf="e.note == '1'" style="color: blue;">In valutazione</span>
-                <span *ngIf="e.note == '2'" style="color: green;">Approvata</span>
-                <span *ngIf="e.note == '3'" style="color: green;">Approvata dopo integrazione</span>
-                <span *ngIf="e.note == '95'" style="color: gray;">Rifiutata</span>
-                <span *ngIf="e.note == '96'" style="color: red;">Non ammissibili</span>
-                <span *ngIf="e.note == '93'" style="color: gray;">Rifiutata dopo integrazione</span>
-                <span *ngIf="e.note == '94'" style="color: red;">Non ammissibili dopo integrazione</span>
-                <span *ngIf="e.note == '97'" style="color: brown;">Duplicata</span>
-                <span *ngIf="e.note == '87'" style="color: brown;">Duplicata dopo integrazione</span>
-                <span *ngIf="e.note == '99'" style="color: orange;">Non Approvata</span>
+                <span *ngIf="e.note == '1'" style="color: gray;">Pervenuta</span>
+                <span *ngIf="e.note == '2'" style="color: blue;">In valutazione</span>
+                <span *ngIf="e.note == '3'" style="color: green;">Approvata</span>
+                <span *ngIf="e.note == '4'" style="color: red;">Non ammissibile</span>
+                <span *ngIf="e.note == '5'" style="color: brown;">Duplicata</span>
+                <span *ngIf="e.note == '6'" style="color: blueviolet;">Da integrare</span>
+                <span *ngIf="e.note == '7'" style="color: orange;">Soccorso istruttorio</span>
             </mat-cell>
         </ng-container>
 
@@ -87,10 +80,6 @@
             <mat-cell *matCellDef="let e">
                 <button class="mr-8" mat-stroked-button color="accent"
                     [routerLink]="'/solidarity/request/detail/' + e.id">Details</button>
-
-                <button class="mr-8" mat-stroked-button color="accent"
-                    [routerLink]="'/solidarity/request/detail/' + e.id + '/module'">Modulo</button>
-
                 <a target="_blank" class="mr-8" mat-stroked-button color="accent" href="/solidarity/request/detail/{{ e.id }}">Details -></a>
             </mat-cell>
         </ng-container>
