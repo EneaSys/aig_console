@@ -21,6 +21,7 @@ import { HelpRequestResolver } from './resolver/help-request.resolver';
 import { AigSolidarityRequestCalculatorService } from './services/solidarityRequestCalulator.service';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { AigFamilyInformationService } from './services/familyInformation.service';
 
 @NgModule({
     imports: [
@@ -52,6 +53,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     providers: [
         HelpRequestResolver,
         AigSolidarityRequestCalculatorService,
+        AigFamilyInformationService,
     ],
     declarations: [
         AigSolidarityRequestListTableComponent,

@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'auth/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
+import { AigFamilyInformationService } from 'aig-common/modules/solidarity/services/familyInformation.service';
 
 @Component({
     templateUrl: './solidarity-request-detail-page.component.html',
@@ -13,6 +14,7 @@ import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solida
 })
 export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     constructor(
+        private aigFamilyInformationService: AigFamilyInformationService,
         private aigSolidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
         private _formBuilder: FormBuilder,
         private route: ActivatedRoute,
@@ -26,6 +28,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     instructor: string[];
     user: any;
     showRejectFrom: boolean;
+    family: any[];
 
     rejectForm: FormGroup;
 
@@ -40,6 +43,19 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
 
         if(this.foodProductRequestDTO.familyUnit.note) {
             this.instructor = this.foodProductRequestDTO.familyUnit.note.split('|');
+        }
+
+        try {
+            this.family = await this.aigFamilyInformationService.getFamily(this.foodProductRequestDTO.familyUnit.taxId).toPromise();
+            this.family.forEach(familyMember => {
+                this.getNumberOfRequests(familyMember.codice_fiscale_non_validato).then(
+                    (n) => {
+                        familyMember.numero_domande = n;
+                    }
+                );
+            });
+        } catch(e) {
+            console.log(e);
         }
     }
 
@@ -76,24 +92,10 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
 
     async revalutate(foodProductRequestDTO: any) {
         // setta lo stato della domanda a 98
-        foodProductRequestDTO.note = "98";
+        foodProductRequestDTO.note = "1";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
     }
 
-    async duplicatea(foodProductRequestDTO: any) {
-        // setta lo stato della domanda a 97
-        foodProductRequestDTO.note = "97";
-        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
-    }
-    async duplicate(foodProductRequestDTO: any) {
-        // setta lo stato della domanda a 97
-        foodProductRequestDTO.note = "87";
-        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
-    }
-    async rifafter(foodProductRequestDTO: any) {
-        foodProductRequestDTO.note = "93";
-        this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();
-    }
 
     checkAssignation(foodProductRequestDTO: FoodProductRequestDTO) {
         if(this.user != null && foodProductRequestDTO.familyUnit.note.startsWith(this.user.sub)){
@@ -102,6 +104,21 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         return false;
     }
 
-    
+    async getNumberOfRequests(cf: string) {
+        return await this.familyUnitResourceService.countFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,cf,null,null,null,null,null,null,null,null,null).toPromise();
+    }
 
+    isSameOfPerson(familyMember, foodProductRequestDTO) {
+        return (familyMember.codice_fiscale_non_validato == foodProductRequestDTO.familyUnit.taxId.toUpperCase().replace(' ',''))
+    }
+
+    moreRequests(familyMember, foodProductRequestDTO) {
+        if(this.isSameOfPerson(familyMember, foodProductRequestDTO) && familyMember.numero_domande > 1) {
+            return true;
+        }
+        if(!this.isSameOfPerson(familyMember, foodProductRequestDTO) && familyMember.numero_domande > 0) {
+            return true;
+        }
+        return false;
+    }
 }
