@@ -133,26 +133,32 @@
                     Motivo:
                     {{ foodProductRequestDTO.familyUnit.disabledPeopleNote }}
                 </div>
-                
+
                 <div class="h1 m-16" *ngIf="this.instructor">
                     Istruttore:
                     {{ this.instructor[1] }}
                 </div>
             </div>
             <div class="fuse-card auto-width p-16 mt-8" *ngIf="foodProductRequestDTO.note == '1'">
-                <button mat-stroked-button color="primary"
-                    (click)="take(foodProductRequestDTO)">Prendi in carica</button>
+                <button mat-stroked-button color="primary" (click)="take(foodProductRequestDTO)">Prendi in
+                    carica</button>
             </div>
 
             <div class="fuse-card auto-width p-16 mt-8" *ngIf="foodProductRequestDTO.note == '2'">
                 <div *ngIf="checkAssignation(foodProductRequestDTO); else notAssignedToUser">
-                    <form [formGroup]="rejectForm" (ngSubmit)="reject()">
+                    <div fxLayout="row" fxLayoutAlign="center top">
+                        <button mat-stroked-button color="primary"
+                            (click)="showRejectFrom = true">Rigetta</button>
+                        <button mat-stroked-button color="primary"
+                            (click)="aprove(foodProductRequestDTO)">Approva</button>
+                    </div>
+                    <form [formGroup]="rejectForm" (ngSubmit)="reject()" *ngIf="showRejectFrom">
                         <div fxLayout="row">
                             <mat-form-field appearance="outline" fxFlex="100">
                                 <mat-label>Tipo rigetto</mat-label>
                                 <mat-select formControlName="type">
                                     <mat-option [value]="4">Non ammissibile</mat-option>
-                                    <mat-option [value]="4">Duplicata</mat-option>
+                                    <mat-option [value]="5">Duplicata</mat-option>
                                     <mat-option [value]="6">Da integrare</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -164,8 +170,7 @@
                             </mat-form-field>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center top">
-                            <button type="submit" mat-stroked-button color="primary">Rigetta</button>
-                            <button mat-stroked-button color="primary" (click)="aprove(foodProductRequestDTO)">Approva</button>
+                            <button type="submit" mat-stroked-button color="primary">Conferma</button>
                         </div>
                     </form>
                 </div>
