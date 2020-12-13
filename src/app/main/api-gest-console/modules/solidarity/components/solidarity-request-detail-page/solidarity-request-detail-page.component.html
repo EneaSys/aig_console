@@ -92,6 +92,7 @@
                         <th>Nome</th>
                         <th>Cognome</th>
                         <th>CF</th>
+                        <th>Data nascita</th>
                         <th>Domande</th>
                     </tr>
                     <tr *ngFor="let familyMember of this.family">
@@ -99,7 +100,9 @@
                         <td>{{ familyMember.nome }}</td>
                         <td>{{ familyMember.cognome }}</td>
                         <td>{{ familyMember.codice_fiscale_non_validato }}</td>
-                        <td [ngClass]="{'domanda-duplicata': moreRequests(familyMember, foodProductRequestDTO)}">{{ familyMember.numero_domande }}</td>
+                        <td>{{ familyMember.data_nascita }}</td>
+                        <td [ngClass]="{'domanda-duplicata': moreRequests(familyMember, foodProductRequestDTO)}">
+                            {{ familyMember.numero_domande }}</td>
                     </tr>
                 </table>
             </div>
@@ -135,12 +138,13 @@
             <div class="fuse-card auto-width p-16">
                 <div class="h1 m-16">
                     Stato:
-                    <span *ngIf="foodProductRequestDTO.note == '1'" style="color: gray;">Pervenuta</span>
+                    <span *ngIf="foodProductRequestDTO.note == '1'" style="color: gray;">Da istruire</span>
                     <span *ngIf="foodProductRequestDTO.note == '2'" style="color: blue;">In valutazione</span>
                     <span *ngIf="foodProductRequestDTO.note == '3'" style="color: green;">Approvata</span>
                     <span *ngIf="foodProductRequestDTO.note == '4'" style="color: red;">Non ammissibile</span>
                     <span *ngIf="foodProductRequestDTO.note == '5'" style="color: brown;">Duplicata</span>
-                    <span *ngIf="foodProductRequestDTO.note == '6'" style="color: blueviolet;">Soccorso istruttorio</span>
+                    <span *ngIf="foodProductRequestDTO.note == '6'" style="color: blueviolet;">Soccorso
+                        istruttorio</span>
                     <span *ngIf="foodProductRequestDTO.note == '7'" style="color: orange;">Integrato</span>
                 </div>
                 <div class="h4 m-16" *ngIf="foodProductRequestDTO.familyUnit.disabledPeopleNote != null">
@@ -153,16 +157,19 @@
                     {{ this.instructor[1] }}
                 </div>
             </div>
+
             <div class="fuse-card auto-width p-16 mt-8" *ngIf="foodProductRequestDTO.note == '1'">
-                <button mat-stroked-button color="primary" (click)="take(foodProductRequestDTO)">Prendi in
-                    carica</button>
+                <div fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-stroked-button color="primary" (click)="take(foodProductRequestDTO)">Prendi in
+                        carica</button>
+                </div>
             </div>
+
 
             <div class="fuse-card auto-width p-16 mt-8" *ngIf="foodProductRequestDTO.note == '2'">
                 <div *ngIf="checkAssignation(foodProductRequestDTO); else notAssignedToUser">
                     <div fxLayout="row" fxLayoutAlign="center top">
-                        <button mat-stroked-button color="primary"
-                            (click)="showRejectFrom = true">Rigetta</button>
+                        <button mat-stroked-button color="primary" (click)="showRejectFrom = true">Rigetta</button>
                         <button mat-stroked-button color="primary"
                             (click)="aprove(foodProductRequestDTO)">Approva</button>
                     </div>
@@ -192,13 +199,14 @@
                     Un altro istruttore la stà lavorando
                 </ng-template>
             </div>
+
+            <div class="fuse-card auto-width p-16 mt-8" *ngIf="checkAssignation(foodProductRequestDTO)">
+                <div fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-stroked-button color="primary" (click)="reset(foodProductRequestDTO)">Resetta</button>
+                </div>
+            </div>
+
         </div>
-
-
-
-
-
-
 
 
 

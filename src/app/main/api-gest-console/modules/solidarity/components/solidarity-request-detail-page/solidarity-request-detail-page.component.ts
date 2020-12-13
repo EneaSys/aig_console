@@ -90,7 +90,7 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(this.foodProductRequestDTO).toPromise();
     }
 
-    async revalutate(foodProductRequestDTO: any) {
+    async reset(foodProductRequestDTO: any) {
         // setta lo stato della domanda a 98
         foodProductRequestDTO.note = "1";
         this.foodProductRequestDTO = await this.foodProductRequestResourceService.updateFoodProductRequestUsingPUT(foodProductRequestDTO).toPromise();

@@ -68,7 +68,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
     }
     searchByCategory(category: string) {
         this.filters.category = category;
-        this.search(0);
+        this.customSearch();
     }
 
     pageEvent(event: PageEvent) {
@@ -90,17 +90,17 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
         }
 /*
         if(this.filters.category == "A") {
-            categoryFilter.A = true;
+            null = true;
         }
         if(this.filters.category == "B") {
-            categoryFilter.B = true;
+            null = true;
         }
         if(this.filters.category == "C") {
-            categoryFilter.C = true;
+            null = true;
         }
 */
-        this.length = await this.foodProductRequestResourceService.countFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.A,null,null,null,categoryFilter.B,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.C,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-        this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,this.filters.page,null,null,null,null,null,null,null,null,null,categoryFilter.A,null,null,null,categoryFilter.B,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,categoryFilter.C,null,null,null,null,null,null,null,null,null,null,null,this.filters.size,null,null,null,null).toPromise();
+        this.length = await this.foodProductRequestResourceService.countFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+        this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,this.filters.familyUnitIds,null,null,null,null,this.filters.id,null,null,null,null,null,null,null,null,null,this.filters.state,null,null,null,this.filters.page,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.filters.size,null,null,null,null).toPromise();
         
         if(this.foodProductRequestDTOs.length == 0) {
             this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -112,7 +112,7 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
             this.cleanFilters();
             this.filters.id = this.searchForm.value.id;
             this.search(0);
-        } else if(this.searchForm.value.firstname || this.searchForm.value.lastname || this.searchForm.value.taxId) {
+        } else if(this.searchForm.value.firstname || this.searchForm.value.lastname || this.searchForm.value.taxId || this.filters.category) {
             this.filters.familyUnitIds = [];
             {
                 let firstname;
@@ -121,8 +121,8 @@ export class AigSolidarityRequestListPageComponent extends GenericComponent {
                 if(this.searchForm.value.firstname != "") firstname = this.searchForm.value.firstname;
                 if(this.searchForm.value.lastname != "") lastname = this.searchForm.value.lastname;
                 if(this.searchForm.value.taxId != "") taxId = this.searchForm.value.taxId;
-                
-                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,lastname,null,null,null,null,null,null,null,taxId,null,null,null,null,null,null,null,null,null).toPromise();
+
+                let familyUnitDTOs: FamilyUnitDTO[] = await this.familyUnitResourceService.getAllFamilyUnitsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,firstname,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.filters.category,null,null,null,null,null,null,null,null,null,null,null,null,null,lastname,null,null,null,null,null,null,null,taxId,null,null,null,null,null,null,null,null,null).toPromise();
    
                 familyUnitDTOs.forEach(familyUnitDTO => {
                     this.filters.familyUnitIds.push(familyUnitDTO.id);

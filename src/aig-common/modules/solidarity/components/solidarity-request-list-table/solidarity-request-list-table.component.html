@@ -50,7 +50,7 @@
         <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span *ngIf="e.note == '1'" style="color: gray;">Pervenuta</span>
+                <span *ngIf="e.note == '1'" style="color: gray;">Da istruire</span>
                 <span *ngIf="e.note == '2'" style="color: blue;">In valutazione</span>
                 <span *ngIf="e.note == '3'" style="color: green;">Approvata</span>
                 <span *ngIf="e.note == '4'" style="color: red;">Non ammissibile</span>
