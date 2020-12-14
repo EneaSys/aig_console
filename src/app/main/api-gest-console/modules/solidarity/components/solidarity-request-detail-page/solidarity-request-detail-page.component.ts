@@ -15,7 +15,7 @@ import { AigFamilyInformationService } from 'aig-common/modules/solidarity/servi
 export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
     constructor(
         private aigFamilyInformationService: AigFamilyInformationService,
-        private aigSolidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
+        public aigSolidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
         private _formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private authService: AuthService,
