@@ -135,6 +135,10 @@
 
 
         <div class="widget p-16" fxFlex.gt-sm="20">
+
+
+
+
             <div class="fuse-card auto-width p-16">
                 <div class="h1 m-16">
                     Stato:
@@ -157,6 +161,10 @@
                     {{ this.instructor[1] }}
                 </div>
             </div>
+
+
+
+
 
             <div class="fuse-card auto-width p-16 mt-8" *ngIf="foodProductRequestDTO.note == '1'">
                 <div fxLayout="row" fxLayoutAlign="center top">
@@ -203,6 +211,19 @@
             <div class="fuse-card auto-width p-16 mt-8" *ngIf="checkAssignation(foodProductRequestDTO)">
                 <div fxLayout="row" fxLayoutAlign="center top">
                     <button mat-stroked-button color="primary" (click)="reset(foodProductRequestDTO)">Resetta</button>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="fuse-card auto-width p-16 mt-8" *ngIf="foodProductRequestDTO.note == '3'">
+                <div fxLayout="row" fxLayoutAlign="center top">
+                    <div class="h1 m-16">
+                        Stato:
+                        {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }}
+                    </div>
                 </div>
             </div>
 
