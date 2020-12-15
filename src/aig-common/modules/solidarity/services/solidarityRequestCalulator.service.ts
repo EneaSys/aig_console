@@ -5,64 +5,72 @@ import { FoodProductRequestDTO } from 'aig-solidarety';
 export class AigSolidarityRequestCalculatorService {
 
     calculate(foodProductRequestDTO: FoodProductRequestDTO) {
-        let familyComponents: number = foodProductRequestDTO.familyUnit.adultNumber + foodProductRequestDTO.familyUnit.childrenNumber;
+        let amount: number;
+        {
+            let familyComponents: number = foodProductRequestDTO.familyUnit.adultNumber + foodProductRequestDTO.familyUnit.childrenNumber;
 
+            switch (foodProductRequestDTO.familyUnit.telephone) {
+                case 'A': 
+                    // Meno di 5000
+                    switch (foodProductRequestDTO.familyUnit.postalCode) {
+                        case 'A':
+                            // Facia A
+                            if(familyComponents < 3) {
+                                amount = 200;
+                            } else if(familyComponents == 3 ) {
+                                amount = 250;
+                            } else if(familyComponents > 3 ) {
+                                amount = 300;
+                            }
+                            break;
+                        default:
+                            // Facia tutte le altre
+                            if(familyComponents < 3) {
+                                amount = 100;
+                            } else if(familyComponents == 3 ) {
+                                amount = 150;
+                            } else if(familyComponents > 3 ) {
+                                amount = 200;
+                            }
+                            break;
+                    }
+                    break;
+                case 'B': 
+                    // Tra 5000 e 15000
+                    switch (foodProductRequestDTO.familyUnit.postalCode) {
+                        case 'A':
+                            // Facia A
+                            if(familyComponents < 3) {
+                                amount = 160;
+                            } else if(familyComponents == 3 ) {
+                                amount = 200;
+                            } else if(familyComponents > 3 ) {
+                                amount = 240;
+                            }
+                            break;
+                        default:
+                            // Facia tutte le altre
+                            if(familyComponents < 3) {
+                                amount = 100;
+                            } else if(familyComponents == 3 ) {
+                                amount = 120;
+                            } else if(familyComponents > 3 ) {
+                                amount = 160;
+                            }
+                            break;
+                    }
+                    break;
+                default:
+                    amount = -500;
+                    break;
+            }
+        }
         
-
-        if(foodProductRequestDTO.requestStatusA) {
-        
-            if(familyComponents == 1 || familyComponents == 2) {
-                return 250;
-            }  
-            else if(familyComponents == 3) {
-                return 300;
-            }
-            else if(familyComponents > 3) {
-                return 350;
-            }
-            
+        //Affitto
+        if (foodProductRequestDTO.requestStatusA) {
+            amount = amount + 50;
         }
 
-        if(foodProductRequestDTO.requestStatusB) {
-            if(foodProductRequestDTO.requestStatusBIncomeMar <= 700) {
-                
-                if(familyComponents == 1 || familyComponents == 2) {
-                    return 150;
-                }  
-                else if(familyComponents == 3) {
-                    return 200;
-                }
-                else if(familyComponents > 3) {
-                    return 250;
-                }
-
-            } else {
-
-                if(familyComponents == 1 || familyComponents == 2) {
-                    return 100;
-                }  
-                else if(familyComponents == 3) {
-                    return 150;
-                }
-                else if(familyComponents > 3) {
-                    return 200;
-                }
-
-            }
-            
-        }
-
-        if(foodProductRequestDTO.requestStatusC) {
-            if(familyComponents == 1 || familyComponents == 2) {
-                return 100;
-            }  
-            else if(familyComponents == 3) {
-                return 150;
-            }
-            else if(familyComponents > 3) {
-                return 200;
-            }
-        }
-
+        return amount;
     }
 }

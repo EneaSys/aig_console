@@ -1,441 +1,494 @@
 <div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
-
-    <div class="center" fusePerfectScrollbar>
-
+    <div class="center" >
         <div class="content">
-
             <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100">
 
-                <!-- WIDGET 1 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
-                    <!-- Front -->
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
                             Approvate
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountApproved }} €
+                                {{ totalAmountApproved | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
                                 Numero domande approvate:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsA.length + foodProductRequestDTOsB.length + foodProductRequestDTOsC.length }}
-                                / {{ totalUnique }} di {{ foodProductRequestDTOs.length }}
+                                {{ totalApproved }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET 1 -->
-
-                <!-- WIDGET A -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo A
+                            Approvate con meno di 5000 €
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountA }} €
+                                {{ totalAmountMin5 | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsA.length }}
+                                {{ totalMin5 }} di {{ totalApproved }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET A -->
-
-                <!-- WIDGET B -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo B
+                            Approvate con più di 5000 €
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountB }} €
+                                {{ totalAmountMor5 | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsB.length }}
+                                {{ totalMor5 }} di {{ totalApproved }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET B -->
 
-                <!-- WIDGET C -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
-                    <!-- Front -->
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo C
+                            Approvate fascia A
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountC }} €
+                                {{ totalAmountApprovedA | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsC.length }}
+                                {{ totalApprovedA }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET C -->
-
-                <!-- WIDGET 1 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Approvate dopo Integrazione
+                            Approvate fascia A con meno di 5000 €
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountApprovedAfter }} €
+                                {{ totalAmountMin5A | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsAafter.length + foodProductRequestDTOsBafter.length + foodProductRequestDTOsCafter.length }}
+                                {{ totalMin5A }} di {{ totalApprovedA }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET 1 -->
-
-                <!-- WIDGET A -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo A
+                            Approvate fascia A con più di 5000 €
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountAafter }} €
+                                {{ totalAmountMor5A | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsAafter.length }}
+                                {{ totalMor5A }} di {{ totalApprovedA }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET A -->
 
-                <!-- WIDGET B -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
-                    <!-- Front -->
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo B
+                            Approvate fascia B
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountBafter }} €
+                                {{ totalAmountApprovedB | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsBafter.length }}
+                                {{ totalApprovedB }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET B -->
-
-                <!-- WIDGET C -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo C
+                            Approvate fascia B con meno di 5000 €
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountCafter }} €
+                                {{ totalAmountMin5B | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsCafter.length }}
+                                {{ totalMin5B }} di {{ totalApprovedB }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET C -->
-
-
-                <!-- WIDGET 2 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Non Ammissibili
+                            Approvate fascia B con più di 5000 €
                         </div>
-
-                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-                            <div class="red-fg font-size-72 line-height-72">
-                                {{ totalInamissible }}
-                            </div>
-                            <div class="h3 secondary-text font-weight-500">domande</div>
-                        </div>
-
-                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h4 secondary-text text-truncate">
-                                Importo domande inammisibili:
-                            </span>
-                            <span class="h4 ml-8">
-                                € {{ totalAmountInamissible }}
-                            </span>
-                        </div>
-                    </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WIDGET 2 -->
-
-                <!-- WIDGET 3 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Non approvate
-                        </div>
-
-                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-                            <div class="red-fg font-size-72 line-height-72">
-                                {{ totalNotAproved }}
-                            </div>
-                            <div class="h3 secondary-text font-weight-500">domande</div>
-                        </div>
-
-                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h4 secondary-text text-truncate">
-                                Importo domande non approvate:
-                            </span>
-                            <span class="h4 ml-8">
-                                € {{ totalAmountNotAproved }}
-                            </span>
-                        </div>
-                    </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WIDGET 3 -->
-
-
-                <!-- WIDGET 4 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Rifiutate
-                        </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalReleased }}
+                                {{ totalAmountMor5B | currency: 'EUR' }}
                             </div>
-                            <div class="h3 secondary-text font-weight-500">domande</div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Importo domande rifiutate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                € {{ totalAmountReleased }}
+                                {{ totalMor5B }} di {{ totalApprovedB }} / {{ total }}
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET 4 -->
 
 
 
-                <pre>{{ omonimi | json }}</pre>
 
-                <!-- WIDGET 5 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria A</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia C
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsA">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedC | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedC }} / {{ total }}
+                            </span>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 5 -->
-
-                <!-- WIDGET 6 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria B</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia C con meno di 5000 €
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsB">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5C | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5C }} di {{ totalApprovedC }} / {{ total }}
+                            </span>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 6 -->
-
-                <!-- WIDGET 7 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria C</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia C con più di 5000 €
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsC">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5C | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5C }} di {{ totalApprovedC }} / {{ total }}
+                            </span>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 7 -->
 
-                <!-- WIDGET 5 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+
+
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria A</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia D
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsAafter">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedD | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedD }} / {{ total }}
+                            </span>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 5 -->
-
-                <!-- WIDGET 6 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria B</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia D con meno di 5000 €
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsBafter">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5D | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5D }} di {{ totalApprovedD }} / {{ total }}
+                            </span>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 6 -->
-
-                <!-- WIDGET 7 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria C</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia D con più di 5000 €
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsCafter">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5D | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5D }} di {{ totalApprovedD }} / {{ total }}
+                            </span>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 7 -->
+
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia E
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedE | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedE }} / {{ total }}
+                            </span>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia E con meno di 5000 €
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5E | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5E }} di {{ totalApprovedE }} / {{ total }}
+                            </span>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia E con più di 5000 €
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5E | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5E }} di {{ totalApprovedE }} / {{ total }}
+                            </span>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia F
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedF | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedF }} / {{ total }}
+                            </span>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia F con meno di 5000 €
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5F | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5F }} di {{ totalApprovedF }} / {{ total }}
+                            </span>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia F con più di 5000 €
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5F | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5F }} di {{ totalApprovedF }} / {{ total }}
+                            </span>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
             </div>
-
         </div>
-
     </div>
-
 </div>

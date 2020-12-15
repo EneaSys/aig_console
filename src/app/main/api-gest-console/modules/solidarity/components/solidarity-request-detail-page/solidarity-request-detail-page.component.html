@@ -222,7 +222,7 @@
                 <div fxLayout="row" fxLayoutAlign="center top">
                     <div class="h1 m-16">
                         Stato:
-                        {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }}
+                        {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) | currency: 'EUR' }}
                     </div>
                 </div>
             </div>
