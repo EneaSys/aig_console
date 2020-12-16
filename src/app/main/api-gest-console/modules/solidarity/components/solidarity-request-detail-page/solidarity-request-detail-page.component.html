@@ -149,7 +149,8 @@
                     <span *ngIf="foodProductRequestDTO.note == '5'" style="color: brown;">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '6'" style="color: blueviolet;">Soccorso
                         istruttorio</span>
-                    <span *ngIf="foodProductRequestDTO.note == '7'" style="color: orange;">Integrato</span>
+                    <span *ngIf="foodProductRequestDTO.note == '7'" style="color: brown;">Rinunciato</span>
+                    <span *ngIf="foodProductRequestDTO.note == '8'" style="color: orange;">Integrato</span>
                 </div>
                 <div class="h4 m-16" *ngIf="foodProductRequestDTO.familyUnit.disabledPeopleNote != null">
                     Motivo:
@@ -189,6 +190,7 @@
                                     <mat-option [value]="4">Non ammissibile</mat-option>
                                     <mat-option [value]="5">Duplicata</mat-option>
                                     <mat-option [value]="6">Da integrare</mat-option>
+                                    <mat-option [value]="7">Rinuncia</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
