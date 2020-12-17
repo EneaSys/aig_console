@@ -73,7 +73,7 @@
 
         <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) | currency: 'EUR' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
