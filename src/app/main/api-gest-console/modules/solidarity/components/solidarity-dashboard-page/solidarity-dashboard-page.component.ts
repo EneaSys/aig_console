@@ -322,10 +322,10 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                             if(foodProductRequestDTO.requestStatusA) this.totalApprovedB2f++
                         } else if(nFamily == 3) {
                             this.totalApprovedB3++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedB2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedB3f++
                         }  else if(nFamily > 3) {
                             this.totalApprovedB4++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedB2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedB4f++
                         }
                     break;
                     case 'C':
@@ -339,10 +339,10 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                             if(foodProductRequestDTO.requestStatusA) this.totalApprovedC2f++
                         } else if(nFamily == 3) {
                             this.totalApprovedC3++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedC2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedC3f++
                         }  else if(nFamily > 3) {
                             this.totalApprovedC4++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedC2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedC4f++
                         }
                     break;
                     case 'D':
@@ -356,10 +356,10 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                             if(foodProductRequestDTO.requestStatusA) this.totalApprovedD2f++
                         } else if(nFamily == 3) {
                             this.totalApprovedD3++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedD2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedD3f++
                         }  else if(nFamily > 3) {
                             this.totalApprovedD4++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedD2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedD4f++
                         }
                     break;
                     case 'E':
@@ -373,10 +373,10 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                             if(foodProductRequestDTO.requestStatusA) this.totalApprovedE2f++
                         } else if(nFamily == 3) {
                             this.totalApprovedE3++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedE2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedE3f++
                         }  else if(nFamily > 3) {
                             this.totalApprovedE4++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedE2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedE4f++
                         }
                     break;
                     case 'F':
@@ -390,10 +390,10 @@ export class AigSolidarityDashboardComponent extends GenericComponent {
                             if(foodProductRequestDTO.requestStatusA) this.totalApprovedF2f++
                         } else if(nFamily == 3) {
                             this.totalApprovedF3++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedF2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedF3f++
                         }  else if(nFamily > 3) {
                             this.totalApprovedF4++;
-                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedF2f++
+                            if(foodProductRequestDTO.requestStatusA) this.totalApprovedF4f++
                         }
                     break;
                 }
