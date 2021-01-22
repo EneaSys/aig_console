@@ -34,6 +34,7 @@ import { AigCommValidatorPageComponent } from './components/validator-page/valid
 import { ValidateBuyerDialogComponent } from './components/validate-buyer-dialog/validate-buyer-dialog.component';
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
+import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-list-page.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { ValidateFiscalTransactionPageComponent } from './components/validate-fi
         AigCommValidatorPageComponent,
         ValidateBuyerDialogComponent,
         ValidateBuyerPageComponent,
-        ValidateFiscalTransactionPageComponent,
+		ValidateFiscalTransactionPageComponent,
+		AigBuyerListPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,

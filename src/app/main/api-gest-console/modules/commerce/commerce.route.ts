@@ -11,6 +11,7 @@ import { BuyerResolver } from 'aig-common/modules/commerce/resolver/buyer.resolv
 import { AigCommValidatorPageComponent } from './components/validator-page/validator-page.component';
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
+import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -79,7 +80,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigBuyerListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {

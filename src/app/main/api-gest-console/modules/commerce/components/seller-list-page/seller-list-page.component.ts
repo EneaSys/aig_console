@@ -24,6 +24,7 @@ export class AigSellerListPageComponent extends GenericComponent {
     }
 
     newSeller() {
-        this.dialog.open(AigSellerNewUpdateDialogComponent, { data: { } });
-    }
+		this.dialog.open(AigSellerNewUpdateDialogComponent, { data: { } });
+	}
+	
 }
