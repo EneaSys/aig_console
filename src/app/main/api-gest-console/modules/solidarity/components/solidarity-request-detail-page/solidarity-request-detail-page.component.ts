@@ -98,7 +98,10 @@ export class AigSolidarityRequestDetailPageComponent extends GenericComponent {
 
 
     checkAssignation(foodProductRequestDTO: FoodProductRequestDTO) {
-        if(this.user != null && foodProductRequestDTO.familyUnit.note.startsWith(this.user.sub)){
+        if(foodProductRequestDTO.familyUnit.note == null || this.user == null) {
+            return false;
+        }
+        if(foodProductRequestDTO.familyUnit.note.startsWith(this.user.sub)){
             return true;
         }
         return false;
