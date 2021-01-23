@@ -54,7 +54,7 @@
 
 
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
+        <div *ngIf="foodProductRequestDTO.requestTypeId == 1" class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ foodProductRequestDTO.id }}</div>
                 <div class="h4 m-8 ml-16">Data inserimento: {{ foodProductRequestDTO.reportingDate }}</div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="h4 m-8 ml-16">
                     <b>Fatturato 2019:</b>
-                    {{ foodProductRequestDTO.requestStatusBIncomeFeb }}
+                    {{ foodProductRequestDTO.requestStatusBIncomeFeb | currency: 'EUR' }}
                 </div>
                 <div class="h4 m-8 ml-16">
                     <b>Reddito Ottobre 2020:</b>
@@ -106,16 +106,76 @@
                     </tr>
                 </table>
             </div>
-
-
-
-
-
         </div>
 
 
 
 
+
+
+
+
+
+
+
+        <div *ngIf="foodProductRequestDTO.requestTypeId == 2" class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ foodProductRequestDTO.id }}</div>
+                <div class="h4 m-8 ml-16">Data inserimento: {{ foodProductRequestDTO.reportingDate }}</div>
+                <div class="h1 m-16">
+                    <span>Categoria: </span>
+                    <span *ngIf="foodProductRequestDTO.requestStatusA">A</span>
+                    <span *ngIf="foodProductRequestDTO.requestStatusB">B</span>
+                </div>
+                <div class="h4 m-8 ml-16">
+                    <b>Motivazione: </b>
+                    <span [ngSwitch]="foodProductRequestDTO.familyUnit.postalCode">
+                        <span *ngSwitchCase="'A'">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</span>
+                        <span *ngSwitchCase="'B'">Pagamento del canone di locazione</span>
+                        <span *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</span>
+                        <span *ngSwitchCase="'D'">Acquisto di generi di prima necessità</span>
+                    </span>
+                </div>
+                <div class="h4 m-8 ml-16"><b>Conto:</b>
+                    <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> Meno di € 2.000,00</span>
+                    <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> Tra € 2.000,01 a € 5.000,00</span>
+                    <span style="color: red;" *ngIf="foodProductRequestDTO.familyUnit.telephone == 'C'"> Superiore di €
+                        5.000,01</span>
+				</div>
+				<div *ngIf="foodProductRequestDTO.requestStatusB">
+					<div class="h4 m-8 ml-16">
+						<b>Reddito Novembre 2020:</b>
+						{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: 'EUR' }}
+					</div>
+					<div class="h4 m-8 ml-16">
+						<b>Motivo reddito:</b>
+						{{ foodProductRequestDTO.familyUnit.city }}
+					</div>
+				</div>
+            </div>
+
+            <div class="fuse-card auto-width mt-8 p-16">
+                <table style="width: 100%;">
+                    <tr>
+                        <th>Richiedente</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>CF</th>
+                        <th>Data nascita</th>
+                        <th>Domande</th>
+                    </tr>
+                    <tr *ngFor="let familyMember of this.family">
+                        <td><span *ngIf="isSameOfPerson(familyMember, foodProductRequestDTO)">X</span></td>
+                        <td>{{ familyMember.nome }}</td>
+                        <td>{{ familyMember.cognome }}</td>
+                        <td>{{ familyMember.codice_fiscale_non_validato }}</td>
+                        <td>{{ familyMember.data_nascita }}</td>
+                        <td [ngClass]="{'domanda-duplicata': moreRequests(familyMember, foodProductRequestDTO)}">
+                            {{ familyMember.numero_domande }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
 
 
@@ -149,7 +209,8 @@
                     <span *ngIf="foodProductRequestDTO.note == '5'" style="color: brown;">Duplicata</span>
                     <span *ngIf="foodProductRequestDTO.note == '6'" style="color: blueviolet;">Soccorso
                         istruttorio</span>
-                    <span *ngIf="foodProductRequestDTO.note == '7'" style="color: orange;">Integrato</span>
+                    <span *ngIf="foodProductRequestDTO.note == '7'" style="color: brown;">Rinunciato</span>
+                    <span *ngIf="foodProductRequestDTO.note == '8'" style="color: orange;">Integrato</span>
                 </div>
                 <div class="h4 m-16" *ngIf="foodProductRequestDTO.familyUnit.disabledPeopleNote != null">
                     Motivo:
@@ -189,6 +250,7 @@
                                     <mat-option [value]="4">Non ammissibile</mat-option>
                                     <mat-option [value]="5">Duplicata</mat-option>
                                     <mat-option [value]="6">Da integrare</mat-option>
+                                    <mat-option [value]="7">Rinuncia</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -222,7 +284,7 @@
                 <div fxLayout="row" fxLayoutAlign="center top">
                     <div class="h1 m-16">
                         Stato:
-                        {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }}
+                        {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) | currency: 'EUR' }}
                     </div>
                 </div>
             </div>

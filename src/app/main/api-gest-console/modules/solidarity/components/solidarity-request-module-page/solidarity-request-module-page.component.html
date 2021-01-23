@@ -8,160 +8,200 @@
             <button class="ml-8" mat-stroked-button color="accent"
                 [routerLink]="'/solidarity/request/detail/' + (foodProductRequestDTO.id + 1) + '/module'">Prossimo</button>
 
-            <h3 *ngIf="foodProductRequestDTO.note != '2' || foodProductRequestDTO.note != '3'">Non stampare</h3>
-            <h3 *ngIf="foodProductRequestDTO.note == '2'">Approvata</h3>
-            <h3 *ngIf="foodProductRequestDTO.note == '3'">Approvata dopo </h3>
-            <button class="ml-8" mat-stroked-button color="accent" printSectionId="module" ngxPrint *ngIf="foodProductRequestDTO.note == '87'">Stampa</button> 
+            <h3 *ngIf="foodProductRequestDTO.note != '3'">Non stampare</h3>
+
+            <div class="h1 m-16">
+                Stato:
+                <span *ngIf="foodProductRequestDTO.note == '1'" style="color: gray;">Da istruire</span>
+                <span *ngIf="foodProductRequestDTO.note == '2'" style="color: blue;">In valutazione</span>
+                <span *ngIf="foodProductRequestDTO.note == '3'" style="color: green;">Approvata</span>
+                <span *ngIf="foodProductRequestDTO.note == '4'" style="color: red;">Non ammissibile</span>
+                <span *ngIf="foodProductRequestDTO.note == '5'" style="color: brown;">Duplicata</span>
+                <span *ngIf="foodProductRequestDTO.note == '6'" style="color: blueviolet;">Soccorso
+                    istruttorio</span>
+                <span *ngIf="foodProductRequestDTO.note == '7'" style="color: brown;">Rinunciato</span>
+                <span *ngIf="foodProductRequestDTO.note == '8'" style="color: orange;">Integrato</span>
+            </div>
+            <h5 *ngIf="foodProductRequestDTO.note != '3'">{{ foodProductRequestDTO.familyUnit.surname }}
+                {{ foodProductRequestDTO.familyUnit.name }}</h5>
+            <button class="ml-8" mat-stroked-button color="accent" printSectionId="module" ngxPrint
+                *ngIf="foodProductRequestDTO.note == '3'">Stampa</button>
         </div>
 
-        <div class="card" *ngIf="foodProductRequestDTO.note == '87'">
+        <div class="card" *ngIf="foodProductRequestDTO.note == '3'">
 
-            <div id="module" #module class="content" >
-                <h1>{{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }}</h1>
+            <div id="module" #module class="content">
+                <h1>{{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }} ({{ foodProductRequestDTO.id }})</h1>
 
                 <br>
 
-                <div style="text-align: center;">
-                    <p>
-                        <img src="https://www.comune.santamarialacarita.na.it/public/th.gif" /><br>
-                        <strong>Comune di Santa Maria la Carità </strong><br>
-                        Città Metropolitana di Napoli
-                    </p>
+                <div style="width: 350px; margin: 0 auto; text-align: center;">
+                    <img src="https://www.comune.santamarialacarita.na.it/public/th.gif" />
+                    <h3>Comune di Santa Maria la Carità</h3>
+                    <h4>Città Metropolitana di Napoli</h4>
                 </div>
 
-                <br>
+                <p style="text-align: right; margin: 50px 0;">
+                    <b>Al Sindaco Avv. Giosuè C.M.A. D’Amora</b>
+                    <br>Comune di Santa Maria La Carità
+                </p>
 
-                <div style="text-align: right;">
-                    <p>Al Sindaco Avv. Giosu&egrave; C.M.A.D'Amora</p>
-                    <p>Comune di Santa Maria La Carità</p>
-                </div>
-
-                <br>
-                <br>
-
-                <table>
-                    <tr>
-                        <td><strong>OGGETTO:</strong><br><span>&nbsp;</span></td>
-                        <td>Domanda di ammissione erogazione buoni spesa misura di solidarietà alimentare OCPC n° 658 del 29/03/2020 emergenza epidemiologica Covid19</td>
-                    </tr>
-                </table>
-
-                <br>
-
-                <p>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">Il sottoscritto</span>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">La sottoscritta</span>
+                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> DOMANDA DI AMMISSIONE EROGAZIONE BUONI SPESA
+                    MISURA DI SOLIDARIETA’ ALIMENTARE D.L. N. 154 DEL 23/11/2020
+                    EMERGENZA EPIDEMIOLOGICA COVID 19
+                </p>
+                <p style="padding: 0 0 0 30px;">
+                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">Il
+                        sottoscritto</span>
+                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">La
+                        sottoscritta</span>
                     {{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }}
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">nato </span>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">nata </span>
+                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">nato
+                    </span>
+                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">nata
+                    </span>
                     a {{ itFiscalCodeService.comuneCf(foodProductRequestDTO.familyUnit.taxId) }}
                     il {{ itFiscalCodeService.dataCf(foodProductRequestDTO.familyUnit.taxId) }}
                     residente in Santa Maria la Carità (Na)
                     alla via {{ foodProductRequestDTO.familyUnit.address }},
                     {{ foodProductRequestDTO.familyUnit.civicNumber }},
                     codice Fiscale {{ foodProductRequestDTO.familyUnit.taxId.toUpperCase() }},
-                    <span *ngIf="foodProductRequestDTO.familyUnit.telephone != null">tel: {{ foodProductRequestDTO.familyUnit.telephone }}</span>
-                    cell: {{ foodProductRequestDTO.familyUnit.mobile }}
-                    email: {{ foodProductRequestDTO.familyUnit.email }}
+                    cell {{ foodProductRequestDTO.familyUnit.mobile }},
+                    <span *ngIf="(foodProductRequestDTO.familyUnit.email != '')">email
+                        {{ foodProductRequestDTO.familyUnit.email }},</span>
+                    in riferimento all’Avviso Pubblico “MISURA DI SOLIDARIETA’ ALIMENTARE in attuazione del D. L. n. 154
+                    del 23/11/2020, recante “Misure finanziarie urgenti connesse all’emergenza epidemiologica da
+                    Covid-19, c.d. “Decreto Ristori ter” - EMERGENZA EPIDEMIOLOGICA DA COVID 19- INDIVIDUAZIONE DEI
+                    NUCLEI BENEFICIARI DEI BUONI SPESA”,
                 </p>
-                <p>in riferimento all'Avviso Pubblico "MISURA DI SOLIDARIETA' ALIMENTARE IN ATTUAZIONE DELL' OCPC N. 658 DEL 29/03/2020 - EMERGENZA EPIDEMIOLOGICA DA COVID19 - INDIVIDUAZIONE DEI NUCLEI BENEFICIARI DEI BUONI SPESA",</p>
 
-                <div style="text-align: center;">
-                    <strong>CONSAPEVOLE</strong>
-                </div>
+
+                <h3>Consapevole</h3>
                 <ul>
-                    <li>che ai sensi dell' art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in atti, l'uso di atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell'art. 75 del DPR n. 445/2000, il dichiarante decade dai benefici eventualmente conseguiti da provvedimenti emanati sulla base di dichiarazioni non veritiere; che, ai sensi dell'art. 71 del DPR 445/2000, l'Ente ha l'obbligo di effettuare idonei controlli, anche a campione, sulla veridicità di quanto dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;</li>
-                    <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla veridicità delle stesse;</li>
+                    <li>che ai sensi dell’art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in
+                        atti, l’uso di atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell’art. 75 del
+                        DPR n. 445/2000, il dichiarante decade dai benefici eventualmente conseguiti da provvedimenti
+                        emanati sulla base di dichiarazioni non veritiere; che, ai sensi dell’art. 71 del DPR 445/2000,
+                        l’Ente ha l’obbligo di effettuare idonei controlli, anche a campione, sulla veridicità di quanto
+                        dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;</li>
+                    <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
+                        Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
+                        veridicità delle stesse;</li>
                 </ul>
 
-                <div style="text-align: center;">
-                    <strong>CHIEDE</strong>
-                </div>
-                <p>di essere ammesso all'erogazione di buoni spesa da utilizzare presso gli esercizi commerciali aderenti del territorio comunale;</p>
+                <h3>Chiede</h3>
+                <p style="padding: 0 0 0 30px;">
+                    di essere ammesso all’erogazione di buoni spesa da utilizzare presso gli esercizi commerciali
+                    aderenti del territorio comunale;
+                </p>
 
-                <div style="text-align: center;">
-                    <strong>DICHIARA</strong>
-                </div>
+                <h3>Dichiara</h3>
                 <ul>
-                    <li>di aver subito un grave deterioramento della propria condizione economico-finanziaria
-                        determinatasi per effetto delle conseguenze dell'emergenza epidemiologica da Covid-19;</li>
-                    <li>che pertanto il proprio nucleo familiare è composto da:
-                        <ul>
-                            <li>Adulti: {{ foodProductRequestDTO.familyUnit.adultNumber }}</li>
-                            <li>Bambini: {{ foodProductRequestDTO.familyUnit.childrenNumber }}</li>
-                        </ul>
-                    </li>
-                    <li>di autorizzare il trattamento dei dati personali ai sensi dell'art. 13 del Decreto
-                        Legislativo 30 Giugno 2003, n. 196 &ldquo;Codice in materia di protezione dei dati
-                        personali&rdquo; e dell'art. 13 del GDPR (Regolamento UE 679/2016).
+                    <li>
+                        di aver subìto un grave deterioramento della propria condizione economico-finanziaria
+                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19;
                     </li>
                     <li>
-                        di trovarsi nella seguente condizione:
-                        <span *ngIf="foodProductRequestDTO.requestStatusA">essere disoccupato/inoccupato dal 1 Gennaio 2020 – condizione riferita a tutti i componenti il nucleo familiare – e non beneficiare di alcuna misura di sostegno al reddito;</span>
-                        <span *ngIf="foodProductRequestDTO.requestStatusB">l’aver subìto un impoverimento/peggioramento
-                            della situazione economica- reddituale, sempre derivante dall’emergenza epidemiologica da virus Covid 19.
-                            Saranno dichiarati e confrontati i redditi netti complessivi percepiti dal nucleo
-                            familiare nei mesi di Febbraio 2020 (prima dell’emergenza) e Marzo 2020 (inizio
-                            emergenza). Per accedere alla misura, il reddito netto complessivo del nucleo
-                            familiare relativo al mese di Marzo non deve essere superiore ad € 1.300,00 (con
-                            uno scostamento tra le due mensilità non inferiore al 50 %) comprensivo delle
-                            eventuali ulteriori agevolazioni previste dal Decreto “Cura Italia” D.L. 17/03/2020,
-                            n.18.</span>
-                        <span *ngIf="foodProductRequestDTO.requestStatusC">essere esposto agli effetti economici
-                            derivanti dall’emergenza epidemiologica da virus Covid-19 con reddito netto complessivo dell’intero nucleo familiare non
-                            superiore ad € 1.300,00. Rientrano nella suddetta categoria i percettori di misure
-                            di sostegno al reddito, nello specifico: reddito di cittadinanza, reddito di inclusione,
-                            naspi, mini naspi, asdi e cassa integrazione guadagni.
-                            Per i nuclei familiari di due o più persone in cui l’unico reddito è costituito dalla
-                            pensione sociale il tetto massimo per accedere alla misura è di € 800,00; per i
-                            nuclei familiari (una sola persona) in cui l’unico reddito è costituito dalla pensione
-                            sociale il tetto massimo per accedere alla misura è di € 540,00;</span>
+                        di possedere al 30/11/2020 un saldo disponibile di conto corrente bancario/postale e/o un saldo
+                        derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
+                        familiare
+                        non superiore a € 15.000,00 e precisamente:<b>
+                        <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> minore di
+                            &euro; 5.000,00;</span>
+                        <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> da &euro;
+                            5.000,01 a &euro;15.000,00;</span></b>
                     </li>
-                    <li *ngIf="foodProductRequestDTO.requestStatusB">
-                        che il reddito per il mese di febbraio è stato:
-                        {{ foodProductRequestDTO.requestStatusBIncomeFeb }} €
+                    <li>
+                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
+                        {{ foodProductRequestDTO.familyUnit.adultNumber }} adulti
+                        <span *ngIf="(foodProductRequestDTO.familyUnit.childrenNumber != '')">
+                            e {{ foodProductRequestDTO.familyUnit.childrenNumber }} minori (0-18 anni)
+                        </span>
+                        complessivi presenti nel nucleo familiare;
                     </li>
-                    <li *ngIf="foodProductRequestDTO.requestStatusB || foodProductRequestDTO.requestStatusC">
-                        che il reddito per il mese di marzo è stato: {{ foodProductRequestDTO.requestStatusBIncomeMar }} €
+                    <li *ngIf="(foodProductRequestDTO.requestStatusA)">
+                        <b>che il proprio nucleo familiare è residente in immobile adibito ad abitazione principale ed
+                            in
+                            possesso di contratto di locazione registrato oppure titolare di contratto di mutuo;</b>
+                    </li>
+                    <li>
+                        che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
+                    </li>
+                    <li [ngSwitch]="foodProductRequestDTO.familyUnit.postalCode">
+                        <span *ngSwitchCase="'A'">
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non
+                            beneficiare di
+                            alcuna
+                            misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
+                        </span>
+                        <span *ngSwitchCase="'B'">
+                            <u>FASCIA B</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non
+                            beneficiare di
+                            alcuna
+                            misura di sostegno al reddito, ed il reddito netto complessivo dell’intero nucleo familiare
+                            nel mese
+                            di Ottobre 2020 pari a
+                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
+                            derivante da: {{ foodProductRequestDTO.familyUnit.city }};
+                        </span>
+                        <span *ngSwitchCase="'C'">
+                            <u>FASCIA C</u> - essere titolare di reddito di pensione con un reddito netto complessivo
+                            dell’intero nucleo familiare
+                            nel mese
+                            di Ottobre 2020 pari a
+                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>;
+                        </span>
+                        <span *ngSwitchCase="'D'">
+                            <u>FASCIA D</u> - essere titolare di reddito derivante da misure di sostegno quali reddito
+                            di
+                            cittadinanza,
+                            reddito di emergenza, reddito di inclusione, naspi, mini naspi, asdi nonché le diverse forme
+                            di cassa integrazione, ed il reddito netto complessivo dell’intero nucleo familiare nel mese
+                            di Ottobre 2020 pari a
+                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
+                            derivante da: {{ foodProductRequestDTO.familyUnit.city }};
+                        </span>
+                        <span *ngSwitchCase="'E'">
+                            <u>FASCIA E</u> - essere titolare di un reddito da lavoro dipendente e/o un reddito ad esso
+                            assimilato con
+                            un reddito netto complessivo per il mese di Ottobre 2020 pari a
+                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>;
+                        </span>
+                        <span *ngSwitchCase="'F'">
+                            <u>FASCIA F</u> - essere titolare di un reddito da lavoro autonomo (con Partita Iva) e/o un
+                            reddito
+                            ad esso
+                            assimilabile (senza Partita Iva, a titolo esemplificativo: prestazioni occasionali
+                            certificate), aver realizzato un fatturato e/o corrispettivi per il periodo di imposta 2019
+                            pari a <b>{{ foodProductRequestDTO.requestStatusBIncomeFeb | currency: "EUR" }}</b>
+                            (ad eccezione delle attività iniziate a partire dal 1/01/2020) ed aver
+                            conseguito nel mese di Ottobre 2020 un reddito netto complessivo pari a
+                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>;
+                        </span>
+                    </li>
+                    <li>
+                        di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
+                        30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
+                        GDPR (Regolamento UE 679/2016);
+                    </li>
+                    <li>
+                        dichiara di ricevere l'importo di
+                        <b>{{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }},00 € </b> in
+                        buoni spesa.
                     </li>
                 </ul>
 
+
                 <p>Si allega alla presente, valido documento di riconoscimento;</p>
-                <p>Santa Maria la Carità, 09/04/2020</p>
+                <p>Santa Maria la Carità, 21/12/2020</p>
 
                 <div style="text-align: right;">
-                    <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: white;">.</span></p>
+                    <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                            style="color: white;">.</span></p>
                 </div>
 
                 <br><br><br><br><br>
                 <p>Pratica istruita da: {{ instructor[1] }}</p>
-                <p>--------------------------------------------------------------------------------------------------------------</p>
-                <p>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">Il sottoscritto</span>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">La sottoscritta</span>
-                    {{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }}
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">nato </span>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">nata </span>
-                    a {{ itFiscalCodeService.comuneCf(foodProductRequestDTO.familyUnit.taxId) }}
-                    il {{ itFiscalCodeService.dataCf(foodProductRequestDTO.familyUnit.taxId) }}
-                    residente in Santa Maria la Carità (Na)
-                    alla via {{ foodProductRequestDTO.familyUnit.address }},
-                    {{ foodProductRequestDTO.familyUnit.civicNumber }},
-                    codice Fiscale {{ foodProductRequestDTO.familyUnit.taxId.toUpperCase() }},
-                    <span *ngIf="foodProductRequestDTO.familyUnit.telephone != null">tel: {{ foodProductRequestDTO.familyUnit.telephone }}</span>
-                    cell: {{ foodProductRequestDTO.familyUnit.mobile }}
-                    email: {{ foodProductRequestDTO.familyUnit.email }}
-                </p>
-                <p>
-                    dichiara di ricevere l'importo di {{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }},00 € in buoni spesa
-                </p>
-                <p>Santa Maria la Carità, 09/04/2020</p>
-
-                <div style="text-align: right;">
-                    <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: white;">.</span></p>
-                </div>
-
-                <br><br><br><br><br>
             </div>
 
         </div>

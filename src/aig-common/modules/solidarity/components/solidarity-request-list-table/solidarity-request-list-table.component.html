@@ -43,7 +43,13 @@
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span style="text-align: center; width: 100%;">{{ e.familyUnit.postalCode }}</span>
+
+				<span *ngIf="e.requestTypeId == 1" style="text-align: center; width: 100%;">{{ e.familyUnit.postalCode }}</span>
+				<span *ngIf="e.requestTypeId == 2" style="text-align: center; width: 100%;">
+					<span *ngIf="e.requestStatusA">A</span>
+                    <span *ngIf="e.requestStatusB">B</span>
+				</span>
+
             </mat-cell>
         </ng-container>
 
@@ -56,7 +62,8 @@
                 <span *ngIf="e.note == '4'" style="color: red;">Non ammissibile</span>
                 <span *ngIf="e.note == '5'" style="color: brown;">Duplicata</span>
                 <span *ngIf="e.note == '6'" style="color: blueviolet;">Soccorso istruttorio</span>
-                <span *ngIf="e.note == '7'" style="color: orange;">Integrato</span>
+                <span *ngIf="e.note == '7'" style="color: brown;">Rinunciato</span>
+                <span *ngIf="e.note == '8'" style="color: orange;">Integrato</span>
             </mat-cell>
         </ng-container>
 
@@ -72,7 +79,7 @@
 
         <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) | currency: 'EUR' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
@@ -81,6 +88,8 @@
                 <button class="mr-8" mat-stroked-button color="accent"
                     [routerLink]="'/solidarity/request/detail/' + e.id">Details</button>
                 <a target="_blank" class="mr-8" mat-stroked-button color="accent" href="/solidarity/request/detail/{{ e.id }}">Details -></a>
+                <button class="mr-8" mat-stroked-button color="accent"
+                    [routerLink]="'/solidarity/request/detail/' + e.id + '/module'">Module</button>
             </mat-cell>
         </ng-container>
 

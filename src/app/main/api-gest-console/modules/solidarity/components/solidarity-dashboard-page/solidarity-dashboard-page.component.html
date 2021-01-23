@@ -1,441 +1,788 @@
 <div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
-
-    <div class="center" fusePerfectScrollbar>
-
+    <div class="center">
         <div class="content">
-
             <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100">
 
-                <!-- WIDGET 1 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
-                    <!-- Front -->
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Approvate
+                            <div>Approvate</div>
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountApproved }} €
+                                {{ totalAmountApproved | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
                                 Numero domande approvate:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsA.length + foodProductRequestDTOsB.length + foodProductRequestDTOsC.length }}
-                                / {{ totalUnique }} di {{ foodProductRequestDTOs.length }}
+                                {{ totalApproved }} / {{ total }} - F:({{ totalApprovedf }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApproved2 }}/{{ totalApproved }}</b> - F:({{ totalApproved2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApproved3 }}/{{ totalApproved }}</b> - F:({{ totalApproved3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApproved4 }}/{{ totalApproved }}</b> - F:({{ totalApproved4f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET 1 -->
-
-                <!-- WIDGET A -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo A
+                            Approvate con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountA }} €
+                                {{ totalAmountMin5 | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsA.length }}
+                                {{ totalMin5 }} di {{ totalApproved }} / {{ total }} - F:({{ totalMin5f }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin52 }}/{{ totalMin5 }}</b> - F:({{ totalMin52f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin53 }}/{{ totalMin5 }}</b> - F:({{ totalMin53f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin54 }}/{{ totalMin5 }}</b> - F:({{ totalMin54f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET A -->
-
-                <!-- WIDGET B -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo B
+                            Approvate con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountB }} €
+                                {{ totalAmountMor5 | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsB.length }}
+                                {{ totalMor5 }} di {{ totalApproved }} / {{ total }} - F:({{ totalMor5f }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor52 }}/{{ totalMor5 }}</b> - F:({{ totalMor52f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor53 }}/{{ totalMor5 }}</b> - F:({{ totalMor53f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor54 }}/{{ totalMor5 }}</b> - F:({{ totalMor54f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET B -->
 
-                <!-- WIDGET C -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
-                    <!-- Front -->
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo C
+                            Approvate fascia A
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountC }} €
+                                {{ totalAmountApprovedA | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsC.length }}
+                                {{ totalApprovedA }} / {{ total }} - F:({{ totalApprovedAf }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApprovedA2 }}/{{ totalApprovedA }}</b> - F:({{ totalApprovedA2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApprovedA3 }}/{{ totalApprovedA }}</b> - F:({{ totalApprovedA2f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApprovedA4 }}/{{ totalApprovedA }}</b> - F:({{ totalApprovedA2f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET C -->
-
-                <!-- WIDGET 1 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Approvate dopo Integrazione
+                            Approvate fascia A con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountApprovedAfter }} €
+                                {{ totalAmountMin5A | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsAafter.length + foodProductRequestDTOsBafter.length + foodProductRequestDTOsCafter.length }}
+                                {{ totalMin5A }} di {{ totalApprovedA }} / {{ total }} - F:({{ totalMin5Af }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin5A2 }}/{{ totalMin5A }}</b> - F:({{ totalMin5A2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin5A3 }}/{{ totalMin5A }}</b> - F:({{ totalMin5A3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin5A4 }}/{{ totalMin5A }}</b> - F:({{ totalMin5A4f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET 1 -->
-
-                <!-- WIDGET A -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo A
+                            Approvate fascia A con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountAafter }} €
+                                {{ totalAmountMor5A | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsAafter.length }}
+                                {{ totalMor5A }} di {{ totalApprovedA }} / {{ total }} - F:({{ totalMor5Af }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor5A2 }}/{{ totalMor5A }}</b> - F:({{ totalMor5A2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor5A3 }}/{{ totalMor5A }}</b> - F:({{ totalMor5A3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor5A4 }}/{{ totalMor5A }}</b> - F:({{ totalMor5A4f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET A -->
 
-                <!-- WIDGET B -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
 
-                    <!-- Front -->
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo B
+                            Approvate fascia B
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountBafter }} €
+                                {{ totalAmountApprovedB | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsBafter.length }}
+                                {{ totalApprovedB }} / {{ total }} - F:({{ totalApprovedBf }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApprovedB2 }}/{{ totalApprovedB }}</b> - F:({{ totalApprovedB2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApprovedB3 }}/{{ totalApprovedB }}</b> - F:({{ totalApprovedB3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApprovedB4 }}/{{ totalApprovedB }}</b> - F:({{ totalApprovedB4f }})<br>
+                        </div>
+                    </div>
                 </fuse-widget>
-                <!-- / WIDGET B -->
-
-                <!-- WIDGET C -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Tipo C
+                            Approvate fascia B con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalAmountCafter }} €
+                                {{ totalAmountMin5B | currency: 'EUR' }}
                             </div>
                             <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Numero domande approvate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                {{ foodProductRequestDTOsCafter.length }}
+                                {{ totalMin5B }} di {{ totalApprovedB }} / {{ total }} - F:({{ totalMin5Bf }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WIDGET C -->
-
-
-                <!-- WIDGET 2 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Non Ammissibili
-                        </div>
-
-                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-                            <div class="red-fg font-size-72 line-height-72">
-                                {{ totalInamissible }}
-                            </div>
-                            <div class="h3 secondary-text font-weight-500">domande</div>
-                        </div>
-
-                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h4 secondary-text text-truncate">
-                                Importo domande inammisibili:
-                            </span>
-                            <span class="h4 ml-8">
-                                € {{ totalAmountInamissible }}
-                            </span>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin5B2 }}/{{ totalMin5B }}</b> - F:({{ totalMin5B2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin5B3 }}/{{ totalMin5B }}</b> - F:({{ totalMin5B3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin5B4 }}/{{ totalMin5B }}</b> - F:({{ totalMin5B4f }})<br>
                         </div>
                     </div>
-                    <!-- / Front -->
-
                 </fuse-widget>
-                <!-- / WIDGET 2 -->
-
-                <!-- WIDGET 3 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
                         <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Non approvate
+                            Approvate fascia B con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-
-                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
-                            <div class="red-fg font-size-72 line-height-72">
-                                {{ totalNotAproved }}
-                            </div>
-                            <div class="h3 secondary-text font-weight-500">domande</div>
-                        </div>
-
-                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h4 secondary-text text-truncate">
-                                Importo domande non approvate:
-                            </span>
-                            <span class="h4 ml-8">
-                                € {{ totalAmountNotAproved }}
-                            </span>
-                        </div>
-                    </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WIDGET 3 -->
-
-
-                <!-- WIDGET 4 -->
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="25">
-
-                    <!-- Front -->
-                    <div class="fuse-widget-front">
-                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
-                            Rifiutate
-                        </div>
-
                         <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
                             <div class="light-blue-fg font-size-72 line-height-72">
-                                {{ totalReleased }}
+                                {{ totalAmountMor5B | currency: 'EUR' }}
                             </div>
-                            <div class="h3 secondary-text font-weight-500">domande</div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
                         </div>
-
                         <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h4 secondary-text text-truncate">
-                                Importo domande rifiutate:
+                                Numero:
                             </span>
                             <span class="h4 ml-8">
-                                € {{ totalAmountReleased }}
+                                {{ totalMor5B }} di {{ totalApprovedB }} / {{ total }} - F:({{ totalMor5Bf }})
                             </span>
                         </div>
                     </div>
-                    <!-- / Front -->
-
-                </fuse-widget>
-                <!-- / WIDGET 4 -->
-
-
-
-                <pre>{{ omonimi | json }}</pre>
-
-                <!-- WIDGET 5 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
-                    <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria A</div>
-                        </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsA">
-                            </aig-solidarity-request-list-table>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor5B2 }}/{{ totalMor5B }}</b> - F:({{ totalMor5B2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor5B3 }}/{{ totalMor5B }}</b> - F:({{ totalMor5B3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor5B4 }}/{{ totalMor5B }}</b> - F:({{ totalMor5B4f }})<br>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 5 -->
 
-                <!-- WIDGET 6 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria B</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia C
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsB">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedC | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedC }} / {{ total }} - F:({{ totalApprovedCf }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApprovedC2 }}/{{ totalApprovedC }}</b> - F:({{ totalApprovedC2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApprovedC3 }}/{{ totalApprovedC }}</b> - F:({{ totalApprovedC3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApprovedC4 }}/{{ totalApprovedC }}</b> - F:({{ totalApprovedC4f }})<br>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 6 -->
-
-                <!-- WIDGET 7 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria C</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia C con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsC">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5C | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5C }} di {{ totalApprovedC }} / {{ total }} - F:({{ totalMin5Cf }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin5C2 }}/{{ totalMin5C }}</b> - F:({{ totalMin5C2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin5C3 }}/{{ totalMin5C }}</b> - F:({{ totalMin5C3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin5C4 }}/{{ totalMin5C }}</b> - F:({{ totalMin5C4f }})<br>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 7 -->
-
-                <!-- WIDGET 5 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria A</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia C con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumns" [dataSource]="foodProductRequestDTOsAafter">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5C | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5C }} di {{ totalApprovedC }} / {{ total }} - F:({{ totalMor5Cf }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor5C2 }}/{{ totalMor5C }}</b> - F:({{ totalMor5C2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor5C3 }}/{{ totalMor5C }}</b> - F:({{ totalMor5C3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor5C4 }}/{{ totalMor5C }}</b> - F:({{ totalMor5C4f }})<br>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 5 -->
 
-                <!-- WIDGET 6 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+
+
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria B</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia D
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsBafter">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedD | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedD }} / {{ total }} - F:({{ totalApprovedDf }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApprovedD2 }}/{{ totalApprovedD }}</b> - F:({{ totalApprovedD2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApprovedD3 }}/{{ totalApprovedD }}</b> - F:({{ totalApprovedD3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApprovedD4 }}/{{ totalApprovedD }}</b> - F:({{ totalApprovedD4f }})<br>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 6 -->
-
-                <!-- WIDGET 7 -->
-                <fuse-widget fxLayout="row" fxFlex="100" class="widget widget5">
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
                     <div class="fuse-widget-front">
-                        <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div fxFlex class="py-16 h3">Graduatoria C</div>
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia D con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
                         </div>
-                        <div fxLayout="row wrap" fxLayoutAlign="start start">
-                            <aig-solidarity-request-list-table style="width: 100%;"
-                                [displayedColumns]="displayedColumnsB" [dataSource]="foodProductRequestDTOsCafter">
-                            </aig-solidarity-request-list-table>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5D | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5D }} di {{ totalApprovedD }} / {{ total }} - F:({{ totalMin5Df }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin5D2 }}/{{ totalMin5D }}</b> - F:({{ totalMin5D2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin5D3 }}/{{ totalMin5D }}</b> - F:({{ totalMin5D3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin5D4 }}/{{ totalMin5D }}</b> - F:({{ totalMin5D4f }})<br>
                         </div>
                     </div>
                 </fuse-widget>
-                <!-- / WIDGET 7 -->
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia D con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5D | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5D }} di {{ totalApprovedD }} / {{ total }} - F:({{ totalMor5Df }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor5D2 }}/{{ totalMor5D }}</b> - F:({{ totalMor5D2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor5D3 }}/{{ totalMor5D }}</b> - F:({{ totalMor5D3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor5D4 }}/{{ totalMor5D }}</b> - F:({{ totalMor5D4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia E
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedE | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedE }} / {{ total }} - F:({{ totalApprovedEf }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApprovedE2 }}/{{ totalApprovedE }}</b> - F:({{ totalApprovedE2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApprovedE3 }}/{{ totalApprovedE }}</b> - F:({{ totalApprovedE3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApprovedE4 }}/{{ totalApprovedE }}</b> - F:({{ totalApprovedE4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia E con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5E | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5E }} di {{ totalApprovedE }} / {{ total }} - F:({{ totalMin5Ef }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin5E2 }}/{{ totalMin5E }}</b> - F:({{ totalMin5E2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin5E3 }}/{{ totalMin5E }}</b> - F:({{ totalMin5E3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin5E4 }}/{{ totalMin5E }}</b> - F:({{ totalMin5E4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia E con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5E | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5E }} di {{ totalApprovedE }} / {{ total }} - F:({{ totalMor5Ef }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor5E2 }}/{{ totalMor5E }}</b> - F:({{ totalMor5E2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor5E3 }}/{{ totalMor5E }}</b> - F:({{ totalMor5E3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor5E4 }}/{{ totalMor5E }}</b> - F:({{ totalMor5E4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="40">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia F
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountApprovedF | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalApprovedF }} / {{ total }} - F:({{ totalApprovedFf }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalApprovedF2 }}/{{ totalApprovedF }}</b> - F:({{ totalApprovedF2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalApprovedF3 }}/{{ totalApprovedF }}</b> - F:({{ totalApprovedF3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalApprovedF4 }}/{{ totalApprovedF }}</b> - F:({{ totalApprovedF4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia F con meno di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMin5F | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMin5F }} di {{ totalApprovedF }} / {{ total }} - F:({{ totalMin5Ff }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMin5F2 }}/{{ totalMin5F }}</b> - F:({{ totalMin5F2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMin5F3 }}/{{ totalMin5F }}</b> - F:({{ totalMin5F3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMin5F4 }}/{{ totalMin5F }}</b> - F:({{ totalMin5F4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            Approvate fascia F con più di 5000 €
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ totalAmountMor5F | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalMor5F }} di {{ totalApprovedF }} / {{ total }} - F:({{ totalMor5Ff }})
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: <b>{{ totalMor5F2 }}/{{ totalMor5F }}</b> - F:({{ totalMor5F2f }})<br>
+                            Approvate con 3 componenti: <b>{{ totalMor5F3 }}/{{ totalMor5F }}</b> - F:({{ totalMor5F3f }})<br>
+                            Approvate più di 3 componenti: <b>{{ totalMor5F4 }}/{{ totalMor5F }}</b> - F:({{ totalMor5F4f }})<br>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
             </div>
-
         </div>
-
     </div>
-
 </div>

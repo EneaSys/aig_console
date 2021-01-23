@@ -49,6 +49,30 @@
 
                     <div class="card mb-16">
                         <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h5">Tipo</span>
+                        </div>
+                        <div class="content py-16" fusePerfectScrollbar>
+                            <div class="nav material2">
+                                <div class="nav-item" aria-label="inbox">
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.type == null}"
+                                        (click)="searchByType(null)">
+                                        <span class="title">Tutte</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.type == '1'}"
+                                        (click)="searchByType('1')">
+                                        <span class="title">Buoni spesa</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.type == '2'}"
+                                        (click)="searchByType('2')">
+                                        <span class="title">Contributo economico</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-16">
+                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
                             <span class="h5">Stato</span>
                         </div>
                         <div class="content py-16" fusePerfectScrollbar>
@@ -84,6 +108,10 @@
                                     </a>
                                     <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '7'}"
                                         (click)="searchByState('7')">
+                                        <span class="title">Rinunciato</span>
+                                    </a>
+                                    <a class="nav-link" matRipple [ngClass]="{'accent': filters.state == '8'}"
+                                        (click)="searchByState('8')">
                                         <span class="title">Integrato</span>
                                     </a>
                                 </div>
