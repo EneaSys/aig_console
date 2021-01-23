@@ -141,19 +141,17 @@
                     <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> Tra € 2.000,01 a € 5.000,00</span>
                     <span style="color: red;" *ngIf="foodProductRequestDTO.familyUnit.telephone == 'C'"> Superiore di €
                         5.000,01</span>
-                </div>
-                <div class="h4 m-8 ml-16">
-                    <b>Fatturato 2019:</b>
-                    {{ foodProductRequestDTO.requestStatusBIncomeFeb | currency: 'EUR' }}
-                </div>
-                <div class="h4 m-8 ml-16">
-                    <b>Reddito Ottobre 2020:</b>
-                    {{ foodProductRequestDTO.requestStatusBIncomeMar | currency: 'EUR' }}
-                </div>
-                <div class="h4 m-8 ml-16">
-                    <b>Motivo reddito:</b>
-                    {{ foodProductRequestDTO.familyUnit.city }}
-                </div>
+				</div>
+				<div *ngIf="foodProductRequestDTO.requestStatusB">
+					<div class="h4 m-8 ml-16">
+						<b>Reddito Novembre 2020:</b>
+						{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: 'EUR' }}
+					</div>
+					<div class="h4 m-8 ml-16">
+						<b>Motivo reddito:</b>
+						{{ foodProductRequestDTO.familyUnit.city }}
+					</div>
+				</div>
             </div>
 
             <div class="fuse-card auto-width mt-8 p-16">

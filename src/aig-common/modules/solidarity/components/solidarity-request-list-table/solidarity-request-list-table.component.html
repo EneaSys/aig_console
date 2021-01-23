@@ -43,7 +43,13 @@
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span style="text-align: center; width: 100%;">{{ e.familyUnit.postalCode }}</span>
+
+				<span *ngIf="e.requestTypeId == 1" style="text-align: center; width: 100%;">{{ e.familyUnit.postalCode }}</span>
+				<span *ngIf="e.requestTypeId == 2" style="text-align: center; width: 100%;">
+					<span *ngIf="e.requestStatusA">A</span>
+                    <span *ngIf="e.requestStatusB">B</span>
+				</span>
+
             </mat-cell>
         </ng-container>
 
