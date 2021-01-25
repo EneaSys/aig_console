@@ -58,7 +58,7 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
         paymentDTOs.forEach((paymentDTO: PaymentDTO) => {
             valuePaperPaymentIds.push(paymentDTO.valuePaperPaymentId);
         });
-        this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,valuePaperPaymentIds,null,null,null,null).toPromise();
+        this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,valuePaperPaymentIds).toPromise();
     }
 
 

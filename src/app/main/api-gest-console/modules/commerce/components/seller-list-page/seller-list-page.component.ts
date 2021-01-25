@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { MatDialog } from '@angular/material/dialog';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { SellerResourceService, SellerDTO } from 'aig-commerce';
+import { SellerResourceService, SellerDTO, WarehouseResourceService, WarehouseDTO } from 'aig-commerce';
 import { AigSellerNewUpdateDialogComponent } from '../seller-new-update-dialog/seller-new-update-dialog.component';
 
 @Component({
@@ -11,6 +11,7 @@ import { AigSellerNewUpdateDialogComponent } from '../seller-new-update-dialog/s
 })
 export class AigSellerListPageComponent extends GenericComponent {
     constructor(
+        private warehouseResourceService: WarehouseResourceService,
         private sellerResourceService: SellerResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
@@ -19,7 +20,11 @@ export class AigSellerListPageComponent extends GenericComponent {
     sellerDisplayedColumns: string[] = ['id', 'name', 'buttons'];
     sellerDTOs: SellerDTO[];
 
+    warehouseDTOs: WarehouseDTO[];
+
     async loadComponent() {
+
+        this.warehouseDTOs = await this.warehouseResourceService.getAllWarehousesUsingGET().toPromise();
         this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
     }
 

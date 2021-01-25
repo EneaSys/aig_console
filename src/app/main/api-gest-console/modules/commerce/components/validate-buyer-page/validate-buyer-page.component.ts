@@ -75,7 +75,7 @@ export class ValidateBuyerPageComponent extends GenericComponent {
 
     async loadNextCustomerToValidate() {
         try {
-            let buyers = await this.buyerResourceService.getAllBuyersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'2',null,null,null).toPromise();
+            let buyers = await this.buyerResourceService.getAllBuyersUsingGET().toPromise();
             let randomIndex = this.getRandomArbitrary(0, buyers.length)
             let buyer: BuyerDTO = buyers[parseInt(randomIndex)];
 

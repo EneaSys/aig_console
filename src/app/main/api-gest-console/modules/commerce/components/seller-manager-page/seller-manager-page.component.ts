@@ -32,7 +32,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     
     async loadPage() {
         try {
-            this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50,null).toPromise();
+            this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50).toPromise();
             if(this.sellerDTOs.length > 0) {
                 this.setSeller(this.sellerDTOs[0]);
             } else {
@@ -84,10 +84,10 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
     async loadStatistics() {
         let fiscalTransactionStatusToAction: string[] = ["1","4"];
-        this.statistics.fiscalTransactionPending = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,fiscalTransactionStatusToAction,null,null).toPromise();
+        this.statistics.fiscalTransactionPending = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null).toPromise();
 
         let buyerStatusToAction: string[] = ["1","4"];
-        this.statistics.buyerPending = await this.buyerResourceService.countBuyersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,buyerStatusToAction,null,null).toPromise();
+        this.statistics.buyerPending = await this.buyerResourceService.countBuyersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
     }
 
 
@@ -140,7 +140,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
         this.purchaseIndex = page
         this.purchasePageable.page = page;
         try {
-            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.purchasePageable.page, null, null, null, null, null, null, null, null, this.purchaseFilter.seller, null, null, null, null, null, null,  null, this.purchasePageable.size, null, null, null, null, null, null).toPromise();
+            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.purchaseFilter.seller, null, null, null, null, null, null,  null, this.purchasePageable.size, null, null, null, null, null, null).toPromise();
         } catch(e) {
             this.purchaseError = e;
         }

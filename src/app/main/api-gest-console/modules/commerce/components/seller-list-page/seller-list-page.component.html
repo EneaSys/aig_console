@@ -29,6 +29,9 @@
         <!-- CENTER -->
         <div class="center p-24 pb-56 mb-24" fusePerfectScrollbar>
             <div class="content">
+
+                <pre>{{ warehouseDTOs | json }}</pre>
+
                 <aig-seller-list-table [dataSource]="sellerDTOs" [displayedColumns]="sellerDisplayedColumns"></aig-seller-list-table>
                 
             </div>
