@@ -1,0 +1,43 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Seleziona contesto</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 p-16 m-0" fusePerfectScrollbar>
+		
+        <mat-table #table [dataSource]="dataSource">
+			<ng-container matColumnDef="name">
+				<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+				<mat-cell *matCellDef="let e"> {{ e.contextName }} </mat-cell>
+			</ng-container>
+	
+			<ng-container matColumnDef="contextCode">
+				<mat-header-cell *matHeaderCellDef> ContextCode </mat-header-cell>
+				<mat-cell *matCellDef="let e"> {{ e.contextCode }} </mat-cell>
+			</ng-container>
+			
+			<ng-container matColumnDef="selectContext">
+				<mat-header-cell *matHeaderCellDef></mat-header-cell>
+				<mat-cell *matCellDef="let e">
+					<button class="mr-8" mat-stroked-button color="accent" (click)="setDefaultContextAndGoToHome(e)">Seleziona</button>
+				</mat-cell>
+			</ng-container>
+			
+			<ng-container matColumnDef="buttons">
+				<mat-header-cell *matHeaderCellDef></mat-header-cell>
+				<mat-cell *matCellDef="let e">
+					<button class="mr-8" mat-stroked-button color="accent" (click)="setDefaultContext(e)">Predefinito</button>
+				</mat-cell>
+			</ng-container>
+	
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+		</mat-table>
+
+    </div>
+</div>

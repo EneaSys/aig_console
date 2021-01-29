@@ -8,8 +8,8 @@ export class GenericComponent implements OnInit, OnDestroy {
         private _gcs: AigGenericComponentService,
     ) { }
     protected _destructors: Subscription[] = [];
-    protected firstLoad = true;
-
+	protected firstLoad: boolean = true;
+	
     ngOnInit(): void {
         this.loadComponent();
         this._loadPage();
@@ -50,7 +50,7 @@ export class GenericComponent implements OnInit, OnDestroy {
             this.loadPage();
         } else {
             this.reloadPage();
-        }
+		}
         this.afterLoad();
     }
 

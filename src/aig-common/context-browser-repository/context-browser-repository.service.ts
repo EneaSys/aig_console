@@ -323,7 +323,10 @@ export class AigContextRepositoryService {
     private reloadWithDefaultContext() {
         let defaultContext = this.getDefaultContextInMemory();
         if (defaultContext == null) {
-            this.router.navigate(['/m8t', 'context', 'list']);
+			console.log("seleziona contesto");
+			if(!this.location.path().startsWith('/welcome-page')) {
+                this.router.navigate(['/welcome-page']);
+            }
             return null;
         }
         this._setCurrentContext(defaultContext);
@@ -369,6 +372,9 @@ export class AigContextRepositoryService {
 
         private isPageWithoutContext(): boolean {
             if(this.location.path().startsWith('/implicit/callback')) {
+                return true;
+			}
+			if(this.location.path().startsWith('/welcome-page')) {
                 return true;
             }
             if(this.location.path().startsWith('/m8t/context/list')) {
