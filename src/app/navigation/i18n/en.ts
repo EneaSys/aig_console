@@ -7,10 +7,7 @@ export const locale = {
             'MANAGEMENT': 'Management',
             'STANDARD': 'Standard',
             'GENERIC': 'Generic',
-            'SAMPLE'        : {
-                'TITLE': 'Sample',
-                'BADGE': '25'
-            },
+            'TENANT_CONTEXT_LIST_PAGE' : 'Context'
         },
     }
 };
