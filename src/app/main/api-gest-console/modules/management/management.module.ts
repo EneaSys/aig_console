@@ -29,6 +29,7 @@ import { AigAssociateRoleToPermissionDialogComponent } from './components/associ
 import { AigTenantContextListPageComponent } from './components/tenant-context-list-page/tenant-context-list-page.component';
 import { RouterModule } from '@angular/router';
 import { managementRoute } from './management.route';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -51,7 +52,8 @@ import { managementRoute } from './management.route';
         MatChipsModule,
         MatSnackBarModule,
         MatToolbarModule,
-        MatProgressSpinnerModule,
+		MatProgressSpinnerModule,
+		MatPaginatorModule,
     ],
     declarations: [
         AigManagementHeaderComponent,

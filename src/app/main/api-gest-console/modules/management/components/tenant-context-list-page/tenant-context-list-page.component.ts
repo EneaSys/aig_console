@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { TenantContextDTO, TenantContextResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -20,15 +20,27 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	tenantContextDC: string[] = [ "id", "name", "contextCode", "buttons" ];
 	tenantContextError: any;
 
-	async loadPage() {
+	length: number;
+	page: number;
+	size: number = 2;
+	
+	loadPage() {
+		this.reloadPage();
+	}
+
+	paginationEvent(pageEvent: PageEvent) {
+		this.page = pageEvent.pageIndex;
+		this.size = pageEvent.pageSize;
+
+		this.reloadPage();
+	}
+	
+	async reloadPage() {
 		try {
-			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET().toPromise();
+			this.length = await this.tenantContextResourceService.countTenantContextsUsingGET().toPromise();
+			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,this.size).toPromise();
 		} catch(e) {
 			this.tenantContextError = e;
 		}
-	}
-
-	reloadPage() {
-
 	}
 }

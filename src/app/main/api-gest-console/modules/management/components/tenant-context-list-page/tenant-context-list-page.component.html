@@ -33,13 +33,12 @@
 		<!-- / HEADER -->
 		<!-- CONTENT -->
 		<div class="content mb-48">
-			<aig-tenant-context-list-table [displayedColumns]="tenantContextDC" [dataSource]="tenantContextDTOs" [error]="tenantContextError"></aig-tenant-context-list-table>
-			
-			<!-- 
-			<mat-paginator #purchasePaginator [length]="purchaseLength" [pageIndex]="purchaseIndex"
-				[pageSize]="30" [pageSizeOptions]="[30, 100, 200]"
-				(page)="purchasePaginatorEvent($event)"></mat-paginator>
-			-->
+			<aig-tenant-context-list-table [displayedColumns]="tenantContextDC" [dataSource]="tenantContextDTOs"
+				[error]="tenantContextError"></aig-tenant-context-list-table>
+
+			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
+				[pageSizeOptions]="[2, 10, 20, 50]" (page)="paginationEvent($event)">
+			</mat-paginator>
 		</div>
 		<!-- / CONTENT -->
 	</div>
