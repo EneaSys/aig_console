@@ -91,6 +91,14 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'shopping_basket',
                 url      : '/commerce/seller',
                 permission: ['c6e.admin'],
+            },
+            {
+                id       : 'producer',
+                title    : 'Produttori',
+                type     : 'item',
+                icon     : 'business',
+                url      : '/commerce/producer',
+                permission: ['c6e.admin'],
 			},
 			{
                 id       : 'buyer',
