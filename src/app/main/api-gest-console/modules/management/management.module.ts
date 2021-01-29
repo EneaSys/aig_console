@@ -26,9 +26,15 @@ import { AigCommonManagementModule } from 'aig-common/modules/management/common-
 import { AigPermissionNewDialogComponent } from './components/permission-new-dialog/permission-new-dialog.component';
 import { AigRoleNewDialogComponent } from './components/role-new-dialog/role-new-dialog.component';
 import { AigAssociateRoleToPermissionDialogComponent } from './components/associate-role-premission-dialog/associate-role-premission-dialog.component';
+import { AigTenantContextListPageComponent } from './components/tenant-context-list-page/tenant-context-list-page.component';
+import { RouterModule } from '@angular/router';
+import { managementRoute } from './management.route';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
     imports: [
+		RouterModule.forChild(managementRoute),
+
         AigCommonModule,
         AigCommonManagementModule,
 
@@ -46,7 +52,8 @@ import { AigAssociateRoleToPermissionDialogComponent } from './components/associ
         MatChipsModule,
         MatSnackBarModule,
         MatToolbarModule,
-        MatProgressSpinnerModule,
+		MatProgressSpinnerModule,
+		MatPaginatorModule,
     ],
     declarations: [
         AigManagementHeaderComponent,
@@ -60,7 +67,8 @@ import { AigAssociateRoleToPermissionDialogComponent } from './components/associ
         
         AigPermissionNewDialogComponent,
         AigRoleNewDialogComponent,
-        AigAssociateRoleToPermissionDialogComponent,
+		AigAssociateRoleToPermissionDialogComponent,
+		AigTenantContextListPageComponent,
     ],
     exports: [ ],
     providers: [ ],

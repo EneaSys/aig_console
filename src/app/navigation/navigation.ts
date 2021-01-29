@@ -251,6 +251,14 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'star_half',
                 url      : '/m8t/permission',
                 permission: ['e4y.role.get'],
+			},
+			{
+                id       : 'tenant-context-list-page',
+				title    : 'Tenant Context',
+				translate: 'NAV.TENANT_CONTEXT_LIST_PAGE',
+                type     : 'item',
+                icon     : 'star_half',
+                url      : '/m8t/tenant-context',
             },
             {
                 id       : 'context-list',
