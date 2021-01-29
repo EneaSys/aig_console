@@ -116,6 +116,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/seller-manager',
                 permission: ['c6e.buy.get.asSeller'],
             },
+            {
+                id       : 'inventory-item-list-page',
+                title    : 'Lista Inventario',
+                type     : 'item',
+                icon     : 'assignment',
+                url      : '/commerce/inventory-item',
+                permission: ['c6e.admin'],
+            },
         ]
     },
     {

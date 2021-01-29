@@ -12,6 +12,7 @@ import { AigCommValidatorPageComponent } from './components/validator-page/valid
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
 import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-list-page.component';
+import { AigInventoryItemListPageComponent } from './components/inventory-item-list-page/inventory-item-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -141,6 +142,30 @@ export const commerceRoute: Routes = [
                 path: 'validator',
                 component: AigCommValidatorPageComponent,
                 canActivate: [ AuthGuardService ],
+            },
+
+            {
+                path: 'inventory-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigInventoryItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigPurchaseDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            purchase: PurchaseResolver,
+                        },
+                    */ 
+                ]
             },
         ]
     }
