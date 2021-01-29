@@ -33,7 +33,7 @@
 		<!-- / HEADER -->
 		<!-- CONTENT -->
 		<div class="content mb-48">
-			<inventory-category-list-table [displayedColumns]="inventoryCategoryDC" [dataSource]="inventoryCategoryDTOs"
+			<inventory-category-list-table [displayColumns]="inventoryCategoryDC" [dataSource]="inventoryCategoryDTOs"
 				[error]="inventoryCategoryError"></inventory-category-list-table>
 
 			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
