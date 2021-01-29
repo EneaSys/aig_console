@@ -33,8 +33,8 @@
 		<!-- / HEADER -->
 		<!-- CONTENT -->
 		<div class="content mb-48">
-			<pre>{{ tenantContextDTOs | json }}</pre>
-
+			<aig-tenant-context-list-table [displayedColumns]="tenantContextDC" [dataSource]="tenantContextDTOs" [error]="tenantContextError"></aig-tenant-context-list-table>
+			
 			<!-- 
 			<mat-paginator #purchasePaginator [length]="purchaseLength" [pageIndex]="purchaseIndex"
 				[pageSize]="30" [pageSizeOptions]="[30, 100, 200]"

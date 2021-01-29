@@ -17,7 +17,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
 	tenantContextDTOs: TenantContextDTO[];
-	tenantContextDC: string[] = [];
+	tenantContextDC: string[] = [ "id", "name", "contextCode", "buttons" ];
 	tenantContextError: any;
 
 	async loadPage() {

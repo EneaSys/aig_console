@@ -22,11 +22,14 @@ import { AigPermissionNewFormComponent } from './components/permission-new-form/
 import { AigAssociateRolePermissionFormComponent } from './components/associate-role-permission-form/associate-role-permission-form.component';
 import { AigManagementAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigManagementAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { AigTenantContextListTableComponent } from './components/tenant-context-list-table/tenant-context-list-table.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         AigCommonModule,
-        
+		
+		RouterModule,
         CommonModule,
 
         BrowserModule,
@@ -46,23 +49,27 @@ import { AigManagementAutocompleteFunctionService } from './services/form/autoco
         FlexLayoutModule,
 
     ],
-    declarations: [
+	declarations: [
         AigContextTableComponent,
         AigRoleTableComponent,
         AigPermissionTableComponent,
 
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
-        AigAssociateRolePermissionFormComponent,
+		AigAssociateRolePermissionFormComponent,
+		
+		AigTenantContextListTableComponent,
     ],
-    exports: [
+	exports: [
         AigContextTableComponent,
         AigRoleTableComponent,
         AigPermissionTableComponent,
 
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
-        AigAssociateRolePermissionFormComponent,
+		AigAssociateRolePermissionFormComponent,
+		
+		AigTenantContextListTableComponent
     ],
     providers: [
         AigManagementAutocompleteFilterService,
