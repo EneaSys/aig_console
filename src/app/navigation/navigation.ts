@@ -112,7 +112,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'inventory-category',
                 title    : 'Categorie inventario',
                 type     : 'item',
-                icon     : 'check_circle_outline',
+                icon     : 'format_list_bulleted',
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
             },

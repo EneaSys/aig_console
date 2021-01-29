@@ -37,7 +37,7 @@
 				[error]="inventoryCategoryError"></inventory-category-list-table>
 
 			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
-				[pageSizeOptions]="[2, 10, 20, 50]" (page)="paginationEvent($event)">
+				[pageSizeOptions]="[10, 20, 50]" (page)="paginationEvent($event)">
 			</mat-paginator>
 		</div>
 		<!-- / CONTENT -->
