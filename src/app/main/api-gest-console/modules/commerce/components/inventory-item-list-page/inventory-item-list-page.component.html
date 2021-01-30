@@ -36,7 +36,7 @@
                 <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC" [error]= "inventoryItemError" ></aig-inventory-item-list-table>
 
                     <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" 
-                    [pageSizeOptions]="[1,2,10,30, 100, 200]" (page)="paginationEvent($event)"></mat-paginator>
+                    [pageSizeOptions]="[10,30,50]" (page)="paginationEvent($event)"></mat-paginator>
             </div>
             <!-- / CONTENT -->
         </div>

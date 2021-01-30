@@ -101,22 +101,6 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
-                id       : 'comm-validator',
-                title    : 'Istruttoria',
-                type     : 'item',
-                icon     : 'check_circle_outline',
-                url      : '/commerce/validator',
-                permission: ['c6e.admin'],
-            },
-            {
-                id       : 'commerce-seller-manager',
-                title    : 'Gestore Vendite',
-                type     : 'item',
-                icon     : 'dashboard',
-                url      : '/commerce/seller-manager',
-                permission: ['c6e.buy.get.asSeller'],
-            },
-            {
                 id       : 'inventory-item-list-page',
                 title    : 'Lista Inventario',
                 type     : 'item',

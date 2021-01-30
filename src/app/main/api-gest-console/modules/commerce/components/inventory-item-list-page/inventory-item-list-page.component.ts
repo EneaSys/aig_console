@@ -37,7 +37,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     async reloadPage() {
         try {
             this.length = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
-            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page).toPromise();
+            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,this.size).toPromise();
         } catch (e) {
             this.inventoryItemError = e;
         }
