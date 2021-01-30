@@ -116,8 +116,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-item',
                 permission: ['c6e.admin'],
             },
-<<<<<<< HEAD
-=======
             {
                 id       : 'inventory-category',
                 title    : 'Categorie inventario',
@@ -126,15 +124,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
             },
-            {
-                id       : 'commerce-seller-manager',
-                title    : 'Gestore Vendite',
-                type     : 'item',
-                icon     : 'dashboard',
-                url      : '/commerce/seller-manager',
-                permission: ['c6e.buy.get.asSeller'],
-            },
->>>>>>> develop
         ]
     },
     {

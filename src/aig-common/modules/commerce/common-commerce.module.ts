@@ -29,6 +29,8 @@ import { AigBuyerListTableComponent } from './components/buyer-list-table/buyer-
 import { BuyerResolver } from './resolver/buyer.resolver';
 <<<<<<< HEAD
 import { AigInventoryItemListTableComponent } from './components/inventory-item-list-table/inventory-item-list-table.component';
+import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
+import { InventoryCategoryListTableComponent } from './components/inventory-category-list-table/inventory-category-list-table.component';
 =======
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { InventoryCategoryListTableComponent } from './components/inventory-category-list-table/inventory-category-list-table.component';
@@ -70,12 +72,9 @@ import { InventoryCategoryListTableComponent } from './components/inventory-cate
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
-<<<<<<< HEAD
         AigInventoryItemListTableComponent,
-=======
         AigProducerListTableComponent,
         InventoryCategoryListTableComponent,
->>>>>>> develop
     ],
     providers: [
         PurchaseResolver,
