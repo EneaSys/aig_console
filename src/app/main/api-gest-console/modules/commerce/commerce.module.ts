@@ -35,6 +35,7 @@ import { ValidateBuyerDialogComponent } from './components/validate-buyer-dialog
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
 import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-list-page.component';
+import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 
 
@@ -87,6 +88,7 @@ import { AigInventoryCategoryListPageComponent } from './components/inventory-ca
         ValidateBuyerPageComponent,
 		ValidateFiscalTransactionPageComponent,
         AigBuyerListPageComponent,
+        AigProducerListPageComponent,
         AigInventoryCategoryListPageComponent,
     ],
     entryComponents: [
