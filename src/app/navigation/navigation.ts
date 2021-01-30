@@ -109,11 +109,11 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
-                id       : 'comm-validator',
-                title    : 'Istruttoria',
+                id       : 'inventory-item-list-page',
+                title    : 'Lista Inventario',
                 type     : 'item',
-                icon     : 'check_circle_outline',
-                url      : '/commerce/validator',
+                icon     : 'assignment',
+                url      : '/commerce/inventory-item',
                 permission: ['c6e.admin'],
             },
             {
@@ -123,14 +123,6 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'format_list_bulleted',
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
-            },
-            {
-                id       : 'commerce-seller-manager',
-                title    : 'Gestore Vendite',
-                type     : 'item',
-                icon     : 'dashboard',
-                url      : '/commerce/seller-manager',
-                permission: ['c6e.buy.get.asSeller'],
             },
         ]
     },
