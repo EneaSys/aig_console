@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AigInventoryItemListTableComponent implements OnInit {
     @Input()
-    inventoryItemError: any;
+    error: any;
     @Input()
     displayColumns: string[];
     @Input()

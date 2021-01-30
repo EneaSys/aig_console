@@ -33,13 +33,10 @@
             <!-- / HEADER -->
             <!-- CONTENT -->
             <div class="content mb-48">
-                <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC" ></aig-inventory-item-list-table>
+                <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC" [error]= "inventoryItemError" ></aig-inventory-item-list-table>
 
-                <!--
-                    <mat-paginator #purchasePaginator [length]="purchaseLength" [pageIndex]="purchaseIndex"
-                    [pageSize]="30" [pageSizeOptions]="[30, 100, 200]"
-                    (page)="purchasePaginatorEvent($event)"></mat-paginator>
-                -->
+                    <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" 
+                    [pageSizeOptions]="[1,2,10,30, 100, 200]" (page)="paginationEvent($event)"></mat-paginator>
             </div>
             <!-- / CONTENT -->
         </div>

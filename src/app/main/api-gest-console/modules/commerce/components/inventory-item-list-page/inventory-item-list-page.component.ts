@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { InventoryCategoryResourceService, InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -19,11 +19,28 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     inventoryItemDTOs: InventoryItemDTO[];
     inventoryItemDC : string[] = ["id","name","buttons"];
     inventoryItemError : any;
+
+    length : number;
+    page : number;
+    size: number = 1;
     
 
-    async loadPage() {
-        this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET().toPromise();
+    loadPage() {
+        this.reloadPage();     
     }
 
-    reloadPage() {}
+    paginationEvent (pageEvent:PageEvent) {
+        this.page = pageEvent.pageIndex;
+        this.size = pageEvent.pageSize
+    }
+
+    async reloadPage() {
+        try {
+            this.length = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
+            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page).toPromise();
+        } catch (e) {
+            this.inventoryItemError = e;
+        }
+    }
+
 }
