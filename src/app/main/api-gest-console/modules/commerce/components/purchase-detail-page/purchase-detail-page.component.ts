@@ -23,7 +23,7 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
 
     purchase: PurchaseDTO;
     
-    fiscalTransactionDisplayedColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
+    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
     fiscalTransactionDTOs: FiscalTransactionDTO[];
     fiscalTransactionError: any;
 

@@ -91,6 +91,14 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'shopping_basket',
                 url      : '/commerce/seller',
                 permission: ['c6e.admin'],
+            },
+            {
+                id       : 'producer',
+                title    : 'Produttori',
+                type     : 'item',
+                icon     : 'business',
+                url      : '/commerce/producer',
+                permission: ['c6e.admin'],
 			},
 			{
                 id       : 'buyer',
@@ -108,6 +116,25 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-item',
                 permission: ['c6e.admin'],
             },
+<<<<<<< HEAD
+=======
+            {
+                id       : 'inventory-category',
+                title    : 'Categorie inventario',
+                type     : 'item',
+                icon     : 'format_list_bulleted',
+                url      : '/commerce/inventory-category',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'commerce-seller-manager',
+                title    : 'Gestore Vendite',
+                type     : 'item',
+                icon     : 'dashboard',
+                url      : '/commerce/seller-manager',
+                permission: ['c6e.buy.get.asSeller'],
+            },
+>>>>>>> develop
         ]
     },
     {

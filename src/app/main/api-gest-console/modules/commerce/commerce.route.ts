@@ -12,7 +12,12 @@ import { AigCommValidatorPageComponent } from './components/validator-page/valid
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
 import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-list-page.component';
+<<<<<<< HEAD
 import { AigInventoryItemListPageComponent } from './components/inventory-item-list-page/inventory-item-list-page.component';
+=======
+import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
+import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
+>>>>>>> develop
 
 export const commerceRoute: Routes = [
     {
@@ -68,6 +73,21 @@ export const commerceRoute: Routes = [
                         resolve: {
                             purchase: PurchaseResolver,
                         },
+                    },
+                ]
+            },
+            {
+                path: 'producer',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigProducerListPageComponent,
+                        canActivate: [ AuthGuardService ],
                     },
                 ]
             },
@@ -143,9 +163,14 @@ export const commerceRoute: Routes = [
                 component: AigCommValidatorPageComponent,
                 canActivate: [ AuthGuardService ],
             },
+<<<<<<< HEAD
 
             {
                 path: 'inventory-item',
+=======
+            {
+                path: 'inventory-category',
+>>>>>>> develop
                 children: [
                     {
                         path: '',
@@ -154,17 +179,32 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
+<<<<<<< HEAD
                         component: AigInventoryItemListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     /*{
+=======
+                        component: AigInventoryCategoryListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*
+                    {
+>>>>>>> develop
                         path: 'detail/:id',
                         component: AigPurchaseDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
+<<<<<<< HEAD
                             purchase: PurchaseResolver,
                         },
                     */ 
+=======
+                            //eopoo: EopooResolver,
+                        },
+                    },
+                    */
+>>>>>>> develop
                 ]
             },
         ]

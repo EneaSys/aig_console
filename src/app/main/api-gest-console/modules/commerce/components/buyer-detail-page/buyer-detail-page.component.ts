@@ -41,7 +41,7 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         this.loadPurchases();
     }
 
-    purchaseDisplayedColumns: string[] = ['id', 'date', 'status', 'buttons'];
+    purchasedisplayColumns: string[] = ['id', 'date', 'status', 'buttons'];
     purchaseDTOs: PurchaseDTO[];
     purchaseError: any;
     

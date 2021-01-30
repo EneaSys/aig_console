@@ -7,7 +7,8 @@ export const locale = {
             'MANAGEMENT': 'Management',
             'STANDARD': 'Standard',
             'GENERIC': 'Generic',
-            'TENANT_CONTEXT_LIST_PAGE' : 'Context'
+            'TENANT_CONTEXT_LIST_PAGE' : 'Context',
+            'PRODUCER_LIST_PAGE' : 'Producer',
         },
     }
 };

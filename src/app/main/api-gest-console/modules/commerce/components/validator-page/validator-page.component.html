@@ -85,7 +85,7 @@
                             <!-- CONTENT -->
                             <div class="content mb-48">
                                 <aig-buyer-list-table [dataSource]="buyerDTOs"
-                                    [displayedColumns]="buyerDisplayedColumns" [error]="buyerError">
+                                    [displayColumns]="buyerdisplayColumns" [error]="buyerError">
                                 </aig-buyer-list-table>
 
                                 <mat-paginator #buyerPaginator [length]="buyerLength" [pageIndex]="buyerIndex"
@@ -225,7 +225,7 @@
                             <!-- CONTENT -->
                             <div class="content mb-48">
                                 <aig-fiscal-transaction-list-table [dataSource]="fiscalTransactionDTOs"
-                                    [displayedColumns]="fiscalTransactionDisplayedColumns"
+                                    [displayColumns]="fiscalTransactiondisplayColumns"
                                     [error]="fiscalTransactionError">
                                 </aig-fiscal-transaction-list-table>
                                 <mat-paginator #fiscalTransactionPaginator [length]="fiscalTransactionLength"

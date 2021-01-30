@@ -1,0 +1,39 @@
+<div id="home" fxLayout="column">
+	<div id="home-wrapper" fxLayout="column" fxLayoutAlign="center center">
+		<div id="home-wrapper-container">
+
+			<div class="logo">
+				<mat-icon class="mat-accent s-96">info</mat-icon>
+			</div>
+
+			<div class="title">Benvenuto su ApiGest</div>
+
+			<div *ngIf="!pageLoaded">
+				<div>
+					<div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+						<p>Stiamo caricando le tue informazioni...</p>
+					</div>
+				</div>
+				<div>
+					<div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+						<mat-spinner [diameter]="40"></mat-spinner>
+					</div>
+				</div>
+			</div>
+
+			<div *ngIf="!loggedUser && pageLoaded" class="subtitle">
+				<p>Per usare questo software è necessario effettuare il login.</p>
+
+				<button mat-raised-button color="accent" [routerLink]="'/home-page'">Login</button>
+			</div>
+
+			<div *ngIf="loggedUser && pageLoaded" class="subtitle">
+				<p>Ciao <b>{{ name }}</b>,<br> per iniziare seleziona contesto.</p>
+
+				<button mat-raised-button (click)="logout()">Logout</button>
+				<span> </span>
+				<button mat-raised-button color="accent" (click)="selectContext()">Seleziona contesto</button>
+			</div>
+		</div>
+	</div>
+</div>

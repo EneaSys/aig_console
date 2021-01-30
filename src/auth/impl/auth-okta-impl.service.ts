@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { OktaAuthService } from '@okta/okta-angular';
+import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { IAuthService } from '../IAuthService';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class AuthOktaImplService implements IAuthService {
     getIdToken(): Promise<string> {
         return this.oktaAuth.getIdToken();
     }
-    getUser(): Promise<any> {
+    getUser(): Promise<UserClaims> {
         return this.oktaAuth.getUser();
     }
     loginRedirect(fromUri?: string, additionalParams?: object): void {
