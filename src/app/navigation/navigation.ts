@@ -109,6 +109,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
+                id       : 'inventory-category',
+                title    : 'Categorie inventario',
+                type     : 'item',
+                icon     : 'format_list_bulleted',
+                url      : '/commerce/inventory-category',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'commerce-seller-manager',
                 title    : 'Gestore Vendite',
                 type     : 'item',
