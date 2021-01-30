@@ -33,7 +33,7 @@
 		<!-- / HEADER -->
 		<!-- CONTENT -->
 		<div class="content mb-48">
-			<aig-producer-list-table [displayedColumns]="producerDC" [dataSource]="producerDTOs"
+			<aig-producer-list-table [displayColumns]="producerDC" [dataSource]="producerDTOs"
 				[error]="producerError"></aig-producer-list-table>
 
 			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"

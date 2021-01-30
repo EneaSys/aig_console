@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AigProducerListTableComponent implements OnInit {
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
 	dataSource: any[];
 	@Input()
