@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 import { IContext } from 'aig-common/context-browser-repository/Context.model';
@@ -26,5 +27,5 @@ export class AigContextTableComponent implements OnInit {
 
     setDefaultContext(context: IContext) {
         this.aigContextRepositoryService.setDefaultContext(context);
-    }
+	}
 }
