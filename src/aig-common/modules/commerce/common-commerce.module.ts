@@ -28,6 +28,7 @@ import { AigC6eGenericStatusPipe } from './pipe/genericStatus.pipe';
 import { AigBuyerListTableComponent } from './components/buyer-list-table/buyer-list-table.component';
 import { BuyerResolver } from './resolver/buyer.resolver';
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
+import { InventoryCategoryListTableComponent } from './components/inventory-category-list-table/inventory-category-list-table.component';
 
 @NgModule({
     imports: [
@@ -66,6 +67,7 @@ import { AigProducerListTableComponent } from './components/producer-list-table/
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
         AigProducerListTableComponent,
+        InventoryCategoryListTableComponent,
     ],
     providers: [
         PurchaseResolver,
@@ -81,6 +83,7 @@ import { AigProducerListTableComponent } from './components/producer-list-table/
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
         AigProducerListTableComponent,
+        InventoryCategoryListTableComponent,
     ],
 })
 export class AigCommonCommerceModule {}
