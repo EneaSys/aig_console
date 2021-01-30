@@ -16,7 +16,7 @@ export class AigSellerListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    sellerDisplayedColumns: string[] = ['id', 'name', 'buttons'];
+    sellerdisplayColumns: string[] = ['id', 'name', 'buttons'];
     sellerDTOs: SellerDTO[];
     async loadComponent() {
         this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();

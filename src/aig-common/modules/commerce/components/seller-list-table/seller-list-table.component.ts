@@ -9,7 +9,7 @@ export class AigSellerListTableComponent implements OnInit {
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
     

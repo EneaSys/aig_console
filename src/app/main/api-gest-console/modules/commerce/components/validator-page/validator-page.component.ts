@@ -74,7 +74,7 @@ export class AigCommValidatorPageComponent extends GenericComponent {
     // BUYER
     buyerSearchForm: FormGroup;
 
-    buyerDisplayedColumns: string[] = ['id', 'seller', 'buyer', 'bornDate', 'status', 'validateButton'];
+    buyerdisplayColumns: string[] = ['id', 'seller', 'buyer', 'bornDate', 'status', 'validateButton'];
     buyerDTOs: BuyerDTO[];
     buyerError: any;
 
@@ -170,7 +170,7 @@ export class AigCommValidatorPageComponent extends GenericComponent {
         // FISCAL TRANSACTION
         fiscalTransactionSearchForm: FormGroup;
 
-        fiscalTransactionDisplayedColumns: string[] = ['id', 'seller', 'amount', 'date', 'code', 'status', 'validateButton'];
+        fiscalTransactiondisplayColumns: string[] = ['id', 'seller', 'amount', 'date', 'code', 'status', 'validateButton'];
         fiscalTransactionDTOs: FiscalTransactionDTO[];
         fiscalTransactionError: any;
     
