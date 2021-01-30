@@ -14,6 +14,7 @@ export class AigSelectContextDialogComponent implements OnInit {
 	displayedColumns: string[] = ['name', 'selectContext'];
 	dataSource: any[];
 	error: any;
+	loading: boolean = true;
 	
 	constructor(
 		private aigContextRepositoryService: AigContextRepositoryService,
@@ -32,18 +33,21 @@ export class AigSelectContextDialogComponent implements OnInit {
 	async loadContexts() {
 		try{
 			this.dataSource = await this.wsUserContextService.getMyContexts().toPromise();
+			this.loading = false;
 		} catch(e) {
 			this.error = e;
 		}
 	}
 	
 	async setDefaultContextAndGoToHome(context: IContext) {
+		this.loading = true;
+
 		await this.aigContextRepositoryService.setDefaultContext(context);
 		this.router.navigate(['/home-page']);
 
 		await this.userPermissionMemoryResourceService.cleanUserPermission1().toPromise();
 		this.aigModuleNavigationService.reloadNavigation();
-
+		
 		this.matDialogRef.close();
 	}
 }

@@ -32,6 +32,7 @@ import { MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatTableModul
 import { FuseSharedModule } from '@fuse/shared.module';
 import { AigSelectContextDialogComponent } from './components/select-context-dialog/select-context-dialog.component';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
+import { FuseWidgetModule } from '@fuse/components';
 
 
 @NgModule({
@@ -45,6 +46,8 @@ import { AigCommonManagementModule } from 'aig-common/modules/management/common-
 	],
     imports: [
 		FuseSharedModule,
+		FuseWidgetModule,
+		
 		MatButtonModule,
 		MatIconModule,
 		MatProgressSpinnerModule,
