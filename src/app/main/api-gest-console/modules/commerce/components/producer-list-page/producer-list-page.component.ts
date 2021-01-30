@@ -22,7 +22,7 @@ export class AigProducerListPageComponent extends GenericComponent {
 
 	length: number;
 	page: number;
-	size: number = 1;
+	size: number = 10;
 	
 	loadPage() {
 		this.reloadPage();
