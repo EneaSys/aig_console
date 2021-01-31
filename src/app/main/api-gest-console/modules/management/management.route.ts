@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { RoleSystemResolver } from "aig-common/old-common/resolver/role-system.resolver";
 import { AuthGuardService } from "auth/auth-guard.service";
 import { AigContextListPageComponent } from "./components/context-list-page/context-list-page.component";
+import { AigContextModuleListPageComponent } from "./components/context-module-list-page/context-module-list-page-component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigRoleDetailPageComponent } from "./components/role-detail-page/role-page-detail.component";
 import { AigRoleListPageComponent } from "./components/role-list-page/role-list-page.component";
@@ -68,7 +69,22 @@ export const managementRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                     },
                 ]
-			},
+            },
+            {
+                path: 'context-module',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigContextModuleListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                ]
+            },
 			{
                 path: 'tenant-context',
                 children: [

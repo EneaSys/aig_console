@@ -30,6 +30,7 @@ import { AigTenantContextListPageComponent } from './components/tenant-context-l
 import { RouterModule } from '@angular/router';
 import { managementRoute } from './management.route';
 import { MatPaginatorModule } from '@angular/material';
+import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import { MatPaginatorModule } from '@angular/material';
         AigPermissionNewDialogComponent,
         AigRoleNewDialogComponent,
 		AigAssociateRoleToPermissionDialogComponent,
-		AigTenantContextListPageComponent,
+        AigTenantContextListPageComponent,
+        AigContextModuleListPageComponent,
     ],
     exports: [ ],
     providers: [ ],
