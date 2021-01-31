@@ -253,6 +253,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['e4y.role.get'],
             },
             {
+                id       : 'application-module',
+                title    : 'Application Module',
+                type     : 'item',
+                icon     : 'icon-brightness-5',
+                url      : '/m8t/application-module',
+                permission: ['e4y.role.get'],
+            },
+            {
                 id       : 'permission-list',
                 title    : 'Permessi',
                 type     : 'item',
