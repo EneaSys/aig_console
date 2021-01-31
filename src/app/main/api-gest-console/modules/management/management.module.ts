@@ -30,6 +30,8 @@ import { AigTenantContextListPageComponent } from './components/tenant-context-l
 import { RouterModule } from '@angular/router';
 import { managementRoute } from './management.route';
 import { MatPaginatorModule } from '@angular/material';
+import { AigApplicationModuleListPageComponent } from './components/application-module-list-page/application-module-list-page.component';
+
 
 @NgModule({
     imports: [
@@ -57,6 +59,8 @@ import { MatPaginatorModule } from '@angular/material';
     ],
     declarations: [
         AigManagementHeaderComponent,
+
+        AigApplicationModuleListPageComponent,
 
         AigContextListPageComponent,
 
