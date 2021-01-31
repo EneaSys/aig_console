@@ -261,6 +261,13 @@ export const navigation: FuseNavigation[] = [
                 url      : '/m8t/tenant-context',
             },
             {
+                id       : 'context-module-list-page',
+				title    : 'Context Module',
+                type     : 'item',
+                icon     : 'star_half',
+                url      : '/m8t/context-module',
+            },
+            {
                 id       : 'context-list',
                 title    : 'Contesti',
                 type     : 'item',

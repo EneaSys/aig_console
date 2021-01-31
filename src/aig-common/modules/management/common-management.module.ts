@@ -24,6 +24,7 @@ import { AigManagementAutocompleteFilterService } from './services/form/autocomp
 import { AigManagementAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 import { AigTenantContextListTableComponent } from './components/tenant-context-list-table/tenant-context-list-table.component';
 import { RouterModule } from '@angular/router';
+import { AigContextModuleListTableComponent } from './components/context-module-list-table/context-module-list-table.component';
 
 @NgModule({
     imports: [
@@ -58,7 +59,8 @@ import { RouterModule } from '@angular/router';
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
 		
-		AigTenantContextListTableComponent,
+        AigTenantContextListTableComponent,
+        AigContextModuleListTableComponent,
     ],
 	exports: [
         AigContextTableComponent,
@@ -69,7 +71,8 @@ import { RouterModule } from '@angular/router';
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
 		
-		AigTenantContextListTableComponent
+        AigTenantContextListTableComponent,
+        AigContextModuleListTableComponent,
     ],
     providers: [
         AigManagementAutocompleteFilterService,
