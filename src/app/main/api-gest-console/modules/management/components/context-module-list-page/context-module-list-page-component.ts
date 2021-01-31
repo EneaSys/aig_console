@@ -21,7 +21,7 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 
     
    contextModuleDTOs: ContextModuleDTO[]; 
-   contextModuleDC: string[] = [ "id", "active", "module"];
+   contextModuleDC: string[] = [ "id", "active", "module","context"];
    contextModuleError: any;
 
    length: number;
