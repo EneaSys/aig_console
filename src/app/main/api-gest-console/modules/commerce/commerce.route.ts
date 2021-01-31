@@ -15,6 +15,7 @@ import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-li
 import { AigInventoryItemListPageComponent } from './components/inventory-item-list-page/inventory-item-list-page.component';
 import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
+import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -36,7 +37,7 @@ export const commerceRoute: Routes = [
                     {
                         path: 'list',
                         component: AigSellerListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     /*
                     {
@@ -61,12 +62,12 @@ export const commerceRoute: Routes = [
                     {
                         path: 'list',
                         component: AigSellerListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigPurchaseDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             purchase: PurchaseResolver,
                         },
@@ -84,7 +85,7 @@ export const commerceRoute: Routes = [
                     {
                         path: 'list',
                         component: AigProducerListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                 ]
             },
@@ -99,12 +100,12 @@ export const commerceRoute: Routes = [
                     {
                         path: 'list',
                         component: AigBuyerListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigBuyerDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             buyer: BuyerResolver,
                         },
@@ -112,7 +113,7 @@ export const commerceRoute: Routes = [
                     {
                         path: 'detail/:id/validate',
                         component: ValidateBuyerPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             buyer: BuyerResolver,
                         },
@@ -130,12 +131,12 @@ export const commerceRoute: Routes = [
                     {
                         path: 'list',
                         component: AigSellerListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigFiscalTransactionDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             fiscalTransaction: FiscalTransactionResolver,
                         },
@@ -143,7 +144,7 @@ export const commerceRoute: Routes = [
                     {
                         path: 'detail/:id/validate',
                         component: ValidateFiscalTransactionPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             fiscalTransaction: FiscalTransactionResolver,
                         },
@@ -161,10 +162,26 @@ export const commerceRoute: Routes = [
                     {
                         path: 'list',
                         component: AigInventoryItemListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     }
                 ]
             },
+            {
+                path: 'warehouse',
+                children: [
+                        {
+                            path: '',
+                            pathMatch: 'full',
+                            redirectTo: 'list'
+                        },
+                        {
+                            path: 'list',
+                            component: AigWarehouseListPageComponent,
+                            canActivate: [AuthGuardService],
+                        }
+                ]
+            },        
+
             {
                 path: 'inventory-category',
                 children: [
@@ -175,10 +192,11 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component:  AigInventoryCategoryListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        component: AigInventoryCategoryListPageComponent,
+                        canActivate: [AuthGuardService],
                     },
-                   
+            
+
                     /* 
                     {
                         path: 'detail/:id',

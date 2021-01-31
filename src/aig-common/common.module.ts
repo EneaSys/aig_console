@@ -4,8 +4,11 @@ import { AuthModule } from 'auth/auth.module';
 import { EventManagerModule } from './event-manager/event-manager.module';
 import { AigContextBrowserRepositoryModule } from './context-browser-repository/context-browser-repository.module';
 
+
 @NgModule({
-    declarations: [ ],
+    declarations: [
+        
+     ],
     imports: [
         AuthModule,
 
@@ -13,7 +16,9 @@ import { AigContextBrowserRepositoryModule } from './context-browser-repository/
 
         AigContextBrowserRepositoryModule,
     ],
-    exports: [ ],
+    exports: [ 
+        
+    ],
     providers: [ ],
 })
 export class AigCommonModule {}

@@ -93,6 +93,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
+                id       : 'warehouse',
+                title    : 'Magazzino',
+                type     : 'item',
+                icon     : 'archive',
+                url      : '/commerce/warehouse',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'producer',
                 title    : 'Produttori',
                 type     : 'item',
