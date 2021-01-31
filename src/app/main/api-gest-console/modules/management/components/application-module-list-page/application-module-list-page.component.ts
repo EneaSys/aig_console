@@ -22,7 +22,7 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 
 	length: number;
 	page: number;
-	size: number = 2;
+	size: number = 10;
 	
 	loadPage() {
 		this.reloadPage();
