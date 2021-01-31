@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 import { IContext } from 'aig-common/context-browser-repository/Context.model';
 import { UserPermissionMemoryResourceService, WsUserContextService } from 'api-gest';
-import { AigModuleNavigationService } from '../../navigation/navigation.service';
+import { AigModuleNavigationService } from '../../../../navigation/navigation.service';
 
 @Component({
     templateUrl: './select-context-dialog.component.html',

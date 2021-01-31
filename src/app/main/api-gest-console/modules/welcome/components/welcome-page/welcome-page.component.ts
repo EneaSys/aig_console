@@ -4,8 +4,8 @@ import { FuseConfigService } from "@fuse/services/config.service";
 import { FuseSplashScreenService } from "@fuse/services/splash-screen.service";
 import { UserClaims } from "@okta/okta-angular";
 import { AuthService } from "auth/auth.service";
-import { GenericComponent } from "../../generic-component/generic-component";
-import { AigGenericComponentService } from "../../generic-component/generic-component.service";
+import { GenericComponent } from "../../../../generic-component/generic-component";
+import { AigGenericComponentService } from "../../../../generic-component/generic-component.service";
 import { AigSelectContextDialogComponent } from "../select-context-dialog/select-context-dialog.component";
 
 @Component({

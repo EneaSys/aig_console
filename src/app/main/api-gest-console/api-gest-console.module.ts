@@ -26,24 +26,15 @@ import { AigCommerceModule } from './modules/commerce/commerce.module';
 import { AIG_COMMERCE_PATH } from 'aig-commerce';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { AigHomePageComponent } from './components/home-page/home-page.component';
-import { AigWelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatTableModule, MatToolbarModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { AigSelectContextDialogComponent } from './components/select-context-dialog/select-context-dialog.component';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
 import { FuseWidgetModule } from '@fuse/components';
+import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
 
 
 @NgModule({
-    declarations: [
-		AigWelcomePageComponent,
-		AigHomePageComponent,
-		AigSelectContextDialogComponent,
-	],
-	entryComponents: [
-		AigSelectContextDialogComponent,
-	],
+    declarations: [ ],
     imports: [
 		FuseSharedModule,
 		FuseWidgetModule,
@@ -66,6 +57,7 @@ import { FuseWidgetModule } from '@fuse/components';
         // Per i resolver del route
         AigOldCommonModule,
 
+		AigWelcomeModule,
         // App modules
         AigApolloDocumentModule,
         //AigEopooModule,
