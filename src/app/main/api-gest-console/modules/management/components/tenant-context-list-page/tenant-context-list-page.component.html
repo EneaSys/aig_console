@@ -10,7 +10,7 @@
 				<div class="content py-16" fusePerfectScrollbar>
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
-							<form [formGroup]="tenantContextSearchFormGroup" (ngSubmit)="tenantContextSearch()" class="p-8">
+							<form [formGroup]="tenantContextSearchFormGroup" (ngSubmit)="tenantContextSearchWithFilter()" class="p-8">
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Id</mat-label>
@@ -52,8 +52,8 @@
 			<aig-tenant-context-list-table [displayedColumns]="tenantContextDC" [dataSource]="tenantContextDTOs"
 				[error]="tenantContextError"></aig-tenant-context-list-table>
 
-			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
-				[pageSizeOptions]="[2, 10, 20, 50]" (page)="tenantContextPaginationEvent($event)">
+			<mat-paginator #paginator [length]="tenantContextLength" [pageIndex]="tenantContextPagination.page" [pageSize]="tenantContextPagination.size"
+				[pageSizeOptions]="[10, 20, 50]" (page)="tenantContextPaginationEvent($event)">
 			</mat-paginator>
 		</div>
 		<!-- / CONTENT -->

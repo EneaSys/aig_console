@@ -11,8 +11,6 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 	styleUrls: ['./tenant-context-list-page.component.scss']
 })
 export class AigTenantContextListPageComponent extends GenericComponent {
-	tenantContextSearchFormGroup: FormGroup;
-
 	constructor(
 		private tenantContextResourceService: TenantContextResourceService,
 		private _formBuilder: FormBuilder,
@@ -20,18 +18,47 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
-	tenantContextDTOs: TenantContextDTO[];
-	tenantContextDC: string[] = ["id", "name", "contextCode", "buttons"];
-	tenantContextError: any;
+	
+	
+	
 
-	length: number;
-	page: number;
-	size: number = 2;
-	id: number;
-	name: string;
 
 	loadPage() {
-		this.reloadPage();
+		this.initTenantContextSearch();
+
+		this.showAllTenantContext();
+	}
+
+	reloadPage() {
+		this.showAllTenantContext();
+	}
+
+
+
+
+
+
+
+	//			---- TENANT CONTEXT TABLE AND SEARCH SECTION ----
+
+	tenantContextSearchFormGroup: FormGroup;
+	tenantContextPagination: any;
+	tenantContextFilters: any;
+
+	tenantContextLength: number;
+	tenantContextDTOs: TenantContextDTO[];
+	tenantContextError: any;
+
+	tenantContextDC: string[];
+
+
+	private initTenantContextSearch() {
+		this.tenantContextDC = ["id", "name", "contextCode", "buttons"];
+
+		this.tenantContextPagination = {
+			page: 0,
+			size: 2,
+		}
 
 		this.tenantContextSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -39,33 +66,41 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		});
 	}
 
-	reloadPage() {
-		this.reloadTenantContextTable();
+	private clearFiltersTenantContext() {
+		this.tenantContextFilters = {
+			id: null,
+			name: null,
+		}
 	}
 
-
-
-
-	async reloadTenantContextTable() {
+	private async searchTenantContext() {
 		try {
-			this.length = await this.tenantContextResourceService.countTenantContextsUsingGET().toPromise();
-			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.name, null, null, null, null, null, null, null, null, null, null, null, this.page, this.size).toPromise();
+			this.tenantContextLength = await this.tenantContextResourceService.countTenantContextsUsingGET().toPromise();
+			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextPagination.page, this.tenantContextPagination.size).toPromise();
 		} catch (e) {
 			this.tenantContextError = e;
 		}
 	}
 
+	showAllTenantContext() {
+		this.clearFiltersTenantContext();
+		this.searchTenantContext();
+	}
+
 	tenantContextPaginationEvent(pageEvent: PageEvent) {
-		this.page = pageEvent.pageIndex;
-		this.size = pageEvent.pageSize;
+		this.tenantContextPagination.size = pageEvent.pageSize;
+		this.tenantContextPagination.page = pageEvent.pageIndex;
 
-		this.reloadTenantContextTable();
+		this.searchTenantContext();
 	}
 
-	tenantContextSearch() {
-		this.id = this.tenantContextSearchFormGroup.controls.id.value;
-		this.name = this.tenantContextSearchFormGroup.controls.name.value;
+	tenantContextSearchWithFilter() {
+		this.tenantContextFilters.id = this.tenantContextSearchFormGroup.controls.id.value;
+		this.tenantContextFilters.name = this.tenantContextSearchFormGroup.controls.name.value;
 
-		this.reloadTenantContextTable();
+		this.searchTenantContext();
 	}
+	//			---- !TENANT CONTEXT SECTION ----
+
+
 }
