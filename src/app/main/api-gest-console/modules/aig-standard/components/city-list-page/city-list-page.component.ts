@@ -24,6 +24,8 @@ export class AigCityListPageComponent extends GenericComponent {
 		this.initCitySearch();
 
 		this.showAllCity();
+
+		this.citySearchFormGroup.reset();
 	}
 
 	reloadPage() {
@@ -51,6 +53,7 @@ export class AigCityListPageComponent extends GenericComponent {
 		this.citySearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+			code: [''],
 		});
 
 		this.cityDC = ['id', 'code', 'name','wikiCode', 'buttons'];
@@ -60,6 +63,7 @@ export class AigCityListPageComponent extends GenericComponent {
 		this.cityFilters = {
 			id: null,
 			name: null,
+			code: null,
 		}
     }
     
@@ -67,7 +71,7 @@ export class AigCityListPageComponent extends GenericComponent {
 		this.cityPagination.page = page;
 		this.cityDTOs = null;
 		try {
-			this.cityLength = await this.cityResourceService.countCitiesUsingGET(null,null,null,null,null,null,this.cityFilters.id,null,null,null,null,null,null,null,this.cityFilters.name,null,null,null,null,null,null,null,null,null,null,null,null,).toPromise();
+			this.cityLength = await this.cityResourceService.countCitiesUsingGET(null,null,this.cityFilters.code,null,null,null,this.cityFilters.id,null,null,null,null,null,null,null,this.cityFilters.name,null,null,null,null,null,null,null,null,null,null,null,null,).toPromise();
 
 			if(this.cityLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -75,7 +79,7 @@ export class AigCityListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.cityDTOs = await this.cityResourceService.getAllCitiesUsingGET(null,null,null,null,null,null,this.cityFilters.id,null,null,null,null,null,null,null,this.cityFilters.name,null,null,null,null,null,this.cityPagination.page,this.cityPagination.size,null,null,null,null,null,null,null,null,).toPromise();
+			this.cityDTOs = await this.cityResourceService.getAllCitiesUsingGET(null,null,this.cityFilters.code,null,null,null,this.cityFilters.id,null,null,null,null,null,null,null,this.cityFilters.name,null,null,null,null,null,this.cityPagination.page,this.cityPagination.size,null,null,null,null,null,null,null,null,).toPromise();
 		} catch (e) {
 			this.cityError = e;
 		}
@@ -108,6 +112,8 @@ export class AigCityListPageComponent extends GenericComponent {
 		}
 
 		this.cityFilters.name = this.citySearchFormGroup.controls.name.value;
+
+		this.cityFilters.code = this.citySearchFormGroup.controls.code.value;
 
 		this.searchCity(0);
 	}
