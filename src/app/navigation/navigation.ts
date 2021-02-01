@@ -124,6 +124,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'warehouse',
+                title    : 'Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse',
+                permission: ['c6e.admin'],
+            },
         ]
     },
     {
