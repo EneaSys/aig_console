@@ -5,12 +5,15 @@
 		<div class="content">
 			<div>
 				<div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-					<span class="h5">Filters</span>
+					<span class="h5">Filtri</span>
 				</div>
 				<div class="content py-16" fusePerfectScrollbar>
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
-							<form [formGroup]="inventoryCategorySearchFormGroup" (ngSubmit)="inventaryCategorySearch()"
+							<div fxLayout="row" fxLayoutAlign="center top">
+								<button mat-raised-button (click)="showAllInventoryCategory()">Resetta filtri</button>
+							</div>
+							<form [formGroup]="inventoryCategorySearchFormGroup" (ngSubmit)="inventoryCategorySearchWithFilter()"
 								class="p-8">
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">

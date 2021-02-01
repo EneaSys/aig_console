@@ -12,8 +12,6 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
     styleUrls: ['./inventory-category-list-page.component.scss']
 })
 export class AigInventoryCategoryListPageComponent extends GenericComponent {
-    inventoryCategorySearchFormGroup: FormGroup;
-
     constructor(
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
         private _formBuilder: FormBuilder,
@@ -21,49 +19,75 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    inventoryCategoryDTOs: InventoryCategoryDTO[];
-	inventoryCategoryDC: string[] = [ "id", "name", "buttons" ];
-    inventoryCategoryError: any;
-    
-    length: number;
-	page: number;
-    size: number = 10;
-    id: number;
-	name: string;
-
     loadPage() {
-        this.reloadPage();
+        this.initInventoryCategorySearch();
         
-        this.inventoryCategorySearchFormGroup = this._formBuilder.group({
-			id: [''],
-			name: [''],
-		});
+        this.showAllInventoryCategory();
     }
 
     reloadPage() {
-		this.reloadInventoryCategoryTable();
-    }
+		this.showAllInventoryCategory();
+	}
+	
+	//			---- INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
+
+	inventoryCategorySearchFormGroup: FormGroup;
+	inventoryCategoryPagination: any;
+	inventoryCategoryFilters: any;
+
+	inventoryCategoryLength: number;
+	inventoryCategoryDTOs: InventoryCategoryDTO[];
+	inventoryCategoryError: any;
+
+	inventoryCategoryDC: string[];
+
+	private initInventoryCategorySearch() {
+		this.inventoryCategoryDC = [ "id", "name", "buttons" ];
+
+		this.inventoryCategoryPagination = {
+			page: 0,
+			size: 10,
+		}
+
+		this.inventoryCategorySearchFormGroup = this._formBuilder.group({
+			id: [''],
+			name: [''],
+		});
+	}
+
+	private clearFiltersInventoryCategory() {
+		this.inventoryCategoryFilters = {
+			id: null,
+			name: null,
+		}
+	}
     
-    async reloadInventoryCategoryTable() {
+    private async searchInventoryCategory() {
 		try {
-			this.length = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET().toPromise();
-			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.name,null,null,null,null,null,null,this.page,this.size).toPromise();
+			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET().toPromise();
+			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryCategoryFilters.name,null,null,null,null,null,null,this.inventoryCategoryPagination.page,this.inventoryCategoryPagination.size).toPromise();
 		} catch (e) {
 			this.inventoryCategoryError = e;
 		}
 	}
 
+	showAllInventoryCategory() {
+		this.clearFiltersInventoryCategory();
+		this.searchInventoryCategory();
+	}
+
 	inventoryCategoryPaginationEvent(pageEvent: PageEvent) {
-		this.page = pageEvent.pageIndex;
-		this.size = pageEvent.pageSize;
+		this.inventoryCategoryPagination.size = pageEvent.pageSize;
+		this.inventoryCategoryPagination.page = pageEvent.pageIndex;
 
-		this.reloadInventoryCategoryTable();
+		this.searchInventoryCategory();
 	}
 
-	inventaryCategorySearch() {
-		this.id = this.inventoryCategorySearchFormGroup.controls.id.value;
-		this.name = this.inventoryCategorySearchFormGroup.controls.name.value;
+	inventoryCategorySearchWithFilter() {
+		this.inventoryCategoryFilters.id = this.inventoryCategorySearchFormGroup.controls.id.value;
+		this.inventoryCategoryFilters.name = this.inventoryCategorySearchFormGroup.controls.name.value;
 
-		this.reloadInventoryCategoryTable();
+		this.searchInventoryCategory();
 	}
+	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 }
