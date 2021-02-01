@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { ContextModuleDTO, ContextModuleResourceService } from 'api-gest';
@@ -14,7 +14,6 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 
 export class AigContextModuleListPageComponent extends GenericComponent {
     contextModuleSearchFormGroup: FormGroup;
-    _formBuilder: any;
     page: number;
     size: number;
     length: number;
@@ -23,7 +22,8 @@ export class AigContextModuleListPageComponent extends GenericComponent {
  
     constructor(
         private contextModuleResourceService: ContextModuleResourceService,
-        private dialog: MatDialog,
+		private dialog: MatDialog,
+		private _formBuilder: FormBuilder,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
