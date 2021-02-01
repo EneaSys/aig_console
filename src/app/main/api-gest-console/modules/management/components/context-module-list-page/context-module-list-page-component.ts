@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { ContextModuleDTO, ContextModuleResourceService } from 'api-gest';
@@ -12,6 +13,13 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 
 export class AigContextModuleListPageComponent extends GenericComponent {
+    contextModuleSearchFormGroup: FormGroup;
+    _formBuilder: any;
+    page: number;
+    size: number;
+    length: number;
+ 
+
  
     constructor(
         private contextModuleResourceService: ContextModuleResourceService,
@@ -24,13 +32,22 @@ export class AigContextModuleListPageComponent extends GenericComponent {
    contextModuleDC: string[] = [ "id", "active", "module","context"];
    contextModuleError: any;
 
-   length: number;
-   page: number;
-   size: number;
+   id: number;
+   contextId: number;
 
-   loadPage() {
-    this.reloadPage();
-   }
+	loadPage() {
+		this.reloadPage();
+
+		this.contextModuleSearchFormGroup = this._formBuilder.group({
+			id: [''],
+			name: [''],
+		});
+    }
+    
+    reloadPage() {
+		this.reloadContextModuleTable();
+	}
+
 
     paginationEvent(pageEvent: PageEvent) {
         this.page = pageEvent.pageIndex;
@@ -39,12 +56,26 @@ export class AigContextModuleListPageComponent extends GenericComponent {
         this.reloadPage();
     }
 
-    async reloadPage() {
-        try {
-            this.length = await this.contextModuleResourceService.countContextModulesUsingGET().toPromise();
-            this.contextModuleDTOs = await this.contextModuleResourceService.getAllContextModulesUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,this.size).toPromise()
-        } catch(e) { 
-            this.contextModuleError = e;
-        }
-    }
+    async reloadContextModuleTable() {
+		try {
+			this.length = await this.contextModuleResourceService.countContextModulesUsingGET().toPromise();
+			this.contextModuleDTOs = await this.contextModuleResourceService.getAllContextModulesUsingGET(null,null,null,null,this.contextId,null,null,null,null,null,null,null,this.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,this.size).toPromise();
+		} catch (e) {
+			this.contextModuleError = e;
+		}
+	}
+
+	contextModulePaginationEvent(pageEvent: PageEvent) {
+		this.page = pageEvent.pageIndex;
+		this.size = pageEvent.pageSize;
+
+		this.reloadContextModuleTable();
+	}
+
+	tenantContextSearch() {
+		this.id = this.contextModuleSearchFormGroup.controls.id.value;
+		this.contextId = this.contextModuleSearchFormGroup.controls.name.value;
+
+		this.reloadContextModuleTable();
+	}
 }
