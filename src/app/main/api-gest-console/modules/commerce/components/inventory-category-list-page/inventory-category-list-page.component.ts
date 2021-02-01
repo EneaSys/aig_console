@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { PageEvent } from '@angular/material';
-import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, PageEvent } from '@angular/material';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -15,7 +14,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	constructor(
 		private inventoryCategoryResourceService: InventoryCategoryResourceService,
 		private _formBuilder: FormBuilder,
-		private dialog: MatDialog,
+		private _snackBar: MatSnackBar,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -55,7 +54,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		this.inventoryCategoryDC = ["id", "name", "buttons"];
 	}
 
-	private initFiltersInventoryCategory() {
+	private clearFiltersInventoryCategory() {
 		this.inventoryCategoryFilters = {
 			id: null,
 			name: null,
@@ -67,6 +66,13 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		this.inventoryCategoryDTOs = null;
 		try {
 			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryCategoryFilters.name,null,null,null,null,null,null,null,null).toPromise();
+
+			if(this.inventoryCategoryLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+				this.inventoryCategoryDTOs = [];
+				return;
+			}
+
 			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.inventoryCategoryFilters.name, null, null, null, null, null, null, this.inventoryCategoryPagination.page, this.inventoryCategoryPagination.size).toPromise();
 		} catch (e) {
 			this.inventoryCategoryError = e;
@@ -74,11 +80,11 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 
 	showAllInventoryCategory() {
-		this.initFiltersInventoryCategory();
+		this.clearFiltersInventoryCategory();
 		this.searchInventoryCategory(0);
 	}
 
-	clearFiltersInventoryCategory() {
+	resetFiltersInventoryCategory() {
 		this.inventoryCategorySearchFormGroup.reset();
 		this.showAllInventoryCategory();
 	}
@@ -89,7 +95,16 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 
 	inventoryCategorySearchWithFilter() {
-		this.inventoryCategoryFilters.id = this.inventoryCategorySearchFormGroup.controls.id.value;
+		let searchedId = this.inventoryCategorySearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersInventoryCategory();
+			this.inventoryCategorySearchFormGroup.reset();
+			this.inventoryCategoryFilters.id = searchedId;
+			this.searchInventoryCategory(0);
+			return;
+		}
+
 		this.inventoryCategoryFilters.name = this.inventoryCategorySearchFormGroup.controls.name.value;
 
 		this.searchInventoryCategory(0);

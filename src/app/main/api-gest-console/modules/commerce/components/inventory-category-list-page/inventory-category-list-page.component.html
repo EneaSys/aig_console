@@ -5,7 +5,7 @@
 		<div class="content">
 			<div>
 				<div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-					<button mat-raised-button (click)="clearFiltersInventoryCategory()">Resetta filtri</button>
+					<button mat-raised-button (click)="resetFiltersInventoryCategory()">Resetta filtri</button>
 				</div>
 				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
 					<span class="h3">Filtri</span>
@@ -54,8 +54,9 @@
 			<inventory-category-list-table [displayColumns]="inventoryCategoryDC" [dataSource]="inventoryCategoryDTOs"
 				[error]="inventoryCategoryError"></inventory-category-list-table>
 
-			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
-				[pageSizeOptions]="[10, 20, 50]" (page)="paginationEvent($event)">
+			<mat-paginator #paginator [length]="inventoryCategoryLength"
+				[pageSize]="this.inventoryCategoryPagination.size" [pageIndex]="this.inventoryCategoryPagination.page"
+				[pageSizeOptions]="[10, 20, 50]" (page)="inventoryCategoryPaginationEvent($event)">
 			</mat-paginator>
 		</div>
 		<!-- / CONTENT -->
