@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
     templateUrl: './inventory-category-list-table.component.html',
     styleUrls: ['./inventory-category-list-table.component.scss']
 })
-export class InventoryCategoryListTableComponent implements OnInit {
+export class AigInventoryCategoryListTableComponent implements OnInit {
     @Input()
     displayColumns: string[];
     @Input()
