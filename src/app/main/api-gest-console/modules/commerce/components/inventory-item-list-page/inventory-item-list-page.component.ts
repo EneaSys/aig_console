@@ -19,6 +19,9 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
 
+
+
+
     loadPage() {
 		this.initInventoryItemSearch();
 
@@ -28,7 +31,12 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 
 	reloadPage() {
 		this.showAllInventoryItem();
-	}
+    }
+    
+
+
+
+
 
     //			---- INVENTORY ITEM TABLE AND SEARCH SECTION ----
 
@@ -38,31 +46,35 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 
     inventoryItemLength: number;
     inventoryItemDTOs: InventoryItemDTO[];
-    inventoryItemDC : string[];
     inventoryItemError : any;
 
+    inventoryItemDC : string[];
+
     private initInventoryItemSearch() {
-		this.inventoryItemDC = ["id","inventoryCategoryId","inventoryCategoryName","name","producerId","producerName","buttons",];
-
 		this.inventoryItemPagination = {
-			page: 0,
 			size: 2,
+			page: 0
 		}
-
+	
 		this.inventoryItemSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
 		});
+
+		this.inventoryItemDC = ["id","inventoryCategoryId","inventoryCategoryName","name","producerId","producerName","buttons",];
     }
     
-    private clearFiltersInventoryItem() {
+
+    private initFiltersInventoryItem() {
 		this.inventoryItemFilters = {
 			id: null,
 			name: null,
 		}
     }
     
-    private async searchInventoryItem() {
+    private async searchInventoryItem(page: number) {
+        this.inventoryItemPagination.page = page;
+        this.inventoryItemDTOs = null;
         try {
             this.inventoryItemLength = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
             this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.inventoryItemFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.name,null,null,null,null,null,null,this.inventoryItemFilters.page,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.size).toPromise();
@@ -72,22 +84,30 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     }
 
     showAllInventoryItem() {
-        this.clearFiltersInventoryItem();
-        this.searchInventoryItem();
-    }
+		this.initFiltersInventoryItem();
 
-    inventoryItemPaginationEvent(pageEvent: PageEvent) {
-		this.inventoryItemFilters.page = pageEvent.pageIndex;
-		this.inventoryItemFilters.size = pageEvent.pageSize;
-
-		this.searchInventoryItem();
+    		this.searchInventoryItem(0);
 	}
 
+
+    clearFiltersTenantContext() {
+		this.inventoryItemSearchFormGroup.reset();
+		this.showAllInventoryItem();
+	}
+    
+    inventoryItemPaginationEvent(pageEvent: PageEvent) {
+        this.inventoryItemPagination.size = pageEvent.pageSize;
+
+		this.searchInventoryItem(pageEvent.pageIndex);
+		
+	}
+
+    
     inventoryItemSearchWithFilter() {
 		this.inventoryItemFilters.id = this.inventoryItemSearchFormGroup.controls.id.value;
 		this.inventoryItemFilters.name = this.inventoryItemSearchFormGroup.controls.name.value;
 
-		this.searchInventoryItem();
+		this.searchInventoryItem(0);
 	}
 
 }
