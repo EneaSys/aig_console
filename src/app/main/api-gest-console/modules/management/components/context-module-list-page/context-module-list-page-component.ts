@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { PageEvent } from '@angular/material';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, PageEvent } from '@angular/material';
 import { ContextModuleDTO, ContextModuleResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -13,57 +12,72 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 
 export class AigContextModuleListPageComponent extends GenericComponent {
-    contextModuleSearchFormGroup: FormGroup;
+    contextModuleLength: number;
     page: number;
     size: number;
-    length: number;
- 
-
- 
+    reloadContextModuleTable: any;
+    tenantContextFilters: any;
+   
     constructor(
         private contextModuleResourceService: ContextModuleResourceService,
-		private dialog: MatDialog,
 		private _formBuilder: FormBuilder,
+        private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    loadPage() {
+		this.initContextModuleSearch();
+
+		this.showAllContextModule();
+	}
+   
+	reloadPage() {
+		this.showAllContextModule();
+	}
+
+   contextModuleSearchFormGroup: FormGroup;
+   contextModulePagination: any;
+   contextModuleFilters: any;
     
    contextModuleDTOs: ContextModuleDTO[]; 
    contextModuleDC: string[] = [ "id", "active", "module","context"];
    contextModuleError: any;
+   tenantContextLength: number;
 
-   id: number;
-   contextId: number;
+   private initContextModuleSearch() {
+    this.contextModuleDC = ["id", "active", "module","context"];
 
-	loadPage() {
-		this.reloadPage();
-
-		this.contextModuleSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			name: [''],
-		});
-    }
-    
-    reloadPage() {
-		this.reloadContextModuleTable();
-	}
-
-
-    paginationEvent(pageEvent: PageEvent) {
-        this.page = pageEvent.pageIndex;
-        this.size = pageEvent.pageSize;
-        
-        this.reloadPage();
+    this.contextModulePagination = {
+        page: 0,
+        size: 2,
     }
 
-    async reloadContextModuleTable() {
-		try {
-			this.length = await this.contextModuleResourceService.countContextModulesUsingGET().toPromise();
-			this.contextModuleDTOs = await this.contextModuleResourceService.getAllContextModulesUsingGET(null,null,null,null,this.contextId,null,null,null,null,null,null,null,this.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,this.size).toPromise();
-		} catch (e) {
-			this.contextModuleError = e;
-		}
-	}
+    this.contextModuleSearchFormGroup = this._formBuilder.group({
+        id: [''],
+        name: [''],
+    });
+    }
+
+    private clearFiltersContextModule() {
+    this.contextModuleFilters = {
+        id: null,
+        name: null,
+    }
+}
+
+    private async searchContextModule() {
+        try {
+            this.contextModuleLength = await this.contextModuleResourceService.countContextModulesUsingGET().toPromise();
+            this.contextModuleDTOs = await this.contextModuleResourceService.getAllContextModulesUsingGET(null, null, null, null, null, null, this.contextModuleFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.contextModuleFilters.name, null, null, null, null, null, null, null, this.contextModulePagination.page,this.contextModulePagination.size).toPromise();
+        } catch (e) {
+            this.contextModuleError = e;
+        }
+    }
+
+    showAllContextModule() {
+        this.clearFiltersContextModule();
+        this.searchContextModule();
+    }
 
 	contextModulePaginationEvent(pageEvent: PageEvent) {
 		this.page = pageEvent.pageIndex;
@@ -71,11 +85,11 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 
 		this.reloadContextModuleTable();
 	}
+   
+    contextModuleSearchWithFilter() {
+		this.tenantContextFilters.id = this.contextModuleSearchFormGroup.controls.id.value;
+		this.tenantContextFilters.name = this.contextModuleSearchFormGroup.controls.name.value;
 
-	tenantContextSearch() {
-		this.id = this.contextModuleSearchFormGroup.controls.id.value;
-		this.contextId = this.contextModuleSearchFormGroup.controls.name.value;
-
-		this.reloadContextModuleTable();
-	}
+		this.searchContextModule();
+    }
 }

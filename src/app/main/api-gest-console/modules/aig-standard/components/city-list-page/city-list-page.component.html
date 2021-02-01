@@ -1,4 +1,3 @@
-
 <div id="aig-city-list-page" class="page-layout simple left-sidebar inner-sidebar inner-scroll">
 
     <aig-standard-header [sectionName]="'City'" [search]="false"></aig-standard-header>
@@ -6,33 +5,59 @@
     <div class="content">
         <!-- SIDEBAR -->
         <fuse-sidebar class="sidebar" name="aig-user-list-filters-sidebar" position="left" lockedOpen="gt-sm">
-            <div class="content" fusePerfectScrollbar>
-                <div class="sidebar-content">
-
-                    <div class="card mb-16">
-                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h5">Filters</span>
-                        </div>
-                        <div class="content py-16" fusePerfectScrollbar>
-                            <div class="nav material2">
-                                <div class="nav-item" aria-label="inbox">
-                                    <a class="nav-link accent" matRipple >
-                                        <span class="title">Tutto</span>
-                                    </a>
-                                </div>
+            <!-- SIDEBAR CONTENT -->
+            <div class="content">
+                <div>
+                    <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                        <button mat-raised-button (click)="resetFiltersCity()">Resetta filtri</button>
+                    </div>
+                    <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                        <span class="h3">Filtri</span>
+                    </div>
+                    <div class="content" fusePerfectScrollbar>
+                        <div class="nav material2">
+                            <div class="nav-item" aria-label="inbox">
+                                <form [formGroup]="citySearchFormGroup" (ngSubmit)="citySearchWithFilter()" class="p-8">
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Id</mat-label>
+                                            <input matInput type="number" formControlName="id">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Name</mat-label>
+                                            <input matInput type="text" formControlName="name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Code</mat-label>
+                                            <input matInput type="text" formControlName="code">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="end top">
+                                        <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <!-- / SIDEBAR CONTENT -->
         </fuse-sidebar>
         <!-- / SIDEBAR -->
 
         <!-- CENTER -->
         <div class="center p-24 pb-56" fusePerfectScrollbar>
             <div class="content">
-                <aig-city-list-table [dataSource]="citys" [displayedColumns]="displayedColumns"></aig-city-list-table>
+                <aig-city-list-table [dataSource]="cityDTOs" [displayedColumns]="cityDC"></aig-city-list-table>
+
+                <mat-paginator #paginator [length]="cityLength" [pageSize]="this.cityPagination.size"
+                    [pageIndex]="this.cityPagination.page" [pageSizeOptions]="[10, 20, 50]"
+                    (page)="cityPaginationEvent($event)">
+                </mat-paginator>
             </div>
         </div>
         <!-- /CENTER -->

@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { aigStandardRoute } from './aig-standard.route';
 import { AigStandardClientModule  } from 'aig-standard';
@@ -107,6 +108,7 @@ import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-cate
         MatToolbarModule,
         MatFormFieldModule,
         MatInputModule,
+        MatPaginatorModule,
     ],
     exports: [],
     providers: [],
