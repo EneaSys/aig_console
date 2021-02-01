@@ -18,11 +18,6 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
-	
-	
-	
-
-
 	loadPage() {
 		this.initTenantContextSearch();
 
@@ -32,11 +27,6 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	reloadPage() {
 		this.showAllTenantContext();
 	}
-
-
-
-
-
 
 
 	//			---- TENANT CONTEXT TABLE AND SEARCH SECTION ----
