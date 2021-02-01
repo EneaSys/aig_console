@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatSnackBar, PageEvent } from '@angular/material';
 import { TenantContextDTO, TenantContextResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -14,7 +14,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	constructor(
 		private tenantContextResourceService: TenantContextResourceService,
 		private _formBuilder: FormBuilder,
-		private dialog: MatDialog,
+		private _snackBar: MatSnackBar,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -66,7 +66,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		this.tenantContextDC = ["id", "name", "contextCode", "buttons"];
 	}
 
-	private initFiltersTenantContext() {
+	private clearFiltersTenantContext() {
 		this.tenantContextFilters = {
 			id: null,
 			name: null,
@@ -78,6 +78,13 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		this.tenantContextDTOs = null;
 		try {
 			this.tenantContextLength = await this.tenantContextResourceService.countTenantContextsUsingGET(null,null,null,null,null,null,this.tenantContextFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.tenantContextFilters.name).toPromise(); //mettere i 
+			
+			if(this.tenantContextLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+				this.tenantContextDTOs = [];
+				return;
+			}
+
 			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextPagination.page, this.tenantContextPagination.size).toPromise();
 		} catch (e) {
 			this.tenantContextError = e;
@@ -85,27 +92,38 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	}
 
 	showAllTenantContext() {
-		this.initFiltersTenantContext();
+		this.clearFiltersTenantContext();
 		this.searchTenantContext(0);
 	}
 
-	clearFiltersTenantContext() {
+	resetFiltersTenantContext() {
 		this.tenantContextSearchFormGroup.reset();
 		this.showAllTenantContext();
 	}
 
 	tenantContextPaginationEvent(pageEvent: PageEvent) {
 		this.tenantContextPagination.size = pageEvent.pageSize;
-		
 		this.searchTenantContext(pageEvent.pageIndex);
 	}
 
 	tenantContextSearchWithFilter() {
-		this.tenantContextFilters.id = this.tenantContextSearchFormGroup.controls.id.value;
+		let searchedId = this.tenantContextSearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersTenantContext();
+			this.tenantContextSearchFormGroup.reset();
+			this.tenantContextFilters.id = searchedId;
+			this.searchTenantContext(0);
+			return;
+		}
+
 		this.tenantContextFilters.name = this.tenantContextSearchFormGroup.controls.name.value;
 
 		this.searchTenantContext(0);
 	}
+
+
+	
 	//			---- !TENANT CONTEXT SECTION ----
 
 
