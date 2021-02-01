@@ -11,8 +11,6 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 	styleUrls: ['./application-module-list-page.component.scss']
 })
 export class AigApplicationModuleListPageComponent extends GenericComponent {
-	applicationModuleSearchFormGroup: FormGroup;
-	
 	constructor(
 		private applicationModuleResourceService: ApplicationModuleResourceService,
 		private _formBuilder: FormBuilder,
@@ -20,18 +18,39 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-	applicationModuleDTOs: ApplicationModuleDTO[];
-	applicationModuleDC: string[] = [ "id", "name", "buttons" ];
-	applicationModuleError: any;
-
-	length: number;
-	page: number;
-	size: number = 10;
-	id: number;
-	name: string;
+	
 	
 	loadPage() {
-		this.reloadPage();
+		this.initApplicationModuleSearch();
+
+		this.showAllApplicationModule();
+	}
+
+	reloadPage() {
+		this.showAllApplicationModule();
+	}
+
+
+//			---- APPLICATION MODULE TABLE AND SEARCH SECTION ----
+
+	applicationModuleSearchFormGroup: FormGroup;
+	applicationModulePagination: any;
+	applicationModuleFilters: any;
+
+	applicationModuleLength: number;
+	applicationModuleDTOs: ApplicationModuleDTO[];
+	applicationModuleError: any;
+
+	applicationModuleDC: string[];
+
+	
+	private initApplicationModuleSearch() {
+		this.applicationModuleDC = ["id", "name", "buttons"];
+
+		this.applicationModulePagination = {
+			page: 0,
+			size: 10,
+		}
 
 		this.applicationModuleSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -39,34 +58,40 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 		});
 	}
 
-	reloadPage() {
-		this.reloadApplicationModuleTable();
+	private clearFiltersApplicationModule() {
+		this.applicationModuleFilters = {
+			id: null,
+			name: null,
+		}
 	}
 
-	async reloadApplicationModuleTable() {
+	private async searchApplicationModule() {
 		try {
-			this.length = await this.applicationModuleResourceService.countApplicationModulesUsingGET().toPromise();
-			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET(this.id,null,null,null,null,null,null,null,this.name,).toPromise();
+			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET().toPromise();
+			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET(this.applicationModuleFilters.id,null,null,null,null,null,null,null,this.applicationModuleFilters.name,null, null, null, null, null, this.applicationModulePagination.page,this.applicationModulePagination.size).toPromise();
 		} catch(e) {
 			this.applicationModuleError = e;
 		}
 	}
 
+	showAllApplicationModule() {
+		this.clearFiltersApplicationModule();
+		this.searchApplicationModule();
+	}
+
 	applicationModulePaginationEvent(pageEvent: PageEvent) {
-		this.page = pageEvent.pageIndex;
-		this.size = pageEvent.pageSize;
+		this.applicationModulePagination.size = pageEvent.pageSize;
+		this.applicationModulePagination.page = pageEvent.pageIndex;
 
-		this.reloadApplicationModuleTable();
+		this.searchApplicationModule();
 	}
 
-	applicationModuleSearch() {
-		this.id = this.applicationModuleSearchFormGroup.controls.id.value;
-		this.name = this.applicationModuleSearchFormGroup.controls.name.value;
+	applicationModuleSearchWithFilter() {
+		this.applicationModuleFilters.id = this.applicationModuleSearchFormGroup.controls.id.value;
+		this.applicationModuleFilters.name = this.applicationModuleSearchFormGroup.controls.name.value;
 
-		this.reloadApplicationModuleTable();
+		this.searchApplicationModule();
 	}
-	
-	
 	
 }
 

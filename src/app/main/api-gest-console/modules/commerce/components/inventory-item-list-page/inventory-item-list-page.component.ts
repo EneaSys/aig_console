@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, PageEvent } from '@angular/material';
-import { InventoryCategoryResourceService, InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
+import { InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
@@ -11,7 +11,6 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
     styleUrls: ['./inventory-item-list-page.component.scss']
 })
 export class AigInventoryItemListPageComponent extends GenericComponent {
-    inventoryItemSearchFormGroup: FormGroup;
     constructor(
         private inventoryItemResourceService : InventoryItemResourceService,
         private _formBuilder: FormBuilder,
@@ -19,51 +18,96 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    inventoryItemDTOs: InventoryItemDTO[];
-    inventoryItemDC : string[] = ["id","inventoryCategoryId","inventoryCategoryName","name","producerId","producerName","buttons",];
-    inventoryItemError : any;
 
-    length : number;
-    page : number;
-    size: number = 10;
-    id: number;
-	name: string;
-    
+
+
 
     loadPage() {
-        this.reloadPage();  
-        
-        this.inventoryItemSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			name: [''],
-		});   
-    }
+		this.initInventoryItemSearch();
 
-    reloadPage() {
-        this.reloadInventoryItemTable();
-    };
-
-    inventoryItemPaginationEvent(pageEvent: PageEvent) {
-		this.page = pageEvent.pageIndex;
-		this.size = pageEvent.pageSize;
-
-		this.reloadInventoryItemTable();
+		this.showAllInventoryItem();
 	}
 
-    async  reloadInventoryItemTable() {
+
+	reloadPage() {
+		this.showAllInventoryItem();
+    }
+    
+
+
+
+
+
+    //			---- INVENTORY ITEM TABLE AND SEARCH SECTION ----
+
+    inventoryItemSearchFormGroup: FormGroup;
+    inventoryItemPagination: any;
+    inventoryItemFilters: any;
+
+    inventoryItemLength: number;
+    inventoryItemDTOs: InventoryItemDTO[];
+    inventoryItemError : any;
+
+    inventoryItemDC : string[];
+
+    private initInventoryItemSearch() {
+		this.inventoryItemPagination = {
+			size: 2,
+			page: 0
+		}
+	
+		this.inventoryItemSearchFormGroup = this._formBuilder.group({
+			id: [''],
+			name: [''],
+		});
+
+		this.inventoryItemDC = ["id","inventoryCategoryId","inventoryCategoryName","name","producerId","producerName","buttons",];
+    }
+    
+
+    private initFiltersInventoryItem() {
+		this.inventoryItemFilters = {
+			id: null,
+			name: null,
+		}
+    }
+    
+    private async searchInventoryItem(page: number) {
+        this.inventoryItemPagination.page = page;
+        this.inventoryItemDTOs = null;
         try {
-            this.length = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
-            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.name,null,null,null,null,null,null,this.page,null,null,null,null,null,null,null,null,null,this.size).toPromise();
+            this.inventoryItemLength = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
+            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.inventoryItemFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.name,null,null,null,null,null,null,this.inventoryItemFilters.page,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.size).toPromise();
         } catch (e) {
             this.inventoryItemError = e;
         }
     }
 
-    inventoryItemSearch() {
-		this.id = this.inventoryItemSearchFormGroup.controls.id.value;
-		this.name = this.inventoryItemSearchFormGroup.controls.name.value;
+    showAllInventoryItem() {
+		this.initFiltersInventoryItem();
 
-		this.reloadInventoryItemTable();
+    		this.searchInventoryItem(0);
+	}
+
+
+    clearFiltersTenantContext() {
+		this.inventoryItemSearchFormGroup.reset();
+		this.showAllInventoryItem();
+	}
+    
+    inventoryItemPaginationEvent(pageEvent: PageEvent) {
+        this.inventoryItemPagination.size = pageEvent.pageSize;
+
+		this.searchInventoryItem(pageEvent.pageIndex);
+		
+	}
+
+    
+    inventoryItemSearchWithFilter() {
+		this.inventoryItemFilters.id = this.inventoryItemSearchFormGroup.controls.id.value;
+		this.inventoryItemFilters.name = this.inventoryItemSearchFormGroup.controls.name.value;
+
+		this.searchInventoryItem(0);
 	}
 
 }
