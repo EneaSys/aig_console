@@ -10,31 +10,28 @@
                     <div class="content py-16" fusePerfectScrollbar>
                         <div class="nav material2">
                             <div class="nav-item" aria-label="inbox">
-
+                                <form [formGroup]="inventoryItemSearchFormGroup" (ngSubmit)="inventoryItemSearch()" class="p-8">
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Id</mat-label>
+                                            <input matInput type="number" formControlName="id">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Name</mat-label>
+                                            <input matInput type="text" formControlName="name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="end top">
+                                        <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                    </div>
+                                    </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div>
-                <form [formGroup]="inventoryItemSearchFormGroup" (ngSubmit)="inventoryItemSearch()" class="p-8">
-                <div fxLayout="row">
-                    <mat-form-field appearance="outline" fxFlex="100">
-                        <mat-label>Id</mat-label>
-                        <input matInput type="number" formControlName="id">
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row">
-                    <mat-form-field appearance="outline" fxFlex="100">
-                        <mat-label>Name</mat-label>
-                        <input matInput type="text" formControlName="name">
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="end top">
-                    <button type="submit" mat-raised-button color="accent">Cerca</button>
-                </div>
-                </form>
+                
             </div>
             <!-- / SIDEBAR CONTENT -->
         </fuse-sidebar>
