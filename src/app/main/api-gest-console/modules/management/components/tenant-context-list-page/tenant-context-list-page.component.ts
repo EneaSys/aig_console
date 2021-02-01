@@ -54,7 +54,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 
 	private initTenantContextSearch() {
 		this.tenantContextPagination = {
-			size: 2,
+			size: 10,
 			page: 0
 		}
 	
