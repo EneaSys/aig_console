@@ -42,29 +42,31 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	inventoryCategoryDC: string[];
 
 	private initInventoryCategorySearch() {
-		this.inventoryCategoryDC = ["id", "name", "buttons"];
-
 		this.inventoryCategoryPagination = {
-			page: 0,
 			size: 10,
+			page: 0,
 		}
 
 		this.inventoryCategorySearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
 		});
+
+		this.inventoryCategoryDC = ["id", "name", "buttons"];
 	}
 
-	private clearFiltersInventoryCategory() {
+	private initFiltersInventoryCategory() {
 		this.inventoryCategoryFilters = {
 			id: null,
 			name: null,
 		}
 	}
 
-	private async searchInventoryCategory() {
+	private async searchInventoryCategory(page: number) {
+		this.inventoryCategoryPagination.page = page;
+		this.inventoryCategoryDTOs = null;
 		try {
-			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET().toPromise();
+			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryCategoryFilters.name,null,null,null,null,null,null,null,null).toPromise();
 			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.inventoryCategoryFilters.name, null, null, null, null, null, null, this.inventoryCategoryPagination.page, this.inventoryCategoryPagination.size).toPromise();
 		} catch (e) {
 			this.inventoryCategoryError = e;
@@ -72,22 +74,25 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 
 	showAllInventoryCategory() {
-		this.clearFiltersInventoryCategory();
-		this.searchInventoryCategory();
+		this.initFiltersInventoryCategory();
+		this.searchInventoryCategory(0);
+	}
+
+	clearFiltersInventoryCategory() {
+		this.inventoryCategorySearchFormGroup.reset();
+		this.showAllInventoryCategory();
 	}
 
 	inventoryCategoryPaginationEvent(pageEvent: PageEvent) {
 		this.inventoryCategoryPagination.size = pageEvent.pageSize;
-		this.inventoryCategoryPagination.page = pageEvent.pageIndex;
-
-		this.searchInventoryCategory();
+		this.searchInventoryCategory(pageEvent.pageIndex);
 	}
 
 	inventoryCategorySearchWithFilter() {
 		this.inventoryCategoryFilters.id = this.inventoryCategorySearchFormGroup.controls.id.value;
 		this.inventoryCategoryFilters.name = this.inventoryCategorySearchFormGroup.controls.name.value;
 
-		this.searchInventoryCategory();
+		this.searchInventoryCategory(0);
 	}
 	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 }
