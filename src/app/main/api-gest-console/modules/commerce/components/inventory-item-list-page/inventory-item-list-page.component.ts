@@ -17,7 +17,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     inventoryItemDTOs: InventoryItemDTO[];
-    inventoryItemDC : string[] = ["id","name","buttons"];
+    inventoryItemDC : string[] = ["id","inventoryCategoryId","inventoryCategoryName","name","producerId","producerName","buttons",];
     inventoryItemError : any;
 
     length : number;
