@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { PageEvent } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
@@ -11,8 +12,11 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
     styleUrls: ['./inventory-category-list-page.component.scss']
 })
 export class AigInventoryCategoryListPageComponent extends GenericComponent {
+    inventoryCategorySearchFormGroup: FormGroup;
+
     constructor(
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
+        private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
@@ -23,25 +27,43 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
     
     length: number;
 	page: number;
-	size: number = 10;
+    size: number = 10;
+    id: number;
+	name: string;
 
     loadPage() {
-		this.reloadPage();
+        this.reloadPage();
+        
+        this.inventoryCategorySearchFormGroup = this._formBuilder.group({
+			id: [''],
+			name: [''],
+		});
+    }
+
+    reloadPage() {
+		this.reloadInventoryCategoryTable();
     }
     
-    paginationEvent(pageEvent: PageEvent) {
+    async reloadInventoryCategoryTable() {
+		try {
+			this.length = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET().toPromise();
+			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.name,null,null,null,null,null,null,this.page,this.size).toPromise();
+		} catch (e) {
+			this.inventoryCategoryError = e;
+		}
+	}
+
+	inventoryCategoryPaginationEvent(pageEvent: PageEvent) {
 		this.page = pageEvent.pageIndex;
 		this.size = pageEvent.pageSize;
 
-		this.reloadPage();
-    }
-    
-    async reloadPage() {
-		try {
-            this.length = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET().toPromise();
-			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.page,this.size).toPromise();
-		} catch(e) {
-			this.inventoryCategoryError = e;
-		}
+		this.reloadInventoryCategoryTable();
+	}
+
+	inventaryCategorySearch() {
+		this.id = this.inventoryCategorySearchFormGroup.controls.id.value;
+		this.name = this.inventoryCategorySearchFormGroup.controls.name.value;
+
+		this.reloadInventoryCategoryTable();
 	}
 }
