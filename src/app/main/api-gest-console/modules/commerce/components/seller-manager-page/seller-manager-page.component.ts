@@ -104,7 +104,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
     // PURCHASE
-    purchaseDisplayedColumns: string[] = ['id', 'date', 'customer', 'status', 'buttons'];
+    purchasedisplayColumns: string[] = ['id', 'date', 'customer', 'status', 'buttons'];
     purchaseDTOs: PurchaseDTO[];
     purchaseError: any;
 
@@ -174,7 +174,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     // BUYER
     buyerSearchForm: FormGroup;
 
-    buyerDisplayedColumns: string[] = ['id', 'buyer', 'status', 'bornDate', 'buttons'];
+    buyerdisplayColumns: string[] = ['id', 'buyer', 'status', 'bornDate', 'buttons'];
     buyerDTOs: BuyerDTO[];
     buyerError: any;
 
@@ -272,7 +272,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     // FISCAL TRANSACTION
     fiscalTransactionSearchForm: FormGroup;
 
-    fiscalTransactionDisplayedColumns: string[] = ['date', 'code', 'amount', 'buyer', 'status', 'buttons'];
+    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'buyer', 'status', 'buttons'];
     fiscalTransactionDTOs: FiscalTransactionDTO[];
     fiscalTransactionError: any;
 

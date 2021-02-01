@@ -26,21 +26,38 @@ import { AigCommerceModule } from './modules/commerce/commerce.module';
 import { AIG_COMMERCE_PATH } from 'aig-commerce';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
+import { FuseWidgetModule } from '@fuse/components';
+import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
 
 
 @NgModule({
-    declarations: [
-
-    ],
+    declarations: [ ],
     imports: [
-        RouterModule.forChild(apiGestRoute),
+		FuseSharedModule,
+		FuseWidgetModule,
+		
+		MatButtonModule,
+		MatIconModule,
+		MatProgressSpinnerModule,
+		MatToolbarModule,
+		MatTableModule,
+		
+		AigCommonManagementModule,
+		
 
+
+        RouterModule.forChild(apiGestRoute),
+		
         // Per il route prende AuthGuardService che è parte di Auth e per l' interceptor
         AigCommonModule,
 
         // Per i resolver del route
         AigOldCommonModule,
 
+		AigWelcomeModule,
         // App modules
         AigApolloDocumentModule,
         //AigEopooModule,

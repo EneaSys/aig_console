@@ -91,6 +91,14 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'shopping_basket',
                 url      : '/commerce/seller',
                 permission: ['c6e.admin'],
+            },
+            {
+                id       : 'producer',
+                title    : 'Produttori',
+                type     : 'item',
+                icon     : 'business',
+                url      : '/commerce/producer',
+                permission: ['c6e.admin'],
 			},
 			{
                 id       : 'buyer',
@@ -101,11 +109,11 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
-                id       : 'comm-validator',
-                title    : 'Istruttoria',
+                id       : 'inventory-item-list-page',
+                title    : 'Lista Inventario',
                 type     : 'item',
-                icon     : 'check_circle_outline',
-                url      : '/commerce/validator',
+                icon     : 'assignment',
+                url      : '/commerce/inventory-item',
                 permission: ['c6e.admin'],
             },
             {
@@ -115,14 +123,6 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'format_list_bulleted',
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
-            },
-            {
-                id       : 'commerce-seller-manager',
-                title    : 'Gestore Vendite',
-                type     : 'item',
-                icon     : 'dashboard',
-                url      : '/commerce/seller-manager',
-                permission: ['c6e.buy.get.asSeller'],
             },
         ]
     },
@@ -253,6 +253,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['e4y.role.get'],
             },
             {
+                id       : 'application-module',
+                title    : 'Application Module',
+                type     : 'item',
+                icon     : 'icon-brightness-5',
+                url      : '/m8t/application-module',
+                permission: ['e4y.role.get'],
+            },
+            {
                 id       : 'permission-list',
                 title    : 'Permessi',
                 type     : 'item',
@@ -267,6 +275,13 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'star_half',
                 url      : '/m8t/tenant-context',
+            },
+            {
+                id       : 'context-module-list-page',
+				title    : 'Context Module',
+                type     : 'item',
+                icon     : 'star_half',
+                url      : '/m8t/context-module',
             },
             {
                 id       : 'context-list',

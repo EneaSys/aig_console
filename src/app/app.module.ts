@@ -18,12 +18,11 @@ import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
 
 import { ApiGestConsoleModule } from './main/api-gest-console/api-gest-console.module';
-import { SampleModule } from 'app/main/sample/sample.module';
 
 const appRoutes: Routes = [
     {
         path: '**',
-        redirectTo: 'sample'
+        redirectTo: 'welcome-page'
     }
 ];
 
@@ -55,8 +54,6 @@ const appRoutes: Routes = [
 
         // Application
         ApiGestConsoleModule,
-
-        SampleModule,
     ],
     providers: [ ],
     bootstrap: [

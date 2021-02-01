@@ -1,0 +1,46 @@
+<div class="page-layout simple left-sidebar">
+	<!-- SIDEBAR -->
+	<fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
+		<!-- SIDEBAR CONTENT -->
+		<div class="content">
+			<div>
+				<div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
+					<span class="h5">Stati</span>
+				</div>
+				<div class="content py-16" fusePerfectScrollbar>
+					<div class="nav material2">
+						<div class="nav-item" aria-label="inbox">
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- / SIDEBAR CONTENT -->
+	</fuse-sidebar>
+	<!-- / SIDEBAR -->
+	<!-- CENTER -->
+	<div class="center">
+		<!-- HEADER -->
+		<div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+			<button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+				(click)="toggleSidebar('purchase-sidebar')">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<h2>Elenco Produttori</h2>
+		</div>
+		<!-- / HEADER -->
+		<!-- CONTENT -->
+		<div class="content mb-48">
+			<aig-producer-list-table [displayColumns]="producerDC" [dataSource]="producerDTOs"
+				[error]="producerError"></aig-producer-list-table>
+
+			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
+				[pageSizeOptions]="[10, 20, 50, 100]" (page)="paginationEvent($event)">
+			</mat-paginator>
+		</div>
+		<!-- / CONTENT -->
+	</div>
+	<!-- / CENTER -->
+</div>

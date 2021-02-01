@@ -23,6 +23,8 @@ import { GroupResolver } from 'aig-common/old-common/resolver/group.resolver';
 import { RoleCustomResolver } from 'aig-common/old-common/resolver/role-custom.resolver';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
 import { AigRoleCustomDetailComponent } from './modules/iam/components/custom-role-detail-page/custom-role-detail-page.component';
+import { AigHomePageComponent } from './modules/welcome/components/home-page/home-page.component';
+import { AigWelcomePageComponent } from './modules/welcome/components/welcome-page/welcome-page.component';
 
 
 export const apiGestRoute: Routes = [
