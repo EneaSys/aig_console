@@ -106,6 +106,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 			this.searchTenantContext(0);
 			return;
 		}
+		this.tenantContextFilters.id = null;
 
 		this.tenantContextFilters.name = this.tenantContextSearchFormGroup.controls.name.value;
 
