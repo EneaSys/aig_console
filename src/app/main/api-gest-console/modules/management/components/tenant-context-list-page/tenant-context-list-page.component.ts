@@ -42,7 +42,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	//			---- TENANT CONTEXT TABLE AND SEARCH SECTION ----
 
 	tenantContextSearchFormGroup: FormGroup;
-	tenantContextPaginationSize: number;
+	tenantContextPagination: any;
 	tenantContextFilters: any;
 
 	tenantContextLength: number;
@@ -53,7 +53,10 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 
 
 	private initTenantContextSearch() {
-		this.tenantContextPaginationSize = 2;
+		this.tenantContextPagination = {
+			size: 2,
+			page: 0
+		}
 	
 		this.tenantContextSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -71,10 +74,11 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	}
 
 	private async searchTenantContext(page: number) {
+		this.tenantContextPagination.page = page;
 		this.tenantContextDTOs = null;
 		try {
 			this.tenantContextLength = await this.tenantContextResourceService.countTenantContextsUsingGET(null,null,null,null,null,null,this.tenantContextFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.tenantContextFilters.name).toPromise(); //mettere i 
-			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, page, this.tenantContextPaginationSize).toPromise();
+			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextPagination.page, this.tenantContextPagination.size).toPromise();
 		} catch (e) {
 			this.tenantContextError = e;
 		}
@@ -86,13 +90,12 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	}
 
 	clearFiltersTenantContext() {
-		console.log("basnana");
 		this.tenantContextSearchFormGroup.reset();
 		this.showAllTenantContext();
 	}
 
 	tenantContextPaginationEvent(pageEvent: PageEvent) {
-		this.tenantContextPaginationSize = pageEvent.pageSize;
+		this.tenantContextPagination.size = pageEvent.pageSize;
 		
 		this.searchTenantContext(pageEvent.pageIndex);
 	}
