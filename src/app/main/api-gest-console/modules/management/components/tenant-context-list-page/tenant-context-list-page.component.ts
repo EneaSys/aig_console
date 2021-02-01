@@ -63,7 +63,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		this.tenantContextDC = ["id", "name", "contextCode", "buttons"];
 	}
 
-	private clearFiltersTenantContext() {
+	private initFiltersTenantContext() {
 		this.tenantContextFilters = {
 			id: null,
 			name: null,
@@ -71,8 +71,9 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	}
 
 	private async searchTenantContext(page: number) {
+		this.tenantContextDTOs = null;
 		try {
-			this.tenantContextLength = await this.tenantContextResourceService.countTenantContextsUsingGET().toPromise();
+			this.tenantContextLength = await this.tenantContextResourceService.countTenantContextsUsingGET(null,null,null,null,null,null,this.tenantContextFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,this.tenantContextFilters.name).toPromise(); //mettere i 
 			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, page, this.tenantContextPaginationSize).toPromise();
 		} catch (e) {
 			this.tenantContextError = e;
@@ -80,8 +81,14 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	}
 
 	showAllTenantContext() {
-		this.clearFiltersTenantContext();
+		this.initFiltersTenantContext();
 		this.searchTenantContext(0);
+	}
+
+	clearFiltersTenantContext() {
+		console.log("basnana");
+		this.tenantContextSearchFormGroup.reset();
+		this.showAllTenantContext();
 	}
 
 	tenantContextPaginationEvent(pageEvent: PageEvent) {
