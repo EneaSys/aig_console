@@ -13,8 +13,8 @@
 							<div fxLayout="row" fxLayoutAlign="center top">
 								<button mat-raised-button (click)="showAllInventoryCategory()">Resetta filtri</button>
 							</div>
-							<form [formGroup]="inventoryCategorySearchFormGroup" (ngSubmit)="inventoryCategorySearchWithFilter()"
-								class="p-8">
+							<form [formGroup]="inventoryCategorySearchFormGroup"
+								(ngSubmit)="inventoryCategorySearchWithFilter()" class="p-8">
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Id</mat-label>

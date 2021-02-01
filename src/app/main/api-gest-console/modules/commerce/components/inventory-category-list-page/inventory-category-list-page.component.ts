@@ -7,28 +7,28 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
-    selector: 'inventory-category-list-page',
-    templateUrl: './inventory-category-list-page.component.html',
-    styleUrls: ['./inventory-category-list-page.component.scss']
+	selector: 'inventory-category-list-page',
+	templateUrl: './inventory-category-list-page.component.html',
+	styleUrls: ['./inventory-category-list-page.component.scss']
 })
 export class AigInventoryCategoryListPageComponent extends GenericComponent {
-    constructor(
-        private inventoryCategoryResourceService: InventoryCategoryResourceService,
-        private _formBuilder: FormBuilder,
+	constructor(
+		private inventoryCategoryResourceService: InventoryCategoryResourceService,
+		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
-        aigGenericComponentService: AigGenericComponentService,
-    ) { super(aigGenericComponentService) }
+		aigGenericComponentService: AigGenericComponentService,
+	) { super(aigGenericComponentService) }
 
-    loadPage() {
-        this.initInventoryCategorySearch();
-        
-        this.showAllInventoryCategory();
-    }
+	loadPage() {
+		this.initInventoryCategorySearch();
 
-    reloadPage() {
 		this.showAllInventoryCategory();
 	}
-	
+
+	reloadPage() {
+		this.showAllInventoryCategory();
+	}
+
 	//			---- INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
 	inventoryCategorySearchFormGroup: FormGroup;
@@ -42,7 +42,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	inventoryCategoryDC: string[];
 
 	private initInventoryCategorySearch() {
-		this.inventoryCategoryDC = [ "id", "name", "buttons" ];
+		this.inventoryCategoryDC = ["id", "name", "buttons"];
 
 		this.inventoryCategoryPagination = {
 			page: 0,
@@ -61,11 +61,11 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 			name: null,
 		}
 	}
-    
-    private async searchInventoryCategory() {
+
+	private async searchInventoryCategory() {
 		try {
 			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET().toPromise();
-			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryCategoryFilters.name,null,null,null,null,null,null,this.inventoryCategoryPagination.page,this.inventoryCategoryPagination.size).toPromise();
+			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.inventoryCategoryFilters.name, null, null, null, null, null, null, this.inventoryCategoryPagination.page, this.inventoryCategoryPagination.size).toPromise();
 		} catch (e) {
 			this.inventoryCategoryError = e;
 		}
