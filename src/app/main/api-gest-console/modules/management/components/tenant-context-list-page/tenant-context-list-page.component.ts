@@ -42,7 +42,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	//			---- TENANT CONTEXT TABLE AND SEARCH SECTION ----
 
 	tenantContextSearchFormGroup: FormGroup;
-	tenantContextPagination: any;
+	tenantContextPaginationSize: number;
 	tenantContextFilters: any;
 
 	tenantContextLength: number;
@@ -53,17 +53,14 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 
 
 	private initTenantContextSearch() {
-		this.tenantContextDC = ["id", "name", "contextCode", "buttons"];
-
-		this.tenantContextPagination = {
-			page: 0,
-			size: 2,
-		}
-
+		this.tenantContextPaginationSize = 2;
+	
 		this.tenantContextSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
 		});
+
+		this.tenantContextDC = ["id", "name", "contextCode", "buttons"];
 	}
 
 	private clearFiltersTenantContext() {
@@ -73,10 +70,10 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		}
 	}
 
-	private async searchTenantContext() {
+	private async searchTenantContext(page: number) {
 		try {
 			this.tenantContextLength = await this.tenantContextResourceService.countTenantContextsUsingGET().toPromise();
-			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextPagination.page, this.tenantContextPagination.size).toPromise();
+			this.tenantContextDTOs = await this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, null, null, null, null, this.tenantContextFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, this.tenantContextFilters.name, null, null, null, null, null, null, null, null, null, null, null, page, this.tenantContextPaginationSize).toPromise();
 		} catch (e) {
 			this.tenantContextError = e;
 		}
@@ -84,21 +81,20 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 
 	showAllTenantContext() {
 		this.clearFiltersTenantContext();
-		this.searchTenantContext();
+		this.searchTenantContext(0);
 	}
 
 	tenantContextPaginationEvent(pageEvent: PageEvent) {
-		this.tenantContextPagination.size = pageEvent.pageSize;
-		this.tenantContextPagination.page = pageEvent.pageIndex;
-
-		this.searchTenantContext();
+		this.tenantContextPaginationSize = pageEvent.pageSize;
+		
+		this.searchTenantContext(pageEvent.pageIndex);
 	}
 
 	tenantContextSearchWithFilter() {
 		this.tenantContextFilters.id = this.tenantContextSearchFormGroup.controls.id.value;
 		this.tenantContextFilters.name = this.tenantContextSearchFormGroup.controls.name.value;
 
-		this.searchTenantContext();
+		this.searchTenantContext(0);
 	}
 	//			---- !TENANT CONTEXT SECTION ----
 

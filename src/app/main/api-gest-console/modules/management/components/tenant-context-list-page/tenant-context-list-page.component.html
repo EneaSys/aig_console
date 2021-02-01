@@ -55,7 +55,7 @@
 			<aig-tenant-context-list-table [displayedColumns]="tenantContextDC" [dataSource]="tenantContextDTOs"
 				[error]="tenantContextError"></aig-tenant-context-list-table>
 
-			<mat-paginator #paginator [length]="tenantContextLength" [pageIndex]="tenantContextPagination.page" [pageSize]="tenantContextPagination.size"
+			<mat-paginator #paginator [length]="tenantContextLength" [pageSize]="this.tenantContextPaginationSize"
 				[pageSizeOptions]="[10, 20, 50]" (page)="tenantContextPaginationEvent($event)">
 			</mat-paginator>
 		</div>
