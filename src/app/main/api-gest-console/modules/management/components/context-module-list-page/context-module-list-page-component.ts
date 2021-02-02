@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, PageEvent } from '@angular/material';
 import { ContextModuleDTO, ContextModuleResourceService } from 'api-gest';
@@ -21,7 +21,6 @@ export class AigContextModuleListPageComponent extends GenericComponent {
     constructor(
         private contextModuleResourceService: ContextModuleResourceService,
 		private _formBuilder: FormBuilder,
-        private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 

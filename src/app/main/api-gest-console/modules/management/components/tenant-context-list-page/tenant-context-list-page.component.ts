@@ -82,13 +82,13 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	}
 
 	showAllTenantContext() {
-		this.clearFiltersTenantContext();
-		this.searchTenantContext(0);
+		this.resetFiltersTenantContext();
 	}
 
 	resetFiltersTenantContext() {
 		this.tenantContextSearchFormGroup.reset();
-		this.showAllTenantContext();
+		this.clearFiltersTenantContext();
+		this.searchTenantContext(0);
 	}
 
 	tenantContextPaginationEvent(pageEvent: PageEvent) {
@@ -106,6 +106,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 			this.searchTenantContext(0);
 			return;
 		}
+		this.tenantContextFilters.id = null;
 
 		this.tenantContextFilters.name = this.tenantContextSearchFormGroup.controls.name.value;
 
