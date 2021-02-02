@@ -280,7 +280,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'context-module-list-page',
 				title    : 'Context Module',
                 type     : 'item',
-                icon     : 'star_half',
+                icon     : 'chrome_reader_mode',
                 url      : '/m8t/context-module',
             },
             {

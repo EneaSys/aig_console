@@ -12,11 +12,11 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 
 export class AigContextModuleListPageComponent extends GenericComponent {
-    contextModuleLength: number;
+   
     page: number;
     size: number;
     reloadContextModuleTable: any;
-    tenantContextFilters: any;
+
    
     constructor(
         private contextModuleResourceService: ContextModuleResourceService,
@@ -42,9 +42,9 @@ export class AigContextModuleListPageComponent extends GenericComponent {
    contextModuleDTOs: ContextModuleDTO[]; 
    contextModuleDC: string[] = [ "id", "active", "module","context"];
    contextModuleError: any;
-   tenantContextLength: number;
+   contextModuleLength: number;
 
-   private initContextModuleSearch() {
+    private initContextModuleSearch() {
     this.contextModuleDC = ["id", "active", "module","context"];
 
     this.contextModulePagination = {
@@ -55,7 +55,7 @@ export class AigContextModuleListPageComponent extends GenericComponent {
     this.contextModuleSearchFormGroup = this._formBuilder.group({
         id: [''],
         name: [''],
-    });
+        });
     }
 
     private clearFiltersContextModule() {
@@ -87,8 +87,8 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 	}
    
     contextModuleSearchWithFilter() {
-		this.tenantContextFilters.id = this.contextModuleSearchFormGroup.controls.id.value;
-		this.tenantContextFilters.name = this.contextModuleSearchFormGroup.controls.name.value;
+		this.contextModuleFilters.id = this.contextModuleSearchFormGroup.controls.id.value;
+		this.contextModuleFilters.name = this.contextModuleSearchFormGroup.controls.name.value;
 
 		this.searchContextModule();
     }
