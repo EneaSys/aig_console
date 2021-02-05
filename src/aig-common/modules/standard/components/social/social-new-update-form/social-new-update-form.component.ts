@@ -47,13 +47,15 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         if (!this.socialNewUpdateForm.valid) {
             return;
         }
+
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
         let social: SocialDTO = this.socialNewUpdateForm.value;
 
         try {
-            let postOrPut;
+            let postOrPut: string;
+
             if (social.id != 0) {
                 await this.socialResourceService.updateSocialUsingPUT(social).toPromise();
                 postOrPut = "updated";
@@ -65,8 +67,8 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
 
             this._snackBar.open(`Ipp Social: '${social.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+        } catch (e) {
+            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();
@@ -76,10 +78,11 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+			
+        this.step[stepToShow] = true;
     }
 }
