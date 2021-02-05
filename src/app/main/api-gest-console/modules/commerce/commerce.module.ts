@@ -39,6 +39,7 @@ import { AigInventoryItemListPageComponent } from './components/inventory-item-l
 import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
+import { AigProducerNewUpdateModalComponent } from './components/producer-new-update-modal-component/producer-new-update-modal.component';
 
 
 @NgModule({
@@ -94,11 +95,13 @@ import { AigWarehouseListPageComponent } from './components/warehouse-list-page/
         AigProducerListPageComponent,
         AigInventoryCategoryListPageComponent,
         AigWarehouseListPageComponent,
+        AigProducerNewUpdateModalComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigSellerNewUpdateDialogComponent,
         ValidateBuyerDialogComponent,
+        AigProducerNewUpdateModalComponent,
     ],
     exports: [],
 })

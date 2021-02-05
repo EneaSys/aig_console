@@ -4,6 +4,7 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ProducerDTO, ProducerResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal-component/producer-new-update-modal.component';
 
 @Component({
     selector: 'aig-producer-list-page',
@@ -112,9 +113,11 @@ export class AigProducerListPageComponent extends GenericComponent {
 		this.searchProducer(0);
 	}
 
-
+	newProducer(): void {
+		this.dialog.open(AigProducerNewUpdateModalComponent, { data: { producer: {} } });
+   }
 	
 	//			---- !PRODUCER SECTION ----
 
-
+	
 }
