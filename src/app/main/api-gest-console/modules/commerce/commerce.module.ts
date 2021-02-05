@@ -40,6 +40,8 @@ import { AigProducerListPageComponent } from './components/producer-list-page/pr
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
 import { AigProducerNewUpdateModalComponent } from './components/producer-new-update-modal-component/producer-new-update-modal.component';
+import { AigPaymentListPageComponent } from './components/payment-list-page/payment-list-page.component';
+import { AigPaymentNewUpdateModalComponent } from './components/payment-new-update-modal-component/payment-new-update-modal.component';
 
 
 @NgModule({
@@ -96,12 +98,15 @@ import { AigProducerNewUpdateModalComponent } from './components/producer-new-up
         AigInventoryCategoryListPageComponent,
         AigWarehouseListPageComponent,
         AigProducerNewUpdateModalComponent,
+        AigPaymentListPageComponent,
+        AigPaymentNewUpdateModalComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigSellerNewUpdateDialogComponent,
         ValidateBuyerDialogComponent,
         AigProducerNewUpdateModalComponent,
+        AigPaymentNewUpdateModalComponent,
     ],
     exports: [],
 })

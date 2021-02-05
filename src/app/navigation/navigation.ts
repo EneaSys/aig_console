@@ -99,6 +99,14 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'business',
                 url      : '/commerce/producer',
                 permission: ['c6e.admin'],
+            },
+            {
+                id       : 'payment',
+                title    : 'Pagamenti',
+                type     : 'item',
+                icon     : 'payment',
+                url      : '/commerce/payment',
+                permission: ['c6e.admin'],
 			},
 			{
                 id       : 'buyer',

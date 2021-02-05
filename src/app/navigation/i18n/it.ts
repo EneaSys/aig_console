@@ -9,6 +9,7 @@ export const locale = {
 			'GENERIC': 'Generici',
             'TENANT_CONTEXT_LIST_PAGE' : 'Contesti',
             'PRODUCER_LIST_PAGE' : 'Produttori',
+            'PAYMENT_LIST_PAGE' : 'Pagamenti',
         },
     }
 };

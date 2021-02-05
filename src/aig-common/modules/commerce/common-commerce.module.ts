@@ -31,6 +31,7 @@ import { AigInventoryCategoryListTableComponent } from './components/inventory-c
 import { AigInventoryItemListTableComponent } from './components/inventory-item-list-table/inventory-item-list-table.component';
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
+import { AigPaymentListTableComponent } from './components/payment-list-table/payment-list-table.component';
 
 @NgModule({
     imports: [
@@ -72,6 +73,7 @@ import { AigWarehouseListTableComponent } from './components/warehouse-list-tabl
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigPaymentListTableComponent,
         
     ],
     providers: [
@@ -91,7 +93,7 @@ import { AigWarehouseListTableComponent } from './components/warehouse-list-tabl
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
-        
+        AigPaymentListTableComponent,
     ],
 })
 export class AigCommonCommerceModule {}
