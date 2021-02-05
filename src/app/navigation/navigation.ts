@@ -132,6 +132,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/warehouse',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'warehouse-handling',
+                title    : 'Warehouse Handling',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-handling',
+                permission: ['c6e.admin'],
+            },
         ]
     },
     {
