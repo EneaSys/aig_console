@@ -1,5 +1,4 @@
-<div>
-	<div class="page-layout simple left-sidebar">
+<div class="page-layout simple left-sidebar">
 		<!-- SIDEBAR -->
 		<fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
 			<!-- SIDEBAR CONTENT -->
@@ -55,13 +54,12 @@
 					[pageIndex]="this.warehouseHandlingPagination.page" [pageSizeOptions]="[10, 20, 50]"
 					(page)="warehouseHandlingPaginationEvent($event)">
 				</mat-paginator>
+				<button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newSocial()"
+					aria-label="add social">
+					<mat-icon>add</mat-icon>
+				</button>
 			</div>
 			<!-- / CONTENT -->
 		</div>
 		<!-- / CENTER -->
 	</div>
-
-	<button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newSocial()" aria-label="add social">
-		<mat-icon>add</mat-icon>
-	</button>
-</div>
