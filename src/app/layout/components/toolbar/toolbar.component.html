@@ -1,93 +1,84 @@
 <mat-toolbar class="p-0 mat-elevation-z1">
 
-    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+	<div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
 
-        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+		<div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && !rightNavbar"
-                (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
-                <mat-icon class="secondary-text">menu</mat-icon>
-            </button>
+			<button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && !rightNavbar"
+				(click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+				<mat-icon class="secondary-text">menu</mat-icon>
+			</button>
 
-            <div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
+			<div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
 
-            <div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
-                <div class="logo ml-16">
-                    <img class="logo-icon" src="assets/images/logos/fuse.svg">
-                </div>
-            </div>
+			<div fxLayout="row" fxLayoutAlign="start center" *ngIf="horizontalNavbar">
+				<div class="logo ml-16">
+					<img class="logo-icon" src="assets/images/logos/fuse.svg">
+				</div>
+			</div>
 
-            <div class="px-8 px-md-16" *ngIf="isAuthenticated && context != null">
-                <div>
-                    <button mat-button [matMenuTriggerFor]="contextMenu" class="user-button">
-                        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="context">
-                            <span class="username mr-12">{{ context.contextName }}</span>
-                            <mat-icon class="s-16">keyboard_arrow_down</mat-icon>
-                        </div>
-                    </button>
 
-                    <mat-menu #contextMenu="matMenu" [overlapTrigger]="false">
-                        <button mat-menu-item *ngFor="let context of contexts" (click)="setCurrentContext(context)"><span>{{ context.contextName }}</span></button>
-                        <button mat-menu-item [routerLink]="[ '/m8t/context/list' ]"><span>Other contexts</span></button>
-                    </mat-menu>
-                </div>
-            </div>
 
-        </div>
+		</div>
 
-        <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+		<div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
 
-            <div *ngIf="!isAuthenticated" class="login-button-area">
-                <button mat-stroked-button color="accent" (click)="login()">Login</button>
-            </div>
+			<div class="toolbar-separator"></div>
 
-            <div *ngIf="isAuthenticated && loadedUserInfo">
-                <button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <img class="avatar mr-0 mr-sm-16" [src]="loggedUser.image">
-                        <span class="username mr-12" fxHide fxShow.gt-sm>
-                            {{ loggedUser.firstName }}
-                            {{ loggedUser.lastName }}
-                        </span>
-                        <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
-                    </div>
-                </button>
+			<div *ngIf="isAuthenticated && loadedUserInfo">
+				<button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
+					<div fxLayout="row" fxLayoutAlign="center center">
+						<img class="avatar mr-0 mr-sm-16" [src]="loggedUser.image">
+						<span class="username mr-12" fxHide fxShow.gt-sm>
+							{{ loggedUser.firstName }}
+							{{ loggedUser.lastName }}
+						</span>
+						<mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+					</div>
+				</button>
 
-                <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+				<mat-menu #userMenu="matMenu" [overlapTrigger]="false">
 
-                    <button mat-menu-item class="" (click)="reloadPermissions()">
-                        <mat-icon>autorenew</mat-icon>
-                        <span>Reload permissions</span>
-                    </button>
+					<button mat-menu-item class="" (click)="reloadPermissions()">
+						<mat-icon>autorenew</mat-icon>
+						<span>Reload permissions</span>
+					</button>
 
-                    <button mat-menu-item class="" (click)="logout()">
-                        <mat-icon>exit_to_app</mat-icon>
-                        <span>Logout</span>
-                    </button>
+					<button mat-menu-item class="" (click)="logout()">
+						<mat-icon>exit_to_app</mat-icon>
+						<span>Logout</span>
+					</button>
 
-                </mat-menu>
-            </div>
+				</mat-menu>
+			</div>
 
-            <div class="toolbar-separator"></div>
+		</div>
 
-            <fuse-search-bar (input)="search($event)"></fuse-search-bar>
+		<div class="toolbar-separator"></div>
 
-            <div class="toolbar-separator"></div>
+		<div *ngIf="isAuthenticated && context != null">
 
-            <button mat-icon-button class="quick-panel-toggle-button" (click)="toggleSidebarOpen('quickPanel')"
-                aria-label="Toggle quick panel">
-                <mat-icon class="secondary-text">format_list_bulleted</mat-icon>
-            </button>
+			<button mat-button [matMenuTriggerFor]="contextMenu" class="user-button">
+				<div fxLayout="row" fxLayoutAlign="center center" *ngIf="context">
+					<span class="username mr-12">{{ context.contextName }}</span>
+					<mat-icon class="s-16">keyboard_arrow_down</mat-icon>
+				</div>
+			</button>
 
-            <div class="toolbar-separator" *ngIf="!hiddenNavbar && rightNavbar" fxHide fxShow.gt-xs></div>
+			<mat-menu #contextMenu="matMenu" [overlapTrigger]="false">
+				<button mat-menu-item *ngFor="let context of contexts" (click)="setCurrentContext(context)">
+					<span>{{ context.contextName }}</span>
+				</button>
+				<button mat-menu-item [routerLink]="[ '/m8t/context/list' ]"><span>Other contexts</span></button>
+			</mat-menu>
 
-            <button mat-icon-button class="navbar-toggle-button" *ngIf="!hiddenNavbar && rightNavbar"
-                (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
-                <mat-icon class="secondary-text">menu</mat-icon>
-            </button>
+			<button mat-icon-button class="quick-panel-toggle-button" (click)="toggleSidebarOpen('quickPanel')"
+			aria-label="Toggle quick panel">
+			<mat-icon class="secondary-text">settings</mat-icon>
+		</button>
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 
 </mat-toolbar>
