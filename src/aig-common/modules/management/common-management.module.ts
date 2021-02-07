@@ -26,6 +26,7 @@ import { AigTenantContextListTableComponent } from './components/tenant-context-
 import { RouterModule } from '@angular/router';
 import { AigApplicationModuleListTableComponent } from './components/application-module-table/application-module-list-table.component';
 import { AigContextModuleListTableComponent } from './components/context-module-list-table/context-module-list-table.component';
+import { AigApplicationModuleNewUpdateFormComponent } from './components/application-module-new-update-form/application-module-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -55,7 +56,10 @@ import { AigContextModuleListTableComponent } from './components/context-module-
         AigContextTableComponent,
         AigRoleTableComponent,
         AigPermissionTableComponent,
+
         AigApplicationModuleListTableComponent,
+        AigApplicationModuleNewUpdateFormComponent,
+        
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
@@ -67,7 +71,10 @@ import { AigContextModuleListTableComponent } from './components/context-module-
         AigContextTableComponent,
         AigRoleTableComponent,
         AigPermissionTableComponent,
+
         AigApplicationModuleListTableComponent,
+        AigApplicationModuleNewUpdateFormComponent,
+        
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,

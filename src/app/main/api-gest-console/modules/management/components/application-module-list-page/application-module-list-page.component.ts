@@ -3,6 +3,8 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { ApplicationModuleDTO, ApplicationModuleResourceService, TenantContextDTO, TenantContextResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigApplicationModuleNewUpdateModalComponent } from '../application-module-new-update-modal/application-module-new-update-modal.component';
+
 
 @Component({
 	selector: 'aig-application-module-list-page',
@@ -43,5 +45,9 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 			this.applicationModuleError = e;
 		}
 	}
+
+	newApplicationModule(): void {
+        this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: { applicationModule: {} } });
+    }
 }
 

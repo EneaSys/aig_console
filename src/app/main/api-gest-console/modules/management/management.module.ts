@@ -33,6 +33,7 @@ import { MatPaginatorModule } from '@angular/material';
 import { AigApplicationModuleListPageComponent } from './components/application-module-list-page/application-module-list-page.component';
 
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
+import { AigApplicationModuleNewUpdateModalComponent } from './components/application-module-new-update-modal/application-module-new-update-modal.component';
 
 @NgModule({
     imports: [
@@ -62,6 +63,7 @@ import { AigContextModuleListPageComponent } from './components/context-module-l
         AigManagementHeaderComponent,
 
         AigApplicationModuleListPageComponent,
+        AigApplicationModuleNewUpdateModalComponent,
 
         AigContextListPageComponent,
 
@@ -82,6 +84,7 @@ import { AigContextModuleListPageComponent } from './components/context-module-l
         AigPermissionNewDialogComponent,
         AigRoleNewDialogComponent,
         AigAssociateRoleToPermissionDialogComponent,
+        AigApplicationModuleNewUpdateModalComponent,
     ],
 })
 export class AigManagementModule {}
