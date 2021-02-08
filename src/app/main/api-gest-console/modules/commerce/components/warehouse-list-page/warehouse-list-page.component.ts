@@ -118,7 +118,7 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 	}
 
 	newWarehouse(): void {
-        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { social: {} } });
+        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { warehouse: {} } });
     }
 	
 }
