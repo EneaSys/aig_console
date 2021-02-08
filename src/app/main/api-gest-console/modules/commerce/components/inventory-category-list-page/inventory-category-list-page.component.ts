@@ -113,7 +113,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
-	newSocial(): void {
-        this.dialog.open(AigInventoryCategoryNewUpdateModalComponent, { data: { social: {} } });
+	newInventoryCategory(): void {
+        this.dialog.open(AigInventoryCategoryNewUpdateModalComponent, { data: { inventoryCategory: {} } });
     }
 }
