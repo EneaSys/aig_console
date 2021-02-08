@@ -28,6 +28,7 @@ import { AigApplicationModuleListTableComponent } from './components/application
 import { AigContextModuleListTableComponent } from './components/context-module-list-table/context-module-list-table.component';
 import { AigApplicationModuleNewUpdateFormComponent } from './components/application-module-new-update-form/application-module-new-update-form.component';
 import { AigTenantContextResolver } from './resolver/tenant-context.resolver';
+import { AigApplicationModuleResolver } from './resolver/application-module.resolver';
 
 @NgModule({
     imports: [
@@ -88,7 +89,7 @@ import { AigTenantContextResolver } from './resolver/tenant-context.resolver';
         AigManagementAutocompleteFunctionService,
 
 		AigTenantContextResolver,
-
+        AigApplicationModuleResolver,
     ],
 })
 export class AigCommonManagementModule {}
