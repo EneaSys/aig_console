@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { GenericComponent } from '../../generic-component/generic-component';
-import { AigGenericComponentService } from '../../generic-component/generic-component.service';
+import { GenericComponent } from '../../../../generic-component/generic-component';
+import { AigGenericComponentService } from '../../../../generic-component/generic-component.service';
 
 @Component({
 	templateUrl: './home-page.component.html',

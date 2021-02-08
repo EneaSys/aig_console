@@ -5,17 +5,36 @@
             <div class="content">
                 <div>
                     <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-                        <span class="h5">Stati</span>
+                        <span class="h5">Cerca</span>
                     </div>
                     <div class="content py-16" fusePerfectScrollbar>
                         <div class="nav material2">
                             <div class="nav-item" aria-label="inbox">
-
+                                <div fxLayout="row" fxLayoutAlign="center top">
+                                    <button mat-raised-button (click)="showAllInventoryItem()">Resetta filtri</button>
+                                </div>
+                                <form [formGroup]="inventoryItemSearchFormGroup" (ngSubmit)="inventoryItemSearchWithFilter()"class="p-8">
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Id</mat-label>
+                                            <input matInput type="number" formControlName="id">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Name</mat-label>
+                                            <input matInput type="text" formControlName="name">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="end top">
+                                        <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                    </div>
+                                    </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                
             </div>
             <!-- / SIDEBAR CONTENT -->
         </fuse-sidebar>
@@ -35,8 +54,8 @@
             <div class="content mb-48">
                 <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC" [error]= "inventoryItemError" ></aig-inventory-item-list-table>
 
-                    <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" 
-                    [pageSizeOptions]="[10,30,50]" (page)="paginationEvent($event)"></mat-paginator>
+                    <mat-paginator #paginator [length]="inventoryItemLength" [pageIndex]="this.inventoryItemPagination.page" [pageSize]="this.inventoryItemPagination.size" 
+                    [pageSizeOptions]="[10,30,50]" (page)="inventoryItemPaginationEvent($event)"></mat-paginator>
             </div>
             <!-- / CONTENT -->
         </div>

@@ -11,9 +11,9 @@
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
                             <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllApplicationModule()">Resetta filtri</button>
+                                <button mat-raised-button (click)="showAllWarehouse()">Resetta filtri</button>
                             </div>
-                            <form [formGroup]="applicationModuleSearchFormGroup" (ngSubmit)="applicationModuleSearchWithFilter()" class="p-8">
+                            <form [formGroup]="warehouseSearchFormGroup" (ngSubmit)="warehouseSearchWithFilter()" class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
@@ -46,22 +46,17 @@
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
-            <h2>Application module</h2>
+            <h2>Magazzino</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <aig-application-module-list-table [displayColumns]="applicationModuleDC" [dataSource]="applicationModuleDTOs" [error]="applicationModuleError"></aig-application-module-list-table>
+            <aig-warehouse-list-table [displayColumns]="warehouseDC" [dataSource]="warehouseDTOs" [error]="warehouseError"></aig-warehouse-list-table>
 
-			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
-				[pageSizeOptions]="[10, 30, 50]" (page)="paginationEvent($event)">
-			</mat-paginator>
-		</div>
-		<!-- / CONTENT -->
-	</div>
-	<!-- / CENTER -->
-	<button mat-fab class="accent" id="add-application-module-button" (click)="newApplicationModule()" aria-label="add applicationModule">
-		<mat-icon>add</mat-icon>
-	</button>
+            <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" [pageSizeOptions]="[10, 30, 50]" (page)="paginationEvent($event)">
+            </mat-paginator>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
 </div>
-

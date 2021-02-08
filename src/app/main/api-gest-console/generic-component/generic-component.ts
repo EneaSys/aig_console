@@ -17,11 +17,9 @@ export class GenericComponent implements OnInit, OnDestroy {
         var destructor = this._gcs.eventService.reloadPage$.subscribe(() => { this.loadComponent(); this._loadPage(); });
         this._destructors.push(destructor);
 
-        this.firstLoad = false
-
         this._gcs.fuseSplashScreenService.hide();
 
-        this.firstLoad = false
+        this.firstLoad = false;
     }
 
     ngOnDestroy(): void {

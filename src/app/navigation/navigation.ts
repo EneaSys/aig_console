@@ -124,6 +124,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'warehouse',
+                title    : 'Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse',
+                permission: ['c6e.admin'],
+            },
         ]
     },
     {
@@ -280,7 +288,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'context-module-list-page',
 				title    : 'Context Module',
                 type     : 'item',
-                icon     : 'star_half',
+                icon     : 'chrome_reader_mode',
                 url      : '/m8t/context-module',
             },
             {

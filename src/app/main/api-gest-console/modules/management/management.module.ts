@@ -34,6 +34,7 @@ import { AigApplicationModuleListPageComponent } from './components/application-
 
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
 import { AigApplicationModuleNewUpdateModalComponent } from './components/application-module-new-update-modal/application-module-new-update-modal.component';
+import { AigTenantContextDetailPageComponent } from './components/tenant-context-detail-page/tenant-context-detail-page.component';
 
 @NgModule({
     imports: [
@@ -77,6 +78,8 @@ import { AigApplicationModuleNewUpdateModalComponent } from './components/applic
 		AigAssociateRoleToPermissionDialogComponent,
         AigTenantContextListPageComponent,
         AigContextModuleListPageComponent,
+
+		AigTenantContextDetailPageComponent,
     ],
     exports: [ ],
     providers: [ ],
