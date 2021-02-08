@@ -82,13 +82,13 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 
 	showAllInventoryCategory() {
-		this.clearFiltersInventoryCategory();
-		this.searchInventoryCategory(0);
+		this.resetFiltersInventoryCategory();
 	}
 
 	resetFiltersInventoryCategory() {
 		this.inventoryCategorySearchFormGroup.reset();
-		this.showAllInventoryCategory();
+		this.clearFiltersInventoryCategory();
+		this.searchInventoryCategory(0);
 	}
 
 	inventoryCategoryPaginationEvent(pageEvent: PageEvent) {
@@ -106,6 +106,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 			this.searchInventoryCategory(0);
 			return;
 		}
+		this.inventoryCategoryFilters.id = null;
 
 		this.inventoryCategoryFilters.name = this.inventoryCategorySearchFormGroup.controls.name.value;
 
