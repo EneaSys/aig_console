@@ -4,6 +4,7 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigWarehouseNewUpdateModalComponent } from '../warehouse-new-update-modal/warehouse-new-update-modal.component';
 
 @Component({
 	selector: 'aig-warehouse-list-page',
@@ -115,6 +116,10 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 
 		this.searchWarehouse(0);
 	}
+
+	newWarehouse(): void {
+        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { social: {} } });
+    }
 	
 }
 
