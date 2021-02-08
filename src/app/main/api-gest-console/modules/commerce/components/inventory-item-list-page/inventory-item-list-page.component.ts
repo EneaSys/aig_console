@@ -4,6 +4,7 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/inventory-item-dialog.component';
 
 @Component({
     selector: 'aig-inventory-item-list-page',
@@ -108,6 +109,11 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 		this.inventoryItemFilters.name = this.inventoryItemSearchFormGroup.controls.name.value;
 
 		this.searchInventoryItem(0);
-	}
+  }
+  
+  
+  newInventoryItem(): void {
+    this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: {} } });
+}
 
 }
