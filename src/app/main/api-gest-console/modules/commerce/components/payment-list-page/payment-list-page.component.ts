@@ -53,7 +53,7 @@ export class AigPaymentListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-		this.paymentDC = ["id", "valuePaperPayment","paymentMethod","buttons"];
+		this.paymentDC = ["id", "valuePaperPayment","amount","buttons"];
     }
     
     private clearFiltersPayment() {
