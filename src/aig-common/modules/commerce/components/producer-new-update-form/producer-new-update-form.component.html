@@ -18,5 +18,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ producerNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!socialNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newProducer()">Create New</button>
+    <button *ngIf="!producerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newProducer()">Create New</button>
 </div>
