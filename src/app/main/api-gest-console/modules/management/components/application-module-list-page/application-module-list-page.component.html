@@ -53,8 +53,8 @@
         <div class="content mb-48">
             <aig-application-module-list-table [displayColumns]="applicationModuleDC" [dataSource]="applicationModuleDTOs" [error]="applicationModuleError"></aig-application-module-list-table>
 
-			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
-				[pageSizeOptions]="[10, 30, 50]" (page)="paginationEvent($event)">
+			<mat-paginator #paginator [length]="applicationModuleLength" [pageIndex]="this.applicationModulePagination.page" [pageSize]="this.applicationModulePagination.size"
+				[pageSizeOptions]="[10, 30, 50]" (page)="applicationModulePaginationEvent($event)">
 			</mat-paginator>
 		</div>
 		<!-- / CONTENT -->

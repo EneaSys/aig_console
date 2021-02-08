@@ -35,6 +35,7 @@ import { AigApplicationModuleListPageComponent } from './components/application-
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
 import { AigApplicationModuleNewUpdateModalComponent } from './components/application-module-new-update-modal/application-module-new-update-modal.component';
 import { AigTenantContextDetailPageComponent } from './components/tenant-context-detail-page/tenant-context-detail-page.component';
+import { AigApplicationModuleDetailPageComponent } from './components/application-module-detail-page/application-module-detail-page.component';
 
 @NgModule({
     imports: [
@@ -65,6 +66,7 @@ import { AigTenantContextDetailPageComponent } from './components/tenant-context
 
         AigApplicationModuleListPageComponent,
         AigApplicationModuleNewUpdateModalComponent,
+        AigApplicationModuleDetailPageComponent,
 
         AigContextListPageComponent,
 

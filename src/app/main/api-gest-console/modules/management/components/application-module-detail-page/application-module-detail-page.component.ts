@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
-import { AigApplicationModuleNewUpdateFormComponent } from "aig-common/modules/management/components/application-module-new-update-form/application-module-new-update-form.component";
 import { ApplicationModuleDTO, ApplicationModuleResourceService } from "api-gest";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigApplicationModuleNewUpdateModalComponent } from "../application-module-new-update-modal/application-module-new-update-modal.component";
 
 @Component({
 	selector: 'aig-application-module-detail-page',
@@ -30,6 +30,6 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
 	}
 	
     editApplicationModule(applicationModuleDTO: ApplicationModuleDTO) {
-		this.dialog.open(AigApplicationModuleNewUpdateFormComponent, { data: { applicationModule: applicationModuleDTO } });
+		this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
     }
 }
