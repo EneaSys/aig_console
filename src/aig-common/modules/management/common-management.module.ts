@@ -26,6 +26,7 @@ import { AigTenantContextListTableComponent } from './components/tenant-context-
 import { RouterModule } from '@angular/router';
 import { AigApplicationModuleListTableComponent } from './components/application-module-table/application-module-list-table.component';
 import { AigContextModuleListTableComponent } from './components/context-module-list-table/context-module-list-table.component';
+import { AigTenantContextResolver } from './resolver/tenant-context.resolver';
 
 @NgModule({
     imports: [
@@ -78,6 +79,8 @@ import { AigContextModuleListTableComponent } from './components/context-module-
     providers: [
         AigManagementAutocompleteFilterService,
         AigManagementAutocompleteFunctionService,
+
+		AigTenantContextResolver,
 
     ],
 })
