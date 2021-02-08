@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProducerDTO, ProducerResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal-component/producer-new-update-modal.component';
 
 @Component({
 	selector: 'aig-producer-detail-page',
@@ -21,7 +22,7 @@ export class AigProducerDetailPageComponent extends GenericComponent {
 	producerDTO: ProducerDTO;
 
     loadPage() {
-		this.producerDTO = this.route.snapshot.data.tenantContext;
+		this.producerDTO = this.route.snapshot.data.producer;
 	}
 
 	async reloadPage() {
@@ -29,6 +30,6 @@ export class AigProducerDetailPageComponent extends GenericComponent {
 	}
 	
     editProducer(producerDTO: ProducerDTO) {
-		this.dialog.open(AigProducerNewUpdateForm, { data: { producer: producerDTO } });
+		this.dialog.open(AigProducerNewUpdateModalComponent, { data: { producer: producerDTO } });
     }
 }
