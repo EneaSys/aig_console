@@ -9,7 +9,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 	styleUrls: ['./buyer-list-page.component.scss']
 })
 export class AigBuyerListPageComponent extends GenericComponent {
-	buyerDC: string[] = [ "id", "buyer" ];
+	buyerDC: string[] = [ "id", "seller", "buyer", "status" ];
 	buyerDTOs: BuyerDTO[];
 	buyerErr: any;
 

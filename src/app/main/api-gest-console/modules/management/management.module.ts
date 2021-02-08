@@ -33,6 +33,7 @@ import { MatPaginatorModule } from '@angular/material';
 import { AigApplicationModuleListPageComponent } from './components/application-module-list-page/application-module-list-page.component';
 
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
+import { AigTenantContextDetailPageComponent } from './components/tenant-context-detail-page/tenant-context-detail-page.component';
 
 @NgModule({
     imports: [
@@ -75,6 +76,8 @@ import { AigContextModuleListPageComponent } from './components/context-module-l
 		AigAssociateRoleToPermissionDialogComponent,
         AigTenantContextListPageComponent,
         AigContextModuleListPageComponent,
+
+		AigTenantContextDetailPageComponent,
     ],
     exports: [ ],
     providers: [ ],
