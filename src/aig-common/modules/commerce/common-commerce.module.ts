@@ -31,6 +31,8 @@ import { AigInventoryCategoryListTableComponent } from './components/inventory-c
 import { AigInventoryItemListTableComponent } from './components/inventory-item-list-table/inventory-item-list-table.component';
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
+import { AigProducerNewUpdateFormComponent } from './components/producer-new-update-form/producer-new-update-form.component';
+import { AigProducerResolver } from './resolver/producer.resolver';
 
 @NgModule({
     imports: [
@@ -72,12 +74,14 @@ import { AigWarehouseListTableComponent } from './components/warehouse-list-tabl
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigProducerNewUpdateFormComponent,
         
     ],
     providers: [
         PurchaseResolver,
         FiscalTransactionResolver,
         BuyerResolver,
+        AigProducerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -91,6 +95,7 @@ import { AigWarehouseListTableComponent } from './components/warehouse-list-tabl
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigProducerNewUpdateFormComponent,
         
     ],
 })

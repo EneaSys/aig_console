@@ -26,6 +26,6 @@ export class AigSocialListPageComponent extends GenericComponent {
     }
 
     newSocial(): void {
-        this.dialog.open(AigSocialNewUpdateModalComponent, { data: { social: {} } });
+        this.dialog.open(AigSocialNewUpdateModalComponent, { data: { producer: {} } });
     }
 }

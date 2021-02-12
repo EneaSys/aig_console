@@ -16,6 +16,8 @@ import { AigInventoryItemListPageComponent } from './components/inventory-item-l
 import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
+import { AigProducerDetailPageComponent } from './components/producer-detail-page/producer-detail-page.component';
+import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -86,6 +88,14 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigProducerListPageComponent,
                         canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigProducerDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            producer: AigProducerResolver,
+                        },
                     },
                 ]
             },
