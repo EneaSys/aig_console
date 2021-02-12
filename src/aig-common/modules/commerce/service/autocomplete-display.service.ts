@@ -9,7 +9,7 @@ export class AigAutocompleteDisplayService {
         return producer ? producer.name : undefined;
     }
 
-	invetoryCategoryDisplayFn(inventoryCategory?: InventoryCategoryDTO): string | undefined {
+	inventoryCategoryDisplayFn(inventoryCategory?: InventoryCategoryDTO): string | undefined {
         return inventoryCategory ? inventoryCategory.name : undefined;
     }
 }

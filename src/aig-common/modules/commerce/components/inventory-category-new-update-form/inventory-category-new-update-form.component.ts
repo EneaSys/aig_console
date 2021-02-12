@@ -4,8 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { AigAutocompleteFilterService } from 'aig-common/modules/iam/services/form/autocomplete-filter.service';
 import { Observable } from 'rxjs';
+import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-inventory-category-new-update-form',
@@ -20,10 +21,11 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
     };
     
     constructor(
+        public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private aigAutocompleteFilterService: AigAutocompleteFilterService,
+        private commerceAutocompleteService: AigCommerceAutocompleteService,
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
         private eventService: EventService,
     ) { }
@@ -33,19 +35,20 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
 
     inventoryCategoryNewUpdateForm: FormGroup;
 
-    filteredInventoryCategory: Observable<InventoryCategoryDTO[]>;
+    filteredParentCategory: Observable<InventoryCategoryDTO[]>;
 
     ngOnInit(): void { 
         this.inventoryCategoryNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
+            parent: [''],
         })
         
         if (this.inventoryCategory != null) {
             this.inventoryCategoryNewUpdateForm.patchValue(this.inventoryCategory);
         }
 
-        this.filteredInventoryCategory = this.aigAutocompleteFilterService.filterInventoryCategory(this.inventoryCategoryNewUpdateForm.controls['name'].valueChanges);
+        this.filteredParentCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryCategoryNewUpdateForm.controls['parent'].valueChanges);
     }
 
     async submit() {

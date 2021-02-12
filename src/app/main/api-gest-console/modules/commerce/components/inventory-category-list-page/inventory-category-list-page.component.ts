@@ -53,7 +53,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-		this.inventoryCategoryDC = ["id", "name", "buttons"];
+		this.inventoryCategoryDC = ["id", "name", "inventoryCategoryName", "buttons"];
 	}
 
 	private clearFiltersInventoryCategory() {

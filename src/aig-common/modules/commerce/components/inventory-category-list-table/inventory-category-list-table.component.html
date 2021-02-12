@@ -20,8 +20,13 @@
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+		</ng-container>
+
+        <ng-container matColumnDef="inventoryCategoryName">
+            <mat-header-cell *matHeaderCellDef>Genitore</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryCategoryName }} </mat-cell>
 		</ng-container>
 
         <ng-container matColumnDef="buttons">
