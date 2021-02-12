@@ -33,6 +33,8 @@ import { AigProducerListTableComponent } from './components/producer-list-table/
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
 import { AigInventoryCategoryNewUpdateFormComponent } from './components/inventory-category-new-update-form/inventory-category-new-update-form.component';
 import { AigInventoryCategoryResolver } from './resolver/inventory-category.resolver';
+import { AigProducerNewUpdateFormComponent } from './components/producer-new-update-form/producer-new-update-form.component';
+import { AigProducerResolver } from './resolver/producer.resolver';
 
 @NgModule({
     imports: [
@@ -75,6 +77,7 @@ import { AigInventoryCategoryResolver } from './resolver/inventory-category.reso
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigProducerNewUpdateFormComponent,
         
     ],
     providers: [
@@ -82,6 +85,7 @@ import { AigInventoryCategoryResolver } from './resolver/inventory-category.reso
         FiscalTransactionResolver,
         BuyerResolver,
         AigInventoryCategoryResolver,
+        AigProducerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -96,6 +100,7 @@ import { AigInventoryCategoryResolver } from './resolver/inventory-category.reso
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigProducerNewUpdateFormComponent,
         
     ],
 })

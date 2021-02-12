@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSnackBar, PageEvent } from '@angular/material';
+import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { TenantContextDTO, TenantContextResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigTenantContextNewUpdateModalComponent } from '../tenant-context-new-update-dialog/tenant-context-new-update-dialog.component';
 
 @Component({
 	selector: 'aig-tenant-context-list-page',
@@ -15,6 +16,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		private tenantContextResourceService: TenantContextResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
+		private dialog: MatDialog,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -113,6 +115,9 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		this.searchTenantContext(0);
 	}
 
+	newTenantContext(): void {
+		this.dialog.open(AigTenantContextNewUpdateModalComponent, { data: { tenantContext: {} } });
+   }
 
 	
 	//			---- !TENANT CONTEXT SECTION ----
