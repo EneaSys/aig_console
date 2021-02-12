@@ -41,6 +41,7 @@ export class AigPermissionNewFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.permissionNewForm = this._formBuilder.group({
+            id: [''],
             name: ['', Validators.required],
             permissionCode: ['', Validators.required],
             applicationModule:['',Validators.required],
@@ -51,7 +52,7 @@ export class AigPermissionNewFormComponent implements OnInit {
             this.permissionNewForm.patchValue(this.permission);
         }
 
-        this.filteredApplicationModule = this.managementAutocompleteFilterService.filterApplicationModule(this.permissionNewForm.controls['permissionCode'].valueChanges);
+        this.filteredApplicationModule = this.managementAutocompleteFilterService.filterApplicationModule(this.permissionNewForm.controls['applicationModule'].valueChanges);
     }
 
     async submit() {
