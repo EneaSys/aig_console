@@ -40,6 +40,7 @@ import { AigProducerListPageComponent } from './components/producer-list-page/pr
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
 import { AigInventoryCategoryNewUpdateModalComponent } from './components/inventory-category-new-update-modal/inventory-category-new-update-modal.component';
+import { AigInventoryCategoryDetailPageComponent } from './components/inventory-category-detail-page/inventory-category-detail-page.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { AigInventoryCategoryNewUpdateModalComponent } from './components/invent
         AigInventoryItemListPageComponent,
         AigProducerListPageComponent,
         AigInventoryCategoryListPageComponent,
+        AigInventoryCategoryDetailPageComponent,
         AigInventoryCategoryNewUpdateModalComponent,
         AigWarehouseListPageComponent,
     ],

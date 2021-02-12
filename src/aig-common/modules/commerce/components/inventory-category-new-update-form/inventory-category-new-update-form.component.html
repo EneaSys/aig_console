@@ -2,7 +2,7 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Inventory Category Name</mat-label>
+            <mat-label>Nome categoria inventario</mat-label>
             <input name="name" formControlName="name" matInput required>
         </mat-form-field>
     </div>
@@ -18,5 +18,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ inventoryCategoryNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!inventoryCategoryNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryCategory()">Create New</button>
+    <button *ngIf="!inventoryCategoryNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryCategory()">Crea nuova</button>
 </div>

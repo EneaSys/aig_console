@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigAutocompleteFilterService } from 'aig-common/modules/iam/services/form/autocomplete-filter.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'aig-inventory-category-new-update-form',
@@ -21,6 +23,7 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
+        private aigAutocompleteFilterService: AigAutocompleteFilterService,
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
         private eventService: EventService,
     ) { }
@@ -29,6 +32,8 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
     inventoryCategory: InventoryCategoryDTO;
 
     inventoryCategoryNewUpdateForm: FormGroup;
+
+    filteredInventoryCategory: Observable<InventoryCategoryDTO[]>;
 
     ngOnInit(): void { 
         this.inventoryCategoryNewUpdateForm = this._formBuilder.group({
@@ -39,6 +44,8 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         if (this.inventoryCategory != null) {
             this.inventoryCategoryNewUpdateForm.patchValue(this.inventoryCategory);
         }
+
+        this.filteredInventoryCategory = this.aigAutocompleteFilterService.filterInventoryCategory(this.inventoryCategoryNewUpdateForm.controls['name'].valueChanges);
     }
 
     async submit() {
