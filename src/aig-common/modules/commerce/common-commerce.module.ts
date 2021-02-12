@@ -37,6 +37,8 @@ import { AigInventoryItemDialogFormComponent } from './components/inventory-item
 import { AigInventoryItemResolver } from './resolver/inventory-item-resolver';
 import { AigProducerNewUpdateFormComponent } from './components/producer-new-update-form/producer-new-update-form.component';
 import { AigProducerResolver } from './resolver/producer.resolver';
+import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
+import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 
 @NgModule({
     imports: [
@@ -90,6 +92,8 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         AigInventoryCategoryResolver,
         AigInventoryItemResolver,
         AigProducerResolver,
+		AigCommerceAutocompleteService,
+		AigAutocompleteDisplayService,
     ],
     exports: [
         AigBuyListTableComponent,

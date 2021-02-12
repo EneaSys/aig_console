@@ -10,28 +10,17 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Id Producer</mat-label>
-            <input name="producerId" formControlName="producerId" matInput>
+            <mat-label>Produttore</mat-label>
+            <input type="text" matInput formControlName="producerName" required [matAutocomplete]="producerAutocomplete">
+            <mat-autocomplete #producerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.producerDisplayFn">
+                <mat-option *ngFor="let producer of filteredProducer | async" [value]="producer">{{ producer.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Nome Producer</mat-label>
-            <input name="producerName" formControlName="producerName" matInput>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label> Id Categoria Inventario</mat-label>
-            <input name="inventoryCategoryId" formControlName="inventoryCategoryId" matInput>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label> Nome Categoria Inventario</mat-label>
+            <mat-label> Categoria</mat-label>
             <input name="inventoryCategoryName" formControlName="inventoryCategoryName" matInput>
         </mat-form-field>
     </div>

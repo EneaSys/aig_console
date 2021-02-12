@@ -2,8 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
+import { InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { Observable } from 'rxjs';
+import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-inventory-item-dialog-form',
@@ -17,15 +20,22 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
         complete: false
     };
     constructor(
-        private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		private _fuseProgressBarService: FuseProgressBarService,
         private inventoryItemResourceService: InventoryItemResourceService,
+        private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
         private eventService: EventService,
     ) { }
 
     @Input()
     inventoryItem: InventoryItemDTO;
+
+
+	filteredProducer: Observable<ProducerDTO[]>;
+
+
 
     inventoryItemNewUpdateForm: FormGroup;
     
@@ -34,14 +44,20 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
         this.inventoryItemNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            inventoryCategoryId:[''],
             inventoryCategoryName: [''],
-            producerId: [''],
             producerName:[''],
         })
+
+
+
         if (this.inventoryItem != null) {
             this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
         }
+
+
+
+
+		this.filteredProducer = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producerName'].valueChanges);
     }
 
     async submit() {
