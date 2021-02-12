@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProducerResourceService } from 'aig-commerce';
+import { InventoryCategoryResourceService, ProducerResourceService } from 'aig-commerce';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -8,7 +8,8 @@ import { startWith, switchMap } from 'rxjs/operators';
 })
 export class AigCommerceAutocompleteService {
 	constructor(
-		private producerResourceService: ProducerResourceService,
+        private producerResourceService: ProducerResourceService,
+        private inventoryCategoryResourceService:InventoryCategoryResourceService,
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -22,5 +23,18 @@ export class AigCommerceAutocompleteService {
                 }
             })
         );
+    }        
+    filterInventoryCategory(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 2) {
+                    return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,value);
+                } else {
+                    return of([]);
+                }
+            })    
+        );
+        
     }
 }

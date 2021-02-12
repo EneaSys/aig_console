@@ -20,8 +20,11 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label> Categoria</mat-label>
-            <input name="inventoryCategoryName" formControlName="inventoryCategoryName" matInput>
+            <mat-label>Categoria Inventario</mat-label>
+            <input type="text" matInput formControlName="inventoryCategory" required [matAutocomplete]="inventoryCategoryAutocomplete">
+            <mat-autocomplete #inventoryCategoryAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryCategoryDisplayFn">
+                <mat-option *ngFor="let inventoryCategory of filteredInventoryCategory | async" [value]="inventoryCategory">{{ inventoryCategory.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
