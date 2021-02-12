@@ -32,6 +32,7 @@ import { AigInventoryItemListTableComponent } from './components/inventory-item-
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
 import { AigInventoryItemDialogFormComponent } from './components/inventory-item-dialog-form/inventory-item-dialog-form.component';
+import { AigInventoryItemResolver } from './resolver/inventory-item-resolver';
 
 @NgModule({
     imports: [
@@ -80,6 +81,7 @@ import { AigInventoryItemDialogFormComponent } from './components/inventory-item
         PurchaseResolver,
         FiscalTransactionResolver,
         BuyerResolver,
+        AigInventoryItemResolver,
     ],
     exports: [
         AigBuyListTableComponent,
