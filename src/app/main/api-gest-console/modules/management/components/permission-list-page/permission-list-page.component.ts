@@ -30,6 +30,6 @@ export class AigPermissionListPageComponent extends GenericComponent {
     }
 
     newPermission(): void {
-        this.dialog.open(AigPermissionNewDialogComponent);
+        this.dialog.open(AigPermissionNewDialogComponent, {data:{permission: {}}});
     }
 }

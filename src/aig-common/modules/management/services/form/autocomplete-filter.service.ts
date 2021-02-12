@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { ContextGroupResourceService, UserResourceService, RoleResourceService, CustomRoleResourceService, PermissionResourceService } from 'api-gest';
+import { ContextGroupResourceService, UserResourceService, RoleResourceService, CustomRoleResourceService, PermissionResourceService, ApplicationModuleResourceService } from 'api-gest';
 
 @Injectable()
 export class AigManagementAutocompleteFilterService {
     constructor(
         private roleResourceService: RoleResourceService,
         private permissionResourceService: PermissionResourceService,
+        private applicatioModuleResourceService: ApplicationModuleResourceService,
     ) { }
 
     roleFilter(observable: Observable<any>) {
@@ -29,6 +30,19 @@ export class AigManagementAutocompleteFilterService {
             switchMap((value: string) => {
                 if (value.length > 4) {
                     return this.permissionResourceService.getAllPermissionsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterApplicationModule(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 2) {
+                    return this.applicatioModuleResourceService.getAllApplicationModulesUsingGET(null,null,null,null,null,null,null,null,value);
                 } else {
                     return of([]);
                 }
