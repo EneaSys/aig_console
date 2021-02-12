@@ -23,8 +23,8 @@ export class AigCommerceAutocompleteService {
                 }
             })
         );
-    }
-
+    }        
+    
     filterInventoryCategory(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),

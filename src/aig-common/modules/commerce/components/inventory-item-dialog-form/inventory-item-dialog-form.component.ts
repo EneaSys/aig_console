@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
+import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -33,7 +33,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
     inventoryItem: InventoryItemDTO;
 
 
-	filteredProducer: Observable<ProducerDTO[]>;
+    filteredProducer: Observable<ProducerDTO[]>;
+    
+    filteredInventoryCategory : Observable<InventoryCategoryDTO[]>;
 
 
 
@@ -44,7 +46,7 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
         this.inventoryItemNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            inventoryCategoryName: [''],
+            inventoryCategory: [''],
             producerName:[''],
         })
 
@@ -57,7 +59,8 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 
 
-		this.filteredProducer = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producerName'].valueChanges);
+        this.filteredProducer = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producerName'].valueChanges);
+        this.filteredInventoryCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemNewUpdateForm.controls['inventoryCategory'].valueChanges);
     }
 
     async submit() {
