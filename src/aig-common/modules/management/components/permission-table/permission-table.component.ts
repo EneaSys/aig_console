@@ -16,9 +16,6 @@ export class AigPermissionTableComponent implements OnInit {
     @Input()
     dataSource: PermissionDTO[];
 
-    ngOnInit(): void { }
-
-    detailPermissionSystem(permissionSystem: PermissionDTO) {
-        console.log(permissionSystem);
-    }
+    
+    ngOnInit(): void {}
 }
