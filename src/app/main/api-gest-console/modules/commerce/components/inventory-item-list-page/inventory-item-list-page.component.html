@@ -57,6 +57,10 @@
                     <mat-paginator #paginator [length]="inventoryItemLength" [pageIndex]="this.inventoryItemPagination.page" [pageSize]="this.inventoryItemPagination.size" 
                     [pageSizeOptions]="[10,30,50]" (page)="inventoryItemPaginationEvent($event)"></mat-paginator>
             </div>
+
+            <button mat-fab class="accent" id="add-inventory-item-button" (click)="newInventoryItem()" aria-label="add social">
+                <mat-icon>add</mat-icon>
+            </button>
             <!-- / CONTENT -->
         </div>
         <!-- / CENTER -->
