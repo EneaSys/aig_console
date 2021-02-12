@@ -31,6 +31,8 @@ import { AigInventoryCategoryListTableComponent } from './components/inventory-c
 import { AigInventoryItemListTableComponent } from './components/inventory-item-list-table/inventory-item-list-table.component';
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
+import { AigInventoryItemDialogFormComponent } from './components/inventory-item-dialog-form/inventory-item-dialog-form.component';
+import { AigInventoryItemResolver } from './resolver/inventory-item-resolver';
 import { AigProducerNewUpdateFormComponent } from './components/producer-new-update-form/producer-new-update-form.component';
 import { AigProducerResolver } from './resolver/producer.resolver';
 
@@ -74,6 +76,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         
     ],
@@ -81,6 +84,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         PurchaseResolver,
         FiscalTransactionResolver,
         BuyerResolver,
+        AigInventoryItemResolver,
         AigProducerResolver,
     ],
     exports: [
@@ -95,6 +99,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         
     ],

@@ -1,0 +1,51 @@
+<form *ngIf="step.form" [formGroup]="inventoryItemNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Item Name</mat-label>
+            <input name="name" formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Id Producer</mat-label>
+            <input name="producerId" formControlName="producerId" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nome Producer</mat-label>
+            <input name="producerName" formControlName="producerName" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Id Categoria Inventario</mat-label>
+            <input name="inventoryCategoryId" formControlName="inventoryCategoryId" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label> Nome Categoria Inventario</mat-label>
+            <input name="inventoryCategoryName" formControlName="inventoryCategoryName" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ inventoryItemNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">Create New</button>
+</div>
