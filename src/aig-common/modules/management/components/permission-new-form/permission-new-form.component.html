@@ -20,7 +20,7 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Application Module</mat-label>
             <mat-icon matSuffix class="secondary-text">star_half</mat-icon>
-            <input type="text" matInput formControlName="moduleId" required [matAutocomplete]="ApplicationModuleAutocomplete">
+            <input type="text" matInput formControlName="applicationModule" required [matAutocomplete]="ApplicationModuleAutocomplete">
             <mat-autocomplete #ApplicationModuleAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.permissionDisplayFn">
                 <mat-option *ngFor="let ApplicationModule of filteredApplicationModule | async" [value]="ApplicationModule">{{ ApplicationModule.name }}</mat-option>
             </mat-autocomplete>

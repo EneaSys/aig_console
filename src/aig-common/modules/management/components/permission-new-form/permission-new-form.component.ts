@@ -43,7 +43,7 @@ export class AigPermissionNewFormComponent implements OnInit {
         this.permissionNewForm = this._formBuilder.group({
             name: ['', Validators.required],
             permissionCode: ['', Validators.required],
-            moduleId:['',Validators.required],
+            applicationModule:['',Validators.required],
         })
 
 
@@ -61,8 +61,12 @@ export class AigPermissionNewFormComponent implements OnInit {
         this._fuseProgressBarService.show();
             this.setStep("loading");
     
-        let permission: PermissionDTO = this.permissionNewForm.value;
-
+        let permission: PermissionDTO = {
+			id: this.permissionNewForm.value.id,
+			name: this.permissionNewForm.value.name,
+			permissionCode: this.permissionNewForm.value.permissionCode,
+            moduleId: this.permissionNewForm.value.applicationModule.id,
+		};
         try {
             let postOrPut;
             if (permission.id != 0) {
