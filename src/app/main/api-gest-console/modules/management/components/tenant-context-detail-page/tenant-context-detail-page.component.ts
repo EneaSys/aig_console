@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TenantContextDTO, TenantContextResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigTenantContextNewUpdateModalComponent } from '../tenant-context-new-update-dialog/tenant-context-new-update-dialog.component';
 
 @Component({
 	selector: 'aig-tenant-context-detail-page',
@@ -29,6 +30,6 @@ export class AigTenantContextDetailPageComponent extends GenericComponent {
 	}
 	
     editTenantContext(tenantContextDTO: TenantContextDTO) {
-		//this.dialog.open(AigTenantContextNewUpdateForm, { data: { tenantContext: tenantContextDTO } });
+		this.dialog.open(AigTenantContextNewUpdateModalComponent, { data: { tenantContext: tenantContextDTO } });
     }
 }

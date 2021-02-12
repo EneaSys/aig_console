@@ -1,0 +1,15 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span *ngIf="data.producer.id" class="title dialog-title">Update Producer </span>
+            <span *ngIf="!data.producer.id" class="title dialog-title">Create New Producer </span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <aig-producer-new-update-form [producer]="data.producer"></aig-producer-new-update-form>
+    </div>
+</div>
