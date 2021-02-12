@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -15,6 +15,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     constructor(
         private inventoryItemResourceService : InventoryItemResourceService,
         private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
@@ -53,7 +54,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 
     private initInventoryItemSearch() {
 		this.inventoryItemPagination = {
-			size: 2,
+			size: 10,
 			page: 0
 		}
 	
@@ -62,11 +63,11 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-		this.inventoryItemDC = ["id","inventoryCategoryId","inventoryCategoryName","name","producerId","producerName","buttons",];
+		this.inventoryItemDC = ["id","inventoryCategoryName","name","producerName","buttons",];
     }
     
 
-    private initFiltersInventoryItem() {
+    private clearFiltersInventoryItem() {
 		this.inventoryItemFilters = {
 			id: null,
 			name: null,
@@ -78,6 +79,13 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
         this.inventoryItemDTOs = null;
         try {
             this.inventoryItemLength = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
+
+            if(this.inventoryItemLength == 0) {
+              this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+              this.inventoryItemDTOs = [];
+              return;
+            }
+      
             this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.inventoryItemFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.name,null,null,null,null,null,null,this.inventoryItemFilters.page,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.size).toPromise();
         } catch (e) {
             this.inventoryItemError = e;
@@ -85,27 +93,34 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     }
 
     showAllInventoryItem() {
-		this.initFiltersInventoryItem();
-
-    		this.searchInventoryItem(0);
+		this.resetFiltersInventoryItem();
 	}
 
 
-    clearFiltersTenantContext() {
+    resetFiltersInventoryItem() {
 		this.inventoryItemSearchFormGroup.reset();
-		this.showAllInventoryItem();
+		this.clearFiltersInventoryItem();
+		this.searchInventoryItem(0);
 	}
     
     inventoryItemPaginationEvent(pageEvent: PageEvent) {
         this.inventoryItemPagination.size = pageEvent.pageSize;
-
-		this.searchInventoryItem(pageEvent.pageIndex);
-		
+        this.searchInventoryItem(pageEvent.pageIndex);
 	}
 
     
     inventoryItemSearchWithFilter() {
-		this.inventoryItemFilters.id = this.inventoryItemSearchFormGroup.controls.id.value;
+      let searchedId = this.inventoryItemSearchFormGroup.controls.id.value;
+
+      if(searchedId != null) {
+        this.clearFiltersInventoryItem();
+        this.inventoryItemSearchFormGroup.reset();
+        this.inventoryItemFilters.id = searchedId;
+        this.searchInventoryItem(0);
+        return;
+      }
+      
+		this.inventoryItemFilters.id = null;
 		this.inventoryItemFilters.name = this.inventoryItemSearchFormGroup.controls.name.value;
 
 		this.searchInventoryItem(0);
