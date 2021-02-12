@@ -6,6 +6,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Categorie inventario</div>
                 <div class="h1 m-16">{{ inventoryCategoryDTO.name }}</div>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ inventoryCategoryDTO.id }}</div>
+                <div *ngIf="inventoryCategoryDTO.inventoryCategoryName" class="h4 m-8 ml-16 mb-0 secondary-text">Parent: {{ inventoryCategoryDTO.inventoryCategoryName }}</div>
                 <br>
                 <button mat-stroked-button color="primary" (click)="editInventoryCategory(inventoryCategoryDTO)">Edit</button>
             </div>
