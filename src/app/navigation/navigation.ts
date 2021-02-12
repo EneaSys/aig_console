@@ -264,7 +264,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'application-module',
                 title    : 'Application Module',
                 type     : 'item',
-                icon     : 'icon-brightness-5',
+                icon     : 'star_half',
                 url      : '/m8t/application-module',
                 permission: ['e4y.role.get'],
             },

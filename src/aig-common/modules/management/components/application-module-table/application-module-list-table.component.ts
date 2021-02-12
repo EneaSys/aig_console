@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'aig-application-module-list-table',
@@ -6,6 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./application-module-list-table.component.scss']
 })
 export class AigApplicationModuleListTableComponent implements OnInit {
+    constructor(
+        private router: Router,
+    ) { }
+    
     @Input()
     error: any;
     @Input()
@@ -13,7 +18,5 @@ export class AigApplicationModuleListTableComponent implements OnInit {
     @Input()
     dataSource: any[];
     
-    constructor() { }
-
-    ngOnInit(): void { }
+   ngOnInit(): void { }
 }

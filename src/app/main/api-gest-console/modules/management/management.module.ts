@@ -33,7 +33,9 @@ import { MatPaginatorModule } from '@angular/material';
 import { AigApplicationModuleListPageComponent } from './components/application-module-list-page/application-module-list-page.component';
 
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
+import { AigApplicationModuleNewUpdateModalComponent } from './components/application-module-new-update-modal/application-module-new-update-modal.component';
 import { AigTenantContextDetailPageComponent } from './components/tenant-context-detail-page/tenant-context-detail-page.component';
+import { AigApplicationModuleDetailPageComponent } from './components/application-module-detail-page/application-module-detail-page.component';
 import { AigTenantContextNewUpdateModalComponent } from './components/tenant-context-new-update-dialog/tenant-context-new-update-dialog.component';
 
 @NgModule({
@@ -64,6 +66,8 @@ import { AigTenantContextNewUpdateModalComponent } from './components/tenant-con
         AigManagementHeaderComponent,
 
         AigApplicationModuleListPageComponent,
+        AigApplicationModuleNewUpdateModalComponent,
+        AigApplicationModuleDetailPageComponent,
 
         AigContextListPageComponent,
 
@@ -87,6 +91,7 @@ import { AigTenantContextNewUpdateModalComponent } from './components/tenant-con
         AigPermissionNewDialogComponent,
         AigRoleNewDialogComponent,
         AigAssociateRoleToPermissionDialogComponent,
+        AigApplicationModuleNewUpdateModalComponent,
         AigTenantContextNewUpdateModalComponent,
     ],
 })
