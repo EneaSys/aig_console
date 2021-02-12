@@ -39,6 +39,8 @@ import { AigInventoryItemListPageComponent } from './components/inventory-item-l
 import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
+import { AigInventoryCategoryNewUpdateModalComponent } from './components/inventory-category-new-update-modal/inventory-category-new-update-modal.component';
+import { AigInventoryCategoryDetailPageComponent } from './components/inventory-category-detail-page/inventory-category-detail-page.component';
 import { AigInventoryItemDialogComponent } from './components/inventory-item-dialog/inventory-item-dialog.component';
 import { AigInventoryItemDetailPageComponent } from './components/inventory-item-detail-page/inventory-item-detail-page.component';
 import { AigProducerNewUpdateModalComponent } from './components/producer-new-update-modal-component/producer-new-update-modal.component';
@@ -97,6 +99,8 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
         AigInventoryItemListPageComponent,
         AigProducerListPageComponent,
         AigInventoryCategoryListPageComponent,
+        AigInventoryCategoryDetailPageComponent,
+        AigInventoryCategoryNewUpdateModalComponent,
         AigWarehouseListPageComponent,
         AigInventoryItemDialogComponent,
         AigInventoryItemDetailPageComponent,
@@ -107,6 +111,7 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
         AigNewCustomBuyDialogComponent,
         AigSellerNewUpdateDialogComponent,
         ValidateBuyerDialogComponent,
+        AigInventoryCategoryNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
         AigProducerNewUpdateModalComponent,
     ],

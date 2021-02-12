@@ -31,6 +31,8 @@ import { AigInventoryCategoryListTableComponent } from './components/inventory-c
 import { AigInventoryItemListTableComponent } from './components/inventory-item-list-table/inventory-item-list-table.component';
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
+import { AigInventoryCategoryNewUpdateFormComponent } from './components/inventory-category-new-update-form/inventory-category-new-update-form.component';
+import { AigInventoryCategoryResolver } from './resolver/inventory-category.resolver';
 import { AigInventoryItemDialogFormComponent } from './components/inventory-item-dialog-form/inventory-item-dialog-form.component';
 import { AigInventoryItemResolver } from './resolver/inventory-item-resolver';
 import { AigProducerNewUpdateFormComponent } from './components/producer-new-update-form/producer-new-update-form.component';
@@ -73,6 +75,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
         AigInventoryCategoryListTableComponent,
+        AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
@@ -84,6 +87,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         PurchaseResolver,
         FiscalTransactionResolver,
         BuyerResolver,
+        AigInventoryCategoryResolver,
         AigInventoryItemResolver,
         AigProducerResolver,
     ],
@@ -96,6 +100,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
         AigInventoryCategoryListTableComponent,
+        AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,

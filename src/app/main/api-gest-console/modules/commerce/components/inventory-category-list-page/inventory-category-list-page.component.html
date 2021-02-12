@@ -13,7 +13,8 @@
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
-							<form [formGroup]="inventoryCategorySearchFormGroup" (ngSubmit)="inventoryCategorySearchWithFilter()" class="p-8">
+							<form [formGroup]="inventoryCategorySearchFormGroup"
+								(ngSubmit)="inventoryCategorySearchWithFilter()" class="p-8">
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Id</mat-label>
@@ -52,12 +53,17 @@
 		<!-- CONTENT -->
 		<div class="content mb-48">
 			<inventory-category-list-table [displayColumns]="inventoryCategoryDC" [dataSource]="inventoryCategoryDTOs"
-				[error]="inventoryCategoryError"></inventory-category-list-table>
+				[error]="inventoryCategoryError">
+			</inventory-category-list-table>
 
 			<mat-paginator #paginator [length]="inventoryCategoryLength"
 				[pageSize]="this.inventoryCategoryPagination.size" [pageIndex]="this.inventoryCategoryPagination.page"
 				[pageSizeOptions]="[10, 20, 50]" (page)="inventoryCategoryPaginationEvent($event)">
 			</mat-paginator>
+
+			<button mat-fab class="accent" id="add-inventory-category-button" (click)="newInventoryCategory()" aria-label="add inventory category">
+				<mat-icon>add</mat-icon>
+			</button>
 		</div>
 		<!-- / CONTENT -->
 	</div>
