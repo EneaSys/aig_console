@@ -10,7 +10,9 @@ import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
+import { locale as navigationItalian } from 'app/navigation/i18n/it';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 import { EventService, EsEvent } from 'aig-common/event-manager/event.service';
@@ -52,16 +54,16 @@ export class AppComponent implements OnInit, OnDestroy {
         private location: Location,
     ) {
         // Add languages
-        this._translateService.addLangs(['en', 'it']);
+        this._translateService.addLangs(['en', 'it', 'tr']);
 
         // Set the default language
-        this._translateService.setDefaultLang('it');
+        this._translateService.setDefaultLang('en');
 
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
+        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationItalian, navigationTurkish);
 
         // Use a language
-        this._translateService.use('it');
+        this._translateService.use('en');
 
         /**
          * ----------------------------------------------------------------------------------------------------
