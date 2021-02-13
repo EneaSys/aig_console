@@ -93,14 +93,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/seller',
                 permission: ['c6e.admin'],
             },
-            {
-                id       : 'producer',
-                title    : 'Produttori',
-                type     : 'item',
-                icon     : 'business',
-                url      : '/commerce/producer',
-                permission: ['c6e.admin'],
-			},
 			{
                 id       : 'buyer',
                 title    : 'Clienti',
@@ -109,9 +101,31 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/buyer',
                 permission: ['c6e.admin'],
             },
+        ]
+    },
+	{
+        id       : 'wharehouse',
+        title    : 'Magazzino',
+        type     : 'group',
+        children : [
+            {
+                id       : 'warehouse',
+                title    : 'Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse',
+                permission: ['c6e.admin'],
+            },
+        ]
+    },
+	{
+        id       : 'inventory',
+        title    : 'Inventario',
+        type     : 'group',
+        children : [
             {
                 id       : 'inventory-item-list-page',
-                title    : 'Lista Inventario',
+                title    : 'Inventario',
                 type     : 'item',
                 icon     : 'assignment',
                 url      : '/commerce/inventory-item',
@@ -125,14 +139,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-category',
                 permission: ['c6e.admin'],
             },
-            {
-                id       : 'warehouse',
-                title    : 'Magazzino',
+			{
+                id       : 'producer',
+                title    : 'Produttori',
                 type     : 'item',
-                icon     : 'store',
-                url      : '/commerce/warehouse',
+                icon     : 'business',
+                url      : '/commerce/producer',
                 permission: ['c6e.admin'],
-            },
+			},
         ]
     },
 ];
