@@ -43,7 +43,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     //			---- INVENTORY ITEM TABLE AND SEARCH SECTION ----
 
     inventoryItemSearchFormGroup: FormGroup;
-    inventoryItemPagination: any;
+    inventoryItemPaginationSize: number;
     inventoryItemFilters: any;
 
     inventoryItemLength: number;
@@ -53,10 +53,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     inventoryItemDC : string[];
 
     private initInventoryItemSearch() {
-		this.inventoryItemPagination = {
-			size: 10,
-			page: 0
-		}
+		this.inventoryItemPaginationSize = 10
 	
 		this.inventoryItemSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -69,16 +66,18 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 
     private clearFiltersInventoryItem() {
 		this.inventoryItemFilters = {
-			id: null,
-			name: null,
+			idEquals: null,
+			nameContains: null,
+			page: 0,
 		}
     }
     
     private async searchInventoryItem(page: number) {
-        this.inventoryItemPagination.page = page;
         this.inventoryItemDTOs = null;
+        this.inventoryItemFilters.page = page;
+        this.inventoryItemFilters.size = this.inventoryItemPaginationSize;
         try {
-            this.inventoryItemLength = await this.inventoryItemResourceService.countInventoryItemsUsingGET().toPromise();
+            this.inventoryItemLength = await this.inventoryItemResourceService.countInventoryItemsUsingGET(this.inventoryItemFilters).toPromise();
 
             if(this.inventoryItemLength == 0) {
               this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -86,7 +85,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
               return;
             }
       
-            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.inventoryItemFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.name,null,null,null,null,null,null,this.inventoryItemFilters.page,null,null,null,null,null,null,null,null,null,this.inventoryItemFilters.size).toPromise();
+            this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.inventoryItemFilters).toPromise();
         } catch (e) {
             this.inventoryItemError = e;
         }
@@ -104,7 +103,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 	}
     
     inventoryItemPaginationEvent(pageEvent: PageEvent) {
-        this.inventoryItemPagination.size = pageEvent.pageSize;
+        this.inventoryItemPaginationSize = pageEvent.pageSize;
         this.searchInventoryItem(pageEvent.pageIndex);
 	}
 
@@ -115,13 +114,13 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
       if(searchedId != null) {
         this.clearFiltersInventoryItem();
         this.inventoryItemSearchFormGroup.reset();
-        this.inventoryItemFilters.id = searchedId;
+        this.inventoryItemFilters.idEquals= searchedId;
         this.searchInventoryItem(0);
         return;
       }
       
-		this.inventoryItemFilters.id = null;
-		this.inventoryItemFilters.name = this.inventoryItemSearchFormGroup.controls.name.value;
+		this.inventoryItemFilters.idEquals = null;
+		this.inventoryItemFilters.nameContains = this.inventoryItemSearchFormGroup.controls.name.value;
 
 		this.searchInventoryItem(0);
   }
