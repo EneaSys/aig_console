@@ -91,12 +91,12 @@ export const contextNavigation: FuseNavigation[] = [
 						permission: ['e4y.account.get'],
 					},
 					{
-						id       : 'eopoo-config-type',
-						title    : 'Eopoo type',
+						id       : 'eopoo-type-list-page',
+						title    : 'Eopoo Type',
 						type     : 'item',
-						icon     : 'location_city',
-						url      : '/s6d/city3',
-						permission: ['e4y.account.get'],
+						icon     : 'how_to_reg',
+						url      : '/g5c/eopoo-type',
+						permission: ['g5c.eopoo-type.post'],
 					},
 					{
 						id       : 'eopoo-config-state',
@@ -136,6 +136,29 @@ export const contextNavigation: FuseNavigation[] = [
 						icon     : 'location_city',
 						url      : '/s6d/city2',
 						permission: ['e4y.account.get'],
+					},
+				]
+            },
+			{
+                id       : 'commerce-config',
+                title    : 'Commerce Module',
+                type     : 'collapsable',
+				children : [
+					{
+						id       : 'commerce-config-personalization',
+						title    : 'Commerce module personalization',
+						type     : 'item',
+						icon     : 'location_city',
+						url      : '/s6d/city3',
+						permission: ['e4y.account.get'],
+					},
+					{
+						id       : 'warehouse',
+						title    : 'Magazzino',
+						type     : 'item',
+						icon     : 'store',
+						url      : '/commerce/warehouse',
+						permission: ['c6e.admin'],
 					},
 				]
             },
