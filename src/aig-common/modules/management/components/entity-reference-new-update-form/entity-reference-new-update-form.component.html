@@ -13,7 +13,7 @@
             <mat-label>Application Module</mat-label>
             <input type="text" matInput formControlName="applicationModule" required [matAutocomplete]="applicationModuleAutocomplete">
             <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.applicationModuleDisplayFn">
-                <mat-option *ngFor="let applicationModule of filteredApplicationModule | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
+                <mat-option *ngFor="let applicationModule of filteredApplicationModules | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>

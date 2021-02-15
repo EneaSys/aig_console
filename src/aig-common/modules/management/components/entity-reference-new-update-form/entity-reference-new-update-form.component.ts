@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
-import { AigAutocompleteDisplayService } from "aig-common/modules/commerce/service/autocomplete-display.service";
-import { AigCommerceAutocompleteService } from "aig-common/modules/commerce/service/autocomplete-filter.service";
 import { ApplicationModuleDTO, EntityReferenceDTO, EntityReferenceResourceService } from "api-gest";
 import { Observable } from "rxjs";
+import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
+import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
 
 @Component({
     selector: 'aig-entity-reference-new-update-form',
@@ -20,8 +20,8 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         complete: false
     };
     constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
+		private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
 		private _fuseProgressBarService: FuseProgressBarService,
         private entityReferenceResourceService: EntityReferenceResourceService,
         private _formBuilder: FormBuilder,
@@ -49,7 +49,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
             this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
         }
 
-		this.filteredApplicationModule = this.commerceAutocompleteService.filterEntityReference(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
+		this.filteredApplicationModule = this.managementAutocompleteFilterService.filterApplicationModule(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
     }
 
     async submit() {
