@@ -272,6 +272,14 @@ export const contextNavigation: FuseNavigation[] = [
 						permission: ['e4y.role.get'],
 					},
 					{
+						id       : 'entity-reference',
+						title    : 'Entity Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/entity-reference',
+						permission: ['e4y.role.get'],
+					},
+					{
 						id       : 'permission-list',
 						title    : 'Permessi',
 						type     : 'item',
