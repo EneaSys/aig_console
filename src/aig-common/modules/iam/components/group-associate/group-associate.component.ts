@@ -86,7 +86,7 @@ export class AigGroupAssociateComponent implements OnInit {
         }
 
 
-        // EVENT ON ITERACTION
+        // EVENT ON INTERACTION
         this.filteredParentGroups = this.aigAutocompleteFilterService.filterGroups(this.formGroup.controls['groupParent'].valueChanges);
         this.filteredChildGroups = this.aigAutocompleteFilterService.filterGroups(this.formGroup.controls['groupChild'].valueChanges);
         this.filteredUsers = this.aigAutocompleteFilterService.filterUsers(this.formGroup.controls['user'].valueChanges);

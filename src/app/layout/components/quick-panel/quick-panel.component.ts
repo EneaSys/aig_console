@@ -9,8 +9,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class QuickPanelComponent
 {
     date: Date;
-    events: any[];
-    notes: any[];
     settings: any;
 
     /**

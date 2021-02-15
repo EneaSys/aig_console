@@ -58,6 +58,10 @@
 				[pageSize]="this.tenantContextPagination.size" [pageIndex]="this.tenantContextPagination.page"
 				[pageSizeOptions]="[10, 20, 50]" (page)="tenantContextPaginationEvent($event)">
 			</mat-paginator>
+
+			<button mat-fab class="accent" id="add-tenant-context-button" (click)="newTenantContext()" aria-label="add tenant-context">
+				<mat-icon>add</mat-icon>
+			</button>
 		</div>
 		<!-- / CONTENT -->
 	</div>

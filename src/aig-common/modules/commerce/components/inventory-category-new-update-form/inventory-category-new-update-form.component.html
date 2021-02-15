@@ -1,0 +1,33 @@
+<form *ngIf="step.form" [formGroup]="inventoryCategoryNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nome</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Genitore</mat-label>
+            <input formControlName="parent" matInput [matAutocomplete]="parentCategoryAutocomplete">
+            <mat-autocomplete #parentCategoryAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryCategoryDisplayFn">
+                <mat-option *ngFor="let category of filteredParentCategory | async" [value]="category">{{ category.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!inventoryCategory.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="inventoryCategory.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ inventoryCategoryNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!inventoryCategoryNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryCategory()">Crea nuova</button>
+</div>

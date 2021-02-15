@@ -2,7 +2,8 @@ export const locale = {
     lang: 'it',
     data: {
         'NAV': {
-            'APPLICATIONS': 'Applicazioni',
+			'APPLICATIONS': 'Applicazioni',
+			'EOPOO': 'Anagrafiche',
             'IAM': 'Gestione accessi ed identità',
             'MANAGEMENT': 'Gestione',
             'STANDARD': 'Standard',

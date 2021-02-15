@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatSnackBar, PageEvent } from '@angular/material';
+import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigInventoryCategoryNewUpdateModalComponent } from '../inventory-category-new-update-modal/inventory-category-new-update-modal.component';
 
 @Component({
 	selector: 'inventory-category-list-page',
@@ -14,6 +15,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	constructor(
 		private inventoryCategoryResourceService: InventoryCategoryResourceService,
 		private _formBuilder: FormBuilder,
+		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
@@ -51,7 +53,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-		this.inventoryCategoryDC = ["id", "name", "buttons"];
+		this.inventoryCategoryDC = ["id", "name", "inventoryCategoryName", "buttons"];
 	}
 
 	private clearFiltersInventoryCategory() {
@@ -80,13 +82,13 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 
 	showAllInventoryCategory() {
-		this.clearFiltersInventoryCategory();
-		this.searchInventoryCategory(0);
+		this.resetFiltersInventoryCategory();
 	}
 
 	resetFiltersInventoryCategory() {
 		this.inventoryCategorySearchFormGroup.reset();
-		this.showAllInventoryCategory();
+		this.clearFiltersInventoryCategory();
+		this.searchInventoryCategory(0);
 	}
 
 	inventoryCategoryPaginationEvent(pageEvent: PageEvent) {
@@ -104,10 +106,15 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 			this.searchInventoryCategory(0);
 			return;
 		}
+		this.inventoryCategoryFilters.id = null;
 
 		this.inventoryCategoryFilters.name = this.inventoryCategorySearchFormGroup.controls.name.value;
 
 		this.searchInventoryCategory(0);
 	}
 	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
+
+	newInventoryCategory(): void {
+        this.dialog.open(AigInventoryCategoryNewUpdateModalComponent, { data: { inventoryCategory: {} } });
+    }
 }

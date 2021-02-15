@@ -87,13 +87,15 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 	
 
 	showAllWarehouse() {
-		this.clearFiltersWarehouse();
-		this.searchWarehouse(0);
+		this.resetFiltersWarehouse();
+		
 	}
 
-	resetFiltersTenantContext() {
+	resetFiltersWarehouse() {
 		this.warehouseSearchFormGroup.reset();
-		this.showAllWarehouse();
+		this.clearFiltersWarehouse();
+		this.searchWarehouse(0);
+
 	}
 
 	warehousePaginationEvent(pageEvent: PageEvent) {
@@ -111,11 +113,14 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 			this.searchWarehouse(0);
 			return;
 		}
+		this.warehouseFilters.id = null;
 
 		this.warehouseFilters.name = this.warehouseSearchFormGroup.controls.name.value;
 
 		this.searchWarehouse(0);
 	}
+
+	//			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
 
 	newWarehouse(): void {
         this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { warehouse: {} } });
