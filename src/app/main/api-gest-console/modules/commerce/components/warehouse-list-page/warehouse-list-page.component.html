@@ -53,7 +53,7 @@
         <div class="content mb-48">
             <aig-warehouse-list-table [displayColumns]="warehouseDC" [dataSource]="warehouseDTOs" [error]="warehouseError"></aig-warehouse-list-table>
 
-            <mat-paginator #paginator [length]="warehouseLength" [pageIndex]="this.warehousePagination.page" [pageSize]="this.warehousePagination.size" [pageSizeOptions]="[10, 20, 50]" (page)="warehousePaginationEvent($event)">
+            <mat-paginator #paginator [length]="warehouseLength" [pageIndex]="this.warehouseFilters.page" [pageSize]="this.warehousePaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="warehousePaginationEvent($event)">
             </mat-paginator>
 
             <button mat-fab class="accent" id="add-warehouse-button" (click)="newWarehouse()" aria-label="add warehouse">
