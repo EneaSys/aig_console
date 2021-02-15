@@ -14,7 +14,6 @@ import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 import { AigCommonCommerceModule } from 'aig-common/modules/commerce/common-commerce.module';
 
 import { commerceRoute } from './commerce.route';
-import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AigNewCustomBuyDialogComponent } from './components/new-custom-buy-dialog/new-custom-buy-dialog.component';
@@ -30,7 +29,6 @@ import { MatFormFieldModule, MatInputModule, MatDatepickerModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
-import { AigCommValidatorPageComponent } from './components/validator-page/validator-page.component';
 import { ValidateBuyerDialogComponent } from './components/validate-buyer-dialog/validate-buyer-dialog.component';
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
@@ -86,14 +84,12 @@ import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-p
 
     ],
     declarations: [
-        AigSellerManagerPageComponent,
         AigNewCustomBuyDialogComponent,
         AigSellerListPageComponent,
         AigSellerNewUpdateDialogComponent,
         AigPurchaseDetailPageComponent,
         AigFiscalTransactionDetailPageComponent,
         AigBuyerDetailPageComponent,
-        AigCommValidatorPageComponent,
         ValidateBuyerDialogComponent,
         ValidateBuyerPageComponent,
 		ValidateFiscalTransactionPageComponent,

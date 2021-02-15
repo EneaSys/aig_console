@@ -33,7 +33,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	//			---- INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
 	inventoryCategorySearchFormGroup: FormGroup;
-	inventoryCategoryPagination: any;
+	inventoryCategoryPaginationSize: number;
 	inventoryCategoryFilters: any;
 
 	inventoryCategoryLength: number;
@@ -43,10 +43,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	inventoryCategoryDC: string[];
 
 	private initInventoryCategorySearch() {
-		this.inventoryCategoryPagination = {
-			size: 10,
-			page: 0,
-		}
+		this.inventoryCategoryPaginationSize = 10;
 
 		this.inventoryCategorySearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -58,16 +55,21 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 
 	private clearFiltersInventoryCategory() {
 		this.inventoryCategoryFilters = {
-			id: null,
-			name: null,
+			idEquals: null,
+			nameContains: null,
+			page: 0,
+			
 		}
 	}
 
 	private async searchInventoryCategory(page: number) {
-		this.inventoryCategoryPagination.page = page;
 		this.inventoryCategoryDTOs = null;
+
+		this.inventoryCategoryFilters.page = page;
+		this.inventoryCategoryFilters.size = this.inventoryCategoryPaginationSize;
+
 		try {
-			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.inventoryCategoryFilters.name,null,null,null,null,null,null,null,null).toPromise();
+			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET(this.inventoryCategoryFilters).toPromise();
 
 			if(this.inventoryCategoryLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -75,7 +77,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.inventoryCategoryFilters.name, null, null, null, null, null, null, this.inventoryCategoryPagination.page, this.inventoryCategoryPagination.size).toPromise();
+			this.inventoryCategoryDTOs = await this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(this.inventoryCategoryFilters).toPromise();
 		} catch (e) {
 			this.inventoryCategoryError = e;
 		}
@@ -92,7 +94,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 	}
 
 	inventoryCategoryPaginationEvent(pageEvent: PageEvent) {
-		this.inventoryCategoryPagination.size = pageEvent.pageSize;
+		this.inventoryCategoryPaginationSize = pageEvent.pageSize;
 		this.searchInventoryCategory(pageEvent.pageIndex);
 	}
 
@@ -102,13 +104,13 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersInventoryCategory();
 			this.inventoryCategorySearchFormGroup.reset();
-			this.inventoryCategoryFilters.id = searchedId;
+			this.inventoryCategoryFilters.idEquals = searchedId;
 			this.searchInventoryCategory(0);
 			return;
 		}
-		this.inventoryCategoryFilters.id = null;
+		this.inventoryCategoryFilters.idEquals = null;
 
-		this.inventoryCategoryFilters.name = this.inventoryCategorySearchFormGroup.controls.name.value;
+		this.inventoryCategoryFilters.nameContains = this.inventoryCategorySearchFormGroup.controls.name.value;
 
 		this.searchInventoryCategory(0);
 	}

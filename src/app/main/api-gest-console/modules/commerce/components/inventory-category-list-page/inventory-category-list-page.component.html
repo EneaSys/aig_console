@@ -57,7 +57,7 @@
 			</inventory-category-list-table>
 
 			<mat-paginator #paginator [length]="inventoryCategoryLength"
-				[pageSize]="this.inventoryCategoryPagination.size" [pageIndex]="this.inventoryCategoryPagination.page"
+				[pageSize]="this.inventoryCategoryPaginationSize" [pageIndex]="this.inventoryCategoryFilters.page"
 				[pageSizeOptions]="[10, 20, 50]" (page)="inventoryCategoryPaginationEvent($event)">
 			</mat-paginator>
 

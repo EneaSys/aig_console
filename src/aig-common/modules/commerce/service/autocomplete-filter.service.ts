@@ -17,7 +17,10 @@ export class AigCommerceAutocompleteService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 2) {
-                    return this.producerResourceService.getAllProducersUsingGET(null,null,null,null,null,null,null,null,null,value);
+					let filter = {
+						nameContains: value
+					};
+                    return this.producerResourceService.getAllProducersUsingGET(filter);
                 } else {
                     return of([]);
                 }
@@ -30,7 +33,10 @@ export class AigCommerceAutocompleteService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 1) {
-                    return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, value);
+					let filter = {
+						nameContains: value
+					};
+                    return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(filter);
                 } else {
                     return of([]);
                 }
