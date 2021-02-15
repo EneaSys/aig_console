@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { AigApplicationModuleResolver } from "aig-common/modules/management/resolver/application-module.resolver";
+import { AigEntityReferenceResolver } from "aig-common/modules/management/resolver/entity-reference.resolver";
 import { AigTenantContextResolver } from "aig-common/modules/management/resolver/tenant-context.resolver";
 import { RoleSystemResolver } from "aig-common/old-common/resolver/role-system.resolver";
 import { AuthGuardService } from "auth/auth-guard.service";
@@ -7,6 +8,8 @@ import { AigApplicationModuleDetailPageComponent } from "./components/applicatio
 import { AigApplicationModuleListPageComponent } from "./components/application-module-list-page/application-module-list-page.component";
 import { AigContextListPageComponent } from "./components/context-list-page/context-list-page.component";
 import { AigContextModuleListPageComponent } from "./components/context-module-list-page/context-module-list-page-component";
+import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
+import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigRoleDetailPageComponent } from "./components/role-detail-page/role-page-detail.component";
 import { AigRoleListPageComponent } from "./components/role-list-page/role-list-page.component";
@@ -133,6 +136,30 @@ export const managementRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             applicationModule: AigApplicationModuleResolver,
+                        },
+                    },
+                
+                ]
+            },
+            {
+                path: 'entity-reference',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigEntityReferenceListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigEntityReferenceDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            entityReference: AigEntityReferenceResolver,
                         },
                     },
                 

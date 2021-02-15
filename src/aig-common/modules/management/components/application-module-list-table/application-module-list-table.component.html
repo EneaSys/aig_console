@@ -3,7 +3,7 @@
     <span *ngIf="error.status == 401">No access to this info</span>
     
     <button (click)="showError = true">.</button>
-    <pre *ngIf="showError">{{showError | json}}</pre>
+    <pre *ngIf="showError">{{ error | json}}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
