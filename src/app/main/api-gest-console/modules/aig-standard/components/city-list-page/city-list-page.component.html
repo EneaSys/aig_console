@@ -56,16 +56,6 @@
 			<aig-city-list-table [displayedColumns]="cityDC" [dataSource]="cityDTOs" 
 			[error]="cityError"></aig-city-list-table> 
 
-<<<<<<< HEAD
-			<mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size"
-				[pageSizeOptions]="[2, 10, 20, 50]" (page)="paginationEvent($event)">
-			</mat-paginator>
-		</div>
-		<!-- / CONTENT -->
-	</div>
-	<!-- / CENTER -->
-</div>
-=======
     <div class="content">
         <!-- SIDEBAR -->
         <fuse-sidebar class="sidebar" name="aig-user-list-filters-sidebar" position="left" lockedOpen="gt-sm">
@@ -133,4 +123,3 @@
 <button mat-fab class="accent" id="add-city-button" (click)="newCity()" aria-label="add city">
     <mat-icon>add</mat-icon>
 </button>
->>>>>>> 3f1b7949afb0910486bc54939599131bf44da3db

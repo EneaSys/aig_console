@@ -26,6 +26,10 @@ import { AigTenantContextListTableComponent } from './components/tenant-context-
 import { RouterModule } from '@angular/router';
 import { AigApplicationModuleListTableComponent } from './components/application-module-table/application-module-list-table.component';
 import { AigContextModuleListTableComponent } from './components/context-module-list-table/context-module-list-table.component';
+import { AigContextModuleNewUpdateFormComponent } from './components/context-module-new-update-form/context-module-new-update-form.component';
+import { ContextModuleResolver } from '../standard/resolver/context-module.resolver';
+
+
 
 @NgModule({
     imports: [
@@ -59,7 +63,7 @@ import { AigContextModuleListTableComponent } from './components/context-module-
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
-		
+        AigContextModuleNewUpdateFormComponent,
         AigTenantContextListTableComponent,
         AigContextModuleListTableComponent,
     ],
@@ -71,13 +75,15 @@ import { AigContextModuleListTableComponent } from './components/context-module-
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
-		
+		AigContextModuleNewUpdateFormComponent,
         AigTenantContextListTableComponent,
         AigContextModuleListTableComponent,
     ],
     providers: [
         AigManagementAutocompleteFilterService,
         AigManagementAutocompleteFunctionService,
+        
+
 
     ],
 })
