@@ -53,11 +53,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		});
 
 
-
 		if (this.inventoryItem != null) {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
 		}
-
 
 
 

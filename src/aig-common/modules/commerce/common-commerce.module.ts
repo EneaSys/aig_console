@@ -31,6 +31,7 @@ import { AigInventoryCategoryListTableComponent } from './components/inventory-c
 import { AigInventoryItemListTableComponent } from './components/inventory-item-list-table/inventory-item-list-table.component';
 import { AigProducerListTableComponent } from './components/producer-list-table/producer-list-table.component';
 import { AigWarehouseListTableComponent } from './components/warehouse-list-table/warehouse-list-table.component';
+import { AigWarehouseNewUpdateFormComponent } from './components/warehouse-new-update-form/warehouse-new-update-form.component';
 import { AigInventoryCategoryNewUpdateFormComponent } from './components/inventory-category-new-update-form/inventory-category-new-update-form.component';
 import { AigInventoryCategoryResolver } from './resolver/inventory-category.resolver';
 import { AigInventoryItemDialogFormComponent } from './components/inventory-item-dialog-form/inventory-item-dialog-form.component';
@@ -39,6 +40,7 @@ import { AigProducerNewUpdateFormComponent } from './components/producer-new-upd
 import { AigProducerResolver } from './resolver/producer.resolver';
 import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
+import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 
 @NgModule({
     imports: [
@@ -81,6 +83,7 @@ import { AigAutocompleteDisplayService } from './service/autocomplete-display.se
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
+        AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         
@@ -94,6 +97,7 @@ import { AigAutocompleteDisplayService } from './service/autocomplete-display.se
         AigProducerResolver,
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
+        AigWarehouseResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -107,7 +111,9 @@ import { AigAutocompleteDisplayService } from './service/autocomplete-display.se
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
         AigProducerListTableComponent,
+
         AigWarehouseListTableComponent,
+        AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         
