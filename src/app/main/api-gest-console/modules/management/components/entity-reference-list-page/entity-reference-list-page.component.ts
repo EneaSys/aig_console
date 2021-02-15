@@ -31,7 +31,7 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	}
 
 
-	//			---- TENANT CONTEXT TABLE AND SEARCH SECTION ----
+	//			---- ENTITY REFERENCE TABLE AND SEARCH SECTION ----
 
 	entityReferenceSearchFormGroup: FormGroup;
 	entityReferencePagination: any;

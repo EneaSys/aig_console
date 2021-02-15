@@ -1,9 +1,9 @@
 <div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
-	<h3>Error!</h3>
-	<span *ngIf="error.status == 401">No access to this info</span>
+    <h3>Error!</h3>
+    <span *ngIf="error.status == 401">No access to this info</span>
 
-	<button (click)="showError = true">.</button>
-	<pre *ngIf="showError">{{ error | json }}</pre>
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json }}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
@@ -22,9 +22,19 @@
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
-		</ng-container>
-		
-		<ng-container matColumnDef="buttons">
+        </ng-container>
+
+        <ng-container matColumnDef="moduleId">
+            <mat-header-cell *matHeaderCellDef>Module Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.moduleId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="modulename">
+            <mat-header-cell *matHeaderCellDef>Module Name</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.moduleName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/m8t/tenant-context/detail/' + e.id">Details</button>

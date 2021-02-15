@@ -7,8 +7,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 	providedIn: 'root'
 })
 export class AigCommerceAutocompleteService {
-    [x: string]: any;
-	constructor(
+   	constructor(
 		private producerResourceService: ProducerResourceService,
         private inventoryCategoryResourceService: InventoryCategoryResourceService,        
 	) {}
