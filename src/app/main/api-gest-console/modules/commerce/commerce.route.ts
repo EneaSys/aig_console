@@ -22,6 +22,8 @@ import { AigInventoryItemDetailPageComponent } from './components/inventory-item
 import { AigInventoryItemResolver } from 'aig-common/modules/commerce/resolver/inventory-item-resolver';
 import { AigProducerDetailPageComponent } from './components/producer-detail-page/producer-detail-page.component';
 import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
+import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
+import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -200,7 +202,15 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigWarehouseListPageComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouse: AigWarehouseResolver,
+                        },
+                    },
                 ]
             },
             {

@@ -39,12 +39,14 @@ import { AigInventoryItemListPageComponent } from './components/inventory-item-l
 import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
+import { AigWarehouseNewUpdateModalComponent } from './components/warehouse-new-update-modal/warehouse-new-update-modal.component';
 import { AigInventoryCategoryNewUpdateModalComponent } from './components/inventory-category-new-update-modal/inventory-category-new-update-modal.component';
 import { AigInventoryCategoryDetailPageComponent } from './components/inventory-category-detail-page/inventory-category-detail-page.component';
 import { AigInventoryItemDialogComponent } from './components/inventory-item-dialog/inventory-item-dialog.component';
 import { AigInventoryItemDetailPageComponent } from './components/inventory-item-detail-page/inventory-item-detail-page.component';
 import { AigProducerNewUpdateModalComponent } from './components/producer-new-update-modal-component/producer-new-update-modal.component';
 import { AigProducerDetailPageComponent } from './components/producer-detail-page/producer-detail-page.component';
+import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 
 
 @NgModule({
@@ -102,13 +104,16 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
         AigInventoryCategoryDetailPageComponent,
         AigInventoryCategoryNewUpdateModalComponent,
         AigWarehouseListPageComponent,
+        AigWarehouseNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
         AigInventoryItemDetailPageComponent,
         AigProducerNewUpdateModalComponent,
         AigProducerDetailPageComponent,
+        AigWarehouseDetailPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
+        AigWarehouseNewUpdateModalComponent,
         AigSellerNewUpdateDialogComponent,
         ValidateBuyerDialogComponent,
         AigInventoryCategoryNewUpdateModalComponent,

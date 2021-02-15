@@ -4,6 +4,7 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigWarehouseNewUpdateModalComponent } from '../warehouse-new-update-modal/warehouse-new-update-modal.component';
 
 @Component({
 	selector: 'aig-warehouse-list-page',
@@ -86,13 +87,15 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 	
 
 	showAllWarehouse() {
-		this.clearFiltersWarehouse();
-		this.searchWarehouse(0);
+		this.resetFiltersWarehouse();
+		
 	}
 
-	resetFiltersTenantContext() {
+	resetFiltersWarehouse() {
 		this.warehouseSearchFormGroup.reset();
-		this.showAllWarehouse();
+		this.clearFiltersWarehouse();
+		this.searchWarehouse(0);
+
 	}
 
 	warehousePaginationEvent(pageEvent: PageEvent) {
@@ -110,11 +113,18 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 			this.searchWarehouse(0);
 			return;
 		}
+		this.warehouseFilters.id = null;
 
 		this.warehouseFilters.name = this.warehouseSearchFormGroup.controls.name.value;
 
 		this.searchWarehouse(0);
 	}
+
+	//			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
+
+	newWarehouse(): void {
+        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { warehouse: {} } });
+    }
 	
 }
 
