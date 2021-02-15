@@ -32,7 +32,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	//			---- WAREHOUSE HANDLING TABLE AND SEARCH SECTION ----
 
 	warehouseHandlingSearchFormGroup: FormGroup;
-	warehouseHandlingPagination: any;
+	warehouseHandlingPaginationSize: number;
 	warehouseHandlingFilters: any;
 
 	warehouseHandlingLength: number;
@@ -42,29 +42,30 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	warehouseHandlingDC: string[];
 
 	private initWarehouseHandlingSearch() {
-		this.warehouseHandlingPagination = {
-			size: 10,
-			page: 0
-		}
+		this.warehouseHandlingPaginationSize = 10;
 	
 		this.warehouseHandlingSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			date: [''],
+			warehouseHandlingType:[''],
 		});
 
-		this.warehouseHandlingDC = ["id","buttons"];
+		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","buttons"];
 	}
 
 	private clearFiltersWarehouseHandling() {
 		this.warehouseHandlingFilters = {
-			id: null,
+			idEquals: null,
+			page: 0,
 		}
 	}
 
 	private async searchWarehouseHandling(page: number) {
-		this.warehouseHandlingPagination.page = page;
+		this.warehouseHandlingFilters.page = page;
+		this.warehouseHandlingFilters.size = this.warehouseHandlingPaginationSize;
 		this.warehouseHandlingDTOs = null;
 		try {
-			this.warehouseHandlingLength = await this.warehouseHandlingResourceService.countWarehouseHandlingsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.warehouseHandlingFilters.id).toPromise(); 
+			this.warehouseHandlingLength = await this.warehouseHandlingResourceService.countWarehouseHandlingsUsingGET(this.warehouseHandlingFilters).toPromise(); 
 			
 			if(this.warehouseHandlingLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -72,7 +73,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.warehouseHandlingDTOs = await this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.warehouseHandlingFilters.id,null,null,null,null,null,null,null,null,this.warehouseHandlingPagination.page,this.warehouseHandlingPagination.size).toPromise();
+			this.warehouseHandlingDTOs = await this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(this.warehouseHandlingFilters).toPromise();
 		} catch (e) {
 			this.warehouseHandlingError = e;
 		}
@@ -89,7 +90,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	}
 
 	warehouseHandlingPaginationEvent(pageEvent: PageEvent) {
-		this.warehouseHandlingPagination.size = pageEvent.pageSize;
+		this.warehouseHandlingPaginationSize = pageEvent.pageSize;
 		this.searchWarehouseHandling(pageEvent.pageIndex);
 	}
 
@@ -99,13 +100,11 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersWarehouseHandling();
 			this.warehouseHandlingSearchFormGroup.reset();
-			this.warehouseHandlingFilters.id = searchedId;
+			this.warehouseHandlingFilters.idEquals = searchedId;
 			this.searchWarehouseHandling(0);
 			return;
 		}
-		this.warehouseHandlingFilters.id = null;
-
-		this.warehouseHandlingFilters.name = this.warehouseHandlingSearchFormGroup.controls.name.value;
+		this.warehouseHandlingFilters.idEquals = null;
 
 		this.searchWarehouseHandling(0);
 	}

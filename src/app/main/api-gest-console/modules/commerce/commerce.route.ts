@@ -22,6 +22,7 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
 import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
+import { AigWarehouseHandlingListPageComponent } from './components/warehouse-handling-list-page/warehouse-handling-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -100,6 +101,21 @@ export const commerceRoute: Routes = [
                         resolve: {
                             producer: AigProducerResolver,
                         },
+                    },
+                ]
+            },
+            {
+                path: 'warehouse-handling',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigWarehouseHandlingListPageComponent,
+                        canActivate: [ AuthGuardService ],
                     },
                 ]
             },

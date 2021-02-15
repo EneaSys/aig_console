@@ -108,6 +108,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/warehouse',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'warehouse-handling',
+                title    : 'Movimentazione di Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-handling',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 	{
