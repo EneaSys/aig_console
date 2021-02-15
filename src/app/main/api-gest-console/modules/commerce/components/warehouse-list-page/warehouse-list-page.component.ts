@@ -70,7 +70,7 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 		this.warehouseDTOs = null;
 
 		this.warehouseFilters.page = page;
-		this.warehouseFilters.sixe = this.warehousePaginationSize;
+		this.warehouseFilters.size = this.warehousePaginationSize;
 
 		try {                                                                       
 			this.warehouseLength = await this.warehouseResourceService.countWarehousesUsingGET(this.warehouseFilters).toPromise();  
