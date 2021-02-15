@@ -91,7 +91,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 	}
 
 
-    clearFiltersTenantContext() {
+    clearFiltersInventoryItem() {
 		this.inventoryItemSearchFormGroup.reset();
 		this.showAllInventoryItem();
 	}
