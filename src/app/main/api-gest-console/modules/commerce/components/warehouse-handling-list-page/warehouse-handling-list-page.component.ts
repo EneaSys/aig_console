@@ -4,6 +4,7 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigWarehouseHandlingNewUpdateModalComponent } from '../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 
 @Component({
     selector: 'aig-warehouse-handling-list-page',
@@ -48,9 +49,10 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 			id: [''],
 			date: [''],
 			warehouseHandlingType:[''],
+			warehouse:[''],
 		});
 
-		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","buttons"];
+		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","warehouse","buttons"];
 	}
 
 	private clearFiltersWarehouseHandling() {
@@ -109,10 +111,10 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		this.searchWarehouseHandling(0);
 	}
 
-/*	newWarehouseHandling(): void {
-		this.dialog.open(AigProducerNewUpdateModalComponent, { data: { producer: {} } });
+	newWarehouseHandling(): void {
+		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { producer: {} } });
    }
-*/	
+	
 	//			---- !WAREHOUSE HANDLING SECTION ----
 
 	

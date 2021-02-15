@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ProducerDTO, ProducerResourceService, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
 
 @Component({
     selector: 'aig-warehouse-handling-new-update-form',

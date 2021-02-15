@@ -42,6 +42,8 @@ import { AigCommerceAutocompleteService } from './service/autocomplete-filter.se
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigWarehouseHandlingListTableComponent } from './components/warehouse-handling-list-table/warehouse-handling-list-table.component';
+import { MatRadioModule } from '@angular/material';
+import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -69,6 +71,7 @@ import { AigWarehouseHandlingListTableComponent } from './components/warehouse-h
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
+        MatRadioModule,
 
     ],
     declarations: [
@@ -88,6 +91,7 @@ import { AigWarehouseHandlingListTableComponent } from './components/warehouse-h
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigWarehouseHandlingListTableComponent,
+        AigWarehouseHandlingNewUpdateFormComponent,
         
     ],
     providers: [
@@ -119,6 +123,7 @@ import { AigWarehouseHandlingListTableComponent } from './components/warehouse-h
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigWarehouseHandlingListTableComponent,
+        AigWarehouseHandlingNewUpdateFormComponent,
                 
     ],
 })

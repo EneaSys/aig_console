@@ -1,9 +1,21 @@
-<form *ngIf="step.form" [formGroup]="producerNewUpdateForm" (ngSubmit)="submit()">
+<form *ngIf="step.form" [formGroup]="warehouseHandlingNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Name</mat-label>
-            <input name="name" formControlName="name" matInput required>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Load</mat-radio-button>
+                <mat-radio-button value="2">Shift</mat-radio-button>
+                <mat-radio-button value="3">Unload</mat-radio-button>
+            </mat-radio-group>
         </mat-form-field>
     </div>
 
@@ -17,6 +29,7 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ producerNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!producerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newProducer()">Create New</button>
+    <pre>{{ warehouseNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!warehouseHandlingNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newWarehouseHandling()">Create
+        New</button>
 </div>
