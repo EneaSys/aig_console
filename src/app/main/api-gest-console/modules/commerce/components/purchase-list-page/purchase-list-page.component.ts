@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog, PageEvent } from '@angular/material';
-import { InventoryItemDTO, PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
+import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
+import { PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/inventory-item-dialog.component';
 
 @Component({
     selector: 'aig-purchase-list-page',
@@ -12,108 +11,115 @@ import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/invent
     styleUrls: ['./purchase-list-page.component.scss']
 })
 export class AigPurchaseListPageComponent extends GenericComponent {
-    constructor(
-        private purchaseResourceService : PurchaseResourceService,
-        private _formBuilder: FormBuilder,
-        private dialog: MatDialog,
-        aigGenericComponentService: AigGenericComponentService,
-    ) { super(aigGenericComponentService) }
+  constructor(
+    private purchaseResourceService : PurchaseResourceService,
+    private _formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    aigGenericComponentService: AigGenericComponentService,
+  ) { super(aigGenericComponentService) }
 
 
 
 
 
-    loadPage() {
+  loadPage() {
 		this.initPurchaseSearch();
-
-		this.showAllPurchase();
+    this.showAllPurchase();
 	}
 
 
 	reloadPage() {
 		this.showAllPurchase();
-    }
+  }
     
 
 
 
 
 
-    //			---- PURCHASE TABLE AND SEARCH SECTION ----
+  //			---- PURCHASE TABLE AND SEARCH SECTION ----
 
-    purchaseSearchFormGroup: FormGroup;
-    purchasePagination: any;
-    purchaseFilters: any;
+  purchaseSearchFormGroup: FormGroup;
+  purchasePaginationSize: number;
+  purchaseFilters: any;
 
-    purchaseLength: number;
-    purchaseDTOs: PurchaseDTO[];
-    purchaseError : any;
+  purchaseLength: number;
+  purchaseDTOs: PurchaseDTO[];
+  purchaseError : any;
 
-    purchaseDC : string[];
+  purchaseDC : string[];
 
-    private initPurchaseSearch() {
-		this.purchasePagination = {
-			size: 2,
-			page: 0
-		}
-	
-		this.purchaseSearchFormGroup = this._formBuilder.group({
+  private initPurchaseSearch() {
+    this.purchasePaginationSize = 10
+	  this.purchaseSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
 		});
 
 		this.purchaseDC = ["amount","buyer","buyerId","id","insertedDateTime","seller","sellerId","statusNote"];
-    }
-    
-
-    private initFiltersPurchase() {
-		this.purchaseFilters = {
-			id: null,
-			name: null,
-		}
-    }
-    
-    private async searchPurchase(page: number) {
-        this.purchasePagination.page = page;
-        this.purchaseDTOs = null;
-        try {
-            this.purchaseLength = await this.purchaseResourceService.countPurchasesUsingGET().toPromise();
-            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET().toPromise();
-        } catch (e) {
-            this.purchaseError = e;
-        }
-    }
-
-    showAllPurchase() {
-		this.initFiltersPurchase();
-
-    		this.searchPurchase(0);
-	}
-
-
-    clearFiltersPurchase() {
-		this.purchaseSearchFormGroup.reset();
-		this.showAllPurchase();
-	}
-    
-    purchasePaginationEvent(pageEvent: PageEvent) {
-        this.purchasePagination.size = pageEvent.pageSize;
-
-		this.searchPurchase(pageEvent.pageIndex);
-		
-	}
-
-    
-    purchaseSearchWithFilter() {
-		this.purchaseFilters.id = this.purchaseSearchFormGroup.controls.id.value;
-		this.purchaseFilters.name = this.purchaseSearchFormGroup.controls.name.value;
-
-		this.searchPurchase(0);
   }
+    
+  private clearFiltersPurchase() {
+    this.purchaseFilters = {
+      idEquals: null,
+      nameContains: null,
+      page: 0,
+    }
+  }
+    
+  private async searchPurchase(page: number) {
+    this.purchaseFilters.page = page;
+    this.purchaseDTOs = null;
+    this.purchaseFilters.size = this.purchasePaginationSize;
+    try {
+      this.purchaseLength = await this.purchaseResourceService.countPurchasesUsingGET(this.purchaseFilters).toPromise();
+      if(this.purchaseLength == 0) {
+        this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+        this.purchaseDTOs = [];
+        return;
+      }
+      this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(this.purchaseFilters).toPromise();
+    } catch (e) {
+        this.purchaseError = e;
+      }
+  }
+
+  showAllPurchase() {
+    this.resetFiltersPurchase();
+	}
+
+
+  resetFiltersPurchase() {
+		this.purchaseSearchFormGroup.reset();
+    this.clearFiltersPurchase();
+		this.searchPurchase(0);
+	}
+    
+  purchasePaginationEvent(pageEvent: PageEvent) {
+    this.purchasePaginationSize = pageEvent.pageSize;
+    this.searchPurchase(pageEvent.pageIndex);
+	}
+
+  purchaseSearchWithFilter() {
+    let searchedId = this.purchaseSearchFormGroup.controls.id.value;
+    if(searchedId != null) {
+      this.clearFiltersPurchase();
+      this.purchaseSearchFormGroup.reset();
+      this.purchaseFilters.idEquals= searchedId;
+      this.searchPurchase(0);
+      return;
+    }
+        
+    this.purchaseFilters.idEquals = null;
+    this.purchaseFilters.nameContains = this.purchaseSearchFormGroup.controls.name.value;
+    this.searchPurchase(0);
+  }
+  
   
   /*
    newPurchase(): void {
     this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: {} } });
-}
-*/
+  }
+  */
 }
