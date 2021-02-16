@@ -10,11 +10,11 @@
     </div>
 
     <div>
-        <label id="warehouse-handling">Seleziona il tipo di movimentazione</label>
-        <mat-radio-group aria-label="warehouse-handling" class="handling-radio-group">
-            <mat-radio-button class="handling-radio-button" *ngFor="let warehouseHandling of warehouseHandlings" [value]="warehouseHandling">
-                {{warehouseHandling}}
-            </mat-radio-button>
+        <mat-label>Seleziona il tipo di Movimentazione:</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="handlingType">
+          <mat-radio-button value="LOAD">LOAD</mat-radio-button>
+          <mat-radio-button value="SHIFT">SHIFT</mat-radio-button>
+          <mat-radio-button value="UNLOAD">UNLOAD</mat-radio-button>
         </mat-radio-group>
     </div>
 

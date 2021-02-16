@@ -7,6 +7,7 @@ import { WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-comm
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
+import { type } from 'os';
 
 @Component({
     selector: 'aig-warehouse-handling-new-update-form',
@@ -43,8 +44,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         this.warehouseHandlingNewUpdateForm = this._formBuilder.group({
             id:[''],
             date:[''],
-            warehouseHandlingType:[''],
-            warehouse:[''],
+            handlingType:[''],
         })
         
         if (this.warehouseHandling != null) {
@@ -64,10 +64,9 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         let warehouseHandling: WarehouseHandlingDTO = {
             id: this.warehouseHandlingNewUpdateForm.value.id,
             date: this.warehouseHandlingNewUpdateForm.value.date,
-            warehouseHandlingType: null,
+            warehouseHandlingType :this.warehouseHandlingNewUpdateForm.value.handlingType,
         }
         
-
         try {
             let postOrPut;
             if (warehouseHandling.id != 0) {

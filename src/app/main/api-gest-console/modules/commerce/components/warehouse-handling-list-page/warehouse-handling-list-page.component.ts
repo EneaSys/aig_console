@@ -61,7 +61,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 			warehouse:[''],
 		});
 
-		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","warehouse","buttons"];
+		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","buttons"];
 	}
 
 	private clearFiltersWarehouseHandling() {
@@ -121,7 +121,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	}
 
 	newWarehouseHandling(): void {
-		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { producer: {} } });
+		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: {} } });
    }
 	
 	//			---- !WAREHOUSE HANDLING SECTION ----
