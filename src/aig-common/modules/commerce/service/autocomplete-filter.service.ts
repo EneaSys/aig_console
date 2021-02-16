@@ -7,9 +7,9 @@ import { startWith, switchMap } from 'rxjs/operators';
 	providedIn: 'root'
 })
 export class AigCommerceAutocompleteService {
-	constructor(
+   	constructor(
 		private producerResourceService: ProducerResourceService,
-        private inventoryCategoryResourceService: InventoryCategoryResourceService,
+        private inventoryCategoryResourceService: InventoryCategoryResourceService,        
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -43,4 +43,5 @@ export class AigCommerceAutocompleteService {
             })
         );
     }
+  
 }

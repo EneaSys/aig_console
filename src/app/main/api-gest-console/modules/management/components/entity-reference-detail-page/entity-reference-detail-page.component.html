@@ -1,0 +1,13 @@
+<div id="aig-entity-reference-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                
+				<pre>{{ entityReferenceDTO | json }}</pre>
+
+                <button mat-stroked-button color="primary" (click)="editEntityReference(entityReferenceDTO)">Edit</button>
+				
+            </div>
+        </div>
+    </div>
+</div>
