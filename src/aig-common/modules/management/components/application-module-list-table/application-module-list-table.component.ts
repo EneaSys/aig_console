@@ -7,13 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AigApplicationModuleListTableComponent implements OnInit {
     @Input()
-    error: any;
-    @Input()
     displayColumns: string[];
     @Input()
     dataSource: any[];
-    
-    constructor() { }
+    @Input()
+    error: any;
 
-    ngOnInit(): void { }
+    constructor() { }
+    
+   ngOnInit(): void { }
 }

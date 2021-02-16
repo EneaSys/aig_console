@@ -35,6 +35,13 @@ import { AigApplicationModuleListPageComponent } from './components/application-
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
 import { AigContextModuleNewUpdateModalComponent } from './components/context-module-dialog/context-module-new-update-modal.component';
 import { AigContextModuleDetailPageComponent } from './components/context-module-detail-page/context-module-detail-page.component';
+import { AigApplicationModuleNewUpdateModalComponent } from './components/application-module-new-update-modal/application-module-new-update-modal.component';
+import { AigTenantContextDetailPageComponent } from './components/tenant-context-detail-page/tenant-context-detail-page.component';
+import { AigApplicationModuleDetailPageComponent } from './components/application-module-detail-page/application-module-detail-page.component';
+import { AigTenantContextNewUpdateModalComponent } from './components/tenant-context-new-update-dialog/tenant-context-new-update-dialog.component';
+import { AigEntityReferenceNewUpdateModalComponent } from './components/entity-reference-new-update-modal/entity-reference-new-update-modal.component';
+import { AigEntityReferenceListPageComponent } from './components/entity-reference-list-page/entity-reference-list-page.component';
+import { AigEntityReferenceDetailPageComponent } from './components/entity-reference-detail-page/entity-reference-detail-page.component';
 
 @NgModule({
     imports: [
@@ -64,6 +71,12 @@ import { AigContextModuleDetailPageComponent } from './components/context-module
         AigManagementHeaderComponent,
 
         AigApplicationModuleListPageComponent,
+        AigApplicationModuleNewUpdateModalComponent,
+        AigApplicationModuleDetailPageComponent,
+
+        AigEntityReferenceListPageComponent,
+        AigEntityReferenceNewUpdateModalComponent,
+        AigEntityReferenceDetailPageComponent,
 
         AigContextListPageComponent,
 
@@ -79,6 +92,9 @@ import { AigContextModuleDetailPageComponent } from './components/context-module
         AigContextModuleListPageComponent,
         AigContextModuleNewUpdateModalComponent, 
         AigContextModuleDetailPageComponent,
+
+		AigTenantContextDetailPageComponent,
+        AigTenantContextNewUpdateModalComponent,
     ],
     exports: [ ],
     providers: [ ],
@@ -87,6 +103,9 @@ import { AigContextModuleDetailPageComponent } from './components/context-module
         AigRoleNewDialogComponent,
         AigAssociateRoleToPermissionDialogComponent,
         AigContextModuleNewUpdateModalComponent, 
+        AigApplicationModuleNewUpdateModalComponent,
+        AigEntityReferenceNewUpdateModalComponent,
+        AigTenantContextNewUpdateModalComponent,
     ],
 })
 export class AigManagementModule {}

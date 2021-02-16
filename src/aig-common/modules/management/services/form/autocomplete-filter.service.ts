@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { ContextGroupResourceService, UserResourceService, RoleResourceService, CustomRoleResourceService, PermissionResourceService, ApplicationModuleResourceService, TenantContextResourceService } from 'api-gest';
 
+
 @Injectable()
 export class AigManagementAutocompleteFilterService {
     constructor(
@@ -57,6 +58,21 @@ export class AigManagementAutocompleteFilterService {
             switchMap((value: string) => {
                 if (value.length > 4) {
                     return this.tenantContextResourceService.getAllTenantContextsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,value);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+
+    filterApplicationModule(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 4)  { 
+                 
+                    return this.applicationModuleResourceService.getAllApplicationModulesUsingGET(null,null,null,null,null,null,null,null,value);
                 } else {
                     return of([]);
                 }

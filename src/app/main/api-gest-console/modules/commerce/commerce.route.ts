@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
-import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 import { AigSellerListPageComponent } from './components/seller-list-page/seller-list-page.component';
 import { AigPurchaseDetailPageComponent } from './components/purchase-detail-page/purchase-detail-page.component';
 import { PurchaseResolver } from 'aig-common/modules/commerce/resolver/purchase.resolver';
@@ -8,7 +7,6 @@ import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-tra
 import { FiscalTransactionResolver } from 'aig-common/modules/commerce/resolver/fiscal-transaction.resolver';
 import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
 import { BuyerResolver } from 'aig-common/modules/commerce/resolver/buyer.resolver';
-import { AigCommValidatorPageComponent } from './components/validator-page/validator-page.component';
 import { ValidateBuyerPageComponent } from './components/validate-buyer-page/validate-buyer-page.component';
 import { ValidateFiscalTransactionPageComponent } from './components/validate-fiscal-transaction-page/validate-fiscal-transaction-page.component';
 import { AigBuyerListPageComponent } from './components/buyer-list-page/buyer-list-page.component';
@@ -16,6 +14,14 @@ import { AigInventoryItemListPageComponent } from './components/inventory-item-l
 import { AigProducerListPageComponent } from './components/producer-list-page/producer-list-page.component';
 import { AigInventoryCategoryListPageComponent } from './components/inventory-category-list-page/inventory-category-list-page.component';
 import { AigWarehouseListPageComponent } from './components/warehouse-list-page/warehouse-list-page.component';
+import { AigInventoryCategoryDetailPageComponent } from './components/inventory-category-detail-page/inventory-category-detail-page.component';
+import { AigInventoryCategoryResolver } from 'aig-common/modules/commerce/resolver/inventory-category.resolver';
+import { AigInventoryItemDetailPageComponent } from './components/inventory-item-detail-page/inventory-item-detail-page.component';
+import { AigInventoryItemResolver } from 'aig-common/modules/commerce/resolver/inventory-item-resolver';
+import { AigProducerDetailPageComponent } from './components/producer-detail-page/producer-detail-page.component';
+import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
+import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
+import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -86,6 +92,14 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigProducerListPageComponent,
                         canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigProducerDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            producer: AigProducerResolver,
+                        },
                     },
                 ]
             },
@@ -163,7 +177,15 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigInventoryItemListPageComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigInventoryItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            inventoryItem: AigInventoryItemResolver,
+                        },
+                    },
                 ]
             },
             {
@@ -178,7 +200,15 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigWarehouseListPageComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouse: AigWarehouseResolver,
+                        },
+                    },
                 ]
             },
             {
@@ -193,18 +223,15 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component:  AigInventoryCategoryListPageComponent,
                         canActivate: [ AuthGuardService ],
-                    },
-                   
-                    /* 
+                    }, 
                     {
                         path: 'detail/:id',
-                        component: AigPurchaseDetailPageComponent,
+                        component: AigInventoryCategoryDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            purchase: PurchaseResolver,
+                            inventoryCategory: AigInventoryCategoryResolver,
                         },
                     }
-                    */
                 ]
             },
         ]

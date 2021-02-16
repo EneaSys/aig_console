@@ -6,6 +6,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { QuickPanelComponent } from 'app/layout/components/quick-panel/quick-panel.component';
+import { ContextMgmtModule } from 'app/main/context-mgmt/context-mgmt.module';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,8 @@ import { QuickPanelComponent } from 'app/layout/components/quick-panel/quick-pan
         MatSlideToggleModule,
 
         FuseSharedModule,
+
+		ContextMgmtModule,
     ],
     exports: [
         QuickPanelComponent

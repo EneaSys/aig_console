@@ -3,6 +3,7 @@ export const locale = {
     data: {
         'NAV': {
             'APPLICATIONS': 'Applications',
+			'EOPOO': 'Anagrafic',
             'IAM': 'Identity and Access Management',
             'MANAGEMENT': 'Management',
             'STANDARD': 'Standard',

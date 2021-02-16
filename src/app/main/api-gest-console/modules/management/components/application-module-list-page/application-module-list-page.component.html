@@ -4,15 +4,15 @@
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
-                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="h5">Filtri</span>
-                </div>
-                <div class="content py-16" fusePerfectScrollbar>
-                    <div class="nav material2">
-                        <div class="nav-item" aria-label="inbox">
-                            <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllApplicationModule()">Resetta filtri</button>
-                            </div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+					<button mat-raised-button (click)="resetFiltersApplicationModule()">Resetta filtri</button>
+				</div>
+				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+					<span class="h3">Filtri</span>
+				</div>
+				<div class="content" fusePerfectScrollbar>
+					<div class="nav material2">
+						<div class="nav-item" aria-label="inbox">
                             <form [formGroup]="applicationModuleSearchFormGroup" (ngSubmit)="applicationModuleSearchWithFilter()" class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
@@ -34,7 +34,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- / SIDEBAR CONTENT -->
     </fuse-sidebar>
@@ -53,10 +52,16 @@
         <div class="content mb-48">
             <aig-application-module-list-table [displayColumns]="applicationModuleDC" [dataSource]="applicationModuleDTOs" [error]="applicationModuleError"></aig-application-module-list-table>
 
-            <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" [pageSizeOptions]="[10, 30, 50]" (page)="paginationEvent($event)">
-            </mat-paginator>
-        </div>
-        <!-- / CONTENT -->
-    </div>
-    <!-- / CENTER -->
+			<mat-paginator #paginator [length]="applicationModuleLength" [pageSize]="this.applicationModulePagination.size" [pageIndex]="this.applicationModulePagination.page" 
+				[pageSizeOptions]="[10, 20, 50]" (page)="applicationModulePaginationEvent($event)">
+			</mat-paginator>
+
+            <button mat-fab class="accent" id="add-application-module-button" (click)="newApplicationModule()" aria-label="add application-module">
+                <mat-icon>add</mat-icon>
+            </button>
+		</div>
+		<!-- / CONTENT -->
+	</div>
+	<!-- / CENTER -->
 </div>
+

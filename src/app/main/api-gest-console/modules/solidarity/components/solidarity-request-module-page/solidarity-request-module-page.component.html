@@ -69,10 +69,9 @@
                     cell {{ foodProductRequestDTO.familyUnit.mobile }},
                     <span *ngIf="(foodProductRequestDTO.familyUnit.email != '')">email
                         {{ foodProductRequestDTO.familyUnit.email }},</span>
-                    in riferimento all’Avviso Pubblico “MISURA DI SOLIDARIETA’ ALIMENTARE in attuazione del D. L. n. 154
-                    del 23/11/2020, recante “Misure finanziarie urgenti connesse all’emergenza epidemiologica da
-                    Covid-19, c.d. “Decreto Ristori ter” - EMERGENZA EPIDEMIOLOGICA DA COVID 19- INDIVIDUAZIONE DEI
-                    NUCLEI BENEFICIARI DEI BUONI SPESA”,
+                        in riferimento all’Avviso Pubblico “Fondo Straordinario di Solidarietà- ausilio finanziario a
+                        carattere straordinario in favore di nuclei familiari in condizioni di disagio socio-economico –
+                        Emergenza epidemiologica da Covid-19”,
                 </p>
 
 
@@ -91,25 +90,31 @@
 
                 <h3>Chiede</h3>
                 <p style="padding: 0 0 0 30px;">
-                    di essere ammesso all’erogazione di buoni spesa da utilizzare presso gli esercizi commerciali
-                    aderenti del territorio comunale;
+                    di essere ammesso all’erogazione dell’ausilio finanziario a carattere straordinario;
                 </p>
 
                 <h3>Dichiara</h3>
                 <ul>
                     <li>
                         di aver subìto un grave deterioramento della propria condizione economico-finanziaria
-                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19;
+                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19, disagio
+                        socio-economico che comporta difficoltà nel pagamento delle seguenti spese:
+                        <span [ngSwitch]="foodProductRequestDTO.familyUnit.cap">
+                            <b *ngSwitchCase="'A'">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</b>
+                            <b *ngSwitchCase="'B'">Pagamento del canone di locazione</b>
+                            <b *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</b>
+                            <b *ngSwitchCase="'D'">Acquisto di generi di prima necessità</b>
+                        </span>;
                     </li>
                     <li>
                         di possedere al 30/11/2020 un saldo disponibile di conto corrente bancario/postale e/o un saldo
                         derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
                         familiare
-                        non superiore a € 15.000,00 e precisamente:<b>
+                        non superiore a € 5.000,00 e precisamente:<b>
                         <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> minore di
-                            &euro; 5.000,00;</span>
+                            &euro; 2.000,00;</span>
                         <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> da &euro;
-                            5.000,01 a &euro;15.000,00;</span></b>
+                            2.000,01 a &euro;5.000,00;</span></b>
                     </li>
                     <li>
                         che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
@@ -119,64 +124,21 @@
                         </span>
                         complessivi presenti nel nucleo familiare;
                     </li>
-                    <li *ngIf="(foodProductRequestDTO.requestStatusA)">
-                        <b>che il proprio nucleo familiare è residente in immobile adibito ad abitazione principale ed
-                            in
-                            possesso di contratto di locazione registrato oppure titolare di contratto di mutuo;</b>
-                    </li>
                     <li>
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
-                    <li [ngSwitch]="foodProductRequestDTO.familyUnit.postalCode">
-                        <span *ngSwitchCase="'A'">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non
+                    <li>
+                        <span *ngIf="!foodProductRequestDTO.requestStatusB">
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Novembre 2020, non
                             beneficiare di
                             alcuna
                             misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
                         </span>
-                        <span *ngSwitchCase="'B'">
-                            <u>FASCIA B</u> - essere disoccupato/inoccupato a far data dal 1 Ottobre 2020, non
-                            beneficiare di
-                            alcuna
-                            misura di sostegno al reddito, ed il reddito netto complessivo dell’intero nucleo familiare
-                            nel mese
-                            di Ottobre 2020 pari a
+                        <span *ngIf="foodProductRequestDTO.requestStatusB">
+                            <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
+                            non superiore ad € 800,00 mensili e precisamente pari a:
                             <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
                             derivante da: {{ foodProductRequestDTO.familyUnit.city }};
-                        </span>
-                        <span *ngSwitchCase="'C'">
-                            <u>FASCIA C</u> - essere titolare di reddito di pensione con un reddito netto complessivo
-                            dell’intero nucleo familiare
-                            nel mese
-                            di Ottobre 2020 pari a
-                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>;
-                        </span>
-                        <span *ngSwitchCase="'D'">
-                            <u>FASCIA D</u> - essere titolare di reddito derivante da misure di sostegno quali reddito
-                            di
-                            cittadinanza,
-                            reddito di emergenza, reddito di inclusione, naspi, mini naspi, asdi nonché le diverse forme
-                            di cassa integrazione, ed il reddito netto complessivo dell’intero nucleo familiare nel mese
-                            di Ottobre 2020 pari a
-                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
-                            derivante da: {{ foodProductRequestDTO.familyUnit.city }};
-                        </span>
-                        <span *ngSwitchCase="'E'">
-                            <u>FASCIA E</u> - essere titolare di un reddito da lavoro dipendente e/o un reddito ad esso
-                            assimilato con
-                            un reddito netto complessivo per il mese di Ottobre 2020 pari a
-                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>;
-                        </span>
-                        <span *ngSwitchCase="'F'">
-                            <u>FASCIA F</u> - essere titolare di un reddito da lavoro autonomo (con Partita Iva) e/o un
-                            reddito
-                            ad esso
-                            assimilabile (senza Partita Iva, a titolo esemplificativo: prestazioni occasionali
-                            certificate), aver realizzato un fatturato e/o corrispettivi per il periodo di imposta 2019
-                            pari a <b>{{ foodProductRequestDTO.requestStatusBIncomeFeb | currency: "EUR" }}</b>
-                            (ad eccezione delle attività iniziate a partire dal 1/01/2020) ed aver
-                            conseguito nel mese di Ottobre 2020 un reddito netto complessivo pari a
-                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>;
                         </span>
                     </li>
                     <li>
@@ -184,16 +146,11 @@
                         30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
                         GDPR (Regolamento UE 679/2016);
                     </li>
-                    <li>
-                        dichiara di ricevere l'importo di
-                        <b>{{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) }},00 € </b> in
-                        buoni spesa.
-                    </li>
                 </ul>
 
 
                 <p>Si allega alla presente, valido documento di riconoscimento;</p>
-                <p>Santa Maria la Carità, 21/12/2020</p>
+                <p>Santa Maria la Carità, 01/02/2021</p>
 
                 <div style="text-align: right;">
                     <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span

@@ -53,12 +53,14 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
     }
 
     async loadPayments() {
-        let paymentDTOs: PaymentDTO[] = await this.paymentResourceService.getAllPaymentsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+        /*
+		let paymentDTOs: PaymentDTO[] = await this.paymentResourceService.getAllPaymentsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
         let valuePaperPaymentIds: number[] = [];
         paymentDTOs.forEach((paymentDTO: PaymentDTO) => {
             valuePaperPaymentIds.push(paymentDTO.valuePaperPaymentId);
         });
         this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,valuePaperPaymentIds).toPromise();
+		*/
     }
 
 
