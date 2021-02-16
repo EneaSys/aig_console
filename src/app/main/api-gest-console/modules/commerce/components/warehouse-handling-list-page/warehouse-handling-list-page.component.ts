@@ -6,12 +6,21 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigWarehouseHandlingNewUpdateModalComponent } from '../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 
+interface warehouseHandling {
+	value: string;
+	viewValue: string;
+  }
 @Component({
     selector: 'aig-warehouse-handling-list-page',
     templateUrl: './warehouse-handling-list-page.component.html',
     styleUrls: ['./warehouse-handling-list-page.component.scss']
 })
 export class AigWarehouseHandlingListPageComponent extends GenericComponent {
+	warehouseHandlings: warehouseHandling[] = [
+		{value: 'load-0', viewValue: 'Load'},
+		{value: 'shift-1', viewValue: 'Shift'},
+		{value: 'unload-2', viewValue: 'Unload'}
+	  ];
 	constructor(
 		private warehouseHandlingResourceService: WarehouseHandlingResourceService,
 		private _formBuilder: FormBuilder,

@@ -13,14 +13,43 @@
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
-							<form [formGroup]="warehouseHandlingSearchFormGroup" (ngSubmit)="warehouseHandlingSearchWithFilter()"
-								class="p-8">
+							<form [formGroup]="warehouseHandlingSearchFormGroup"
+								(ngSubmit)="warehouseHandlingSearchWithFilter()" class="p-8">
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Id</mat-label>
 										<input matInput type="number" formControlName="id">
 									</mat-form-field>
 								</div>
+
+								<div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Data</mat-label>
+										<input formControlName="date" matInput [matDatepicker]="picker">
+										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+										<mat-datepicker #picker></mat-datepicker>
+									</mat-form-field>
+								</div>
+
+								<div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Tipo di Movimentazione</mat-label>
+										<mat-select formControlName="warehouseHandlingType">
+											<mat-option *ngFor="let warehouseHandling of warehouseHandlings"
+												[value]="warehouseHandling.value">
+												{{warehouseHandling.viewValue}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+
+								<div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Magazzino</mat-label>
+										<input matInput type="text" formControlName="warehouse">
+									</mat-form-field>
+								</div>
+
 								<div fxLayout="row" fxLayoutAlign="end top">
 									<button type="submit" mat-raised-button color="accent">Cerca</button>
 								</div>
@@ -46,17 +75,19 @@
 		<!-- / HEADER -->
 		<!-- CONTENT -->
 		<div class="content mb-48">
-			<aig-warehouse-handling-list-table [displayColumns]="warehouseHandlingDC" [dataSource]="warehouseHandlingDTOs" [error]="warehouseHandlingError">
+			<aig-warehouse-handling-list-table [displayColumns]="warehouseHandlingDC"
+				[dataSource]="warehouseHandlingDTOs" [error]="warehouseHandlingError">
 			</aig-warehouse-handling-list-table>
-            
-			<mat-paginator #paginator [length]="warehouseHandlingLength" [pageSize]="this.warehouseHandlingPaginationSize"
-				[pageIndex]="this.warehouseHandlingFilters.page" [pageSizeOptions]="[10, 20, 50]"
-				(page)="warehouseHandlingPaginationEvent($event)">
+
+			<mat-paginator #paginator [length]="warehouseHandlingLength"
+				[pageSize]="this.warehouseHandlingPaginationSize" [pageIndex]="this.warehouseHandlingFilters.page"
+				[pageSizeOptions]="[10, 20, 50]" (page)="warehouseHandlingPaginationEvent($event)">
 			</mat-paginator>
-            
-            <button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newWarehouseHandling()" aria-label="add warehouse handling">
+
+			<button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newWarehouseHandling()"
+				aria-label="add warehouse handling">
 				<mat-icon>add</mat-icon>
-			</button> 
+			</button>
 		</div>
 		<!-- / CONTENT -->
 	</div>

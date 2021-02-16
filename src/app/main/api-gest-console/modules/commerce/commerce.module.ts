@@ -25,7 +25,7 @@ import { AigSellerNewUpdateDialogComponent } from './components/seller-new-updat
 import { AigPurchaseDetailPageComponent } from './components/purchase-detail-page/purchase-detail-page.component';
 import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-transaction-detail-page/fiscal-transaction-detail-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatDatepickerModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
@@ -80,6 +80,7 @@ import { AigWarehouseHandlingNewUpdateModalComponent } from './components/wareho
         MatToolbarModule,
         MatProgressSpinnerModule,
         MatDatepickerModule,
+        MatSelectModule,
 
     ],
     providers: [

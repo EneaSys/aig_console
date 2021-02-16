@@ -17,50 +17,55 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         complete: false
     };
 
+    warehouseHandlings: string[] = ['LOAD', 'SHIFT', 'UNLOAD'];
+
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private warehousehandlingResourceService: WarehouseHandlingResourceService,
+        private warehouseHandlingResourceService: WarehouseHandlingResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    warehousehandling: WarehouseHandlingDTO;
-
-    warehousehandlingNewUpdateForm: FormGroup;
+    warehouseHandling: WarehouseHandlingDTO;
+    
+    warehouseHandlingNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.warehousehandlingNewUpdateForm = this._formBuilder.group({
+        this.warehouseHandlingNewUpdateForm = this._formBuilder.group({
             id:[''],
+            date:[''],
+            warehouseHandlingType:[''],
+            warehouse:[''],
         })
         
-        if (this.warehousehandling != null) {
-            this.warehousehandlingNewUpdateForm.patchValue(this.warehousehandling);
+        if (this.warehouseHandling != null) {
+            this.warehouseHandlingNewUpdateForm.patchValue(this.warehouseHandling);
         }
     }
 
     async submit() {
-        if (!this.warehousehandlingNewUpdateForm.valid) {
+        if (!this.warehouseHandlingNewUpdateForm.valid) {
             return;
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let warehousehandling: WarehouseHandlingDTO = this.warehousehandlingNewUpdateForm.value;
+        let warehouseHandling: WarehouseHandlingDTO = this.warehouseHandlingNewUpdateForm.value;
 
         try {
             let postOrPut;
-            if (warehousehandling.id != 0) {
-                await this.warehousehandlingResourceService.updateWarehouseHandlingUsingPUT(warehousehandling).toPromise();
+            if (warehouseHandling.id != 0) {
+                await this.warehouseHandlingResourceService.updateWarehouseHandlingUsingPUT(warehouseHandling).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.warehousehandlingResourceService.createWarehouseHandlingUsingPOST(warehousehandling).toPromise();
+                await this.warehouseHandlingResourceService.createWarehouseHandlingUsingPOST(warehouseHandling).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Warehouse Handling: '${warehousehandling.id}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Ipp Warehouse Handling: '${warehouseHandling.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
