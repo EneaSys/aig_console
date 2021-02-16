@@ -25,6 +25,10 @@ import { AigManagementAutocompleteFunctionService } from './services/form/autoco
 import { AigTenantContextListTableComponent } from './components/tenant-context-list-table/tenant-context-list-table.component';
 import { RouterModule } from '@angular/router';
 import { AigContextModuleListTableComponent } from './components/context-module-list-table/context-module-list-table.component';
+import { AigContextModuleNewUpdateFormComponent } from './components/context-module-new-update-form/context-module-new-update-form.component';
+import { ContextModuleResolver } from '../standard/resolver/context-module.resolver';
+
+
 import { AigApplicationModuleNewUpdateFormComponent } from './components/application-module-new-update-form/application-module-new-update-form.component';
 import { AigTenantContextResolver } from './resolver/tenant-context.resolver';
 import { AigApplicationModuleResolver } from './resolver/application-module.resolver';
@@ -72,7 +76,7 @@ import { AigEntityReferenceResolver } from './resolver/entity-reference.resolver
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
-		
+        AigContextModuleNewUpdateFormComponent,
         AigTenantContextListTableComponent,
         AigContextModuleListTableComponent,
         AigTenantContextNewUpdateFormComponent,
@@ -91,7 +95,7 @@ import { AigEntityReferenceResolver } from './resolver/entity-reference.resolver
         AigRoleNewFormComponent,
         AigPermissionNewFormComponent,
 		AigAssociateRolePermissionFormComponent,
-		
+		AigContextModuleNewUpdateFormComponent,
         AigTenantContextListTableComponent,
         AigContextModuleListTableComponent,
         AigTenantContextNewUpdateFormComponent,
@@ -99,6 +103,8 @@ import { AigEntityReferenceResolver } from './resolver/entity-reference.resolver
     providers: [
         AigManagementAutocompleteFilterService,
         AigManagementAutocompleteFunctionService,
+        
+
 
 		AigTenantContextResolver,
         AigApplicationModuleResolver,
