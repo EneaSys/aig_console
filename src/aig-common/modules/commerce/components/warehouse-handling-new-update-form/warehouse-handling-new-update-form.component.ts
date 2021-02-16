@@ -4,6 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'aig-warehouse-handling-new-update-form',
@@ -20,9 +23,11 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     warehouseHandlings: string[] = ['LOAD', 'SHIFT', 'UNLOAD'];
 
     constructor(
+        public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
+        private commerceAutocompleteService: AigCommerceAutocompleteService,
         private warehouseHandlingResourceService: WarehouseHandlingResourceService,
         private eventService: EventService,
     ) { }
@@ -31,6 +36,8 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     warehouseHandling: WarehouseHandlingDTO;
     
     warehouseHandlingNewUpdateForm: FormGroup;
+
+    filteredParentCategory: Observable<WarehouseHandlingDTO[]>;
 
     ngOnInit(): void {
         this.warehouseHandlingNewUpdateForm = this._formBuilder.group({
@@ -43,6 +50,8 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         if (this.warehouseHandling != null) {
             this.warehouseHandlingNewUpdateForm.patchValue(this.warehouseHandling);
         }
+
+        // this.filteredParentCategory = this.commerceAutocompleteService.filterInventoryCategory(this.warehouseHandlingNewUpdateForm.controls['parent'].valueChanges);
     }
 
     async submit() {
@@ -52,7 +61,12 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let warehouseHandling: WarehouseHandlingDTO = this.warehouseHandlingNewUpdateForm.value;
+        let warehouseHandling: WarehouseHandlingDTO = {
+            id: this.warehouseHandlingNewUpdateForm.value.id,
+            date: this.warehouseHandlingNewUpdateForm.value.date,
+            warehouseHandlingType: null,
+        }
+        
 
         try {
             let postOrPut;
