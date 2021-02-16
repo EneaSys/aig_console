@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RoleDTO, PermissionDTO } from 'api-gest';
+import { RoleDTO, PermissionDTO, ApplicationModuleDTO } from 'api-gest';
 
 @Injectable()
 export class AigManagementAutocompleteFunctionService {
@@ -10,5 +10,9 @@ export class AigManagementAutocompleteFunctionService {
 
     permissionDisplayFn(permission?: PermissionDTO): string | undefined {
         return permission ? permission.name : undefined;
+    }
+
+    applicationModuleDisplayFn(applicationModule?: ApplicationModuleDTO): string | undefined {
+        return applicationModule ? applicationModule.name : undefined;
     }
 }
