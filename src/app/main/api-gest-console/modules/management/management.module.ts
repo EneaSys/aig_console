@@ -33,6 +33,8 @@ import { MatPaginatorModule } from '@angular/material';
 import { AigApplicationModuleListPageComponent } from './components/application-module-list-page/application-module-list-page.component';
 
 import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
+import { AigContextModuleNewUpdateModalComponent } from './components/context-module-dialog/context-module-new-update-modal.component';
+import { AigContextModuleDetailPageComponent } from './components/context-module-detail-page/context-module-detail-page.component';
 import { AigApplicationModuleNewUpdateModalComponent } from './components/application-module-new-update-modal/application-module-new-update-modal.component';
 import { AigTenantContextDetailPageComponent } from './components/tenant-context-detail-page/tenant-context-detail-page.component';
 import { AigApplicationModuleDetailPageComponent } from './components/application-module-detail-page/application-module-detail-page.component';
@@ -88,6 +90,8 @@ import { AigEntityReferenceDetailPageComponent } from './components/entity-refer
 		AigAssociateRoleToPermissionDialogComponent,
         AigTenantContextListPageComponent,
         AigContextModuleListPageComponent,
+        AigContextModuleNewUpdateModalComponent, 
+        AigContextModuleDetailPageComponent,
 
 		AigTenantContextDetailPageComponent,
         AigTenantContextNewUpdateModalComponent,
@@ -98,6 +102,7 @@ import { AigEntityReferenceDetailPageComponent } from './components/entity-refer
         AigPermissionNewDialogComponent,
         AigRoleNewDialogComponent,
         AigAssociateRoleToPermissionDialogComponent,
+        AigContextModuleNewUpdateModalComponent, 
         AigApplicationModuleNewUpdateModalComponent,
         AigEntityReferenceNewUpdateModalComponent,
         AigTenantContextNewUpdateModalComponent,

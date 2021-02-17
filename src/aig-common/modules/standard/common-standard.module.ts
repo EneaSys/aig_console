@@ -51,6 +51,7 @@ import { CategoryResolver } from "./resolver/category.resolver";
 import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
 import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
+import { ContextModuleResolver } from './resolver/context-module.resolver';
 
 @NgModule({
     declarations: [
@@ -155,6 +156,7 @@ import { ItFiscalCodeService } from './services/itFiscalCode.service';
         
         AigStandardAutocompleteFilterService,
         AigStandardAutocompleteFunctionService,
+        ContextModuleResolver,
     ],
 })
 export class AigCommonStandardModule {}
