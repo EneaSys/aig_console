@@ -22,6 +22,7 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
 import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
+import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -135,6 +136,29 @@ export const commerceRoute: Routes = [
                 ]
             },
             {
+                path: 'fiscal-transcaction-list-page',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigFiscalTransactionListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigFiscalTransactionDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            fiscalTransaction: FiscalTransactionResolver,
+                        },
+                    },
+                ]
+            },
+            {
                 path: 'fiscal-transaction',
                 children: [
                     {
@@ -144,7 +168,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigFiscalTransactionListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {

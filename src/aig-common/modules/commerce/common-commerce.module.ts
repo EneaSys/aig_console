@@ -41,6 +41,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
 import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
+import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -86,6 +87,7 @@ import { AigWarehouseResolver } from './resolver/warehouse.resolver';
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent
         
     ],
     providers: [
@@ -116,6 +118,7 @@ import { AigWarehouseResolver } from './resolver/warehouse.resolver';
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent
         
     ],
 })

@@ -141,4 +141,19 @@ export const navigation: FuseNavigation[] = [
 			},
         ]
     },
+    {
+        id       : 'fiscal-transaction',
+        title    : 'Transazioni Fiscali',
+        type     : 'group',
+        children : [
+    {
+        id       : 'fiscal-transaction-list-page',
+        title    : 'Transazioni Fiscali',
+        type     : 'item',
+        icon     : 'how_to_reg',
+        url      : '/commerce/fiscal-transaction',
+        permission: ['c6e.admin'],
+    },
+        ]
+    },
 ];
