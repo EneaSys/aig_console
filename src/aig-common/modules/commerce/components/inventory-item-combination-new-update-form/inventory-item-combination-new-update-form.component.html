@@ -2,15 +2,25 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>ID</mat-label>
-            <input formControlName="id" matInput>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Nome</mat-label>
-            <input formControlName="name" matInput required>
+            <mat-label>Combination Code</mat-label>
+            <input formControlName="combinationCode" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Inventory item</mat-label>
+            <input formControlName="inventoryItemName" matInput required [matAutocomplete]="inventoryItemAutocomplete">
+            <mat-autocomplete #inventoryItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
+                <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItem">{{ inventoryItem.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 

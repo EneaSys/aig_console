@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { InventoryItemCombinationDTO, InventoryItemCombinationResourceService } from 'aig-commerce';
+import { InventoryItemCombinationDTO, InventoryItemCombinationResourceService, InventoryItemDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { Observable } from 'rxjs';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 
@@ -34,27 +35,37 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
 
     inventoryItemCombinationNewUpdateForm: FormGroup;
 
+    filteredInventoryItems: Observable<InventoryItemDTO[]>;
+
     ngOnInit(): void { 
         this.inventoryItemCombinationNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
+            combinationCode: [''],
+            inventoryItemName: ['', Validators.required],
         })
 
         if (this.inventoryItemCombination != null) {
             this.inventoryItemCombinationNewUpdateForm.patchValue(this.inventoryItemCombination);
         }
+
+        this.filteredInventoryItems = this.commerceAutocompleteService.filterInventoryItem(this.inventoryItemCombinationNewUpdateForm.controls['inventoryItemName'].valueChanges);
     }
 
     async submit() {
         if (!this.inventoryItemCombinationNewUpdateForm.valid) {
             return;
         }
+
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
         let inventoryItemCombination: InventoryItemCombinationDTO = {
             id: this.inventoryItemCombinationNewUpdateForm.value.id,
             name: this.inventoryItemCombinationNewUpdateForm.value.name,
+            combinationCode: this.inventoryItemCombinationNewUpdateForm.value.combinationCode,
+            inventoryItemName: this.inventoryItemCombinationNewUpdateForm.value.inventoryItemName.name,
+            inventoryItemId: this.inventoryItemCombinationNewUpdateForm.value.inventoryItemName.id,
         }
 
         try {
