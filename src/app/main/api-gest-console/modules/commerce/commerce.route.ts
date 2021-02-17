@@ -68,7 +68,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigPurchaseListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
@@ -187,29 +187,6 @@ export const commerceRoute: Routes = [
                             inventoryItem: AigInventoryItemResolver,
                         },
                     },
-                ]
-            },
-            {
-                path: 'purchase',
-                children: [
-                    {
-                        path: '',
-                        pathMatch: 'full',
-                        redirectTo: 'list'
-                    },
-                    {
-                        path: 'list',
-                        component: AigPurchaseListPageComponent,
-                        canActivate: [ AuthGuardService ],
-                    },
-                    /*{
-                        path: 'detail/:id',
-                        component: AigInventoryItemDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
-                        resolve: {
-                            inventoryItem: AigInventoryItemResolver,
-                        },
-                    },*/
                 ]
             },
             {

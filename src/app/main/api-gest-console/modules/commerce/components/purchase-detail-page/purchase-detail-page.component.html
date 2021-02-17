@@ -1,5 +1,17 @@
 <div id="aig-purchase-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+                
+				<pre>{{ purchaseDTO | json }}</pre>
 
+                <button mat-stroked-button color="primary" (click)="editPurchase(purchaseDTO)">Edit</button>
+				
+            </div>
+        </div>
+    </div>
+
+    
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="30">
             <div class="fuse-card auto-width p-16">
@@ -8,6 +20,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ purchase.id }}</div>
                 <div class="h4 m-8 ml-16">Data: {{ purchase.insertedDateTime | date }}</div>
             </div>
+            
             <div class="fuse-card auto-width p-16 mt-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Cliente</div>
                 <div class="h1 m-16" *ngIf="purchase.buyer.eopoo">{{ purchase.buyer.eopoo | eopooName }}</div>
@@ -16,6 +29,7 @@
                 <div class="h4 m-8 ml-16">Stato: {{ purchase.buyer.statusNote | AigC6eGenericStatus }}</div>
                 <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/buyer/detail/' + purchase.buyer.id">Details</button>
             </div>
+            
             <div class="fuse-card auto-width p-16 mt-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Venditore</div>
                 <div class="h2 m-16">{{ purchase.buyer.seller.name }}</div>
@@ -38,4 +52,7 @@
             </div>
         </div>
     </div>
+
+
+
 </div>

@@ -6,10 +6,12 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO } from 'aig-commerce';
 
 @Component({
+    selector: 'aig-purchase-detail-page',
     templateUrl: './purchase-detail-page.component.html',
     styleUrls: ['./purchase-detail-page.component.scss']
 })
 export class AigPurchaseDetailPageComponent extends GenericComponent {
+    valuePaperPayment: any;
     constructor(
         private purchaseResourceService: PurchaseResourceService,
         private fiscalTransactionResourceService: FiscalTransactionResourceService,
@@ -45,22 +47,27 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
     }
 
     async loadFiscalTransactions() {
+        let filters = {
+            idEquals : this.purchase.id
+        } 
         try {
-            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(filters).toPromise();
         } catch(e) {
             this.fiscalTransactionError = e;
         }
     }
 
     async loadPayments() {
-        /*
-		let paymentDTOs: PaymentDTO[] = await this.paymentResourceService.getAllPaymentsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+        let filters = {
+            id : this.purchase.id,
+            valuePaperPaymentIdEquals :this.valuePaperPayment.id
+        }; 
+		let paymentDTOs: PaymentDTO[] = await this.paymentResourceService.getAllPaymentsUsingGET(filters).toPromise();
         let valuePaperPaymentIds: number[] = [];
         paymentDTOs.forEach((paymentDTO: PaymentDTO) => {
             valuePaperPaymentIds.push(paymentDTO.valuePaperPaymentId);
         });
-        this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,valuePaperPaymentIds).toPromise();
-		*/
+        this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(filters).toPromise();
     }
 
 

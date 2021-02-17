@@ -57,7 +57,8 @@ export class AigPurchaseListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-		this.purchaseDC = ["amount","buyer","buyerId","id","insertedDateTime","seller","sellerId","statusNote"];
+    //this.purchaseDC = ["amount","buyer","buyerId","id","insertedDateTime","seller","sellerId","statusNote"];
+    this.purchaseDC = ["id","buttons"];
   }
     
   private clearFiltersPurchase() {

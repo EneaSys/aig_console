@@ -54,13 +54,16 @@
             <div class="content mb-48">
                 <aig-purchase-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchaseDC" [error]= "purchaseError" ></aig-purchase-list-table>
 
-                    <mat-paginator #paginator [length]="purchaseLength" [pageIndex]="this.purchaseFilters.page" [pageSize]="this.purchasePaginationSize" 
+                <mat-paginator #paginator [length]="purchaseLength" [pageIndex]="this.purchaseFilters.page" [pageSize]="this.purchasePaginationSize" 
                     [pageSizeOptions]="[10,30,50]" (page)="purchasePaginationEvent($event)"></mat-paginator>
             </div>
 
+            
             <button mat-fab class="accent" id="add-purchase-button" (click)="newPurchase()" aria-label="add purchase">
                 <mat-icon>add</mat-icon>
             </button>
+            
+        
             <!-- / CONTENT -->
         </div>
         <!-- / CENTER -->
