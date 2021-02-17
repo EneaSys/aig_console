@@ -4,6 +4,7 @@ import { MatDialog, PageEvent } from '@angular/material';
 import { ContextModuleDTO, ContextModuleResourceService } from 'api-gest';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigContextModuleNewUpdateModalComponent } from '../context-module-dialog/context-module-new-update-modal.component';
 
 @Component({
 	selector: 'aig-context-module-list-page',
@@ -19,8 +20,10 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 	constructor(
 		private contextModuleResourceService: ContextModuleResourceService,
 		private _formBuilder: FormBuilder,
-		aigGenericComponentService: AigGenericComponentService,
-	) { super(aigGenericComponentService) }
+        private dialog: MatDialog,
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
+	
 
 	loadPage() {
 		this.initContextModuleSearch();
@@ -88,5 +91,14 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 		this.contextModuleFilters.name = this.contextModuleSearchFormGroup.controls.name.value;
 
 		this.searchContextModule();
-	}
+    }
+
+    async loadComponent() {
+        this.contextModuleDTOs = await this.contextModuleResourceService.getAllContextModulesUsingGET().toPromise();
+    }
+
+    newAction(){
+        this.dialog.open(AigContextModuleNewUpdateModalComponent, { data: { contextModule: {} } });
+    }
 }
+
