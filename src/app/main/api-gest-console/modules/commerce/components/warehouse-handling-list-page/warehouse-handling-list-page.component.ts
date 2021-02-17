@@ -67,6 +67,8 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	private clearFiltersWarehouseHandling() {
 		this.warehouseHandlingFilters = {
 			idEquals: null,
+			date:null,
+			warehouseHandlingType:null,
 			page: 0,
 		}
 	}
@@ -116,6 +118,8 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 			return;
 		}
 		this.warehouseHandlingFilters.idEquals = null;
+		
+		this.warehouseHandlingFilters.date = this.warehouseHandlingSearchFormGroup.controls.date.value;
 
 		this.searchWarehouseHandling(0);
 	}

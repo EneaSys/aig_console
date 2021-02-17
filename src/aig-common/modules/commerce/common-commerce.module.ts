@@ -44,6 +44,7 @@ import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigWarehouseHandlingListTableComponent } from './components/warehouse-handling-list-table/warehouse-handling-list-table.component';
 import { MatRadioModule } from '@angular/material';
 import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
+import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
 
 @NgModule({
     imports: [
@@ -104,6 +105,7 @@ import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehou
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigWarehouseHandlingResolver,
     ],
     exports: [
         AigBuyListTableComponent,
