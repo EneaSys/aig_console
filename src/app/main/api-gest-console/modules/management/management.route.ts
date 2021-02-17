@@ -1,4 +1,6 @@
 import { Routes } from "@angular/router";
+import { ContextModuleResolver } from "aig-common/modules/standard/resolver/context-module.resolver";
+
 import { AigApplicationModuleResolver } from "aig-common/modules/management/resolver/application-module.resolver";
 import { AigEntityReferenceResolver } from "aig-common/modules/management/resolver/entity-reference.resolver";
 import { AigTenantContextResolver } from "aig-common/modules/management/resolver/tenant-context.resolver";
@@ -7,6 +9,7 @@ import { AuthGuardService } from "auth/auth-guard.service";
 import { AigApplicationModuleDetailPageComponent } from "./components/application-module-detail-page/application-module-detail-page.component";
 import { AigApplicationModuleListPageComponent } from "./components/application-module-list-page/application-module-list-page.component";
 import { AigContextListPageComponent } from "./components/context-list-page/context-list-page.component";
+import { AigContextModuleDetailPageComponent } from "./components/context-module-detail-page/context-module-detail-page.component";
 import { AigContextModuleListPageComponent } from "./components/context-module-list-page/context-module-list-page-component";
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
@@ -92,8 +95,17 @@ export const managementRoute: Routes = [
                         component: AigContextModuleListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
+                    {
+                        path: 'detail/:id',
+                        component: AigContextModuleDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            contextModule: ContextModuleResolver,
+                        },
+                    },    
                 ]
             },
+           
 			{
                 path: 'tenant-context',
                 children: [
