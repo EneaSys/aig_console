@@ -21,7 +21,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         complete: false
     };
 
-    warehouseHandlings: string[] = ['LOAD', 'SHIFT', 'UNLOAD'];
+    //warehouseHandlings: string[] = ['LOAD', 'SHIFT', 'UNLOAD'];
 
     constructor(
         public autocompleteDisplayService: AigAutocompleteDisplayService,
@@ -44,7 +44,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         this.warehouseHandlingNewUpdateForm = this._formBuilder.group({
             id:[''],
             date:[''],
-            handlingType:[''],
+            handlingType:['', Validators.required],
         })
         
         if (this.warehouseHandling != null) {
