@@ -25,6 +25,7 @@ import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/wareh
 import { AigWarehouseHandlingListPageComponent } from './components/warehouse-handling-list-page/warehouse-handling-list-page.component';
 import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
 import { AigWarehouseHandlingResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling.resolver';
+import { AigWarehouseManagerPageComponent } from './components/warehouse-manager-page/warehouse-manager-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -127,6 +128,21 @@ export const commerceRoute: Routes = [
                             producer: AigWarehouseHandlingResolver,
                         },
                     },
+                ] 
+            },
+            {
+                path: 'warehouse-manager',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'manager'
+                    },
+                    {
+                        path: 'manager',
+                        component: AigWarehouseManagerPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
                 ] 
             },
             {

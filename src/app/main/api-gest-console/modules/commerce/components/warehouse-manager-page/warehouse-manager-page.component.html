@@ -1,0 +1,57 @@
+<div id="aig-warehouse-manager" class="page-layout simple right-sidebar">  
+    
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar *ngIf="selectedWarehouse">
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+            
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di magazzini</span>
+
+            </div>
+
+            <div fxLayout="row">
+
+                <div class="selected-warehouse">{{ selectedWarehouse.name }}</div>
+                <button mat-icon-button class="warehouse-selector" [matMenuTriggerFor]="warehouseMenu"
+                    aria-label="Select warehouse">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+
+                <mat-menu #warehouseMenu="matMenu">
+                    <div *ngFor="let warehouseDTO of warehouseDTOs">
+                        <button mat-menu-item *ngIf="warehouseDTO != selectedWarehouse" (click)="setWarehouse(warehouseDTO)">
+                            <span>{{ warehouseDTO.name }}</span>
+                        </button>
+                    </div>
+                </mat-menu>
+                
+
+            </div>
+            
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <mat-tab-group dynamicHeight>
+        
+                <mat-tab label="Dashboard">
+                    DASHBOARD
+                </mat-tab>
+
+                <mat-tab label="Movimentazioni">
+                    <aig-warehouse-handling-list-page></aig-warehouse-handling-list-page>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <!-- / CONTENT -->
+        
+    </div>
+    
+    <!-- / CENTER --> 
+    
+
+</div>

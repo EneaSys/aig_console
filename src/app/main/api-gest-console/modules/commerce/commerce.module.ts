@@ -48,6 +48,7 @@ import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-p
 import { AigWarehouseHandlingListPageComponent } from './components/warehouse-handling-list-page/warehouse-handling-list-page.component';
 import { AigWarehouseHandlingNewUpdateModalComponent } from './components/warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
+import { AigWarehouseManagerPageComponent } from './components/warehouse-manager-page/warehouse-manager-page.component';
 
 
 @NgModule({
@@ -113,6 +114,7 @@ import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-
         AigWarehouseHandlingListPageComponent,
         AigWarehouseHandlingNewUpdateModalComponent,
         AigWarehouseHandlingDetailPageComponent,
+        AigWarehouseManagerPageComponent,
 
     ],
     entryComponents: [

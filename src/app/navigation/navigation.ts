@@ -109,6 +109,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
+                id       : 'warehouse-manager',
+                title    : 'Manager Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-manager',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'warehouse-handling',
                 title    : 'Movimentazione di Magazzino',
                 type     : 'item',
