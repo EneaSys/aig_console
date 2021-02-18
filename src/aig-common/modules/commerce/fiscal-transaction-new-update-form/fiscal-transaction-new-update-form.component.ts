@@ -33,7 +33,12 @@ export class AigFiscalTransactionNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.fiscalTransactionNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
+            date: [''],
+            code: [''],
+            amount: [''],
+            seller:  [''],
+            buyer:  [''],
+            status:  [''],
         })
         
         if (this.fiscalTransaction != null) {

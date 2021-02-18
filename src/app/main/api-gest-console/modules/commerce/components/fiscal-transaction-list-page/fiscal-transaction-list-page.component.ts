@@ -48,7 +48,7 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
 
 	
 	private initFiscalTransactionSearch() {
-		this.fiscalTransactionDC = ["id", "name", "buttons"];
+		this.fiscalTransactionDC = ["id", "date", "buttons"];
 
 		this.fiscalTransactionPaginationSize = 10;
 		

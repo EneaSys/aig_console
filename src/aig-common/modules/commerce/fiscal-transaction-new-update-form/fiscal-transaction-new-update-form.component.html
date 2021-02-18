@@ -1,10 +1,42 @@
 <form *ngIf="step.form" [formGroup]="fiscalTransactionNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
+        
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Fiscal Transaction Name</mat-label>
-            <input name="name" formControlName="name" matInput required>
+            <mat-label>Date</mat-label>
+            <input type="date" formControlName="date" matInput required>
         </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Codice</mat-label>
+            <input type= "number" formControlName="code" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Importo</mat-label>
+            <input type= "number" formControlName="amount" matInput required>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+    <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Acquisto</mat-label>
+        <input type= "text" formControlName="buyer" matInput required>
+    </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+    <mat-form-field appearance="outline" fxFlex>
+        <mat-label>Stato</mat-label>
+        <input type= "text" formControlName="status" matInput required>
+    </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
