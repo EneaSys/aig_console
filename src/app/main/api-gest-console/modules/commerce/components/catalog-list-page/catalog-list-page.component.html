@@ -1,0 +1,29 @@
+<!-- CENTER -->
+<div class="center">
+    <!-- HEADER -->
+    <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+        <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+            (click)="toggleSidebar('purchase-sidebar')">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h2>Cataloghi</h2>
+    </div>
+    <!-- / HEADER -->
+    <!-- CONTENT -->
+    <div class="content mb-48">
+        <!-- <inventory-category-list-table [displayColumns]="inventoryCategoryDC" [dataSource]="inventoryCategoryDTOs"
+            [error]="inventoryCategoryError">
+        </inventory-category-list-table>
+
+        <mat-paginator #paginator [length]="inventoryCategoryLength"
+            [pageSize]="this.inventoryCategoryPaginationSize" [pageIndex]="this.inventoryCategoryFilters.page"
+            [pageSizeOptions]="[10, 20, 50]" (page)="inventoryCategoryPaginationEvent($event)">
+        </mat-paginator>
+
+        <button mat-fab class="accent" id="add-inventory-category-button" (click)="newInventoryCategory()" aria-label="add inventory category">
+            <mat-icon>add</mat-icon>
+        </button> -->
+    </div>
+    <!-- / CONTENT -->
+</div>
+<!-- / CENTER -->

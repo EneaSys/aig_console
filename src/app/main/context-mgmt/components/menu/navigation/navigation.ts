@@ -160,6 +160,14 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/commerce/warehouse',
 						permission: ['c6e.admin'],
 					},
+					{
+						id       : 'catalog',
+						title    : 'Cataloghi',
+						type     : 'item',
+						icon     : 'assignment',
+						url      : '/commerce/catalog',
+						permission: ['c6e.admin'],
+					},
 				]
             },
 		]
