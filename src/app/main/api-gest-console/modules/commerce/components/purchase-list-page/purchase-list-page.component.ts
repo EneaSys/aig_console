@@ -4,6 +4,7 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 
 @Component({
     selector: 'aig-purchase-list-page',
@@ -57,8 +58,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-    //this.purchaseDC = ["amount","buyer","buyerId","id","insertedDateTime","seller","sellerId","statusNote"];
-    this.purchaseDC = ["id","buttons"];
+    this.purchaseDC = ["id","amount","buyer","closed","insertedDataTime","statusNote","buttons"];
   }
     
   private clearFiltersPurchase() {
@@ -118,9 +118,9 @@ export class AigPurchaseListPageComponent extends GenericComponent {
   }
   
   
-  /*
+  
    newPurchase(): void {
-    this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: {} } });
+    this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: {} } });
   }
-  */
+  
 }

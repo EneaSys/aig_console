@@ -18,7 +18,41 @@
             <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.amount }} </mat-cell>
+        </ng-container>
         
+        
+        <ng-container matColumnDef="buyer">
+            <mat-header-cell *matHeaderCellDef> Buyer </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.buyer }} </mat-cell>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="buyerId">
+            <mat-header-cell *matHeaderCellDef> Buyer Id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.buyerId }} </mat-cell>
+        </ng-container>
+
+       
+        <ng-container matColumnDef="closed">
+            <mat-header-cell *matHeaderCellDef> Closed </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.closed }} </mat-cell>
+        </ng-container>
+
+       
+       <ng-container matColumnDef="insertedDataTime">
+            <mat-header-cell *matHeaderCellDef> Data Inserimento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.insertedDataTime }} </mat-cell>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="statusNote">
+            <mat-header-cell *matHeaderCellDef> Status Note </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.statusNote }} </mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>

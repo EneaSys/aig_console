@@ -1,0 +1,52 @@
+<form *ngIf="step.form" [formGroup]="purchaseNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Amount</mat-label>
+            <input formControlName="amount" matInput required>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Closed</mat-label>
+            <input formControlName="closed" matInput>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Data Inserimento</mat-label>
+            <input formControlName="insertedDateTime" matInput>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Status Note</mat-label>
+            <input formControlName="statusNote" matInput>
+        </mat-form-field>
+    </div>
+
+    
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Buyer</mat-label>
+            <input type="text" matInput formControlName="buyer" required [matAutocomplete]="buyerAutocomplete">
+            <mat-autocomplete #buyerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.buyerDisplayFn">
+                <mat-option *ngFor="let producer of filteredBuyer | async" [value]="buyer">{{ buyer.id }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    
+    
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ purchaseNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!purchaseNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPurchase()">Create New</button>
+</div>

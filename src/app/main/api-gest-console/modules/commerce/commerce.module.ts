@@ -45,6 +45,7 @@ import { AigInventoryItemDetailPageComponent } from './components/inventory-item
 import { AigProducerNewUpdateModalComponent } from './components/producer-new-update-modal-component/producer-new-update-modal.component';
 import { AigProducerDetailPageComponent } from './components/producer-detail-page/producer-detail-page.component';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
+import { AigPurchaseNewUpdateDialogComponent } from './components/purchase-new-update-dialog/purchase-new-update-dialog.component';
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
 
 
@@ -108,6 +109,7 @@ import { AigPurchaseListPageComponent } from './components/purchase-list-page/pu
         AigProducerDetailPageComponent,
         AigWarehouseDetailPageComponent,
         AigPurchaseListPageComponent,
+        AigPurchaseNewUpdateDialogComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
@@ -117,6 +119,7 @@ import { AigPurchaseListPageComponent } from './components/purchase-list-page/pu
         AigInventoryCategoryNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
         AigProducerNewUpdateModalComponent,
+        AigPurchaseNewUpdateDialogComponent,
     ],
     exports: [],
 })
