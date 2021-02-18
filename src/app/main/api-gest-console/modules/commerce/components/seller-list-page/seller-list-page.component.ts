@@ -19,7 +19,10 @@ export class AigSellerListPageComponent extends GenericComponent {
     sellerdisplayColumns: string[] = ['id', 'name', 'buttons'];
     sellerDTOs: SellerDTO[];
     async loadComponent() {
-        this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET().toPromise();
+        let filter = {
+            eopooCodeContains: null
+        }
+        this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(filter).toPromise();
     }
 
     newSeller() {

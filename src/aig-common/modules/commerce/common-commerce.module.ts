@@ -43,6 +43,9 @@ import { AigAutocompleteDisplayService } from './service/autocomplete-display.se
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
+import { AigCatalogListTableComponent } from './components/catalog-list-table/catalog-list-table.component';
+import { AigCatalogNewUpdateFormComponent } from './components/catalog-new-update-form/catalog-new-update-form.component';
+import { AigCatalogResolver } from './resolver/catalog.resolver';
 
 @NgModule({
     imports: [
@@ -90,6 +93,8 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
+        AigCatalogListTableComponent,
+        AigCatalogNewUpdateFormComponent,
         
     ],
     providers: [
@@ -102,6 +107,7 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigCatalogResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -117,6 +123,8 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         AigInventoryItemCombinationListTableComponent,
         AigInventoryItemCombinationNewUpdateFormComponent,
         AigProducerListTableComponent,
+        AigCatalogListTableComponent,
+        AigCatalogNewUpdateFormComponent,
 
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,

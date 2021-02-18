@@ -23,6 +23,8 @@ import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/produc
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
 import { AigCatalogListPageComponent } from './components/catalog-list-page/catalog-list-page.component';
+import { AigCatalogDetailPageComponent } from './components/catalog-detail-page/catalog-detail-page.component';
+import { AigCatalogResolver } from 'aig-common/modules/commerce/resolver/catalog.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -248,14 +250,14 @@ export const commerceRoute: Routes = [
                         component:  AigCatalogListPageComponent,
                         canActivate: [ AuthGuardService ],
                     }, 
-                    /*{
+                    {
                         path: 'detail/:id',
-                        component: AigInventoryCategoryDetailPageComponent,
+                        component: AigCatalogDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            inventoryCategory: AigInventoryCategoryResolver,
+                            catalog: AigCatalogResolver,
                         },
-                    }*/
+                    }
                 ]
             },
         ]
