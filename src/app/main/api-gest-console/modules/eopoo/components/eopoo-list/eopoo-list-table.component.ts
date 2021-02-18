@@ -13,7 +13,7 @@ import { EopooService } from 'aig-common/old-common/services/eopoo.service';
     encapsulation: ViewEncapsulation.None,
 })
 export class EopooListTableComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
+    displayColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
     dataSource: any[];
     totalItems: number;
 

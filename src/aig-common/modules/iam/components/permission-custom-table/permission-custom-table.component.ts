@@ -20,7 +20,7 @@ export class AigPermissionCustomTableComponent implements OnInit {
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
     @Input()

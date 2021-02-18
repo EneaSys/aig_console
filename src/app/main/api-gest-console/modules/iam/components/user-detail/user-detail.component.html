@@ -16,19 +16,17 @@
         <div class="widget p-16" fxFlex.gt-sm="30">
             <div class="fuse-card auto-width p-16" id="group-member-list">
                 <div class="h4 m-16 mt-0 mb-0">Membro di</div>
-                <aig-group-table [displayedColumns]="memberOfDisplayedColumns" [dataSource]="user.userMemberOfs" [buttonConfig]="memberOfButtonConfig"></aig-group-table>
+                <aig-group-table [displayColumns]="memberOfDisplayColumns" [dataSource]="user.userMemberOfs" [buttonConfig]="memberOfButtonConfig"></aig-group-table>
                 <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToGroup()"
-                    aria-label="add to group">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToGroup()" aria-label="add to group">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
             <div class="fuse-card auto-width mt-16 p-16" id="group-member-list">
                 <div class="h4 m-16 mt-0 mb-0">Anagrafiche associate</div>
-                <aig-eopoo-list-table [displayedColumns]="associatedEopooDisplayedColumns" [dataSource]="eopooDTOs" [error]="associatedEopooLoadError"></aig-eopoo-list-table>
+                <aig-eopoo-list-table [displayColumns]="associatedEopooDisplayColumns" [dataSource]="eopooDTOs" [error]="associatedEopooLoadError"></aig-eopoo-list-table>
                 <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToEopoo()"
-                    aria-label="add to eopoo">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToEopoo()" aria-label="add to eopoo">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -36,10 +34,9 @@
         <div class="widget p-16" fxFlex.gt-sm="40">
             <div class="fuse-card auto-width p-16" id="role-list">
                 <div class="h4 m-16 mt-0 mb-0">Lista dei ruoli</div>
-                <aig-role-association-table [displayedColumns]="roleDisplayedColumns" [dataSource]="roles | async" [buttonConfig]="roleButtonConfig"></aig-role-association-table>
+                <aig-role-association-table [displayColumns]="roleDisplayColumns" [dataSource]="roles | async" [buttonConfig]="roleButtonConfig"></aig-role-association-table>
                 <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToRole()"
-                    aria-label="add role">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToRole()" aria-label="add role">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
