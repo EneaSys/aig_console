@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventService } from 'aig-common/event-manager/event.service';
-
+ 
 @Component({
     selector: 'aig-users-table',
     templateUrl: './user-table.component.html',
@@ -19,15 +19,16 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
         private _snackBar: MatSnackBar,
         private router: Router,
         private eventService: EventService,
+        
     ) { }
 
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
-
+ 
     subscriptions: Subscription[] = [];
 
     ngOnInit(): void { }
@@ -67,4 +68,13 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
             subscription.unsubscribe();
         });
     }
+    
+
+
+   
+
+
 }
+
+
+

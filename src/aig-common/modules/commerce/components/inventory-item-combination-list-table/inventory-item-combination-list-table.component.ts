@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'inventory-item-combination-list-table',
+    selector: 'aig-inventory-item-combination-list-table',
     templateUrl: './inventory-item-combination-list-table.component.html',
     styleUrls: ['./inventory-item-combination-list-table.component.scss']
 })

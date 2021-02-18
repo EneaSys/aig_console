@@ -25,6 +25,8 @@ import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/wareh
 import { AigCatalogListPageComponent } from './components/catalog-list-page/catalog-list-page.component';
 import { AigCatalogDetailPageComponent } from './components/catalog-detail-page/catalog-detail-page.component';
 import { AigCatalogResolver } from 'aig-common/modules/commerce/resolver/catalog.resolver';
+import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
+import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -147,20 +149,12 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigFiscalTransactionListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
                         path: 'detail/:id',
                         component: AigFiscalTransactionDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
-                        resolve: {
-                            fiscalTransaction: FiscalTransactionResolver,
-                        },
-                    },
-                    {
-                        path: 'detail/:id/validate',
-                        component: ValidateFiscalTransactionPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             fiscalTransaction: FiscalTransactionResolver,
@@ -184,6 +178,29 @@ export const commerceRoute: Routes = [
                     {
                         path: 'detail/:id',
                         component: AigInventoryItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            inventoryItem: AigInventoryItemResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'inventory-item-combination',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigInventoryItemCombinationListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigInventoryItemDetailPageComponent, //QUESTA NON E' LA PAGINA DEI DETTAGLI DELLA COMBINAZIONE
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             inventoryItem: AigInventoryItemResolver,
