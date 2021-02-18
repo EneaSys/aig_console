@@ -41,6 +41,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
 import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
+import { AigSellerResolver } from './resolver/seller.resolver';
 
 @NgModule({
     imports: [
@@ -98,6 +99,7 @@ import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigSellerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
