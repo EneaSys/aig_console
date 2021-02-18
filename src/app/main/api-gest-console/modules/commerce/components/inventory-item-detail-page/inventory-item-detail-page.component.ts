@@ -29,14 +29,14 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
 
     loadPage() {
         this.inventoryItemDTO = this.route.snapshot.data.inventoryItem;
-        this.inventoryItemCombinationDC = ["id", "name", "combinationCode", "inventoryItemId", "inventoryItemName"];
+        this.inventoryItemCombinationDC = ["id", "name", "combinationCode"];
         this.loadInventoryItemCombination();
     }
 
     private async loadInventoryItemCombination() {
         let filter = {
-            combinationCodeContains: null
-            };
+            inventoryItemIdEquals: this.inventoryItemDTO.id
+        };
         this.inventoryItemCombinationDTOs = await this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter).toPromise();
     }
 
@@ -45,11 +45,11 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
         this.loadInventoryItemCombination()
     }
 
-    editInventoryItem(InventoryItemDTO: InventoryItemDTO) {
-        this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: InventoryItemDTO } });
+    editInventoryItem(inventoryItemDTO: InventoryItemDTO) {
+        this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: inventoryItemDTO } });
     }
 
     newInventoryItemCombination(): void {
-        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: {} } });
+        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: { inventoryItem: this.inventoryItemDTO } } });
     }
 }

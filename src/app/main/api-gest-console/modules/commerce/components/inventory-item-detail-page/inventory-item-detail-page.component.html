@@ -15,10 +15,13 @@
 <div class="widget p-16" fxFlex.gt-sm="40">
     <div class="fuse-card auto-width p-16" id="role-list">
         <div class="h4 m-16 mt-0 mb-0">Lista combinazioni</div>
-        <inventory-item-combination-list-table [displayColumns]="inventoryItemCombinationDC"
+        
+		<inventory-item-combination-list-table [displayColumns]="inventoryItemCombinationDC"
             [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError">
         </inventory-item-combination-list-table>
+
         <div style="height: 35px;"></div>
+		
         <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="newInventoryItemCombination()" aria-label="add inventory item combination">
             <mat-icon>add</mat-icon>
         </button>

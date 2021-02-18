@@ -42,14 +42,14 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
             id:[''],
             name: ['', Validators.required],
             combinationCode: [''],
-            inventoryItemName: ['', Validators.required],
+            inventoryItem: ['', Validators.required],
         })
 
         if (this.inventoryItemCombination != null) {
             this.inventoryItemCombinationNewUpdateForm.patchValue(this.inventoryItemCombination);
         }
 
-        this.filteredInventoryItems = this.commerceAutocompleteService.filterInventoryItem(this.inventoryItemCombinationNewUpdateForm.controls['inventoryItemName'].valueChanges);
+        this.filteredInventoryItems = this.commerceAutocompleteService.filterInventoryItem(this.inventoryItemCombinationNewUpdateForm.controls['inventoryItem'].valueChanges);
     }
 
     async submit() {
@@ -64,8 +64,7 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
             id: this.inventoryItemCombinationNewUpdateForm.value.id,
             name: this.inventoryItemCombinationNewUpdateForm.value.name,
             combinationCode: this.inventoryItemCombinationNewUpdateForm.value.combinationCode,
-            inventoryItemName: this.inventoryItemCombinationNewUpdateForm.value.inventoryItemName.name,
-            inventoryItemId: this.inventoryItemCombinationNewUpdateForm.value.inventoryItemName.id,
+            inventoryItemId: this.inventoryItemCombinationNewUpdateForm.value.inventoryItem.id,
         }
 
         try {

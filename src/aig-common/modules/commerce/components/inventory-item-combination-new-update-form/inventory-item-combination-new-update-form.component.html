@@ -1,5 +1,15 @@
 <form *ngIf="step.form" [formGroup]="inventoryItemCombinationNewUpdateForm" (ngSubmit)="submit()">
 
+	<div *ngIf="!inventoryItemCombination.inventoryItem" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Inventory item</mat-label>
+            <input formControlName="inventoryItem" matInput required [matAutocomplete]="inventoryItemAutocomplete">
+            <mat-autocomplete #inventoryItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
+                <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItem">{{ inventoryItem.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Name</mat-label>
@@ -11,16 +21,6 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Combination Code</mat-label>
             <input formControlName="combinationCode" matInput>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Inventory item</mat-label>
-            <input formControlName="inventoryItemName" matInput required [matAutocomplete]="inventoryItemAutocomplete">
-            <mat-autocomplete #inventoryItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
-                <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItem">{{ inventoryItem.name }}</mat-option>
-            </mat-autocomplete>
         </mat-form-field>
     </div>
 
