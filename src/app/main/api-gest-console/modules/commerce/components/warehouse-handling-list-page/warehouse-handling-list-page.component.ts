@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigWarehouseHandlingNewUpdateModalComponent } from '../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 
 interface warehouseHandling {
@@ -21,13 +24,23 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		{value: 'shift-1', viewValue: 'Shift'},
 		{value: 'unload-2', viewValue: 'Unload'}
 	  ];
+
 	constructor(
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
 		private warehouseHandlingResourceService: WarehouseHandlingResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
         aigGenericComponentService: AigGenericComponentService,
+	
     ) { super(aigGenericComponentService) }
+
+	@Input()
+    warehouse: WarehouseDTO;
+
+	filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
+	filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
 	
 	loadPage() {
 		this.initWarehouseHandlingSearch();
@@ -48,6 +61,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	warehouseHandlingLength: number;
 	warehouseHandlingDTOs: WarehouseHandlingDTO[];
 	warehouseHandlingError: any;
+	warehouseDTOs: WarehouseDTO[];
 
 	warehouseHandlingDC: string[];
 
@@ -58,17 +72,26 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 			id: [''],
 			date: [''],
 			warehouseHandlingType:[''],
-			warehouse:[''],
+			warehouseToLoad:[''],
+			warehouseToUnload:[''],
 		});
 
-		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","buttons"];
+		this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingSearchFormGroup.controls['warehouseToLoad'].valueChanges);
+		this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingSearchFormGroup.controls['warehouseToUnload'].valueChanges);
+
+
+		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","warehouseToLoadName","warehouseToUnloadName","buttons"];
 	}
 
+
+	
 	private clearFiltersWarehouseHandling() {
 		this.warehouseHandlingFilters = {
 			idEquals: null,
 			date:null,
 			warehouseHandlingType:null,
+			warehouseToLoadName:null,
+			warehouseToUnloadName:null,
 			page: 0,
 		}
 	}

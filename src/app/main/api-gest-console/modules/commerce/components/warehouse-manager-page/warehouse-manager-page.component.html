@@ -21,7 +21,8 @@
 
                 <mat-menu #warehouseMenu="matMenu">
                     <div *ngFor="let warehouseDTO of warehouseDTOs">
-                        <button mat-menu-item *ngIf="warehouseDTO != selectedWarehouse" (click)="setWarehouse(warehouseDTO)">
+                        <button mat-menu-item (click)="setWarehouse(warehouseDTO)">
+                            <span *ngIf="warehouseDTO == selectedWarehouse">-</span>
                             <span>{{ warehouseDTO.name }}</span>
                         </button>
                     </div>
@@ -39,7 +40,7 @@
             <mat-tab-group dynamicHeight>
         
                 <mat-tab label="Dashboard">
-                    DASHBOARD
+                    <pre>{{ selectedWarehouse | json }}</pre>  
                 </mat-tab>
 
                 <mat-tab label="Movimentazioni">

@@ -29,6 +29,17 @@
             <mat-cell *matCellDef="let e"> {{ e.warehouseHandlingType }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="warehouseToLoadName">
+            <mat-header-cell *matHeaderCellDef>Magazzino di Carico</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.warehouseToLoadName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="warehouseToUnloadName">
+            <mat-header-cell *matHeaderCellDef>Magazzino di Scarico</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.warehouseToUnloadName }} </mat-cell>
+        </ng-container>
+
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">

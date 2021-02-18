@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { WarehouseResourceService, WarehouseDTO } from 'aig-commerce';
-
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     templateUrl: './warehouse-manager-page.component.html',
@@ -14,6 +14,7 @@ export class AigWarehouseManagerPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    
     warehouseDTOs: WarehouseDTO[] = [];
     selectedWarehouse: WarehouseDTO;
 

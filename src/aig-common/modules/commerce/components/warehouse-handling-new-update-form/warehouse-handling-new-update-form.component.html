@@ -1,27 +1,84 @@
-<form *ngIf="step.form" [formGroup]="warehouseHandlingNewUpdateForm" (ngSubmit)="submit()">
+<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="step.form">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="fill">
-            <mat-label>Scegli una data</mat-label>
-            <input formControlName="date" matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
+    <mat-step [stepControl]="handlingTypeFormGroup">
+        <form [formGroup]="handlingTypeFormGroup">
+            <ng-template matStepLabel>Seleziona il tipo di Movimentazione</ng-template>
 
-    <div>
-        <mat-label>Seleziona il tipo di Movimentazione:</mat-label>
-        <mat-radio-group aria-label="Select an option" formControlName="handlingType" matInput required>
-          <mat-radio-button value="LOAD">LOAD</mat-radio-button>
-          <mat-radio-button value="SHIFT">SHIFT</mat-radio-button>
-          <mat-radio-button value="UNLOAD">UNLOAD</mat-radio-button>
-        </mat-radio-group>
-    </div>
+            <mat-label>Movimentazione</mat-label>
+            <mat-radio-group formControlName="handlingType" required aria-label="Select an option">
+                <mat-radio-button value="1">Carico</mat-radio-button>
+                <mat-radio-button value="2">Scambio</mat-radio-button>
+                <mat-radio-button value="3">Scarico</mat-radio-button>
+            </mat-radio-group>
 
-    <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
-    </div>
-</form>
+            <div>
+                <button mat-button matStepperNext>Avanti</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="warehouseFormGroup" label="Magazzino">
+        <form [formGroup]="warehouseFormGroup">
+            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 3">
+                <mat-label>Seleziona Magazzino di Carico</mat-label>
+                <input formControlName="warehouseLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete" placeholder="Magazzino di carico" >
+                <mat-autocomplete #selectWarehouseLoadAutocomplete="matAutocomplete"
+                    [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
+                    <mat-option *ngFor="let warehouse of filteredWarehouseToLoad | async" [value]="warehouse">{{warehouse.name }}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 1">
+                <mat-label>Seleziona Magazzino di Scarico</mat-label>
+                <input matInput formControlName="warehouseUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete" placeholder="Magazzino di scarico" >
+                <mat-autocomplete #selectWarehouseUnloadAutocomplete="matAutocomplete"
+                    [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
+                    <mat-option *ngFor="let warehouse of filteredWarehouseToUnload | async" [value]="warehouse">{{warehouse.name }}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step [stepControl]="selectDateFormGroup" label="Seleziona la data">
+        <form [formGroup]="selectDateFormGroup">
+            <mat-form-field>
+                <mat-label>Data</mat-label>
+                <input formControlName="date" matInput [matDatepicker]="picker" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form> 
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" label="Seleziona la quantità e l'inventario">
+        <!--<form [formGroup]="secondFormGroup">
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form> -->
+    </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
     <mat-spinner></mat-spinner>

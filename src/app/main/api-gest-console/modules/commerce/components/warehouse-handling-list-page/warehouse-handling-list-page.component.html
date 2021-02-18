@@ -15,6 +15,7 @@
 						<div class="nav-item" aria-label="inbox">
 							<form [formGroup]="warehouseHandlingSearchFormGroup"
 								(ngSubmit)="warehouseHandlingSearchWithFilter()" class="p-8">
+
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Id</mat-label>
@@ -40,6 +41,32 @@
 												{{warehouseHandling.viewValue}}
 											</mat-option>
 										</mat-select>
+									</mat-form-field>
+								</div>
+
+								<div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Magazzino di Carico</mat-label>
+										<input formControlName="warehouseToLoad" matInput
+											[matAutocomplete]="warehouseToLoadAutocomplete">
+										<mat-autocomplete #warehouseToLoadAutocomplete="matAutocomplete"
+											[displayWith]="autocompleteDisplayService.warehouseDisplayFn">
+											<mat-option *ngFor="let warehouse of filteredWarehouseToLoad | async"
+												[value]="warehouse">{{ warehouse.name }}</mat-option>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
+
+								<div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Magazzino di Scarico</mat-label>
+										<input formControlName="warehouseToUnload" matInput
+											[matAutocomplete]="warehouseToUnloadAutocomplete">
+										<mat-autocomplete #warehouseToUnloadAutocomplete="matAutocomplete"
+											[displayWith]="autocompleteDisplayService.warehouseDisplayFn">
+											<mat-option *ngFor="let warehouse of filteredWarehouseToUnload | async"
+												[value]="warehouse">{{ warehouse.name }}</mat-option>
+										</mat-autocomplete>
 									</mat-form-field>
 								</div>
 

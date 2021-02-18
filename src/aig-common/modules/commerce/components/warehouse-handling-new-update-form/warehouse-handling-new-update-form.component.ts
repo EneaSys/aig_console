@@ -1,18 +1,21 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
-import { type } from 'os';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
     selector: 'aig-warehouse-handling-new-update-form',
     templateUrl: './warehouse-handling-new-update-form.component.html',
-    styleUrls: ['./warehouse-handling-new-update-form.component.scss']
+    styleUrls: ['./warehouse-handling-new-update-form.component.scss'],
+    providers: [{
+        provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
+      }]
 })
 export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     step: any = {
@@ -28,30 +31,42 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private commerceAutocompleteService: AigCommerceAutocompleteService,
         private warehouseHandlingResourceService: WarehouseHandlingResourceService,
         private eventService: EventService,
+        private commerceAutocompleteService: AigCommerceAutocompleteService,
     ) { }
 
     @Input()
     warehouseHandling: WarehouseHandlingDTO;
-    
-    warehouseHandlingNewUpdateForm: FormGroup;
 
-    filteredParentCategory: Observable<WarehouseHandlingDTO[]>;
+    filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
+	filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
+
+    warehouseHandlingNewUpdateForm: FormGroup;
+    isLinear = false;
+    handlingTypeFormGroup: FormGroup;
+    warehouseFormGroup: FormGroup;
+    selectDateFormGroup: FormGroup;
+
 
     ngOnInit(): void {
-        this.warehouseHandlingNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            date:[''],
-            handlingType:['', Validators.required],
-        })
-        
-        if (this.warehouseHandling != null) {
-            this.warehouseHandlingNewUpdateForm.patchValue(this.warehouseHandling);
-        }
 
-        // this.filteredParentCategory = this.commerceAutocompleteService.filterInventoryCategory(this.warehouseHandlingNewUpdateForm.controls['parent'].valueChanges);
+        this.handlingTypeFormGroup = this._formBuilder.group({
+            handlingType: ['', Validators.required]
+        });
+        this.warehouseFormGroup = this._formBuilder.group({
+            warehouseLoad: ['',],
+            warehouseUnload: ['',]
+        });
+        this.selectDateFormGroup = this._formBuilder.group({
+            date: ['', Validators.required]
+        });
+
+
+        this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseLoad'].valueChanges);
+		this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseUnload'].valueChanges);
+
+
     }
 
     async submit() {
@@ -64,9 +79,9 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         let warehouseHandling: WarehouseHandlingDTO = {
             id: this.warehouseHandlingNewUpdateForm.value.id,
             date: this.warehouseHandlingNewUpdateForm.value.date,
-            warehouseHandlingType :this.warehouseHandlingNewUpdateForm.value.handlingType,
+            warehouseHandlingType: this.warehouseHandlingNewUpdateForm.value.handlingType,
         }
-        
+
         try {
             let postOrPut;
             if (warehouseHandling.id != 0) {
@@ -91,7 +106,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(step: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
