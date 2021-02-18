@@ -156,4 +156,23 @@ export const navigation: FuseNavigation[] = [
     },
         ]
     },
+    {
+        id       : 'inventory-item-combination',
+        title    : 'Combinazioni categorie inventario',
+        type     : 'group',
+        children : [
+    {
+        id       : 'inventory-item-combination-list-page',
+        title    : 'Combinazioni categorie inventario',
+        type     : 'item',
+        icon     : 'compare_arrows',
+        url      : '/commerce/inventory-item-combination',
+        permission: ['c6e.admin'],
+    },
+        ]
+    },
+
+
 ];
+
+
