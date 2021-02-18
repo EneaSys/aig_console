@@ -28,12 +28,11 @@
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let element"><button mat-stroked-button color="accent"
-                    (click)="detailEopoo(element.id)">Details</button></mat-cell>
+            <mat-cell *matCellDef="let element"><button mat-stroked-button color="accent" (click)="detailEopoo(element.id)">Details</button></mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let eopoo; columns: displayedColumns;"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let eopoo; columns: displayColumns;"></mat-row>
     </mat-table>
 
 </div>
