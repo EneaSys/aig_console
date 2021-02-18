@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BuyerDTO, InventoryCategoryDTO, ProducerDTO } from 'aig-commerce';
+import { BuyerDTO, InventoryCategoryDTO, InventoryItemDTO, ProducerDTO } from 'aig-commerce';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,5 +15,9 @@ export class AigAutocompleteDisplayService {
 
     buyerDisplayFn(buyer?: BuyerDTO): number | undefined {
         return buyer ? buyer.id : undefined;
+    }
+        
+    inventoryItemDisplayFn(inventoryItem?: InventoryItemDTO): string | undefined {
+        return inventoryItem ? inventoryItem.name : undefined;
     }
 }
