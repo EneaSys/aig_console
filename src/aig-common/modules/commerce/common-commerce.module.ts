@@ -76,6 +76,7 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         MatStepperModule,
         MatDatepickerModule,
         MatRadioModule,
+    
 
     ],
     declarations: [

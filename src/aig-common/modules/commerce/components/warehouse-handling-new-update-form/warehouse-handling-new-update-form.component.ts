@@ -3,19 +3,20 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { InventoryItemCombinationDTO, WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
 
 @Component({
     selector: 'aig-warehouse-handling-new-update-form',
     templateUrl: './warehouse-handling-new-update-form.component.html',
     styleUrls: ['./warehouse-handling-new-update-form.component.scss'],
     providers: [{
-        provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
-      }]
+        provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
+    }]
 })
 export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     step: any = {
@@ -23,8 +24,6 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         loading: false,
         complete: false
     };
-
-    //warehouseHandlings: string[] = ['LOAD', 'SHIFT', 'UNLOAD'];
 
     constructor(
         public autocompleteDisplayService: AigAutocompleteDisplayService,
@@ -40,46 +39,134 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     warehouseHandling: WarehouseHandlingDTO;
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
-	filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
+    filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
+    filteredInventoryItem: Observable<InventoryItemCombinationDTO[]>;
+
+    handlingTypeRequirementIsCompleted = false;
+    dateRequirementIsCompleted = false;
+    quantityItemCombinationRequirementIsCompleted = false;
 
     warehouseHandlingNewUpdateForm: FormGroup;
     isLinear = false;
     handlingTypeFormGroup: FormGroup;
     warehouseFormGroup: FormGroup;
-    selectDateFormGroup: FormGroup;
+    dateFormGroup: FormGroup;
+    quantityInventoryItemCombinationFormGroup: FormGroup;
 
 
     ngOnInit(): void {
 
         this.handlingTypeFormGroup = this._formBuilder.group({
+            id: [""],
             handlingType: ['', Validators.required]
         });
         this.warehouseFormGroup = this._formBuilder.group({
             warehouseLoad: ['',],
             warehouseUnload: ['',]
         });
-        this.selectDateFormGroup = this._formBuilder.group({
+        this.dateFormGroup = this._formBuilder.group({
             date: ['', Validators.required]
         });
+        this.quantityInventoryItemCombinationFormGroup = this._formBuilder.group({
+            quantity: ['', Validators.required],
+            inventoryItemCombination: ['', Validators.required],
+        })
+
+
 
 
         this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseLoad'].valueChanges);
-		this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseUnload'].valueChanges);
+        this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseUnload'].valueChanges);
+        this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItem(this.quantityInventoryItemCombinationFormGroup.controls['inventoryItemCombination'].valueChanges);
+        
+        if (this.warehouseHandling != null) {
 
+            this.handlingTypeFormGroup.controls.handlingType.value.patchValue(this.warehouseHandling.warehouseHandlingType);
+            this.warehouseFormGroup.controls.warehouseLoad.value.patchValue(this.warehouseHandling.warehouseToLoadName);
+            this.warehouseFormGroup.controls.warehouseUnload.value.patchValue(this.warehouseHandling.warehouseToUnloadName);
+            this.dateFormGroup.controls.date.value.patchValue(this.warehouseHandling.date);
+        }
+    }
+
+
+    // CHECK FORM
+
+    //CHECK HANDLING TYPE
+    handlingTypeRequirementError;
+    checkHandlingTypeRequirement($event): void {
+        let handlingTypeValue = this.handlingTypeFormGroup.controls.handlingType.value;
+        this.handlingTypeRequirementIsCompleted = false;
+
+        if ($event != null) {
+            handlingTypeValue = $event.value;
+        }
+
+        switch (handlingTypeValue) {
+            case '1': case '2': case '3':
+                this.handlingTypeRequirementIsCompleted = true;
+                this.handlingTypeRequirementError = "";
+                break;
+            default:
+                this.handlingTypeRequirementError = "Selezionare movimento!";
+                break;
+        }
+    }
+    checkAndGoHandlingTypeRequirement(stepper): void {
+        this.checkHandlingTypeRequirement(null);
+
+        if (this.handlingTypeRequirementIsCompleted) {
+            setTimeout(() => stepper.next(), 1);
+        }
+    }
+
+    //CHECK DATE
+    dateRequirementError;
+    checkDateRequirement(stepper): void {
+        let dateValue = this.dateFormGroup.controls.date.value;
+        this.dateRequirementIsCompleted = false;
+
+        if (dateValue == "") {
+            this.dateRequirementError = "Selezionare una data!";
+            return
+        } else {
+            this.dateRequirementIsCompleted = true;
+        }
+        setTimeout(() => stepper.next(), 1);
+    }
+
+    //CHECK QUANTITY AND ITEM COMBINATION
+    quantityItemCombinationRequirementError;
+    checkQuantityItemCombinationRequirement(stepper): void {
+        let quantityValue = this.quantityInventoryItemCombinationFormGroup.controls.quantity.value;
+        let itemCombinationValue = this.quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value;
+        this.quantityItemCombinationRequirementIsCompleted = false;
+
+        if (quantityValue == "" || itemCombinationValue == "") {
+            this.quantityItemCombinationRequirementError = "Riempire i campi richiesti!";
+            return
+        } else {
+            this.quantityItemCombinationRequirementIsCompleted = true;
+        }
+        setTimeout(() => stepper.next(), 1);
+    }
+
+
+    addQuantityItemCombination() {
 
     }
 
-    async submit() {
-        if (!this.warehouseHandlingNewUpdateForm.valid) {
-            return;
-        }
+
+    async confirmation() {
+
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
         let warehouseHandling: WarehouseHandlingDTO = {
-            id: this.warehouseHandlingNewUpdateForm.value.id,
-            date: this.warehouseHandlingNewUpdateForm.value.date,
-            warehouseHandlingType: this.warehouseHandlingNewUpdateForm.value.handlingType,
+            id: this.handlingTypeFormGroup.controls.id.value,
+            warehouseHandlingType: this.handlingTypeFormGroup.controls.handlingType.value,
+            date: this.dateFormGroup.controls.date.value,
+            warehouseToLoadName: this.warehouseFormGroup.controls.warehouseLoad.value,
+            warehouseToUnloadName: this.warehouseFormGroup.controls.warehouseUnload.value,
         }
 
         try {
