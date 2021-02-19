@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { AigEntityReferenceNewUpdateFormComponent } from "aig-common/modules/management/components/entity-reference-new-update-form/entity-reference-new-update-form.component";
+
 
 @Component({
     templateUrl: './entity-reference-new-update-modal.component.html',
@@ -8,7 +8,7 @@ import { AigEntityReferenceNewUpdateFormComponent } from "aig-common/modules/man
 })
 export class AigEntityReferenceNewUpdateModalComponent implements OnInit {
     constructor(
-        public matDialogRef: MatDialogRef<AigEntityReferenceNewUpdateFormComponent>,
+        public matDialogRef: MatDialogRef<AigEntityReferenceNewUpdateModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'aig-buyer-list-table',
@@ -13,7 +14,9 @@ export class AigBuyerListTableComponent implements OnInit {
     @Input()
     dataSource: any[];
 
-    constructor() { }
+    constructor(
+        private router: Router,
+    ) { }
 
     ngOnInit(): void { }
 }
