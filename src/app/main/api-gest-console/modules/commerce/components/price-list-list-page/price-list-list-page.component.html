@@ -30,7 +30,10 @@
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Catalog</mat-label>
-										<input matInput type="text" formControlName="catalog">
+										<input matInput formControlName="catalog" [matAutocomplete]="catalogAutocomplete">
+										<mat-autocomplete #catalogAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.catalogDisplayFn">
+											<mat-option *ngFor="let catalog of filteredCatalog | async" [value]="catalog">{{ catalog.name }}</mat-option>
+										</mat-autocomplete>
 									</mat-form-field>
 								</div>
 								<div fxLayout="row" fxLayoutAlign="end top">
@@ -52,7 +55,7 @@
         <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
             <mat-icon>menu</mat-icon>
         </button>
-        <h2>Prezzi</h2>
+        <h2>Elenco listini prezzi</h2>
     </div>
     <!-- / HEADER -->
     <!-- CONTENT -->

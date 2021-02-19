@@ -30,7 +30,10 @@
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Seller</mat-label>
-										<input matInput type="text" formControlName="seller">
+										<input matInput formControlName="seller" [matAutocomplete]="sellerAutocomplete">
+										<mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+											<mat-option *ngFor="let seller of filteredSeller | async" [value]="seller">{{ seller.name }}</mat-option>
+										</mat-autocomplete>
 									</mat-form-field>
 								</div>
 								<div fxLayout="row" fxLayoutAlign="end top">
@@ -52,7 +55,7 @@
         <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
             <mat-icon>menu</mat-icon>
         </button>
-        <h2>Cataloghi</h2>
+        <h2>Elenco cataloghi</h2>
     </div>
     <!-- / HEADER -->
     <!-- CONTENT -->

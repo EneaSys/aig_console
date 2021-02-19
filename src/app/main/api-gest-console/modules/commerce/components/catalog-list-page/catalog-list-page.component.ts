@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { CatalogDTO, CatalogResourceService } from 'aig-commerce';
+import { CatalogDTO, CatalogResourceService, SellerDTO } from 'aig-commerce';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigCatalogNewUpdateDialogComponent } from '../catalog-new-update-dialog/catalog-new-update-dialog.component';
 
 @Component({
@@ -14,6 +17,8 @@ import { AigCatalogNewUpdateDialogComponent } from '../catalog-new-update-dialog
 export class AigCatalogListPageComponent extends GenericComponent {
 	constructor(
 		private catalogResourceService: CatalogResourceService,
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -21,7 +26,7 @@ export class AigCatalogListPageComponent extends GenericComponent {
 	) { super(aigGenericComponentService) }
 
 	loadPage() {
-		this.initCatalogSearch()
+		this.initCatalogSearch();
 		
 		this.showAllCatalog();
 	}
@@ -42,6 +47,8 @@ export class AigCatalogListPageComponent extends GenericComponent {
 	catalogPaginationSize: number;
 	catalogLength: number;
 
+	filteredSeller: Observable<SellerDTO[]>;
+
 	private initCatalogSearch() {
 		this.catalogPaginationSize = 10;
 
@@ -51,6 +58,8 @@ export class AigCatalogListPageComponent extends GenericComponent {
 			seller: [''],
 		});
 
+		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.catalogSearchFormGroup.controls['seller'].valueChanges);
+
 		this.catalogDC = ["id", "name", "seller", "buttons"];
 	}
 
@@ -58,6 +67,7 @@ export class AigCatalogListPageComponent extends GenericComponent {
 		this.catalogFilters = {
 			idEquals: null,
 			nameContains: null,
+			sellerIdEquals: null,
 			page: 0,
 			
 		}
@@ -68,6 +78,8 @@ export class AigCatalogListPageComponent extends GenericComponent {
 
 		this.catalogFilters.page = page;
 		this.catalogFilters.size = this.catalogPaginationSize;
+
+		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.catalogSearchFormGroup.controls['seller'].valueChanges);
 
 		try {
 			this.catalogLength = await this.catalogResourceService.countCatalogsUsingGET(this.catalogFilters).toPromise();
@@ -112,6 +124,10 @@ export class AigCatalogListPageComponent extends GenericComponent {
 		this.catalogFilters.idEquals = null;
 
 		this.catalogFilters.nameContains = this.catalogSearchFormGroup.controls.name.value;
+
+		if (this.catalogSearchFormGroup.controls.seller.value) {
+			this.catalogFilters.sellerIdEquals = this.catalogSearchFormGroup.controls.seller.value.id;
+		}
 
 		this.searchCatalog(0);
 	}

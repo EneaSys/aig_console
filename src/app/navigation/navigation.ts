@@ -95,7 +95,7 @@ export const navigation: FuseNavigation[] = [
             },
             {
                 id       : 'price-list',
-                title    : 'Prezzi',
+                title    : 'Listini prezzi',
                 type     : 'item',
                 icon     : 'euro_symbol',
                 url      : '/commerce/price-list',

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { CatalogDTO, PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-dialog/price-list-new-update-dialog.component';
 
 @Component({
@@ -14,6 +17,8 @@ import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-d
 export class AigPriceListListPageComponent extends GenericComponent {
 	constructor(
 		private priceListResourceService: PriceListResourceService,
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -42,6 +47,8 @@ export class AigPriceListListPageComponent extends GenericComponent {
 	priceListPaginationSize: number;
 	priceListLength: number;
 
+	filteredCatalog: Observable<CatalogDTO[]>;
+
 	private initPriceListSearch() {
 		this.priceListPaginationSize = 10;
 
@@ -51,13 +58,16 @@ export class AigPriceListListPageComponent extends GenericComponent {
             catalog: ['']
 		});
 
-		this.priceListDC = ["id", "name", "catalogId", "catalog", "buttons"];
+		this.filteredCatalog = this.commerceAutocompleteService.filterCatalog(this.priceListSearchFormGroup.controls['catalog'].valueChanges);
+
+		this.priceListDC = ["id", "name", "catalog", "seller", "buttons"];
 	}
 
 	private clearFiltersPriceList() {
 		this.priceListFilters = {
 			idEquals: null,
 			nameContains: null,
+			catalogIdEquals: null,
 			page: 0,
 			
 		}
@@ -68,6 +78,8 @@ export class AigPriceListListPageComponent extends GenericComponent {
 
 		this.priceListFilters.page = page;
 		this.priceListFilters.size = this.priceListPaginationSize;
+
+		this.filteredCatalog = this.commerceAutocompleteService.filterCatalog(this.priceListSearchFormGroup.controls['catalog'].valueChanges);
 
 		try {
 			this.priceListLength = await this.priceListResourceService.countPriceListsUsingGET(this.priceListFilters).toPromise();
@@ -112,6 +124,10 @@ export class AigPriceListListPageComponent extends GenericComponent {
 		this.priceListFilters.idEquals = null;
 
 		this.priceListFilters.nameContains = this.priceListSearchFormGroup.controls.name.value;
+
+		if (this.priceListSearchFormGroup.controls.catalog.value) {
+			this.priceListFilters.catalogIdEquals = this.priceListSearchFormGroup.controls.catalog.value.id;
+		}
 
 		this.searchPriceList(0);
 	}

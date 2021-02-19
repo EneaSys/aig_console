@@ -24,14 +24,14 @@
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
 		</ng-container>
 
-        <ng-container matColumnDef="catalogId">
-            <mat-header-cell *matHeaderCellDef>ID catalogo</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.catalogId }} </mat-cell>
-		</ng-container>
-
         <ng-container matColumnDef="catalog">
             <mat-header-cell *matHeaderCellDef>Catalogo</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.catalog.name }} </mat-cell>
+		</ng-container>
+
+        <ng-container matColumnDef="seller">
+            <mat-header-cell *matHeaderCellDef>Seller</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.catalog.seller.name }} </mat-cell>
 		</ng-container>
 
         <ng-container matColumnDef="buttons">
