@@ -5,7 +5,7 @@
             <mat-label>Inventory item</mat-label>
             <input formControlName="inventoryItem" matInput required [matAutocomplete]="inventoryItemAutocomplete">
             <mat-autocomplete #inventoryItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
-                <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItemCombination">{{ inventoryItem.name }}</mat-option>
+                <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItem">{{ inventoryItem.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>

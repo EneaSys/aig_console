@@ -51,12 +51,12 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <aig-inventory-item-list-table [displayColumns]="inventoryItemCombinationDC" [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError"></aig-inventory-item-list-table>
+            <aig-inventory-item-combination-list-table [displayColumns]="inventoryItemCombinationDC" [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError"></aig-inventory-item-combination-list-table>
 
             <mat-paginator #paginator [length]="inventoryItemCombinationLength" [pageIndex]="this.inventoryItemCombinationFilters.page" [pageSize]="this.inventoryItemCombinationPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="inventoryItemCombinationPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-inventoryItemCombination-button" (click)="newInventoryItemCombination()" aria-label="add inventoryItemCombination">
+            <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="newInventoryItemCombination()" aria-label="add inventoryItemCombination">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

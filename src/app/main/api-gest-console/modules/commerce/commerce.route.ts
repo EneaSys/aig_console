@@ -137,29 +137,6 @@ export const commerceRoute: Routes = [
                 ]
             },
             {
-                path: 'fiscal-transcaction-list-page',
-                children: [
-                    {
-                        path: '',
-                        pathMatch: 'full',
-                        redirectTo: 'list'
-                    },
-                    {
-                        path: 'list',
-                        component: AigFiscalTransactionListPageComponent,
-                        canActivate: [ AuthGuardService ],
-                    },
-                    {
-                        path: 'detail/:id',
-                        component: AigFiscalTransactionDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
-                        resolve: {
-                            fiscalTransaction: FiscalTransactionResolver,
-                        },
-                    },
-                ]
-            },
-            {
                 path: 'fiscal-transaction',
                 children: [
                     {
@@ -175,14 +152,6 @@ export const commerceRoute: Routes = [
                     {
                         path: 'detail/:id',
                         component: AigFiscalTransactionDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
-                        resolve: {
-                            fiscalTransaction: FiscalTransactionResolver,
-                        },
-                    },
-                    {
-                        path: 'detail/:id/validate',
-                        component: ValidateFiscalTransactionPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             fiscalTransaction: FiscalTransactionResolver,
@@ -228,7 +197,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'detail/:id',
-                        component: AigInventoryItemDetailPageComponent,
+                        component: AigInventoryItemDetailPageComponent, //QUESTA NON E' LA PAGINA DEI DETTAGLI DELLA COMBINAZIONE
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             inventoryItem: AigInventoryItemResolver,
