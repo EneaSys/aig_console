@@ -72,13 +72,13 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
         this.applicationModuleDTOs = null;
 		this.applicationModuleFilters.size = this.applicationModulePaginationSize;
 		try {
-			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET(this.applicationModuleFilters).toPromise();
+			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET().toPromise();
 			if(this.applicationModuleLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.applicationModuleDTOs = [];
 				return;
 			}
-			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET(this.applicationModuleFilters).toPromise();
+			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET().toPromise();
 		} catch(e) {
 			this.applicationModuleError = e;
 		}

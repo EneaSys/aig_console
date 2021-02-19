@@ -66,17 +66,19 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	}
 
 	private async searchEntityReference(page: number) {
-		this.entityReferenceFilters.page = page;
 		this.entityReferenceDTOs = null;
+
+		this.entityReferenceFilters.page = page;
 		this.entityReferenceFilters.size = this.entityReferencePaginationSize;
+		
 		try {
-			this.entityReferenceLength = await this.entityReferenceResourceService.countEntityReferencesUsingGET(this.entityReferenceFilters).toPromise();  
+			this.entityReferenceLength = await this.entityReferenceResourceService.countEntityReferencesUsingGET().toPromise();  
 			if(this.entityReferenceLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.entityReferenceDTOs = [];
 				return;
 			}
-			this.entityReferenceDTOs = await this.entityReferenceResourceService.getAllEntityReferencesUsingGET(this.entityReferenceFilters).toPromise();
+			this.entityReferenceDTOs = await this.entityReferenceResourceService.getAllEntityReferencesUsingGET().toPromise();
 		} catch (e) {
 			this.entityReferenceError = e;
 		}
