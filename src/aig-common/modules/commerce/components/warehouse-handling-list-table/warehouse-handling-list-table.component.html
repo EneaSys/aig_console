@@ -29,14 +29,12 @@
             <mat-cell *matCellDef="let e"> {{ e.warehouseHandlingType }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="warehouseToLoadName">
-            <mat-header-cell *matHeaderCellDef>Magazzino di Carico</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.warehouseToLoadName }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="warehouseToUnloadName">
-            <mat-header-cell *matHeaderCellDef>Magazzino di Scarico</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.warehouseToUnloadName }} </mat-cell>
+        <ng-container matColumnDef="warehouse">
+            <mat-header-cell *matHeaderCellDef>Magazzino</mat-header-cell>
+            <mat-cell *matCellDef="let e"> 
+                <span *ngIf="e.warehouseToLoad">Carico: {{ e.warehouseToLoad.name }}</span> <br>
+                <span *ngIf="e.warehouseToUnload">Scarico: {{ e.warehouseToUnload.name }}</span>
+            </mat-cell>
         </ng-container>
 
 

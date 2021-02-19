@@ -9,9 +9,9 @@
 
             <mat-label>Movimentazione</mat-label>
             <mat-radio-group formControlName="handlingType" required aria-label="Select an option">
-                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="1">Carico</mat-radio-button>
-                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="2">Scambio</mat-radio-button>
-                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="3">Scarico</mat-radio-button>
+                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="LOAD">Carico</mat-radio-button>
+                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="SHIFT">Scambio</mat-radio-button>
+                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="UNLOAD">Scarico</mat-radio-button>
             </mat-radio-group>
             <br>
             <div>
@@ -24,9 +24,9 @@
     </mat-step>
 
     <!--WAREHOUSE -->
-    <mat-step [completed]="dateRequirementIsCompleted" label="Magazzino">
-        <form [formGroup]="warehouseFormGroup">
-            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 3">
+    <mat-step [completed]="dateRequirementIsCompleted" label="Informazioni Movimentazione">
+        <form [formGroup]="warehouseDateFormGroup">
+            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 'UNLOAD'">
                 <mat-label>Seleziona Magazzino di Carico</mat-label>
                 <input formControlName="warehouseLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete"
                     placeholder="Magazzino di carico">
@@ -36,7 +36,7 @@
                         {{warehouse.name }}</mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 1">
+            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 'LOAD'">
                 <mat-label>Seleziona Magazzino di Scarico</mat-label>
                 <input matInput formControlName="warehouseUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete"
                     placeholder="Magazzino di scarico">
@@ -46,14 +46,24 @@
                         {{warehouse.name }}</mat-option>
                 </mat-autocomplete>
             </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Data</mat-label>
+                <input formControlName="date" matInput [matDatepicker]="picker" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+                <mat-error *ngIf="dateRequirementError != ''">{{ dateRequirementError }}</mat-error>
+            </div>
             <div>
                 <button mat-button matStepperPrevious>Indietro</button>
-                <button mat-button matStepperNext>Avanti</button>
+                <button mat-button (click)="checkDateRequirement(stepper)">Avanti</button>
             </div>
         </form>
     </mat-step>
 
-    <!--DATE -->
+    <!--DATE
     <mat-step [completed]="dateRequirementIsCompleted" label="Seleziona la data">
         <form [formGroup]="dateFormGroup">
             <mat-form-field>
@@ -70,7 +80,7 @@
                 <button mat-button (click)="checkDateRequirement(stepper)">Avanti</button>
             </div>
         </form>
-    </mat-step>
+    </mat-step> -->
 
     <!--QUANTITY AND INVENTORY ITEM COMBINATION -->
     <mat-step [stepControl]="quantityInventoryItemCombinationFormGroup" label="Seleziona la quantità e il prodotto">
@@ -90,12 +100,12 @@
                             {{inventoryItem.name }}</mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
-            </div>
-            <div class="form-button">
-                <button id="add-quantity-inventory-item-combination-form-button" mat-fab>
-                    <mat-icon>addcircle</mat-icon>
+                <button id="add-quantity-inventory-item-combination-form-button">
+                    <mat-icon>add</mat-icon>
                 </button>
             </div>
+            
+
             <div>
                 <mat-error *ngIf="quantityItemCombinationRequirementError != ''">{{
                     quantityItemCombinationRequirementError }}</mat-error>
@@ -110,7 +120,7 @@
     <!--DONE -->
     <mat-step>
         <ng-template matStepLabel>Riepilogo</ng-template>
-        <p>In data {{dateFormGroup.controls.date.value}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} di {{quantityInventoryItemCombinationFormGroup.controls.quantity.value}} {{quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value}} </p>
+        <p>In data {{warehouseDateFormGroup.controls.date.value}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} di {{quantityInventoryItemCombinationFormGroup.controls.quantity.value}} {{quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value}} </p>
         <div>
             <button mat-button matStepperPrevious>Indietro</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
@@ -124,8 +134,8 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!warehouseHandlingNewUpdateForm.value.id" mat-stroked-button color="primary"
+    <pre>{{ warehouseHandling | json }}</pre>
+    <button *ngIf="!handlingTypeFormGroup.value.id" mat-stroked-button color="primary"
         (click)="newWarehouseHandling()">Create
         New</button>
 </div>

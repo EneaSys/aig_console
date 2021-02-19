@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { InventoryItemCombinationDTO, WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { InventoryItemCombinationDTO, WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
@@ -42,6 +42,8 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
     filteredInventoryItem: Observable<InventoryItemCombinationDTO[]>;
 
+    warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[] = [];
+
     handlingTypeRequirementIsCompleted = false;
     dateRequirementIsCompleted = false;
     quantityItemCombinationRequirementIsCompleted = false;
@@ -49,7 +51,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     warehouseHandlingNewUpdateForm: FormGroup;
     isLinear = false;
     handlingTypeFormGroup: FormGroup;
-    warehouseFormGroup: FormGroup;
+    warehouseDateFormGroup: FormGroup;
     dateFormGroup: FormGroup;
     quantityInventoryItemCombinationFormGroup: FormGroup;
 
@@ -60,9 +62,10 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             id: [""],
             handlingType: ['', Validators.required]
         });
-        this.warehouseFormGroup = this._formBuilder.group({
-            warehouseLoad: ['',],
-            warehouseUnload: ['',]
+        this.warehouseDateFormGroup = this._formBuilder.group({
+            warehouseLoad: [''],
+            warehouseUnload: [''],
+            date: ['', Validators.required]
         });
         this.dateFormGroup = this._formBuilder.group({
             date: ['', Validators.required]
@@ -75,16 +78,16 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
 
 
-        this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseLoad'].valueChanges);
-        this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseFormGroup.controls['warehouseUnload'].valueChanges);
+        this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseLoad'].valueChanges);
+        this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseUnload'].valueChanges);
         this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItem(this.quantityInventoryItemCombinationFormGroup.controls['inventoryItemCombination'].valueChanges);
-        
+
         if (this.warehouseHandling != null) {
 
-            this.handlingTypeFormGroup.controls.handlingType.value.patchValue(this.warehouseHandling.warehouseHandlingType);
-            this.warehouseFormGroup.controls.warehouseLoad.value.patchValue(this.warehouseHandling.warehouseToLoadName);
-            this.warehouseFormGroup.controls.warehouseUnload.value.patchValue(this.warehouseHandling.warehouseToUnloadName);
-            this.dateFormGroup.controls.date.value.patchValue(this.warehouseHandling.date);
+            this.handlingTypeFormGroup.controls.handlingType.patchValue(this.warehouseHandling.warehouseHandlingType);
+            this.warehouseDateFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoadName);
+            this.warehouseDateFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnloadName);
+            this.dateFormGroup.controls.date.patchValue(this.warehouseHandling.date);
         }
     }
 
@@ -102,7 +105,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         }
 
         switch (handlingTypeValue) {
-            case '1': case '2': case '3':
+            case 'LOAD': case 'SHIFT': case 'UNLOAD':
                 this.handlingTypeRequirementIsCompleted = true;
                 this.handlingTypeRequirementError = "";
                 break;
@@ -122,7 +125,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     //CHECK DATE
     dateRequirementError;
     checkDateRequirement(stepper): void {
-        let dateValue = this.dateFormGroup.controls.date.value;
+        let dateValue = this.warehouseDateFormGroup.controls.date.value;
         this.dateRequirementIsCompleted = false;
 
         if (dateValue == "") {
@@ -152,7 +155,8 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
 
     addQuantityItemCombination() {
-
+        this.warehouseHandlingItemDTOs.push(this.quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value);
+        console.log(this.warehouseHandlingItemDTOs);
     }
 
 
@@ -165,10 +169,24 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             id: this.handlingTypeFormGroup.controls.id.value,
             warehouseHandlingType: this.handlingTypeFormGroup.controls.handlingType.value,
             date: this.dateFormGroup.controls.date.value,
-            warehouseToLoadName: this.warehouseFormGroup.controls.warehouseLoad.value,
-            warehouseToUnloadName: this.warehouseFormGroup.controls.warehouseUnload.value,
         }
 
+        switch (this.handlingTypeFormGroup.controls.handlingType.value) {
+            case 'LOAD':
+                warehouseHandling.warehouseToLoadId = this.warehouseDateFormGroup.controls.warehouseLoad.value.id;
+                break;
+            case 'UNLOAD':
+                warehouseHandling.warehouseToUnloadId = this.warehouseDateFormGroup.controls.warehouseUnload.value.id;
+                break;
+            case 'SHIFT':
+                warehouseHandling.warehouseToLoadId = this.warehouseDateFormGroup.controls.warehouseLoad.value.id;
+                warehouseHandling.warehouseToUnloadId = this.warehouseDateFormGroup.controls.warehouseUnload.value.id;
+                break;
+
+            default:
+
+                break;
+        }
         try {
             let postOrPut;
             if (warehouseHandling.id != 0) {

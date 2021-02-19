@@ -80,7 +80,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingSearchFormGroup.controls['warehouseToUnload'].valueChanges);
 
 
-		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","warehouseToLoadName","warehouseToUnloadName","buttons"];
+		this.warehouseHandlingDC = ["id","date","warehouseHandlingType","warehouse","buttons"];
 	}
 
 
