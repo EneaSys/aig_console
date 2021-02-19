@@ -78,7 +78,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Social: '${entityReference.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Entity Reference: '${entityReference.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });

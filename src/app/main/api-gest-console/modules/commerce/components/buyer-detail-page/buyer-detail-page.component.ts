@@ -7,8 +7,10 @@ import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO, V
 import { EventService } from 'aig-common/event-manager/event.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { HttpClient } from '@angular/common/http';
+import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
 
 @Component({
+    selector: 'aig-buyer-detail-page',
     templateUrl: './buyer-detail-page.component.html',
     styleUrls: ['./buyer-detail-page.component.scss']
 })
@@ -25,16 +27,20 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    buyer: BuyerDTO;
+    buyerDTO: BuyerDTO;
 
     loadPage() {
-        this.buyer = this.route.snapshot.data.buyer;
+        this.buyerDTO = this.route.snapshot.data.buyer;
         this.loadOther();
     }
 
     async reloadPage() {
-        this.buyer = await this.buyerResourceService.getBuyerUsingGET(this.buyer.id).toPromise();
+        this.buyerDTO = await this.buyerResourceService.getBuyerUsingGET(this.buyerDTO.id).toPromise();
         this.loadOther();
+    }
+
+    editBuyer(buyerDTO: BuyerDTO) {
+		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: buyerDTO } });
     }
 
     loadOther() {
@@ -49,7 +55,7 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         this.purchaseDTOs = null;
 
 		let filter = {
-			idEqual: this.buyer.id
+			idEqual: this.buyerDTO.id
 		};
         try {
             this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(filter).toPromise();
@@ -71,7 +77,7 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
         this.loadingBuyerValidationImage = true;
         try {
-            let validationImageReturnTO: ValidationImageReturnTO = await this.buyerResourceService.getBuyerValidationImageUsingGET(this.buyer.id).toPromise();
+            let validationImageReturnTO: ValidationImageReturnTO = await this.buyerResourceService.getBuyerValidationImageUsingGET(this.buyerDTO.id).toPromise();
             this.buyerValidationImageUrl = validationImageReturnTO.url;
         } catch(e) {
             this._snackBar.open(`Problema nel caricamento del documento.`, null, { duration: 10000, });
@@ -91,10 +97,10 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         this.loadingBuyerValidationImage = true;
 
         try {
-            let validationImageReturnTO: ValidationImageReturnTO = await this.buyerResourceService.putBuyerValidationImageUsingPUT(this.buyer.id).toPromise();
+            let validationImageReturnTO: ValidationImageReturnTO = await this.buyerResourceService.putBuyerValidationImageUsingPUT(this.buyerDTO.id).toPromise();
             await this.httpClient.put(validationImageReturnTO.url, this.buyerValidationImageFile).toPromise();
-            this.buyer.statusNote = "2";
-            await this.buyerResourceService.updateBuyerUsingPUT(this.buyer).toPromise();
+            this.buyerDTO.statusNote = "2";
+            await this.buyerResourceService.updateBuyerUsingPUT(this.buyerDTO).toPromise();
             this.eventService.reloadCurrentPage();
             this._snackBar.open(`Documento caricato con successo.`, null, { duration: 5000, });
         } catch(e) {
