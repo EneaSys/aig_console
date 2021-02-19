@@ -27,6 +27,9 @@ import { AigCatalogDetailPageComponent } from './components/catalog-detail-page/
 import { AigCatalogResolver } from 'aig-common/modules/commerce/resolver/catalog.resolver';
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigPriceListListPageComponent } from './components/price-list-list-page/price-list-list-page.component';
+import { AigPriceListDetailPageComponent } from './components/price-list-detail-page/price-list-detail-page.component';
+import { AigPriceListResolver } from 'aig-common/modules/commerce/resolver/price-list.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -273,6 +276,29 @@ export const commerceRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             catalog: AigCatalogResolver,
+                        },
+                    }
+                ]
+            },
+            {
+                path: 'price-list',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigPriceListListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    {
+                        path: 'detail/:id',
+                        component: AigPriceListDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            priceList: AigPriceListResolver,
                         },
                     }
                 ]

@@ -93,6 +93,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/buyer',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'price-list',
+                title    : 'Prezzi',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/price-list',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 	{

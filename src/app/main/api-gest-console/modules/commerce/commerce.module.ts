@@ -52,6 +52,9 @@ import { AigCatalogListPageComponent } from './components/catalog-list-page/cata
 import { AigCatalogNewUpdateDialogComponent } from './components/catalog-new-update-dialog/catalog-new-update-dialog.component';
 import { AigCatalogDetailPageComponent } from './components/catalog-detail-page/catalog-detail-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigPriceListListPageComponent } from './components/price-list-list-page/price-list-list-page.component';
+import { AigPriceListNewUpdateDialogComponent } from './components/price-list-new-update-dialog/price-list-new-update-dialog.component';
+import { AigPriceListDetailPageComponent } from './components/price-list-detail-page/price-list-detail-page.component';
 
 
 @NgModule({
@@ -120,6 +123,9 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
         AigFiscalTransactionListPageComponent,
         AigFiscalTransactionNewUpdateModalComponent,
         AigInventoryItemCombinationListPageComponent,
+        AigPriceListListPageComponent,
+        AigPriceListDetailPageComponent,
+        AigPriceListNewUpdateDialogComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
@@ -132,6 +138,7 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
         AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
         AigCatalogNewUpdateDialogComponent,
+        AigPriceListNewUpdateDialogComponent,
     ],
     exports: [],
 })
