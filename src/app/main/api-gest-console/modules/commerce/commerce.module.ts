@@ -46,6 +46,11 @@ import { AigProducerNewUpdateModalComponent } from './components/producer-new-up
 import { AigProducerDetailPageComponent } from './components/producer-detail-page/producer-detail-page.component';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigSellerDetailPageComponent } from './components/seller-detail-page/seller-detail-page.component';
+import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
+import { AigFiscalTransactionNewUpdateModalComponent } from './components/fiscal-transaction-new-update-modal/fiscal-transaction-new-update-modal.component';
+import { AigInventoryItemCombinationNewUpdateDialogComponent } from './components/inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
+import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigBuyerNewUpdateModalComponent } from './components/buyer-new-update-modal/buyer-new-update-modal.component';
 
 
 @NgModule({
@@ -90,32 +95,41 @@ import { AigSellerDetailPageComponent } from './components/seller-detail-page/se
         AigSellerNewUpdateDialogComponent,
         AigPurchaseDetailPageComponent,
         AigFiscalTransactionDetailPageComponent,
-        AigBuyerDetailPageComponent,
         ValidateBuyerDialogComponent,
         ValidateBuyerPageComponent,
 		ValidateFiscalTransactionPageComponent,
         AigBuyerListPageComponent,
+        AigBuyerDetailPageComponent,
+        AigBuyerNewUpdateModalComponent,
+        AigWarehouseListPageComponent,
+        AigWarehouseNewUpdateModalComponent,
+        AigWarehouseDetailPageComponent,
         AigInventoryItemListPageComponent,
         AigProducerListPageComponent,
         AigInventoryCategoryListPageComponent,
         AigInventoryCategoryDetailPageComponent,
         AigInventoryCategoryNewUpdateModalComponent,
-        AigWarehouseListPageComponent,
-        AigWarehouseNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
         AigInventoryItemDetailPageComponent,
+        AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
         AigProducerDetailPageComponent,
         AigWarehouseDetailPageComponent,
         AigSellerDetailPageComponent,
+        AigFiscalTransactionListPageComponent,
+        AigFiscalTransactionNewUpdateModalComponent,
+        AigInventoryItemCombinationListPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigWarehouseNewUpdateModalComponent,
+        AigBuyerNewUpdateModalComponent,
+        AigFiscalTransactionNewUpdateModalComponent,
         AigSellerNewUpdateDialogComponent,
         ValidateBuyerDialogComponent,
         AigInventoryCategoryNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
+        AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
     ],
     exports: [],

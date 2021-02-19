@@ -1,0 +1,40 @@
+<form *ngIf="step.form" [formGroup]="inventoryItemCombinationNewUpdateForm" (ngSubmit)="submit()">
+
+	<div *ngIf="!inventoryItemCombination.inventoryItem" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Inventory item</mat-label>
+            <input formControlName="inventoryItem" matInput required [matAutocomplete]="inventoryItemAutocomplete">
+            <mat-autocomplete #inventoryItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
+                <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItem">{{ inventoryItem.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Combination Code</mat-label>
+            <input formControlName="combinationCode" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!inventoryItemCombination.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="inventoryItemCombination.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ inventoryItemCombinationNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!inventoryItemCombinationNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItemCombination()">Crea nuova</button>
+</div>

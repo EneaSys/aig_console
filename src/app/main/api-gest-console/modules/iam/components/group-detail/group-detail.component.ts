@@ -24,10 +24,10 @@ export class AigGroupDetailComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    memberOfDisplayedColumns: string[] = ['name', 'buttons'];
-    roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
-    userDisplayedColumns: string[] = ['usercode', 'email', 'type', 'buttons'];
-    membersDisplayedColumns: string[] = ['id', 'name', 'buttons'];
+    memberOfDisplayColumns: string[] = ['name', 'buttons'];
+    roleDisplayColumns: string[] = ['id', 'type', 'name', 'buttons'];
+    userDisplayColumns: string[] = ['usercode', 'email', 'type', 'buttons'];
+    membersDisplayColumns: string[] = ['id', 'name', 'buttons'];
     
     memberOfButtonConfig = {
         details: true,

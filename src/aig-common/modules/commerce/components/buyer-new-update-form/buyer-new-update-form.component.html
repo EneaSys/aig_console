@@ -1,0 +1,47 @@
+<form *ngIf="step.form" [formGroup]="buyerNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo Code</mat-label>
+            <input formControlName="eopooCode" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Confirmation</mat-label>
+            <input formControlName="confirmation" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Status Note</mat-label>
+            <input formControlName="statusNote" matInput>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="!buyer.seller" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Seller</mat-label>
+            <input formControlName="seller" matInput required [matAutocomplete]="sellerAutocomplete">
+            <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+                <mat-option *ngFor="let seller of filteredSellers | async" [value]="seller">{{ seller.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ buyerNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!buyerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newBuyer()">Create New</button>
+</div>

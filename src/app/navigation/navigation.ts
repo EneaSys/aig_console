@@ -96,7 +96,7 @@ export const navigation: FuseNavigation[] = [
         ]
     },
 	{
-        id       : 'wharehouse',
+        id       : 'warehouse',
         title    : 'Magazzino',
         type     : 'group',
         children : [
@@ -141,4 +141,38 @@ export const navigation: FuseNavigation[] = [
 			},
         ]
     },
+    {
+        id       : 'fiscal-transaction',
+        title    : 'Transazioni Fiscali',
+        type     : 'group',
+        children : [
+    {
+        id       : 'fiscal-transaction-list-page',
+        title    : 'Transazioni Fiscali',
+        type     : 'item',
+        icon     : 'how_to_reg',
+        url      : '/commerce/fiscal-transaction',
+        permission: ['c6e.admin'],
+    },
+        ]
+    },
+    {
+        id       : 'inventory-item-combination',
+        title    : 'Combinazioni categorie inventario',
+        type     : 'group',
+        children : [
+    {
+        id       : 'inventory-item-combination-list-page',
+        title    : 'Combinazioni categorie inventario',
+        type     : 'item',
+        icon     : 'compare_arrows',
+        url      : '/commerce/inventory-item-combination',
+        permission: ['c6e.admin'],
+    },
+        ]
+    },
+
+
 ];
+
+

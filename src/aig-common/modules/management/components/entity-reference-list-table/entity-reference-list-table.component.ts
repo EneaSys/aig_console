@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'aig-entity-reference-list-table',
@@ -13,7 +14,9 @@ export class AigEntityReferenceListTableComponent implements OnInit {
 	@Input()
 	error: any;
 	
-	constructor() { }
+	constructor(
+		private router: Router,
+	) { }
 
 	ngOnInit(): void { }
 }

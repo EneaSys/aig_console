@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InventoryCategoryResourceService, ProducerResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
+import { InventoryCategoryResourceService, ProducerResourceService, InventoryItemResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -11,6 +11,7 @@ export class AigCommerceAutocompleteService {
 		private producerResourceService: ProducerResourceService,
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
         private warehouseResourceService: WarehouseResourceService,
+        private inventoryItemResourceService: InventoryItemResourceService,
         private sellerResourceService: SellerResourceService,        
 	) {}
 
@@ -45,8 +46,8 @@ export class AigCommerceAutocompleteService {
             })
         );
     }
-  
-    warehouseCategory(observable: Observable<any>) {
+
+    filterInventoryItem(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
@@ -54,7 +55,7 @@ export class AigCommerceAutocompleteService {
 					let filter = {
 						nameContains: value
 					};
-                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+                    return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);
                 } else {
                     return of([]);
                 }
@@ -77,4 +78,21 @@ export class AigCommerceAutocompleteService {
             })
         );
     }
+  
+    warehouseCategory(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
 }

@@ -24,9 +24,9 @@ export class AigUserDetailComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    memberOfDisplayedColumns: string[] = ['id', 'name', 'buttons'];
-    roleDisplayedColumns: string[] = ['id', 'type', 'name', 'buttons'];
-    associatedEopooDisplayedColumns: string[] = ['id', 'name', 'buttons'];
+    memberOfDisplayColumns: string[] = ['id', 'name', 'buttons'];
+    roleDisplayColumns: string[] = ['id', 'type', 'name', 'buttons'];
+    associatedEopooDisplayColumns: string[] = ['id', 'name', 'buttons'];
 
     memberOfButtonConfig = {
         details: true,

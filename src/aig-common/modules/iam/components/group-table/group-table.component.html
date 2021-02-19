@@ -23,17 +23,14 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent"
-                    (click)="groupDetails(e.id)">Details</button>
-                <button *ngIf="buttonConfig.removeGroupFromGroup != null" class="mr-8" mat-stroked-button color="accent"
-                    (click)="removeGroupFromGroup(e)">Remove</button>
-                <button *ngIf="buttonConfig.removeUserFromGroup != null" class="mr-8" mat-stroked-button color="accent"
-                    (click)="removeUserFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.details != false" class="mr-8" mat-stroked-button color="accent" (click)="groupDetails(e.id)">Details</button>
+                <button *ngIf="buttonConfig.removeGroupFromGroup != null" class="mr-8" mat-stroked-button color="accent" (click)="removeGroupFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeUserFromGroup != null" class="mr-8" mat-stroked-button color="accent" (click)="removeUserFromGroup(e)">Remove</button>
             </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
 
     </mat-table>
 
