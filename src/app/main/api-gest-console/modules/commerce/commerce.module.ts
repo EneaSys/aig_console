@@ -49,6 +49,10 @@ import { AigWarehouseHandlingListPageComponent } from './components/warehouse-ha
 import { AigWarehouseHandlingNewUpdateModalComponent } from './components/warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
 import { AigWarehouseManagerPageComponent } from './components/warehouse-manager-page/warehouse-manager-page.component';
+import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
+import { AigFiscalTransactionNewUpdateModalComponent } from './components/fiscal-transaction-new-update-modal/fiscal-transaction-new-update-modal.component';
+import { AigInventoryItemCombinationNewUpdateDialogComponent } from './components/inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
+import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
 
 
 @NgModule({
@@ -109,6 +113,7 @@ import { AigWarehouseManagerPageComponent } from './components/warehouse-manager
         AigWarehouseNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
         AigInventoryItemDetailPageComponent,
+        AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
         AigProducerDetailPageComponent,
         AigWarehouseDetailPageComponent,
@@ -117,14 +122,19 @@ import { AigWarehouseManagerPageComponent } from './components/warehouse-manager
         AigWarehouseHandlingDetailPageComponent,
         AigWarehouseManagerPageComponent,
 
+        AigFiscalTransactionListPageComponent,
+        AigFiscalTransactionNewUpdateModalComponent,
+        AigInventoryItemCombinationListPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigWarehouseNewUpdateModalComponent,
+        AigFiscalTransactionNewUpdateModalComponent,
         AigSellerNewUpdateDialogComponent,
         ValidateBuyerDialogComponent,
         AigInventoryCategoryNewUpdateModalComponent,
         AigInventoryItemDialogComponent,
+        AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
         AigWarehouseHandlingNewUpdateModalComponent,
     ],

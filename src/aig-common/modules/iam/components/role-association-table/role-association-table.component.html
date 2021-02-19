@@ -39,22 +39,18 @@
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <div *ngIf="buttonConfig.details != false">
-                    <button *ngIf="e.customRoleId != null" class="mr-8" mat-stroked-button color="accent"
-                        (click)="detailCustomRole(e)">Details</button>
-                    <button *ngIf="e.roleCode != null && e.systemRole != null" class="mr-8" mat-stroked-button color="accent"
-                        (click)="detailSystemRole(e)">Details</button>
+                    <button *ngIf="e.customRoleId != null" class="mr-8" mat-stroked-button color="accent" (click)="detailCustomRole(e)">Details</button>
+                    <button *ngIf="e.roleCode != null && e.systemRole != null" class="mr-8" mat-stroked-button color="accent" (click)="detailSystemRole(e)">Details</button>
                 </div>
 
-                <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent"
-                    (click)="removeFromGroup(e)">Remove</button>
-                <button *ngIf="buttonConfig.removeFromUser != null" class="mr-8" mat-stroked-button color="accent"
-                    (click)="removeFromUser(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeFromGroup != null" class="mr-8" mat-stroked-button color="accent" (click)="removeFromGroup(e)">Remove</button>
+                <button *ngIf="buttonConfig.removeFromUser != null" class="mr-8" mat-stroked-button color="accent" (click)="removeFromUser(e)">Remove</button>
 
             </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
 
     </mat-table>
 

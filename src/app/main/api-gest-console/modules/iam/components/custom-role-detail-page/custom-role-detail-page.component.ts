@@ -19,9 +19,9 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    permissionsCustomDisplayedColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
-    usersDisplayedColumns: string[] = ['usercode', 'email', 'type'];
-    groupsDisplayedColumns: string[] = ['id', 'name'];
+    permissionsCustomDisplayColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
+    usersDisplayColumns: string[] = ['usercode', 'email', 'type'];
+    groupsDisplayColumns: string[] = ['id', 'name'];
     
     permissionButtonConfig: any;
 

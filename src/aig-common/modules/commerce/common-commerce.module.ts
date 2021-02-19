@@ -45,6 +45,9 @@ import { AigWarehouseHandlingListTableComponent } from './components/warehouse-h
 import { MatRadioModule } from '@angular/material';
 import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
 import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
+import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
+import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
+import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -86,6 +89,8 @@ import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.reso
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
+        AigInventoryItemCombinationListTableComponent,
+        AigInventoryItemCombinationNewUpdateFormComponent,
         AigProducerListTableComponent,
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,
@@ -93,6 +98,7 @@ import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.reso
         AigProducerNewUpdateFormComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent
         
     ],
     providers: [
@@ -118,6 +124,8 @@ import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.reso
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
+        AigInventoryItemCombinationListTableComponent,
+        AigInventoryItemCombinationNewUpdateFormComponent,
         AigProducerListTableComponent,
 
         AigWarehouseListTableComponent,
@@ -127,6 +135,8 @@ import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.reso
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
                 
+        AigFiscalTransactionNewUpdateFormComponent
+        
     ],
 })
 export class AigCommonCommerceModule {}

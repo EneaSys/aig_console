@@ -21,7 +21,7 @@ export class AigEopooListPageComponent extends GenericComponent {
 
     searchForm: FormGroup;
     
-    displayedColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
+    displayColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
     eopooDTOs: EopooDTO[];
     error: any;
 
