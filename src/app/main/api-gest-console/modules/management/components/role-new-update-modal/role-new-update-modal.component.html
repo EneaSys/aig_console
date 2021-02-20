@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">Add role</span>
+            <span *ngIf="data.role.id" class="title dialog-title">Update Role</span>
+            <span *ngIf="!data.role.id" class="title dialog-title">Create New Role</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -9,6 +10,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-role-new-form></aig-role-new-form>
+        <aig-role-new-update-form [entityReference]="data.role"></aig-role-new-update-form>
     </div>
 </div>

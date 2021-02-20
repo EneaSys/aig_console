@@ -8,17 +8,54 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 @Component({
+    selector: 'aig-role-list-page',
     templateUrl: './role-list-page.component.html',
     styleUrls: ['./role-list-page.component.scss']
 })
 export class AigRoleListPageComponent extends GenericComponent {
     constructor(
         private roleResourceService: RoleResourceService,
+        private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
         private eventService: EventService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    
+	loadPage() {
+		this.roleSearch();
+
+		this.showAllrole();
+	}
+
+	reloadPage() {
+		this.showAllrole();
+	}
+
+    //			---- TABLE AND SEARCH SECTION ----
+
+    roleSearchFormGroup: FormGroup;
+    rolePaginationSize: number;
+    roleFilters: any;
+
+	roleLength: number;
+	roleDTOs: RoleDTO[];
+	roleError: any;
+
+	roleDC: string[];
+
+    private roleSearch() {
+		this.roleDC = ["id", "name", 'roleCode','permission', 'buttons'];
+
+		this.rolePaginationSize = 10;
+		
+
+		this.roleSearchFormGroup = this._formBuilder.group({
+			id: [''],
+			name: [''],
+		});
+	}
     roleSystemDisplayedColumns: string[] = ['id', 'name', 'roleCode', 'buttons'];
     roleSystemDataSource: Observable<RoleDTO[]>;
 
@@ -30,3 +67,4 @@ export class AigRoleListPageComponent extends GenericComponent {
         this.dialog.open(AigRoleNewDialogComponent);
     }
 }
+

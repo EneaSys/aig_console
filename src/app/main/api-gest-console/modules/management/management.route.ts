@@ -62,7 +62,7 @@ export const managementRoute: Routes = [
                         component: AigRoleDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            role: RoleSystemResolver,
+                            role: AigRoleSystemResolver,
                         },
                     },
                 ]
@@ -79,6 +79,14 @@ export const managementRoute: Routes = [
                         path: 'list',
                         component: AigPermissionListPageComponent,
                         canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigPermissionListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            role: AigPermissionSystemResolver,
+                        },
                     },
                 ]
             },
@@ -100,7 +108,7 @@ export const managementRoute: Routes = [
                         component: AigContextModuleDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            contextModule: ContextModuleResolver,
+                            contextModule: AigContextModuleResolver,
                         },
                     },    
                 ]
