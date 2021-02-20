@@ -21,22 +21,22 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
     };
    
     constructor(
-        private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private contextModuleResourceService: ContextModuleResourceService,
+        private _formBuilder: FormBuilder,
         private eventService: EventService,
-        private autocompleteFilterService: AigManagementAutocompleteFilterService,
-        public autocompleteDisplayService: AigManagementAutocompleteFunctionService,
-    ) { }
+        private _fuseProgressBarService: FuseProgressBarService,       
+        private contextModuleResourceService: ContextModuleResourceService,
+        private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
+        public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
+  ) { }
 
     @Input()
     contextModule: ContextModuleDTO;
 
     contextModuleNewUpdateForm: FormGroup;
 
-    filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
-    filteredTenantContext: Observable<TenantContextDTO[]>;
+    filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
+    filteredTenantContexts: Observable<TenantContextDTO[]>;
 
     ngOnInit(): void {
         this.contextModuleNewUpdateForm = this._formBuilder.group({
@@ -51,8 +51,8 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
         }
     
 
-    this.filteredApplicationModule = this.autocompleteFilterService.applicationModuleFilter(this.contextModuleNewUpdateForm.controls['applicationModule'].valueChanges);
-    this.filteredTenantContext = this.autocompleteFilterService.tenantContextFilter(this.contextModuleNewUpdateForm.controls['tenantContext'].valueChanges);
+    this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.contextModuleNewUpdateForm.controls['applicationModule'].valueChanges);
+    this.filteredTenantContexts = this.managementAutocompleteFilterService.tenantContextFilter(this.contextModuleNewUpdateForm.controls['tenantContext'].valueChanges);
 
 }
     
@@ -63,8 +63,15 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let contextModule: ContextModuleDTO = this.contextModuleNewUpdateForm.value;
-
+        let contextModule: ContextModuleDTO = {
+            id: this.contextModuleNewUpdateForm.value.id,
+            active: this.contextModuleNewUpdateForm.value.active,
+            moduleId: this.contextModuleNewUpdateForm.value.module.id,
+            moduleName: this.contextModuleNewUpdateForm.value.module.name,
+            contextId: this.contextModuleNewUpdateForm.value.context.id,
+            contextName: this.contextModuleNewUpdateForm.value.context.name,
+         
+        }; 
         try {
             let postOrPut;
             if ( contextModule.id != 0) {
@@ -76,10 +83,10 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp ContextModule: '${contextModule.active}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`ContextModule: '${contextModule.active}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+        } catch (e) {
+            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();

@@ -63,7 +63,7 @@ export class AigTenantContextNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Tenant Context: '${tenantContext.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Tenant Context: '${tenantContext.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });

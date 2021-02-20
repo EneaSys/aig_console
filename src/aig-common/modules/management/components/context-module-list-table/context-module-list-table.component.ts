@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,13 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AigContextModuleListTableComponent implements OnInit {
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
     @Input()
     error: any;
 
-    constructor(){ }
+    constructor(
+        private router: Router,
+    ){ }
 
     ngOnInit(): void {}
 

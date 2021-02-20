@@ -51,7 +51,7 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
         let applicationModule: ApplicationModuleDTO = this.applicationModuleNewUpdateForm.value;
 
         try {
-            let postOrPut: string;
+            let postOrPut;
             if (applicationModule.id != 0) {
                 await this.applicationModuleResourceService.updateApplicationModuleUsingPUT(applicationModule).toPromise();
                 postOrPut = "updated";
@@ -61,6 +61,7 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
 
+            this._snackBar.open(`Application Module: '${applicationModule.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
@@ -73,10 +74,10 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(stepToShow: string){
+    private setStep(step: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[stepToShow] = true;
+        this.step[step] = true;
     }
 }
