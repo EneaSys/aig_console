@@ -9,7 +9,7 @@ export class AigTenantContextResolver implements Resolve<Observable<TenantContex
     constructor(private tenantContextResourceService: TenantContextResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
-        var idTenantContex: number = +route.paramMap.get('id');
-        return this.tenantContextResourceService.getTenantContextUsingGET(idTenantContex);
+        var idTenantContext: number = +route.paramMap.get('id');
+        return this.tenantContextResourceService.getTenantContextUsingGET(idTenantContext);
     }
 }

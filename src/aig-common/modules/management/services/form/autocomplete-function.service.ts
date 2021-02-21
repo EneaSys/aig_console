@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { RoleDTO, PermissionDTO, ApplicationModuleDTO, TenantContextDTO, EntityReferenceDTO } from 'api-gest';
 
 
-@Injectable()
+@Injectable({
+        providedIn: 'root'
+})
 export class AigManagementAutocompleteFunctionService {
     
     roleDisplayFn(role?: RoleDTO): string | undefined {

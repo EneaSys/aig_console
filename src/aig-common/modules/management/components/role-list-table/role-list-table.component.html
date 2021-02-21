@@ -20,6 +20,11 @@
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Permission </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.permission }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="roleCode">
             <mat-header-cell *matHeaderCellDef> Role Code </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.roleCode }} </mat-cell>
@@ -28,12 +33,12 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button class="mr-8" mat-stroked-button color="accent" (click)="detailSystemRole(e.id)">Details</button>
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/m8t/role/detail/' + e.id">Details</button>
             </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
 
     </mat-table>
 

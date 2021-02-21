@@ -48,14 +48,11 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
         
         if (this.contextModule != null) {
             this.contextModuleNewUpdateForm.patchValue(this.contextModule);
-        }
-    
+        }    
 
-    this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.contextModuleNewUpdateForm.controls['applicationModule'].valueChanges);
-    this.filteredTenantContexts = this.managementAutocompleteFilterService.tenantContextFilter(this.contextModuleNewUpdateForm.controls['tenantContext'].valueChanges);
-
-}
-    
+        this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.contextModuleNewUpdateForm.controls['applicationModule'].valueChanges);
+        this.filteredTenantContexts = this.managementAutocompleteFilterService.tenantContextFilter(this.contextModuleNewUpdateForm.controls['tenantContext'].valueChanges);
+    }    
     async submit() {
         if (!this.contextModuleNewUpdateForm.valid) {
             return;
@@ -93,7 +90,7 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
     }
 
 
-    newSocial() {
+    newContextModule() {
         this.setStep("form");
     }
 
