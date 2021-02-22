@@ -49,8 +49,6 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	
 		this.entityReferenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
-            moduleId: [''],
-            moduleName: [''],
 			name: [''],
 		});
 
@@ -66,19 +64,20 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	}
 
 	private async searchEntityReference(page: number) {
-		this.entityReferenceDTOs = null;
 
+		this.entityReferenceDTOs = null;
 		this.entityReferenceFilters.page = page;
 		this.entityReferenceFilters.size = this.entityReferencePaginationSize;
 		
 		try {
-			this.entityReferenceLength = await this.entityReferenceResourceService.countEntityReferencesUsingGET().toPromise();  
+			this.entityReferenceLength = await this.entityReferenceResourceService.countEntityReferencesUsingGET(this.entityReferenceFilters).toPromise();  
+			
 			if(this.entityReferenceLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.entityReferenceDTOs = [];
 				return;
 			}
-			this.entityReferenceDTOs = await this.entityReferenceResourceService.getAllEntityReferencesUsingGET().toPromise();
+			this.entityReferenceDTOs = await this.entityReferenceResourceService.getAllEntityReferencesUsingGET(this.entityReferenceFilters).toPromise();
 		} catch (e) {
 			this.entityReferenceError = e;
 		}

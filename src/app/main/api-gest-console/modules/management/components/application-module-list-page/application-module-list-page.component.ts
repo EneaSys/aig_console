@@ -68,17 +68,20 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 	}
 
 	private async searchApplicationModule(page: number) {
-		this.applicationModuleFilters.page = page;
+		
         this.applicationModuleDTOs = null;
+		this.applicationModuleFilters.page = page;
 		this.applicationModuleFilters.size = this.applicationModulePaginationSize;
+		
 		try {
-			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET().toPromise();
+			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET(this.applicationModuleFilters).toPromise();
+			
 			if(this.applicationModuleLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.applicationModuleDTOs = [];
 				return;
 			}
-			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET().toPromise();
+			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET(this.applicationModuleFilters).toPromise();
 		} catch(e) {
 			this.applicationModuleError = e;
 		}
