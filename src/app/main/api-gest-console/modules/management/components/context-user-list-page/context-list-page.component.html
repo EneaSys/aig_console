@@ -8,9 +8,9 @@
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
                             <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllPermission()">Resetta filtri</button>
+                                <button mat-raised-button (click)="showAllContextUser()">Resetta filtri</button>
                             </div>
-                            <form [formGroup]="permissionSearchFormGroup" (ngSubmit)="permissionSearchWithFilter()" class="p-8">
+                            <form [formGroup]="contextUserSearchFormGroup" (ngSubmit)="contextUserSearchWithFilter()" class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
@@ -19,14 +19,8 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Name</mat-label>
-                                        <input matInput type="text" formControlName="name">
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Permission Code</mat-label>
-                                        <input matInput type="text" formControlName="permissionCode">
+                                        <mat-label>User Code</mat-label>
+                                        <input matInput type="text" formControlName="userCode">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -50,18 +44,18 @@
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
-            <h2>Permission</h2>
+            <h2>Context User</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
 
-            <aig-permission-list-table [displayColumns]="permissionDC" [dataSource]="permissionDTOs" [error]="permissionError"></aig-permission-list-table>
+            <aig-context-user-list-table [displayColumns]="contextUserDC" [dataSource]="contextUserDTOs" [error]="contextUserError"></aig-context-user-list-table>
 
-            <mat-paginator #paginator [length]="permissionLength" [pageSize]="this.permissionPaginationSize" [pageIndex]="this.permissionFilters.page" [pageSizeOptions]="[10, 20, 50]" (page)="permissionPaginationEvent($event)">
+            <mat-paginator #paginator [length]="contextUserLength" [pageSize]="this.contextUserPaginationSize" [pageIndex]="this.contextUserFilters.page" [pageSizeOptions]="[10, 20, 50]" (page)="contextUserPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-permission-button" (click)="newPermission()" aria-label="add permission">
+            <button mat-fab class="accent" id="add-context-user-button" (click)="newContextUser()" aria-label="add context-user">
    				 <mat-icon>add</mat-icon>
 			</button>
         </div>

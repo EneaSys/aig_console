@@ -1,13 +1,12 @@
-<div id="aig-permission-detail-page" class="page-layout blank">
+<div id="aig-context-user-detail-page" class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ permissionDTO | json }}</pre>
+                <pre> {{ contextUserDTO | json }} </pre>
 
-                <button mat-stroked-button color="primary" (click)="editPermission(permissionDTO)">Edit</button>
-
+                <button mat-stroked-button color="primary" (click)="editContextUser(contextUserDTO)">Edit</button>
             </div>
         </div>
     </div>

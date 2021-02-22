@@ -30,6 +30,7 @@ export class AigPermissionDetailPageComponent extends GenericComponent {
 	}
 	
     editPermission(permissionDTO: PermissionDTO) {
+		
 		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { permission: permissionDTO } });
     }
 }
