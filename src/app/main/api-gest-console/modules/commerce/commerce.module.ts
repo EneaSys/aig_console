@@ -55,6 +55,7 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
 import { AigPriceListListPageComponent } from './components/price-list-list-page/price-list-list-page.component';
 import { AigPriceListNewUpdateDialogComponent } from './components/price-list-new-update-dialog/price-list-new-update-dialog.component';
 import { AigPriceListDetailPageComponent } from './components/price-list-detail-page/price-list-detail-page.component';
+import { AigCatalogManagerPageComponent } from './components/catalog-manager-page/catalog-manager-page.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { AigPriceListDetailPageComponent } from './components/price-list-detail-
         AigCatalogListPageComponent,
         AigCatalogDetailPageComponent,
         AigCatalogNewUpdateDialogComponent,
+        AigCatalogManagerPageComponent,
         AigFiscalTransactionListPageComponent,
         AigFiscalTransactionNewUpdateModalComponent,
         AigInventoryItemCombinationListPageComponent,

@@ -1,0 +1,61 @@
+<div id="aig-seller-manager" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar *ngIf="selectedCatalog">
+
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di cataloghi</span>
+
+            </div>
+
+            <div fxLayout="row">
+
+                <div class="selected-seller">{{ selectedCatalog.name }}</div>
+                <button mat-icon-button class="seller-selector" [matMenuTriggerFor]="catalogMenu"
+                    aria-label="Select catalog">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+
+                <mat-menu #catalogMenu="matMenu">
+                    <div *ngFor="let catalogDTO of catalogDTOs">
+                        <button mat-menu-item (click)="setCatalog(catalogDTO)">
+                            <span *ngIf="catalogDTO == selectedCatalog">-</span>
+                            <span> {{ catalogDTO.name }} </span>
+                        </button>
+                    </div>
+                </mat-menu>
+
+            </div>
+        </div>
+
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <mat-tab-group dynamicHeight>
+
+                <mat-tab label="Gestione prezzi catalogo">
+
+                    <pre> {{ selectedCatalog.id | json }} </pre>
+
+                </mat-tab>
+
+                <mat-tab label="List price">
+
+                    <aig-price-list-table [displayColumns]="priceListDC" [dataSource]="priceListDTOs"
+                        [error]="priceListError"></aig-price-list-table>
+
+                </mat-tab>
+
+            </mat-tab-group>
+
+        </div>
+
+    </div>
+
+</div>

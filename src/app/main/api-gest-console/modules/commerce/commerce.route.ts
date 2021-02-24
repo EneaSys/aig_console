@@ -30,6 +30,7 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
 import { AigPriceListListPageComponent } from './components/price-list-list-page/price-list-list-page.component';
 import { AigPriceListDetailPageComponent } from './components/price-list-detail-page/price-list-detail-page.component';
 import { AigPriceListResolver } from 'aig-common/modules/commerce/resolver/price-list.resolver';
+import { AigCatalogManagerPageComponent } from './components/catalog-manager-page/catalog-manager-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -301,6 +302,29 @@ export const commerceRoute: Routes = [
                             priceList: AigPriceListResolver,
                         },
                     }
+                ]
+            },
+            {
+                path: 'catalog-manager',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigCatalogManagerPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    /*{
+                        path: 'detail/:id',
+                        component: AigPriceListDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            priceList: AigPriceListResolver,
+                        },
+                    }*/
                 ]
             },
         ]

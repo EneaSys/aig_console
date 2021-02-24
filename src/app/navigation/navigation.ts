@@ -101,6 +101,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/price-list',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'catalog-manager',
+                title    : 'Catalog manager',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/catalog-manager',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 	{
