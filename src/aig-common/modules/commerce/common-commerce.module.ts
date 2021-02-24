@@ -41,6 +41,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
 import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
+import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
@@ -106,6 +107,7 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigSellerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
