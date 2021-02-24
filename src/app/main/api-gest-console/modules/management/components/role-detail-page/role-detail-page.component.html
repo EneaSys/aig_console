@@ -1,5 +1,18 @@
 <div id="aig-role-detail-page" class="page-layout blank">
 
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+                <pre>{{ roleDTO | json }}</pre>
+
+                <button mat-stroked-button color="primary" (click)="editRole(roleDTO)">Edit</button>
+
+            </div>
+        </div>
+    </div>
+
+    <!--
     <aig-management-header [sectionName]="'Role Detail > ' + role.name" [search]="false"></aig-management-header>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
@@ -14,8 +27,8 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16" id="permission-list">
                 <div class="h4 m-16">Lista dei permessi</div>
-                <aig-permission-table [displayedColumns]="permissionSystemDisplayedColumns"
-                    [dataSource]="role.permissions"></aig-permission-table>
+                <aig-permission-list-table [displayColumns]="permissionSystemDisplayColumns"
+                    [dataSource]="role.permissions"></aig-permission-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPermissionToRole()"
                     aria-label="add permission to role">
@@ -25,12 +38,11 @@
         </div>
     </div>
 
-<!--
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-16">Utenti che hanno questo ruolo</div>
-                <aig-users-table [displayedColumns]="usersDisplayedColumns" [dataSource]="users | async | roleAssignationsToUsers"></aig-users-table>
+                <aig-users-list-table [displayColumns]="usersDisplayColumns" [dataSource]="users | async | roleAssignationsToUsers"></aig-users-list-table>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="50">
@@ -40,5 +52,5 @@
             </div>
         </div>
     </div>
--->
+    -->
 </div>

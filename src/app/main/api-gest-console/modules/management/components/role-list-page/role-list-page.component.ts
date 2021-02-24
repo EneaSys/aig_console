@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { RoleResourceService, RoleDTO } from 'api-gest';
-import { EventService } from 'aig-common/event-manager/event.service';
-import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { AigRoleNewDialogComponent } from '../role-new-dialog/role-new-dialog.component';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Component } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
+import { EventService } from "aig-common/event-manager/event.service";
+import { RoleDTO, RoleResourceService } from "api-gest";
+import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
+import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigRoleNewUpdateModalComponent } from "../role-new-update-modal/role-new-update-modal.component";
 
 @Component({
     selector: 'aig-role-list-page',
@@ -17,20 +17,20 @@ export class AigRoleListPageComponent extends GenericComponent {
         private roleResourceService: RoleResourceService,
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
-        private eventService: EventService,
         private dialog: MatDialog,
+        private eventService: EventService,        
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
     
 	loadPage() {
-		this.roleSearch();
+		this.initRoleSearch();
 
-		this.showAllrole();
+		this.showAllRole();
 	}
 
 	reloadPage() {
-		this.showAllrole();
+		this.showAllRole();
 	}
 
     //			---- TABLE AND SEARCH SECTION ----
@@ -45,26 +45,83 @@ export class AigRoleListPageComponent extends GenericComponent {
 
 	roleDC: string[];
 
-    private roleSearch() {
-		this.roleDC = ["id", "name", 'roleCode','permission', 'buttons'];
-
+    private initRoleSearch() {
+		
 		this.rolePaginationSize = 10;
 		
-
 		this.roleSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+            roleCode: [''],
 		});
+
+        this.roleDC = ["id", "name", 'roleCode', 'buttons'];
 	}
-    roleSystemDisplayedColumns: string[] = ['id', 'name', 'roleCode', 'buttons'];
-    roleSystemDataSource: Observable<RoleDTO[]>;
 
-    loadComponent(): void {
-        this.roleSystemDataSource = this.roleResourceService.getAllRolesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 100, null);
-    }
+    private clearFiltersRole() {
+		this.roleFilters = {
+			idEquals: null,
+			nameContains: null,
+			page: 0,
+		}
+	}
 
-    newRole(): void {
-        this.dialog.open(AigRoleNewDialogComponent);
-    }
+    private async searchRole(page: number) {
+
+		this.roleDTOs = null;
+		this.roleFilters.page = page;
+		this.roleFilters.size = this.rolePaginationSize;
+
+		try {
+			this.roleLength = await this.roleResourceService.countRolesUsingGET(this.roleFilters).toPromise();
+			
+			if(this.roleLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+				this.roleDTOs = [];
+				return;
+			}
+
+			this.roleDTOs = await this.roleResourceService.getAllRolesUsingGET(this.roleFilters).toPromise();
+		} catch (e) {
+			this.roleError = e;
+		}
+	}
+
+	showAllRole() {
+		this.resetFiltersRole();
+	}
+
+	resetFiltersRole() {
+		this.roleSearchFormGroup.reset();
+		this.clearFiltersRole();
+		this.searchRole(0);
+	}
+	
+	rolePaginationEvent(pageEvent: PageEvent) {
+		this.rolePaginationSize = pageEvent.pageSize;
+		this.searchRole(pageEvent.pageIndex);
+	}
+
+	roleSearchWithFilter() {
+		let searchedId = this.roleSearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersRole();
+			this.roleSearchFormGroup.reset();
+			this.roleFilters.idEquals = searchedId;
+			this.searchRole(0);
+			return;
+		}
+		this.roleFilters.idEquals = null;
+
+		this.roleFilters.nameContains = this.roleSearchFormGroup.controls.name.value;
+
+		this.searchRole(0);
+	}
+
+	newRole(): void {
+		this.dialog.open(AigRoleNewUpdateModalComponent, { data: { role: {} } });
+   }
+
 }
 
