@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
-import { ApplicationModuleDTO, EntityReferenceDTO, EntityReferenceResourceService } from "api-gest";
 import { Observable } from "rxjs";
 import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
