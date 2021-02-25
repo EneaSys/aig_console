@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { InventoryItemCombinationResourceService, WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
+import { InventoryItemCombinationDTO, InventoryItemCombinationResourceService, WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from 'aig-common/modules/commerce/components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -42,7 +42,7 @@ export class AigInventoryItemCombinationListPageComponent extends GenericCompone
     inventoryItemCombinationFilters: any;
 
 	inventoryItemCombinationLength: number;
-	inventoryItemCombinationDTOs: WarehouseDTO[];
+	inventoryItemCombinationDTOs: InventoryItemCombinationDTO[];
 	inventoryItemCombinationError: any;
 
 	inventoryItemCombinationDC: string[];

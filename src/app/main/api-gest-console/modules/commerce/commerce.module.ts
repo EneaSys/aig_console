@@ -50,6 +50,7 @@ import { AigFiscalTransactionListPageComponent } from './components/fiscal-trans
 import { AigFiscalTransactionNewUpdateModalComponent } from './components/fiscal-transaction-new-update-modal/fiscal-transaction-new-update-modal.component';
 import { AigInventoryItemCombinationNewUpdateDialogComponent } from './components/inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigInventoryItemCombinationDetailPageComponent } from './components/inventory-item-combination-detail-page/inventory-item-combination-detail-page.component';
 import { AigBuyerNewUpdateModalComponent } from './components/buyer-new-update-modal/buyer-new-update-modal.component';
 
 
@@ -119,6 +120,7 @@ import { AigBuyerNewUpdateModalComponent } from './components/buyer-new-update-m
         AigFiscalTransactionListPageComponent,
         AigFiscalTransactionNewUpdateModalComponent,
         AigInventoryItemCombinationListPageComponent,
+        AigInventoryItemCombinationDetailPageComponent
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
