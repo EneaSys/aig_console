@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { CatalogDTO, CatalogResourceService, PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { CatalogDTO, CatalogResourceService } from 'aig-commerce';
+import { EventService } from 'aig-common/event-manager/event.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
@@ -10,8 +11,8 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 export class AigCatalogManagerPageComponent extends GenericComponent {
     constructor(
         private catalogResourceService: CatalogResourceService,
-        private priceListResourceService: PriceListResourceService,
         aigGenericComponentService: AigGenericComponentService,
+        private eventService: EventService,
     ) { super(aigGenericComponentService) }
 
     catalogDTOs: CatalogDTO[] = [];
@@ -20,34 +21,19 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
     loadingPage: boolean = true;
     errorInLoading: any;
 
-    priceListDTOs: PriceListDTO[];
     priceListDC: string[] = ["id", "name", "seller", "buttons"];
-    priceListError: any;
-
-    filter = {
-        idEquals: null,
-        nameContains: null,
-        page: 0
-    }
-
-    catalogFilter = {
-        catalogIdEquals: null,
-    }
 
     private setCatalog(selectedCatalog: CatalogDTO) {
         this.selectedCatalog = selectedCatalog;
-        this.loadPriceList();
-    }
-
-    async loadPriceList() {
-        this.catalogFilter.catalogIdEquals = this.selectedCatalog.id;
-        this.loadingPage = false;
-        this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.catalogFilter).toPromise();
+        setTimeout(() => {
+            this.eventService.reloadCurrentPage();
+          }, 1);
+        
     }
 
     async loadPage() {
         try {
-            this.catalogDTOs = await this.catalogResourceService.getAllCatalogsUsingGET(this.filter).toPromise();
+            this.catalogDTOs = await this.catalogResourceService.getAllCatalogsUsingGET({}).toPromise();
             if (this.catalogDTOs.length > 0) {
                 this.setCatalog(this.catalogDTOs[0]);
             } else {
@@ -56,8 +42,6 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
         } catch (e) {
             this.errorInLoading = e;
         }
-
-        this.loadPriceList();
     }
 
 }
