@@ -13,7 +13,7 @@ import { AigApplicationModuleListPageComponent } from "./components/application-
 import { AigContextModuleDetailPageComponent } from "./components/context-module-detail-page/context-module-detail-page.component";
 import { AigContextModuleListPageComponent } from "./components/context-module-list-page/context-module-list-page.component";
 import { AigContextUserDetailPageComponent } from "./components/context-user-detail-page/context-user-detail-page.component";
-import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-list-page.component";
+import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-user-list-page.component";
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
@@ -32,7 +32,7 @@ export const managementRoute: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'context/list'
+                redirectTo: 'context-user/list'
             },
             {
                 path: 'context-user',

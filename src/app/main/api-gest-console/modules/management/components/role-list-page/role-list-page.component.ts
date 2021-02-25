@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
 import { EventService } from "aig-common/event-manager/event.service";
-import { RoleDTO, RoleResourceService } from "api-gest";
+import { RoleDTO, RoleResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigRoleNewUpdateModalComponent } from "../role-new-update-modal/role-new-update-modal.component";

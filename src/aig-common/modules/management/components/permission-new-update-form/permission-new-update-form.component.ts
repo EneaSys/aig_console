@@ -6,6 +6,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { AigManagementAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigManagementAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
+import { ApplicationModuleDTO, PermissionDTO, PermissionResourceService, RoleDTO } from 'aig-management';
 
 @Component({
     selector: 'aig-permission-new-update-form',

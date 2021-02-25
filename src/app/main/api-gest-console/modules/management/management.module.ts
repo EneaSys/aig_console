@@ -15,7 +15,7 @@ import { AigContextModuleDetailPageComponent } from "./components/context-module
 import { AigContextModuleListPageComponent } from "./components/context-module-list-page/context-module-list-page.component";
 import { AigContextModuleNewUpdateModalComponent } from "./components/context-module-new-update-modal/context-module-new-update-modal.component";
 import { AigContextUserDetailPageComponent } from "./components/context-user-detail-page/context-user-detail-page.component";
-import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-list-page.component";
+import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-user-list-page.component";
 import { AigContextUserNewUpdateModalComponent } from "./components/context-user-new-update-modal/context-user-new-update-modal.component";
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
+import { ApplicationModuleDTO, PersonalizationDTO, PersonalizationResourceService } from "aig-management";
 import { Observable } from "rxjs";
 import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
@@ -39,7 +40,7 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.personalizationNewUpdateForm = this._formBuilder.group({
             id:[''],
-            active: ['', Validators.required],
+            name: ['', Validators.required],
             applicationModule: ['', Validators.required],
         })
         
@@ -61,12 +62,9 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
 
         let personalization: PersonalizationDTO = {
             id: this.personalizationNewUpdateForm.value.id,
-            active: this.personalizationNewUpdateForm.value.active,
+            name: this.personalizationNewUpdateForm.value.name,
             moduleId: this.personalizationNewUpdateForm.value.module.id,
-            moduleName: this.personalizationNewUpdateForm.value.module.name,
-            contextId: this.personalizationNewUpdateForm.value.context.id,
-            contextName: this.personalizationNewUpdateForm.value.context.name,
-         
+            moduleName: this.personalizationNewUpdateForm.value.module.name,         
         }; 
         try {
             let postOrPut;

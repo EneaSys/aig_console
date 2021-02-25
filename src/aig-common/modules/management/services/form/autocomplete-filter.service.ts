@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ApplicationModuleResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { RoleResourceService, PermissionResourceService, ApplicationModuleResourceService, TenantContextResourceService,} from 'api-gest';
-
 
 @Injectable({
 	providedIn: 'root'

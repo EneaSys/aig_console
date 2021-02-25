@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RoleDTO, PermissionDTO, ApplicationModuleDTO, TenantContextDTO, EntityReferenceDTO } from 'api-gest';
+import { RoleDTO, PermissionDTO, ApplicationModuleDTO, TenantContextDTO,} from 'aig-management';
 
 
 @Injectable({

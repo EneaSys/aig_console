@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ContextModuleResourceService, ContextModuleDTO } from 'api-gest';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigContextModuleNewUpdateModalComponent } from '../context-module-new-update-modal/context-module-new-update-modal.component';
+import { ContextModuleDTO, ContextModuleResourceService } from 'aig-management';
 
 @Component({
     selector: 'aig-context-module-detail-page',

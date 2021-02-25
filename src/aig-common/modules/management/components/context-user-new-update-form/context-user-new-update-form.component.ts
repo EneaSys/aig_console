@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
+import { ContextUserDTO, ContextUserResourceService, TenantContextDTO } from "aig-management";
 import { Observable } from "rxjs";
 import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
@@ -61,10 +62,9 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
     
         let contextUser: ContextUserDTO = {
             id: this.contextUserNewUpdateForm.value.id,
-            status: this.contextUserNewUpdateForm.value.status,
-            type: this.contextUserNewUpdateForm.value.type, 
             userCode: this.contextUserNewUpdateForm.value.user.code,
-            userMemberOfs: this.contextUserNewUpdateForm.value.user.member.ofs,  
+            tenantContext: this.contextUserNewUpdateForm.value.tenant.context, 
+            tenantContextId: this.contextUserNewUpdateForm.value.tenant.context.id, 
         }; 
 
         try {

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RoleDTO, RoleResourceService } from 'api-gest';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AigAssociateRoleToPermissionDialogComponent } from '../associate-role-premission-dialog/associate-role-premission-dialog.component';
@@ -7,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigRoleNewUpdateModalComponent } from '../role-new-update-modal/role-new-update-modal.component';
+import { RoleDTO, RoleResourceService } from 'aig-management';
 
 @Component({
     selector: 'aig-role-detail-page',

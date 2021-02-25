@@ -1,15 +1,15 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
-import { ContextUserDTO, ContextUserResourceService } from "api-gest";
+import { ContextUserDTO, ContextUserResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigContextUserNewUpdateModalComponent } from "../context-user-new-update-modal/context-user-new-update-modal.component";
 
 @Component({
     selector: 'aig-context-user-detail-page',
-    templateUrl: './context-module-user-page.component.html',
-    styleUrls: ['./context-module-user-page.component.scss']
+    templateUrl: './context-user-detail-page.component.html',
+    styleUrls: ['./context-user-detail-page.component.scss']
 })
 export class AigContextUserDetailPageComponent extends GenericComponent {
    

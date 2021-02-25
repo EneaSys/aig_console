@@ -20,18 +20,8 @@
         </ng-container>
 
         <ng-container matColumnDef="active">
-            <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.active }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="contextId">
-            <mat-header-cell *matHeaderCellDef>Context Id</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.contextId }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="contextName">
-            <mat-header-cell *matHeaderCellDef>Context</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.contextName }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="moduleId">

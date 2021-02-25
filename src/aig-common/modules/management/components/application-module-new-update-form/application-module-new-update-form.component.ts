@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
+import { ApplicationModuleDTO, ApplicationModuleResourceService } from "aig-management";
 
 @Component({
     selector: 'aig-application-module-new-update-form',

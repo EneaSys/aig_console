@@ -259,9 +259,9 @@ export const contextNavigation: FuseNavigation[] = [
 						id       : 'role-list-page',
 						title    : 'Ruoli',
 						type     : 'item',
-						icon     : 'filter_vintage',
+						icon     : 'account_circle',
 						url      : '/m8t/role',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'application-module-list-page',
@@ -269,7 +269,7 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'list_alt',
 						url      : '/m8t/application-module',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'entity-reference-list-page',
@@ -277,7 +277,7 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'star_half',
 						url      : '/m8t/entity-reference',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'permission-list-page',
@@ -285,7 +285,7 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'lock_open',
 						url      : '/m8t/permission',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'tenant-context-list-page',
@@ -293,7 +293,7 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'all_out',
 						url      : '/m8t/tenant-context',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'context-module-list-page',
@@ -301,15 +301,15 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'assignment',
 						url      : '/m8t/context-module',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'context-user-list-page',
 						title    : 'Contesti',
 						type     : 'item',
-						icon     : 'account_circle',
+						icon     : 'filter_vintage',
 						url      : '/m8t/context-user',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 					{
 						id       : 'personalization-list-page',
@@ -317,7 +317,7 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'brush',
 						url      : '/m8t/personalization',
-						permission: ['e4y.role.get'],
+						permission: ['e4y.account.get'],
 					},
 				]
 			},

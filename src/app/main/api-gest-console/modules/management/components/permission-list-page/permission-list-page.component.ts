@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
-import { PermissionDTO, PermissionResourceService } from 'api-gest';
+import { PermissionDTO, PermissionResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigPermissionNewUpdateModalComponent } from '../permission-new-update-modal/permission-new-update-modal.component';
