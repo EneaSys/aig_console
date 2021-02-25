@@ -6,6 +6,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO } from 'aig-commerce';
 import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 
+
 @Component({
     selector: 'aig-purchase-detail-page',
     templateUrl: './purchase-detail-page.component.html',

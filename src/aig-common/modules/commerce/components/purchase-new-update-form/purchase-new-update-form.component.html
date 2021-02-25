@@ -1,154 +1,31 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper >
+<div id="aig-purchase-new-update-form" *ngIf="step.form">
+    <form [formGroup]="purchaseNewUpdateForm" (ngSubmit)="submit()">
 
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Cliente</mat-label>
+                <input matInput required formControlName="buyer" required [matAutocomplete]="buyerAutocomplete">
+                <mat-autocomplete #buyerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.buyerDisplayFn">
+                    <mat-option *ngFor="let buyer of filteredBuyer | async" [value]="buyer">{{ buyer.id }}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
 
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Data</mat-label>
+                <input matInput required formControlName="insertedDateTime">
+            </mat-form-field>
 
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Note</mat-label>
+                <input matInput formControlName="statusNote">
+            </mat-form-field>
 
-
-
-
-
-
-
-
-    <mat-step [stepControl]="purchaseDetailFormGroup">
-
-      <form [formGroup]="purchaseDetailFormGroup">
-            <ng-template matStepLabel>Inserisci l'importo</ng-template>
-
-            <div fxLayout="row" fxLayoutAlign="start start">
-
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Cliente</mat-label>
-                    <input matInput required formControlName="buyer" required [matAutocomplete]="buyerAutocomplete">
-                    <mat-autocomplete #buyerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.buyerDisplayFn">
-                        <mat-option *ngFor="let buyer of filteredBuyer | async" [value]="buyer">{{ buyer.id }}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Data</mat-label>
-                    <input matInput required formControlName="insertedDataTime">
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Note</mat-label>
-                    <input matInput formControlName="statusNote">
-                </mat-form-field>
-
-
-            </div>
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-
-    </mat-step>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <mat-step [stepControl]="warehouseQuestionFormGroup">
-
-        <form [formGroup]="warehouseQuestionFormGroup">
-              <ng-template matStepLabel>Movimentazione di magazzino</ng-template>
-  
-            <div>
-                <h3>Questo acquisto genera movimentazione di magazzino?</h3>
-                <mat-radio-group aria-label="Select an option" formControlName="warehouseHandlingQuestion" required>
-                    <div><mat-radio-button class="warehouseQuestionRadio" value="1">SI</mat-radio-button></div>
-                    <div><mat-radio-button class="warehouseQuestionRadio" value="0">NO</mat-radio-button></div>
-                </mat-radio-group>
-            </div>
-            <div>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-  
-    </mat-step>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <mat-step [stepControl]="warehouseHandlingFormGroup" label="Movimentazione di magazzino">
-        <form [formGroup]="warehouseHandlingFormGroup">
-            <div fxLayout="row" fxLayoutAlign="start start">
-                <mat-form-field appearance="fill" fxFlex>
-                    <mat-label>Data Inserimento</mat-label>
-                    <input formControlName="insertedDataTime" matInput>
-                    <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>-->
-                </mat-form-field>
-            </div>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    <mat-step [stepControl]="purchaseItemFormGroup" label="vendita">
-        <form [formGroup]="fourFormGroup">
-           
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-            </div>
-        </form>
-    </mat-step>
-
-
-
-
-
-
-    <mat-step>
+        </div>    
         <div fxLayout="row" fxLayoutAlign="end top">
             <button type="submit" mat-raised-button color="accent">Crea</button>
         </div>
-        <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
-</mat-horizontal-stepper>
-
-
+    </form>
+</div>
 <div *ngIf="step.loading" fxLayoutAlign="center">
     <mat-spinner></mat-spinner>
 </div>
@@ -157,4 +34,3 @@
     <pre>{{ purchaseNewUpdateForm.value | json }}</pre>
     <button *ngIf="!purchaseNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPurchase()">Create New</button>
 </div>
-

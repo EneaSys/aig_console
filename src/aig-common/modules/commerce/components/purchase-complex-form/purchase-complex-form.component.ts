@@ -9,58 +9,73 @@ import { AigAutocompleteDisplayService } from '../../service/autocomplete-displa
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
-	selector: 'aig-purchase-new-update-form',
-	templateUrl: './purchase-new-update-form.component.html',
-	styleUrls: ['./purchase-new-update-form.component.scss']
+	selector: 'aig-purchase-complex-form',
+	templateUrl: './purchase-complex-form.component.html',
+	styleUrls: ['./purchase-complex-form.component.scss']
 })
-export class AigPurchaseNewUpdateFormComponent implements OnInit {
+export class AigPurchaseComplexFormComponent implements OnInit {
+  	secondFormGroup: FormGroup;
+	thirdFormGroup: FormGroup;
+	fourFormGroup: FormGroup;
+	fiveFormGroup: FormGroup;
+
 	step: any = {
 		form: true,
 		loading: false,
 		complete: false
 	};
+	
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
-		private _fuseProgressBarService: FuseProgressBarService,
-		private purchaseResourceService: PurchaseResourceService,
 		private _formBuilder: FormBuilder,
+		private _fuseProgressBarService: FuseProgressBarService,
+		private _snackBar: MatSnackBar,
 		private eventService: EventService,
-        private _snackBar: MatSnackBar,
+		private purchaseResourceService: PurchaseResourceService,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public 	autocompleteDisplayService: AigAutocompleteDisplayService,
+		
 	) { }
-
-	@Input()
-	purchase: PurchaseDTO;
 
 	purchaseNewUpdateForm: FormGroup;
 
 
+	purchaseDetailFormGroup: FormGroup;
 	filteredBuyer: Observable<BuyerDTO[]>;
 
+	warehouseQuestionFormGroup: FormGroup;
+	
+	warehouseHandlingFormGroup: FormGroup;
+
+	ngOnInit(): void { 
+
+		this.purchaseDetailFormGroup = this._formBuilder.group({
+			buyer: ['', [Validators.required]],
+			insertedDataTime: ['', Validators.required],
+			statusNote: [''],
+		});
+
+		this.filteredBuyer = this.commerceAutocompleteService.filterBuyer(this.purchaseDetailFormGroup.controls['buyer'].valueChanges);
+	
 
 
 
-
-
-	ngOnInit(): void {
-		this.purchaseNewUpdateForm = this._formBuilder.group({
-            amount: [''],
-			id: [''],
-			buyer: ['', Validators.required],
-			buyerId: [''],
-			closed: ['', Validators.required],
-			insertedDateTime: ['', Validators.required],
-            statusNote: ['', Validators.required],
+		this.warehouseQuestionFormGroup = this._formBuilder.group({
+			warehouseHandlingQuestion: ['', Validators.required],
+		});
+		this.warehouseHandlingFormGroup = this._formBuilder.group({
+			insertedDataTime: ['', Validators.required]
+		});
+		this.fourFormGroup = this._formBuilder.group({
+			statusNote: ['', Validators.required]
+		});
+		this.fiveFormGroup = this._formBuilder.group({
+			buyer: ['', Validators.required]
 		});
 
 
-		if(this.purchase != null) {
-			this.purchaseNewUpdateForm.patchValue(this.purchase);
-		}
 
-
-
-		this.filteredBuyer = this.commerceAutocompleteService.filterBuyer(this.purchaseNewUpdateForm.controls['buyer'].valueChanges);
+		
+		
 	}
 
 	async submit() {
@@ -73,10 +88,11 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 		let purchase: PurchaseDTO = {
 			id: this.purchaseNewUpdateForm.value.id,
-            buyer: this.purchaseNewUpdateForm.value.buyer,
-            statusNote:this.purchaseNewUpdateForm.value.statusNote,
-            closed: this.purchaseNewUpdateForm.value.closed,
+			amount: this.purchaseNewUpdateForm.value.amount,
+			buyer: this.purchaseNewUpdateForm.value.buyer,
+			closed: this.purchaseNewUpdateForm.value.closed,
 			insertedDateTime: this.purchaseNewUpdateForm.value.insertedDateTime,
+			statusNote:this.purchaseNewUpdateForm.value.statusNote,
 		};
 
 		try {
@@ -99,8 +115,6 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		this._fuseProgressBarService.hide();
 	}
 
-
-
 	newPurchase() {
 		this.setStep("form");
 	}
@@ -111,4 +125,5 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		this.step.complete = false;
 		this.step[step] = true;
 	}
+	
 }

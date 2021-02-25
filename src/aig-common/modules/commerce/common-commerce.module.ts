@@ -42,7 +42,7 @@ import { AigCommerceAutocompleteService } from './service/autocomplete-filter.se
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigPurchaseListTableComponent } from './components/purchase-list-table/purchase-list-table.component';
-import { AigPurchaseNewUpdateFormComponent } from './components/purchase-new-update-form/purchase-new-update-form.component';
+import { AigPurchaseComplexFormComponent } from './components/purchase-complex-form/purchase-complex-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigPaymentListTableComponent } from './components/payment-list-table/payment-list-table.component';
@@ -50,6 +50,7 @@ import { MatRadioModule } from '@angular/material';
 import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
+import { AigPurchaseNewUpdateFormComponent } from './components/purchase-new-update-form/purchase-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -100,9 +101,11 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigPurchaseListTableComponent,
-        AigPurchaseNewUpdateFormComponent,
+        AigPurchaseComplexFormComponent,
         AigPaymentListTableComponent,
-        AigFiscalTransactionNewUpdateFormComponent
+        AigPurchaseNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent,
+        
         
     ],
     providers: [
@@ -139,9 +142,10 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent,
         AigPurchaseNewUpdateFormComponent,
-        AigFiscalTransactionNewUpdateFormComponent
         
+        AigPurchaseComplexFormComponent,
     ],
 })
 export class AigCommonCommerceModule {}
