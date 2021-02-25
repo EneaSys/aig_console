@@ -14,6 +14,11 @@ import { AigCommerceAutocompleteService } from '../../service/autocomplete-filte
 	styleUrls: ['./purchase-new-update-form.component.scss']
 })
 export class AigPurchaseNewUpdateFormComponent implements OnInit {
+  	secondFormGroup: FormGroup;
+	thirdFormGroup: FormGroup;
+	fourFormGroup: FormGroup;
+	fiveFormGroup: FormGroup;
+
 	step: any = {
 		form: true,
 		loading: false,
@@ -28,32 +33,49 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		private purchaseResourceService: PurchaseResourceService,
 		private commerceAutocompleteService: AigCommerceAutocompleteService,
 		public 	autocompleteDisplayService: AigAutocompleteDisplayService,
+		
 	) { }
 
-	@Input()
-	purchase: PurchaseDTO;
 	purchaseNewUpdateForm: FormGroup;
 
+
+	purchaseDetailFormGroup: FormGroup;
 	filteredBuyer: Observable<BuyerDTO[]>;
+
+	warehouseQuestionFormGroup: FormGroup;
+	
+	warehouseHandlingFormGroup: FormGroup;
 
 	ngOnInit(): void { 
 
-		this.purchaseNewUpdateForm = this._formBuilder.group({
-			id: [''],
-			amount: ['',Validators.required],
-			buyer: ['',Validators.required],
-			closed: [''],
-			insertedDateTime: [''],
+		this.purchaseDetailFormGroup = this._formBuilder.group({
+			buyer: ['', [Validators.required]],
+			insertedDataTime: ['', Validators.required],
 			statusNote: [''],
 		});
 
-		if (this.purchase != null) {
-			this.purchaseNewUpdateForm.patchValue(this.purchase);
-		}
+		this.filteredBuyer = this.commerceAutocompleteService.filterBuyer(this.purchaseDetailFormGroup.controls['buyer'].valueChanges);
+	
+
+
+
+		this.warehouseQuestionFormGroup = this._formBuilder.group({
+			warehouseHandlingQuestion: ['', Validators.required],
+		});
+		this.warehouseHandlingFormGroup = this._formBuilder.group({
+			insertedDataTime: ['', Validators.required]
+		});
+		this.fourFormGroup = this._formBuilder.group({
+			statusNote: ['', Validators.required]
+		});
+		this.fiveFormGroup = this._formBuilder.group({
+			buyer: ['', Validators.required]
+		});
+
+
 
 		
-		this.filteredBuyer = this.commerceAutocompleteService.filterBuyer(this.purchaseNewUpdateForm.controls['buyer'].valueChanges);
-	
+		
 	}
 
 	async submit() {
@@ -91,9 +113,8 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 			this.setStep("form");
 		}
 		this._fuseProgressBarService.hide();
-
-	
 	}
+
 	newPurchase() {
 		this.setStep("form");
 	}

@@ -9,7 +9,6 @@ export class AigPurchaseNewUpdateDialogComponent implements OnInit {
     constructor(
         public matDialogRef: MatDialogRef<AigPurchaseNewUpdateDialogComponent>,
         @Inject (MAT_DIALOG_DATA) public data: any,
-        private dialog: MatDialog,
     ) { }
 
     

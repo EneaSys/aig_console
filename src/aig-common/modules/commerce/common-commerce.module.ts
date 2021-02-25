@@ -45,6 +45,8 @@ import { AigPurchaseListTableComponent } from './components/purchase-list-table/
 import { AigPurchaseNewUpdateFormComponent } from './components/purchase-new-update-form/purchase-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
+import { AigPaymentListTableComponent } from './components/payment-list-table/payment-list-table.component';
+import { MatRadioModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -72,6 +74,7 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
+        MatRadioModule,
 
     ],
     declarations: [
@@ -94,6 +97,7 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         AigProducerNewUpdateFormComponent,
         AigPurchaseListTableComponent,
         AigPurchaseNewUpdateFormComponent,
+        AigPaymentListTableComponent,
     ],
     providers: [
         PurchaseResolver,
@@ -121,6 +125,7 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         AigInventoryItemCombinationNewUpdateFormComponent,
         AigProducerListTableComponent,
         AigPurchaseListTableComponent,
+        AigPaymentListTableComponent,
 
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,

@@ -97,7 +97,7 @@ export const navigation: FuseNavigation[] = [
                 id       : 'purchase',
                 title    : 'Vendite',
                 type     : 'item',
-                icon     : 'person_pin_circle',
+                icon     : 'shopping_bag',
                 url      : '/commerce/purchase',
                 permission: ['c6e.admin'],
             },
