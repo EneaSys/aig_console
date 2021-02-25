@@ -45,10 +45,9 @@
 
                 </mat-tab>
 
-                <mat-tab label="List price">
+                <mat-tab label="Price list">
 
-                    <aig-price-list-table [displayColumns]="priceListDC" [dataSource]="priceListDTOs"
-                        [error]="priceListError"></aig-price-list-table>
+                    <aig-price-list-list-page [priceListDC]="priceListDC" [staticCatalog]="selectedCatalog"></aig-price-list-list-page>
 
                 </mat-tab>
 

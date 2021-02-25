@@ -21,7 +21,7 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
     errorInLoading: any;
 
     priceListDTOs: PriceListDTO[];
-    priceListDC: string[];
+    priceListDC: string[] = ["id", "name", "seller", "buttons"];
     priceListError: any;
 
     filter = {
@@ -36,10 +36,10 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
 
     private setCatalog(selectedCatalog: CatalogDTO) {
         this.selectedCatalog = selectedCatalog;
-        this.loadCatalog();
+        this.loadPriceList();
     }
 
-    async loadCatalog() {
+    async loadPriceList() {
         this.catalogFilter.catalogIdEquals = this.selectedCatalog.id;
         this.loadingPage = false;
         this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.catalogFilter).toPromise();
@@ -57,9 +57,7 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
             this.errorInLoading = e;
         }
 
-        this.priceListDC = ["id", "name", "catalog", "seller", "buttons"];
-
-        this.loadCatalog();
+        this.loadPriceList();
     }
 
 }
