@@ -20,7 +20,6 @@ import { AigContextUserNewUpdateModalComponent } from "./components/context-user
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
 import { AigEntityReferenceNewUpdateModalComponent } from "./components/entity-reference-new-update-modal/entity-reference-new-update-modal.component";
-import { AigManagementHeaderComponent } from "./components/management-header/management-header.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigPermissionNewUpdateModalComponent } from "./components/permission-new-update-modal/permission-new-update-modal.component";
@@ -95,7 +94,6 @@ import { managementRoute } from "./management.route";
         AigTenantContextNewUpdateModalComponent,       
 
         AigAssociateRoleToPermissionDialogComponent,
-        AigManagementHeaderComponent,
     ],
     exports: [ ],
     providers: [ ],
