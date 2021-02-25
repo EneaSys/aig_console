@@ -29,15 +29,17 @@
             <mat-cell *matCellDef="let e"> {{ e.combinationCode }} </mat-cell>
 		</ng-container>
 
-        <ng-container matColumnDef="inventoryItemId">
-            <mat-header-cell *matHeaderCellDef>Inventory item ID</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemId }} </mat-cell>
+        <ng-container matColumnDef="inventoryItemName">
+            <mat-header-cell *matHeaderCellDef>Prodotto inventario</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryItem.name }} </mat-cell>
 		</ng-container>
 
-        <ng-container matColumnDef="inventoryItemName">
-            <mat-header-cell *matHeaderCellDef>Inventory item name</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemName }} </mat-cell>
-		</ng-container>
+		<ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/inventory-item-combination/detail/' + e.id">Details</button>
+            </mat-cell>
+        </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
         <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>

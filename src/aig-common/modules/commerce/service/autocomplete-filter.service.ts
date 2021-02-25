@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BuyerResourceService,  InventoryItemResourceService, InventoryCategoryResourceService, ProducerResourceService } from 'aig-commerce';
+import {  SellerResourceService, WarehouseResourceService } from 'aig-commerce';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -10,8 +11,10 @@ export class AigCommerceAutocompleteService {
    	constructor(
 		private producerResourceService: ProducerResourceService,
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
-        private buyerResourceService: BuyerResourceService,        
-        private inventoryItemResourceService: InventoryItemResourceService,        
+        private buyerResourceService: BuyerResourceService,              
+        private warehouseResourceService: WarehouseResourceService,
+        private inventoryItemResourceService: InventoryItemResourceService,
+        private sellerResourceService: SellerResourceService,        
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -77,5 +80,37 @@ export class AigCommerceAutocompleteService {
             })
         );
     }
+
+    filterSeller(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.sellerResourceService.getAllSellersUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
   
+    warehouseCategory(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
 }

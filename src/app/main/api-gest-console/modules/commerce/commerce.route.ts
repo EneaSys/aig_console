@@ -22,7 +22,14 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
 import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
+<<<<<<< HEAD
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
+=======
+import { AigSellerDetailPageComponent } from './components/seller-detail-page/seller-detail-page.component';
+import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.resolver';
+import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
+import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+>>>>>>> develop
 
 export const commerceRoute: Routes = [
     {
@@ -45,6 +52,14 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigSellerListPageComponent,
                         canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigSellerDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            seller: AigSellerResolver,
+                        },
                     },
                     /*
                     {
@@ -145,20 +160,12 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigFiscalTransactionListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
                         path: 'detail/:id',
                         component: AigFiscalTransactionDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
-                        resolve: {
-                            fiscalTransaction: FiscalTransactionResolver,
-                        },
-                    },
-                    {
-                        path: 'detail/:id/validate',
-                        component: ValidateFiscalTransactionPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             fiscalTransaction: FiscalTransactionResolver,
@@ -182,6 +189,29 @@ export const commerceRoute: Routes = [
                     {
                         path: 'detail/:id',
                         component: AigInventoryItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            inventoryItem: AigInventoryItemResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'inventory-item-combination',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigInventoryItemCombinationListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigInventoryItemDetailPageComponent, //QUESTA NON E' LA PAGINA DEI DETTAGLI DELLA COMBINAZIONE
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             inventoryItem: AigInventoryItemResolver,

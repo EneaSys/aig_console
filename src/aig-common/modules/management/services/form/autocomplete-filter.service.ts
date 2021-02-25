@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { ContextGroupResourceService, UserResourceService, RoleResourceService, CustomRoleResourceService, PermissionResourceService, ApplicationModuleResourceService, TenantContextResourceService } from 'api-gest';
+import { ContextGroupResourceService, UserResourceService, RoleResourceService, CustomRoleResourceService, PermissionResourceService, ApplicationModuleResourceService, TenantContextResourceService, EntityReferenceResourceService } from 'api-gest';
 
 
 @Injectable()
@@ -10,6 +10,7 @@ export class AigManagementAutocompleteFilterService {
         private roleResourceService: RoleResourceService,
         private permissionResourceService: PermissionResourceService,
         private applicationModuleResourceService: ApplicationModuleResourceService,
+        private entityReferenceResourceService: EntityReferenceResourceService,
         private tenantContextResourceService: TenantContextResourceService,
     ) { }
 
@@ -52,6 +53,7 @@ export class AigManagementAutocompleteFilterService {
         );
     }
 
+     
     tenantContextFilter(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),

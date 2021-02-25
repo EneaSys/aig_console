@@ -47,6 +47,9 @@ import { AigInventoryItemCombinationListTableComponent } from './components/inve
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigPaymentListTableComponent } from './components/payment-list-table/payment-list-table.component';
 import { MatRadioModule } from '@angular/material';
+import { AigSellerResolver } from './resolver/seller.resolver';
+import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
+import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -85,6 +88,7 @@ import { MatRadioModule } from '@angular/material';
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
+        AigBuyerNewUpdateFormComponent,
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
@@ -98,6 +102,8 @@ import { MatRadioModule } from '@angular/material';
         AigPurchaseListTableComponent,
         AigPurchaseNewUpdateFormComponent,
         AigPaymentListTableComponent,
+        AigFiscalTransactionNewUpdateFormComponent
+        
     ],
     providers: [
         PurchaseResolver,
@@ -109,6 +115,7 @@ import { MatRadioModule } from '@angular/material';
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigSellerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -118,6 +125,7 @@ import { MatRadioModule } from '@angular/material';
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
+        AigBuyerNewUpdateFormComponent,
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
@@ -132,6 +140,7 @@ import { MatRadioModule } from '@angular/material';
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigPurchaseNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent
         
     ],
 })
