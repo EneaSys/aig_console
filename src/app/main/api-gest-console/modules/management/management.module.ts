@@ -6,6 +6,7 @@ import { FuseSidebarModule } from "@fuse/components";
 import { FuseSharedModule } from "@fuse/shared.module";
 import { AigCommonModule } from "aig-common/common.module";
 import { AigCommonManagementModule } from "aig-common/modules/management/common-management.module";
+import { AigManagementApiModule } from "aig-management";
 import { ApiGestModule } from "api-gest";
 import { AigApplicationModuleDetailPageComponent } from "./components/application-module-detail-page/application-module-detail-page.component";
 import { AigApplicationModuleListPageComponent } from "./components/application-module-list-page/application-module-list-page.component";
@@ -41,6 +42,8 @@ import { managementRoute } from "./management.route";
 
         AigCommonModule,
         AigCommonManagementModule,
+
+        AigManagementApiModule,
 
         FuseSharedModule,
         FuseSidebarModule,
