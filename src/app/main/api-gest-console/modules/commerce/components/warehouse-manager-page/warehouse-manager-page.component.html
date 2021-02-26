@@ -1,10 +1,10 @@
-<div id="aig-warehouse-manager" class="page-layout simple right-sidebar">  
-    
+<div id="aig-warehouse-manager" class="page-layout simple right-sidebar" fxLayout="row">
+
     <!-- CENTER -->
     <div class="center" fusePerfectScrollbar *ngIf="selectedWarehouse">
         <!-- HEADER -->
         <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
-            
+
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
                 <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di magazzini</span>
@@ -27,10 +27,10 @@
                         </button>
                     </div>
                 </mat-menu>
-                
+
 
             </div>
-            
+
         </div>
         <!-- / HEADER -->
 
@@ -38,21 +38,21 @@
         <div class="content">
 
             <mat-tab-group dynamicHeight>
-        
+
                 <mat-tab label="Dashboard">
-                    <pre>{{ selectedWarehouse | json }}</pre>  
+                    <pre>{{ selectedWarehouse | json }}</pre>
                 </mat-tab>
 
                 <mat-tab label="Movimentazioni">
-                    <aig-warehouse-handling-list-page></aig-warehouse-handling-list-page>
+                    <aig-warehouse-handling-list-page [staticWarehouseToLoad]= "selectedWarehouse"></aig-warehouse-handling-list-page>
                 </mat-tab>
             </mat-tab-group>
         </div>
         <!-- / CONTENT -->
-        
+
     </div>
-    
-    <!-- / CENTER --> 
-    
+
+    <!-- / CENTER -->
+
 
 </div>

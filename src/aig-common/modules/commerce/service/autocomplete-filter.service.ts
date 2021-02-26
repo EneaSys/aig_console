@@ -50,7 +50,7 @@ export class AigCommerceAutocompleteService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};

@@ -48,6 +48,8 @@ import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.reso
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
+import { AigWarehouseHandlingItemFormComponent } from './components/warehouse-handling-item-form/warehouse-handling-item-form.component';
+import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse-handling-form-complex/warehouse-handling-form-complex.component';
 
 @NgModule({
     imports: [
@@ -99,7 +101,9 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         AigProducerNewUpdateFormComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
-        AigFiscalTransactionNewUpdateFormComponent
+        AigFiscalTransactionNewUpdateFormComponent,
+        AigWarehouseHandlingItemFormComponent,
+        AigWarehouseHandlingFormComplexComponent,
         
     ],
     providers: [
@@ -128,13 +132,14 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
         AigInventoryItemCombinationListTableComponent,
         AigInventoryItemCombinationNewUpdateFormComponent,
         AigProducerListTableComponent,
-
+        AigWarehouseHandlingItemFormComponent,
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingFormComplexComponent,
                 
         AigFiscalTransactionNewUpdateFormComponent
         

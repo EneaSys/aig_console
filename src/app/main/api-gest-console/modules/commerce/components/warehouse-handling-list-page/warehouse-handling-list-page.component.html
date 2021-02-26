@@ -36,10 +36,9 @@
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Tipo di Movimentazione</mat-label>
 										<mat-select formControlName="warehouseHandlingType">
-											<mat-option *ngFor="let warehouseHandling of warehouseHandlings"
-												[value]="warehouseHandling.value">
-												{{warehouseHandling.viewValue}}
-											</mat-option>
+											<mat-option [value]="'LOAD'">LOAD</mat-option>
+											<mat-option [value]="'SHIFT'">SHIFT</mat-option>
+											<mat-option [value]="'UNLOAD'">UNLOAD</mat-option>
 										</mat-select>
 									</mat-form-field>
 								</div>
@@ -108,6 +107,8 @@
 				aria-label="add warehouse handling">
 				<mat-icon>add</mat-icon>
 			</button>
+
+			<button mat-raised-button color="primary" id="add-warehouse-handling-complex-button" (click)="newWarehouseHandlingComplex()">Warehouse Handling Complex</button>
 		</div>
 		<!-- / CONTENT -->
 	</div>

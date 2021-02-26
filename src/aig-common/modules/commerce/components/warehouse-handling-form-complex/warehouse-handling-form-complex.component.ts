@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { InventoryItemCombinationDTO, WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
@@ -11,14 +11,14 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 @Component({
-    selector: 'aig-warehouse-handling-new-update-form',
-    templateUrl: './warehouse-handling-new-update-form.component.html',
-    styleUrls: ['./warehouse-handling-new-update-form.component.scss'],
+    selector: 'aig-warehouse-handling-form-complex',
+    templateUrl: './warehouse-handling-form-complex.component.html',
+    styleUrls: ['./warehouse-handling-form-complex.component.scss'],
     providers: [{
         provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
     }]
 })
-export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
+export class AigWarehouseHandlingFormComplexComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -40,15 +40,20 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
     filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
+    filteredInventoryItem: Observable<InventoryItemCombinationDTO[]>;
 
     warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[] = [];
 
     handlingTypeRequirementIsCompleted = false;
     dateRequirementIsCompleted = false;
+    quantityItemCombinationRequirementIsCompleted = false;
 
+    warehouseHandlingNewUpdateForm: FormGroup;
     isLinear = false;
     handlingTypeFormGroup: FormGroup;
     warehouseDateFormGroup: FormGroup;
+    dateFormGroup: FormGroup;
+    quantityInventoryItemCombinationFormGroup: FormGroup;
 
 
     ngOnInit(): void {
@@ -62,18 +67,27 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             warehouseUnload: [''],
             date: ['', Validators.required]
         });
+        this.dateFormGroup = this._formBuilder.group({
+            date: ['', Validators.required]
+        });
+        this.quantityInventoryItemCombinationFormGroup = this._formBuilder.group({
+            quantity: ['', Validators.required],
+            inventoryItemCombination: ['', Validators.required],
+        })
+
 
 
 
         this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseLoad'].valueChanges);
         this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseUnload'].valueChanges);
+        this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItem(this.quantityInventoryItemCombinationFormGroup.controls['inventoryItemCombination'].valueChanges);
 
         if (this.warehouseHandling != null) {
 
             this.handlingTypeFormGroup.controls.handlingType.patchValue(this.warehouseHandling.warehouseHandlingType);
             this.warehouseDateFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoadName);
             this.warehouseDateFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnloadName);
-            this.warehouseDateFormGroup.controls.date.patchValue(this.warehouseHandling.date);
+            this.dateFormGroup.controls.date.patchValue(this.warehouseHandling.date);
         }
     }
 
@@ -123,6 +137,28 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         setTimeout(() => stepper.next(), 1);
     }
 
+    //CHECK QUANTITY AND ITEM COMBINATION
+    quantityItemCombinationRequirementError;
+    checkQuantityItemCombinationRequirement(stepper): void {
+        let quantityValue = this.quantityInventoryItemCombinationFormGroup.controls.quantity.value;
+        let itemCombinationValue = this.quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value;
+        this.quantityItemCombinationRequirementIsCompleted = false;
+
+        if (quantityValue == "" || itemCombinationValue == "") {
+            this.quantityItemCombinationRequirementError = "Riempire i campi richiesti!";
+            return
+        } else {
+            this.quantityItemCombinationRequirementIsCompleted = true;
+        }
+        setTimeout(() => stepper.next(), 1);
+    }
+
+
+    addQuantityItemCombination() {
+        this.warehouseHandlingItemDTOs.push(this.quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value);
+        console.log(this.warehouseHandlingItemDTOs);
+    }
+
 
     async confirmation() {
 
@@ -132,7 +168,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         let warehouseHandling: WarehouseHandlingDTO = {
             id: this.handlingTypeFormGroup.controls.id.value,
             warehouseHandlingType: this.handlingTypeFormGroup.controls.handlingType.value,
-            date: this.warehouseDateFormGroup.controls.date.value,
+            date: this.dateFormGroup.controls.date.value,
         }
 
         switch (this.handlingTypeFormGroup.controls.handlingType.value) {
@@ -170,7 +206,6 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         }
         this._fuseProgressBarService.hide();
     }
-    
 
     newWarehouseHandling() {
         this.setStep("form");

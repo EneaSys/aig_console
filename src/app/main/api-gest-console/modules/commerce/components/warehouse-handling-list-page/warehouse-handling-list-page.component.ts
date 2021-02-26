@@ -7,6 +7,7 @@ import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/serv
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
+import { AigWarehouseHandlingComplexModalComponent } from '../warehouse-handling-complex-modal/warehouse-handling-complex-modal.component';
 import { AigWarehouseHandlingNewUpdateModalComponent } from '../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 
 interface warehouseHandling {
@@ -19,11 +20,6 @@ interface warehouseHandling {
     styleUrls: ['./warehouse-handling-list-page.component.scss']
 })
 export class AigWarehouseHandlingListPageComponent extends GenericComponent {
-	warehouseHandlings: warehouseHandling[] = [
-		{value: 'load-0', viewValue: 'Load'},
-		{value: 'shift-1', viewValue: 'Shift'},
-		{value: 'unload-2', viewValue: 'Unload'}
-	  ];
 
 	constructor(
 		public autocompleteDisplayService: AigAutocompleteDisplayService,
@@ -37,7 +33,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
 	@Input()
-    warehouse: WarehouseDTO;
+    staticWarehouseToLoad: WarehouseDTO = null;
 
 	filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
 	filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
@@ -89,9 +85,9 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		this.warehouseHandlingFilters = {
 			idEquals: null,
 			date:null,
-			warehouseHandlingType:null,
-			warehouseToLoadName:null,
-			warehouseToUnloadName:null,
+			warehouseHandlingTypeEquals:null,
+			warehouseToLoadIdEquals: this.staticWarehouseToLoad ? this.staticWarehouseToLoad.id : null,
+			warehouseToUnloadIdEquals:null,
 			page: 0,
 		}
 	}
@@ -101,7 +97,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		this.warehouseHandlingFilters.size = this.warehouseHandlingPaginationSize;
 		this.warehouseHandlingDTOs = null;
 		try {
-			this.warehouseHandlingLength = await this.warehouseHandlingResourceService.countWarehouseHandlingsUsingGET(this.warehouseHandlingFilters).toPromise(); 
+			this.warehouseHandlingLength = await this.warehouseHandlingResourceService.countWarehouseHandlingsUsingGET(this.warehouseHandlingFilters,).toPromise(); 
 			
 			if(this.warehouseHandlingLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -139,17 +135,32 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 			this.warehouseHandlingFilters.idEquals = searchedId;
 			this.searchWarehouseHandling(0);
 			return;
-		}
-		this.warehouseHandlingFilters.idEquals = null;
-		
-		this.warehouseHandlingFilters.date = this.warehouseHandlingSearchFormGroup.controls.date.value;
+		} else{
+			//this.warehouseHandlingFilters.idEquals = null;
 
-		this.searchWarehouseHandling(0);
+			if(this.warehouseHandlingSearchFormGroup.controls.warehouseHandlingType.value){
+				this.warehouseHandlingFilters.warehouseHandlingTypeEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseHandlingType.value;
+			}
+
+			if(this.warehouseHandlingSearchFormGroup.controls.warehouseToLoad.value){
+				this.warehouseHandlingFilters.warehouseToLoadIdEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseToLoad.value.id;
+			}
+
+			if(this.warehouseHandlingSearchFormGroup.controls.warehouseToUnload.value){
+				this.warehouseHandlingFilters.warehouseToUnloadIdEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseToUnload.value.id;
+			}
+
+			this.searchWarehouseHandling(0);
+		}
 	}
 
 	newWarehouseHandling(): void {
 		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: {} } });
    }
+
+   newWarehouseHandlingComplex(): void {
+		this.dialog.open(AigWarehouseHandlingComplexModalComponent, { data: { warehouseHandling: {} } });
+	}
 	
 	//			---- !WAREHOUSE HANDLING SECTION ----
 

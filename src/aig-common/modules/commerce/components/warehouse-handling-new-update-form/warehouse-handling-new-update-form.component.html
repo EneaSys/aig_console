@@ -63,64 +63,10 @@
         </form>
     </mat-step>
 
-    <!--DATE
-    <mat-step [completed]="dateRequirementIsCompleted" label="Seleziona la data">
-        <form [formGroup]="dateFormGroup">
-            <mat-form-field>
-                <mat-label>Data</mat-label>
-                <input formControlName="date" matInput [matDatepicker]="picker" required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div>
-                <mat-error *ngIf="dateRequirementError != ''">{{ dateRequirementError }}</mat-error>
-            </div>
-            <div>
-                <button mat-button matStepperPrevious>Indietro</button>
-                <button mat-button (click)="checkDateRequirement(stepper)">Avanti</button>
-            </div>
-        </form>
-    </mat-step> -->
-
-    <!--QUANTITY AND INVENTORY ITEM COMBINATION -->
-    <mat-step [stepControl]="quantityInventoryItemCombinationFormGroup" label="Seleziona la quantità e il prodotto">
-        <form [formGroup]="quantityInventoryItemCombinationFormGroup">
-            <div>
-                <mat-form-field>
-                    <mat-label>Quantità</mat-label>
-                    <input type="number" matInput formControlName="quantity" placeholder="Quantità" required>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Prodotto</mat-label>
-                    <input matInput formControlName="inventoryItemCombination"
-                        [matAutocomplete]="selectInventoryItemCombinationAutocomplete" placeholder="Prodotto" required>
-                    <mat-autocomplete #selectInventoryItemCombinationAutocomplete="matAutocomplete"
-                        [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
-                        <mat-option *ngFor="let inventoryItem of filteredInventoryItem | async" [value]="inventoryItem">
-                            {{inventoryItem.name }}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                <button id="add-quantity-inventory-item-combination-form-button">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-            
-
-            <div>
-                <mat-error *ngIf="quantityItemCombinationRequirementError != ''">{{
-                    quantityItemCombinationRequirementError }}</mat-error>
-            </div>
-            <div>
-                <button mat-button matStepperPrevious>Indietro</button>
-                <button mat-button (click)="checkQuantityItemCombinationRequirement(stepper)">Avanti</button>
-            </div>
-        </form>
-    </mat-step>
-
     <!--DONE -->
     <mat-step>
         <ng-template matStepLabel>Riepilogo</ng-template>
-        <p>In data {{warehouseDateFormGroup.controls.date.value}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} di {{quantityInventoryItemCombinationFormGroup.controls.quantity.value}} {{quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value}} </p>
+        <p>In data {{warehouseDateFormGroup.controls.date.value | date: 'dd/MM/yyyy'}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} </p>
         <div>
             <button mat-button matStepperPrevious>Indietro</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

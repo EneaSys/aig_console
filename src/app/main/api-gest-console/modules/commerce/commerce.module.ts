@@ -53,6 +53,7 @@ import { AigFiscalTransactionListPageComponent } from './components/fiscal-trans
 import { AigFiscalTransactionNewUpdateModalComponent } from './components/fiscal-transaction-new-update-modal/fiscal-transaction-new-update-modal.component';
 import { AigInventoryItemCombinationNewUpdateDialogComponent } from './components/inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigWarehouseHandlingComplexModalComponent } from './components/warehouse-handling-complex-modal/warehouse-handling-complex-modal.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
         AigWarehouseHandlingNewUpdateModalComponent,
         AigWarehouseHandlingDetailPageComponent,
         AigWarehouseManagerPageComponent,
+        AigWarehouseHandlingComplexModalComponent,
 
         AigFiscalTransactionListPageComponent,
         AigFiscalTransactionNewUpdateModalComponent,
@@ -137,6 +139,7 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
         AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
         AigWarehouseHandlingNewUpdateModalComponent,
+        AigWarehouseHandlingComplexModalComponent,
     ],
     exports: [],
 })
