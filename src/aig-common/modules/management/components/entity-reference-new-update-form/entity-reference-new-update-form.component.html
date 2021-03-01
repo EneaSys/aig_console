@@ -8,11 +8,11 @@
     </div>
 
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!entityReference.applicationModule" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Application Module</mat-label>
-            <input type="text" matInput formControlName="applicationModule" required [matAutocomplete]="applicationModuleAutocomplete">
-            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.applicationModuleDisplayFn">
+            <input formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
                 <mat-option *ngFor="let applicationModule of filteredApplicationModules | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
@@ -20,7 +20,8 @@
 
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!entityReference.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="entityReference.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 

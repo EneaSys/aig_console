@@ -8,7 +8,7 @@ export class BuyerResolver implements Resolve<Observable<BuyerDTO>> {
     constructor(private buyerResourceService: BuyerResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
-        var id: number = +route.paramMap.get('id');
-        return this.buyerResourceService.getBuyerUsingGET(id);
+        var idBuyer: number = +route.paramMap.get('id');
+        return this.buyerResourceService.getBuyerUsingGET(idBuyer);
     }
 }

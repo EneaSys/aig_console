@@ -50,6 +50,8 @@ import { AigInventoryItemCombinationListTableComponent } from './components/inve
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigWarehouseHandlingItemFormComponent } from './components/warehouse-handling-item-form/warehouse-handling-item-form.component';
 import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse-handling-form-complex/warehouse-handling-form-complex.component';
+import { AigSellerResolver } from './resolver/seller.resolver';
+import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -89,6 +91,7 @@ import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
+        AigBuyerNewUpdateFormComponent,
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
@@ -117,6 +120,7 @@ import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
         AigWarehouseHandlingResolver,
+        AigSellerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -126,6 +130,7 @@ import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
+        AigBuyerNewUpdateFormComponent,
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,

@@ -37,7 +37,7 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 //			---- APPLICATION MODULE TABLE AND SEARCH SECTION ----
 
 	applicationModuleSearchFormGroup: FormGroup;
-	applicationModulePagination: any;
+	applicationModulePaginationSize: number;
 	applicationModuleFilters: any;
 
 	applicationModuleLength: number;
@@ -49,10 +49,7 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 	
 	private initApplicationModuleSearch() {
 		
-		this.applicationModulePagination = {
-			size: 10,
-			page: 0,
-		}
+		this.applicationModulePaginationSize = 10;
 
 		this.applicationModuleSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -64,22 +61,24 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 
 	private clearFiltersApplicationModule() {
 		this.applicationModuleFilters = {
-			id: null,
-			name: null,
+			idEquals: null,
+			nameContains: null,
+			page: 0,
 		}
 	}
 
 	private async searchApplicationModule(page: number) {
-		this.applicationModulePagination.page = page;
+		this.applicationModuleFilters.page = page;
         this.applicationModuleDTOs = null;
+		this.applicationModuleFilters.size = this.applicationModulePaginationSize;
 		try {
-			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET(this.applicationModuleFilters.id, null, null, null, null, null, null, null, this.applicationModuleFilters.name,).toPromise();
+			this.applicationModuleLength = await this.applicationModuleResourceService.countApplicationModulesUsingGET().toPromise();
 			if(this.applicationModuleLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.applicationModuleDTOs = [];
 				return;
 			}
-			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET(this.applicationModuleFilters.id,null,null,null,null,null,null,null,this.applicationModuleFilters.name,null, null, null, null, null, this.applicationModulePagination.page,this.applicationModulePagination.size).toPromise();
+			this.applicationModuleDTOs = await this.applicationModuleResourceService.getAllApplicationModulesUsingGET().toPromise();
 		} catch(e) {
 			this.applicationModuleError = e;
 		}
@@ -96,7 +95,7 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 	}
 
 	applicationModulePaginationEvent(pageEvent: PageEvent) {
-		this.applicationModulePagination.size = pageEvent.pageSize;
+		this.applicationModulePaginationSize = pageEvent.pageSize;
 		this.searchApplicationModule(pageEvent.pageIndex);
 	}
 
@@ -106,13 +105,13 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersApplicationModule();
 			this.applicationModuleSearchFormGroup.reset();
-			this.applicationModuleFilters.id = searchedId;
+			this.applicationModuleFilters.idEquals = searchedId;
 			this.searchApplicationModule(0);
 			return;
 		}
-		this.applicationModuleFilters.id = null;
+		this.applicationModuleFilters.idEquals = null;
 
-		this.applicationModuleFilters.name = this.applicationModuleSearchFormGroup.controls.name.value;
+		this.applicationModuleFilters.nameContains = this.applicationModuleSearchFormGroup.controls.name.value;
 
 		this.searchApplicationModule(0);
 	}

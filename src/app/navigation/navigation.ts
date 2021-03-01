@@ -96,7 +96,7 @@ export const navigation: FuseNavigation[] = [
         ]
     },
 	{
-        id       : 'wharehouse',
+        id       : 'warehouse',
         title    : 'Magazzino',
         type     : 'group',
         children : [

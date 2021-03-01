@@ -26,6 +26,8 @@ import { AigWarehouseHandlingListPageComponent } from './components/warehouse-ha
 import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
 import { AigWarehouseHandlingResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling.resolver';
 import { AigWarehouseManagerPageComponent } from './components/warehouse-manager-page/warehouse-manager-page.component';
+import { AigSellerDetailPageComponent } from './components/seller-detail-page/seller-detail-page.component';
+import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.resolver';
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
 
@@ -50,6 +52,14 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigSellerListPageComponent,
                         canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigSellerDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            seller: AigSellerResolver,
+                        },
                     },
                     /*
                     {
