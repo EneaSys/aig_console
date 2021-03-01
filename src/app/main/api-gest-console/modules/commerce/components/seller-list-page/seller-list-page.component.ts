@@ -20,13 +20,6 @@ export class AigSellerListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-<<<<<<< HEAD
-    sellerdisplayColumns: string[] = ['id', 'name', 'buttons'];
-    sellerDTOs: SellerDTO[];
-    async loadComponent() {
-        this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,"").toPromise();
-    }
-=======
     loadPage() {
 		this.initSellerSearch();
 
@@ -127,7 +120,6 @@ export class AigSellerListPageComponent extends GenericComponent {
 	}
 
 	//			---- !SELLER TABLE AND SEARCH SECTION ----
->>>>>>> develop
 
     newSeller() {
 		this.dialog.open(AigSellerNewUpdateDialogComponent, { data: { seller: {} } });
