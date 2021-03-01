@@ -1,79 +1,48 @@
-<!--STEPPER FORM -->
-<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="step.form">
+<form *ngIf="step.form" [formGroup]="warehouseHandlingFormGroup" (ngSubmit)="submit()">
 
+    <ng-template matStepLabel>Seleziona il tipo di Movimentazione</ng-template>
 
-    <!--HANDLING TYPE -->
-    <mat-step [completed]="handlingTypeRequirementIsCompleted">
-        <form [formGroup]="handlingTypeFormGroup">
-            <ng-template matStepLabel>Seleziona il tipo di Movimentazione</ng-template>
+    <mat-label>Movimentazione</mat-label>
+    <mat-radio-group formControlName="handlingType" required aria-label="Select an option">
+        <mat-radio-button value="LOAD">Carico</mat-radio-button>
+        <mat-radio-button value="SHIFT">Scambio</mat-radio-button>
+        <mat-radio-button value="UNLOAD">Scarico</mat-radio-button>
+    </mat-radio-group>
+    <br>
 
-            <mat-label>Movimentazione</mat-label>
-            <mat-radio-group formControlName="handlingType" required aria-label="Select an option">
-                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="LOAD">Carico</mat-radio-button>
-                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="SHIFT">Scambio</mat-radio-button>
-                <mat-radio-button (change)="checkHandlingTypeRequirement($event)" value="UNLOAD">Scarico</mat-radio-button>
-            </mat-radio-group>
-            <br>
-            <div>
-                <mat-error *ngIf="handlingTypeRequirementError != ''">{{ handlingTypeRequirementError }}</mat-error>
-            </div>
-            <div>
-                <button mat-button (click)="checkAndGoHandlingTypeRequirement(stepper)">Avanti</button>
-            </div>
-        </form>
-    </mat-step>
+    <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.handlingType.value != 'UNLOAD'">
+        <mat-label>Seleziona Magazzino di Carico</mat-label>
+        <input formControlName="warehouseLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete"
+            placeholder="Magazzino di carico">
+        <mat-autocomplete #selectWarehouseLoadAutocomplete="matAutocomplete"
+            [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
+            <mat-option *ngFor="let warehouse of filteredWarehouseToLoad | async" [value]="warehouse">
+                {{warehouse.name }}</mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.handlingType.value != 'LOAD'">
+        <mat-label>Seleziona Magazzino di Scarico</mat-label>
+        <input matInput formControlName="warehouseUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete"
+            placeholder="Magazzino di scarico">
+        <mat-autocomplete #selectWarehouseUnloadAutocomplete="matAutocomplete"
+            [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
+            <mat-option *ngFor="let warehouse of filteredWarehouseToUnload | async" [value]="warehouse">
+                {{warehouse.name }}</mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
 
-    <!--WAREHOUSE -->
-    <mat-step [completed]="dateRequirementIsCompleted" label="Informazioni Movimentazione">
-        <form [formGroup]="warehouseDateFormGroup">
-            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 'UNLOAD'">
-                <mat-label>Seleziona Magazzino di Carico</mat-label>
-                <input formControlName="warehouseLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete"
-                    placeholder="Magazzino di carico">
-                <mat-autocomplete #selectWarehouseLoadAutocomplete="matAutocomplete"
-                    [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
-                    <mat-option *ngFor="let warehouse of filteredWarehouseToLoad | async" [value]="warehouse">
-                        {{warehouse.name }}</mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <mat-form-field *ngIf="handlingTypeFormGroup.controls.handlingType.value != 'LOAD'">
-                <mat-label>Seleziona Magazzino di Scarico</mat-label>
-                <input matInput formControlName="warehouseUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete"
-                    placeholder="Magazzino di scarico">
-                <mat-autocomplete #selectWarehouseUnloadAutocomplete="matAutocomplete"
-                    [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
-                    <mat-option *ngFor="let warehouse of filteredWarehouseToUnload | async" [value]="warehouse">
-                        {{warehouse.name }}</mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
+    <mat-form-field>
+        <mat-label>Data</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Data</mat-label>
-                <input formControlName="date" matInput [matDatepicker]="picker" required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div>
-                <mat-error *ngIf="dateRequirementError != ''">{{ dateRequirementError }}</mat-error>
-            </div>
-            <div>
-                <button mat-button matStepperPrevious>Indietro</button>
-                <button mat-button (click)="checkDateRequirement(stepper)">Avanti</button>
-            </div>
-        </form>
-    </mat-step>
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
 
-    <!--DONE -->
-    <mat-step>
-        <ng-template matStepLabel>Riepilogo</ng-template>
-        <p>In data {{warehouseDateFormGroup.controls.date.value | date: 'dd/MM/yyyy'}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} </p>
-        <div>
-            <button mat-button matStepperPrevious>Indietro</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button mat-raised-button color="accent" (click)="confirmation()">Conferma</button>
-        </div>
-    </mat-step>
-</mat-horizontal-stepper>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
     <mat-spinner></mat-spinner>
@@ -81,7 +50,7 @@
 
 <div *ngIf="step.complete">
     <pre>{{ warehouseHandling | json }}</pre>
-    <button *ngIf="!handlingTypeFormGroup.value.id" mat-stroked-button color="primary"
+    <button *ngIf="!warehouseHandlingFormGroup.value.id" mat-stroked-button color="primary"
         (click)="newWarehouseHandling()">Create
         New</button>
 </div>

@@ -7,16 +7,12 @@ import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, Warehouse
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 @Component({
     selector: 'aig-warehouse-handling-new-update-form',
     templateUrl: './warehouse-handling-new-update-form.component.html',
     styleUrls: ['./warehouse-handling-new-update-form.component.scss'],
-    providers: [{
-        provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
-    }]
 })
 export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     step: any = {
@@ -46,18 +42,14 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     handlingTypeRequirementIsCompleted = false;
     dateRequirementIsCompleted = false;
 
-    isLinear = false;
-    handlingTypeFormGroup: FormGroup;
-    warehouseDateFormGroup: FormGroup;
+    warehouseHandlingFormGroup: FormGroup;
 
 
     ngOnInit(): void {
 
-        this.handlingTypeFormGroup = this._formBuilder.group({
+        this.warehouseHandlingFormGroup = this._formBuilder.group({
             id: [""],
-            handlingType: ['', Validators.required]
-        });
-        this.warehouseDateFormGroup = this._formBuilder.group({
+            handlingType: ['', Validators.required],
             warehouseLoad: [''],
             warehouseUnload: [''],
             date: ['', Validators.required]
@@ -65,86 +57,43 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
 
 
-        this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseLoad'].valueChanges);
-        this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseUnload'].valueChanges);
+        this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingFormGroup.controls['warehouseLoad'].valueChanges);
+        this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingFormGroup.controls['warehouseUnload'].valueChanges);
 
         if (this.warehouseHandling != null) {
 
-            this.handlingTypeFormGroup.controls.handlingType.patchValue(this.warehouseHandling.warehouseHandlingType);
-            this.warehouseDateFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoadName);
-            this.warehouseDateFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnloadName);
-            this.warehouseDateFormGroup.controls.date.patchValue(this.warehouseHandling.date);
+            this.warehouseHandlingFormGroup.controls.handlingType.patchValue(this.warehouseHandling.warehouseHandlingType);
+            this.warehouseHandlingFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoadName);
+            this.warehouseHandlingFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnloadName);
+            this.warehouseHandlingFormGroup.controls.date.patchValue(this.warehouseHandling.date);
         }
     }
 
 
-    // CHECK FORM
-
-    //CHECK HANDLING TYPE
-    handlingTypeRequirementError;
-    checkHandlingTypeRequirement($event): void {
-        let handlingTypeValue = this.handlingTypeFormGroup.controls.handlingType.value;
-        this.handlingTypeRequirementIsCompleted = false;
-
-        if ($event != null) {
-            handlingTypeValue = $event.value;
+    async submit() {
+        if (!this.warehouseHandlingFormGroup.valid) {
+            return;
         }
-
-        switch (handlingTypeValue) {
-            case 'LOAD': case 'SHIFT': case 'UNLOAD':
-                this.handlingTypeRequirementIsCompleted = true;
-                this.handlingTypeRequirementError = "";
-                break;
-            default:
-                this.handlingTypeRequirementError = "Selezionare movimento!";
-                break;
-        }
-    }
-    checkAndGoHandlingTypeRequirement(stepper): void {
-        this.checkHandlingTypeRequirement(null);
-
-        if (this.handlingTypeRequirementIsCompleted) {
-            setTimeout(() => stepper.next(), 1);
-        }
-    }
-
-    //CHECK DATE
-    dateRequirementError;
-    checkDateRequirement(stepper): void {
-        let dateValue = this.warehouseDateFormGroup.controls.date.value;
-        this.dateRequirementIsCompleted = false;
-
-        if (dateValue == "") {
-            this.dateRequirementError = "Selezionare una data!";
-            return
-        } else {
-            this.dateRequirementIsCompleted = true;
-        }
-        setTimeout(() => stepper.next(), 1);
-    }
-
-
-    async confirmation() {
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
         let warehouseHandling: WarehouseHandlingDTO = {
-            id: this.handlingTypeFormGroup.controls.id.value,
-            warehouseHandlingType: this.handlingTypeFormGroup.controls.handlingType.value,
-            date: this.warehouseDateFormGroup.controls.date.value,
+            id: this.warehouseHandlingFormGroup.controls.id.value,
+            warehouseHandlingType: this.warehouseHandlingFormGroup.controls.handlingType.value,
+            date: this.warehouseHandlingFormGroup.controls.date.value,
         }
 
-        switch (this.handlingTypeFormGroup.controls.handlingType.value) {
+        switch (this.warehouseHandlingFormGroup.controls.handlingType.value) {
             case 'LOAD':
-                warehouseHandling.warehouseToLoadId = this.warehouseDateFormGroup.controls.warehouseLoad.value.id;
+                warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseLoad.value.id;
                 break;
             case 'UNLOAD':
-                warehouseHandling.warehouseToUnloadId = this.warehouseDateFormGroup.controls.warehouseUnload.value.id;
+                warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseUnload.value.id;
                 break;
             case 'SHIFT':
-                warehouseHandling.warehouseToLoadId = this.warehouseDateFormGroup.controls.warehouseLoad.value.id;
-                warehouseHandling.warehouseToUnloadId = this.warehouseDateFormGroup.controls.warehouseUnload.value.id;
+                warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseLoad.value.id;
+                warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseUnload.value.id;
                 break;
 
             default:
