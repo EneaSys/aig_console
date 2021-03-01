@@ -1,19 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { InventoryItemCombinationDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { Observable } from 'rxjs';
+import { InventoryItemCombinationDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'aig-warehouse-handling-item-form',
-    templateUrl: './warehouse-handling-item-form.component.html',
-    styleUrls: ['./warehouse-handling-item-form.component.scss']
+    selector: 'aig-warehouse-handling-item-new-update-form',
+    templateUrl: './warehouse-handling-item-new-update-form.component.html',
+    styleUrls: ['./warehouse-handling-item-new-update-form.component.scss']
 })
-export class AigWarehouseHandlingItemFormComponent implements OnInit {
+export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -35,33 +35,47 @@ export class AigWarehouseHandlingItemFormComponent implements OnInit {
 
     filteredInventoryItem: Observable<InventoryItemCombinationDTO[]>;
 
-    quantityInventoryItemCombinationFormGroup: FormGroup;
+    filteredWarehouseHandling: Observable<WarehouseHandlingDTO[]>;
 
+    warehouseHandlingItemNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.quantityInventoryItemCombinationFormGroup = this._formBuilder.group({
+        this.warehouseHandlingItemNewUpdateForm = this._formBuilder.group({
+            id:[''],
             quantity: ['', Validators.required],
             inventoryItemCombination: ['', Validators.required],
+            warehouseHandlingDate: [''],
+            warehouseHandling: ['', Validators.required],
+
         })
 
-        this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItem(this.quantityInventoryItemCombinationFormGroup.controls['inventoryItemCombination'].valueChanges);
+        this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItemCombination(this.warehouseHandlingItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);
+        
+        this.filteredWarehouseHandling = this.commerceAutocompleteService.filterWarehouseHandling(this.warehouseHandlingItemNewUpdateForm.controls['warehouseHandlingDate'].valueChanges);
 
         if (this.warehouseHandlingItem != null) {
-            this.quantityInventoryItemCombinationFormGroup.patchValue(this.warehouseHandlingItem);
+            this.warehouseHandlingItemNewUpdateForm.patchValue(this.warehouseHandlingItem);
         }
     }
 
     async submit() {
-        if (!this.quantityInventoryItemCombinationFormGroup.valid) {
+        if (!this.warehouseHandlingItemNewUpdateForm.valid) {
             return;
         }
+
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let warehouseHandlingItem: WarehouseHandlingItemDTO = this.quantityInventoryItemCombinationFormGroup.value;
+        let warehouseHandlingItem: WarehouseHandlingItemDTO = {
+            id:this.warehouseHandlingItemNewUpdateForm.value.id,
+            quantity : this.warehouseHandlingItemNewUpdateForm.value.quantity,
+            inventoryItemCombinationId: this.warehouseHandlingItemNewUpdateForm.value.inventoryItemCombination.id,
+            warehouseHandlingId: this.warehouseHandlingItemNewUpdateForm.value.warehouseHandling.id,
+        }
 
         try {
-            let postOrPut;
+            let postOrPut: string;
+
             if (warehouseHandlingItem.id != 0) {
                 await this.warehouseHandlingItemResourceService.updateWarehouseHandlingItemUsingPUT(warehouseHandlingItem).toPromise();
                 postOrPut = "updated";
@@ -70,8 +84,7 @@ export class AigWarehouseHandlingItemFormComponent implements OnInit {
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
-
-            this._snackBar.open(`Ipp Warehouse Handling Item: '${warehouseHandlingItem.inventoryName}' ${postOrPut}.`, null, { duration: 2000, });
+  
             this.setStep("complete");
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
@@ -80,14 +93,15 @@ export class AigWarehouseHandlingItemFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newProducer() {
+    newWarehouse() {
         this.setStep("form");
     }
 
-    private setStep(step: string) {
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+			
+        this.step[stepToShow] = true;
     }
 }

@@ -85,8 +85,8 @@ export class AigWarehouseHandlingFormComplexComponent implements OnInit {
         if (this.warehouseHandling != null) {
 
             this.handlingTypeFormGroup.controls.handlingType.patchValue(this.warehouseHandling.warehouseHandlingType);
-            this.warehouseDateFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoadName);
-            this.warehouseDateFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnloadName);
+            this.warehouseDateFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoad.name);
+            this.warehouseDateFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnload.name);
             this.dateFormGroup.controls.date.patchValue(this.warehouseHandling.date);
         }
     }

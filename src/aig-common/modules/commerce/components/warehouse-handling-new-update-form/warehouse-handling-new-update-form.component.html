@@ -3,16 +3,16 @@
     <ng-template matStepLabel>Seleziona il tipo di Movimentazione</ng-template>
 
     <mat-label>Movimentazione</mat-label>
-    <mat-radio-group formControlName="handlingType" required aria-label="Select an option">
+    <mat-radio-group formControlName="warehouseHandlingType" required aria-label="Select an option">
         <mat-radio-button value="LOAD">Carico</mat-radio-button>
         <mat-radio-button value="SHIFT">Scambio</mat-radio-button>
         <mat-radio-button value="UNLOAD">Scarico</mat-radio-button>
     </mat-radio-group>
     <br>
 
-    <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.handlingType.value != 'UNLOAD'">
+    <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'UNLOAD'">
         <mat-label>Seleziona Magazzino di Carico</mat-label>
-        <input formControlName="warehouseLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete"
+        <input formControlName="warehouseToLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete"
             placeholder="Magazzino di carico">
         <mat-autocomplete #selectWarehouseLoadAutocomplete="matAutocomplete"
             [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
@@ -20,9 +20,9 @@
                 {{warehouse.name }}</mat-option>
         </mat-autocomplete>
     </mat-form-field>
-    <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.handlingType.value != 'LOAD'">
+    <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'LOAD'">
         <mat-label>Seleziona Magazzino di Scarico</mat-label>
-        <input matInput formControlName="warehouseUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete"
+        <input matInput formControlName="warehouseToUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete"
             placeholder="Magazzino di scarico">
         <mat-autocomplete #selectWarehouseUnloadAutocomplete="matAutocomplete"
             [displayWith]="autocompleteDisplayService.warehouseDisplayFn">
