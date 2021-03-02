@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-table.component';
 import { AigCustomSmlcNewPurchaseFormComponent } from './components/custom-smlc-new-purchase-form/custom-smlc-new-purchase-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -50,6 +51,10 @@ import { AigCatalogResolver } from './resolver/catalog.resolver';
 import { AigPriceListTableComponent } from './components/price-list-table/price-list-table.component';
 import { AigPriceListNewUpdateFormComponent } from './components/price-list-new-update-form/price-list-new-update-form.component';
 import { AigPriceListResolver } from './resolver/price-list.resolver';
+import { AigCatalogPriceManagerTableComponent } from './components/catalog-price-manager-table/catalog-price-manager-table.component';
+import { AigCatalogItemListTableComponent } from './components/catalog-item-list-table/catalog-item-list-table.component';
+import { AigCatalogItemNewUpdateFormComponent } from './components/catalog-item-new-update-form/catalog-item-new-update-form.component';
+import { AigCatalogItemResolver } from './resolver/catalog-item.resolver';
 
 @NgModule({
     imports: [
@@ -77,6 +82,7 @@ import { AigPriceListResolver } from './resolver/price-list.resolver';
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
+        MatSlideToggleModule,
 
     ],
     declarations: [
@@ -99,6 +105,9 @@ import { AigPriceListResolver } from './resolver/price-list.resolver';
         AigProducerNewUpdateFormComponent,
         AigCatalogListTableComponent,
         AigCatalogNewUpdateFormComponent,
+        AigCatalogItemListTableComponent,
+        AigCatalogItemNewUpdateFormComponent,
+        AigCatalogPriceManagerTableComponent,
         AigFiscalTransactionNewUpdateFormComponent,
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
@@ -115,6 +124,7 @@ import { AigPriceListResolver } from './resolver/price-list.resolver';
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
         AigCatalogResolver,
+        AigCatalogItemResolver,
         AigPriceListResolver,
     ],
     exports: [
@@ -133,6 +143,9 @@ import { AigPriceListResolver } from './resolver/price-list.resolver';
         AigProducerListTableComponent,
         AigCatalogListTableComponent,
         AigCatalogNewUpdateFormComponent,
+        AigCatalogItemListTableComponent,
+        AigCatalogItemNewUpdateFormComponent,
+        AigCatalogPriceManagerTableComponent,
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
 
