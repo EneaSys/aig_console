@@ -17,7 +17,7 @@ import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
 import { AigIppModule } from './modules/ipp/ipp.module';
 
 import { AIG_PATH } from 'api-gest';
-import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
+import { BASE_PATH } from 'aig-standard';
 import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
 import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
@@ -96,7 +96,7 @@ import { AIG_M8T_BASE_PATH } from 'aig-management';
             useValue: API_URL
         },
         {
-            provide: AIG_STANDARD_BASE_PATH,
+            provide: BASE_PATH,
             useValue: API_URL + "/s6d"
         },
         {
