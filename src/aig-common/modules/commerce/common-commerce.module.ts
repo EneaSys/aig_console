@@ -43,16 +43,24 @@ import { AigAutocompleteDisplayService } from './service/autocomplete-display.se
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigPurchaseListTableComponent } from './components/purchase-list-table/purchase-list-table.component';
 import { AigPurchaseComplexFormComponent } from './components/purchase-complex-form/purchase-complex-form.component';
-import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
-import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigPaymentListTableComponent } from './components/payment-list-table/payment-list-table.component';
 import { MatRadioModule } from '@angular/material';
-import { AigSellerResolver } from './resolver/seller.resolver';
-import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
-import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 import { AigPurchaseNewUpdateFormComponent } from './components/purchase-new-update-form/purchase-new-update-form.component';
 import { AigPurchaseItemListTableComponent } from './components/purchase-item-list-table/purchase-item-list-table.component';
 import { AigPurchaseItemNewUpdateFormComponent } from './components/purchase-item-new-update-form/purchase-item-new-update-form.component';
+import { AigWarehouseHandlingListTableComponent } from './components/warehouse-handling-list-table/warehouse-handling-list-table.component';
+import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
+import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse-handling-form-complex/warehouse-handling-form-complex.component';
+import { AigWarehouseHandlingItemListTableComponent } from './components/warehouse-handling-item-list-table/warehouse-handling-item-list-table.component';
+import { AigWarehouseHandlingItemNewUpdateFormComponent } from './components/warehouse-handling-item-new-update-form/warehouse-handling-item-new-update-form.component';
+import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
+import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
+import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
+import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
+import { AigSellerResolver } from './resolver/seller.resolver';
+import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
+
+
 
 @NgModule({
     imports: [
@@ -81,6 +89,7 @@ import { AigPurchaseItemNewUpdateFormComponent } from './components/purchase-ite
         MatStepperModule,
         MatDatepickerModule,
         MatRadioModule,
+    
 
     ],
     declarations: [
@@ -109,6 +118,12 @@ import { AigPurchaseItemNewUpdateFormComponent } from './components/purchase-ite
         AigFiscalTransactionNewUpdateFormComponent,
         AigPurchaseItemListTableComponent,
         AigPurchaseItemNewUpdateFormComponent,
+        AigWarehouseHandlingListTableComponent,
+        AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingFormComplexComponent,
+        AigWarehouseHandlingItemListTableComponent,
+        AigWarehouseHandlingItemNewUpdateFormComponent,
+        
         
     ],
     providers: [
@@ -118,9 +133,10 @@ import { AigPurchaseItemNewUpdateFormComponent } from './components/purchase-ite
         AigInventoryCategoryResolver,
         AigInventoryItemResolver,
         AigProducerResolver,
-		AigCommerceAutocompleteService,
-		AigAutocompleteDisplayService,
+	AigCommerceAutocompleteService,
+	AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigWarehouseHandlingResolver,
         AigSellerResolver,
     ],
     exports: [
@@ -149,6 +165,11 @@ import { AigPurchaseItemNewUpdateFormComponent } from './components/purchase-ite
         AigFiscalTransactionNewUpdateFormComponent,
         AigPurchaseNewUpdateFormComponent,
         AigPurchaseItemNewUpdateFormComponent,
+        AigWarehouseHandlingListTableComponent,
+        AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingFormComplexComponent,
+        AigWarehouseHandlingItemListTableComponent,
+        AigWarehouseHandlingItemNewUpdateFormComponent,
         
         AigPurchaseComplexFormComponent,
     ],

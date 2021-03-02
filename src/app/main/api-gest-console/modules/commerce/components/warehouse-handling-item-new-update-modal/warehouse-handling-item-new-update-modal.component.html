@@ -1,0 +1,15 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span *ngIf="data.warehouseHandlingItem.id" class="title dialog-title">Update Warehouse Handling Item </span>
+            <span *ngIf="!data.warehouseHandlingItem.id" class="title dialog-title">Create New Warehouse Handling Item </span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <aig-warehouse-handling-item-new-update-form [warehouseHandlingItem]="data.warehouseHandlingItem"></aig-warehouse-handling-item-new-update-form>
+    </div>
+</div>

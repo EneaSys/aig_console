@@ -1,0 +1,37 @@
+<!--STEPPER FORM -->
+<mat-horizontal-stepper [linear]="isLinear" #stepper *ngIf="step.form">
+
+
+    <!--HANDLING TYPE -->
+    <mat-step [completed]="handlingTypeRequirementIsCompleted">
+        <aig-warehouse-handling-new-update-form></aig-warehouse-handling-new-update-form>
+    </mat-step>
+
+
+    <!--QUANTITY AND INVENTORY ITEM COMBINATION -->
+    <mat-step [stepControl]="quantityInventoryItemCombinationFormGroup" label="Seleziona la quantità e il prodotto">
+        <aig-warehouse-handling-item-new-update-form></aig-warehouse-handling-item-new-update-form>
+    </mat-step>
+
+    <!--DONE -->
+    <mat-step>
+        <ng-template matStepLabel>Riepilogo</ng-template>
+        <p>In data {{warehouseDateFormGroup.controls.date.value}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} di {{quantityInventoryItemCombinationFormGroup.controls.quantity.value}} {{quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value}} </p>
+        <div>
+            <button mat-button matStepperPrevious>Indietro</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button mat-raised-button color="accent" (click)="confirmation()">Conferma</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ warehouseHandling | json }}</pre>
+    <button *ngIf="!handlingTypeFormGroup.value.id" mat-stroked-button color="primary"
+        (click)="newWarehouseHandling()">Create
+        New</button>
+</div>

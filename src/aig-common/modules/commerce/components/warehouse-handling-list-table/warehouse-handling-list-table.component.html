@@ -1,0 +1,53 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+	<h3>Error!</h3>
+	<span *ngIf="error.status == 401">No access to this info</span>
+
+	<button (click)="showError = true">.</button>
+	<pre *ngIf="showError">{{ error | json }}</pre>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
+	
+        <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.date | date: 'dd/MM/yyyy' }} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="warehouseHandlingType">
+            <mat-header-cell *matHeaderCellDef>Tipo di Movimentazione</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.warehouseHandlingType }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="warehouse">
+            <mat-header-cell *matHeaderCellDef>Magazzino</mat-header-cell>
+            <mat-cell *matCellDef="let e"> 
+                <span *ngIf="e.warehouseToLoad">Carico: {{ e.warehouseToLoad.name }}</span> <br>
+                <span *ngIf="e.warehouseToUnload">Scarico: {{ e.warehouseToUnload.name }}</span>
+            </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/warehouse-handling/detail/' + e.id">Details</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+
+    </mat-table>
+
+</div>

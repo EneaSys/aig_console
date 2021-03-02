@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BuyerResourceService,  InventoryItemResourceService, InventoryCategoryResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService } from 'aig-commerce';
+import { BuyerResourceService,  InventoryItemResourceService, InventoryCategoryResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
 import {  SellerResourceService, WarehouseResourceService } from 'aig-commerce';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -17,8 +17,9 @@ export class AigCommerceAutocompleteService {
         private inventoryItemResourceService: InventoryItemResourceService,
         private sellerResourceService: SellerResourceService,  
         private purchaseResourceService: PurchaseResourceService,  
-        private purchaseItemResourceService: PurchaseItemResourceService,
-        private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,        
+        private purchaseItemResourceService: PurchaseItemResourceService,       
+        private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
+        private warehouseHandlingResourceService: WarehouseHandlingResourceService,        
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -62,9 +63,25 @@ export class AigCommerceAutocompleteService {
 						eoopoCodeContains: value
 					};
                     return this.buyerResourceService.getAllBuyersUsingGET(filter);
-				}   else {
-                        return of([]);
-                    }
+				} else {
+                    return of([]);
+                }
+            })
+        )
+    }    
+                    
+    filterWarehouse(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value && value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
             })
         );
     }
@@ -77,19 +94,18 @@ export class AigCommerceAutocompleteService {
 					let filter = {
                         nameContains: value
 					};
-                    return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);
-                } else {
+                    return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);                } else {
                     return of([]);
                 }
             })
         );
     }
 
+
     filterInventoryItemCombination(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                console.log("banana")
                 if (value.length > 1) {
 					let filter = {
                         nameContains: value
@@ -137,11 +153,11 @@ export class AigCommerceAutocompleteService {
     filterWarehouseHandlingItem(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
-            switchMap((value: string) => {
+            switchMap((value: any) => {
                 console.log("banana")
-                if (value.length > 1) {
+                if (value != null) {
 					let filter = {
-						nameContains: value
+						dateEquals: value
 					};
                     return this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(filter);
                 } else {
@@ -176,6 +192,20 @@ export class AigCommerceAutocompleteService {
 						nameContains: value
 					};
                     return this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filter);
+                }
+            })
+        )
+    }
+
+
+    filterWarehouseHandling(observable: Observable<any>) {
+        return observable.pipe(
+            switchMap((value: any) => {
+                if (value != null) {
+					let filter = {
+						dateEquals: value
+					};
+                    return this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(filter);
                 } else {
                     return of([]);
                 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
-import { EntityReferenceDTO, EntityReferenceResourceService } from "api-gest";
+import { EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
 import { Observable } from "rxjs";
 
 @Injectable()

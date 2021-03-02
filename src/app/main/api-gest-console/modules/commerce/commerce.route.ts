@@ -22,12 +22,17 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
 import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
+import { AigWarehouseHandlingListPageComponent } from './components/warehouse-handling-list-page/warehouse-handling-list-page.component';
+import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
+import { AigWarehouseHandlingResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling.resolver';
+import { AigWarehouseManagerPageComponent } from './components/warehouse-manager-page/warehouse-manager-page.component';
 import { AigSellerDetailPageComponent } from './components/seller-detail-page/seller-detail-page.component';
 import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.resolver';
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
 import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
+import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -141,6 +146,59 @@ export const commerceRoute: Routes = [
                         },
                     },
                 ]
+            },
+            {
+                path: 'warehouse-handling',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigWarehouseHandlingListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseHandlingDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouseHandling: AigWarehouseHandlingResolver,
+                        },
+                    },
+                ] 
+            },
+            {
+                path: 'warehouse-manager',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'manager'
+                    },
+                    {
+                        path: 'manager',
+                        component: AigWarehouseManagerPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
+                ] 
+            },
+            {
+                path: 'warehouse-handling-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigWarehouseHandlingItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
+                ] 
             },
             {
                 path: 'buyer',

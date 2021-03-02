@@ -10,6 +10,8 @@ export const locale = {
             'GENERIC': 'Generic',
             'TENANT_CONTEXT_LIST_PAGE' : 'Context',
             'PRODUCER_LIST_PAGE' : 'Producer',
+            'WAREHOUSE_HANDLING_LIST_PAGE' : 'Warehouse Handling',
+            'WAREHOUSE_HANDLING_ITEM_LIST_PAGE' : 'Warehouse Handling Item',
         },
     }
 };
