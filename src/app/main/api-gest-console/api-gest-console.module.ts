@@ -31,6 +31,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
 import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
+import { AIG_M8T_BASE_PATH } from 'aig-management';
 
 
 @NgModule({
@@ -113,6 +114,10 @@ import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
         {
             provide: AIG_COMMERCE_PATH,
             useValue: API_URL + "/c6e"
+        },
+        {
+            provide: AIG_M8T_BASE_PATH,
+            useValue: API_URL + "/m8t"
         },
     ],
 })

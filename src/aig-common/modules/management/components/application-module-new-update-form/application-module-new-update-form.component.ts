@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
-import { ApplicationModuleDTO, ApplicationModuleResourceService } from "api-gest";
+import { ApplicationModuleDTO, ApplicationModuleResourceService } from "aig-management";
 
 @Component({
     selector: 'aig-application-module-new-update-form',
@@ -51,7 +51,7 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
         let applicationModule: ApplicationModuleDTO = this.applicationModuleNewUpdateForm.value;
 
         try {
-            let postOrPut: any;
+            let postOrPut;
             if (applicationModule.id != 0) {
                 await this.applicationModuleResourceService.updateApplicationModuleUsingPUT(applicationModule).toPromise();
                 postOrPut = "updated";
@@ -61,9 +61,10 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
 
+            this._snackBar.open(`Application Module: '${applicationModule.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+        } catch (e) {
+            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();

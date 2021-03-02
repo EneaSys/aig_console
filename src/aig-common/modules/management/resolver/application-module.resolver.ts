@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ApplicationModuleDTO, ApplicationModuleResourceService } from 'aig-management';
 import { Observable } from 'rxjs';
-import { ApplicationModuleDTO, ApplicationModuleResourceService} from 'api-gest';
 
 @Injectable()
 export class AigApplicationModuleResolver implements Resolve<Observable<ApplicationModuleDTO>> {

@@ -1,7 +1,16 @@
-<div class="page-layout blank">
+<div id="aig-buyer-detail-page" class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="40">
+
+            <div class="fuse-card auto-width p-16">
+
+                <pre>{{ buyerDTO | json }}</pre>
+
+                <button mat-stroked-button color="primary" (click)="editBuyer(buyerDTO)">Edit</button>
+
+            </div>
+
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Cliente</div>
                 <div class="h1 m-16">{{ buyer.eopoo | eopooName }}</div>
@@ -16,17 +25,14 @@
             <div class="fuse-card auto-width p-16 mt-16">
                 <div *ngIf="!loadingBuyerValidationImage">
                     <div *ngIf="buyer.statusNote != 1">
-                        <button mat-stroked-button color="primary" *ngIf="!buyerValidationImageUrl"
-                            (click)="showDocument()">Mostra documento</button>
+                        <button mat-stroked-button color="primary" *ngIf="!buyerValidationImageUrl" (click)="showDocument()">Mostra documento</button>
                         <div *ngIf="buyerValidationImageUrl">
                             <img [src]="buyerValidationImageUrl" alt="buyerValidationImageUrl" />
                         </div>
                     </div>
                     <div *ngIf="buyer.statusNote == 1 || buyer.statusNote == 4">
-                        <input mat-stroked-button color="primary" type="file"
-                            (change)="buyerValidationSelectedImage($event)" />
-                        <button mat-stroked-button color="primary" *ngIf="buyerValidationImageFile"
-                            (click)="uploadDocument()">Carica documento</button>
+                        <input mat-stroked-button color="primary" type="file" (change)="buyerValidationSelectedImage($event)" />
+                        <button mat-stroked-button color="primary" *ngIf="buyerValidationImageFile" (click)="uploadDocument()">Carica documento</button>
                     </div>
                 </div>
 
@@ -40,8 +46,7 @@
         <div class="widget p-16" fxFlex.gt-sm="60">
             <div class="fuse-card auto-width p-16">
                 Acquisti:
-                <aig-buy-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns"
-                    [error]="purchaseError">
+                <aig-buy-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns" [error]="purchaseError">
                 </aig-buy-list-table>
             </div>
         </div>

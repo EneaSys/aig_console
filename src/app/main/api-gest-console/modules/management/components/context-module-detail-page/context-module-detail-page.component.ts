@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import {  ContextModuleResourceService, ContextModuleDTO } from 'api-gest';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigContextModuleNewUpdateModalComponent } from '../context-module-dialog/context-module-new-update-modal.component';
+import { AigContextModuleNewUpdateModalComponent } from '../context-module-new-update-modal/context-module-new-update-modal.component';
+import { ContextModuleDTO, ContextModuleResourceService } from 'aig-management';
 
 @Component({
+    selector: 'aig-context-module-detail-page',
     templateUrl: './context-module-detail-page.component.html',
     styleUrls: ['./context-module-detail-page.component.scss']
 })
 export class AigContextModuleDetailPageComponent extends GenericComponent {
    
     constructor(
-        private route: ActivatedRoute,
         private contextModuleResourceService: ContextModuleResourceService,
+        private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }

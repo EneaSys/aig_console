@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
-import { EntityReferenceDTO, EntityReferenceResourceService } from "api-gest";
+import { EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigEntityReferenceNewUpdateModalComponent } from "../entity-reference-new-update-modal/entity-reference-new-update-modal.component";
@@ -34,7 +34,7 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	//			---- ENTITY REFERENCE TABLE AND SEARCH SECTION ----
 
 	entityReferenceSearchFormGroup: FormGroup;
-	entityReferencePagination: any;
+	entityReferencePaginationSize: number;
 	entityReferenceFilters: any;
 
 	entityReferenceLength: number;
@@ -45,15 +45,10 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 
 
 	private initEntityReferenceSearch() {
-		this.entityReferencePagination = {
-			size: 10,
-			page: 0
-		}
+		this.entityReferencePaginationSize = 10;
 	
 		this.entityReferenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
-            moduleId: [''],
-            moduleName: [''],
 			name: [''],
 		});
 
@@ -62,22 +57,27 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 
 	private clearFiltersEntityReference() {
 		this.entityReferenceFilters = {
-			id: null,
-			name: null,
+			idEquals: null,
+			nameContains: null,
+			page: 0,
 		}
 	}
 
 	private async searchEntityReference(page: number) {
-		this.entityReferencePagination.page = page;
+
 		this.entityReferenceDTOs = null;
+		this.entityReferenceFilters.page = page;
+		this.entityReferenceFilters.size = this.entityReferencePaginationSize;
+		
 		try {
-			this.entityReferenceLength = await this.entityReferenceResourceService.countEntityReferencesUsingGET(null, null, null, this.entityReferenceFilters.id, null, null, null, null, null, null, null, this.entityReferenceFilters.moduleId, null, null, null, null, this.entityReferenceFilters.name,).toPromise(); //mettere i 
+			this.entityReferenceLength = await this.entityReferenceResourceService.countEntityReferencesUsingGET(this.entityReferenceFilters).toPromise();  
+			
 			if(this.entityReferenceLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.entityReferenceDTOs = [];
 				return;
 			}
-			this.entityReferenceDTOs = await this.entityReferenceResourceService.getAllEntityReferencesUsingGET(null, null, null, this.entityReferenceFilters.id, null, null, null, null, null, null, null, this.entityReferenceFilters.moduleId, null, null, null, null, this.entityReferenceFilters.name,).toPromise();
+			this.entityReferenceDTOs = await this.entityReferenceResourceService.getAllEntityReferencesUsingGET(this.entityReferenceFilters).toPromise();
 		} catch (e) {
 			this.entityReferenceError = e;
 		}
@@ -94,7 +94,7 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	}
 
 	entityReferencePaginationEvent(pageEvent: PageEvent) {
-		this.entityReferencePagination.size = pageEvent.pageSize;
+		this.entityReferencePaginationSize = pageEvent.pageSize;
 		this.searchEntityReference(pageEvent.pageIndex);
 	}
 
@@ -104,13 +104,13 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersEntityReference();
 			this.entityReferenceSearchFormGroup.reset();
-			this.entityReferenceFilters.id = searchedId;
+			this.entityReferenceFilters.idEquals = searchedId;
 			this.searchEntityReference(0);
 			return;
 		}
-		this.entityReferenceFilters.id = null;
+		this.entityReferenceFilters.idEquals = null;
 
-		this.entityReferenceFilters.name = this.entityReferenceSearchFormGroup.controls.name.value;
+		this.entityReferenceFilters.nameContains = this.entityReferenceSearchFormGroup.controls.name.value;
 
 		this.searchEntityReference(0);
 	}

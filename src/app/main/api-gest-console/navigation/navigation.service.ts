@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FuseNavigation, FuseNavigationItem } from '@fuse/types';
-import { UserPermissionMemoryResourceService } from 'api-gest';
 import { navigation } from 'app/navigation/navigation';
 import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
+import { UserPermissionMemoryResourceService } from 'api-gest';
 
 @Injectable()
 export class AigModuleNavigationService {

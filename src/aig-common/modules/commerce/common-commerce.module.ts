@@ -42,6 +42,7 @@ import { AigProducerResolver } from './resolver/producer.resolver';
 import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
+import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
@@ -56,6 +57,7 @@ import { AigCatalogItemListTableComponent } from './components/catalog-item-list
 import { AigCatalogItemNewUpdateFormComponent } from './components/catalog-item-new-update-form/catalog-item-new-update-form.component';
 import { AigCatalogItemResolver } from './resolver/catalog-item.resolver';
 import { AigPriceListItemListTableComponent } from './components/price-list-item-list-table/price-list-item-list-table.component';
+import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -94,6 +96,7 @@ import { AigPriceListItemListTableComponent } from './components/price-list-item
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
+        AigBuyerNewUpdateFormComponent,
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
@@ -128,6 +131,7 @@ import { AigPriceListItemListTableComponent } from './components/price-list-item
         AigCatalogResolver,
         AigCatalogItemResolver,
         AigPriceListResolver,
+        AigSellerResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -137,6 +141,7 @@ import { AigPriceListItemListTableComponent } from './components/price-list-item
         AigFiscalTransactionListTableComponent,
         AigC6eGenericStatusPipe,
         AigBuyerListTableComponent,
+        AigBuyerNewUpdateFormComponent,
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
         AigInventoryItemListTableComponent,
