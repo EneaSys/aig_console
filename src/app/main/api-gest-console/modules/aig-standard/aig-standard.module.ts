@@ -16,7 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { aigStandardRoute } from './aig-standard.route';
-import { ApiModule  } from 'aig-standard';
+import { AigStandardClientModule } from 'aig-standard';
 
 import { AigCommonStandardModule } from 'aig-common/modules/standard/common-standard.module';
 
@@ -99,7 +99,7 @@ import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-cate
         FuseSharedModule,
 
         AigCommonStandardModule,
-        ApiModule,
+        AigStandardClientModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
