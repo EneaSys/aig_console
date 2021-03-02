@@ -27,6 +27,7 @@ import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.r
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
+import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -91,6 +92,31 @@ export const commerceRoute: Routes = [
                             purchase: PurchaseResolver,
                         },
                     },
+                ]
+            },
+            {
+                path: 'purchase-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPurchaseItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    
+                    /*
+                    {
+                        path: 'detail/:id',
+                        component: AigPurchaseItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            purchase: PurchaseResolver,
+                        },
+                    },*/
                 ]
             },
             {

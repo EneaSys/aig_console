@@ -53,6 +53,9 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
 import { AigBuyerNewUpdateModalComponent } from './components/buyer-new-update-modal/buyer-new-update-modal.component';
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
 import { AigPurchaseNewUpdateDialogComponent } from './components/purchase-new-update-dialog/purchase-new-update-dialog.component';
+import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
+import { AigPurchaseNewUpdateFormComponent } from 'aig-common/modules/commerce/components/purchase-new-update-form/purchase-new-update-form.component';
+import { AigPurchaseItemNewUpdateDialogComponent } from './components/purchase-item-new-update-dialog/purchase-item-new-update-dialog.component';
 
 
 @NgModule({
@@ -123,6 +126,9 @@ import { AigPurchaseNewUpdateDialogComponent } from './components/purchase-new-u
         AigFiscalTransactionListPageComponent,
         AigFiscalTransactionNewUpdateModalComponent,
         AigInventoryItemCombinationListPageComponent,
+        AigPurchaseItemListPageComponent,
+        AigPurchaseItemNewUpdateDialogComponent,
+
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
@@ -136,6 +142,7 @@ import { AigPurchaseNewUpdateDialogComponent } from './components/purchase-new-u
         AigInventoryItemCombinationNewUpdateDialogComponent,
         AigProducerNewUpdateModalComponent,
         AigPurchaseNewUpdateDialogComponent,
+        AigPurchaseItemNewUpdateDialogComponent,
     ],
     exports: [],
 })

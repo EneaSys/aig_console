@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BuyerResourceService,  InventoryItemResourceService, InventoryCategoryResourceService, ProducerResourceService } from 'aig-commerce';
+import { BuyerResourceService,  InventoryItemResourceService, InventoryCategoryResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService } from 'aig-commerce';
 import {  SellerResourceService, WarehouseResourceService } from 'aig-commerce';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -13,8 +13,12 @@ export class AigCommerceAutocompleteService {
         private inventoryCategoryResourceService: InventoryCategoryResourceService,
         private buyerResourceService: BuyerResourceService,              
         private warehouseResourceService: WarehouseResourceService,
+        private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
         private inventoryItemResourceService: InventoryItemResourceService,
-        private sellerResourceService: SellerResourceService,        
+        private sellerResourceService: SellerResourceService,  
+        private purchaseResourceService: PurchaseResourceService,  
+        private purchaseItemResourceService: PurchaseItemResourceService,
+        private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,        
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -81,6 +85,23 @@ export class AigCommerceAutocompleteService {
         );
     }
 
+    filterInventoryItemCombination(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                console.log("banana")
+                if (value.length > 1) {
+					let filter = {
+                        nameContains: value
+					};
+                    return this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
     filterSeller(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
@@ -106,6 +127,55 @@ export class AigCommerceAutocompleteService {
 						nameContains: value
 					};
                     return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterWarehouseHandlingItem(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                console.log("banana")
+                if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterPurchase(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.purchaseResourceService.getAllPurchasesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterPurchaseItem(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+                    return this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filter);
                 } else {
                     return of([]);
                 }

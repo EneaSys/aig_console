@@ -101,6 +101,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/purchase',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'purchase-item',
+                title    : 'Prodotti in acquisto',
+                type     : 'item',
+                icon     : 'shopping_bag',
+                url      : '/commerce/purchase-item',
+                permission: ['c6e.admin'],
+            },
 
         ]
     },

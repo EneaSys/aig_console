@@ -44,10 +44,9 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.purchaseNewUpdateForm = this._formBuilder.group({
-            amount: [''],
 			id: [''],
+            amount: [''],
 			buyer: ['', Validators.required],
-			buyerId: [''],
 			closed: ['', Validators.required],
 			insertedDateTime: ['', Validators.required],
             statusNote: ['', Validators.required],
@@ -73,9 +72,9 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 		let purchase: PurchaseDTO = {
 			id: this.purchaseNewUpdateForm.value.id,
-            buyer: this.purchaseNewUpdateForm.value.buyer,
+            buyerId: 1, //this.purchaseNewUpdateForm.value.buyer.id,
             statusNote:this.purchaseNewUpdateForm.value.statusNote,
-            closed: this.purchaseNewUpdateForm.value.closed,
+            closed: true, //this.purchaseNewUpdateForm.value.closed,
 			insertedDateTime: this.purchaseNewUpdateForm.value.insertedDateTime,
 		};
 
