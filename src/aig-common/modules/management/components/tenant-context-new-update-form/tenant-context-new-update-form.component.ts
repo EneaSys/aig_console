@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { TenantContextDTO, TenantContextResourceService } from 'api-gest';
+import { TenantContextDTO, TenantContextResourceService } from 'aig-management';
 
 @Component({
     selector: 'aig-tenant-context-new-update-form',
@@ -63,7 +63,7 @@ export class AigTenantContextNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Tenant Context: '${tenantContext.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Tenant Context: '${tenantContext.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });

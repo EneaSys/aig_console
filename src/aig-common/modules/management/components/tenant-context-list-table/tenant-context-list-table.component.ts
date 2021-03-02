@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'aig-tenant-context-list-table',
@@ -7,13 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AigTenantContextListTableComponent implements OnInit {
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
 	dataSource: any[];
 	@Input()
 	error: any;
 	
-	constructor() { }
+	constructor(
+		private router: Router,
+	) { }
 
 	ngOnInit(): void { }
 }

@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
-import { EntityReferenceDTO, EntityReferenceResourceService } from "api-gest";
+import { EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigEntityReferenceNewUpdateModalComponent } from "../entity-reference-new-update-modal/entity-reference-new-update-modal.component";

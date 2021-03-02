@@ -17,7 +17,7 @@ import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
 import { AigIppModule } from './modules/ipp/ipp.module';
 
 import { AIG_PATH } from 'api-gest';
-import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
+import { BASE_PATH } from 'aig-standard';
 import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
 import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
@@ -31,6 +31,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
 import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
+import { AIG_M8T_BASE_PATH } from 'aig-management';
 
 
 @NgModule({
@@ -95,7 +96,7 @@ import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
             useValue: API_URL
         },
         {
-            provide: AIG_STANDARD_BASE_PATH,
+            provide: BASE_PATH,
             useValue: API_URL + "/s6d"
         },
         {
@@ -113,6 +114,10 @@ import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
         {
             provide: AIG_COMMERCE_PATH,
             useValue: API_URL + "/c6e"
+        },
+        {
+            provide: AIG_M8T_BASE_PATH,
+            useValue: API_URL + "/m8t"
         },
     ],
 })
