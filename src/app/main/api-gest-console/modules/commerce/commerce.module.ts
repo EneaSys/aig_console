@@ -59,6 +59,7 @@ import { AigCatalogManagerPageComponent } from './components/catalog-manager-pag
 import { AigCatalogItemListPageComponent } from './components/catalog-item-list-page/catalog-item-list-page.component';
 import { AigCatalogItemNewUpdateDialogComponent } from './components/catalog-item-new-update-dialog/catalog-item-new-update-dialog.component';
 import { AigCatalogItemDetailPageComponent } from './components/catalog-item-detail-page/catalog-item-detail-page.component';
+import { AigPriceListItemListPageComponent } from './components/price-list-item-list-page/price-list-item-list-page.component';
 
 
 @NgModule({
@@ -135,6 +136,7 @@ import { AigCatalogItemDetailPageComponent } from './components/catalog-item-det
         AigPriceListListPageComponent,
         AigPriceListDetailPageComponent,
         AigPriceListNewUpdateDialogComponent,
+        AigPriceListItemListPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,
