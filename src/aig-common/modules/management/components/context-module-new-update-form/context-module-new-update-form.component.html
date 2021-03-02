@@ -7,29 +7,30 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!contextModule.applicationModule" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Application Module</mat-label>
-            <input FormControlName="applicationModule" matInput [matAutocomplete]= "applicationModuleAutocomplete">
-            <mat-autocomplete #applicationModuleAutocomplete= "matAutocomplete" [displayWith]="autocompleteDisplayService.applicationModuleDisplayFn">
-                <mat-option *ngFor="let applicationModule of filteredApplicationModule| async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
+            <input FormControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
+                <mat-option *ngFor="let applicationModule of filteredApplicationModules| async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
-      
+
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Tenant Context</mat-label>
-            <input FormControlName="tenantContext" matInput [matAutocomplete]= "tenantContextAutocomplete">
-            <mat-autocomplete #tenantContextAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.tenantContextDisplayFn">
-                <mat-option *ngFor="let tenantContext of filteredTenantContext| async" [value]="tenantContext">{{ tenantContext.name }}</mat-option>
+            <input FormControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
+            <mat-autocomplete #tenantContextAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.tenantContextDisplayFn">
+                <mat-option *ngFor="let tenantContext of filteredTenantContexts| async" [value]="tenantContext">{{ tenantContext.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!contextModule.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="contextModule.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 

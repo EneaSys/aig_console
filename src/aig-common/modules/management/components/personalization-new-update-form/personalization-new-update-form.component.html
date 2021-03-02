@@ -1,0 +1,34 @@
+<form *ngIf="step.form" [formGroup]="personalizationNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input name="name" formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="!contextModule.applicationModule" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Application Module</mat-label>
+            <input FormControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
+                <mat-option *ngFor="let applicationModule of filteredApplicationModules| async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div> 
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!personalization.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="personalization.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ personalizationNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!personalizationNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPersonalization()">Create New</button>
+</div>

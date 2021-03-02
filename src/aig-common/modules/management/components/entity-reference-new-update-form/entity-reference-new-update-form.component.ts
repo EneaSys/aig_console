@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
-import { ApplicationModuleDTO, EntityReferenceDTO, EntityReferenceResourceService } from "api-gest";
+import { ApplicationModuleDTO, EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
 import { Observable } from "rxjs";
 import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
@@ -19,14 +19,14 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         loading: false,
         complete: false
     };
-    constructor(
-		public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
-		private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
+    constructor(	
+        private _snackBar: MatSnackBar,	
+        private _formBuilder: FormBuilder,
+        private eventService: EventService,
 		private _fuseProgressBarService: FuseProgressBarService,
         private entityReferenceResourceService: EntityReferenceResourceService,
-        private _formBuilder: FormBuilder,
-        private _snackBar: MatSnackBar,
-        private eventService: EventService,
+        private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
+        public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
     ) { }
 
     @Input()
@@ -34,7 +34,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
     entityReferenceNewUpdateForm: FormGroup;
 
-	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
+	filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
 
 
     ngOnInit(): void { 
@@ -49,7 +49,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
             this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
         }
 
-		this.filteredApplicationModule = this.managementAutocompleteFilterService.filterApplicationModule(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
+		this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
     }
 
     async submit() {
@@ -63,8 +63,8 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         let entityReference: EntityReferenceDTO = {
             id: this.entityReferenceNewUpdateForm.value.id,
             name: this.entityReferenceNewUpdateForm.value.name,
-            moduleId: this.entityReferenceNewUpdateForm.value.applicationModule.id,
-        
+            moduleId: this.entityReferenceNewUpdateForm.value.module.id, 
+            moduleName: this.entityReferenceNewUpdateForm.value.module.name,  
         }; 
 
         try {
@@ -80,8 +80,8 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
             this._snackBar.open(`Entity Reference: '${entityReference.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+        } catch (e) {
+            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();
