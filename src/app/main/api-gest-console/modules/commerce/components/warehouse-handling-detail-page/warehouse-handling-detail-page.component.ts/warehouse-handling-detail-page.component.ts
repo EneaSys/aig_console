@@ -36,7 +36,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this.loadWarehouseHandlingItem();
   }
 
-  warehouseHandlingItemDC: string[] = ["inventoryItemCombination", "quantity"];
+  warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity"];
   warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[];
   warehouseHandlingItemError: any;
   warehouseHandlingItemFilters: {}
@@ -51,7 +51,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
   }
 
 
-  editProducer(warehouseHandlingDTO: WarehouseHandlingDTO) {
+  editWarehouseHandling(warehouseHandlingDTO: WarehouseHandlingDTO) {
     this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: warehouseHandlingDTO } });
   }
 

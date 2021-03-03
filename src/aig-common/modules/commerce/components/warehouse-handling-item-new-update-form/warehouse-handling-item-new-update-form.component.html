@@ -22,11 +22,12 @@
             <input matInput formControlName="inventoryItemCombination"
                 [matAutocomplete]="selectInventoryItemCombinationAutocomplete" placeholder="Prodotto" required>
             <mat-autocomplete #selectInventoryItemCombinationAutocomplete="matAutocomplete"
-                [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
-                <mat-option *ngFor="let inventoryItem of filteredInventoryItem | async" [value]="inventoryItem">
-                    {{inventoryItem.name }}</mat-option>
+                [displayWith]="autocompleteDisplayService.inventoryItemCombinationDisplayFn">
+                <mat-option *ngFor="let inventoryItemCombination of filteredInventoryItemCombination | async" [value]="inventoryItemCombination">
+                    {{inventoryItemCombination.inventoryItem.name}}  {{inventoryItemCombination.inventoryItem.producer.name}}   {{inventoryItemCombination.name }}
+                </mat-option>
             </mat-autocomplete>
-        </mat-form-field> <br>
+        </mat-form-field>
         <mat-form-field>
             <mat-label>Quantità</mat-label>
             <input type="number" matInput formControlName="quantity" placeholder="Quantità" required>
@@ -43,7 +44,7 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseHandlingItemNewUpdateForm.value | json }}</pre>
+    <pre> Hai movimentato {{ warehouseHandlingItemNewUpdateForm.controls.quantity.value }} {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.name }} {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.name }} di {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.producer.name }}</pre>
     <button *ngIf="!warehouseHandlingItemNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newWarehouseHandlingItem()">Create New</button>
 </div>

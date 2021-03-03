@@ -33,7 +33,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
     @Input()
     warehouseHandlingItem: WarehouseHandlingItemDTO;
 
-    filteredInventoryItem: Observable<InventoryItemCombinationDTO[]>;
+    filteredInventoryItemCombination: Observable<InventoryItemCombinationDTO[]>;
 
     filteredWarehouseHandling: Observable<WarehouseHandlingDTO[]>;
 
@@ -49,7 +49,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
 
         })
 
-        this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItemCombination(this.warehouseHandlingItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);
+        this.filteredInventoryItemCombination = this.commerceAutocompleteService.filterInventoryItemCombination(this.warehouseHandlingItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);
         
         this.filteredWarehouseHandling = this.commerceAutocompleteService.filterWarehouseHandling(this.warehouseHandlingItemNewUpdateForm.controls['warehouseHandlingDate'].valueChanges);
 
