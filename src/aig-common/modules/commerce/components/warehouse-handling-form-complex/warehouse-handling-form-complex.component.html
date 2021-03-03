@@ -3,14 +3,14 @@
 
 
     <!--HANDLING TYPE -->
-    <mat-step [completed]="handlingTypeRequirementIsCompleted">
-        <aig-warehouse-handling-new-update-form></aig-warehouse-handling-new-update-form>
+    <mat-step [completed]="handlingTypeRequirementIsCompleted" label="Crea movimentazione">
+        <aig-warehouse-handling-new-update-form [returnToParent]="true" (wareHouseHandling)="fontSizePx=$event"></aig-warehouse-handling-new-update-form>
     </mat-step>
 
 
     <!--QUANTITY AND INVENTORY ITEM COMBINATION -->
     <mat-step [stepControl]="quantityInventoryItemCombinationFormGroup" label="Seleziona la quantità e il prodotto">
-        <aig-warehouse-handling-item-new-update-form></aig-warehouse-handling-item-new-update-form>
+        <aig-warehouse-handling-item-new-update-form ></aig-warehouse-handling-item-new-update-form>
     </mat-step>
 
     <!--DONE -->

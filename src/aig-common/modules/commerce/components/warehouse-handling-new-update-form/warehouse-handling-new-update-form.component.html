@@ -51,6 +51,8 @@
 <div *ngIf="step.complete">
     <pre>{{ warehouseHandling | json }}</pre>
     <button *ngIf="!warehouseHandlingFormGroup.value.id" mat-stroked-button color="primary"
-        (click)="newWarehouseHandling()">Create
-        New</button>
+        (click)="newWarehouseHandling()">
+		<span *ngIf="!returnToParent">Create New</span>
+		<span *ngIf="returnToParent">Edit</span>
+	</button>
 </div>
