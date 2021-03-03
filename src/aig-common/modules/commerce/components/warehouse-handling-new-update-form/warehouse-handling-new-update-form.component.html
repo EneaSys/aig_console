@@ -8,7 +8,8 @@
         <mat-radio-button value="SHIFT">Scambio</mat-radio-button>
         <mat-radio-button value="UNLOAD">Scarico</mat-radio-button>
     </mat-radio-group>
-    <br>
+    
+	<br><br>
 
     <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'UNLOAD'">
         <mat-label>Seleziona Magazzino di Carico</mat-label>
@@ -39,7 +40,8 @@
     </mat-form-field>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -49,7 +51,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseHandling | json }}</pre>
     <button *ngIf="!warehouseHandlingFormGroup.value.id" mat-stroked-button color="primary"
         (click)="newWarehouseHandling()">
 		<span *ngIf="!returnToParent">Create New</span>

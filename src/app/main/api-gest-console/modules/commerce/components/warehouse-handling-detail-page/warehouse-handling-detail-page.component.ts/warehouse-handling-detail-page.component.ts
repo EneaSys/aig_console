@@ -56,6 +56,6 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
   }
 
   addInventoryItemCombination(warehouseHandlingDTO: WarehouseHandlingDTO){
-    this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { warehouseHandlingItem: {warehouseHandling: warehouseHandlingDTO} } });
+    this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { warehouseHandling: warehouseHandlingDTO } });
   }
 }

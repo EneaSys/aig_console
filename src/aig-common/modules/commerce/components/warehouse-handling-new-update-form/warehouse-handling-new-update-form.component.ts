@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -7,7 +7,6 @@ import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, Warehouse
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
-import { EventEmitter } from 'events';
 
 
 @Component({
@@ -38,7 +37,10 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 	@Input()
 	returnToParent: boolean = false;
 
-	@Output() wareHouseHandling = new EventEmitter<>();
+	@Output()
+	wareHouseHandlingOutput = new EventEmitter<WarehouseHandlingDTO>();
+
+	isUpdate: boolean = false;
 	
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
@@ -86,25 +88,19 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             date: this.warehouseHandlingFormGroup.controls.date.value,
         }
 
-        switch (this.warehouseHandlingFormGroup.controls.warehouseHandlingType.value) {
-            case 'LOAD':
-                warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value.id;
-                break;
-            case 'UNLOAD':
-                warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value.id;
-                break;
-            case 'SHIFT':
-                warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value.id;
-                warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value.id;
-                break;
+		if(this.warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'UNLOAD') {
+			warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value.id;
+			warehouseHandling.warehouseToLoad = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value;
+		}
 
-            default:
-
-                break;
-        }
+		if(this.warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'LOAD') {
+			warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value.id;
+				warehouseHandling.warehouseToUnload = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value;
+		}
+		
 
 		if(this.returnToParent) {
-			// dallo al parent
+			this.wareHouseHandlingOutput.emit(warehouseHandling);
 			this.setStep("complete");
 		} 
 
@@ -134,6 +130,8 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     
 
     newWarehouseHandling() {
+		this.warehouseHandling = null;
+		this.wareHouseHandlingOutput.emit(this.warehouseHandling);
         this.setStep("form");
     }
 
