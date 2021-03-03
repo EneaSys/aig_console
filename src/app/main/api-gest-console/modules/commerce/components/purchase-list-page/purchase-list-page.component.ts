@@ -56,7 +56,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     this.purchasePaginationSize = 10
 	  this.purchaseSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			insertedDateTime: [''],
 		});
 
     this.purchaseDC = ["id","amount","buyer","closed","insertedDataTime","statusNote","buttons"];
@@ -65,7 +65,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
   private clearFiltersPurchase() {
     this.purchaseFilters = {
       idEquals: null,
-      nameContains: null,
+      insertedDateTimeEquals : null,
       page: 0,
     }
   }
@@ -114,7 +114,8 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     }
         
     this.purchaseFilters.idEquals = null;
-    this.purchaseFilters.nameContains = this.purchaseSearchFormGroup.controls.name.value;
+    this.purchaseFilters.insertedDateTime = this.purchaseSearchFormGroup.controls.insertedDateTime.value.date;
+
     this.searchPurchase(0);
   }
   

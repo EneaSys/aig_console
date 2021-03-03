@@ -79,9 +79,8 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 			purchaseId: this.purchaseItemNewUpdateForm.value.purchase.id,
 			inventoryItemCombinationId: this.purchaseItemNewUpdateForm.value.inventoryItemCombination.id,
 			warehouseHandlingItemId: this.purchaseItemNewUpdateForm.value.warehouseHandlingItem.id,
-
-
 		};
+		console.log(purchaseItem)
 
 		try {
 			let postOrPut;

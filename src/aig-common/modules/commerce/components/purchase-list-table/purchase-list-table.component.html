@@ -49,7 +49,7 @@
        
        <ng-container matColumnDef="insertedDataTime">
             <mat-header-cell *matHeaderCellDef> Data Inserimento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.insertedDataTime }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.insertedDateTime| date: 'dd/MM/yyyy' }} </mat-cell>
         </ng-container>
         
         

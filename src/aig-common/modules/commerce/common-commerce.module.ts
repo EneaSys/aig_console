@@ -59,7 +59,7 @@ import { AigInventoryItemCombinationListTableComponent } from './components/inve
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -89,6 +89,7 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         MatStepperModule,
         MatDatepickerModule,
         MatRadioModule,
+        MatSlideToggleModule,
     
 
     ],

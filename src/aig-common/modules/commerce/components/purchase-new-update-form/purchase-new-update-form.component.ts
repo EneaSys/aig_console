@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 
+
 @Component({
 	selector: 'aig-purchase-new-update-form',
 	templateUrl: './purchase-new-update-form.component.html',
@@ -37,6 +38,7 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 	filteredBuyer: Observable<BuyerDTO[]>;
 
+	checked: boolean;
 
 
 
@@ -74,7 +76,7 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 			id: this.purchaseNewUpdateForm.value.id,
             buyerId: 1, //this.purchaseNewUpdateForm.value.buyer.id,
             statusNote:this.purchaseNewUpdateForm.value.statusNote,
-            closed: true, //this.purchaseNewUpdateForm.value.closed,
+            closed: this.purchaseNewUpdateForm.value.closed,
 			insertedDateTime: this.purchaseNewUpdateForm.value.insertedDateTime,
 		};
 
