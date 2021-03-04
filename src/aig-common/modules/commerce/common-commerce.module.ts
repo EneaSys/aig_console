@@ -42,7 +42,7 @@ import { AigCommerceAutocompleteService } from './service/autocomplete-filter.se
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigWarehouseHandlingListTableComponent } from './components/warehouse-handling-list-table/warehouse-handling-list-table.component';
-import { MatRadioModule } from '@angular/material';
+import { MatMenuModule, MatRadioModule } from '@angular/material';
 import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
 import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
@@ -84,6 +84,7 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         MatStepperModule,
         MatDatepickerModule,
         MatRadioModule,
+        MatMenuModule,
     
 
     ],
