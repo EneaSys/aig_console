@@ -59,6 +59,7 @@ import { AigInventoryItemCombinationDetailPageComponent } from './components/inv
 import { AigBuyerNewUpdateModalComponent } from './components/buyer-new-update-modal/buyer-new-update-modal.component';
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
 import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/warehouse-handling-item-new-update-modal/warehouse-handling-item-new-update-modal.component';
+import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 
 
 @NgModule({
@@ -132,6 +133,7 @@ import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/wa
         AigWarehouseHandlingComplexModalComponent,
         AigWarehouseHandlingItemListPageComponent,
         AigWarehouseHandlingItemNewUpdateModalComponent,
+        AigWarehouseHandlingItemDetailPageComponent,
 
         AigSellerDetailPageComponent,
         AigFiscalTransactionListPageComponent,

@@ -34,7 +34,15 @@
     <!--DONE -->
     <mat-step>
         <ng-template matStepLabel>Riepilogo</ng-template>
-        <p>In data {{warehouseDateFormGroup.controls.date.value}} è stato fatto un {{handlingTypeFormGroup.controls.handlingType.value}} di {{quantityInventoryItemCombinationFormGroup.controls.quantity.value}} {{quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value}} </p>
+        <div *ngIf="warehouseHandling">
+			Creazione movimentazione di magazzino: {{ warehouseHandling.warehouseHandlingType }} | 
+			<b *ngIf="warehouseHandling.warehouseToUnload">DA: {{ warehouseHandling.warehouseToUnload.name }}</b> 
+			<b *ngIf="warehouseHandling.warehouseToLoad">-> {{ warehouseHandling.warehouseToLoad.name }}</b>
+			in data {{ warehouseHandling.date | date }}
+			<br><br>
+            <aig-warehouse-handling-item-list-table [displayColumns]="['inventoryItemProducer', 'inventoryItemCombination', 'quantity']" 
+			[dataSource]="warehouseHandlingItemDTOs"></aig-warehouse-handling-item-list-table>
+		</div>
         <div>
             <button mat-button matStepperPrevious>Indietro</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
@@ -48,7 +56,7 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseHandling | json }}</pre>
+    <pre>{{ warehouseHandlingItemDTOs | json }}</pre>
     <button *ngIf="!handlingTypeFormGroup.value.id" mat-stroked-button color="primary"
         (click)="newWarehouseHandling()">
 		Create New

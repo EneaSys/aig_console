@@ -53,6 +53,7 @@ import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 import { AigWarehouseHandlingItemListTableComponent } from './components/warehouse-handling-item-list-table/warehouse-handling-item-list-table.component';
 import { AigWarehouseHandlingItemNewUpdateFormComponent } from './components/warehouse-handling-item-new-update-form/warehouse-handling-item-new-update-form.component';
+import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-item.resolver';
 
 
 
@@ -126,6 +127,7 @@ import { AigWarehouseHandlingItemNewUpdateFormComponent } from './components/war
         AigWarehouseResolver,
         AigWarehouseHandlingResolver,
         AigSellerResolver,
+        AigWarehouseHandlingItemResolver,
     ],
     exports: [
         AigBuyListTableComponent,

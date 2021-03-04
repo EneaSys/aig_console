@@ -31,6 +31,8 @@ import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.r
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
+import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
+import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling-item.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -170,7 +172,15 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigWarehouseHandlingItemListPageComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseHandlingItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouseHandlingItem: AigWarehouseHandlingItemResolver,
+                        },
+                    },
                 ] 
             },
             {
