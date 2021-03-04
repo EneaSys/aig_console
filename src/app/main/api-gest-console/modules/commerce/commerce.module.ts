@@ -117,6 +117,7 @@ import { AigInventoryItemCombinationDetailPageComponent } from './components/inv
         AigInventoryItemCombinationListPageComponent,
         AigInventoryItemCombinationDetailPageComponent
     ],
+    
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigWarehouseNewUpdateModalComponent,
