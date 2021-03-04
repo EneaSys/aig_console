@@ -23,7 +23,6 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
   ) { super(aigGenericComponentService) }
 
   warehouseHandlingDTO: WarehouseHandlingDTO;
-  
 
   loadPage() {
     
@@ -45,6 +44,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this.warehouseHandlingItemFilters = {
       idEquals: null,
       nameContains: null,
+      warehouseHandlingIdEquals: this.warehouseHandlingDTO.id,
       page: 0,
     };
     this.warehouseHandlingItemDTOs = await this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(this.warehouseHandlingItemFilters).toPromise();
