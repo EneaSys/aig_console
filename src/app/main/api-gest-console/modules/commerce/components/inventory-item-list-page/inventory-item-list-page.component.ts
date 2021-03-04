@@ -58,6 +58,8 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 		this.inventoryItemSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+      category: [''],
+      producer: ['']
 		});
 
 		this.inventoryItemDC = ["id","inventoryCategoryName","name","producerName","buttons",];
