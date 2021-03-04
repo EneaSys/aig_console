@@ -2,63 +2,67 @@
 <mat-horizontal-stepper linear #stepper *ngIf="step.form">
 
 
-    <!--HANDLING TYPE -->
-    <mat-step [completed]="warehouseHandlingIsCompleted" label="Crea movimentazione">
+	<!--HANDLING TYPE -->
+	<mat-step [completed]="warehouseHandlingIsCompleted" label="Crea movimentazione">
 		<div *ngIf="warehouseHandling">
-			Creazione movimentazione di magazzino: {{ warehouseHandling.warehouseHandlingType }} | 
-			<b *ngIf="warehouseHandling.warehouseToUnload">DA: {{ warehouseHandling.warehouseToUnload.name }}</b> 
+			Creazione movimentazione di magazzino: {{ warehouseHandling.warehouseHandlingType }} |
+			<b *ngIf="warehouseHandling.warehouseToUnload">DA: {{ warehouseHandling.warehouseToUnload.name }}</b>
 			<b *ngIf="warehouseHandling.warehouseToLoad">-> {{ warehouseHandling.warehouseToLoad.name }}</b>
 			in data {{ warehouseHandling.date | date }}
 			<br><br>
 		</div>
-        <aig-warehouse-handling-new-update-form [returnToParent]="true" (wareHouseHandlingOutput)="warehouseHandling=$event"></aig-warehouse-handling-new-update-form>
-		<div  *ngIf="warehouseHandling" fxLayout="row" fxLayoutAlign="end top">
-			<button mat-button mat-raised-button color="primary" (click)="checkStep1(stepper)" color="accent">Avanti</button>
+		<aig-warehouse-handling-new-update-form [returnToParent]="true"
+			(wareHouseHandlingOutput)="warehouseHandling=$event"></aig-warehouse-handling-new-update-form>
+		<div *ngIf="warehouseHandling" fxLayout="row" fxLayoutAlign="end top">
+			<button mat-button mat-raised-button color="primary" (click)="checkStep1(stepper)"
+				color="accent">Avanti</button>
 		</div>
-    </mat-step>
-
-
-    <!--QUANTITY AND INVENTORY ITEM COMBINATION -->
-    <mat-step label="Seleziona le quantità ed i prodotti">
-		<aig-warehouse-handling-item-new-update-form *ngIf="warehouseHandling" 
-			[warehouseHandling]="warehouseHandling" [returnToParent]="true" [continueInsertion]="true"
-			(wareHouseHandlingItemOutput)="addIn($event)"></aig-warehouse-handling-item-new-update-form>
-
-			
-		<aig-warehouse-handling-item-list-table [displayColumns]="['inventoryItemProducer', 'inventoryItemCombination', 'quantity']" 
-			[dataSource]="warehouseHandlingItemDTOs"></aig-warehouse-handling-item-list-table>	
-
-		<button mat-button mat-raised-button color="primary" (click)="stepper.next()" color="accent">Avanti</button>
 	</mat-step>
 
-    <!--DONE -->
-    <mat-step>
-        <ng-template matStepLabel>Riepilogo</ng-template>
-        <div *ngIf="warehouseHandling">
-			Creazione movimentazione di magazzino: {{ warehouseHandling.warehouseHandlingType }} | 
-			<b *ngIf="warehouseHandling.warehouseToUnload">DA: {{ warehouseHandling.warehouseToUnload.name }}</b> 
+
+	<!--QUANTITY AND INVENTORY ITEM COMBINATION -->
+	<mat-step label="Seleziona le quantità ed i prodotti">
+		<aig-warehouse-handling-item-new-update-form *ngIf="warehouseHandling" [warehouseHandling]="warehouseHandling"
+			[returnToParent]="true" [continueInsertion]="true" (wareHouseHandlingItemOutput)="addIn($event)">
+		</aig-warehouse-handling-item-new-update-form>
+
+
+		<aig-warehouse-handling-item-list-table
+			[displayColumns]="['inventoryItemProducer', 'inventoryItemCombination', 'quantity']"
+			[dataSource]="warehouseHandlingItemDTOs"></aig-warehouse-handling-item-list-table>
+		<div fxLayout="row" fxLayoutAlign="end top">
+			<button mat-button matStepperPrevious>Indietro</button>
+			<button mat-button mat-raised-button color="primary" (click)="stepper.next()" color="accent">Avanti</button>
+		</div>
+	</mat-step>
+
+	<!--DONE -->
+	<mat-step>
+		<ng-template matStepLabel>Riepilogo</ng-template>
+		<div *ngIf="warehouseHandling">
+			Creazione movimentazione di magazzino: {{ warehouseHandling.warehouseHandlingType }} |
+			<b *ngIf="warehouseHandling.warehouseToUnload">DA: {{ warehouseHandling.warehouseToUnload.name }}</b>
 			<b *ngIf="warehouseHandling.warehouseToLoad">-> {{ warehouseHandling.warehouseToLoad.name }}</b>
 			in data {{ warehouseHandling.date | date }}
 			<br><br>
-            <aig-warehouse-handling-item-list-table [displayColumns]="['inventoryItemProducer', 'inventoryItemCombination', 'quantity']" 
-			[dataSource]="warehouseHandlingItemDTOs"></aig-warehouse-handling-item-list-table>
+			<aig-warehouse-handling-item-list-table
+				[displayColumns]="['inventoryItemProducer', 'inventoryItemCombination', 'quantity']"
+				[dataSource]="warehouseHandlingItemDTOs"></aig-warehouse-handling-item-list-table>
 		</div>
-        <div>
-            <button mat-button matStepperPrevious>Indietro</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-button mat-raised-button color="accent" (click)="confirmation()">Conferma</button>
-        </div>
-    </mat-step>
+		<div fxLayout="row" fxLayoutAlign="end top">
+			<button mat-button matStepperPrevious>Indietro</button>
+			<button mat-button mat-raised-button color="accent" (click)="confirmation()">Conferma</button>
+		</div>
+	</mat-step>
 </mat-horizontal-stepper>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
-    <mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseHandlingItemDTOs | json }}</pre>
-    <button *ngIf="!handlingTypeFormGroup.value.id" mat-stroked-button color="primary"
-        (click)="newWarehouseHandling()">
+	<pre>{{ warehouseHandlingItemDTOs | json }}</pre>
+	<button *ngIf="!handlingTypeFormGroup.value.id" mat-stroked-button color="primary" (click)="newWarehouseHandling()">
 		Create New
 	</button>
 </div>
