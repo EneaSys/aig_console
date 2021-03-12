@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CatalogResourceService, InventoryCategoryResourceService, InventoryItemCombinationResourceService, InventoryItemResourceService, ProducerResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
+import { CatalogItemResourceService, CatalogResourceService, InventoryCategoryResourceService, InventoryItemCombinationResourceService, InventoryItemResourceService, PriceListResourceService, ProducerResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -13,8 +13,10 @@ export class AigCommerceAutocompleteService {
         private inventoryItemResourceService: InventoryItemResourceService,
         private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
         private sellerResourceService: SellerResourceService,
-        private catalogResourceService: CatalogResourceService,       
-        private warehouseResourceService: WarehouseResourceService,        
+        private catalogResourceService: CatalogResourceService,
+        private catalogItemResourceService: CatalogItemResourceService,       
+        private warehouseResourceService: WarehouseResourceService,
+        private priceListResourceService: PriceListResourceService,        
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -112,6 +114,22 @@ export class AigCommerceAutocompleteService {
             })
         );
     }
+
+    filterCatalogItem(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 0) {
+                    let filter = {
+						activeEquals: null
+					};
+                    return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
   
     warehouseCategory(observable: Observable<any>) {
         return observable.pipe(
@@ -122,6 +140,22 @@ export class AigCommerceAutocompleteService {
 						nameContains: value
 					};
                     return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterPriceList(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 0) {
+                    let filter = {
+						catalogIdEquals: null
+					};
+                    return this.priceListResourceService.getAllPriceListsUsingGET(filter);
                 } else {
                     return of([]);
                 }

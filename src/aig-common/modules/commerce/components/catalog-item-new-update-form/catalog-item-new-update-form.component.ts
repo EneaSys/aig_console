@@ -63,16 +63,12 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        console.log("a")
-
         let catalogItem: CatalogItemDTO = {
             id: this.catalogItemNewUpdateForm.controls.id.value,
             active: this.catalogItemNewUpdateForm.controls.active.value,
             inventoryItemCombinationId: this.catalogItemNewUpdateForm.controls.inventoryItemCombination.value.id,
             catalogId: this.catalogItemNewUpdateForm.controls.catalog.value.id,
         }
-
-        console.log("b" , catalogItem)
 
         try {
             let postOrPut;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, InventoryItemCombinationDTO } from 'aig-commerce';
@@ -137,7 +137,7 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
 		this.searchCatalogItem(0);
 	}
 
-	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
+	//			---- !CATALOG ITEM TABLE AND SEARCH SECTION ----
 
 	newCatalogItem(): void {
         this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { catalogItem: {} } });
