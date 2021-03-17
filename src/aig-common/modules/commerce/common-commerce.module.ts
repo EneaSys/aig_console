@@ -60,6 +60,7 @@ import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/
 import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
 
 
 @NgModule({
@@ -129,6 +130,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ],
     providers: [
         PurchaseResolver,
+        PurchaseItemResolver,
         FiscalTransactionResolver,
         BuyerResolver,
         AigInventoryCategoryResolver,

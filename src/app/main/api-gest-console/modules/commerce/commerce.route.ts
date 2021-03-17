@@ -33,6 +33,8 @@ import { AigInventoryItemCombinationListPageComponent } from './components/inven
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
 import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
+import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
+import { PurchaseItemResolver } from 'aig-common/modules/commerce/resolver/purchase-item.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -113,15 +115,15 @@ export const commerceRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                     },
                     
-                    /*
+        
                     {
                         path: 'detail/:id',
                         component: AigPurchaseItemDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            purchase: PurchaseResolver,
+                            purchase: PurchaseItemResolver,
                         },
-                    },*/
+                    },
                 ]
             },
             {

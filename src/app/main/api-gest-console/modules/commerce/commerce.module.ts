@@ -64,6 +64,7 @@ import { AigPurchaseNewUpdateFormComponent } from 'aig-common/modules/commerce/c
 import { AigPurchaseItemNewUpdateDialogComponent } from './components/purchase-item-new-update-dialog/purchase-item-new-update-dialog.component';
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
 import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/warehouse-handling-item-new-update-modal/warehouse-handling-item-new-update-modal.component';
+import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
 
 
 @NgModule({
@@ -147,7 +148,8 @@ import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/wa
         AigPurchaseItemListPageComponent,
         AigPurchaseItemNewUpdateDialogComponent,
 
-        AigInventoryItemCombinationDetailPageComponent
+        AigInventoryItemCombinationDetailPageComponent,
+        AigPurchaseItemDetailPageComponent,
     ],
     entryComponents: [
         AigNewCustomBuyDialogComponent,

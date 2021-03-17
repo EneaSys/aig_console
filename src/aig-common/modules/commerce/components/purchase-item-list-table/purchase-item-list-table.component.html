@@ -21,7 +21,7 @@
 
         <ng-container matColumnDef="inventoryItemCombination">
             <mat-header-cell *matHeaderCellDef> Inventory Item Combination </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="inventoryItemCombinationId">
@@ -38,7 +38,7 @@
         
         <ng-container matColumnDef="purchase">
             <mat-header-cell *matHeaderCellDef> Purchase </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.purchase }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.purchase.insertedDateTime }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="purchaseId">

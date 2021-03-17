@@ -8,7 +8,7 @@
                     <mat-label>Vendita</mat-label>
                     <input type="text" matInput formControlName="purchase" required [matAutocomplete]="purchaseAutocomplete">
                     <mat-autocomplete #purchaseAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.purchaseDisplayFn">
-                        <mat-option *ngFor="let purchase of filteredPurchase | async" [value]="purchase">{{ purchase.insertedDataTime }}</mat-option>
+                        <mat-option *ngFor="let purchase of filteredPurchase | async" [value]="purchase">{{ purchase.insertedDateTime }}</mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
