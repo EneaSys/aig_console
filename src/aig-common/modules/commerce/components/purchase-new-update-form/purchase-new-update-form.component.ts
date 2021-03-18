@@ -38,7 +38,7 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 	filteredBuyer: Observable<BuyerDTO[]>;
 
-	checked: boolean;
+	closed: boolean;
 
 
 
@@ -49,9 +49,9 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 			id: [''],
             amount: [''],
 			buyer: ['', Validators.required],
-			closed: ['', Validators.required],
+			closed: [true],
 			insertedDateTime: ['', Validators.required],
-            statusNote: ['', Validators.required],
+            statusNote: [''],
 		});
 
 
