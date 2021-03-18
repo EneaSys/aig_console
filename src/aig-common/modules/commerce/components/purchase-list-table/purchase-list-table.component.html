@@ -40,8 +40,8 @@
         <ng-container matColumnDef="closed">
             <mat-header-cell *matHeaderCellDef> Closed </mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <span *ngIf="e.closed"><mat-icon>done</mat-icon></span>
-                <span *ngIf="!e.closed"><mat-icon>highlight_off</mat-icon></span>
+                <span *ngIf="e.closed"><mat-icon style="color: green;">done</mat-icon></span>
+                <span *ngIf="!e.closed"><mat-icon style="color: red;">highlight_off</mat-icon></span>
             </mat-cell>
 
         </ng-container>

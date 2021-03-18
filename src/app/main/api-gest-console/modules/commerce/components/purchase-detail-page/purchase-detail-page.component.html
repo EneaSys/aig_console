@@ -1,13 +1,6 @@
 <div id="aig-purchase-detail-page" class="page-layout blank">
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
-                
-				<pre>{{ purchaseDTO | json }}</pre>
-
-                <button mat-stroked-button color="primary" (click)="editPurchase(purchaseDTO)">Edit</button>
-				
-            </div>
         </div>
     </div>
 
@@ -19,6 +12,9 @@
                 <div class="h1 m-16">{{ purchaseDTO.amount | currency:'EUR' }}</div>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ purchaseDTO.id }}</div>
                 <div class="h4 m-8 ml-16">Data: {{ purchaseDTO.insertedDateTime | date }}</div>
+                <div class="h4 m-8 ml-16">Note: {{ purchaseDTO.statusNote}}</div>
+                <div class="h4 m-8 ml-16">Closed: {{ purchaseDTO.closed }}</div>
+                <button mat-stroked-button color="primary" (click)="editPurchase(purchaseDTO)">Edit</button>
             </div>
             
             <div class="fuse-card auto-width p-16 mt-16">

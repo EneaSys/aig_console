@@ -121,7 +121,7 @@ export const commerceRoute: Routes = [
                         component: AigPurchaseItemDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            purchase: PurchaseItemResolver,
+                            purchaseItem: PurchaseItemResolver,
                         },
                     },
                 ]

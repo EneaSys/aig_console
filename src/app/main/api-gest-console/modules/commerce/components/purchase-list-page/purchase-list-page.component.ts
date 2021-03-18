@@ -105,10 +105,18 @@ export class AigPurchaseListPageComponent extends GenericComponent {
 
   purchaseSearchWithFilter() {
     let searchedId = this.purchaseSearchFormGroup.controls.id.value;
+    let searchedDate = this.purchaseSearchFormGroup.controls.insertedDateTime.value;
     if(searchedId != null) {
       this.clearFiltersPurchase();
       this.purchaseSearchFormGroup.reset();
       this.purchaseFilters.idEquals= searchedId;
+      this.searchPurchase(0);
+      return;
+    }
+    if(searchedDate != null) {
+      this.clearFiltersPurchase();
+      this.purchaseSearchFormGroup.reset();
+      this.purchaseFilters.insertedDateTimeEquals= searchedDate;
       this.searchPurchase(0);
       return;
     }

@@ -3,9 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO, PurchaseItemDTO, InventoryItemDTO, PurchaseItemResourceService, PriceListItemResourceService } from 'aig-commerce';
-import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
-import { AigPurchaseItemNewUpdateDialogComponent } from '../purchase-item-new-update-dialog/purchase-item-new-update-dialog.component';
+import {  PurchaseItemDTO, PurchaseItemResourceService, } from 'aig-commerce';
 
 
 @Component({
@@ -15,7 +13,6 @@ import { AigPurchaseItemNewUpdateDialogComponent } from '../purchase-item-new-up
 })
 export class AigPurchaseItemDetailPageComponent extends GenericComponent {
     constructor(
-        private purchaseResourceService: PurchaseResourceService,
         private purchaseItemResourceService: PurchaseItemResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
@@ -23,11 +20,13 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     purchaseItemDTO: PurchaseItemDTO;
-
-    purchaseDTO: PurchaseDTO;
-
-    inventoryItemDTO: InventoryItemDTO 
         
    
+    loadPage() {
+		this.purchaseItemDTO = this.route.snapshot.data.purchaseItem;
+	}
 
+	async reloadPage() {
+		this.purchaseItemDTO = await this.purchaseItemResourceService.getPurchaseItemUsingGET(this.purchaseItemDTO.id).toPromise();
+	}
 }
