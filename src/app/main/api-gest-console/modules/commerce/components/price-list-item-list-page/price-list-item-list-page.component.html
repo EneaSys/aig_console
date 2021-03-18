@@ -3,9 +3,9 @@
 	<fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
 		<!-- SIDEBAR CONTENT -->
 		<div class="content">
-			<!-- <div>
+			<div>
 				<div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-					<button mat-raised-button (click)="resetFiltersCatalog()">Resetta filtri</button>
+					<button mat-raised-button (click)="resetFiltersPriceListItem()">Resetta filtri</button>
 				</div>
 				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
 					<span class="h3">Filtri</span>
@@ -13,8 +13,8 @@
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
-							<form [formGroup]="catalogSearchFormGroup"
-								(ngSubmit)="catalogSearchWithFilter()" class="p-8">
+							<form [formGroup]="priceListItemSearchFormGroup"
+								(ngSubmit)="priceListItemSearchWithFilter()" class="p-8">
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Id</mat-label>
@@ -23,16 +23,23 @@
 								</div>
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Name</mat-label>
-										<input matInput type="text" formControlName="name">
+										<mat-label>Catalog item</mat-label>
+										<input matInput formControlName="catalogItem" [matAutocomplete]="catalogItemAutocomplete">
+										<mat-autocomplete #catalogItemAutocomplete="matAutocomplete"
+											[displayWith]="autocompleteDisplayService.catalogItemDisplayFn">
+											<mat-option *ngFor="let catalogItem of filteredCatalogItem | async" [value]="catalogItem">
+												{{ catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ catalogItem.inventoryItemCombination.name }}</mat-option>
+										</mat-autocomplete>
 									</mat-form-field>
 								</div>
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Seller</mat-label>
-										<input matInput formControlName="seller" [matAutocomplete]="sellerAutocomplete">
-										<mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
-											<mat-option *ngFor="let seller of filteredSeller | async" [value]="seller">{{ seller.name }}</mat-option>
+										<mat-label>Price List</mat-label>
+										<input matInput type="text" formControlName="priceList" [matAutocomplete]="priceListAutocomplete">
+										<mat-autocomplete #priceListAutocomplete="matAutocomplete"
+											[displayWith]="autocompleteDisplayService.priceListDisplayFn">
+											<mat-option *ngFor="let priceList of filteredPriceList | async" [value]="priceList">
+												{{ priceList.name }}</mat-option>
 										</mat-autocomplete>
 									</mat-form-field>
 								</div>
@@ -43,34 +50,36 @@
 						</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
 		<!-- / SIDEBAR CONTENT -->
 	</fuse-sidebar>
 	<!-- / SIDEBAR -->
-<!-- CENTER -->
-<div class="center">
-    <!-- HEADER -->
-    <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-        <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <h2>Elenco price list item</h2>
-    </div>
-    <!-- / HEADER -->
-    <!-- CONTENT -->
-    <div class="content mb-48">
-		<aig-price-list-item-list-table [displayColumns]="priceListItemDC" [dataSource]="priceListItemDTOs" [error]="priceListItemError"></aig-price-list-item-list-table>
+	<!-- CENTER -->
+	<div class="center">
+		<!-- HEADER -->
+		<div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+			<button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+				(click)="toggleSidebar('purchase-sidebar')">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<h2>Elenco price list item</h2>
+		</div>
+		<!-- / HEADER -->
+		<!-- CONTENT -->
+		<div class="content mb-48">
+			<aig-price-list-item-list-table [displayColumns]="priceListItemDC" [dataSource]="priceListItemDTOs"
+				[error]="priceListItemError"></aig-price-list-item-list-table>
 
-        <!-- <mat-paginator #paginator [length]="catalogLength"
-            [pageSize]="this.catalogPaginationSize" [pageIndex]="this.catalogFilters.page"
-            [pageSizeOptions]="[10, 20, 50]" (page)="catalogPaginationEvent($event)">
-        </mat-paginator> -->
+			<mat-paginator #paginator [length]="priceListItemLength" [pageSize]="this.priceListItemPaginationSize"
+				[pageIndex]="this.priceListItemFilters.page" [pageSizeOptions]="[10, 20, 50]"
+				(page)="priceListItemPaginationEvent($event)">
+			</mat-paginator>
 
-        <button mat-fab class="accent" id="add-price-list-item-button" (click)="newPriceListItem()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
-    <!-- / CONTENT -->
-</div>
-<!-- / CENTER -->
+			<button mat-fab class="accent" id="add-price-list-item-button" (click)="newPriceListItem()">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+		<!-- / CONTENT -->
+	</div>
+	<!-- / CENTER -->
