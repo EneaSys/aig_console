@@ -1,189 +1,183 @@
 import { Injectable } from '@angular/core';
 import { CatalogItemResourceService, CatalogResourceService, InventoryCategoryResourceService, InventoryItemCombinationResourceService, InventoryItemResourceService, PriceListResourceService, ProducerResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
-import { combineLatest, Observable, of } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
+import { combineLatest, from, Observable, of } from 'rxjs';
+import { combineAll, concatAll, map, mergeMap, startWith, switchMap } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AigCommerceAutocompleteService {
-   	constructor(
+	constructor(
 		private producerResourceService: ProducerResourceService,
-        private inventoryCategoryResourceService: InventoryCategoryResourceService,
-        private inventoryItemResourceService: InventoryItemResourceService,
-        private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
-        private sellerResourceService: SellerResourceService,
-        private catalogResourceService: CatalogResourceService,
-        private catalogItemResourceService: CatalogItemResourceService,       
-        private warehouseResourceService: WarehouseResourceService,
-        private priceListResourceService: PriceListResourceService,        
-	) {}
+		private inventoryCategoryResourceService: InventoryCategoryResourceService,
+		private inventoryItemResourceService: InventoryItemResourceService,
+		private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
+		private sellerResourceService: SellerResourceService,
+		private catalogResourceService: CatalogResourceService,
+		private catalogItemResourceService: CatalogItemResourceService,
+		private warehouseResourceService: WarehouseResourceService,
+		private priceListResourceService: PriceListResourceService,
+	) { }
 
 	filterProducer(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 2) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 2) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.producerResourceService.getAllProducersUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }        
-    
-    filterInventoryCategory(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
-					let filter = {
-						nameContains: value
-					};
-                    return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.producerResourceService.getAllProducersUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterInventoryItem(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	filterInventoryCategory(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterInventoryItemCombination(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	filterInventoryItem(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterSeller(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	filterInventoryItemCombination(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.sellerResourceService.getAllSellersUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterCatalog(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	filterSeller(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.catalogResourceService.getAllCatalogsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.sellerResourceService.getAllSellersUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterCatalogItem(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 0) {
-                    let filter = {
+	filterCatalog(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+					return this.catalogResourceService.getAllCatalogsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterCatalogItem(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
+					let filter = {
 						activeEquals: null
 					};
-                    return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterCatalogItemByCatalog(catalogObservable: Observable<any>, catalogItemObservable: Observable<any>) {
-        combineLatest(catalogObservable, catalogItemObservable).subscribe(
-                );
-              }
-            );
-
-        return catalogItemObservable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 0) {
-                    let filter = {
+	filterCatalogItemByCatalog(catalogId: number, catalogItemObservable: Observable<any>) {
+		return catalogItemObservable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
+					let filter = {
 						activeEquals: null,
-                        catalogIdEquals: catalogId 
+						catalogIdEquals: catalogId
 					};
-                    console.log(filter);
-                    return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
-  
-    warehouseCategory(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+					return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	warehouseCategory(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterPriceList(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 0) {
-                    let filter = {
-						catalogIdEquals: null
+	filterPriceList(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
+					let filter = {
+						nameContains: value
 					};
-                    return this.priceListResourceService.getAllPriceListsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.priceListResourceService.getAllPriceListsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
 }

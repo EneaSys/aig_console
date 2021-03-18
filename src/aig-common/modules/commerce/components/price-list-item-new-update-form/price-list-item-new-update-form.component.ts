@@ -55,7 +55,14 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
 
         this.filteredPriceList = this.commerceAutocompleteService.filterPriceList(this.priceListItemNewUpdateForm.controls['priceList'].valueChanges);
 
-        this.filteredCatalogItem = this.commerceAutocompleteService.filterCatalogItemByCatalog(this.priceListItemNewUpdateForm.controls['priceList'].valueChanges, this.priceListItemNewUpdateForm.controls['catalogItem'].valueChanges);
+        this.priceListItemNewUpdateForm.controls['priceList'].valueChanges.subscribe(
+			(priceList: PriceListDTO) => {
+				this.priceListItemNewUpdateForm.controls['catalogItem'].setValue("");
+				if(priceList.id) {
+					this.filteredCatalogItem = this.commerceAutocompleteService.filterCatalogItemByCatalog(priceList.catalogId, this.priceListItemNewUpdateForm.controls['catalogItem'].valueChanges);
+				}
+			}
+		);
     }
 
     async submit() {

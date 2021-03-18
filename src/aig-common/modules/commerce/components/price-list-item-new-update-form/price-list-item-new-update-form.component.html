@@ -10,8 +10,6 @@
         </mat-form-field>
     </div>
 
-    <span *ngIf="priceListItemNewUpdateForm.value.priceList.id"> {{ priceListItemNewUpdateForm.value.priceList.catalog.id }} </span>
-    
     <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Catalog item</mat-label>
