@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CatalogItemResourceService, CatalogResourceService, InventoryCategoryResourceService, InventoryItemCombinationResourceService, InventoryItemResourceService, PriceListResourceService, ProducerResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
-import { Observable, of } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
 @Injectable({
@@ -123,6 +123,29 @@ export class AigCommerceAutocompleteService {
                     let filter = {
 						activeEquals: null
 					};
+                    return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterCatalogItemByCatalog(catalogObservable: Observable<any>, catalogItemObservable: Observable<any>) {
+        combineLatest(catalogObservable, catalogItemObservable).subscribe(
+                );
+              }
+            );
+
+        return catalogItemObservable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 0) {
+                    let filter = {
+						activeEquals: null,
+                        catalogIdEquals: catalogId 
+					};
+                    console.log(filter);
                     return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
                 } else {
                     return of([]);

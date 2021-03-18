@@ -1,13 +1,18 @@
 <form *ngIf="step.form" [formGroup]="priceListItemNewUpdateForm" (ngSubmit)="submit()">
-
+    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Amount</mat-label>
-            <input formControlName="amount" matInput type="number" required>
+            <mat-label>Price list</mat-label>
+            <input formControlName="priceList" matInput required [matAutocomplete]="priceListAutocomplete">
+            <mat-autocomplete #priceListAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.priceListDisplayFn">
+                <mat-option *ngFor="let priceList of filteredPriceList | async" [value]="priceList">{{ priceList.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <span *ngIf="priceListItemNewUpdateForm.value.priceList.id"> {{ priceListItemNewUpdateForm.value.priceList.catalog.id }} </span>
+    
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Catalog item</mat-label>
             <input formControlName="catalogItem" matInput required [matAutocomplete]="catalogItemAutocomplete">
@@ -17,13 +22,10 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Price list</mat-label>
-            <input formControlName="priceList" matInput required [matAutocomplete]="priceListAutocomplete">
-            <mat-autocomplete #priceListAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.priceListDisplayFn">
-                <mat-option *ngFor="let priceList of filteredPriceList | async" [value]="priceList">{{ priceList.name }}</mat-option>
-            </mat-autocomplete>
+            <mat-label>Amount</mat-label>
+            <input formControlName="amount" matInput type="number" required>
         </mat-form-field>
     </div>
 

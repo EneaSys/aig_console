@@ -39,6 +39,8 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
 
     filteredPriceList: Observable<PriceListDTO[]>;
 
+    catalogId: number;
+
     ngOnInit(): void {
         this.priceListItemNewUpdateForm = this._formBuilder.group({
             id:[''],
@@ -49,11 +51,11 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
         
         if (this.priceListItem != null) {
             this.priceListItemNewUpdateForm.patchValue(this.priceListItem);
-        }
-
-        this.filteredCatalogItem = this.commerceAutocompleteService.filterCatalogItem(this.priceListItemNewUpdateForm.controls['catalogItem'].valueChanges);
+        }   
 
         this.filteredPriceList = this.commerceAutocompleteService.filterPriceList(this.priceListItemNewUpdateForm.controls['priceList'].valueChanges);
+
+        this.filteredCatalogItem = this.commerceAutocompleteService.filterCatalogItemByCatalog(this.priceListItemNewUpdateForm.controls['priceList'].valueChanges, this.priceListItemNewUpdateForm.controls['catalogItem'].valueChanges);
     }
 
     async submit() {
