@@ -45,8 +45,9 @@ import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
-import { AigPurchaseListTableComponent } from './components/purchase-list-table/purchase-list-table.component';
+
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
+import { AigInventoryItemPurchaseListTableComponent } from './components/inventory-item-purchase-list-table/inventory-item-purchase-list-table.component';
 
 @NgModule({
     imports: [
@@ -96,7 +97,7 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigFiscalTransactionNewUpdateFormComponent,
-        AigPurchaseListTableComponent
+        AigInventoryItemPurchaseListTableComponent,
         
     ],
     providers: [
@@ -132,7 +133,7 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigFiscalTransactionNewUpdateFormComponent,
-        AigPurchaseListTableComponent,
+        AigInventoryItemPurchaseListTableComponent,
         
     ],
 })
