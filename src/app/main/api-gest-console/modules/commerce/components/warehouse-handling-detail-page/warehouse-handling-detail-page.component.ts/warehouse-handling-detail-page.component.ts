@@ -23,7 +23,6 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
   ) { super(aigGenericComponentService) }
 
   warehouseHandlingDTO: WarehouseHandlingDTO;
-  
 
   loadPage() {
     
@@ -36,7 +35,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this.loadWarehouseHandlingItem();
   }
 
-  warehouseHandlingItemDC: string[] = ["inventoryItemCombination", "quantity"];
+  warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity"];
   warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[];
   warehouseHandlingItemError: any;
   warehouseHandlingItemFilters: {}
@@ -45,17 +44,18 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this.warehouseHandlingItemFilters = {
       idEquals: null,
       nameContains: null,
+      warehouseHandlingIdEquals: this.warehouseHandlingDTO.id,
       page: 0,
     };
     this.warehouseHandlingItemDTOs = await this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(this.warehouseHandlingItemFilters).toPromise();
   }
 
 
-  editProducer(warehouseHandlingDTO: WarehouseHandlingDTO) {
+  editWarehouseHandling(warehouseHandlingDTO: WarehouseHandlingDTO) {
     this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: warehouseHandlingDTO } });
   }
 
   addInventoryItemCombination(warehouseHandlingDTO: WarehouseHandlingDTO){
-    this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { warehouseHandlingItem: {warehouseHandling: warehouseHandlingDTO} } });
+    this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { warehouseHandling: warehouseHandlingDTO } });
   }
 }

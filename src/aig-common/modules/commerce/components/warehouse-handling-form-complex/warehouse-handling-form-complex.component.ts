@@ -8,6 +8,7 @@ import { AigAutocompleteDisplayService } from '../../service/autocomplete-displa
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { cloneDeep } from 'lodash';
 
 
 @Component({
@@ -35,16 +36,19 @@ export class AigWarehouseHandlingFormComplexComponent implements OnInit {
         private commerceAutocompleteService: AigCommerceAutocompleteService,
     ) { }
 
-    @Input()
     warehouseHandling: WarehouseHandlingDTO;
+
+	warehouseHandlingIsCompleted: boolean = false;
+
+	warehouseHandlingItemDTOs: any[] = [];
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
     filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
     filteredInventoryItem: Observable<InventoryItemCombinationDTO[]>;
 
-    warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[] = [];
+    
 
-    handlingTypeRequirementIsCompleted = false;
+    
     dateRequirementIsCompleted = false;
     quantityItemCombinationRequirementIsCompleted = false;
 
@@ -75,52 +79,28 @@ export class AigWarehouseHandlingFormComplexComponent implements OnInit {
             inventoryItemCombination: ['', Validators.required],
         })
 
-
-
-
         this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseLoad'].valueChanges);
         this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseDateFormGroup.controls['warehouseUnload'].valueChanges);
         this.filteredInventoryItem = this.commerceAutocompleteService.filterInventoryItem(this.quantityInventoryItemCombinationFormGroup.controls['inventoryItemCombination'].valueChanges);
-
-        if (this.warehouseHandling != null) {
-
-            this.handlingTypeFormGroup.controls.handlingType.patchValue(this.warehouseHandling.warehouseHandlingType);
-            this.warehouseDateFormGroup.controls.warehouseLoad.patchValue(this.warehouseHandling.warehouseToLoad.name);
-            this.warehouseDateFormGroup.controls.warehouseUnload.patchValue(this.warehouseHandling.warehouseToUnload.name);
-            this.dateFormGroup.controls.date.patchValue(this.warehouseHandling.date);
-        }
     }
 
+	checkStep1(stepper: any) {
+		if( !(this.warehouseHandling && this.warehouseHandling.warehouseHandlingType) ) {
+			//error
+			return;
+		}
 
-    // CHECK FORM
+		this.warehouseHandlingIsCompleted = true;
+		setTimeout(() => { stepper.next(); }, 1);
+	}
 
-    //CHECK HANDLING TYPE
-    handlingTypeRequirementError;
-    checkHandlingTypeRequirement($event): void {
-        let handlingTypeValue = this.handlingTypeFormGroup.controls.handlingType.value;
-        this.handlingTypeRequirementIsCompleted = false;
+	addIn(warehouseHandlingItemDTO: WarehouseHandlingItemDTO) {
+		let warehouseHandlingItemDTOs = cloneDeep(this.warehouseHandlingItemDTOs);
+		warehouseHandlingItemDTOs.push(warehouseHandlingItemDTO);
+		this.warehouseHandlingItemDTOs = warehouseHandlingItemDTOs;
+	}
+	
 
-        if ($event != null) {
-            handlingTypeValue = $event.value;
-        }
-
-        switch (handlingTypeValue) {
-            case 'LOAD': case 'SHIFT': case 'UNLOAD':
-                this.handlingTypeRequirementIsCompleted = true;
-                this.handlingTypeRequirementError = "";
-                break;
-            default:
-                this.handlingTypeRequirementError = "Selezionare movimento!";
-                break;
-        }
-    }
-    checkAndGoHandlingTypeRequirement(stepper): void {
-        this.checkHandlingTypeRequirement(null);
-
-        if (this.handlingTypeRequirementIsCompleted) {
-            setTimeout(() => stepper.next(), 1);
-        }
-    }
 
     //CHECK DATE
     dateRequirementError;
@@ -154,10 +134,6 @@ export class AigWarehouseHandlingFormComplexComponent implements OnInit {
     }
 
 
-    addQuantityItemCombination() {
-        this.warehouseHandlingItemDTOs.push(this.quantityInventoryItemCombinationFormGroup.controls.inventoryItemCombination.value);
-        console.log(this.warehouseHandlingItemDTOs);
-    }
 
 
     async confirmation() {
@@ -174,17 +150,18 @@ export class AigWarehouseHandlingFormComplexComponent implements OnInit {
         switch (this.handlingTypeFormGroup.controls.handlingType.value) {
             case 'LOAD':
                 warehouseHandling.warehouseToLoadId = this.warehouseDateFormGroup.controls.warehouseLoad.value.id;
+				warehouseHandling.warehouseToLoad = this.warehouseDateFormGroup.controls.warehouseLoad.value;
                 break;
             case 'UNLOAD':
                 warehouseHandling.warehouseToUnloadId = this.warehouseDateFormGroup.controls.warehouseUnload.value.id;
+				warehouseHandling.warehouseToUnload = this.warehouseDateFormGroup.controls.warehouseUnload.value;
                 break;
             case 'SHIFT':
                 warehouseHandling.warehouseToLoadId = this.warehouseDateFormGroup.controls.warehouseLoad.value.id;
+				warehouseHandling.warehouseToLoad = this.warehouseDateFormGroup.controls.warehouseLoad.value;
+
                 warehouseHandling.warehouseToUnloadId = this.warehouseDateFormGroup.controls.warehouseUnload.value.id;
-                break;
-
-            default:
-
+				warehouseHandling.warehouseToUnload = this.warehouseDateFormGroup.controls.warehouseUnload.value;
                 break;
         }
         try {

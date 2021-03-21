@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
     selector: 'aig-warehouse-handling-item-list-table',
     templateUrl: './warehouse-handling-item-list-table.component.html',
     styleUrls: ['./warehouse-handling-item-list-table.component.scss']
 })
-export class AigWarehouseHandlingItemListTableComponent implements OnInit {
+export class AigWarehouseHandlingItemListTableComponent implements OnInit, OnChanges {
     @Input()
     displayColumns: string[];
     @Input()
@@ -16,4 +16,8 @@ export class AigWarehouseHandlingItemListTableComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void { }
+
+	ngOnChanges(changes: SimpleChanges): void {
+		console.log("table", changes);
+	}
 }

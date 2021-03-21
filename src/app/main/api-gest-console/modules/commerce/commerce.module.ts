@@ -65,6 +65,7 @@ import { AigPurchaseItemNewUpdateDialogComponent } from './components/purchase-i
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
 import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/warehouse-handling-item-new-update-modal/warehouse-handling-item-new-update-modal.component';
 import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
+import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 
 
 @NgModule({
@@ -140,6 +141,7 @@ import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-d
         AigWarehouseHandlingComplexModalComponent,
         AigWarehouseHandlingItemListPageComponent,
         AigWarehouseHandlingItemNewUpdateModalComponent,
+        AigWarehouseHandlingItemDetailPageComponent,
 
         AigSellerDetailPageComponent,
         AigFiscalTransactionListPageComponent,

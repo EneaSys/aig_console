@@ -35,6 +35,8 @@ import { AigPurchaseItemListPageComponent } from './components/purchase-item-lis
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
 import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
 import { PurchaseItemResolver } from 'aig-common/modules/commerce/resolver/purchase-item.resolver';
+import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
+import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling-item.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -199,7 +201,15 @@ export const commerceRoute: Routes = [
                         path: 'list',
                         component: AigWarehouseHandlingItemListPageComponent,
                         canActivate: [ AuthGuardService ],
-                    }
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseHandlingItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouseHandlingItem: AigWarehouseHandlingItemResolver,
+                        },
+                    },
                 ] 
             },
             {

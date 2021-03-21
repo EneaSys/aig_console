@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -33,6 +33,15 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
     @Input()
     warehouseHandling: WarehouseHandlingDTO;
+
+	@Input()
+	returnToParent: boolean = false;
+
+	@Output()
+	wareHouseHandlingOutput = new EventEmitter<WarehouseHandlingDTO>();
+
+	isUpdate: boolean = false;
+	
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
     filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
@@ -79,44 +88,50 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             date: this.warehouseHandlingFormGroup.controls.date.value,
         }
 
-        switch (this.warehouseHandlingFormGroup.controls.warehouseHandlingType.value) {
-            case 'LOAD':
-                warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value.id;
-                break;
-            case 'UNLOAD':
-                warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value.id;
-                break;
-            case 'SHIFT':
-                warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value.id;
-                warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value.id;
-                break;
+		if(this.warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'UNLOAD') {
+			warehouseHandling.warehouseToLoadId = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value.id;
+			warehouseHandling.warehouseToLoad = this.warehouseHandlingFormGroup.controls.warehouseToLoad.value;
+		}
 
-            default:
+		if(this.warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'LOAD') {
+			warehouseHandling.warehouseToUnloadId = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value.id;
+				warehouseHandling.warehouseToUnload = this.warehouseHandlingFormGroup.controls.warehouseToUnload.value;
+		}
+		
 
-                break;
-        }
-        try {
-            let postOrPut;
-            if (warehouseHandling.id != 0) {
-                await this.warehouseHandlingResourceService.updateWarehouseHandlingUsingPUT(warehouseHandling).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.warehouseHandlingResourceService.createWarehouseHandlingUsingPOST(warehouseHandling).toPromise();
-                postOrPut = "created";
-            }
-            this.eventService.reloadCurrentPage();
+		if(this.returnToParent) {
+			this.wareHouseHandlingOutput.emit(warehouseHandling);
+			this.setStep("complete");
+		} 
 
-            this._snackBar.open(`Ipp Warehouse Handling: '${warehouseHandling.id}' ${postOrPut}.`, null, { duration: 2000, });
-            this.setStep("complete");
-        } catch (e) {
-            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-            this.setStep("form");
-        }
+		if(!this.returnToParent) {
+			try {
+				let postOrPut;
+				if (warehouseHandling.id != 0) {
+					await this.warehouseHandlingResourceService.updateWarehouseHandlingUsingPUT(warehouseHandling).toPromise();
+					postOrPut = "updated";
+				} else {
+					await this.warehouseHandlingResourceService.createWarehouseHandlingUsingPOST(warehouseHandling).toPromise();
+					postOrPut = "created";
+				}
+				this.eventService.reloadCurrentPage();
+	
+				this._snackBar.open(`Ipp Warehouse Handling: '${warehouseHandling.id}' ${postOrPut}.`, null, { duration: 2000, });
+				this.setStep("complete");
+			} catch (e) {
+				this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
+				this.setStep("form");
+			}
+		}
+
+        
         this._fuseProgressBarService.hide();
     }
     
 
     newWarehouseHandling() {
+		this.warehouseHandling = null;
+		this.wareHouseHandlingOutput.emit(this.warehouseHandling);
         this.setStep("form");
     }
 

@@ -49,6 +49,7 @@ import { AigPurchaseNewUpdateFormComponent } from './components/purchase-new-upd
 import { AigPurchaseItemListTableComponent } from './components/purchase-item-list-table/purchase-item-list-table.component';
 import { AigPurchaseItemNewUpdateFormComponent } from './components/purchase-item-new-update-form/purchase-item-new-update-form.component';
 import { AigWarehouseHandlingListTableComponent } from './components/warehouse-handling-list-table/warehouse-handling-list-table.component';
+import { MatMenuModule} from '@angular/material';
 import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
 import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse-handling-form-complex/warehouse-handling-form-complex.component';
 import { AigWarehouseHandlingItemListTableComponent } from './components/warehouse-handling-item-list-table/warehouse-handling-item-list-table.component';
@@ -61,6 +62,8 @@ import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
+import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-item.resolver';
+
 
 
 @NgModule({
@@ -91,6 +94,7 @@ import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
         MatDatepickerModule,
         MatRadioModule,
         MatSlideToggleModule,
+        MatMenuModule,
     
 
     ],
@@ -141,6 +145,7 @@ import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
         AigWarehouseResolver,
         AigWarehouseHandlingResolver,
         AigSellerResolver,
+        AigWarehouseHandlingItemResolver,
     ],
     exports: [
         AigBuyListTableComponent,

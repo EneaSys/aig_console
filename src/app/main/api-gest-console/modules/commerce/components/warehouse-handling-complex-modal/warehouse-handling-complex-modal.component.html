@@ -1,8 +1,7 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.warehouseHandling.id" class="title dialog-title">Update Warehouse Handling Complex</span>
-            <span *ngIf="!data.warehouseHandling.id" class="title dialog-title">Create New Warehouse Handling Complex</span>
+            <span class="title dialog-title">Warehouse Handling</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -10,6 +9,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-warehouse-handling-form-complex [warehouseHandling]="data.warehouseHandling"></aig-warehouse-handling-form-complex>
+        <aig-warehouse-handling-form-complex></aig-warehouse-handling-form-complex>
     </div>
 </div>

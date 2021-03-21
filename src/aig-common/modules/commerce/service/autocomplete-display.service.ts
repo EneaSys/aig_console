@@ -26,6 +26,10 @@ export class AigAutocompleteDisplayService {
         return inventoryItem ? inventoryItem.name : undefined;
     }
 
+    inventoryItemCombinationDisplayFn(inventoryItemCombination?: InventoryItemCombinationDTO): string | undefined {
+        return inventoryItemCombination ? inventoryItemCombination.inventoryItem.name + " " + inventoryItemCombination.inventoryItem.producer.name + " " + inventoryItemCombination.name : undefined;
+    }
+
     sellerDisplayFn(seller?: SellerDTO): string | undefined {
         return seller ? seller.name : undefined;
     }
@@ -34,9 +38,6 @@ export class AigAutocompleteDisplayService {
         return purchase ? purchase.insertedDateTime : undefined;
     }
 
-    inventoryItemCombinationDisplayFn(inventoryItemCombination?: InventoryItemCombinationDTO): string | undefined {
-        return inventoryItemCombination ? inventoryItemCombination.inventoryItem.producer.name + inventoryItemCombination.inventoryItem.name + inventoryItemCombination.name : undefined;
-    }
 
     warehouseHandlingItemDisplayFn(warehouseHandlingItem?: WarehouseHandlingItemDTO): any | undefined {
         return warehouseHandlingItem ? warehouseHandlingItem : undefined;

@@ -38,7 +38,7 @@
         </ng-container>
 
         <ng-container matColumnDef="inventoryItemCombination">
-            <mat-header-cell *matHeaderCellDef>Inventory Item Combination</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Combinazione</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.name }} {{ e.inventoryItemCombination.name }} </mat-cell>
 		</ng-container>
 
@@ -48,14 +48,26 @@
 		</ng-container>
 
         <ng-container matColumnDef="quantity">
-            <mat-header-cell *matHeaderCellDef>quantity</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Quantità</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.quantity }} </mat-cell>
 		</ng-container>
-	
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/warehouse-handling-item/detail/' + e.id">Details</button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/commerce/warehouse-handling-item/detail/' + e.id">
+                      <mat-icon>details</mat-icon>
+                      <span>Details</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
             </mat-cell>
         </ng-container>
 
