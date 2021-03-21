@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
+import { InventoryItemCombinationDTO, InventoryItemCombinationResourceService, InventoryItemDTO, InventoryItemResourceService, PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
 import { AigPurchaseItemListTableComponent } from 'aig-common/modules/commerce/components/purchase-item-list-table/purchase-item-list-table.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -15,6 +15,8 @@ import { AigPurchaseItemNewUpdateDialogComponent } from '../purchase-item-new-up
 export class AigPurchaseItemListPageComponent extends GenericComponent {
   constructor(
     private purchaseItemResourceService : PurchaseItemResourceService,
+    private inventoryItemResourceService: InventoryItemResourceService,
+    private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
     private _formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog,
@@ -53,12 +55,15 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
 
   purchaseItemDC : string[];
 
+  inventoryItemCombinationDTOs : InventoryItemCombinationDTO;
+  inventoryItem : InventoryItemDTO;
+
   private initPurchaseItemSearch() {
 	  this.purchaseItemPaginationSize = 10
 	
 	  this.purchaseItemSearchFormGroup = this._formBuilder.group({
 		  id: [''],
-		  name: [''],
+		  price: [''],
 	  });
 
 	  this.purchaseItemDC = ["id","inventoryItemCombination","price","purchase","quantity","tax","warehouseHandlingItem","buttons"];
@@ -68,7 +73,7 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
   private clearFiltersPurchaseItem() {
 		this.purchaseItemFilters = {
 			idEquals: null,
-			nameContains: null,
+			priceEquals: null,
 			page: 0,
 		}
   }
@@ -119,7 +124,7 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
     }
       
 		this.purchaseItemFilters.idEquals = null;
-		this.purchaseItemFilters.nameContains = this.purchaseItemSearchFormGroup.controls.name.value;
+		this.purchaseItemFilters.priceEquals = this.purchaseItemSearchFormGroup.controls.price.value;
 
 		this.searchPurchaseItem(0);
   }

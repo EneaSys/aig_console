@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { ActivatedRoute } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import {  PurchaseItemDTO, PurchaseItemResourceService, } from 'aig-commerce';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 
 
 @Component({
@@ -15,7 +16,10 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
     constructor(
         private purchaseItemResourceService: PurchaseItemResourceService,
         private route: ActivatedRoute,
+        private router: Router,
         private dialog: MatDialog,
+        private _snackBar: MatSnackBar,
+        private _fuseProgressBarService: FuseProgressBarService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
@@ -29,4 +33,19 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
 	async reloadPage() {
 		this.purchaseItemDTO = await this.purchaseItemResourceService.getPurchaseItemUsingGET(this.purchaseItemDTO.id).toPromise();
 	}
+
+    async deletePurchaseItem(id: number) {
+        this._fuseProgressBarService.show();
+
+        try {
+            await this.purchaseItemResourceService.deletePurchaseItemUsingDELETE(id).toPromise();
+
+            this.router.navigate(['/commerce', 'purchase-item']);
+
+            this._snackBar.open(`Purchase item: '${id}' deleted.`, null, { duration: 2000, });
+        } catch (e) {
+            this._snackBar.open(`Error during deleting purchase item: '${id}'. (${e.message})`, null, { duration: 5000, });
+        }
+        this._fuseProgressBarService.hide();
+    }
 }

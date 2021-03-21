@@ -19,15 +19,18 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
+        
         <ng-container matColumnDef="inventoryItemCombination">
             <mat-header-cell *matHeaderCellDef> Inventory Item Combination </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.name }} </mat-cell>
         </ng-container>
+        
 
         <ng-container matColumnDef="inventoryItemCombinationId">
             <mat-header-cell *matHeaderCellDef> Inventory Item Combination Id </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.id }} </mat-cell>
         </ng-container>
+        
         
         
         <ng-container matColumnDef="price">

@@ -47,8 +47,8 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 			id: [''],
             quantity: ['', Validators.required],
             price: ['', Validators.required],
-            tax: ['', Validators.required],
-            purchase: ['', Validators.required],
+            tax: [''],
+            purchase: [''],
             warehouseHandlingItem: [''],
             inventoryItemCombination: [''],
 		});
