@@ -108,6 +108,30 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/warehouse',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'warehouse-manager',
+                title    : 'Manager Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-manager',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'warehouse-handling',
+                title    : 'Movimentazione di Magazzino',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-handling',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'warehouse-handling-item',
+                title    : 'Movimentazione di Magazzino di un articolo',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-handling-item',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 	{

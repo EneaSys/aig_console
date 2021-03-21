@@ -41,11 +41,21 @@ import { AigProducerResolver } from './resolver/producer.resolver';
 import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
-import { AigSellerResolver } from './resolver/seller.resolver';
+import { AigWarehouseHandlingListTableComponent } from './components/warehouse-handling-list-table/warehouse-handling-list-table.component';
+import { MatMenuModule, MatRadioModule } from '@angular/material';
+import { AigWarehouseHandlingNewUpdateFormComponent } from './components/warehouse-handling-new-update-form/warehouse-handling-new-update-form.component';
+import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
+import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse-handling-form-complex/warehouse-handling-form-complex.component';
+import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
+import { AigWarehouseHandlingItemListTableComponent } from './components/warehouse-handling-item-list-table/warehouse-handling-item-list-table.component';
+import { AigWarehouseHandlingItemNewUpdateFormComponent } from './components/warehouse-handling-item-new-update-form/warehouse-handling-item-new-update-form.component';
+import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-item.resolver';
+
+
 
 @NgModule({
     imports: [
@@ -73,6 +83,9 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         MatSelectModule,
         MatStepperModule,
         MatDatepickerModule,
+        MatRadioModule,
+        MatMenuModule,
+    
 
     ],
     declarations: [
@@ -94,7 +107,13 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
-        AigFiscalTransactionNewUpdateFormComponent
+        AigWarehouseHandlingListTableComponent,
+        AigWarehouseHandlingNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent,
+        AigWarehouseHandlingFormComplexComponent,
+        AigWarehouseHandlingItemListTableComponent,
+        AigWarehouseHandlingItemNewUpdateFormComponent,
+        
         
     ],
     providers: [
@@ -107,7 +126,9 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
 		AigCommerceAutocompleteService,
 		AigAutocompleteDisplayService,
         AigWarehouseResolver,
+        AigWarehouseHandlingResolver,
         AigSellerResolver,
+        AigWarehouseHandlingItemResolver,
     ],
     exports: [
         AigBuyListTableComponent,
@@ -124,11 +145,16 @@ import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-fo
         AigInventoryItemCombinationListTableComponent,
         AigInventoryItemCombinationNewUpdateFormComponent,
         AigProducerListTableComponent,
-
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
+        AigWarehouseHandlingListTableComponent,
+        AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingFormComplexComponent,
+        AigWarehouseHandlingItemListTableComponent,
+        AigWarehouseHandlingItemNewUpdateFormComponent,
+
         AigFiscalTransactionNewUpdateFormComponent
         
     ],

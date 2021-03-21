@@ -21,8 +21,15 @@ export class AigWarehouseDetailPageComponent extends GenericComponent {
 
 	warehouseDTO: WarehouseDTO;
 
+	warehouseConfig = {
+        details: true,
+        removeWarehouse: null,
+    }
+
     loadPage() {
 		this.warehouseDTO = this.route.snapshot.data.warehouse;
+
+		this.warehouseConfig.removeWarehouse = this.warehouseDTO;
 	}
 
 	async reloadPage() {

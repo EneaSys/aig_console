@@ -1,11 +1,11 @@
 <div class="page-layout simple left-sidebar">
-	<!-- SIDEBAR -->
-	<fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
-		<!-- SIDEBAR CONTENT -->
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="warehouse-handling-item-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
 		<div class="content">
 			<div>
 				<div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-					<button mat-raised-button (click)="resetFiltersWarehouseHandling()">Resetta filtri</button>
+					<button mat-raised-button (click)="resetFiltersWarehouseHandlingItem()">Resetta filtri</button>
 				</div>
 				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
 					<span class="h3">Filtri</span>
@@ -13,8 +13,8 @@
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
-							<form [formGroup]="warehouseHandlingSearchFormGroup"
-								(ngSubmit)="warehouseHandlingSearchWithFilter()" class="p-8">
+							<form [formGroup]="warehouseHandlingItemSearchFormGroup"
+								(ngSubmit)="warehouseHandlingItemSearchWithFilter()" class="p-8">
 
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
@@ -69,6 +69,19 @@
 									</mat-form-field>
 								</div>
 
+                                <div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Produttore</mat-label>
+										<input formControlName="producer" matInput
+											[matAutocomplete]="producerAutocomplete">
+										<mat-autocomplete #producerAutocomplete="matAutocomplete"
+											[displayWith]="autocompleteDisplayService.producerDisplayFn">
+											<mat-option *ngFor="let producer of filteredProducer | async"
+												[value]="producer">{{ producer.name }}</mat-option>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
+
 								<div fxLayout="row" fxLayoutAlign="end top">
 									<button type="submit" mat-raised-button color="accent">Cerca</button>
 								</div>
@@ -79,41 +92,32 @@
 			</div>
 		</div>
 		<!-- / SIDEBAR CONTENT -->
-	</fuse-sidebar>
-	<!-- / SIDEBAR -->
-	<!-- CENTER -->
-	<div class="center">
-		<!-- HEADER -->
-		<div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-			<button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-				(click)="toggleSidebar('purchase-sidebar')">
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
-			<h2>Elenco Movimentazioni di Magazzino</h2>
-		</div>
-		<!-- / HEADER -->
-		<!-- CONTENT -->
-		<div class="content mb-48">
-			<aig-warehouse-handling-list-table [displayColumns]="warehouseHandlingDC"
-				[dataSource]="warehouseHandlingDTOs" [error]="warehouseHandlingError">
-			</aig-warehouse-handling-list-table>
+            <h2>Movimentazione di Magazzino di un articolo</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <aig-warehouse-handling-item-list-table [displayColumns]="warehouseHandlingItemDC" [dataSource]="warehouseHandlingItemDTOs" [error]="warehouseHandlingItemError"></aig-warehouse-handling-item-list-table>
 
-			<mat-paginator #paginator [length]="warehouseHandlingLength"
-				[pageSize]="this.warehouseHandlingPaginationSize" [pageIndex]="this.warehouseHandlingFilters.page"
-				[pageSizeOptions]="[10, 20, 50]" (page)="warehouseHandlingPaginationEvent($event)">
-			</mat-paginator>
+            <mat-paginator #paginator [length]="warehouseHandlingItemLength" [pageIndex]="this.warehouseHandlingItemFilters.page" [pageSize]="this.warehouseHandlingItemPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="warehouseHandlingItemPaginationEvent($event)">
+            </mat-paginator>
 
-			<button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newWarehouseHandling()"
-				aria-label="add warehouse handling">
-				<mat-icon>add</mat-icon>
-			</button>
-
-			<button mat-raised-button color="primary" id="add-warehouse-handling-complex-button" (click)="newWarehouseHandlingComplex()">Warehouse Handling Complex</button>
-		</div>
-		<!-- / CONTENT -->
-	</div>
-	<!-- / CENTER -->
-</div>
-<div>
+            <button mat-fab class="accent" id="add-warehouse-handling-item-button" (click)="newWarehouseHandlingItem()" aria-label="add warehouse handling item">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
 
 </div>
