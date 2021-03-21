@@ -30,7 +30,11 @@ import { AigSellerDetailPageComponent } from './components/seller-detail-page/se
 import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.resolver';
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
+import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
 import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
+import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
+import { PurchaseItemResolver } from 'aig-common/modules/commerce/resolver/purchase-item.resolver';
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling-item.resolver';
 
@@ -86,7 +90,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigPurchaseListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
@@ -95,6 +99,31 @@ export const commerceRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             purchase: PurchaseResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'purchase-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPurchaseItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    
+        
+                    {
+                        path: 'detail/:id',
+                        component: AigPurchaseItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            purchaseItem: PurchaseItemResolver,
                         },
                     },
                 ]
