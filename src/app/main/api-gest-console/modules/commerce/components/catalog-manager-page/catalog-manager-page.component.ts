@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, CatalogResourceService } from 'aig-commerce';
+import { CatalogDTO, CatalogResourceService, PriceListItemDTO, PriceListItemResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -11,10 +11,12 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 export class AigCatalogManagerPageComponent extends GenericComponent {
     constructor(
         private catalogResourceService: CatalogResourceService,
-        private catalogItemResourceService: CatalogItemResourceService,
+        private priceListItemResourceService: PriceListItemResourceService,
         aigGenericComponentService: AigGenericComponentService,
         private eventService: EventService,
     ) { super(aigGenericComponentService) }
+
+    staticCatalog: CatalogDTO = null;
 
     catalogDTOs: CatalogDTO[] = [];
     selectedCatalog: CatalogDTO;
@@ -22,10 +24,12 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
     loadingPage: boolean = true;
     errorInLoading: any;
 
+    /* catalogItemDTOs: CatalogItemDTO[] = []; */
+
     priceListDC: string[] = ["id", "name", "seller", "buttons"];
 
-    catalogItemDTOs: CatalogItemDTO[] = [];
-    catalogItemDC: string[] = ["active", "catalog", "catalogId", "id", "inventoryItemCombination", "inventoryItemCombinationId"];
+    priceListItemDTOs: PriceListItemDTO[] = [];
+    priceListItemDC: string[] = ["active", "catalogItem", "priceList", "priceListItem"];
 
     private setCatalog(selectedCatalog: CatalogDTO) {
         this.selectedCatalog = selectedCatalog;
@@ -46,7 +50,9 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
             this.errorInLoading = e;
         }
 
-        try {
+        this.loadPriceListItem()
+
+        /* try {
             this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET({}).toPromise();
             if (this.catalogItemDTOs.length > 0) {
                 this.setCatalog(this.catalogDTOs[0]);
@@ -56,6 +62,21 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
         } catch (e) {
             this.errorInLoading = e;
         }
+
+        try {
+            this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET({}).toPromise();
+            if (this.priceListItemDTOs.length > 0) {
+                this.setCatalog(this.catalogDTOs[0]);
+            } else {
+                throw new Error("Nessun catalogo associato");
+            }
+        } catch (e) {
+            this.errorInLoading = e;
+        } */
+    }
+
+    async loadPriceListItem() {
+        this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET({}).toPromise()
     }
 
 }

@@ -16,32 +16,25 @@
 
         <ng-container matColumnDef="active">
             <mat-header-cell *matHeaderCellDef>Attivo</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.active }} </mat-cell>
+            <mat-cell *matCellDef="let e"> 
+                <span *ngIf="e.catalogItem.active" class="material-icons" style="color: green">done</span>
+                <span *ngIf="!e.catalogItem.active" class="material-icons" style="color: red">clear</span>
+                </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="catalog">
-            <mat-header-cell *matHeaderCellDef>Catalogo</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.catalog }} </mat-cell>
+        <ng-container matColumnDef="catalogItem">
+            <mat-header-cell *matHeaderCellDef>Catalog item</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ e.catalogItem.inventoryItemCombination.name }} </mat-cell>
 		</ng-container>
 
-        <ng-container matColumnDef="catalogId">
-            <mat-header-cell *matHeaderCellDef>ID Catalogo</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.catalog.id }} </mat-cell>
+        <ng-container matColumnDef="priceList">
+            <mat-header-cell *matHeaderCellDef>Price list</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.priceList.name }} </mat-cell>
 		</ng-container>
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
-		</ng-container>
-
-        <ng-container matColumnDef="inventoryItemCombination">
-            <mat-header-cell *matHeaderCellDef>Combinazioni inventory item</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination }} </mat-cell>
-		</ng-container>
-
-        <ng-container matColumnDef="inventoryItemCombinationId">
-            <mat-header-cell *matHeaderCellDef>Id combinazioni inventory item</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.id }} </mat-cell>
+        <ng-container matColumnDef="priceListItem">
+            <mat-header-cell *matHeaderCellDef>Price list item</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.amount }} </mat-cell>
 		</ng-container>
 
         <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>

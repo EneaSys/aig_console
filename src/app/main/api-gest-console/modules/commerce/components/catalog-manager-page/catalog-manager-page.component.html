@@ -41,15 +41,15 @@
 
                 <mat-tab label="Gestione prezzi catalogo">
 
-                    <pre> {{ selectedCatalog.id | json }} </pre>
-                    <pre> {{ catalogItemDTOs | json }} </pre>
-                    <aig-catalog-price-manager-table [displayColumns]="catalogItemDC" [dataSource]="catalogItemDTOs"></aig-catalog-price-manager-table>
+                    <aig-catalog-price-manager-table [displayColumns]="priceListItemDC" [dataSource]="priceListItemDTOs"
+                        [staticCatalog]="selectedCatalog"></aig-catalog-price-manager-table>
 
                 </mat-tab>
 
                 <mat-tab label="Price list">
 
-                    <aig-price-list-list-page [priceListDC]="priceListDC" [staticCatalog]="selectedCatalog"></aig-price-list-list-page>
+                    <aig-price-list-list-page [priceListDC]="priceListDC" [staticCatalog]="selectedCatalog">
+                    </aig-price-list-list-page>
 
                 </mat-tab>
 

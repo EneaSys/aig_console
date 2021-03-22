@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CatalogDTO } from 'aig-commerce';
 
 @Component({
     selector: 'aig-catalog-price-manager-table',
@@ -6,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./catalog-price-manager-table.component.scss']
 })
 export class AigCatalogPriceManagerTableComponent implements OnInit {
+    @Input()
+	staticCatalog: CatalogDTO = null;
     @Input()
     displayColumns: string[];
     @Input()
