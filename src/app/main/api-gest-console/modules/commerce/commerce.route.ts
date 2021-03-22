@@ -25,6 +25,10 @@ import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/wareh
 import { AigCatalogListPageComponent } from './components/catalog-list-page/catalog-list-page.component';
 import { AigCatalogDetailPageComponent } from './components/catalog-detail-page/catalog-detail-page.component';
 import { AigCatalogResolver } from 'aig-common/modules/commerce/resolver/catalog.resolver';
+import { AigWarehouseHandlingListPageComponent } from './components/warehouse-handling-list-page/warehouse-handling-list-page.component';
+import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
+import { AigWarehouseHandlingResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling.resolver';
+import { AigWarehouseManagerPageComponent } from './components/warehouse-manager-page/warehouse-manager-page.component';
 import { AigSellerDetailPageComponent } from './components/seller-detail-page/seller-detail-page.component';
 import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.resolver';
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
@@ -37,6 +41,14 @@ import { AigCatalogItemListPageComponent } from './components/catalog-item-list-
 import { AigCatalogItemDetailPageComponent } from './components/catalog-item-detail-page/catalog-item-detail-page.component';
 import { AigCatalogItemResolver } from 'aig-common/modules/commerce/resolver/catalog-item.resolver';
 import { AigPriceListItemListPageComponent } from './components/price-list-item-list-page/price-list-item-list-page.component';
+import { AigInventoryItemCombinationDetailPageComponent } from './components/inventory-item-combination-detail-page/inventory-item-combination-detail-page.component';
+import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
+import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
+import { AigWarehouseHandlingItemListPageComponent } from './components/warehouse-handling-item-list-page/warehouse-handling-item-list-page.component';
+import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
+import { PurchaseItemResolver } from 'aig-common/modules/commerce/resolver/purchase-item.resolver';
+import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
+import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling-item.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -90,7 +102,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigSellerListPageComponent,
+                        component: AigPurchaseListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
@@ -99,6 +111,31 @@ export const commerceRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             purchase: PurchaseResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'purchase-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPurchaseItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    
+        
+                    {
+                        path: 'detail/:id',
+                        component: AigPurchaseItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            purchaseItem: PurchaseItemResolver,
                         },
                     },
                 ]
@@ -125,6 +162,67 @@ export const commerceRoute: Routes = [
                         },
                     },
                 ]
+            },
+            {
+                path: 'warehouse-handling',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigWarehouseHandlingListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseHandlingDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouseHandling: AigWarehouseHandlingResolver,
+                        },
+                    },
+                ] 
+            },
+            {
+                path: 'warehouse-manager',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'manager'
+                    },
+                    {
+                        path: 'manager',
+                        component: AigWarehouseManagerPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
+                ] 
+            },
+            {
+                path: 'warehouse-handling-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigWarehouseHandlingItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigWarehouseHandlingItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            warehouseHandlingItem: AigWarehouseHandlingItemResolver,
+                        },
+                    },
+                ] 
             },
             {
                 path: 'buyer',
@@ -218,7 +316,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'detail/:id',
-                        component: AigInventoryItemDetailPageComponent, //QUESTA NON E' LA PAGINA DEI DETTAGLI DELLA COMBINAZIONE
+                        component: AigInventoryItemCombinationDetailPageComponent, 
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             inventoryItem: AigInventoryItemResolver,

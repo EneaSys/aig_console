@@ -153,6 +153,14 @@ export const contextNavigation: FuseNavigation[] = [
 						permission: ['e4y.account.get'],
 					},
 					{
+						id       : 'seller',
+						title    : 'Negozi',
+						type     : 'item',
+						icon     : 'shopping_basket',
+						url      : '/commerce/seller',
+						permission: ['c6e.admin'],
+					},
+					{
 						id       : 'warehouse',
 						title    : 'Magazzino',
 						type     : 'item',
@@ -166,6 +174,21 @@ export const contextNavigation: FuseNavigation[] = [
 						type     : 'item',
 						icon     : 'assignment',
 						url      : '/commerce/catalog',
+					},
+					{
+						id       : 'inventory-category',
+						title    : 'Categorie inventario',
+						type     : 'item',
+						icon     : 'format_list_bulleted',
+						url      : '/commerce/inventory-category',
+						permission: ['c6e.admin'],
+					},
+					{
+						id       : 'producer',
+						title    : 'Produttori',
+						type     : 'item',
+						icon     : 'business',
+						url      : '/commerce/producer',
 						permission: ['c6e.admin'],
 					},
 				]

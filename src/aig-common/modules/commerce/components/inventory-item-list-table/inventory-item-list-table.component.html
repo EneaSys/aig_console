@@ -3,7 +3,7 @@
     <span *ngIf="error.status == 401">No access to this info</span>
     
     <button (click)="showError = true">.</button>
-    <pre *ngIf="showError">{{showError | json}}</pre>
+    <pre *ngIf="showError">{{error | json}}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
@@ -26,7 +26,7 @@
         
         <ng-container matColumnDef="inventoryCategoryName">
             <mat-header-cell *matHeaderCellDef> Nome Categoria </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryCategoryName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryCategory.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -41,7 +41,7 @@
 
         <ng-container matColumnDef="producerName">
             <mat-header-cell *matHeaderCellDef> Nome Produttore </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.producerName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.producer.name }} </mat-cell>
         </ng-container>
         
 

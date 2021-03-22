@@ -20,6 +20,9 @@
             [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError">
         </aig-inventory-item-combination-list-table>
 
+        <aig-inventory-item-purchase-list-table [displayColumns]="inventoryItemPurchaseDC"
+        [dataSource]="inventoryItemPurchaseDTOs" [error]="inventoryItemPurchaseError"> </aig-inventory-item-purchase-list-table>
+
         <div style="height: 35px;"></div>
 		
         <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="newInventoryItemCombination()">
