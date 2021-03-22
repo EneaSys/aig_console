@@ -55,19 +55,12 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
   private initInventoryItemSearch() {
 	  this.inventoryItemPaginationSize = 10
 	
-<<<<<<< HEAD
 		this.inventoryItemSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
       category: [''],
       producer: ['']
 		});
-=======
-	  this.inventoryItemSearchFormGroup = this._formBuilder.group({
-		  id: [''],
-		  name: [''],
-	  });
->>>>>>> develop
 
 	  this.inventoryItemDC = ["id","inventoryCategoryName","name","producerName","buttons",];
   }

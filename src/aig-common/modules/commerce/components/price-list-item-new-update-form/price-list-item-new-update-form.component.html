@@ -1,0 +1,43 @@
+<form *ngIf="step.form" [formGroup]="priceListItemNewUpdateForm" (ngSubmit)="submit()">
+    
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Price list</mat-label>
+            <input formControlName="priceList" matInput required [matAutocomplete]="priceListAutocomplete">
+            <mat-autocomplete #priceListAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.priceListDisplayFn">
+                <mat-option *ngFor="let priceList of filteredPriceList | async" [value]="priceList">{{ priceList.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Catalog item</mat-label>
+            <input formControlName="catalogItem" matInput required [matAutocomplete]="catalogItemAutocomplete">
+            <mat-autocomplete #catalogItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.catalogItemDisplayFn">
+                <mat-option *ngFor="let catalogItem of filteredCatalogItem | async" [value]="catalogItem">{{ catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ catalogItem.inventoryItemCombination.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Amount</mat-label>
+            <input formControlName="amount" matInput type="number" required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!priceListItem.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="priceListItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ priceListItemNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!priceListItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPriceListItem()">Crea nuovo</button>
+</div>

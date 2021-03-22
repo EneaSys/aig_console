@@ -1,58 +1,125 @@
 import { Injectable } from '@angular/core';
-import { BuyerResourceService,  InventoryItemResourceService, InventoryCategoryResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
-import {  SellerResourceService, WarehouseResourceService } from 'aig-commerce';
-import { Observable, of } from 'rxjs';
-import { startWith, switchMap } from 'rxjs/operators';
+import { CatalogItemResourceService, CatalogResourceService, InventoryCategoryResourceService, InventoryItemResourceService, PriceListResourceService, SellerResourceService, WarehouseResourceService } from 'aig-commerce';
+import { combineLatest, from, Observable, of } from 'rxjs';
+import { combineAll, concatAll, map, mergeMap, startWith, switchMap } from 'rxjs/operators';
+import { BuyerResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AigCommerceAutocompleteService {
-   	constructor(
+	constructor(
 		private producerResourceService: ProducerResourceService,
-        private inventoryCategoryResourceService: InventoryCategoryResourceService,
+		private inventoryCategoryResourceService: InventoryCategoryResourceService,
+		private inventoryItemResourceService: InventoryItemResourceService,
+		private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
+		private sellerResourceService: SellerResourceService,
+		private catalogResourceService: CatalogResourceService,
+		private catalogItemResourceService: CatalogItemResourceService,
+		private warehouseResourceService: WarehouseResourceService,
+		private priceListResourceService: PriceListResourceService,
         private buyerResourceService: BuyerResourceService,              
-        private warehouseResourceService: WarehouseResourceService,
-        private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
-        private inventoryItemResourceService: InventoryItemResourceService,
-        private sellerResourceService: SellerResourceService,  
+        private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,  
         private purchaseResourceService: PurchaseResourceService,  
         private purchaseItemResourceService: PurchaseItemResourceService,       
-        private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
         private warehouseHandlingResourceService: WarehouseHandlingResourceService,        
 	) {}
 
 	filterProducer(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 2) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 2) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.producerResourceService.getAllProducersUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }        
-    
-    filterInventoryCategory(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+					return this.producerResourceService.getAllProducersUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterInventoryCategory(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterInventoryItem(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+					return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterInventoryItemCombination(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
+					let filter = {
+						nameContains: value
+					};
+					return this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterSeller(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+					return this.sellerResourceService.getAllSellersUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterCatalog(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
+					let filter = {
+						nameContains: value
+					};
+					return this.catalogResourceService.getAllCatalogsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
     filterBuyer(observable: Observable<any>) {
         return observable.pipe(
@@ -78,77 +145,78 @@ export class AigCommerceAutocompleteService {
 					let filter = {
 						nameContains: value
 					};
-                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.catalogResourceService.getAllCatalogsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterInventoryItem(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	filterCatalogItem(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
 					let filter = {
-                        nameContains: value
+						activeEquals: null
 					};
-                    return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-
-    filterInventoryItemCombination(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	filterCatalogItemByCatalog(catalogId: number, catalogItemObservable: Observable<any>) {
+		return catalogItemObservable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
 					let filter = {
-                        nameContains: value
+						activeEquals: null,
+						catalogIdEquals: catalogId
 					};
-                    return this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.catalogItemResourceService.getAllCatalogItemsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
-    filterSeller(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
-					let filter = {
-						nameContains: value
-					};
-                    return this.sellerResourceService.getAllSellersUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
-  
-    warehouseCategory(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-                if (value.length > 1) {
+	warehouseCategory(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
-                    return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+					return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
+
+	filterPriceList(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value.length > 0) {
+					let filter = {
+						nameContains: value
+					};
+					return this.priceListResourceService.getAllPriceListsUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
     filterWarehouseHandlingItem(observable: Observable<any>) {
         return observable.pipe(

@@ -1,0 +1,142 @@
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
+import { CatalogDTO, PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
+import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-dialog/price-list-new-update-dialog.component';
+
+@Component({
+	selector: 'aig-price-list-list-page',
+	templateUrl: './price-list-list-page.component.html',
+	styleUrls: ['./price-list-list-page.component.scss']
+})
+export class AigPriceListListPageComponent extends GenericComponent {
+	@Input()
+	staticCatalog: CatalogDTO = null;
+
+	constructor(
+		private priceListResourceService: PriceListResourceService,
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		private _formBuilder: FormBuilder,
+		private dialog: MatDialog,
+		private _snackBar: MatSnackBar,
+		aigGenericComponentService: AigGenericComponentService,
+	) { super(aigGenericComponentService) }
+
+	loadPage() {
+		this.initPriceListSearch()
+
+		this.showAllPriceList();
+	}
+
+	reloadPage() {
+		this.showAllPriceList();
+	}
+
+	//			---- CATALOG TABLE AND SEARCH SECTION ----
+
+	priceListDTOs: PriceListDTO[];
+	@Input()
+	priceListDC: string[] = ["id", "name", "catalog", "seller", "buttons"];
+	priceListError: any;
+
+	priceListSearchFormGroup: FormGroup;
+	priceListFilters: any;
+
+	priceListPaginationSize: number;
+	priceListLength: number;
+
+	filteredCatalog: Observable<CatalogDTO[]>;
+
+	private initPriceListSearch() {
+		this.priceListPaginationSize = 10;
+
+		this.priceListSearchFormGroup = this._formBuilder.group({
+			id: [''],
+			name: [''],
+			catalog: ['']
+		});
+
+		this.filteredCatalog = this.commerceAutocompleteService.filterCatalog(this.priceListSearchFormGroup.controls['catalog'].valueChanges);
+	}
+
+	private clearFiltersPriceList() {
+		this.priceListFilters = {
+			idEquals: null,
+			nameContains: null,
+			catalogIdEquals: this.staticCatalog ? this.staticCatalog.id : null,
+			page: 0,
+
+		}
+	}
+
+	private async searchPriceList(page: number) {
+		this.priceListDTOs = null;
+
+		this.priceListFilters.page = page;
+		this.priceListFilters.size = this.priceListPaginationSize;
+
+		this.filteredCatalog = this.commerceAutocompleteService.filterCatalog(this.priceListSearchFormGroup.controls['catalog'].valueChanges);
+
+		try {
+			this.priceListLength = await this.priceListResourceService.countPriceListsUsingGET(this.priceListFilters).toPromise();
+
+			if (this.priceListLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
+				this.priceListDTOs = [];
+				return;
+			}
+
+			this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.priceListFilters).toPromise();
+		} catch (e) {
+			this.priceListError = e;
+		}
+	}
+
+	showAllPriceList() {
+		this.resetFiltersPriceList()
+	}
+
+	resetFiltersPriceList() {
+		this.priceListSearchFormGroup.reset();
+		this.clearFiltersPriceList();
+		this.searchPriceList(0);
+	}
+
+	priceListPaginationEvent(pageEvent: PageEvent) {
+		this.priceListPaginationSize = pageEvent.pageSize;
+		this.searchPriceList(pageEvent.pageIndex);
+	}
+
+	priceListSearchWithFilter() {
+		let searchedId = this.priceListSearchFormGroup.controls.id.value;
+
+		if (searchedId != null) {
+			this.clearFiltersPriceList();
+			this.priceListSearchFormGroup.reset();
+			this.priceListFilters.idEquals = searchedId;
+			this.searchPriceList(0);
+			return;
+		}
+		this.priceListFilters.idEquals = null;
+
+		this.priceListFilters.nameContains = this.priceListSearchFormGroup.controls.name.value;
+
+		if (this.priceListSearchFormGroup.controls.catalog.value) {
+			this.priceListFilters.catalogIdEquals = this.priceListSearchFormGroup.controls.catalog.value.id;
+		}
+
+		this.searchPriceList(0);
+	}
+	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
+
+	newPriceList(): void {
+		this.dialog.open(AigPriceListNewUpdateDialogComponent, { data: { priceList: {} } });
+	}
+
+}

@@ -101,6 +101,38 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/seller-manager',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'price-list',
+                title    : 'Listini prezzi',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/price-list',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'price-list-item',
+                title    : 'Price list item',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/price-list-item',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'catalog-manager',
+                title    : 'Catalog manager',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/catalog-manager',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'catalog-item',
+                title    : 'Catalog item',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/catalog-item',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 	{
