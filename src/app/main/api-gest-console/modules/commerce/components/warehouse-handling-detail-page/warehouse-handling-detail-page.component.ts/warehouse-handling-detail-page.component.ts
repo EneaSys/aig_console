@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -18,6 +19,9 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     private warehouseHandlingResourceService: WarehouseHandlingResourceService,
     private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
     private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private _fuseProgressBarService: FuseProgressBarService,
     private dialog: MatDialog,
     aigGenericComponentService: AigGenericComponentService,
   ) { super(aigGenericComponentService) }
@@ -33,6 +37,21 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
   async reloadPage() {
     this.warehouseHandlingDTO = await this.warehouseHandlingResourceService.getWarehouseHandlingUsingGET(this.warehouseHandlingDTO.id).toPromise();
     this.loadWarehouseHandlingItem();
+  }
+
+  async deleteWarehouseHandling(id: number) {
+    this._fuseProgressBarService.show();
+
+    try {
+        await this.warehouseHandlingResourceService.deleteWarehouseHandlingUsingDELETE(id).toPromise();
+
+        this._snackBar.open(`Warehouse handling: '${id}' deleted.`, null, { duration: 2000, });
+        
+        this.router.navigate(['/commerce', 'warehouse-handling']);
+    } catch (e) {
+        this._snackBar.open(`Error during deleting warehouse handling: '${id}'. (${e.message})`, null, { duration: 5000, });
+    }
+    this._fuseProgressBarService.hide();
   }
 
   warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity"];

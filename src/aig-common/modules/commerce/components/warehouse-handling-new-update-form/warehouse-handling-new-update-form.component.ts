@@ -56,6 +56,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
 
+
         this.warehouseHandlingFormGroup = this._formBuilder.group({
             id: [""],
             warehouseHandlingType: ['', Validators.required],
@@ -65,6 +66,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         });
 
         if (this.warehouseHandling != null) {
+            this.isUpdate = true;
             this.warehouseHandlingFormGroup.patchValue(this.warehouseHandling);
         }
 
@@ -76,6 +78,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         if (!this.warehouseHandlingFormGroup.valid) {
             return;
         }
+        
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
@@ -124,7 +127,6 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 			}
 		}
 
-        
         this._fuseProgressBarService.hide();
     }
     

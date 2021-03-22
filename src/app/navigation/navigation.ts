@@ -148,14 +148,6 @@ export const navigation: FuseNavigation[] = [
 				url      : '/commerce/fiscal-transaction',
 				permission: ['c6e.admin'],
 			},
-            {
-                id       : 'warehouse-handling-item',
-                title    : 'Warehouse Handling item - wharehouse manager',
-                type     : 'item',
-                icon     : 'store',
-                url      : '/commerce/warehouse-handling-item',
-                permission: ['c6e.admin'],
-            },
 			{
 				id       : 'inventory-item-combination-list-page',
 				title    : 'Combinazioni inventario - inventario',
