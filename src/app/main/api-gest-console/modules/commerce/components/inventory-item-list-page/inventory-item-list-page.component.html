@@ -42,39 +42,42 @@
                                     <div fxLayout="row" fxLayoutAlign="end top">
                                         <button type="submit" mat-raised-button color="accent">Cerca</button>
                                     </div>
-                                    </form>
+                                </form>
                             </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
+            
             <!-- / SIDEBAR CONTENT -->
         </fuse-sidebar>
-        <!-- / SIDEBAR -->
-        <!-- CENTER -->
-        <div class="center">
-            <!-- HEADER -->
-            <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                    (click)="toggleSidebar('purchase-sidebar')">
-                    <mat-icon>menu</mat-icon>
-                </button>
-                <h2>Elenco inventario</h2>
-            </div>
-            <!-- / HEADER -->
-            <!-- CONTENT -->
-            <div class="content mb-48">
-                <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC" [error]= "inventoryItemError" ></aig-inventory-item-list-table>
-
-                    <mat-paginator #paginator [length]="inventoryItemLength" [pageIndex]="this.inventoryItemFilters.page" [pageSize]="this.inventoryItemPaginationSize" 
-                    [pageSizeOptions]="[10,30,50]" (page)="inventoryItemPaginationEvent($event)"></mat-paginator>
-            </div>
-
-            <button mat-fab class="accent" id="add-inventory-item-button" (click)="newInventoryItem()" aria-label="add social">
-                <mat-icon>add</mat-icon>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                (click)="toggleSidebar('purchase-sidebar')">
+                <mat-icon>menu</mat-icon>
             </button>
-            <!-- / CONTENT -->
+            <h2>Elenco inventario</h2>
         </div>
-        <!-- / CENTER -->
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC" [error]= "inventoryItemError" ></aig-inventory-item-list-table>
+
+                <mat-paginator #paginator [length]="inventoryItemLength" [pageIndex]="this.inventoryItemFilters.page" [pageSize]="this.inventoryItemPaginationSize" 
+                [pageSizeOptions]="[10,30,50]" (page)="inventoryItemPaginationEvent($event)"></mat-paginator>
+        </div>
+
+        <button mat-fab class="accent" id="add-inventory-item-button" (click)="newInventoryItem()" aria-label="add inventory item">
+            <mat-icon>add</mat-icon>
+        </button>
+        <!-- / CONTENT -->
     </div>
+    <!-- / CENTER -->
+</div>

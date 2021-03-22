@@ -39,6 +39,7 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
         };
         this.inventoryItemCombinationDTOs = await this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter).toPromise();
     }
+    
 
     async reloadPage() {
         this.inventoryItemDTO = await this.inventoryItemResourceService.getInventoryItemUsingGET(this.inventoryItemDTO.id).toPromise();

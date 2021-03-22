@@ -77,45 +77,7 @@ export const navigation: FuseNavigation[] = [
         title    : 'Commerce',
         type     : 'group',
         children : [
-            {
-                id       : 'seller',
-                title    : 'Negozi',
-                type     : 'item',
-                icon     : 'shopping_basket',
-                url      : '/commerce/seller',
-                permission: ['c6e.admin'],
-            },
 			{
-                id       : 'buyer',
-                title    : 'Clienti',
-                type     : 'item',
-                icon     : 'person_pin_circle',
-                url      : '/commerce/buyer',
-                permission: ['c6e.admin'],
-            },
-        ]
-    },
-	{
-        id       : 'warehouse',
-        title    : 'Magazzino',
-        type     : 'group',
-        children : [
-            {
-                id       : 'warehouse',
-                title    : 'Magazzino',
-                type     : 'item',
-                icon     : 'store',
-                url      : '/commerce/warehouse',
-                permission: ['c6e.admin'],
-            },
-        ]
-    },
-	{
-        id       : 'inventory',
-        title    : 'Inventario',
-        type     : 'group',
-        children : [
-            {
                 id       : 'inventory-item-list-page',
                 title    : 'Inventario',
                 type     : 'item',
@@ -123,56 +85,79 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/inventory-item',
                 permission: ['c6e.admin'],
             },
-            {
-                id       : 'inventory-category',
-                title    : 'Categorie inventario',
+			{
+                id       : 'warehouse-manager',
+                title    : 'Manager Magazzino',
                 type     : 'item',
-                icon     : 'format_list_bulleted',
-                url      : '/commerce/inventory-category',
+                icon     : 'store',
+                url      : '/commerce/warehouse-manager',
                 permission: ['c6e.admin'],
             },
 			{
-                id       : 'producer',
-                title    : 'Produttori',
+                id       : 'seller-manager',
+                title    : 'Manager Vendite',
                 type     : 'item',
-                icon     : 'business',
-                url      : '/commerce/producer',
+                icon     : 'person_pin_circle',
+                url      : '/commerce/seller-manager',
                 permission: ['c6e.admin'],
+            },
+        ]
+    },
+	{
+        id       : 'temp',
+        title    : 'Temporanei',
+        type     : 'group',
+        children : [
+			{
+                id       : 'buyer',
+                title    : 'Clienti - seller manager',
+                type     : 'item',
+                icon     : 'person_pin_circle',
+                url      : '/commerce/buyer',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'purchase',
+                title    : 'Vendite - seller manager',
+                type     : 'item',
+                icon     : 'shopping_bag',
+                url      : '/commerce/purchase',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'purchase-item',
+                title    : 'Purchase item - seller manager - purchase',
+                type     : 'item',
+                icon     : 'shopping_bag',
+                url      : '/commerce/purchase-item',
+                permission: ['c6e.admin'],
+            },
+			{
+				id       : 'fiscal-transaction-list-page',
+				title    : 'Transazioni Fiscali  - seller manager - purchase',
+				type     : 'item',
+				icon     : 'how_to_reg',
+				url      : '/commerce/fiscal-transaction',
+				permission: ['c6e.admin'],
+			},
+            {
+                id       : 'warehouse-handling-item',
+                title    : 'Warehouse Handling item - wharehouse manager',
+                type     : 'item',
+                icon     : 'store',
+                url      : '/commerce/warehouse-handling-item',
+                permission: ['c6e.admin'],
+            },
+			{
+				id       : 'inventory-item-combination-list-page',
+				title    : 'Combinazioni inventario - inventario',
+				type     : 'item',
+				icon     : 'compare_arrows',
+				url      : '/commerce/inventory-item-combination',
+				permission: ['c6e.admin'],
 			},
         ]
     },
-    {
-        id       : 'fiscal-transaction',
-        title    : 'Transazioni Fiscali',
-        type     : 'group',
-        children : [
-    {
-        id       : 'fiscal-transaction-list-page',
-        title    : 'Transazioni Fiscali',
-        type     : 'item',
-        icon     : 'how_to_reg',
-        url      : '/commerce/fiscal-transaction',
-        permission: ['c6e.admin'],
-    },
-        ]
-    },
-    {
-        id       : 'inventory-item-combination',
-        title    : 'Combinazioni categorie inventario',
-        type     : 'group',
-        children : [
-    {
-        id       : 'inventory-item-combination-list-page',
-        title    : 'Combinazioni categorie inventario',
-        type     : 'item',
-        icon     : 'compare_arrows',
-        url      : '/commerce/inventory-item-combination',
-        permission: ['c6e.admin'],
-    },
-        ]
-    },
-
-
 ];
 
 

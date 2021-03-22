@@ -1,0 +1,67 @@
+<form *ngIf="step.form" [formGroup]="warehouseHandlingItemNewUpdateForm" (ngSubmit)="submit()">
+    <div>
+		<div fxLayout="row" fxLayoutAlign="center top">
+			<mat-form-field *ngIf="warehouseHandling == null">
+				<mat-label>Data</mat-label>
+				<input formControlName="warehouseHandlingDate" matInput [matDatepicker]="picker" required>
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
+			<mat-form-field *ngIf="warehouseHandling == null">
+				<mat-select formControlName="warehouseHandling">
+					<mat-option *ngFor="let warehouseHandling of filteredWarehouseHandling | async"
+						[value]="warehouseHandling">
+						{{warehouseHandling.warehouseHandlingType}}
+						<span *ngIf="warehouseHandling.warehouseToLoad">{{warehouseHandling.warehouseToLoad.name}}</span>
+						<span *ngIf="warehouseHandling.warehouseHandlingType == 'SHIFT' ">-></span>
+						<span *ngIf="warehouseHandling.warehouseToUnload">{{warehouseHandling.warehouseToUnload.name}}</span>
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<div fxLayout="row" fxLayoutAlign="center top">
+			<mat-form-field>
+				<mat-label>Prodotto</mat-label>
+				<input matInput formControlName="inventoryItemCombination"
+					[matAutocomplete]="selectInventoryItemCombinationAutocomplete" placeholder="Prodotto" required>
+				<mat-autocomplete #selectInventoryItemCombinationAutocomplete="matAutocomplete"
+					[displayWith]="autocompleteDisplayService.inventoryItemCombinationDisplayFn">
+					<mat-option *ngFor="let inventoryItemCombination of filteredInventoryItemCombination | async" [value]="inventoryItemCombination">
+						{{inventoryItemCombination.inventoryItem.name}}  {{inventoryItemCombination.inventoryItem.producer.name}}   {{inventoryItemCombination.name }}
+					</mat-option>
+				</mat-autocomplete>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-label>Quantità</mat-label>
+				<input type="number" matInput formControlName="quantity" placeholder="Quantità" required>
+			</mat-form-field>
+			<button *ngIf="submitOnSameLineOfproduct" type="submit" mat-raised-button color="accent">Crea</button>
+		</div>
+		<div *ngIf="!submitOnSameLineOfproduct" fxLayout="row" fxLayoutAlign="end top">
+			<button type="submit" mat-raised-button color="accent">Crea</button>
+		</div>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+	<div *ngIf="!returnToParent">
+		<span>Hai movimentato {{ warehouseHandlingItemNewUpdateForm.controls.quantity.value }} {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.name }} {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.name }} di {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.producer.name }}</span>
+		<br>
+		<button mat-stroked-button color="primary" (click)="newWarehouseHandlingItem()">Create New</button>
+	</div>
+	<div *ngIf="returnToParent">
+		<div>
+			Movimentati/e {{ warehouseHandlingItemNewUpdateForm.controls.quantity.value }} 
+			{{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.name }}
+			{{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.name }} 
+			della {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.producer.name }}
+		</div>
+		<br>
+		<button mat-stroked-button color="primary"
+			(click)="newWarehouseHandlingItem()">Modifica</button>
+	</div>
+</div>
