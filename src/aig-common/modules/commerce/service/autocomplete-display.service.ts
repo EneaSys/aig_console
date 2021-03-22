@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BuyerDTO, InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemDTO, ProducerDTO, PurchaseDTO, SellerDTO, WarehouseDTO, WarehouseHandlingItemDTO } from 'aig-commerce';
+import { CatalogDTO, CatalogItemDTO, InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemDTO, PriceListDTO, ProducerDTO, SellerDTO, WarehouseDTO } from 'aig-commerce';
+import { BuyerDTO, PurchaseDTO, WarehouseHandlingItemDTO } from 'aig-commerce';
 
 
 @Injectable({
@@ -34,10 +35,21 @@ export class AigAutocompleteDisplayService {
         return seller ? seller.name : undefined;
     }
 
+    catalogDisplayFn(catalog?: CatalogDTO): string | undefined {
+        return catalog ? catalog.name : undefined;
+    }
+
+    catalogItemDisplayFn(catalogItem?: CatalogItemDTO): string | undefined {
+        return catalogItem ? catalogItem.inventoryItemCombination.inventoryItem.name + " - " + catalogItem.inventoryItemCombination.name : undefined;
+    }
+
+    priceListDisplayFn(priceList?: PriceListDTO): string | undefined {
+        return priceList ? priceList.name : undefined;
+    }
+
     purchaseDisplayFn(purchase?: PurchaseDTO): any | undefined {
         return purchase ? purchase.insertedDateTime : undefined;
     }
-
 
     warehouseHandlingItemDisplayFn(warehouseHandlingItem?: WarehouseHandlingItemDTO): any | undefined {
         return warehouseHandlingItem ? warehouseHandlingItem : undefined;

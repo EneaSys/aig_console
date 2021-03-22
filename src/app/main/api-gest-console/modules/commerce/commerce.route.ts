@@ -22,6 +22,9 @@ import { AigProducerDetailPageComponent } from './components/producer-detail-pag
 import { AigProducerResolver } from 'aig-common/modules/commerce/resolver/producer.resolver';
 import { AigWarehouseDetailPageComponent } from './components/warehouse-detail-page/warehouse-detail-page.component';
 import { AigWarehouseResolver } from 'aig-common/modules/commerce/resolver/warehouse.resolver';
+import { AigCatalogListPageComponent } from './components/catalog-list-page/catalog-list-page.component';
+import { AigCatalogDetailPageComponent } from './components/catalog-detail-page/catalog-detail-page.component';
+import { AigCatalogResolver } from 'aig-common/modules/commerce/resolver/catalog.resolver';
 import { AigWarehouseHandlingListPageComponent } from './components/warehouse-handling-list-page/warehouse-handling-list-page.component';
 import { AigWarehouseHandlingDetailPageComponent } from './components/warehouse-handling-detail-page/warehouse-handling-detail-page.component.ts/warehouse-handling-detail-page.component';
 import { AigWarehouseHandlingResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling.resolver';
@@ -30,6 +33,14 @@ import { AigSellerDetailPageComponent } from './components/seller-detail-page/se
 import { AigSellerResolver } from 'aig-common/modules/commerce/resolver/seller.resolver';
 import { AigFiscalTransactionListPageComponent } from './components/fiscal-transaction-list-page/fiscal-transaction-list-page.component';
 import { AigInventoryItemCombinationListPageComponent } from './components/inventory-item-combination-list-page/inventory-item-combination-list-page.component';
+import { AigPriceListListPageComponent } from './components/price-list-list-page/price-list-list-page.component';
+import { AigPriceListDetailPageComponent } from './components/price-list-detail-page/price-list-detail-page.component';
+import { AigPriceListResolver } from 'aig-common/modules/commerce/resolver/price-list.resolver';
+import { AigCatalogManagerPageComponent } from './components/catalog-manager-page/catalog-manager-page.component';
+import { AigCatalogItemListPageComponent } from './components/catalog-item-list-page/catalog-item-list-page.component';
+import { AigCatalogItemDetailPageComponent } from './components/catalog-item-detail-page/catalog-item-detail-page.component';
+import { AigCatalogItemResolver } from 'aig-common/modules/commerce/resolver/catalog-item.resolver';
+import { AigPriceListItemListPageComponent } from './components/price-list-item-list-page/price-list-item-list-page.component';
 import { AigInventoryItemCombinationDetailPageComponent } from './components/inventory-item-combination-detail-page/inventory-item-combination-detail-page.component';
 import { AigPurchaseListPageComponent } from './components/purchase-list-page/purchase-list-page.component';
 import { AigPurchaseItemListPageComponent } from './components/purchase-item-list-page/purchase-item-list-page.component';
@@ -355,6 +366,121 @@ export const commerceRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             inventoryCategory: AigInventoryCategoryResolver,
+                        },
+                    }
+                ]
+            },
+            {
+                path: 'catalog',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigCatalogListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    {
+                        path: 'detail/:id',
+                        component: AigCatalogDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            catalog: AigCatalogResolver,
+                        },
+                    }
+                ]
+            },
+            {
+                path: 'price-list',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigPriceListListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    {
+                        path: 'detail/:id',
+                        component: AigPriceListDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            priceList: AigPriceListResolver,
+                        },
+                    }
+                ]
+            },
+            {
+                path: 'price-list-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigPriceListItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    /*{
+                        path: 'detail/:id',
+                        component: AigPriceListDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            priceList: AigPriceListResolver,
+                        },
+                    }*/
+                ]
+            },
+            {
+                path: 'catalog-manager',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigCatalogManagerPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    /*{
+                        path: 'detail/:id',
+                        component: AigPriceListDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            priceList: AigPriceListResolver,
+                        },
+                    }*/
+                ]
+            },
+            {
+                path: 'catalog-item',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component:  AigCatalogItemListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }, 
+                    {
+                        path: 'detail/:id',
+                        component: AigCatalogItemDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            catalogItem: AigCatalogItemResolver,
                         },
                     }
                 ]
