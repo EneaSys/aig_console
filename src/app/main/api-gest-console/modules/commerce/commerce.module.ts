@@ -153,6 +153,7 @@ import { AigWarehouseHandlingItemDetailPageComponent } from './components/wareho
         AigInventoryItemCombinationDetailPageComponent,
         AigPurchaseItemDetailPageComponent,
     ],
+    
     entryComponents: [
         AigNewCustomBuyDialogComponent,
         AigWarehouseNewUpdateModalComponent,

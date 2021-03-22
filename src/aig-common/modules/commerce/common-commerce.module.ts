@@ -58,6 +58,11 @@ import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.reso
 import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
+<<<<<<< HEAD
+
+import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
+import { AigInventoryItemPurchaseListTableComponent } from './components/inventory-item-purchase-list-table/inventory-item-purchase-list-table.component';
+=======
 import { AigSellerResolver } from './resolver/seller.resolver';
 import { AigBuyerNewUpdateFormComponent } from './components/buyer-new-update-form/buyer-new-update-form.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -65,6 +70,7 @@ import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
 import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-item.resolver';
 
 
+>>>>>>> develop
 
 @NgModule({
     imports: [
@@ -117,6 +123,8 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         AigWarehouseNewUpdateFormComponent,
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
+        AigFiscalTransactionNewUpdateFormComponent,
+        AigInventoryItemPurchaseListTableComponent,
         AigPurchaseListTableComponent,
         AigPurchaseComplexFormComponent,
         AigPaymentListTableComponent,
@@ -171,6 +179,9 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         AigInventoryItemDialogFormComponent,
         AigProducerNewUpdateFormComponent,
         AigFiscalTransactionNewUpdateFormComponent,
+<<<<<<< HEAD
+        AigInventoryItemPurchaseListTableComponent,
+=======
         AigPurchaseNewUpdateFormComponent,
         AigPurchaseItemNewUpdateFormComponent,
         AigWarehouseHandlingListTableComponent,
@@ -178,6 +189,7 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         AigWarehouseHandlingFormComplexComponent,
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,
+>>>>>>> develop
         
         AigPurchaseComplexFormComponent,
     ],

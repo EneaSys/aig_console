@@ -26,7 +26,7 @@
         
         <ng-container matColumnDef="inventoryCategoryName">
             <mat-header-cell *matHeaderCellDef> Nome Categoria </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryCategoryName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryCategory.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -41,7 +41,7 @@
 
         <ng-container matColumnDef="producerName">
             <mat-header-cell *matHeaderCellDef> Nome Produttore </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.producerName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.producer.name }} </mat-cell>
         </ng-container>
         
 
