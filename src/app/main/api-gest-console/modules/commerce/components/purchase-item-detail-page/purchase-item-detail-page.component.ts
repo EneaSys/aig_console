@@ -40,9 +40,9 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
         try {
             await this.purchaseItemResourceService.deletePurchaseItemUsingDELETE(id).toPromise();
 
-            this.router.navigate(['/commerce', 'purchase-item']);
-
             this._snackBar.open(`Purchase item: '${id}' deleted.`, null, { duration: 2000, });
+            
+            this.router.navigate(['/commerce', 'purchase-item']);
         } catch (e) {
             this._snackBar.open(`Error during deleting purchase item: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
