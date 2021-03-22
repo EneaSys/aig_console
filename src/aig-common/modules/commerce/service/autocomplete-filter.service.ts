@@ -145,7 +145,7 @@ export class AigCommerceAutocompleteService {
 					let filter = {
 						nameContains: value
 					};
-					return this.catalogResourceService.getAllCatalogsUsingGET(filter);
+					return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
 				} else {
 					return of([]);
 				}
