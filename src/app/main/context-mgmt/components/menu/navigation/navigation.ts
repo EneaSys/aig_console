@@ -191,6 +191,14 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/commerce/producer',
 						permission: ['c6e.admin'],
 					},
+					{
+						id       : 'price-list',
+						title    : 'Listini prezzi',
+						type     : 'item',
+						icon     : 'euro_symbol',
+						url      : '/commerce/price-list',
+						permission: ['c6e.admin'],
+					},
 				]
             },
 		]

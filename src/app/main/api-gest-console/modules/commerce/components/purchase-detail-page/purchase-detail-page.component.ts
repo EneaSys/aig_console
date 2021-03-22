@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO } from 'aig-commerce';
+import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO, PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
 import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 
 
@@ -17,20 +17,13 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
         private purchaseResourceService: PurchaseResourceService,
         private fiscalTransactionResourceService: FiscalTransactionResourceService,
         private paymentResourceService: PaymentResourceService,
+        private purchaseItemResourceService: PurchaseItemResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
     purchaseDTO: PurchaseDTO;
-        
-    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
-    fiscalTransactionDTOs: FiscalTransactionDTO[];
-    fiscalTransactionError: any;
-
-    paymentDTOs: PaymentDTO[];
-    paymentDC: string[] = ["id","amount"];
-    paymentError: any;
 
     loadPage() {
         this.purchaseDTO = this.route.snapshot.data.purchase;
@@ -45,8 +38,18 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
     async loadOther() {
         this.loadFiscalTransactions();
         this.loadPayments();
+        this.loadPurchaseItem();
     }
 
+    editPurchase(purchaseDTO: PurchaseDTO) {
+		this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: purchaseDTO } });
+    }
+
+    
+
+    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
+    fiscalTransactionDTOs: FiscalTransactionDTO[];
+    fiscalTransactionError: any;
     async loadFiscalTransactions() {
         let filters = {
             idEquals : this.purchaseDTO.id
@@ -57,6 +60,10 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
             this.fiscalTransactionError = e;
         }
     }
+
+    paymentDTOs: PaymentDTO[];
+    paymentDC: string[] = ["id","amount"];
+    paymentError: any;
 
     async loadPayments() {
         let filters = {
@@ -70,12 +77,18 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
 
     }
 
-    editPurchase(purchaseDTO: PurchaseDTO) {
-		this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: purchaseDTO } });
-    }
+    purchaseItemDTOs: PurchaseItemDTO[];
+    purchaseItemDC: string[] = ["id", "inventoryItemCombination", "price", "quantity", "tax", "warehouseHandlingItem", "buttons"];
+    purchaseItemError: any;
 
-
-    afterLoad() {
-
+    async loadPurchaseItem() {
+        let filters = {
+            purchaseIdEquals: this.purchaseDTO.id,
+        };
+        try {
+            this.purchaseItemDTOs = await this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filters).toPromise();
+        } catch(e) {
+            this.purchaseItemError = e;
+        }
     }
 }

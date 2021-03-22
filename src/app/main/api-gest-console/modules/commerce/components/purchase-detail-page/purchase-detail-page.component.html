@@ -6,7 +6,8 @@
 
     
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
-        <div class="widget p-16" fxFlex.gt-sm="30">
+
+        <div class="widget p-16" fxFlex.gt-sm="20">
             <div class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Acquisto</div>
                 <div class="h1 m-16">{{ purchaseDTO.amount | currency:'EUR' }}</div>
@@ -16,8 +17,10 @@
                 <div class="h4 m-8 ml-16">Closed: {{ purchaseDTO.closed }}</div>
                 <button mat-stroked-button color="primary" (click)="editPurchase(purchaseDTO)">Edit</button>
             </div>
-            
-            <div class="fuse-card auto-width p-16 mt-16">
+        </div>
+
+        <div class="widget p-16" fxFlex.gt-sm="20">
+            <div class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Cliente</div>
                 <div class="h1 m-16" *ngIf="purchaseDTO.buyer.eopoo">{{ purchaseDTO.buyer.eopoo | eopooName }}</div>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ purchaseDTO.buyer.id }}</div>
@@ -31,7 +34,18 @@
                 <div class="h2 m-16">{{ purchaseDTO.buyer.seller.name }}</div>
             </div>
         </div>
-        <div class="widget p-16" fxFlex.gt-sm="35">
+
+        <div class="widget p-16" fxFlex.gt-sm="60">
+            <div class="fuse-card auto-width p-16">
+                <aig-purchase-item-list-table [dataSource]="purchaseItemDTOs" [displayColumns]="purchaseItemDC" [error]="purchaseItemError"></aig-purchase-item-list-table>
+            </div>
+        </div>
+
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                 Scontrini:
                 <aig-fiscal-transaction-list-table [dataSource]="fiscalTransactionDTOs"
@@ -41,14 +55,14 @@
             
 
         </div>
-        <div class="widget p-16" fxFlex.gt-sm="35">
+        <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
                Pagamenti:
                <aig-payment-list-table [dataSource]="paymentDTOs" [displayColumns]="paymentDC" [error]= "paymentError" ></aig-payment-list-table>
             </div>
         </div>
-    </div>
 
+    </div>
 
 
 </div>
