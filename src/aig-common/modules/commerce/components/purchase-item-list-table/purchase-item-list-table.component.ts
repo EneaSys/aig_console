@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { PurchaseItemResourceService } from 'aig-commerce';
+import { PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigPurchaseItemNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/commerce/components/purchase-item-new-update-dialog/purchase-item-new-update-dialog.component';
 
 @Component({
     selector: 'aig-purchase-item-list-table',
@@ -22,6 +23,7 @@ export class AigPurchaseItemListTableComponent implements OnInit {
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
+        private dialog: MatDialog,
     ) { }
 
     ngOnInit(): void { }
@@ -38,5 +40,8 @@ export class AigPurchaseItemListTableComponent implements OnInit {
             this._snackBar.open(`Error during deleting purchase item: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
+    }
+    editPurchaseItem(purchaseItemDTO: PurchaseItemDTO) {
+        this.dialog.open(AigPurchaseItemNewUpdateDialogComponent, { data: { purchaseItem: purchaseItemDTO } });
     }
 }

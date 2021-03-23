@@ -11,11 +11,7 @@ import { FiscalTransactionDTO, FiscalTransactionResourceService, WarehouseDTO, W
     styleUrls: ['./fiscal-transaction-new-update-form.component.scss']
 })
 export class AigFiscalTransactionNewUpdateFormComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+   
 
     constructor(
         private _formBuilder: FormBuilder,
