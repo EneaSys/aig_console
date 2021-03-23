@@ -6,7 +6,7 @@
                 <pre>{{ inventoryItemDTO | json }}</pre>
 
                 <button mat-stroked-button color="primary" (click)="editInventoryItem(inventoryItemDTO)">Edit</button>
-
+                <button mat-stroked-button color="primary" (click)="deleteInventoryItem(inventoryItemDTO.id)">Delete</button>
             </div>
         </div>
     </div>
