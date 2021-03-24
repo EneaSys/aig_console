@@ -54,7 +54,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this._fuseProgressBarService.hide();
   }
 
-  warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity"];
+  warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity", "buttons"];
   warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[];
   warehouseHandlingItemError: any;
   warehouseHandlingItemFilters: {}
