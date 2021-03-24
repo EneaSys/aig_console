@@ -54,7 +54,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this._fuseProgressBarService.hide();
   }
 
-  warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity"];
+  warehouseHandlingItemDC: string[] = ["inventoryItemProducer", "inventoryItemCombination", "quantity", "buttons"];
   warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[];
   warehouseHandlingItemError: any;
   warehouseHandlingItemFilters: {}
@@ -74,7 +74,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
     this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: warehouseHandlingDTO } });
   }
 
-  addInventoryItemCombination(warehouseHandlingDTO: WarehouseHandlingDTO){
+  addWarehouseHandling(warehouseHandlingDTO: WarehouseHandlingDTO){
     this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { warehouseHandling: warehouseHandlingDTO } });
   }
 }

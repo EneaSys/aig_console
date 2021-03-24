@@ -6,7 +6,6 @@
 				<pre>{{ warehouseHandlingDTO | json }}</pre>
 
                 <button mat-stroked-button color="primary" (click)="editWarehouseHandling(warehouseHandlingDTO)">Edit</button>
-				
                 <button mat-stroked-button color="primary" (click)="deleteWarehouseHandling(warehouseHandlingDTO.id)">Delete</button>
             </div>
         </div>
@@ -21,7 +20,7 @@
 
         <div style="height: 35px;"></div>
 		
-        <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="addInventoryItemCombination(warehouseHandlingDTO)" aria-label="add inventory item combination">
+        <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="addWarehouseHandling(warehouseHandlingDTO)" aria-label="add inventory item combination">
             <mat-icon>add</mat-icon>
         </button>
     </div>

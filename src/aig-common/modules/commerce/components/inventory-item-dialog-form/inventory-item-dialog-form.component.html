@@ -35,7 +35,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="inventoryItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!inventoryItem.id" type="submit" mat-raised-button color="accent">Crea</button>
     </div>
 </form>
 

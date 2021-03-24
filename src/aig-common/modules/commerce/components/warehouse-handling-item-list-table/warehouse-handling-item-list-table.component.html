@@ -1,9 +1,9 @@
 <div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
-	<h3>Error!</h3>
-	<span *ngIf="error.status == 401">No access to this info</span>
+    <h3>Error!</h3>
+    <span *ngIf="error.status == 401">No access to this info</span>
 
-	<button (click)="showError = true">.</button>
-	<pre *ngIf="showError">{{ error | json }}</pre>
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json }}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
@@ -23,7 +23,7 @@
             <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.warehouseHandling.date | date: 'dd/MM/yyyy' }} </mat-cell>
         </ng-container>
-        
+
         <ng-container matColumnDef="warehouseHandlingType">
             <mat-header-cell *matHeaderCellDef>Tipo di Movimentazione</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.warehouseHandling.warehouseHandlingType }} </mat-cell>
@@ -31,43 +31,50 @@
 
         <ng-container matColumnDef="warehouse">
             <mat-header-cell *matHeaderCellDef>Magazzino</mat-header-cell>
-            <mat-cell *matCellDef="let e"> 
-                <span *ngIf="e.warehouseHandling.warehouseToLoad">Carico: {{ e.warehouseHandling.warehouseToLoad.name }}</span> <br>
-                <span *ngIf="e.warehouseHandling.warehouseToUnload">Scarico: {{ e.warehouseHandling.warehouseToUnload.name }}</span>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.warehouseHandling.warehouseToLoad">Carico: {{ e.warehouseHandling.warehouseToLoad.name
+                    }}</span> <br>
+                <span *ngIf="e.warehouseHandling.warehouseToUnload">Scarico: {{
+                    e.warehouseHandling.warehouseToUnload.name }}</span>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="inventoryItemCombination">
             <mat-header-cell *matHeaderCellDef>Combinazione</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.name }} {{ e.inventoryItemCombination.name }} </mat-cell>
-		</ng-container>
+            <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.name }} {{
+                e.inventoryItemCombination.name }} </mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="inventoryItemProducer">
             <mat-header-cell *matHeaderCellDef>Produttore</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.producer.name }}  </mat-cell>
-		</ng-container>
+            <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.producer.name }} </mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="quantity">
             <mat-header-cell *matHeaderCellDef>Quantità</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.quantity }} </mat-cell>
-		</ng-container>
+        </ng-container>
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu">
+                </button>
+                <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/commerce/warehouse-handling-item/detail/' + e.id">
-                      <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                        <mat-icon>details</mat-icon>
+                        <span>Details</span>
                     </button>
-                    <button mat-menu-item>
-                      <mat-icon>delete</mat-icon>
-                      <span>Delete</span>
+                    <button mat-menu-item (click)="editWarehouseHandlingItem(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
                     </button>
-                  </mat-menu>
+                    <button mat-menu-item (click)="deleteWarehouseHandlingItem(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
             </mat-cell>
         </ng-container>
 

@@ -10,10 +10,6 @@ import { Observable } from 'rxjs';
 import { AigWarehouseHandlingComplexModalComponent } from '../warehouse-handling-complex-modal/warehouse-handling-complex-modal.component';
 import { AigWarehouseHandlingNewUpdateModalComponent } from '../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 
-interface warehouseHandling {
-	value: string;
-	viewValue: string;
-  }
 @Component({
     selector: 'aig-warehouse-handling-list-page',
     templateUrl: './warehouse-handling-list-page.component.html',
@@ -57,7 +53,6 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	warehouseHandlingLength: number;
 	warehouseHandlingDTOs: WarehouseHandlingDTO[];
 	warehouseHandlingError: any;
-	warehouseDTOs: WarehouseDTO[];
 
 	warehouseHandlingDC: string[];
 
