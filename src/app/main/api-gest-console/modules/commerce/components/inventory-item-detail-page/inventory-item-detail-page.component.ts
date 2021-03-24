@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { InventoryItemCombinationDTO, InventoryItemCombinationResourceService, InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
+import { InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemCombinationResourceService, InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigInventoryItemCombinationNewUpdateDialogComponent } from '../inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
@@ -36,7 +36,7 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
 
     loadPage() {
         this.inventoryItemDTO = this.route.snapshot.data.inventoryItem;
-        this.inventoryItemCombinationDC = ["id", "name", "combinationCode"];
+        this.inventoryItemCombinationDC = ["id", "name", "combinationCode","buttons"];
         this.loadInventoryItemCombination();
     }
 
@@ -73,7 +73,7 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
         this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: inventoryItemDTO } });
     }
 
-    newInventoryItemCombination(): void {
+    addInventoryItemCombination(): void {
         this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: { inventoryItemCombination: this.inventoryItemCombinationDTOs } } });
     }
 }

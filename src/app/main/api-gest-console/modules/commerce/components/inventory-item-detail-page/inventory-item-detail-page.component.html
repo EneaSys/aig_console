@@ -1,7 +1,7 @@
 <div id="aig-inventory-item-detail-page" class="page-layout blank">
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
+            <div class="fuse-card p-16">
 
                 <pre>{{ inventoryItemDTO | json }}</pre>
 
@@ -20,10 +20,9 @@
             [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError">
         </aig-inventory-item-combination-list-table>
 
-        
         <div style="height: 35px;"></div>
-		
-        <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="newInventoryItemCombination()">
+
+        <button mat-fab class="accent" (click)="addInventoryItemCombination()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
