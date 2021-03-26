@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { PurchaseDTO, PurchaseItemResourceService, PurchaseResourceService } from 'aig-commerce';
+import { BuyerDTO, BuyerResourceService, PurchaseDTO, PurchaseItemDTO, PurchaseItemResourceService, PurchaseResourceService } from 'aig-commerce';
 
 
 @Component({
@@ -13,12 +13,17 @@ export class AigPurchaseManagerPageComponent extends GenericComponent {
     constructor(
         private purchaseResourceService: PurchaseResourceService,
         private purchaseItemResourceService: PurchaseItemResourceService,
+        private buyerResourceService: BuyerResourceService,
         private eventService :EventService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
     purchaseDTOs: PurchaseDTO[] = [];
+    purchaseItemDTOs: PurchaseItemDTO[] = [];
+    buyerDTOs:BuyerDTO[] = [];
     selectedPurchase: PurchaseDTO;
+
+    buyerDC: string[];
 
     loadingPage: boolean = true;
     errorInLoading: any;
@@ -29,7 +34,18 @@ export class AigPurchaseManagerPageComponent extends GenericComponent {
         page: 0,
     }
 
+    /*buyerFilters = {
+        idEquals: null,
+        nameContains: null,
+        page: 0,
+    }
+    */
+
     async loadPage() {
+        /*this.buyerDC = ["confirmation","eopoo","eopooCode","id","seller","sellerId","statusNote"];
+        
+
+        this.buyerDTOs = await this.buyerResourceService.getAllBuyersUsingGET(this.buyerFilters).toPromise();*/
         try {
             this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(this.purchaseFilters).toPromise();
             if (this.purchaseDTOs.length > 0) {
