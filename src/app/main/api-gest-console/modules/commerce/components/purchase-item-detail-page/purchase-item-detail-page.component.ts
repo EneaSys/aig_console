@@ -3,7 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import {  PurchaseItemDTO, PurchaseItemResourceService, } from 'aig-commerce';
+import {  BuyerDTO, BuyerResourceService, PurchaseDTO, PurchaseItemDTO, PurchaseItemResourceService, PurchaseResourceService, } from 'aig-commerce';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 
 
@@ -14,6 +14,8 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 })
 export class AigPurchaseItemDetailPageComponent extends GenericComponent {
     constructor(
+        private purchaseResourceService: PurchaseResourceService,
+        private buyerResourceService: BuyerResourceService,
         private purchaseItemResourceService: PurchaseItemResourceService,
         private route: ActivatedRoute,
         private router: Router,
@@ -24,6 +26,8 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
     purchaseItemDTO: PurchaseItemDTO;
+    buyerDTO: BuyerDTO;
+    purchaseDTO: PurchaseDTO;
         
    
     loadPage() {
@@ -34,6 +38,9 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
 		this.purchaseItemDTO = await this.purchaseItemResourceService.getPurchaseItemUsingGET(this.purchaseItemDTO.id).toPromise();
 	}
 
+  
+
+   
     async deletePurchaseItem(id: number) {
         this._fuseProgressBarService.show();
 
@@ -48,4 +55,6 @@ export class AigPurchaseItemDetailPageComponent extends GenericComponent {
         }
         this._fuseProgressBarService.hide();
     }
+
+   
 }
