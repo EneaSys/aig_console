@@ -2,8 +2,17 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card p-16">
-                
-				<pre>{{ warehouseHandlingDTO | json }}</pre>
+                <div class="h3 m-16 mt-0 mb-0">Detail</div>
+                <hr size=”1″ width=”300″ color="black" noshade>
+
+                <p>Data: {{ warehouseHandlingDTO.date | date: 'dd/MM/yyyy' }}</p>
+                <p>Tipo di Movimentazione: {{warehouseHandlingDTO.warehouseHandlingType}}</p>
+                <p>Magazzino: 
+                    <span *ngIf="warehouseHandlingDTO.warehouseToLoad">
+                    Carico: {{ warehouseHandlingDTO.warehouseToLoad.name}}</span><br>
+                    <span *ngIf="warehouseHandlingDTO.warehouseToUnload">
+                    Scarico: {{warehouseHandlingDTO.warehouseToUnload.name }}</span>
+                </p>
 
                 <button mat-stroked-button color="primary" (click)="editWarehouseHandling(warehouseHandlingDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteWarehouseHandling(warehouseHandlingDTO.id)">Delete</button>

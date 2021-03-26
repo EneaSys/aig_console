@@ -5,11 +5,17 @@
                 <div class="h3 m-16 mt-0 mb-0">Detail</div>
                 <hr size=”1″ width=”300″ color="black" noshade>
 
+                <p>Data: {{ warehouseHandlingItemDTO.warehouseHandling.date | date: 'dd/MM/yyyy' }}</p>
                 <p>Tipo di Movimentazione: {{warehouseHandlingItemDTO.warehouseHandling.warehouseHandlingType}}</p>
-                <!--<p>Produttore: {{}}</p>
-                <p>Categoria: {{}}</p>-->
-
-                <pre>{{ warehouseHandlingItemDTO | json }}</pre>
+                <p>Magazzino: 
+                    <span *ngIf="warehouseHandlingItemDTO.warehouseHandling.warehouseToLoad">
+                    Carico: {{ warehouseHandlingItemDTO.warehouseHandling.warehouseToLoad.name}}</span><br>
+                    <span *ngIf="warehouseHandlingItemDTO.warehouseHandling.warehouseToUnload">
+                    Scarico: {{warehouseHandlingItemDTO.warehouseHandling.warehouseToUnload.name }}</span>
+                </p>
+                <p>Combinazione: {{ warehouseHandlingItemDTO.inventoryItemCombination.inventoryItem.name }} </p>
+                <p>Produttore: {{ warehouseHandlingItemDTO.inventoryItemCombination.inventoryItem.producer.name }}</p>
+                <p>Quantità: {{ warehouseHandlingItemDTO.quantity }}</p>
 
                 <button mat-stroked-button color="primary" (click)="editWarehouseHandlingItem(warehouseHandlingItemDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteWarehouseHandlingItem(warehouseHandlingItemDTO.id)">Delete</button>
