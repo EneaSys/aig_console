@@ -6,8 +6,9 @@
                 <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di vendite</span>
             </div>
 
-            <div fxLayout="row">
-                <div class="selected-purchase">{{ selectedPurchase.insertedDateTime }}</div>
+            <div fxLayout="row" >
+
+                <div class="selected-purchase">{{ selectedPurchase.insertedDateTime  | date: 'dd/MM/yyyy'}}</div>
                 <button mat-icon-button class="purchase-selector" [matMenuTriggerFor]="purchaseMenu"
                     aria-label="Select purchase">
                     <mat-icon>more_horiz</mat-icon>
@@ -16,7 +17,7 @@
                     <div *ngFor="let purchaseDTO of purchaseDTOs">
                         <button mat-menu-item (click)="setPurchase(purchaseDTO)">
                             <span *ngIf="purchaseDTO == selectedPurchase">-</span>
-                            <span>{{ purchaseDTO.insertedDateTime }}</span>
+                            <span>{{ purchaseDTO.insertedDateTime | date: 'dd/MM/yyyy' }}</span>
                         </button>
                     </div>
                 </mat-menu>
