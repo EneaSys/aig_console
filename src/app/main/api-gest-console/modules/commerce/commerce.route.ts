@@ -52,6 +52,7 @@ import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/re
 import { AigPriceListItemDetailPageComponent } from './components/price-list-item-detail-page/price-list-item-detail-page.component';
 import { AigPriceListItemResolver } from 'aig-common/modules/commerce/resolver/price-list-item.resolver';
 import { AigPurchaseManagerPageComponent } from './components/purchase-manager-page/purchase-manager-page.component';
+import { AigInventoryItemCombinationResolver } from 'aig-common/modules/commerce/resolver/inventory-item-combination.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -352,7 +353,7 @@ export const commerceRoute: Routes = [
                         component: AigInventoryItemCombinationDetailPageComponent, 
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            inventoryItem: AigInventoryItemResolver,
+                            inventoryItemCombination: AigInventoryItemCombinationResolver,
                         },
                     },
                 ]

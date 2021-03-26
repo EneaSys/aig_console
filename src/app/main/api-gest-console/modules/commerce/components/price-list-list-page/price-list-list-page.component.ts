@@ -32,8 +32,6 @@ export class AigPriceListListPageComponent extends GenericComponent {
 		this.initPriceListSearch()
 
 		this.showAllPriceList();
-
-		console.log(this.staticCatalog, "ciao");
 	}
 
 	reloadPage() {

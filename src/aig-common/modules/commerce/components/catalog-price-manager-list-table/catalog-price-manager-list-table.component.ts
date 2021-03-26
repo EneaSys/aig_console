@@ -1,0 +1,51 @@
+import { Component, Input } from '@angular/core';
+import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, PriceListDTO, PriceListItemDTO, PriceListItemResourceService, PriceListResourceService } from 'aig-commerce';
+import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+
+@Component({
+    selector: 'aig-catalog-price-manager-list-table',
+    templateUrl: './catalog-price-manager-list-table.component.html',
+    styleUrls: ['./catalog-price-manager-list-table.component.scss']
+})
+export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
+
+    @Input()
+	staticCatalog: CatalogDTO = null;
+
+    catalogItemDTOs: CatalogItemDTO[];
+
+    priceListDTOs: PriceListDTO[];
+
+    priceListItemDTOs: PriceListItemDTO[];
+
+    constructor(
+        private catalogItemResourceService: CatalogItemResourceService,
+        private priceListResourceService: PriceListResourceService,
+        private priceListItemResourceService: PriceListItemResourceService,
+        aigGenericComponentService: AigGenericComponentService,
+    ) { super(aigGenericComponentService) }
+
+    filter = {
+        catalogIdEquals: null
+    }
+
+    filtri = {
+        catalogItemIdEquals: null
+    }
+    i: any;
+
+    loadFilters(){
+    this.filter.catalogIdEquals = this.staticCatalog ? this.staticCatalog.id : null;
+}
+
+    async loadPage(){
+        this.loadFilters();
+        this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(this.filter).toPromise();
+        this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.filter).toPromise();
+        this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(this.filtri).toPromise();
+        for(this.i=0; this.i<this.priceListItemDTOs.length; this.i++)
+        this.filtri.catalogItemIdEquals = this.priceListItemDTOs[this.i].catalogItemId;
+        this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(this.filtri).toPromise();
+    }
+}

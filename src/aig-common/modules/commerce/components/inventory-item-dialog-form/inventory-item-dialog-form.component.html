@@ -45,6 +45,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ inventoryItemCombinationNewUpdateForm.value | json }}</pre>
+    <pre>{{ inventoryItemNewUpdateForm.value | json }}</pre>
     <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">Create New</button>
 </div>

@@ -47,3 +47,4 @@ export class AigPriceListItemListTableComponent implements OnInit {
     }
 
 }
+

@@ -32,16 +32,12 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	@Input()
 	inventoryItem: InventoryItemDTO;
 
-	inventoryItemNewUpdateForm: FormGroup;
-
+	isUpdate: boolean = false;
 
 	filteredProducers: Observable<ProducerDTO[]>;
 	filteredInventoryCategories: Observable<InventoryCategoryDTO[]>;
-
-
-
-
-
+	
+	inventoryItemNewUpdateForm: FormGroup;
 
 	ngOnInit(): void {
 		this.inventoryItemNewUpdateForm = this._formBuilder.group({
@@ -54,9 +50,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 
 		if (this.inventoryItem != null) {
+			this.isUpdate = true;
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
 		}
-
 
 
 		this.filteredProducers = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producer'].valueChanges);
@@ -72,11 +68,12 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		this.setStep("loading");
 
 		let inventoryItem: InventoryItemDTO = {
-			id: this.inventoryItemNewUpdateForm.value.id,
-			name: this.inventoryItemNewUpdateForm.value.name,
-			inventoryCategoryId: this.inventoryItemNewUpdateForm.value.inventoryCategory.id,
-			producerId: this.inventoryItemNewUpdateForm.value.producer.id,
-		};
+			id: this.inventoryItemNewUpdateForm.controls.id.value,
+			name: this.inventoryItemNewUpdateForm.controls.name.value,
+			inventoryCategoryId: this.inventoryItemNewUpdateForm.controls.inventoryCategory.value.id,
+			producerId: this.inventoryItemNewUpdateForm.controls.producer.value.id,
+		}
+ 
 
 		try {
 			let postOrPut;

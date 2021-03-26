@@ -2,15 +2,10 @@
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Combinazioni categorie inventario</div>
-
-                <pre>ciao {{inventoryItemCombinationDTO | json}}</pre>
+            <div class="fuse-card p-16">
+                <div class="h4 m-16 mt-0 mb-0">Combinazioni categorie inventario</div>
                 
-                <!--<div class="h1 m-16">{{ inventoryItemCombinationDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ inventoryItemCombinationDTO.id }}</div>
-                <div *ngIf="inventoryItemCombinationDTO.inventoryItemCombinationName" class="h4 m-8 ml-16 mb-0 secondary-text">Parent: {{ inventoryItemCombinationDTO.inventoryItemCombinationName }}</div>
-                -->
+                <p>{{ inventoryItemCombinationDTO.inventoryItem.name}} {{inventoryItemCombinationDTO.name}}</p>
                 <button mat-stroked-button color="primary" (click)="editInventoryItemCombination(inventoryItemCombinationDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="InventoryItemCombination(inventoryItemCombinationDTO.id)">Delete</button>
             </div>

@@ -27,7 +27,6 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
 
     loadPage() {
         this.inventoryItemCombinationDTO = this.route.snapshot.data.inventoryItemCombination;
-        console.log(this.inventoryItemCombinationDTO);
     }
 
     async reloadPage() {
