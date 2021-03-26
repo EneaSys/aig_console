@@ -48,7 +48,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 
 	private initBuyerSearch() {
-		this.buyerDC = ["id", "seller", "eopooCode","buttons"];
+		this.buyerDC = ["id", "buyer", "status", "seller", "buttons"];
 
 		this.buyerPaginationSize = 10;
 
