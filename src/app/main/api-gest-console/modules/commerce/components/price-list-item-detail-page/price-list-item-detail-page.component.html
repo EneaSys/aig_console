@@ -3,12 +3,11 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
-                <!-- <div class="h4 m-8 ml-16 mb-0 secondary-text">Price list item</div>
-                <div class="h1 m-16">{{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ catalogItemDTO.id }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Producer: {{ catalogItemDTO.inventoryItemCombination.inventoryItem.producer.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Catalogo: {{ catalogItemDTO.catalog.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Seller: {{ catalogItemDTO.catalog.seller.name }}</div> -->
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Price list item</div>
+                <div class="h1 m-16"> {{ priceListItemDTO.catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ priceListItemDTO.catalogItem.inventoryItemCombination.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ priceListItemDTO.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Price list: {{ priceListItemDTO.priceList.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Amount: {{ priceListItemDTO.amount }}</div>
                 <br>
                 <button mat-stroked-button color="primary" (click)="editPriceListItem(priceListItemDTO)">Edit</button>
             </div>

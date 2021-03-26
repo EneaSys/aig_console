@@ -6,6 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     styleUrls: ['./price-list-new-update-dialog.component.scss']
 })
 export class AigPriceListNewUpdateDialogComponent implements OnInit {
+
     constructor(
         public matDialogRef: MatDialogRef<AigPriceListNewUpdateDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any

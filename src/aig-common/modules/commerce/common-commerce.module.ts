@@ -66,7 +66,6 @@ import { AigCatalogResolver } from './resolver/catalog.resolver';
 import { AigPriceListTableComponent } from './components/price-list-table/price-list-table.component';
 import { AigPriceListNewUpdateFormComponent } from './components/price-list-new-update-form/price-list-new-update-form.component';
 import { AigPriceListResolver } from './resolver/price-list.resolver';
-import { AigCatalogPriceManagerTableComponent } from './components/catalog-price-manager-table/catalog-price-manager-table.component';
 import { AigCatalogItemListTableComponent } from './components/catalog-item-list-table/catalog-item-list-table.component';
 import { AigCatalogItemNewUpdateFormComponent } from './components/catalog-item-new-update-form/catalog-item-new-update-form.component';
 import { AigCatalogItemResolver } from './resolver/catalog-item.resolver';
@@ -76,6 +75,7 @@ import { AigPriceListItemNewUpdateFormComponent } from './components/price-list-
 import { AigSellerResolver } from './resolver/seller.resolver';
 import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
 import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-item.resolver';
+import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
 
 @NgModule({
     imports: [
@@ -133,7 +133,6 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         AigCatalogNewUpdateFormComponent,
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
-        AigCatalogPriceManagerTableComponent,
         AigFiscalTransactionNewUpdateFormComponent,
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
@@ -170,6 +169,7 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         AigCatalogResolver,
         AigCatalogItemResolver,
         AigPriceListResolver,
+        AigPriceListItemResolver,
         AigWarehouseHandlingResolver,
         AigSellerResolver,
         AigWarehouseHandlingItemResolver,
@@ -193,7 +193,6 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
         AigCatalogNewUpdateFormComponent,
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
-        AigCatalogPriceManagerTableComponent,
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
         AigPriceListItemListTableComponent,

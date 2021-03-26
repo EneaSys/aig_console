@@ -29,8 +29,8 @@
             <mat-cell *matCellDef="let e"> {{ e.priceList.name }} </mat-cell>
 		</ng-container>
         
-        <ng-container matColumnDef="inventoryItemCombination">
-            <mat-header-cell *matHeaderCellDef>Inventory item combination</mat-header-cell>
+        <ng-container matColumnDef="catalogItem">
+            <mat-header-cell *matHeaderCellDef>Catalog item</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ e.catalogItem.inventoryItemCombination.name }}</mat-cell>
 		</ng-container>
 
