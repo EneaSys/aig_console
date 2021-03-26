@@ -156,23 +156,15 @@ export const navigation: FuseNavigation[] = [
 				url      : '/commerce/fiscal-transaction',
 				permission: ['c6e.admin'],
 			},
-			{
-				id       : 'inventory-item-combination-list-page',
-				title    : 'Combinazioni inventario - inventario',
-				type     : 'item',
-				icon     : 'compare_arrows',
-				url      : '/commerce/inventory-item-combination',
-				permission: ['c6e.admin'],
-			},
-            /*{
-                id       : 'price-list',
-                title    : 'Listini prezzi',
+            {
+                id       : 'warehouse-handling-item',
+                title    : 'Warehouse Handling',
                 type     : 'item',
                 icon     : 'euro_symbol',
-                url      : '/commerce/price-list',
+                url      : '/commerce/warehouse-handling-item',
                 permission: ['c6e.admin'],
             },
-            {
+            /*{
                 id       : 'price-list-item',
                 title    : 'Price list item',
                 type     : 'item',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
@@ -22,7 +22,8 @@ export class AigPurchaseListPageComponent extends GenericComponent {
   ) { super(aigGenericComponentService) }
 
 
-
+  @Input()
+  staticPurchase: PurchaseDTO = null;
 
 
   loadPage() {

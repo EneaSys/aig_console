@@ -79,6 +79,7 @@ import { AigWarehouseHandlingItemListPageComponent } from './components/warehous
 import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/warehouse-handling-item-new-update-modal/warehouse-handling-item-new-update-modal.component';
 import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
+import { AigPurchaseManagerPageComponent } from './components/purchase-manager-page/purchase-manager-page.component';
 
 
 @NgModule({
@@ -176,9 +177,11 @@ import { AigWarehouseHandlingItemDetailPageComponent } from './components/wareho
         AigInventoryItemCombinationListPageComponent,
         AigPurchaseItemListPageComponent,
         AigPurchaseItemNewUpdateDialogComponent,
+        AigPurchaseManagerPageComponent,
 
         AigInventoryItemCombinationDetailPageComponent,
         AigPurchaseItemDetailPageComponent,
+
     ],
     
     entryComponents: [
