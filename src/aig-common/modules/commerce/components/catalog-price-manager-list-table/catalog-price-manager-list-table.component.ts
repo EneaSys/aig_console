@@ -35,13 +35,27 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
     }
 
     loadFilters(){
-    this.filter.catalogIdEquals = this.staticCatalog ? this.staticCatalog.id : null;
-}
+        this.filter.catalogIdEquals = this.staticCatalog ? this.staticCatalog.id : null;
+    }
+
+
+    temp: any = {};
 
     async loadPage(){
         this.loadFilters();
         this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(this.filter).toPromise();
         this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.filter).toPromise();
         this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(this.filtri).toPromise();
+
+        this.priceListItemDTOs.forEach((priceListItemDTO: PriceListItemDTO) => {
+
+            if(this.temp[priceListItemDTO.catalogItemId] == null) {
+                this.temp[priceListItemDTO.catalogItemId] = {};
+            }
+
+            this.temp[priceListItemDTO.catalogItemId][priceListItemDTO.priceListId] = priceListItemDTO;
+        })
+
+        console.log(this.temp);
     }
 }
