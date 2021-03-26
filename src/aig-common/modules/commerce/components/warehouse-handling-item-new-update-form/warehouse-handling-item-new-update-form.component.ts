@@ -20,6 +20,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
         complete: false
     };
 
+
     constructor(
         public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,

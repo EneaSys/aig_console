@@ -1,7 +1,7 @@
-<table>
+<table id="table">
     <tr>
         <td>
-            
+        
         </td>
         <td *ngFor="let priceListDTO of priceListDTOs">
             {{ priceListDTO.name }}
@@ -11,8 +11,8 @@
         <td >
             {{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}
         </td>
-        <td *ngFor="let priceListItemDTO of priceListItemDTOs">
-            {{ priceListItemDTO.amount }}
+        <td *ngFor="let priceListDTO of priceListDTOs">
+            {{ catalogItemDTO.id }} - {{ priceListDTO.id }}
         </td>
     </tr>
 </table>

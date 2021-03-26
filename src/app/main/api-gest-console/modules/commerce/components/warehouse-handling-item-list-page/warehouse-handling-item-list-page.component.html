@@ -112,9 +112,9 @@
             <mat-paginator #paginator [length]="warehouseHandlingItemLength" [pageIndex]="this.warehouseHandlingItemFilters.page" [pageSize]="this.warehouseHandlingItemPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="warehouseHandlingItemPaginationEvent($event)">
             </mat-paginator>
 
-            <!--<button mat-fab class="accent" id="add-warehouse-handling-item-button" (click)="newWarehouseHandlingItem()" aria-label="add warehouse handling item">
+            <button mat-fab class="accent" id="add-warehouse-handling-item-button" (click)="newWarehouseHandlingItem()" aria-label="add warehouse handling item">
                 <mat-icon>add</mat-icon>
-            </button>-->
+            </button>
         </div>
         <!-- / CONTENT -->
     </div>

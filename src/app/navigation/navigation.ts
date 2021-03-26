@@ -116,6 +116,14 @@ export const navigation: FuseNavigation[] = [
         title    : 'Temporanei',
         type     : 'group',
         children : [
+            {
+                id       : 'price-list-item',
+                title    : 'Price list item',
+                type     : 'item',
+                icon     : 'person_pin_circle',
+                url      : '/commerce/price-list-item',
+                permission: ['c6e.admin'],
+            },
 			{
                 id       : 'buyer',
                 title    : 'Clienti - seller manager',
@@ -148,15 +156,15 @@ export const navigation: FuseNavigation[] = [
 				url      : '/commerce/fiscal-transaction',
 				permission: ['c6e.admin'],
 			},
-            /*{
-                id       : 'price-list',
-                title    : 'Listini prezzi',
+            {
+                id       : 'warehouse-handling-item',
+                title    : 'Warehouse Handling',
                 type     : 'item',
                 icon     : 'euro_symbol',
-                url      : '/commerce/price-list',
+                url      : '/commerce/warehouse-handling-item',
                 permission: ['c6e.admin'],
             },
-            {
+            /*{
                 id       : 'price-list-item',
                 title    : 'Price list item',
                 type     : 'item',
