@@ -181,6 +181,7 @@ import { AigPurchaseManagerPageComponent } from './components/purchase-manager-p
 
         AigInventoryItemCombinationDetailPageComponent,
         AigPurchaseItemDetailPageComponent,
+        AigPriceListItemNewUpdateDialogComponent,
 
     ],
     

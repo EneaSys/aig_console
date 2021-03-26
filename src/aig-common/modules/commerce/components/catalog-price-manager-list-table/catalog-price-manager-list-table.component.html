@@ -16,7 +16,7 @@
                 {{ temp[catalogItemDTO.id][priceListDTO.id].amount | currency:'EUR':true }}
             </span>
             <span *ngIf="!(temp[catalogItemDTO.id] && temp[catalogItemDTO.id][priceListDTO.id])">
-                da creare con price list= {{ priceListDTO.id }}  e catalog item = {{catalogItemDTO.id }}
+                <button (click)="newPriceListItem(temp)">aggiungi</button> da creare con price list= {{ priceListDTO.id }}  e catalog item = {{catalogItemDTO.id }}
             </span>
         </td>
     </tr>

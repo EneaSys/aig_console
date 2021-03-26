@@ -38,7 +38,7 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 		this.showAllPriceListItem();
 	}
 
-	//			---- CATALOG ITEM TABLE AND SEARCH SECTION ----
+	//			---- PRICE LIST ITEM TABLE AND SEARCH SECTION ----
 
 	priceListItemDTOs: PriceListItemDTO[];
 	@Input()
@@ -139,26 +139,6 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 		this.searchPriceListItem(0);
 	}
 
-	/*priceListItemFilters = {
-		amountEquals: null,
-	}
-
-	async loadPage() {
-		this.priceListItemDC = ["id", "catalog", "priceList", "inventoryItemCombination", "amount", "buttons"];
-		this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(this.priceListItemFilters).toPromise();
-	}
-
-	reloadPage() {
-	}
-
-	//			---- PRICE LIST ITEM TABLE AND SEARCH SECTION ----
-
-	priceListItemDTOs: PriceListItemDTO[];
-	priceListItemDC: string[];
-	priceListItemError: any;*/
-
-	
-	
 	//			---- !PRICE LIST ITEM TABLE AND SEARCH SECTION ----
 
 	newPriceListItem(): void {
