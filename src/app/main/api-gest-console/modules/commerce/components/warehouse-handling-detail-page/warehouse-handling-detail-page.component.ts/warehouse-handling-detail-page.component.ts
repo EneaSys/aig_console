@@ -31,6 +31,7 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
   loadPage() {
     
     this.warehouseHandlingDTO = this.route.snapshot.data.warehouseHandling;
+    console.log(this.warehouseHandlingDTO)
     this.loadWarehouseHandlingItem();
   }
 
