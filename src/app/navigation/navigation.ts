@@ -116,6 +116,14 @@ export const navigation: FuseNavigation[] = [
         title    : 'Temporanei',
         type     : 'group',
         children : [
+            {
+                id       : 'price-list-item',
+                title    : 'Price list item',
+                type     : 'item',
+                icon     : 'person_pin_circle',
+                url      : '/commerce/price-list-item',
+                permission: ['c6e.admin'],
+            },
 			{
                 id       : 'buyer',
                 title    : 'Clienti - seller manager',

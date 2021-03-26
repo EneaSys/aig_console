@@ -17,6 +17,8 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
 
     priceListDTOs: PriceListDTO[];
 
+    staticPriceList: PriceListDTO;
+
     priceListItemDTOs: PriceListItemDTO[];
 
     constructor(
@@ -33,7 +35,6 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
     filtri = {
         catalogItemIdEquals: null
     }
-    i: any;
 
     loadFilters(){
     this.filter.catalogIdEquals = this.staticCatalog ? this.staticCatalog.id : null;
@@ -43,9 +44,6 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
         this.loadFilters();
         this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(this.filter).toPromise();
         this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.filter).toPromise();
-        this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(this.filtri).toPromise();
-        for(this.i=0; this.i<this.priceListItemDTOs.length; this.i++)
-        this.filtri.catalogItemIdEquals = this.priceListItemDTOs[this.i].catalogItemId;
         this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(this.filtri).toPromise();
     }
 }
