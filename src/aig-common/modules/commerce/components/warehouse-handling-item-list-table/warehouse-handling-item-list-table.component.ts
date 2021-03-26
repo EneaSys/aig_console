@@ -47,6 +47,5 @@ export class AigWarehouseHandlingItemListTableComponent implements OnInit, OnCha
     }
 
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log("table", changes);
 	}
 }

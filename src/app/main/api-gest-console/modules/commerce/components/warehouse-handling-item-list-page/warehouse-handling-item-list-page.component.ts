@@ -137,7 +137,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 			return;
 		}
 
-		if(this.warehouseHandlingItemSearchFormGroup.controls.date.value){
+		/*if(this.warehouseHandlingItemSearchFormGroup.controls.date.value){
 			this.warehouseHandlingItemFilters.dateEquals = this.warehouseHandlingItemSearchFormGroup.controls.date.value;
 		}
 
@@ -151,7 +151,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 
 		if(this.warehouseHandlingItemSearchFormGroup.controls.warehouseToUnload.value){
 			this.warehouseHandlingItemFilters.warehouseToUnloadIdEquals = this.warehouseHandlingItemSearchFormGroup.controls.warehouseToUnload.value.id;
-		}
+		}*/
 		this.warehouseHandlingItemFilters.idEquals = null;
 
 		
