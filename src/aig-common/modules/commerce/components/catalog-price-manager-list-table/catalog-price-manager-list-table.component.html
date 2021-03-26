@@ -1,0 +1,18 @@
+<table>
+    <tr>
+        <td>
+            
+        </td>
+        <td *ngFor="let priceListDTO of priceListDTOs">
+            {{ priceListDTO.name }}
+        </td>
+    </tr>
+    <tr *ngFor="let catalogItemDTO of catalogItemDTOs">
+        <td >
+            {{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}
+        </td>
+        <td *ngFor="let priceListItemDTO of priceListItemDTOs">
+            {{ priceListItemDTO.amount }}
+        </td>
+    </tr>
+</table>

@@ -76,6 +76,8 @@ import { AigSellerResolver } from './resolver/seller.resolver';
 import { PurchaseItemResolver } from './resolver/purchase-item.resolver';
 import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-item.resolver';
 import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
+import { AigCatalogPriceManagerListTableComponent } from './components/catalog-price-manager-list-table/catalog-price-manager-list-table.component';
+import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-combination.resolver';
 
 @NgModule({
     imports: [
@@ -133,6 +135,7 @@ import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
         AigCatalogNewUpdateFormComponent,
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogPriceManagerListTableComponent,
         AigFiscalTransactionNewUpdateFormComponent,
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
@@ -162,6 +165,7 @@ import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
         BuyerResolver,
         AigInventoryCategoryResolver,
         AigInventoryItemResolver,
+        AigInventoryItemCombinationResolver,
         AigProducerResolver,
 	    AigCommerceAutocompleteService,
 	    AigAutocompleteDisplayService,
@@ -193,6 +197,7 @@ import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
         AigCatalogNewUpdateFormComponent,
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogPriceManagerListTableComponent,
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
         AigPriceListItemListTableComponent,
