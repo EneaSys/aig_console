@@ -11,8 +11,8 @@
         <td >
             {{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}
         </td>
-        <td *ngFor="let priceListItemDTO of priceListItemDTOs">
-            {{ priceListItemDTO.amount }}
+        <td *ngFor="let priceListDTO of priceListDTOs">
+            {{ catalogItemDTO.id }} - {{ priceListDTO.id }}
         </td>
     </tr>
 </table>

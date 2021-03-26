@@ -17,8 +17,6 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
 
     priceListDTOs: PriceListDTO[];
 
-    staticPriceList: PriceListDTO;
-
     priceListItemDTOs: PriceListItemDTO[];
 
     constructor(
