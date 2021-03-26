@@ -1,0 +1,61 @@
+<div id="aig-purchase-manager-page" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar *ngIf="selectedPurchase">
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di vendite</span>
+
+            </div>
+
+            <div fxLayout="row">
+
+                <div class="selected-purchase">{{ selectedPurchase.insertedDateTime }}</div>
+                <button mat-icon-button class="purchase-selector" [matMenuTriggerFor]="purchaseMenu"
+                    aria-label="Select purchase">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+
+                <mat-menu #purchaseMenu="matMenu">
+                    <div *ngFor="let purchaseDTO of purchaseDTOs">
+                        <button mat-menu-item (click)="setPurchase(purchaseDTO)">
+                            <span *ngIf="purchaseDTO == selectedPurchase">-</span>
+                            <span>{{ purchaseDTO.insertedDateTime }}</span>
+                        </button>
+                    </div>
+                </mat-menu>
+
+                 <!-- / HEADER -->
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <mat-tab-group dynamicHeight>
+
+                    <mat-tab label="Gestione vendite">
+
+                        <aig-purchase-list-page [staticPurchase]= "selectedPurchase"></aig-purchase-list-page>
+
+                    </mat-tab>
+
+                    <mat-tab label="Purchase Item">
+
+                        <aig-purchase-item-list-page></aig-purchase-item-list-page>
+
+                    </mat-tab>
+
+                </mat-tab-group>
+            </div>
+
+        </div>
+         <!-- / CONTENT -->
+
+    </div>
+
+    <!-- / CENTER -->
+
+
+</div>
