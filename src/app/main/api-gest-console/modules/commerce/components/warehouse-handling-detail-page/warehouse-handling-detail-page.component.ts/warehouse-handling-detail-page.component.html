@@ -1,53 +1,47 @@
 <div id="aig-warehouse-handling-detail-page" class="page-layout blank">
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card p-16">
+            <div class="fuse-card auto-width p-16">
                 <div class="h3 m-16 mt-0 mb-0">Detail</div>
                 <hr size=”1″ width=”300″ color="black" noshade>
 
                 <p>Data: {{ warehouseHandlingDTO.date | date: 'dd/MM/yyyy' }}</p>
                 <p>Tipo di Movimentazione: {{warehouseHandlingDTO.warehouseHandlingType}}</p>
-                <p>Magazzino: 
+                <p>Magazzino:
                     <span *ngIf="warehouseHandlingDTO.warehouseToLoad">
-                    Carico: {{ warehouseHandlingDTO.warehouseToLoad.name}}</span><br>
+                        Carico: {{ warehouseHandlingDTO.warehouseToLoad.name}}
+                    </span><br>
                     <span *ngIf="warehouseHandlingDTO.warehouseToUnload">
-                    Scarico: {{warehouseHandlingDTO.warehouseToUnload.name }}</span>
+                        Scarico: {{warehouseHandlingDTO.warehouseToUnload.name }}
+                    </span>
                 </p>
 
-                <button mat-stroked-button color="primary" (click)="editWarehouseHandling(warehouseHandlingDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteWarehouseHandling(warehouseHandlingDTO.id)">Delete</button>
+                <button mat-stroked-button color="primary"
+                    (click)="editWarehouseHandling(warehouseHandlingDTO)">Edit
+                </button>
+                <button mat-stroked-button color="primary"
+                    (click)="deleteWarehouseHandling(warehouseHandlingDTO.id)">Delete
+                </button>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="widget p-16" fxFlex.gt-sm="40">
-    <div class="fuse-card auto-width p-16" id="role-list">
-        <div class="h4 m-16 mt-0 mb-0">Prodotti Movimentazione</div>
-        
-		<aig-warehouse-handling-item-list-table [displayColumns]="warehouseHandlingItemDC" [dataSource]="warehouseHandlingItemDTOs" [error]="warehouseHandlingItemError"></aig-warehouse-handling-item-list-table>
-
-        <div style="height: 35px;"></div>
-		
-        <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="addWarehouseHandling(warehouseHandlingDTO)" aria-label="add inventory item combination">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
-</div>
 
 
-<div class="widget p-16" fxFlex.gt-sm="40">
-    <div class="fuse-card auto-width p-16" id="role-list">
-        <div class="h4 m-16 mt-0 mb-0">Statistiche Magazzino</div>
-        
-		<aig-inventory-item-combination-list-table [displayColumns]="inventoryItemCombinationDC"
-            [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError">
-        </aig-inventory-item-combination-list-table>
 
-        <div style="height: 35px;"></div>
-		
-        <button mat-fab class="accent" id="add-inventory-item-combination-button" (click)="newInventoryItemCombination()" aria-label="add inventory item combination">
-            <mat-icon>add</mat-icon>
-        </button>
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-16" id="role-list">
+                <div class="h4 m-16 mt-0 mb-0">Prodotti Movimentazione</div>
+
+                <aig-warehouse-handling-item-list-table [displayColumns]="warehouseHandlingItemDC"
+                    [dataSource]="warehouseHandlingItemDTOs" [error]="warehouseHandlingItemError">
+                </aig-warehouse-handling-item-list-table>
+
+                <div style="height: 35px;"></div>
+
+                <button mat-fab class="accent" id="add-warehouse-handling-button"
+                    (click)="addWarehouseHandling(warehouseHandlingDTO)" aria-label="add inventory item combination">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
