@@ -26,11 +26,10 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
     purchaseDTOs: PurchaseDTO[] = [];
-    purchaseItemDTOs: PurchaseItemDTO[] = [];
     buyerDTOs:BuyerDTO[] = [];
     selectedPurchase: PurchaseDTO;
 
-    buyerDC: string[];
+    /*buyerDC: string[];*/
 
     loadingPage: boolean = true;
     errorInLoading: any;
