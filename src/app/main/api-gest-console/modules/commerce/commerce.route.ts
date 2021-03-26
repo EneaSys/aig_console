@@ -51,8 +51,8 @@ import { AigWarehouseHandlingItemDetailPageComponent } from './components/wareho
 import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling-item.resolver';
 import { AigPriceListItemDetailPageComponent } from './components/price-list-item-detail-page/price-list-item-detail-page.component';
 import { AigPriceListItemResolver } from 'aig-common/modules/commerce/resolver/price-list-item.resolver';
-import { AigPurchaseManagerPageComponent } from './components/purchase-manager-page/purchase-manager-page.component';
 import { AigInventoryItemCombinationResolver } from 'aig-common/modules/commerce/resolver/inventory-item-combination.resolver';
+import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 
 export const commerceRoute: Routes = [
     {
@@ -106,7 +106,7 @@ export const commerceRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigPurchaseManagerPageComponent,
+                        component:AigSellerManagerPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
 

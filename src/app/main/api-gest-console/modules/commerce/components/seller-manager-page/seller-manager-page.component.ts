@@ -3,10 +3,11 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-custom-buy-dialog.component';
-import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO, FiscalTransactionDTO, FiscalTransactionResourceService, BuyerDTO, BuyerResourceService } from 'aig-commerce';
+import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO, FiscalTransactionDTO, FiscalTransactionResourceService, BuyerDTO, BuyerResourceService, PurchaseItemDTO } from 'aig-commerce';
 import { PageEvent } from '@angular/material/paginator';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
     templateUrl: './seller-manager-page.component.html',
@@ -14,94 +15,64 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AigSellerManagerPageComponent extends GenericComponent {
     constructor(
-        private sellerResourceService: SellerResourceService,
         private purchaseResourceService: PurchaseResourceService,
         private buyerResourceService: BuyerResourceService,
-        private fiscalTransactionResourceService: FiscalTransactionResourceService,
         private _formBuilder: FormBuilder,
         private _fuseSidebarService: FuseSidebarService,
         private dialog: MatDialog,
+        private eventService :EventService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    sellerDTOs: SellerDTO[] = [];
-    selectedSeller: SellerDTO;
+
+    purchaseDTOs: PurchaseDTO[] = [];
+    purchaseItemDTOs: PurchaseItemDTO[] = [];
+    buyerDTOs:BuyerDTO[] = [];
+    selectedPurchase: PurchaseDTO;
+
+    buyerDC: string[];
 
     loadingPage: boolean = true;
     errorInLoading: any;
-    
+
+    purchaseFilters = {
+        idEquals: null,
+        nameContains: null,
+        page: 0,
+    }
+
+    /*buyerFilters = {
+        idEquals: null,
+        nameContains: null,
+        page: 0,
+    }
+    */
+
     async loadPage() {
+        /*this.buyerDC = ["confirmation","eopoo","eopooCode","id","seller","sellerId","statusNote"];
+        
+
+        this.buyerDTOs = await this.buyerResourceService.getAllBuyersUsingGET(this.buyerFilters).toPromise();*/
         try {
-            this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,50).toPromise();
-            if(this.sellerDTOs.length > 0) {
-                this.setSeller(this.sellerDTOs[0]);
+            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(this.purchaseFilters).toPromise();
+            if (this.purchaseDTOs.length > 0) {
+                this.setPurchase(this.purchaseDTOs[0]);
             } else {
-                throw new Error("Nessun negozio associato");
+                throw new Error("Nessuna vendita trovata");
             }
-        } catch(e) {
+        } catch (e) {
             this.errorInLoading = e;
         }
-
-        this.fiscalTransactionSearchForm = this._formBuilder.group({
-            id: [''],
-            date: [''],
-            code: [''],
-        });
-
         this.loadingPage = false;
     }
-    
-    private setSeller(selectedSeller: SellerDTO) {
-        this.selectedSeller = selectedSeller;
 
-        this.purchaseIndex = 0;
-        this.setFilterPurchase('seller', this.selectedSeller.id);
-
-        this.buyerIndex = 0;
-        this.setFilterBuyer('seller', this.selectedSeller.id);
-
-        this.fiscalTransactionIndex = 0;
-        this.setFilterFiscalTransaction('seller', this.selectedSeller.id);
-        
-        this.loadStatistics();
+    private setPurchase(selectedPurchase: PurchaseDTO) {
+        this.selectedPurchase = selectedPurchase;
+        setTimeout(()=>{ this.eventService.reloadCurrentPage(); }, 1);
     }
+}
 
-    reloadPage() {
-        this.loadStatistics();
-        this.loadPurchases(this.purchaseIndex);
-        this.loadBuyer(this.buyerIndex);
-        this.loadFiscalTransaction(this.fiscalTransactionIndex);
-    }
-
-
-
-
-
-    statistics = {
-        fiscalTransactionPending: 0,
-        buyerPending: 0,
-    }
-
-    async loadStatistics() {
-        let fiscalTransactionStatusToAction: string[] = ["1","4"];
-        this.statistics.fiscalTransactionPending = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-
-        let buyerStatusToAction: string[] = ["1","4"];
-        this.statistics.buyerPending = await this.buyerResourceService.countBuyersUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /* 
 
     // PURCHASE
     purchasedisplayColumns: string[] = ['id', 'date', 'customer', 'status', 'buttons'];
@@ -145,6 +116,8 @@ export class AigSellerManagerPageComponent extends GenericComponent {
             this.purchaseError = e;
         }
     }
+
+    
     
 
 
@@ -243,6 +216,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
             this.setFilterBuyer('id', null);
         }
     }
+*/
 
 
 
@@ -268,78 +242,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
 
-
-    // FISCAL TRANSACTION
-    fiscalTransactionSearchForm: FormGroup;
-
-    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'buyer', 'status', 'buttons'];
-    fiscalTransactionDTOs: FiscalTransactionDTO[];
-    fiscalTransactionError: any;
-
-    fiscalTransactionPageable = {
-        page: 0,
-        size: 30,
-    }
-    fiscalTransactionLength: number;
-    fiscalTransactionIndex: number;
-
-    fiscalTransactionFilter: any;
-
-    private async setFilterFiscalTransaction(filterKey: string, value: any) {
-        if(this.fiscalTransactionFilter == null) {
-            this.cleanFiscalTransactionFilters();
-        }
-        this.fiscalTransactionFilter[filterKey] = value;
-        // Block for current seller
-        this.fiscalTransactionFilter.seller = this.selectedSeller.id;
-        this.loadFiscalTransaction(0);
-        try {
-            this.fiscalTransactionLength = await this.fiscalTransactionResourceService.countFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.code,null,null,null,this.fiscalTransactionFilter.date,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,this.fiscalTransactionFilter.statusNote,null,null,null,null,null).toPromise();
-        } catch(e) { }
-    }
-
-    fiscalTransactionPaginatorEvent(event: PageEvent) {
-        this.fiscalTransactionPageable.size = event.pageSize;
-        this.loadFiscalTransaction(event.pageIndex);
-    }
-
-    private async loadFiscalTransaction(page) {
-        this.fiscalTransactionDTOs = null;
-
-        this.fiscalTransactionIndex = page
-        this.fiscalTransactionPageable.page = page;
-        
-        try {
-            //this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.code,null,null,null,this.fiscalTransactionFilter.date,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.id,null,null,null,null,null,null,null,this.fiscalTransactionPageable.page,null,null,null,null,null,null,null,null,this.fiscalTransactionFilter.seller,null,null,null,null,null,null,null,this.fiscalTransactionPageable.size,null,null,null,this.fiscalTransactionFilter.statusNote,null,null,null).toPromise();
-        } catch(e) {
-            this.fiscalTransactionError = e;
-        }
-    }
-
-    private cleanFiscalTransactionFilters() {
-        this.fiscalTransactionFilter = {
-            seller: null,
-            id: null,
-            date: null,
-            code: null,
-            statusNote: null,
-        }
-    }
-
-    fiscalTransactionSearch() {
-        if(this.fiscalTransactionSearchForm.value.id) {
-            this.cleanFiscalTransactionFilters();
-            this.setFilterFiscalTransaction('id', this.fiscalTransactionSearchForm.value.id);
-        } else {
-            if(this.fiscalTransactionSearchForm.value.date != "") {
-                this.fiscalTransactionFilter.date = this.fiscalTransactionSearchForm.value.date;
-            }
-            if(this.fiscalTransactionSearchForm.value.code != "") {
-                this.fiscalTransactionFilter.code = this.fiscalTransactionSearchForm.value.code;
-            }
-            this.setFilterFiscalTransaction('id', null);
-        }
-    }
+   
 
 
 
@@ -353,14 +256,4 @@ export class AigSellerManagerPageComponent extends GenericComponent {
 
 
 
-
-
-
-
-    toggleSidebar(name): void {
-        this._fuseSidebarService.getSidebar(name).toggleOpen();
-    }
-    newBuy() {
-        this.dialog.open(AigNewCustomBuyDialogComponent, { data: { seller: this.selectedSeller } });
-    }
-}
+   

@@ -13,7 +13,7 @@
             min-height: 160px;
             max-height: 160px;
 
-            .selected-seller {
+            .selected-purchase {
                 background: rgba(0, 0, 0, 0.12);
                 color: #FFFFFF;
                 padding: 8px 16px;
@@ -23,7 +23,7 @@
                 border-radius: 8px 0 0 0;
             }
 
-            .seller-selector {
+            .purchase-selector {
                 margin-left: 1px;
                 background: rgba(0, 0, 0, 0.12);
                 border-radius: 0 8px 0 0;
@@ -39,34 +39,7 @@
 
             mat-tab-group {
                 height: 100%;
-
-                .mat-tab-body-wrapper {
-                    flex-grow: 1;
-                }
-            }
-
-            .mat-tab-label-container {
-                padding: 0 24px;
             }
         }
     }
-
-    .widget {
-
-        &.widget5 {
-
-            .gridline-path.gridline-path-horizontal {
-                display: none;
-            }
-        }
-    }
-    
-    #add-buy-button {
-        position: fixed;
-        bottom: 12px;
-        right: 24px;
-        padding: 0;
-        z-index: 99;
-    }
-
 }
