@@ -181,6 +181,7 @@ import { AigSellerManagerPageComponent } from './components/seller-manager-page/
 
         AigInventoryItemCombinationDetailPageComponent,
         AigPurchaseItemDetailPageComponent,
+        AigPriceListItemNewUpdateDialogComponent,
 
     ],
     
