@@ -49,7 +49,7 @@ export class AigInventoryItemCombinationListPageComponent extends GenericCompone
 
 	
 	private initInventoryItemCombinationSearch() {
-		this.inventoryItemCombinationDC = ["id", "name", "inventoryItemName"];
+		this.inventoryItemCombinationDC = ["id", "name", "inventoryItemName", "buttons"];
 
 		this.inventoryItemCombinationPaginationSize = 10;
 		
