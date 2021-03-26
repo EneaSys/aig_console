@@ -14,6 +14,7 @@ import { AigCommerceAutocompleteService } from '../../service/autocomplete-filte
     styleUrls: ['./price-list-new-update-form.component.scss']
 })
 export class AigPriceListNewUpdateFormComponent implements OnInit {
+
     step: any = {
         form: true,
         loading: false,
@@ -38,6 +39,7 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
     filteredCatalog: Observable<CatalogDTO[]>;
 
     ngOnInit(): void {
+        
         this.priceListNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
@@ -61,7 +63,7 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         let priceList: PriceListDTO = {
             id: this.priceListNewUpdateForm.value.id,
             name: this.priceListNewUpdateForm.value.name,
-            catalogId: this.priceListNewUpdateForm.value.catalog.id,
+            catalogId: this.priceListNewUpdateForm.value.catalog.id
         }
 
         try {

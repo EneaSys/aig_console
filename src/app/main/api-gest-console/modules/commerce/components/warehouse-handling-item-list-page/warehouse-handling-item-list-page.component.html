@@ -23,7 +23,7 @@
 									</mat-form-field>
 								</div>
 
-								<div fxLayout="row">
+								<!--<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
 										<mat-label>Data</mat-label>
 										<input formControlName="date" matInput [matDatepicker]="picker">
@@ -80,7 +80,7 @@
 												[value]="producer">{{ producer.name }}</mat-option>
 										</mat-autocomplete>
 									</mat-form-field>
-								</div>
+								</div>-->
 
 								<div fxLayout="row" fxLayoutAlign="end top">
 									<button type="submit" mat-raised-button color="accent">Cerca</button>
@@ -112,9 +112,9 @@
             <mat-paginator #paginator [length]="warehouseHandlingItemLength" [pageIndex]="this.warehouseHandlingItemFilters.page" [pageSize]="this.warehouseHandlingItemPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="warehouseHandlingItemPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-warehouse-handling-item-button" (click)="newWarehouseHandlingItem()" aria-label="add warehouse handling item">
+            <!--<button mat-fab class="accent" id="add-warehouse-handling-item-button" (click)="newWarehouseHandlingItem()" aria-label="add warehouse handling item">
                 <mat-icon>add</mat-icon>
-            </button>
+            </button>-->
         </div>
         <!-- / CONTENT -->
     </div>

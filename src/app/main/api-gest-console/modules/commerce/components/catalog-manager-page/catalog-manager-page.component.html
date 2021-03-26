@@ -41,8 +41,8 @@
 
                 <mat-tab label="Gestione prezzi catalogo">
 
-                    <aig-catalog-price-manager-table [displayColumns]="priceListItemDC" [dataSource]="priceListItemDTOs"
-                        [staticCatalog]="selectedCatalog"></aig-catalog-price-manager-table>
+                    <aig-price-list-item-list-page [priceListItemDC]="priceListItemDC" [staticCatalog]="selectedCatalog">
+                    </aig-price-list-item-list-page>
 
                 </mat-tab>
 

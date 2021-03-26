@@ -49,6 +49,8 @@ import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-d
 import { PurchaseItemResolver } from 'aig-common/modules/commerce/resolver/purchase-item.resolver';
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 import { AigWarehouseHandlingItemResolver } from 'aig-common/modules/commerce/resolver/warehouse-handling-item.resolver';
+import { AigPriceListItemDetailPageComponent } from './components/price-list-item-detail-page/price-list-item-detail-page.component';
+import { AigPriceListItemResolver } from 'aig-common/modules/commerce/resolver/price-list-item.resolver';
 
 export const commerceRoute: Routes = [
     {
@@ -429,14 +431,14 @@ export const commerceRoute: Routes = [
                         component:  AigPriceListItemListPageComponent,
                         canActivate: [ AuthGuardService ],
                     }, 
-                    /*{
+                    {
                         path: 'detail/:id',
-                        component: AigPriceListDetailPageComponent,
+                        component: AigPriceListItemDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            priceList: AigPriceListResolver,
+                            priceListItem: AigPriceListItemResolver,
                         },
-                    }*/
+                    }
                 ]
             },
             {

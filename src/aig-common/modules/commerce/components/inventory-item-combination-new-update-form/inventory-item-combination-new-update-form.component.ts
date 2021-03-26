@@ -62,9 +62,9 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
 
         let inventoryItemCombination: InventoryItemCombinationDTO = {
             id: this.inventoryItemCombinationNewUpdateForm.value.id,
-            name: this.inventoryItemCombinationNewUpdateForm.value.name,
-            combinationCode: this.inventoryItemCombinationNewUpdateForm.value.combinationCode,
-            inventoryItemId: this.inventoryItemCombinationNewUpdateForm.value.inventoryItem.id,
+            name: this.inventoryItemCombinationNewUpdateForm.controls.name.value,
+            combinationCode: this.inventoryItemCombinationNewUpdateForm.controls.combinationCode.value,
+            inventoryItemId: this.inventoryItemCombinationNewUpdateForm.controls.inventoryItem.value.id,
         }
 
         try {

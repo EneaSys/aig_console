@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { CatalogItemDTO, PriceListDTO, PriceListItemDTO, PriceListItemResourceService } from 'aig-commerce';
+import { CatalogDTO, CatalogItemDTO, PriceListDTO, PriceListItemDTO, PriceListItemResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
@@ -15,6 +15,9 @@ import { AigPriceListItemNewUpdateDialogComponent } from '../price-list-item-new
     styleUrls: ['./price-list-item-list-page.component.scss']
 })
 export class AigPriceListItemListPageComponent extends GenericComponent {
+	@Input()
+	staticCatalog: CatalogDTO = null;
+
     constructor(
 		private priceListItemResourceService: PriceListItemResourceService,
 		public autocompleteDisplayService: AigAutocompleteDisplayService,
@@ -38,7 +41,8 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 	//			---- CATALOG ITEM TABLE AND SEARCH SECTION ----
 
 	priceListItemDTOs: PriceListItemDTO[];
-	priceListItemDC: string[];
+	@Input()
+	priceListItemDC: string[] = ["id", "catalog", "priceList", "catalogItem", "amount", "buttons"];
 	priceListItemError: any;
 
 	priceListItemSearchFormGroup: FormGroup;
@@ -61,8 +65,6 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 
 		this.filteredCatalogItem = this.commerceAutocompleteService.filterCatalogItem(this.priceListItemSearchFormGroup.controls['catalogItem'].valueChanges);
 		this.filteredPriceList = this.commerceAutocompleteService.filterPriceList(this.priceListItemSearchFormGroup.controls['priceList'].valueChanges);
-
-		this.priceListItemDC = ["id", "catalog", "priceList", "inventoryItemCombination", "amount", "buttons"];
 	}
 
 	private clearFiltersPriceListItem() {
@@ -70,7 +72,7 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 			idEquals: null,
 			amountEquals: null,
 			catalogItemIdEquals: null,
-			priceListIdEquals: null,
+			priceListIdEquals: this.staticCatalog ? this.staticCatalog.id : null,
 			page: 0,
 		}
 	}

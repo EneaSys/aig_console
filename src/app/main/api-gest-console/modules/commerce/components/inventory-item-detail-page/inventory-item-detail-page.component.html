@@ -2,8 +2,13 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card p-16">
+                <div class="h4 m-16 mt-0 mb-0">Detail</div>
 
-                <pre>{{ inventoryItemDTO | json }}</pre>
+                <p>Prodotto: {{inventoryItemDTO.name}}</p>
+                <p>Produttore: {{inventoryItemDTO.producer.name}}</p>
+                <p>Categoria: {{inventoryItemDTO.inventoryCategory.name}}</p>
+            
+
 
                 <button mat-stroked-button color="primary" (click)="editInventoryItem(inventoryItemDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteInventoryItem(inventoryItemDTO.id)">Delete</button>

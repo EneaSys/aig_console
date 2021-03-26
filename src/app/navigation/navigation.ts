@@ -156,7 +156,7 @@ export const navigation: FuseNavigation[] = [
 				url      : '/commerce/inventory-item-combination',
 				permission: ['c6e.admin'],
 			},
-            {
+            /*{
                 id       : 'price-list',
                 title    : 'Listini prezzi',
                 type     : 'item',
@@ -171,7 +171,7 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'euro_symbol',
                 url      : '/commerce/price-list-item',
                 permission: ['c6e.admin'],
-            },
+            },*/
             {
                 id       : 'catalog-item',
                 title    : 'Catalog item',

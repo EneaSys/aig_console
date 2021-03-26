@@ -33,6 +33,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 
 	filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
 	filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
+
 	
 	loadPage() {
 		this.initWarehouseHandlingSearch();
