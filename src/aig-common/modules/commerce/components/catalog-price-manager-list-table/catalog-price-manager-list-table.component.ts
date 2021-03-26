@@ -41,6 +41,14 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
     temp: any = {};
 
     async loadPage(){
+        this.preparePage();
+    }
+
+    reloadPage() {
+		this.preparePage();
+	}
+
+    async preparePage(){
         this.loadFilters();
         this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(this.filter).toPromise();
         this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(this.filter).toPromise();
@@ -54,8 +62,9 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
 
             this.temp[priceListItemDTO.catalogItemId][priceListItemDTO.priceListId] = priceListItemDTO;
         })
-        console.log(this.temp)
+
     }
+
 
     newPriceListItem(): void {
         this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: {} });
