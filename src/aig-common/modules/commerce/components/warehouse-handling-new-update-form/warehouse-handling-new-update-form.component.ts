@@ -23,12 +23,12 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
     constructor(
         public autocompleteDisplayService: AigAutocompleteDisplayService,
-        private _formBuilder: FormBuilder,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
-        private warehouseHandlingResourceService: WarehouseHandlingResourceService,
-        private eventService: EventService,
         private commerceAutocompleteService: AigCommerceAutocompleteService,
+        private _fuseProgressBarService: FuseProgressBarService,
+        private warehouseHandlingResourceService: WarehouseHandlingResourceService,
+        private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
+        private eventService: EventService,
     ) { }
 
     @Input()
@@ -47,9 +47,6 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
 
     warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[] = [];
-
-    handlingTypeRequirementIsCompleted = false;
-    dateRequirementIsCompleted = false;
 
     warehouseHandlingFormGroup: FormGroup;
 
