@@ -1,5 +1,5 @@
 <div id="aig-seller-manager" class="page-layout simple right-sidebar" fxLayout="row">
-    <div class="center" fusePerfectScrollbar *ngIf="selectedPurchase">
+    <div class="center" fusePerfectScrollbar *ngIf="selectedSeller">
         <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -8,16 +8,16 @@
 
             <div fxLayout="row" >
 
-                <div class="selected-purchase">{{ selectedPurchase.insertedDateTime  | date: 'dd/MM/yyyy'}}</div>
-                <button mat-icon-button class="purchase-selector" [matMenuTriggerFor]="purchaseMenu"
-                    aria-label="Select purchase">
+                <div class="selected-seller">{{ selectedSeller.name}}</div>
+                <button mat-icon-button class="seller-selector" [matMenuTriggerFor]="sellerMenu"
+                    aria-label="Select seller">
                     <mat-icon>more_horiz</mat-icon>
                 </button>
-                <mat-menu #purchaseMenu="matMenu">
-                    <div *ngFor="let purchaseDTO of purchaseDTOs">
-                        <button mat-menu-item (click)="setPurchase(purchaseDTO)">
-                            <span *ngIf="purchaseDTO == selectedPurchase">-</span>
-                            <span>{{ purchaseDTO.insertedDateTime | date: 'dd/MM/yyyy' }}</span>
+                <mat-menu #sellerMenu="matMenu">
+                    <div *ngFor="let sellerDTO of sellerDTOs">
+                        <button mat-menu-item (click)="setSeller(sellerDTO)">
+                            <span *ngIf="sellerDTO == selectedSeller">-</span>
+                            <span>{{ sellerDTO.name }}</span>
                         </button>
                     </div>
                 </mat-menu>
@@ -30,13 +30,13 @@
 
 
                 <mat-tab label="Gestione vendite">
-                    <aig-purchase-list-page [staticPurchase]="selectedPurchase"></aig-purchase-list-page>
+                    <aig-purchase-list-page ></aig-purchase-list-page>
                 </mat-tab>
 
 
 
                 <mat-tab label="Clienti">
-                    <!--<aig-buyer-list-page></aig-buyer-list-page>-->
+                    <aig-buyer-list-page></aig-buyer-list-page>
                 </mat-tab>
 
 
