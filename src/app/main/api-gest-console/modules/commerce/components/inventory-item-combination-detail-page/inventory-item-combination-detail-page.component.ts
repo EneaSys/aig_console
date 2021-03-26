@@ -41,7 +41,7 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
     
             this._snackBar.open(`Inventory item combination: '${id}' deleted.`, null, { duration: 2000, });
             
-            this.router.navigate(['/commerce', 'inventory-item', 'detail', 'inventoryItemCombinationDTO.inventoryItemId' ]);
+            this.router.navigate(['/commerce', 'inventory-item', 'detail', this.inventoryItemCombinationDTO.inventoryItemId ]);
         } catch (e) {
             this._snackBar.open(`Error during deleting inventory item combination: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
