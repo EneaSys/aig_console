@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { EventService } from 'aig-common/event-manager/event.service';
+import { ItalianPublicProcurementSectorDTO, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { AigIppSectorNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/ipp-sector-new-update-modal/ipp-sector-new-update-modal.component';
 
 @Component({
     selector: 'aig-ipp-sector-list-table',
@@ -6,7 +11,13 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./ipp-sector-list-table.component.scss']
 })
 export class AigIppSectorListTableComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private eventService: EventService,
+        private _fuseProgressBarService: FuseProgressBarService,
+        private _snackBar: MatSnackBar,
+        private dialog: MatDialog,
+    ) { }
 
     @Input()
     error: any;
@@ -16,4 +27,22 @@ export class AigIppSectorListTableComponent implements OnInit {
     dataSource: any[];
 
     ngOnInit(): void { }
+
+    async deleteIppSector(id: number) {
+        this._fuseProgressBarService.show();
+
+        try {
+            await this.ippSectorResourceService.deleteItalianPublicProcurementSectorUsingDELETE(id).toPromise();
+            this._snackBar.open(`Ipp Sector: '${id}' deleted.`, null, { duration: 2000, });
+
+            this.eventService.reloadCurrentPage();
+        } catch (e) {
+            this._snackBar.open(`Error during deleting ipp sector: '${id}'. (${e.message})`, null, { duration: 5000, });
+        }
+        this._fuseProgressBarService.hide();
+    }
+
+    editIppSector(ippSectorDTO: ItalianPublicProcurementSectorDTO) {
+        this.dialog.open(AigIppSectorNewUpdateModalComponent, { data: { ippSector: ippSectorDTO } });
+    }
 }

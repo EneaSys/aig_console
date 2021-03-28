@@ -26,7 +26,7 @@ export class AigWarehouseHandlingListTableComponent implements OnInit {
         private dialog: MatDialog,
     ) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { } 
 
     async deleteWarehouseHandling(id: number) {
         this._fuseProgressBarService.show();

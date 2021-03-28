@@ -52,6 +52,7 @@ import { AigStandardAutocompleteFilterService } from './services/autocomplete-fi
 import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
 import { ContextModuleResolver } from './resolver/context-module.resolver';
+import { MatMenuModule } from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -107,6 +108,7 @@ import { ContextModuleResolver } from './resolver/context-module.resolver';
         MatInputModule,
         MatAutocompleteModule,
         MatSelectModule,
+        MatMenuModule,
     ],
     exports: [
 
