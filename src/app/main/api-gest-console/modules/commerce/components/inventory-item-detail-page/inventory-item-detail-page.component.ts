@@ -15,8 +15,6 @@ import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/invent
 })
 export class AigInventoryItemDetailPageComponent extends GenericComponent {
    
-    
-    
     constructor(
         private _snackBar: MatSnackBar,
         private router: Router,

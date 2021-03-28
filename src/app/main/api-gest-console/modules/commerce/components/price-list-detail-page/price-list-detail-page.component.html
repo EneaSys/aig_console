@@ -9,6 +9,7 @@
                 <div *ngIf="priceListDTO.catalog" class="h4 m-8 ml-16 mb-0 secondary-text">Catalog: {{ priceListDTO.catalog.name }}</div>
                 <br>
                 <button mat-stroked-button color="primary" (click)="editPriceList(priceListDTO)">Edit</button>
+                <button mat-stroked-button color="primary"(click)="deletePriceList(priceListDTO.id)">Delete</button>
             </div>
         </div>
     </div>

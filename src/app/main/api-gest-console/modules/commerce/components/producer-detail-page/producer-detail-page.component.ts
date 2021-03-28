@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { ProducerDTO, ProducerResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -13,6 +14,9 @@ import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal
 })
 export class AigProducerDetailPageComponent extends GenericComponent {
     constructor(
+		private _snackBar: MatSnackBar,
+		private router: Router,
+		private _fuseProgressBarService: FuseProgressBarService,
         private producerResourceService: ProducerResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
@@ -29,6 +33,21 @@ export class AigProducerDetailPageComponent extends GenericComponent {
 		this.producerDTO = await this.producerResourceService.getProducerUsingGET(this.producerDTO.id).toPromise();
 	}
 	
+	async deleteProducer(id: number) {
+		this._fuseProgressBarService.show();
+	
+		try {
+			await this.producerResourceService.deleteProducerUsingDELETE(id).toPromise();
+	
+			this._snackBar.open(`Producer: '${id}' deleted.`, null, { duration: 2000, });
+			
+			this.router.navigate(['/commerce', 'producer']);
+		} catch (e) {
+			this._snackBar.open(`Error during deleting producer: '${id}'. (${e.message})`, null, { duration: 5000, });
+		}
+		this._fuseProgressBarService.hide();
+	  }
+
     editProducer(producerDTO: ProducerDTO) {
 		this.dialog.open(AigProducerNewUpdateModalComponent, { data: { producer: producerDTO } });
     }

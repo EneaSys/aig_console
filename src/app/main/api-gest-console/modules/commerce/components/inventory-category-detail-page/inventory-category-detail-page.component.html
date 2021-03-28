@@ -9,6 +9,7 @@
                 <div *ngIf="inventoryCategoryDTO.inventoryCategoryName" class="h4 m-8 ml-16 mb-0 secondary-text">Parent: {{ inventoryCategoryDTO.inventoryCategoryName }}</div>
                 <br>
                 <button mat-stroked-button color="primary" (click)="editInventoryCategory(inventoryCategoryDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteInventoryCategory(inventoryCategoryDTO.id)">Delete</button>
             </div>
         </div>
     </div>
