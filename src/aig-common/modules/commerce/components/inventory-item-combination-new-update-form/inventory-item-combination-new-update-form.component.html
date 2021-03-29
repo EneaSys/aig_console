@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="inventoryItemCombinationNewUpdateForm" (ngSubmit)="submit()">
 
-	<div *ngIf="!inventoryItemCombination.inventoryItem" fxLayout="row" fxLayoutAlign="start start">
+	<div *ngIf="!inventoryItemCombination.inventoryItem && !inventoryItem" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Inventory item</mat-label>
             <input formControlName="inventoryItem" matInput required [matAutocomplete]="inventoryItemAutocomplete">
