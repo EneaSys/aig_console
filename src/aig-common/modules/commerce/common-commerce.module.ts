@@ -89,7 +89,7 @@ import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-c
         
         RouterModule,
         BrowserModule,
-        FormsModule,
+        FormsModule,s
         ReactiveFormsModule,
         
         FlexLayoutModule,
@@ -107,7 +107,6 @@ import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-c
         MatDatepickerModule,
         MatSlideToggleModule,
         MatRadioModule,
-        MatSlideToggleModule,
         MatMenuModule,
     
 

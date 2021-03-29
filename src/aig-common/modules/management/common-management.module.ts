@@ -2,10 +2,11 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatTableModule } from "@angular/material";
+import { MatAutocompleteModule, MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSlideToggleModule, MatStepperModule, MatTableModule, MatToolbarModule } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { AigCommonModule } from "aig-common/common.module";
+import { CommonGenericModule } from "../generic/common-generic.module";
 import { AigApplicationModuleListTableComponent } from "./components/application-module-list-table/application-module-list-table.component";
 import { AigApplicationModuleNewUpdateFormComponent } from "./components/application-module-new-update-form/application-module-new-update-form.component";
 import { AigAssociateRolePermissionFormComponent } from "./components/associate-role-permission-new-update-form/associate-role-permission-form.component";
@@ -38,26 +39,32 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
 @NgModule({
     imports: [
         AigCommonModule,
-		
-		RouterModule,
         CommonModule,
 
+        CommonGenericModule,
+        
+        RouterModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-
-        MatTableModule,
-        MatProgressSpinnerModule,
-
-        MatButtonModule,
-        MatIconModule,
-        
-        MatInputModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
         
         FlexLayoutModule,
 
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatSelectModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatSlideToggleModule,
+        MatRadioModule,
+        MatMenuModule,
+    
     ],
 	declarations: [
         AigApplicationModuleListTableComponent,
