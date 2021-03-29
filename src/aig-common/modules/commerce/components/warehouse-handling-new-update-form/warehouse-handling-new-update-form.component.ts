@@ -70,11 +70,14 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             date: ['', Validators.required]
         });
 
+        console.log(this.warehouseHandling);
+
+
         if (this.warehouseHandling != null) {
             this.isUpdate = true;
             this.warehouseHandlingFormGroup.patchValue(this.warehouseHandling);
+            console.log("divento true", this.isUpdate);
         }
-
 
         if (this.warehouse!= null) {
             this.warehouseHandlingFormGroup.controls['warehouseToLoad'].patchValue(this.warehouse);
@@ -95,7 +98,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
         if (!this.warehouseHandlingFormGroup.valid) {
             return;
         }
-        
+ 
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
