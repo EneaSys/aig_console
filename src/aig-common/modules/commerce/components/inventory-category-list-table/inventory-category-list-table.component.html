@@ -26,7 +26,9 @@
 
         <ng-container matColumnDef="inventoryCategoryName">
             <mat-header-cell *matHeaderCellDef>Genitore</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryCategoryName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> 
+                <span *ngIf="e.inventoryCategory">{{ e.inventoryCategory.name }}</span>
+            </mat-cell> 
 		</ng-container>
 
         <ng-container matColumnDef="buttons">
