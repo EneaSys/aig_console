@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="priceListItemNewUpdateForm" (ngSubmit)="submit()">
     
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!priceListItemNewUpdateForm.value.priceList">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!priceList">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Price list</mat-label>
             <input formControlName="priceList" matInput required [matAutocomplete]="priceListAutocomplete">
@@ -10,7 +10,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!priceListItemNewUpdateForm.value.catalogItem">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!catalogItem">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Catalog item</mat-label>
             <input formControlName="catalogItem" matInput required [matAutocomplete]="catalogItemAutocomplete">
