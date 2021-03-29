@@ -7,6 +7,7 @@ import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, Warehouse
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
+import { ContextModuleResolver } from 'aig-common/modules/standard/resolver/context-module.resolver';
 
 
 @Component({
@@ -34,13 +35,21 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     @Input()
     warehouseHandling: WarehouseHandlingDTO;
 
+    @Input()
+    warehouse: WarehouseDTO;
+
 	@Input()
 	returnToParent: boolean = false;
+
+    @Input()
+	continueInsertion: boolean = false;
 
 	@Output()
 	wareHouseHandlingOutput = new EventEmitter<WarehouseHandlingDTO>();
 
 	isUpdate: boolean = false;
+    submitOnSameLineOfproduct: boolean = false;
+
 	
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
@@ -52,7 +61,6 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
 
     ngOnInit(): void {
-
 
         this.warehouseHandlingFormGroup = this._formBuilder.group({
             id: [""],
@@ -67,9 +75,21 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             this.warehouseHandlingFormGroup.patchValue(this.warehouseHandling);
         }
 
+
+        if (this.warehouse!= null) {
+            this.warehouseHandlingFormGroup.controls['warehouseToLoad'].patchValue(this.warehouse);
+            this.warehouseHandlingFormGroup.controls['warehouseToUnload'].patchValue(this.warehouse);
+        }
+
         this.filteredWarehouseToLoad = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingFormGroup.controls['warehouseToLoad'].valueChanges);
         this.filteredWarehouseToUnload = this.commerceAutocompleteService.filterWarehouse(this.warehouseHandlingFormGroup.controls['warehouseToUnload'].valueChanges);
+
+		if(this.continueInsertion || this.warehouse) {
+			this.submitOnSameLineOfproduct = true;
+		}
+
     }
+
 
     async submit() {
         if (!this.warehouseHandlingFormGroup.valid) {
