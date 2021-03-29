@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { BuyerDTO, BuyerResourceService } from 'aig-commerce';
+import { BuyerDTO, BuyerResourceService, EopooDTO, SellerDTO } from 'aig-commerce';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
 
 @Component({
@@ -14,6 +17,8 @@ import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer
 export class AigBuyerListPageComponent extends GenericComponent {
 
 	constructor(
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteService,
 		private buyerResourceService: BuyerResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
@@ -21,6 +26,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
+
+	filteredSeller: Observable<SellerDTO[]>;
 
 
 	loadPage() {
@@ -47,8 +54,9 @@ export class AigBuyerListPageComponent extends GenericComponent {
 	buyerDC: string[];
 
 
+
 	private initBuyerSearch() {
-		this.buyerDC = ["id", "buyer", "status", "seller", "buttons"];
+		this.buyerDC = ["id", "buyer", "seller", "statusNote" ,"buttons"];
 
 		this.buyerPaginationSize = 10;
 
@@ -56,6 +64,9 @@ export class AigBuyerListPageComponent extends GenericComponent {
 		this.buyerSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			eopooCode: [''],
+			eopoo: [''],
+			seller: [''],
+			statusNote: [''],
 			
 		});
 	}
@@ -63,7 +74,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 	private clearFiltersBuyer() {
 		this.buyerFilters = {
 			idEquals: null,
-			eopooCodeContains: null,
+			sellerIdEquals: null,
+			statusNoteContains: null,
 			page: 0,
 		}
 	}
@@ -73,9 +85,14 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 		this.buyerFilters.page = page;
 		this.buyerFilters.size = this.buyerPaginationSize;
+		this.buyerFilters.idEquals = null;
+
+		
+		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.buyerSearchFormGroup.controls['seller'].valueChanges);
 
 		try {
-			this.buyerLength = await this.buyerResourceService.countBuyersUsingGET(this.buyerFilters,).toPromise();
+			this.buyerLength = await this.buyerResourceService.countBuyersUsingGET(this.buyerFilters).toPromise();
+			
 
 			if (this.buyerLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
@@ -116,10 +133,16 @@ export class AigBuyerListPageComponent extends GenericComponent {
 			this.buyerFilters.idEquals = searchedId;
 			this.searchBuyer(0);
 			return;
-		}
-		this.buyerFilters.idEquals = null;
+		} else {
+			if(this.buyerSearchFormGroup.controls.seller.value){
+				this.buyerFilters.sellerIdEquals = this.buyerSearchFormGroup.controls.seller.value.id;
+			}
 
-		this.buyerFilters.eopooCodeContains = this.buyerSearchFormGroup.controls.name.value;
+			if(this.buyerSearchFormGroup.controls.statusNote.value){
+				this.buyerFilters.statusNoteContains = this.buyerSearchFormGroup.controls.statusNote.value;
+			}
+		}
+		
 
 		this.searchBuyer(0);
 	}

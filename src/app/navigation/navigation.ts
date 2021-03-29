@@ -95,7 +95,7 @@ export const navigation: FuseNavigation[] = [
             },
 			{
                 id       : 'seller-manager',
-                title    : 'Manager Vendite',
+                title    : 'Manager Venditore',
                 type     : 'item',
                 icon     : 'person_pin_circle',
                 url      : '/commerce/seller-manager',

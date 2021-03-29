@@ -49,9 +49,9 @@
             <mat-cell *matCellDef="let e">{{ e.confirmation }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="status">
+        <ng-container matColumnDef="statusNote">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.statusNote | AigC6eGenericStatus }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.statusNote}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="validateButton">

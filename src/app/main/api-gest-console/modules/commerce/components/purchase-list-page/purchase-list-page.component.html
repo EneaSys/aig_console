@@ -27,6 +27,43 @@
 										    <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
                                     </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Status Note</mat-label>
+                                            <input matInput type="text" formControlName="statusNote">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Amount</mat-label>
+                                            <input matInput type="number" formControlName="amount">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Cliente</mat-label>
+                                            <input matInput type="number" formControlName="buyer">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field appearance="outline" fxFlex="100">
+                                            <mat-label>Venditore</mat-label>
+                                            <input formControlName="seller" matInput
+                                                [matAutocomplete]="sellerAutocomplete">
+                                            <mat-autocomplete #sellerAutocomplete="matAutocomplete"
+                                                [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+                                                <mat-option *ngFor="let seller of filteredSeller | async"
+                                                    [value]="seller">{{ seller.name }}</mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                    </div>
+                                
+
+
                                     <div fxLayout="row" fxLayoutAlign="end top">
                                         <button type="submit" mat-raised-button color="accent">Cerca</button>
                                     </div>

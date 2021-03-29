@@ -93,13 +93,13 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 1) {
+				if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
 					return this.sellerResourceService.getAllSellersUsingGET(filter);
 				} else {
-					return of([]);
+					return ([]);
 				}
 			})
 		);
@@ -127,7 +127,7 @@ export class AigCommerceAutocompleteService {
             switchMap((value: string) => {
                 if (value.length > 1) {
 					let filter = {
-						eoopoCodeContains: value
+						idEquals: value
 					};
                     return this.buyerResourceService.getAllBuyersUsingGET(filter);
 				} else {

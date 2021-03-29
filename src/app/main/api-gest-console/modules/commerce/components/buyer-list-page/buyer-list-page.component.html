@@ -1,6 +1,6 @@
 <div class="page-layout simple left-sidebar">
     <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
+    <fuse-sidebar class="sidebar" name="buyer-sidebar" position="left" lockedOpen="gt-md">
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
@@ -20,7 +20,27 @@
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Eoopo Code</mat-label>
-                                        <input matInput type="text" formControlName="eoopoCode">
+                                        <input matInput type="text" formControlName="eopooCode">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Venditore</mat-label>
+                                        <input formControlName="seller" matInput
+                                            [matAutocomplete]="sellerAutocomplete">
+                                        <mat-autocomplete #sellerAutocomplete="matAutocomplete"
+                                            [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+                                            <mat-option *ngFor="let seller of filteredSeller | async"
+                                                [value]="seller">{{ seller.name }}</mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Status Note</mat-label>
+                                        <input matInput type="text" formControlName="statusNote">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -40,7 +60,7 @@
     <div class="center">
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('buyer-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
             <h2>Elenco Clienti</h2>
