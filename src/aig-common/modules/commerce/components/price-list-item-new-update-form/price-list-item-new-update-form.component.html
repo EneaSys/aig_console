@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="priceListItemNewUpdateForm" (ngSubmit)="submit()">
     
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!priceListItemNewUpdateForm.value.priceList">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Price list</mat-label>
             <input formControlName="priceList" matInput required [matAutocomplete]="priceListAutocomplete">
@@ -10,7 +10,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!priceListItemNewUpdateForm.value.catalogItem">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Catalog item</mat-label>
             <input formControlName="catalogItem" matInput required [matAutocomplete]="catalogItemAutocomplete">
@@ -28,8 +28,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!priceListItem.id" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="priceListItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="isUpdate == false" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate == true" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 

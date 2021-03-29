@@ -62,11 +62,11 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
 
             this.temp[priceListItemDTO.catalogItemId][priceListItemDTO.priceListId] = priceListItemDTO;
         })
-
     }
 
 
-    newPriceListItem(): void {
-        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: {} });
+    newPriceListItem(priceListDTO: PriceListDTO, catalogItemDTO: CatalogItemDTO): void {
+        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { priceList: priceListDTO, catalogItem: catalogItemDTO } });
+        console.log(priceListDTO);
     }
 }
