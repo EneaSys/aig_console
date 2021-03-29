@@ -107,7 +107,6 @@ import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-c
         MatDatepickerModule,
         MatSlideToggleModule,
         MatRadioModule,
-        MatSlideToggleModule,
         MatMenuModule,
     
 

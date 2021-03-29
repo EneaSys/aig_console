@@ -1,23 +1,26 @@
 <table id="table">
     <tr>
         <td>
-        
+        Combinazioni di prodotti
         </td>
         <td *ngFor="let priceListDTO of priceListDTOs">
-            {{ priceListDTO.name }} | {{ priceListDTO.id }}
+            {{ priceListDTO.name }}
         </td>
     </tr>
     <tr *ngFor="let catalogItemDTO of catalogItemDTOs">
         <td >
-            {{ catalogItemDTO.id }} | {{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}
+            {{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}
         </td>
         <td *ngFor="let priceListDTO of priceListDTOs">
             <span *ngIf="temp[catalogItemDTO.id] && temp[catalogItemDTO.id][priceListDTO.id]">
                 {{ temp[catalogItemDTO.id][priceListDTO.id].amount | currency:'EUR':true }}
             </span>
             <span *ngIf="!(temp[catalogItemDTO.id] && temp[catalogItemDTO.id][priceListDTO.id])">
-                <button (click)="newPriceListItem(temp)">aggiungi</button> da creare con price list= {{ priceListDTO.id }}  e catalog item = {{catalogItemDTO.id }}
+                <button (click)="newPriceListItem(priceListDTO, catalogItemDTO)">aggiungi</button>
             </span>
         </td>
+    </tr>
+    <tr>
+        <button (click)=newCatalogItem()>Aggiungi nuovo catalog item</button>
     </tr>
 </table>

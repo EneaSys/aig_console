@@ -29,7 +29,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 2) {
+				if (value && value.length > 2) {
 					let filter = {
 						nameContains: value
 					};
@@ -45,7 +45,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 1) {
+				if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
@@ -61,7 +61,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 1) {
+				if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
@@ -77,7 +77,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 0) {
+				if (value && value.length > 0) {
 					let filter = {
 						nameContains: value
 					};
@@ -93,13 +93,13 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 1) {
+				if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
 					return this.sellerResourceService.getAllSellersUsingGET(filter);
 				} else {
-					return of([]);
+					return ([]);
 				}
 			})
 		);
@@ -109,7 +109,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 1) {
+				if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
@@ -125,9 +125,9 @@ export class AigCommerceAutocompleteService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 1) {
 					let filter = {
-						eoopoCodeContains: value
+						idEquals: value
 					};
                     return this.buyerResourceService.getAllBuyersUsingGET(filter);
 				} else {
@@ -157,7 +157,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 0) {
+				if (value && value.length > 0) {
 					let filter = {
 						activeEquals: null
 					};
@@ -173,7 +173,7 @@ export class AigCommerceAutocompleteService {
 		return catalogItemObservable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 0) {
+				if (value && value.length > 0) {
 					let filter = {
 						activeEquals: null,
 						catalogIdEquals: catalogId
@@ -190,7 +190,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 1) {
+				if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
@@ -206,7 +206,7 @@ export class AigCommerceAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value.length > 0) {
+				if (value && value.length > 0) {
 					let filter = {
 						nameContains: value
 					};
@@ -223,7 +223,7 @@ export class AigCommerceAutocompleteService {
             startWith(''),
             switchMap((value: any) => {
                 console.log("banana")
-                if (value != null) {
+                if (value && value != null) {
 					let filter = {
 						dateEquals: value
 					};
@@ -239,7 +239,7 @@ export class AigCommerceAutocompleteService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
@@ -255,7 +255,7 @@ export class AigCommerceAutocompleteService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 1) {
 					let filter = {
 						nameContains: value
 					};
@@ -269,7 +269,7 @@ export class AigCommerceAutocompleteService {
     filterWarehouseHandling(observable: Observable<any>) {
         return observable.pipe(
             switchMap((value: any) => {
-                if (value != null) {
+                if (value && value != null) {
 					let filter = {
 						dateEquals: value
 					};

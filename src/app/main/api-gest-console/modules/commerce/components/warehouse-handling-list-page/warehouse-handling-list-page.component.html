@@ -103,7 +103,7 @@
 				[pageSizeOptions]="[10, 20, 50]" (page)="warehouseHandlingPaginationEvent($event)">
 			</mat-paginator>
 
-			<button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newWarehouseHandling()"
+			<button mat-fab class="accent" id="add-warehouse-handling-button" (click)="newWarehouseHandling(warehouseDTO)"
 				aria-label="add warehouse handling">
 				<mat-icon>add</mat-icon>
 			</button>

@@ -71,8 +71,8 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
         this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: inventoryItemDTO } });
     }
 
-    addInventoryItemCombination(): void {
-        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: { inventoryItemCombination: this.inventoryItemCombinationDTOs } } });
+    addInventoryItemCombination(inventoryItemDTO: InventoryItemDTO): void {
+        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: { inventoryItemCombination: this.inventoryItemCombinationDTOs }, inventoryItem: inventoryItemDTO } });
     }
 }
 

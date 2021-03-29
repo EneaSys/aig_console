@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, PriceListDTO, PriceListItemDTO, PriceListItemResourceService, PriceListResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCatalogItemNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/commerce/components/catalog-item-new-update-dialog/catalog-item-new-update-dialog.component';
 import { AigPriceListItemNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/commerce/components/price-list-item-new-update-dialog/price-list-item-new-update-dialog.component';
 
 @Component({
@@ -62,11 +63,15 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
 
             this.temp[priceListItemDTO.catalogItemId][priceListItemDTO.priceListId] = priceListItemDTO;
         })
-
     }
 
 
-    newPriceListItem(): void {
-        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: {} });
+    newPriceListItem(priceListDTO: PriceListDTO, catalogItemDTO: CatalogItemDTO): void {
+        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { priceList: priceListDTO, catalogItem: catalogItemDTO } });
+        console.log(priceListDTO);
+    }
+
+    newCatalogItem(): void {
+        this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { catalogItem: {} } });
     }
 }
