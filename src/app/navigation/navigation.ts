@@ -95,7 +95,7 @@ export const navigation: FuseNavigation[] = [
             },
 			{
                 id       : 'seller-manager',
-                title    : 'Manager Vendite',
+                title    : 'Manager Venditore',
                 type     : 'item',
                 icon     : 'person_pin_circle',
                 url      : '/commerce/seller-manager',
@@ -178,6 +178,14 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'euro_symbol',
                 url      : '/commerce/catalog-item',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'payement-list-page',
+                title    : 'Pagamenti',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/payement',
                 permission: ['c6e.admin'],
             },
         ]

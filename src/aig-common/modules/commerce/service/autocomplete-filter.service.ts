@@ -99,7 +99,7 @@ export class AigCommerceAutocompleteService {
 					};
 					return this.sellerResourceService.getAllSellersUsingGET(filter);
 				} else {
-					return of([]);
+					return ([]);
 				}
 			})
 		);
@@ -127,7 +127,7 @@ export class AigCommerceAutocompleteService {
             switchMap((value: string) => {
                 if (value && value.length > 1) {
 					let filter = {
-						eoopoCodeContains: value
+						idEquals: value
 					};
                     return this.buyerResourceService.getAllBuyersUsingGET(filter);
 				} else {

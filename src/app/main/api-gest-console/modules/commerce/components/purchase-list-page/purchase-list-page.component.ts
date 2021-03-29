@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
+import { BuyerDTO, PurchaseDTO, PurchaseResourceService, SellerDTO } from 'aig-commerce';
 import { AigPurchaseNewUpdateFormComponent } from 'aig-common/modules/commerce/components/purchase-new-update-form/purchase-new-update-form.component';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 
 @Component({
@@ -14,17 +17,19 @@ import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dial
 })
 export class AigPurchaseListPageComponent extends GenericComponent {
   constructor(
+    public autocompleteDisplayService: AigAutocompleteDisplayService,
     private purchaseResourceService : PurchaseResourceService,
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
+    private commerceAutocompleteService: AigCommerceAutocompleteService,
     aigGenericComponentService: AigGenericComponentService,
   ) { super(aigGenericComponentService) }
 
+  filteredSeller: Observable<SellerDTO[]>;
+  
 
-  @Input()
-  staticPurchase: PurchaseDTO = null;
-
+  closed: boolean;
 
   loadPage() {
 		this.initPurchaseSearch();
@@ -53,20 +58,34 @@ export class AigPurchaseListPageComponent extends GenericComponent {
 
   purchaseDC : string[];
 
+ 
+ 
+
   private initPurchaseSearch() {
     this.purchasePaginationSize = 10
 	  this.purchaseSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			insertedDateTime: [''],
+      statusNote: [''],
+      seller: [''],
+      amount: [''],
+      buyer: [''],
+
+     
 		});
 
-    this.purchaseDC = ["id","amount","buyer","closed","insertedDataTime","statusNote","buttons"];
+    
+
+    this.purchaseDC = ["id","amount","buyer","closed","insertedDataTime","statusNote","seller","buttons"];
   }
     
   private clearFiltersPurchase() {
     this.purchaseFilters = {
       idEquals: null,
       insertedDateTimeEquals : null,
+      statusNoteContains : null,
+      sellerIdEquals: null,
+      buyerIdEquals: null,
       page: 0,
     }
   }
@@ -75,6 +94,8 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     this.purchaseFilters.page = page;
     this.purchaseDTOs = null;
     this.purchaseFilters.size = this.purchasePaginationSize;
+    this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.purchaseSearchFormGroup.controls['seller'].valueChanges);
+   
     try {
       this.purchaseLength = await this.purchaseResourceService.countPurchasesUsingGET(this.purchaseFilters).toPromise();
       if(this.purchaseLength == 0) {
@@ -106,26 +127,34 @@ export class AigPurchaseListPageComponent extends GenericComponent {
 
   purchaseSearchWithFilter() {
     let searchedId = this.purchaseSearchFormGroup.controls.id.value;
-    let searchedDate = this.purchaseSearchFormGroup.controls.insertedDateTime.value;
+    
     if(searchedId != null) {
       this.clearFiltersPurchase();
       this.purchaseSearchFormGroup.reset();
       this.purchaseFilters.idEquals= searchedId;
       this.searchPurchase(0);
       return;
-    }
-    if(searchedDate != null) {
-      this.clearFiltersPurchase();
-      this.purchaseSearchFormGroup.reset();
-      this.purchaseFilters.insertedDateTimeEquals= searchedDate;
-      this.searchPurchase(0);
-      return;
-    }
-        
-    this.purchaseFilters.idEquals = null;
-    this.purchaseFilters.insertedDateTime = this.purchaseSearchFormGroup.controls.insertedDateTime.value.date;
+    } else {
 
-    this.searchPurchase(0);
+      
+			if(this.purchaseSearchFormGroup.controls.insertedDateTime.value){
+				this.purchaseFilters.insertedDateTimeEquals = this.purchaseSearchFormGroup.controls.insertedDateTime.value.date;
+      }
+
+      if(this.purchaseSearchFormGroup.controls.statusNote.value){
+        this.purchaseFilters.statusNoteContains = this.purchaseSearchFormGroup.controls.statusNote.value;
+      }
+      
+      if(this.purchaseSearchFormGroup.controls.seller.value){
+        this.purchaseFilters.sellerIdEquals = this.purchaseSearchFormGroup.controls.seller.value.id;
+      }
+
+      if(this.purchaseSearchFormGroup.controls.buyer.value){
+        this.purchaseFilters.buyerIdEquals = this.purchaseSearchFormGroup.controls.buyer.value;
+      }
+
+      this.searchPurchase(0);
+    }
   }
   
   

@@ -8,6 +8,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { HttpClient } from '@angular/common/http';
 import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
+import { AigBuyerNewUpdateFormComponent } from 'aig-common/modules/commerce/components/buyer-new-update-form/buyer-new-update-form.component';
 
 @Component({
     selector: 'aig-buyer-detail-page',
@@ -40,14 +41,14 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
     }
 
     editBuyer(buyerDTO: BuyerDTO) {
-		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: buyerDTO } });
+		this.dialog.open(AigBuyerNewUpdateFormComponent, { data: { buyer: buyerDTO } });
     }
 
     loadOther() {
         this.loadPurchases();
     }
 
-    purchasedisplayColumns: string[] = ['id', 'date', 'status', 'buttons'];
+    purchasedisplayColumns: string[] = ['id', 'date', 'statusNote', 'buttons'];
     purchaseDTOs: PurchaseDTO[];
     purchaseError: any;
     
@@ -63,59 +64,4 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
             this.purchaseError = e;
         }
     }
-
-
-
-
-
-
-
-    loadingBuyerValidationImage: boolean = false;
-
-    buyerValidationImageUrl: string;
-    async showDocument() {
-        this._fuseProgressBarService.show();
-        this.loadingBuyerValidationImage = true;
-        try {
-            let validationImageReturnTO: ValidationImageReturnTO = await this.buyerResourceService.getBuyerValidationImageUsingGET(this.buyerDTO.id).toPromise();
-            this.buyerValidationImageUrl = validationImageReturnTO.url;
-        } catch(e) {
-            this._snackBar.open(`Problema nel caricamento del documento.`, null, { duration: 10000, });
-        }
-        this.loadingBuyerValidationImage = false;
-        this._fuseProgressBarService.hide();
-    }
-
-    buyerValidationImageFile: string;
-    buyerValidationSelectedImage(event) {
-        this.buyerValidationImageFile = event.target.files[0];
-    }
-
-    
-    async uploadDocument() {
-        this._fuseProgressBarService.show();
-        this.loadingBuyerValidationImage = true;
-
-        try {
-            let validationImageReturnTO: ValidationImageReturnTO = await this.buyerResourceService.putBuyerValidationImageUsingPUT(this.buyerDTO.id).toPromise();
-            await this.httpClient.put(validationImageReturnTO.url, this.buyerValidationImageFile).toPromise();
-            this.buyerDTO.statusNote = "2";
-            await this.buyerResourceService.updateBuyerUsingPUT(this.buyerDTO).toPromise();
-            this.eventService.reloadCurrentPage();
-            this._snackBar.open(`Documento caricato con successo.`, null, { duration: 5000, });
-        } catch(e) {
-            this._snackBar.open(`Problema nel caricamento del documento.`, null, { duration: 10000, });
-        }
-        this.loadingBuyerValidationImage = false;
-        this._fuseProgressBarService.hide();
-    }
-
-
-
-
-
-
-
-
-    afterLoad() { }
 }

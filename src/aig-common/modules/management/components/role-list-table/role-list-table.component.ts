@@ -48,3 +48,5 @@ export class AigRoleListTableComponent implements OnInit {
         this.dialog.open(AigRoleNewUpdateModalComponent, { data: { role: roleDTO } });
     }
 }
+
+

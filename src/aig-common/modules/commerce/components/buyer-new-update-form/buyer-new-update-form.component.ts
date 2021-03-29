@@ -41,7 +41,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         this.buyerNewUpdateForm = this._formBuilder.group({
             id:[''],
             eopooCode: ['', Validators.required],
-            confirmation: ['', Validators.required],
+            confirmation: [true, Validators.required],
             statusNote: [''],
             seller: ['', Validators.required],
         })
@@ -82,8 +82,8 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
             }
             this.eventService.reloadCurrentPage();
             this.setStep("complete");
-        } catch (e) {
-            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();
@@ -93,11 +93,11 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(stepToShow: string){
+    private setStep(step: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
 			
-        this.step[stepToShow] = true;
+        this.step[step] = true;
     }
 }

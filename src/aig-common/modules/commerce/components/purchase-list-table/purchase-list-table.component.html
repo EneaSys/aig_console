@@ -24,16 +24,11 @@
             <mat-cell *matCellDef="let e"> {{ e.amount }} </mat-cell>
         </ng-container>
         
-        
-        <ng-container matColumnDef="buyer">
-            <mat-header-cell *matHeaderCellDef> Buyer </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.buyer.eopooCode}} </mat-cell>
-        </ng-container>
 
         
-        <ng-container matColumnDef="buyerId">
+        <ng-container matColumnDef="buyer">
             <mat-header-cell *matHeaderCellDef> Buyer Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.buyerId }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.buyer.id }} </mat-cell>
         </ng-container>
 
        
@@ -56,6 +51,11 @@
         <ng-container matColumnDef="statusNote">
             <mat-header-cell *matHeaderCellDef> Status Note </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.statusNote }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="seller">
+            <mat-header-cell *matHeaderCellDef> Seller </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.buyer.seller.name }} </mat-cell>
         </ng-container>
 
      
