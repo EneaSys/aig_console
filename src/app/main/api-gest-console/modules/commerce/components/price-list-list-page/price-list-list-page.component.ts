@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { CatalogDTO, PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { CatalogDTO, CatalogResourceService, PriceListDTO, PriceListResourceService, WarehouseDTO } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
@@ -25,20 +25,28 @@ export class AigPriceListListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
+		private catalogResourceService: CatalogResourceService,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
+
+	catalogDTO: CatalogDTO;
 
 	loadPage() {
 		this.initPriceListSearch()
 
+		this.catalogDTO = this.staticCatalog;
+
+
 		this.showAllPriceList();
 	}
 
-	reloadPage() {
+	async reloadPage() {
 		this.showAllPriceList();
+		this.catalogDTO = await this.catalogResourceService.getCatalogUsingGET(this.staticCatalog.id).toPromise();
 	}
 
 	//			---- CATALOG TABLE AND SEARCH SECTION ----
+
 
 	priceListDTOs: PriceListDTO[];
 	@Input()
@@ -52,6 +60,7 @@ export class AigPriceListListPageComponent extends GenericComponent {
 	priceListLength: number;
 
 	filteredCatalog: Observable<CatalogDTO[]>;
+	
 
 	private initPriceListSearch() {
 		this.priceListPaginationSize = 10;
@@ -135,8 +144,9 @@ export class AigPriceListListPageComponent extends GenericComponent {
 	}
 	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
-	newPriceList(): void {
-		this.dialog.open(AigPriceListNewUpdateDialogComponent, { data: { priceList: {} } });
+	newPriceList(catalogDTO: CatalogDTO): void {
+		this.dialog.open(AigPriceListNewUpdateDialogComponent, { data: { catalog: catalogDTO } });
+		
 	}
 
 }

@@ -7,10 +7,10 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!catalog">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Catalogo</mat-label>
-            <input formControlName="catalog" matInput [matAutocomplete]="catalogAutocomplete" required>
+            <input formControlName="catalog" matInput [matAutocomplete]="catalogAutocomplete" required >
             <mat-autocomplete #catalogAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.catalogDisplayFn">
                 <mat-option *ngFor="let catalog of filteredCatalog | async" [value]="catalog">{{ catalog.name }}</mat-option>
             </mat-autocomplete>
@@ -18,8 +18,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!priceList.id" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="priceList.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 

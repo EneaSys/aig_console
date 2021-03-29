@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CatalogDTO, PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { CatalogDTO, CatalogItemDTO, PriceListDTO, PriceListResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -34,6 +34,11 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
     @Input()
     priceList: PriceListDTO;
 
+    isUpdate: boolean = false;
+
+    @Input()
+    catalog: CatalogDTO;
+
     priceListNewUpdateForm: FormGroup;
 
     filteredCatalog: Observable<CatalogDTO[]>;
@@ -43,11 +48,16 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         this.priceListNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            catalog: ['', Validators.required],
+            catalog: [this.catalog, Validators.required],
         })
         
         if (this.priceList != null) {
             this.priceListNewUpdateForm.patchValue(this.priceList);
+            this.isUpdate = true;
+        }
+
+        if(this.catalog != null){
+            //this.priceListNewUpdateForm.controls['catalog'].patchValue(this.catalog);
         }
 
         this.filteredCatalog = this.commerceAutocompleteService.filterCatalog(this.priceListNewUpdateForm.controls['catalog'].valueChanges);
