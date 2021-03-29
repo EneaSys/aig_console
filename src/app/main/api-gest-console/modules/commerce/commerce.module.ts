@@ -82,6 +82,8 @@ import { AigWarehouseHandlingItemDetailPageComponent } from './components/wareho
 import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 
 
+
+
 @NgModule({
     imports: [
         RouterModule.forChild(commerceRoute),
@@ -182,6 +184,8 @@ import { AigSellerManagerPageComponent } from './components/seller-manager-page/
         AigInventoryItemCombinationDetailPageComponent,
         AigPurchaseItemDetailPageComponent,
         AigPriceListItemNewUpdateDialogComponent,
+  
+       
 
     ],
     

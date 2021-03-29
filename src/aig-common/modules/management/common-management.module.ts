@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatTableModule } from "@angular/material";
+import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatTableModule } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { AigCommonModule } from "aig-common/common.module";
@@ -55,7 +55,7 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
         MatInputModule,
         MatFormFieldModule,
         MatAutocompleteModule,
-        
+        MatMenuModule,
         FlexLayoutModule,
 
     ],

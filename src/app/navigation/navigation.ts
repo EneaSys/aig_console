@@ -180,6 +180,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/catalog-item',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'payement-list-page',
+                title    : 'Pagamenti',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/payement',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 ];
