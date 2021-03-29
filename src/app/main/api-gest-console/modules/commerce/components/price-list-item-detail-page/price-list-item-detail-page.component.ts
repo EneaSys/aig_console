@@ -27,7 +27,6 @@ export class AigPriceListItemDetailPageComponent extends GenericComponent {
 
     loadPage() {
         this.priceListItemDTO = this.route.snapshot.data.priceListItem;
-        console.log (this.priceListItemDTO);
     }
 
     async reloadPage() {

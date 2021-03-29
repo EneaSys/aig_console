@@ -33,6 +33,12 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
     @Input()
     priceListItem: PriceListItemDTO;
 
+    @Input()
+    priceList: PriceListDTO;
+
+    @Input()
+    catalogItem: CatalogItemDTO;
+
     priceListItemNewUpdateForm: FormGroup;
     
     filteredCatalogItem: Observable<CatalogItemDTO[]>;
@@ -40,6 +46,8 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
     filteredPriceList: Observable<PriceListDTO[]>;
 
     catalogId: number;
+
+    isUpdate: boolean = false;
 
     ngOnInit(): void {
         this.priceListItemNewUpdateForm = this._formBuilder.group({
@@ -50,8 +58,17 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
         })
         
         if (this.priceListItem != null) {
+            this.isUpdate = true;
             this.priceListItemNewUpdateForm.patchValue(this.priceListItem);
         }   
+
+        if (this.priceList != null) {
+            this.priceListItemNewUpdateForm.controls['priceList'].patchValue(this.priceList);
+        }
+
+        if(this.catalogItem != null) {
+            this.priceListItemNewUpdateForm.controls['catalogItem'].patchValue(this.catalogItem);
+        }
 
         this.filteredPriceList = this.commerceAutocompleteService.filterPriceList(this.priceListItemNewUpdateForm.controls['priceList'].valueChanges);
 

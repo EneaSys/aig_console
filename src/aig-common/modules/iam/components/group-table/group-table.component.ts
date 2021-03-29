@@ -5,6 +5,8 @@ import { ContextGroupResourceService, ContextGroupDTO, UserDTO, ContextUserResou
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { MatDialog } from '@angular/material';
+import { AigGroupNewDialogComponent } from 'app/main/api-gest-console/modules/iam/components/group-new-dialog/group-new-dialog.component';
 
 @Component({
     selector: 'aig-group-table',
@@ -15,13 +17,15 @@ import { EventService } from 'aig-common/event-manager/event.service';
 })
 export class AigGroupTableComponent implements OnInit {
     constructor(
-        private router: Router,
-        private _snackBar: MatSnackBar,
-        private _fuseProgressBarService: FuseProgressBarService,
-        private contextGroupResourceService: ContextGroupResourceService,
-        private contextUserResourceService: ContextUserResourceService,
-        private eventService: EventService,
-    ) { }
+  
+            private groupResourceService: ContextGroupResourceService,
+            private eventService: EventService,
+            private _snackBar: MatSnackBar,
+            private _fuseProgressBarService: FuseProgressBarService,
+            private router: Router,
+            private dialog: MatDialog,
+        ) { }
+   
 
     @Input()
     error: any;
@@ -34,56 +38,21 @@ export class AigGroupTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    public groupDetails(idGroup: number) {
-        this.router.navigate(['iam', 'group', idGroup]);
-    }
-
-    public removeGroupFromGroup(groupParent: ContextGroupDTO) {
+    async deleteGroup(id: number) {
         this._fuseProgressBarService.show();
 
-        let groupChild: ContextGroupDTO = this.buttonConfig.removeGroupFromGroup;
+        try {
+            await this.groupResourceService.deleteContextGroupUsingDELETE(id).toPromise();
+            this._snackBar.open(`Group: '${id}' deleted.`, null, { duration: 2000, });
 
-        let _groupChild: ContextGroupDTO = JSON.parse(JSON.stringify(groupChild));
-        _groupChild.groupMemberOfs.forEach((group, index) => {
-            if (group.id == groupParent.id) _groupChild.groupMemberOfs.splice(index, 1);
-        });
-
-        this.contextGroupResourceService.updateContextGroupUsingPUT(_groupChild).subscribe(
-            (value: ContextGroupDTO) => {
-                groupChild.groupMemberOfs = _groupChild.groupMemberOfs;
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Group " + groupParent.name + " removed from " + groupChild.name + ".", null, { duration: 5000, });
-                this._fuseProgressBarService.hide();
-            },
-            (error: any) => {
-                console.log(error);
-                this._snackBar.open("Error: " + error.error.title + ".", null, { duration: 5000, });
-                this._fuseProgressBarService.hide();
-            }
-        )
+            this.eventService.reloadCurrentPage();
+        } catch (e) {
+            this._snackBar.open(`Error during deleting group: '${id}'. (${e.message})`, null, { duration: 5000, });
+        }
+        this._fuseProgressBarService.hide();
     }
 
-    public removeUserFromGroup(groupToRemove: ContextGroupDTO) {
-        this._fuseProgressBarService.show();
-
-        let user: any = this.buttonConfig.removeUserFromGroup;
-
-        let _user = JSON.parse(JSON.stringify(user));
-        _user.userMemberOfs.forEach((group, index) => {
-            if (group.id == groupToRemove.id) _user.userMemberOfs.splice(index, 1);
-        });
-
-        this.contextUserResourceService.updateContextUserUsingPUT(_user).subscribe(
-            (value: ContextUserDTO) => {
-                user.userMemberOfs = _user.userMemberOfs;
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("Group " + groupToRemove.name + " removed from " + user.firstName + " " + user.lastName + ".", null, { duration: 5000, });
-                this._fuseProgressBarService.hide();
-            },
-            (error: any) => {
-                this._snackBar.open("Error: " + error.error.title + ".", null, { duration: 5000, });
-                this._fuseProgressBarService.hide();
-            }
-        )
+    editGroup(groupDTO: ContextGroupDTO) {
+        this.dialog.open(AigGroupNewDialogComponent, { data: { group: groupDTO } });
     }
 }

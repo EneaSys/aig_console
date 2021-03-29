@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService } from 'aig-commerce';
+import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService, WarehouseResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
@@ -24,6 +24,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
 		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		private warehouseResourceService: WarehouseResourceService,
         aigGenericComponentService: AigGenericComponentService,
 	
     ) { super(aigGenericComponentService) }
@@ -34,15 +35,21 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
 	filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
 
+	warehouseDTO : WarehouseDTO;
 	
 	loadPage() {
 		this.initWarehouseHandlingSearch();
 
+		this.warehouseDTO = this.staticWarehouseToLoad;
+
 		this.showAllWarehouseHandling();
 	}
 
-	reloadPage() {
+	async reloadPage() {
 		this.showAllWarehouseHandling();
+
+		this.warehouseDTO = await this.warehouseResourceService.getWarehouseUsingGET(this.staticWarehouseToLoad.id).toPromise();
+
 	}
 
 	//			---- WAREHOUSE HANDLING TABLE AND SEARCH SECTION ----
@@ -153,8 +160,8 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		}
 	}
 
-	newWarehouseHandling(): void {
-		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: {} } });
+	newWarehouseHandling(warehouseDTO: WarehouseDTO ): void {
+		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouse: warehouseDTO } });
    }
 
    newWarehouseHandlingComplex(): void {

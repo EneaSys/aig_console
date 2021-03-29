@@ -33,6 +33,9 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
     @Input()
     inventoryItemCombination: InventoryItemCombinationDTO;
 
+    @Input()
+    inventoryItem: InventoryItemDTO;
+
     inventoryItemCombinationNewUpdateForm: FormGroup;
 
     filteredInventoryItems: Observable<InventoryItemDTO[]>;
@@ -47,6 +50,10 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
 
         if (this.inventoryItemCombination != null) {
             this.inventoryItemCombinationNewUpdateForm.patchValue(this.inventoryItemCombination);
+        }
+
+        if(this.inventoryItem != null){
+            this.inventoryItemCombinationNewUpdateForm.controls['inventoryItem'].patchValue(this.inventoryItem); 
         }
 
         this.filteredInventoryItems = this.commerceAutocompleteService.filterInventoryItem(this.inventoryItemCombinationNewUpdateForm.controls['inventoryItem'].valueChanges);

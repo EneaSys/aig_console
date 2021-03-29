@@ -28,7 +28,7 @@ export class AigInventoryCategoryListTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    async deleteWarehouseHandling(id: number) {
+    async deleteInventoryCategory(id: number) {
         this._fuseProgressBarService.show();
 
         try {

@@ -10,7 +10,7 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Seller</mat-label>
-            <input formControlName="seller" matInput [matAutocomplete]="sellerAutocomplete">
+            <input formControlName="seller" matInput [matAutocomplete]="sellerAutocomplete" required>
             <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
                 <mat-option *ngFor="let seller of filteredSeller | async" [value]="seller">{{ seller.name }}</mat-option>
             </mat-autocomplete>

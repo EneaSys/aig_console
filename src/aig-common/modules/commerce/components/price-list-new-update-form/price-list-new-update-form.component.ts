@@ -43,7 +43,7 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         this.priceListNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            catalog: [''],
+            catalog: ['', Validators.required],
         })
         
         if (this.priceList != null) {
