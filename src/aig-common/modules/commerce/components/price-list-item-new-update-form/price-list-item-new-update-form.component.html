@@ -10,7 +10,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!catalogItem">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id && !priceList">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Catalog item</mat-label>
             <input formControlName="catalogItem" matInput required [matAutocomplete]="catalogItemAutocomplete">
