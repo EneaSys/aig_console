@@ -2,11 +2,11 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
-                
-				<pre>{{ applicationModuletDTO | json }}</pre>
+
+                <pre>{{ applicationModuletDTO | json }}</pre>
 
                 <button mat-stroked-button color="primary" (click)="editApplicationModule(applicationModuleDTO)">Edit</button>
-				
+                <button mat-stroked-button color="primary" (click)="deleteApplicationModule(applicationModuleDTO.id)">Delete</button>
             </div>
         </div>
     </div>

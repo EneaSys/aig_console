@@ -89,7 +89,7 @@ import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-c
         
         RouterModule,
         BrowserModule,
-        FormsModule,s
+        FormsModule,
         ReactiveFormsModule,
         
         FlexLayoutModule,
