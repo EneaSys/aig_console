@@ -60,14 +60,14 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
         if (this.priceListItem != null) {
             this.isUpdate = true;
             this.priceListItemNewUpdateForm.patchValue(this.priceListItem);
-        }   
-
-        if (this.priceList != null) {
-            this.priceListItemNewUpdateForm.controls['priceList'].patchValue(this.priceList);
         }
-
+        
         if(this.catalogItem != null) {
             this.priceListItemNewUpdateForm.controls['catalogItem'].patchValue(this.catalogItem);
+        }
+        
+        if (this.priceList != null) {
+            this.priceListItemNewUpdateForm.controls['priceList'].patchValue(this.priceList);
         }
 
         this.filteredPriceList = this.commerceAutocompleteService.filterPriceList(this.priceListItemNewUpdateForm.controls['priceList'].valueChanges);

@@ -14,6 +14,8 @@
         <td *ngFor="let priceListDTO of priceListDTOs">
             <span *ngIf="temp[catalogItemDTO.id] && temp[catalogItemDTO.id][priceListDTO.id]">
                 {{ temp[catalogItemDTO.id][priceListDTO.id].amount | currency:'EUR':true }}
+                <button (click)="editPriceListItem()">Edit</button>
+                <button>Delete</button>
             </span>
             <span *ngIf="!(temp[catalogItemDTO.id] && temp[catalogItemDTO.id][priceListDTO.id])">
                 <button (click)="newPriceListItem(priceListDTO, catalogItemDTO)">aggiungi</button>
@@ -21,6 +23,6 @@
         </td>
     </tr>
     <tr>
-        <button (click)=newCatalogItem()>Aggiungi nuovo catalog item</button>
+        <button (click)=newCatalogItem(staticCatalog)>Aggiungi nuovo catalog item</button>
     </tr>
 </table>
