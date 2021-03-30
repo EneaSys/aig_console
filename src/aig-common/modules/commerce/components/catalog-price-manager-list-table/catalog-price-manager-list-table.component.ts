@@ -68,10 +68,13 @@ export class AigCatalogPriceManagerListTableComponent extends GenericComponent {
 
     newPriceListItem(priceListDTO: PriceListDTO, catalogItemDTO: CatalogItemDTO): void {
         this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { priceList: priceListDTO, catalogItem: catalogItemDTO } });
-        console.log(priceListDTO);
     }
 
-    newCatalogItem(): void {
-        this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { catalogItem: {} } });
+    editPriceListItem() {
+        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { } });
+    }
+
+    newCatalogItem(staticCatalog: CatalogDTO): void {
+        this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { catalogItem: {}, staticCatalog: staticCatalog } });
     }
 }
