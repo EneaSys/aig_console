@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { BuyerDTO, PurchaseDTO, PurchaseResourceService, SellerDTO } from 'aig-commerce';
+import { BuyerDTO, PurchaseDTO, PurchaseResourceService, SellerDTO, SellerResourceService } from 'aig-commerce';
 import { AigPurchaseNewUpdateFormComponent } from 'aig-common/modules/commerce/components/purchase-new-update-form/purchase-new-update-form.component';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
@@ -19,6 +19,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
   constructor(
     public autocompleteDisplayService: AigAutocompleteDisplayService,
     private purchaseResourceService : PurchaseResourceService,
+    private sellerResourceService : SellerResourceService,
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
@@ -26,19 +27,27 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     aigGenericComponentService: AigGenericComponentService,
   ) { super(aigGenericComponentService) }
 
+  @Input()
+    staticSeller: SellerDTO = null;
+
   filteredSeller: Observable<SellerDTO[]>;
+
+  sellerDTO: SellerDTO;
   
 
   closed: boolean;
 
   loadPage() {
 		this.initPurchaseSearch();
+    /*this.sellerDTO = this.staticSeller;*/
+
     this.showAllPurchase();
 	}
 
 
-	reloadPage() {
+	async reloadPage() {
 		this.showAllPurchase();
+    /*this.sellerDTO = await this.sellerResourceService.getSellerUsingGET(this.staticSeller.id).toPromise();*/
   }
     
 
