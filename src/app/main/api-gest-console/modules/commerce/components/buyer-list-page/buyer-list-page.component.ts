@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { BuyerDTO, BuyerResourceService, EopooDTO, SellerDTO } from 'aig-commerce';
+import { BuyerDTO, BuyerResourceService, EopooDTO, SellerDTO, SellerResourceService } from 'aig-commerce';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
@@ -20,6 +20,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 		public autocompleteDisplayService: AigAutocompleteDisplayService,
 		private commerceAutocompleteService: AigCommerceAutocompleteService,
 		private buyerResourceService: BuyerResourceService,
+		private sellerResourceService: SellerResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
@@ -27,17 +28,27 @@ export class AigBuyerListPageComponent extends GenericComponent {
 	) { super(aigGenericComponentService) }
 
 
+	@Input()
+    staticSeller: SellerDTO = null;
+
 	filteredSeller: Observable<SellerDTO[]>;
+
+	sellerDTO: SellerDTO;
 
 
 	loadPage() {
 		this.initBuyerSearch();
 
+		this.sellerDTO = this.staticSeller;
+
+
 		this.showAllBuyer();
 	}
 
-	reloadPage() {
+	async reloadPage() {
 		this.showAllBuyer();
+
+		this.sellerDTO = await this.sellerResourceService.getSellerUsingGET(this.staticSeller.id).toPromise();
 	}
 
 
@@ -74,7 +85,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 	private clearFiltersBuyer() {
 		this.buyerFilters = {
 			idEquals: null,
-			sellerIdEquals: null,
+			sellerIdEquals: this.staticSeller ? this.staticSeller.id : null,
 			statusNoteContains: null,
 			page: 0,
 		}
