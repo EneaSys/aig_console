@@ -3,6 +3,7 @@ import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
 import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
 
+
 export const ippRoute: Routes = [
     {
         path: 'ipp',
@@ -37,7 +38,7 @@ export const ippRoute: Routes = [
                 ]
             },
             {
-                path: 'lot',
+                path: 'procurement-lot',
                 children: [
                     
                     {
@@ -60,6 +61,8 @@ export const ippRoute: Routes = [
                     },
                 ]
             },
+            
+
         ]
     }
 ]
