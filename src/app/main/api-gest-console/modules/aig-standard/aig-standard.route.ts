@@ -19,7 +19,6 @@ import { AigIppModalityDetailPageComponent } from './components/ipp-modality-det
 import { AigIppProcedureDetailPageComponent } from './components/ipp-procedure-detail-page/ipp-procedure-detail-page.component';
 import { AigIppSectorDetailPageComponent } from './components/ipp-sector-detail-page/ipp-sector-detail-page.component';
 import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
-import { AigRoleDetailPageComponent } from '../management/components/role-detail-page/role-page-detail.component';
 
 import { SocialResolver } from 'aig-common/modules/standard/resolver/social.resolver';
 import { CityResolver } from 'aig-common/modules/standard/resolver/city.resolver';

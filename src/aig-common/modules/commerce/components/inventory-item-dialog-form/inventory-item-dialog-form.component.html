@@ -1,0 +1,50 @@
+<form *ngIf="step.form" [formGroup]="inventoryItemNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Item Name</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Item Code</mat-label>
+            <input formControlName="itemCode" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Produttore</mat-label>
+            <input type="text" matInput formControlName="producer" required [matAutocomplete]="producerAutocomplete">
+            <mat-autocomplete #producerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.producerDisplayFn">
+                <mat-option *ngFor="let producer of filteredProducers | async" [value]="producer">{{ producer.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Categoria</mat-label>
+            <input type="text" matInput formControlName="inventoryCategory" required [matAutocomplete]="inventoryCategoryAutocomplete">
+            <mat-autocomplete #inventoryCategoryAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryCategoryDisplayFn">
+                <mat-option *ngFor="let inventoryCategory of filteredInventoryCategories | async" [value]="inventoryCategory">{{ inventoryCategory.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="inventoryItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!inventoryItem.id" type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ inventoryItemNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">Create New</button>
+</div>

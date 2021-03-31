@@ -3,7 +3,7 @@
     <span *ngIf="error.status == 401">No access to this info</span>
 
     <button (click)="showError = true">.</button>
-    <pre *ngIf="showError">{{showError | json}}</pre>
+    <pre *ngIf="showError">{{ error | json}}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
@@ -27,7 +27,23 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/warehouse/detail/' + e.id">Details</button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/commerce/warehouse/detail/' + e.id">
+                      <mat-icon>details</mat-icon>
+                      <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editWarehouse(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                    <button mat-menu-item (click)="deleteWarehouse(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                  </mat-menu>
             </mat-cell>
         </ng-container>
 

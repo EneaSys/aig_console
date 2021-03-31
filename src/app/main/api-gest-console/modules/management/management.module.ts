@@ -1,38 +1,40 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSnackBarModule, MatTableModule, MatToolbarModule } from "@angular/material";
+import { RouterModule } from "@angular/router";
+import { FuseSidebarModule } from "@fuse/components";
+import { FuseSharedModule } from "@fuse/shared.module";
+import { AigCommonModule } from "aig-common/common.module";
+import { AigCommonManagementModule } from "aig-common/modules/management/common-management.module";
+import { AigManagementApiModule } from "aig-management";
+import { ApiGestModule } from "api-gest";
+import { AigApplicationModuleDetailPageComponent } from "./components/application-module-detail-page/application-module-detail-page.component";
+import { AigApplicationModuleListPageComponent } from "./components/application-module-list-page/application-module-list-page.component";
+import { AigApplicationModuleNewUpdateModalComponent } from "./components/application-module-new-update-modal/application-module-new-update-modal.component";
+import { AigAssociateRoleToPermissionDialogComponent } from "./components/associate-role-premission-dialog/associate-role-premission-dialog.component";
+import { AigContextModuleDetailPageComponent } from "./components/context-module-detail-page/context-module-detail-page.component";
+import { AigContextModuleListPageComponent } from "./components/context-module-list-page/context-module-list-page.component";
+import { AigContextModuleNewUpdateModalComponent } from "./components/context-module-new-update-modal/context-module-new-update-modal.component";
+import { AigContextUserDetailPageComponent } from "./components/context-user-detail-page/context-user-detail-page.component";
+import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-user-list-page.component";
+import { AigContextUserNewUpdateModalComponent } from "./components/context-user-new-update-modal/context-user-new-update-modal.component";
+import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
+import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
+import { AigEntityReferenceNewUpdateModalComponent } from "./components/entity-reference-new-update-modal/entity-reference-new-update-modal.component";
+import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
+import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
+import { AigPermissionNewUpdateModalComponent } from "./components/permission-new-update-modal/permission-new-update-modal.component";
+import { AigPersonalizationDetailPageComponent } from "./components/personalization-detail-page/personalization-detail-page.component";
+import { AigPersonalizationListPageComponent } from "./components/personalization-list-page/personalization-list-page.component";
+import { AigPersonalizationNewUpdateModalComponent } from "./components/personalization-new-update-modal/personalization-new-update-modal.component";
+import { AigRoleDetailPageComponent } from "./components/role-detail-page/role-detail-page.component";
+import { AigRoleListPageComponent } from "./components/role-list-page/role-list-page.component";
+import { AigRoleNewUpdateModalComponent } from "./components/role-new-update-modal/role-new-update-modal.component";
+import { AigTenantContextDetailPageComponent } from "./components/tenant-context-detail-page/tenant-context-detail-page.component";
+import { AigTenantContextListPageComponent } from "./components/tenant-context-list-page/tenant-context-list-page.component";
+import { AigTenantContextNewUpdateModalComponent } from "./components/tenant-context-new-update-modal/tenant-context-new-update-modal.component";
+import { managementRoute } from "./management.route";
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseSidebarModule } from '@fuse/components';
-
-import { ApiGestModule } from 'api-gest';
-
-import { AigManagementHeaderComponent } from './components/management-header/management-header.component';
-import { AigPermissionListPageComponent } from './components/permission-list-page/permission-list-page.component';
-import { AigRoleDetailPageComponent } from './components/role-detail-page/role-page-detail.component';
-import { AigRoleListPageComponent } from './components/role-list-page/role-list-page.component';
-import { AigContextListPageComponent } from './components/context-list-page/context-list-page.component';
-import { AigCommonModule } from 'aig-common/common.module';
-import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
-import { AigPermissionNewDialogComponent } from './components/permission-new-dialog/permission-new-dialog.component';
-import { AigRoleNewDialogComponent } from './components/role-new-dialog/role-new-dialog.component';
-import { AigAssociateRoleToPermissionDialogComponent } from './components/associate-role-premission-dialog/associate-role-premission-dialog.component';
-import { AigTenantContextListPageComponent } from './components/tenant-context-list-page/tenant-context-list-page.component';
-import { RouterModule } from '@angular/router';
-import { managementRoute } from './management.route';
-import { MatPaginatorModule } from '@angular/material';
-import { AigApplicationModuleListPageComponent } from './components/application-module-list-page/application-module-list-page.component';
-
-import { AigContextModuleListPageComponent } from './components/context-module-list-page/context-module-list-page-component';
 
 @NgModule({
     imports: [
@@ -40,6 +42,8 @@ import { AigContextModuleListPageComponent } from './components/context-module-l
 
         AigCommonModule,
         AigCommonManagementModule,
+
+        AigManagementApiModule,
 
         FuseSharedModule,
         FuseSidebarModule,
@@ -59,28 +63,53 @@ import { AigContextModuleListPageComponent } from './components/context-module-l
 		MatPaginatorModule,
     ],
     declarations: [
-        AigManagementHeaderComponent,
-
+    
+        AigApplicationModuleDetailPageComponent,
         AigApplicationModuleListPageComponent,
+        AigApplicationModuleNewUpdateModalComponent,
 
-        AigContextListPageComponent,
-
-        AigPermissionListPageComponent,
-
-        AigRoleListPageComponent,
-        AigRoleDetailPageComponent,
-        
-        AigPermissionNewDialogComponent,
-        AigRoleNewDialogComponent,
-		AigAssociateRoleToPermissionDialogComponent,
-        AigTenantContextListPageComponent,
+        AigContextModuleDetailPageComponent,
         AigContextModuleListPageComponent,
+        AigContextModuleNewUpdateModalComponent,
+
+        AigContextUserDetailPageComponent,
+        AigContextUserListPageComponent,
+        AigContextUserNewUpdateModalComponent,
+        
+        AigEntityReferenceDetailPageComponent,
+        AigEntityReferenceListPageComponent,
+        AigEntityReferenceNewUpdateModalComponent,
+       
+        AigPermissionDetailPageComponent,
+        AigPermissionListPageComponent,
+        AigPermissionNewUpdateModalComponent,
+        
+        AigPersonalizationDetailPageComponent,
+        AigPersonalizationListPageComponent,
+        AigPersonalizationNewUpdateModalComponent,
+
+        AigRoleDetailPageComponent,
+        AigRoleListPageComponent,
+        AigRoleNewUpdateModalComponent,              
+        
+		AigTenantContextDetailPageComponent,
+        AigTenantContextListPageComponent,
+        AigTenantContextNewUpdateModalComponent,       
+
+        AigAssociateRoleToPermissionDialogComponent,
     ],
     exports: [ ],
     providers: [ ],
     entryComponents: [
-        AigPermissionNewDialogComponent,
-        AigRoleNewDialogComponent,
+        AigApplicationModuleNewUpdateModalComponent,
+        AigContextModuleNewUpdateModalComponent,
+        AigContextUserNewUpdateModalComponent,
+        AigEntityReferenceNewUpdateModalComponent,
+        AigPermissionNewUpdateModalComponent,
+        AigPersonalizationNewUpdateModalComponent,
+        AigRoleNewUpdateModalComponent, 
+        AigTenantContextNewUpdateModalComponent,
+
         AigAssociateRoleToPermissionDialogComponent,
     ],
 })

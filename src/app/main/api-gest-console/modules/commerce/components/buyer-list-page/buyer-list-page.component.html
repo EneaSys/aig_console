@@ -1,41 +1,83 @@
 <div class="page-layout simple left-sidebar">
-	<!-- SIDEBAR -->
-	<fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
-		<!-- SIDEBAR CONTENT -->
-		<div class="content">
-			<div>
-				<div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-					<span class="h5">Stati</span>
-				</div>
-				<div class="content py-16" fusePerfectScrollbar>
-					<div class="nav material2">
-						<div class="nav-item" aria-label="inbox">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="buyer-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="content py-16" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <div fxLayout="row" fxLayoutAlign="center top">
+                                <button mat-raised-button (click)="showAllBuyer()">Resetta filtri</button>
+                            </div>
+                            <form [formGroup]="buyerSearchFormGroup" (ngSubmit)="buyerSearchWithFilter()" class="p-8">
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput type="number" formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Eoopo Code</mat-label>
+                                        <input matInput type="text" formControlName="eopooCode">
+                                    </mat-form-field>
+                                </div>
 
-						</div>
-					</div>
-				</div>
-			</div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Venditore</mat-label>
+                                        <input formControlName="seller" matInput
+                                            [matAutocomplete]="sellerAutocomplete">
+                                        <mat-autocomplete #sellerAutocomplete="matAutocomplete"
+                                            [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+                                            <mat-option *ngFor="let seller of filteredSeller | async"
+                                                [value]="seller">{{ seller.name }}</mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
 
-		</div>
-		<!-- / SIDEBAR CONTENT -->
-	</fuse-sidebar>
-	<!-- / SIDEBAR -->
-	<!-- CENTER -->
-	<div class="center">
-		<!-- HEADER -->
-		<div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-			<button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-				(click)="toggleSidebar('purchase-sidebar')">
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Status Note</mat-label>
+                                        <input matInput type="text" formControlName="statusNote">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('buyer-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
-			<h2>Elenco Clienti</h2>
-		</div>
-		<!-- / HEADER -->
-		<!-- CONTENT -->
-		<div class="content mb-48">
-			<aig-buyer-list-table [displayColumns]="buyerDC" [dataSource]="buyerDTOs" [error]="buyerErr"></aig-buyer-list-table>
-		</div>
-		<!-- / CONTENT -->
-	</div>
-	<!-- / CENTER -->
+            <h2>Elenco Clienti</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <aig-buyer-list-table [displayColumns]="buyerDC" [dataSource]="buyerDTOs" [error]="buyerError"></aig-buyer-list-table>
+
+            <mat-paginator #paginator [length]="buyerLength" [pageIndex]="this.buyerFilters.page" [pageSize]="this.buyerPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="buyerPaginationEvent($event)">
+            </mat-paginator>
+
+            <button mat-fab class="accent" id="add-buyer-button" (click)="newBuyer()" aria-label="add buyer">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
 </div>

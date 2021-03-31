@@ -11,6 +11,9 @@
                 <div class="h4 m-8 ml-16">Code: {{ ippModalityDTO.code }}</div>
                 <div class="h4 m-8 ml-16">WikiCode: {{ ippModalityDTO.wikiCode }}</div>
                 <button mat-stroked-button color="primary" (click)="editIppModality(ippModalityDTO)">Edit</button>
+                <button mat-stroked-button color="primary"
+                (click)="deleteIppModality(ippModalityDTO.id)">Delete
+            </button>
             </div>
         </div>
     </div>

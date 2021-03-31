@@ -1,0 +1,44 @@
+<form *ngIf="step.form" [formGroup]="contextModuleNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Active</mat-label>
+            <input name="active" formControlName="active" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="!contextModule.applicationModule" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Application Module</mat-label>
+            <input FormControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
+                <mat-option *ngFor="let applicationModule of filteredApplicationModules| async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Tenant Context</mat-label>
+            <input FormControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
+            <mat-autocomplete #tenantContextAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.tenantContextDisplayFn">
+                <mat-option *ngFor="let tenantContext of filteredTenantContexts| async" [value]="tenantContext">{{ tenantContext.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!contextModule.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="contextModule.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ contextModuleNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!contextModuleNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newContextModule()">Create New</button>
+</div>

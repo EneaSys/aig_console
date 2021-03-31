@@ -34,6 +34,7 @@ import { AigValidatorService } from './services/form/validator.service';
 import { RouterModule } from '@angular/router';
 import { AigUserEopooAssociateFormComponent } from './components/user-eopoo-associate-form/user-eopoo-associate-form.component';
 import { CommonGenericModule } from '../generic/common-generic.module';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -56,7 +57,7 @@ import { CommonGenericModule } from '../generic/common-generic.module';
         MatInputModule,
         MatFormFieldModule,
         MatAutocompleteModule,
-
+        MatMenuModule,
         
 
     ],

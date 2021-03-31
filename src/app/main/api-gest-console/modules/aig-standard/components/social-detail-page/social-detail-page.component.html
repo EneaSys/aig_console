@@ -11,6 +11,9 @@
                 <div class="h4 m-8 ml-16">Code: {{ social.code }}</div>
                 <div class="h4 m-8 ml-16">WikiCode: {{ social.wikiCode }}</div>
                 <button mat-stroked-button color="primary" (click)="editSocial(social)">Edit</button>
+                <button mat-stroked-button color="primary"
+                    (click)="deleteSocial(socialDTO.id)">Delete
+                </button>
             </div>
         </div>
     </div>

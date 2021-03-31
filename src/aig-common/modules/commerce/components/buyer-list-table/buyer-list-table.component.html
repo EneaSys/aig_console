@@ -1,5 +1,9 @@
 <div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <h3>Error!</h3>
     <span *ngIf="error.status == 401">No access to this info</span>
+
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json}}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
@@ -20,6 +24,11 @@
             <mat-cell *matCellDef="let e">{{ e.seller.name }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="eopooCode">
+            <mat-header-cell *matHeaderCellDef> Codice Cliente </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.eopooCode }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="buyer">
             <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.eopoo | eopooName }}</mat-cell>
@@ -35,9 +44,14 @@
             <mat-cell *matCellDef="let e">{{ e.eopoo.taxNumber }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="status">
+        <ng-container matColumnDef="confirmation">
+            <mat-header-cell *matHeaderCellDef> Conferma </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.confirmation }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusNote">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.statusNote | AigC6eGenericStatus }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.statusNote}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="validateButton">

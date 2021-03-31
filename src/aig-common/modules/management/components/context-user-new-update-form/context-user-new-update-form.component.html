@@ -1,0 +1,33 @@
+<form *ngIf="step.form" [formGroup]="contextUserNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>User Code</mat-label>
+            <input name="user-code" formControlName="user-code" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Tenant Context</mat-label>
+            <input FormControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
+            <mat-autocomplete #tenantContextAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.tenantContextDisplayFn">
+                <mat-option *ngFor="let tenantContext of filteredTenantContexts| async" [value]="tenantContext">{{ tenantContext.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!contextUser.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="contextUser.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ contextUserNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!contextUserNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newContextUser()">Create New</button>
+</div>

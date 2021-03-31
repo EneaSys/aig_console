@@ -12,3 +12,4 @@ export class PurchaseResolver implements Resolve<Observable<PurchaseDTO>> {
         return this.purchaseResourceService.getPurchaseUsingGET(id);
     }
 }
+

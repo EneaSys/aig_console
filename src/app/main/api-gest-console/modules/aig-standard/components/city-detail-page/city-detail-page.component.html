@@ -9,6 +9,9 @@
                 <div class="h4 m-8 ml-16">Code: {{ city.code }}</div>
                 <div class="h4 m-8 ml-16">WikiCode: {{ city.wikiCode }}</div>
                 <button mat-stroked-button color="primary" (click)="editCity(city)">Edit</button>
+                <button mat-stroked-button color="primary"
+                    (click)="deleteCity(cityDTO.id)">Delete
+                </button>
             </div>
         </div>
     </div>

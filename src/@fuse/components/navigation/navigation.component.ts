@@ -45,9 +45,15 @@ export class FuseNavigationComponent implements OnInit
      */
     ngOnInit(): void
     {
+		let customNavigation: boolean = this.navigation ? true : false;
+
         // Load the navigation either from the input or from the service
         this.navigation = this.navigation || this._fuseNavigationService.getCurrentNavigation();
 
+		if(customNavigation) {
+			return;
+		}
+		
         // Subscribe to the current navigation changes
         this._fuseNavigationService.onNavigationChanged
             .pipe(takeUntil(this._unsubscribeAll))

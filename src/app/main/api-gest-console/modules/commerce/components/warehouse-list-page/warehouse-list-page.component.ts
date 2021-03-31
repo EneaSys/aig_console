@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigWarehouseNewUpdateModalComponent } from '../warehouse-new-update-modal/warehouse-new-update-modal.component';
 
 @Component({
 	selector: 'aig-warehouse-list-page',
@@ -35,7 +36,7 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 //			---- WAREHOUSE TABLE AND SEARCH SECTION ----
 
 	warehouseSearchFormGroup: FormGroup;
-	warehousePagination: any;
+	warehousePaginationSize: number;
 	warehouseFilters: any;
 
 	warehouseLength: number;
@@ -48,10 +49,8 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 	private initWarehouseSearch() {
 		this.warehouseDC = ["id", "name", "buttons"];
 
-		this.warehousePagination = {
-			page: 0,
-			size: 10,
-		}
+		this.warehousePaginationSize = 10;
+		
 
 		this.warehouseSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -61,16 +60,20 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 
 	private clearFiltersWarehouse() {
 		this.warehouseFilters = {
-			id: null,
-			name: null,
+			idEquals: null,
+			nameContains: null,
+			page: 0,
 		}
 	}
 
 	private async searchWarehouse(page: number) {
-		this.warehousePagination.page = page;
 		this.warehouseDTOs = null;
+
+		this.warehouseFilters.page = page;
+		this.warehouseFilters.size = this.warehousePaginationSize;
+
 		try {                                                                       
-			this.warehouseLength = await this.warehouseResourceService.countWarehousesUsingGET(this.warehouseFilters.id,null,null,null,null,null,null,null,null,this.warehouseFilters.name).toPromise();  
+			this.warehouseLength = await this.warehouseResourceService.countWarehousesUsingGET(this.warehouseFilters).toPromise();  
 			
 			if(this.warehouseLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -78,7 +81,7 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.warehouseDTOs = await this.warehouseResourceService.getAllWarehousesUsingGET(this.warehouseFilters.id,null,null,null,null,null,null,null,null,this.warehouseFilters.name,null,null,null,null,null,null,this.warehousePagination.page,this.warehousePagination.size).toPromise();
+			this.warehouseDTOs = await this.warehouseResourceService.getAllWarehousesUsingGET(this.warehouseFilters).toPromise();
 		} catch (e) {
 			this.warehouseError = e;
 		}
@@ -86,17 +89,19 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 	
 
 	showAllWarehouse() {
-		this.clearFiltersWarehouse();
-		this.searchWarehouse(0);
+		this.resetFiltersWarehouse();
+		
 	}
 
-	resetFiltersTenantContext() {
+	resetFiltersWarehouse() {
 		this.warehouseSearchFormGroup.reset();
-		this.showAllWarehouse();
+		this.clearFiltersWarehouse();
+		this.searchWarehouse(0);
+
 	}
 
 	warehousePaginationEvent(pageEvent: PageEvent) {
-		this.warehousePagination.size = pageEvent.pageSize;
+		this.warehousePaginationSize = pageEvent.pageSize;
 		this.searchWarehouse(pageEvent.pageIndex);
 	}
 
@@ -106,15 +111,23 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersWarehouse();
 			this.warehouseSearchFormGroup.reset();
-			this.warehouseFilters.id = searchedId;
+			this.warehouseFilters.idEquals = searchedId;
 			this.searchWarehouse(0);
 			return;
 		}
+		this.warehouseFilters.idEquals = null;
 
-		this.warehouseFilters.name = this.warehouseSearchFormGroup.controls.name.value;
+		this.warehouseFilters.nameContains = this.warehouseSearchFormGroup.controls.name.value;
 
 		this.searchWarehouse(0);
 	}
+
+	//			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
+
+	newWarehouse(): void {
+        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { warehouse: {} } });
+    }
+
 	
 }
 

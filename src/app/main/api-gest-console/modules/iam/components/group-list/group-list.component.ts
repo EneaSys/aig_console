@@ -16,7 +16,7 @@ export class AigGroupListComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    displayedColumns: string[] = ['id', 'name', 'buttons'];
+    displayColumns: string[] = ['id', 'name', 'buttons'];
     contextGroupDataSource: ContextGroupDTO[];
     error: any;
 

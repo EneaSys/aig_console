@@ -10,6 +10,9 @@
                 <div class="h4 m-8 ml-16">Code: {{ ippSector.code }}</div>
                 <div class="h4 m-8 ml-16">WikiCode: {{ ippSector.wikiCode }}</div>
                 <button mat-stroked-button color="primary" (click)="editIppSector(ippSector)">Edit</button>
+                <button mat-stroked-button color="primary"
+                (click)="deleteIppSector(ippSector.id)">Delete
+            </button>
             </div>
         </div>
     </div>

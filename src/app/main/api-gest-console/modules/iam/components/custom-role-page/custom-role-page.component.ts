@@ -16,7 +16,7 @@ export class AigCustomRolePageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    roleCustomDisplayedColumns: string[] = ['id', 'name', 'buttons'];
+    roleCustomDisplayColumns: string[] = ['id', 'name', 'buttons'];
     roleCustomDataSource: CustomRoleDTO[];
     error: any;
 

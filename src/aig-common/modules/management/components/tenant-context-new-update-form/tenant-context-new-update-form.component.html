@@ -1,0 +1,36 @@
+<form *ngIf="step.form" [formGroup]="tenantContextNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input name="name" formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Context Code</mat-label>
+            <input name="contextCode" formControlName="contextCode" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name Database</mat-label>
+            <input name="nameDatabase" formControlName="nameDatabase" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ tenantContextNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!tenantContextNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newTenantContext()">Create New</button>
+</div>

@@ -1,0 +1,14 @@
+<div id="aig-personalization-detail-page" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+                <pre>{{ personalizationDTO | json }}</pre>
+
+                <button mat-stroked-button color="primary" (click)="editPersonalization(personalizationDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deletePersonalization(personalizationDTO.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

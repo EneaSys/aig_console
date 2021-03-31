@@ -1,12 +1,9 @@
 <div class="page-layout simple left-sidebar">
     <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="purchase-sidebar" position="left" lockedOpen="gt-md">
+    <fuse-sidebar class="sidebar" name="warehouse-sidebar" position="left" lockedOpen="gt-md">
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
-                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="h5">Filtri</span>
-                </div>
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
@@ -39,6 +36,7 @@
         <!-- / SIDEBAR CONTENT -->
     </fuse-sidebar>
     <!-- / SIDEBAR -->
+
     <!-- CENTER -->
     <div class="center">
         <!-- HEADER -->
@@ -53,10 +51,15 @@
         <div class="content mb-48">
             <aig-warehouse-list-table [displayColumns]="warehouseDC" [dataSource]="warehouseDTOs" [error]="warehouseError"></aig-warehouse-list-table>
 
-            <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" [pageSizeOptions]="[10, 30, 50]" (page)="paginationEvent($event)">
+            <mat-paginator #paginator [length]="warehouseLength" [pageIndex]="this.warehouseFilters.page" [pageSize]="this.warehousePaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="warehousePaginationEvent($event)">
             </mat-paginator>
+
+            <button mat-fab class="accent" id="add-warehouse-button" (click)="newWarehouse()" aria-label="add warehouse">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
         <!-- / CONTENT -->
     </div>
     <!-- / CENTER -->
+
 </div>

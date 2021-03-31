@@ -1,0 +1,35 @@
+<form *ngIf="step.form" [formGroup]="entityReferenceNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+
+    <div *ngIf="!entityReference.applicationModule" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Application Module</mat-label>
+            <input formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
+                <mat-option *ngFor="let applicationModule of filteredApplicationModules | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!entityReference.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="entityReference.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ entityReferenceNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!entityReferenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEntityReference()">Create New</button>
+</div>

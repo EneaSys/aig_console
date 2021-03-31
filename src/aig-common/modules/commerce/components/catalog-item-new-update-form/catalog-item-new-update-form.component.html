@@ -1,0 +1,40 @@
+<form *ngIf="step.form" [formGroup]="catalogItemNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-slide-toggle formControlName="active" matInput >Active</mat-slide-toggle>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Inventory Item Combination</mat-label>
+            <input formControlName="inventoryItemCombination" matInput required [matAutocomplete]="inventoryItemCombinationAutocomplete">
+            <mat-autocomplete #inventoryItemCombinationAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemCombinationDisplayFn">
+                <mat-option *ngFor="let inventoryItemCombination of filteredInventoryItemCombination | async" [value]="inventoryItemCombination">{{ inventoryItemCombination.inventoryItem.name }} - {{inventoryItemCombination.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!staticCatalog">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Catalog</mat-label>
+            <input formControlName="catalog" matInput required [matAutocomplete]="catalogAutocomplete">
+            <mat-autocomplete #catalogAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.catalogDisplayFn">
+                <mat-option *ngFor="let catalog of filteredCatalog | async" [value]="catalog">{{ catalog.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!catalogItem.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="catalogItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ catalogItemNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!catalogItemNewUpdateForm.value.inventoryItemCombination.id" mat-stroked-button color="primary" (click)="newCatalogItem()">Crea nuova</button>
+</div>

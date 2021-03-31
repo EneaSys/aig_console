@@ -3,9 +3,12 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO } from 'aig-commerce';
+import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO, PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
+import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
+
 
 @Component({
+    selector: 'aig-purchase-detail-page',
     templateUrl: './purchase-detail-page.component.html',
     styleUrls: ['./purchase-detail-page.component.scss']
 })
@@ -14,55 +17,78 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
         private purchaseResourceService: PurchaseResourceService,
         private fiscalTransactionResourceService: FiscalTransactionResourceService,
         private paymentResourceService: PaymentResourceService,
-        private valuePaperPaymentResourceService: ValuePaperPaymentResourceService,
-        private valuePaperPaymentItemResourceService: ValuePaperPaymentItemResourceService,
+        private purchaseItemResourceService: PurchaseItemResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    purchase: PurchaseDTO;
-    
-    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
-    fiscalTransactionDTOs: FiscalTransactionDTO[];
-    fiscalTransactionError: any;
-
-    valuePaperPaymentItemDTOs: ValuePaperPaymentItemDTO[];
+    purchaseDTO: PurchaseDTO;
 
     loadPage() {
-        this.purchase = this.route.snapshot.data.purchase;
+        this.purchaseDTO = this.route.snapshot.data.purchase;
         this.loadOther();
     }
 
     async reloadPage() {
-        this.purchase = await this.purchaseResourceService.getPurchaseUsingGET(this.purchase.id).toPromise();
+        this.purchaseDTO = await this.purchaseResourceService.getPurchaseUsingGET(this.purchaseDTO.id).toPromise();
         this.loadOther();
     }
 
     async loadOther() {
         this.loadFiscalTransactions();
         this.loadPayments();
+        this.loadPurchaseItem();
     }
 
+    editPurchase(purchaseDTO: PurchaseDTO) {
+		this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: purchaseDTO } });
+    }
+
+    
+
+    fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
+    fiscalTransactionDTOs: FiscalTransactionDTO[];
+    fiscalTransactionError: any;
     async loadFiscalTransactions() {
+        let filters = {
+            idEquals : this.purchaseDTO.id
+        }; 
         try {
-            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
+            this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(filters).toPromise();
         } catch(e) {
             this.fiscalTransactionError = e;
         }
     }
 
+    paymentDTOs: PaymentDTO[];
+    paymentDC: string[] = ["id","amount"];
+    paymentError: any;
+
     async loadPayments() {
-        let paymentDTOs: PaymentDTO[] = await this.paymentResourceService.getAllPaymentsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.purchase.id,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-        let valuePaperPaymentIds: number[] = [];
-        paymentDTOs.forEach((paymentDTO: PaymentDTO) => {
-            valuePaperPaymentIds.push(paymentDTO.valuePaperPaymentId);
-        });
-        this.valuePaperPaymentItemDTOs = await this.valuePaperPaymentItemResourceService.getAllValuePaperPaymentItemsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,valuePaperPaymentIds).toPromise();
+        let filters = {
+            purchaseIdEquals: this.purchaseDTO.id,
+        };
+        try {
+            this.paymentDTOs = await this.paymentResourceService.getAllPaymentsUsingGET(filters).toPromise();
+        } catch(e) {
+            this.paymentError = e;
+        }
+
     }
 
+    purchaseItemDTOs: PurchaseItemDTO[];
+    purchaseItemDC: string[] = ["id", "inventoryItemCombination", "price", "quantity", "tax", "warehouseHandlingItem", "buttons"];
+    purchaseItemError: any;
 
-    afterLoad() {
-
+    async loadPurchaseItem() {
+        let filters = {
+            purchaseIdEquals: this.purchaseDTO.id,
+        };
+        try {
+            this.purchaseItemDTOs = await this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filters).toPromise();
+        } catch(e) {
+            this.purchaseItemError = e;
+        }
     }
 }

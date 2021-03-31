@@ -6,18 +6,16 @@ import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 
 import { FuseConfigService } from '@fuse/services/config.service';
-import { FuseNavigationService } from '@fuse/components/navigation/navigation.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
-import { FuseSplashScreenService } from '@fuse/services/splash-screen.service';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 
-import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
+import { locale as navigationItalian } from 'app/navigation/i18n/it';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
+
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 import { EventService, EsEvent } from 'aig-common/event-manager/event.service';
-import { AigModuleNavigationService } from './main/api-gest-console/navigation/navigation.service';
 
 @Component({
     selector: 'app',
@@ -56,13 +54,13 @@ export class AppComponent implements OnInit, OnDestroy {
         private location: Location,
     ) {
         // Add languages
-        this._translateService.addLangs(['en', 'it']);
+        this._translateService.addLangs(['en', 'it', 'tr']);
 
         // Set the default language
         this._translateService.setDefaultLang('en');
 
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
+        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationItalian, navigationTurkish);
 
         // Use a language
         this._translateService.use('en');

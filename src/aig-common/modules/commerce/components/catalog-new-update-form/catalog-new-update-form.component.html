@@ -1,0 +1,33 @@
+<form *ngIf="step.form" [formGroup]="catalogNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nome</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Seller</mat-label>
+            <input formControlName="seller" matInput [matAutocomplete]="sellerAutocomplete" required>
+            <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+                <mat-option *ngFor="let seller of filteredSeller | async" [value]="seller">{{ seller.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!catalog.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="catalog.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ catalogNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!catalogNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newCatalog()">Crea nuova</button>
+</div>

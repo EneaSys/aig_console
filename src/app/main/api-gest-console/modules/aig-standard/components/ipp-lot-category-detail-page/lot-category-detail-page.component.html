@@ -10,6 +10,9 @@
                 <div class="h4 m-8 ml-16">Code: {{ ippLotCategoryDTO.code }}</div>
                 <div class="h4 m-8 ml-16">WikiCode: {{ ippLotCategoryDTO.wikiCode }}</div>
                 <button mat-stroked-button color="primary" (click)="editIppLotCategory(ippLotCategoryDTO)">Edit</button>
+                <button mat-stroked-button color="primary"
+                (click)="deleteIppLotCategory(ippLotCategory.id)">Delete
+            </button>
             </div>
         </div>
     </div>

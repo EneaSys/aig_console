@@ -1,0 +1,14 @@
+<div id="aig-social-detail-page" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card p-16">
+                <div class="h4 m-16 mt-0 mb-0">Combinazioni categorie inventario</div>
+                
+                <p>{{ inventoryItemCombinationDTO.inventoryItem.name}} {{inventoryItemCombinationDTO.name}}</p>
+                <button mat-stroked-button color="primary" (click)="editInventoryItemCombination(inventoryItemCombinationDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteInventoryItemCombination(inventoryItemCombinationDTO.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

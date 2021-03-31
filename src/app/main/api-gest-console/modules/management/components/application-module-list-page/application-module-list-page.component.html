@@ -4,9 +4,6 @@
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
-                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="h5">Filtri</span>
-                </div>
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
@@ -53,8 +50,12 @@
         <div class="content mb-48">
             <aig-application-module-list-table [displayColumns]="applicationModuleDC" [dataSource]="applicationModuleDTOs" [error]="applicationModuleError"></aig-application-module-list-table>
 
-            <mat-paginator #paginator [length]="length" [pageIndex]="page" [pageSize]="size" [pageSizeOptions]="[10, 30, 50]" (page)="paginationEvent($event)">
+            <mat-paginator #paginator [length]="applicationModuleLength" [pageIndex]="this.applicationModuleFilters.page" [pageSize]="this.applicationModulePaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="applicationModulePaginationEvent($event)">
             </mat-paginator>
+
+            <button mat-fab class="accent" id="add-application-module-button" (click)="newApplicationModule()" aria-label="add application-module">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
         <!-- / CONTENT -->
     </div>
