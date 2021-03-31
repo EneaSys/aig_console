@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { InventoryItemDTO } from 'aig-commerce';
 
 
@@ -10,15 +9,10 @@ import { InventoryItemDTO } from 'aig-commerce';
 })
 export class AigEntityDetailInventoryItemComponent implements OnInit {
     constructor(
-        private route: ActivatedRoute,
     ) { }
-    ngOnInit(): void {
-        this.loadPage();
-    }
+    ngOnInit(): void {}
 
+    @Input()
     inventoryItemDTO: InventoryItemDTO;
 
-    loadPage() {
-        this.inventoryItemDTO = this.route.snapshot.data.inventoryItem;
-    }
 }
