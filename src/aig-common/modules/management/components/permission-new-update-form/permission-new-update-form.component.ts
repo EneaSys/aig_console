@@ -36,14 +36,13 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
     permissionNewUpdateForm: FormGroup;
 
 	filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
-    filteredRoles: Observable<RoleDTO[]>;
 
     ngOnInit(): void {
         this.permissionNewUpdateForm = this._formBuilder.group({
+            id: [''],
             name: ['', Validators.required],
             permissionCode: ['', Validators.required],
             applicationModule: ['', Validators.required],
-            role: ['', Validators.required],
         });
 
         if (this.permission != null) {
@@ -51,7 +50,6 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
         }
 
 		this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.permissionNewUpdateForm.controls['applicationModule'].valueChanges);
-        this.filteredRoles = this.managementAutocompleteFilterService.roleFilter(this.permissionNewUpdateForm.controls['role'].valueChanges);
     }
 
     async submit() {
@@ -62,14 +60,9 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
     
-        let permission: PermissionDTO = {
-            id: this.permissionNewUpdateForm.value.id,
-            name: this.permissionNewUpdateForm.value.name,
-            moduleId: this.permissionNewUpdateForm.value.module.id, 
-            moduleName: this.permissionNewUpdateForm.value.module.name,
-            permissionCode: this.permissionNewUpdateForm.value.permission.code,   
-        }; 
-
+        let permission: PermissionDTO = this.permissionNewUpdateForm.value;
+        permission.moduleId = this.permissionNewUpdateForm.value.applicationModule.id;
+        
         try {
             let postOrPut;
             if (permission.id != 0) {

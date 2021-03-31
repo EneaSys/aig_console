@@ -78,6 +78,7 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
 import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
 import { AigCatalogPriceManagerListTableComponent } from './components/catalog-price-manager-list-table/catalog-price-manager-list-table.component';
 import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-combination.resolver';
+import { AigEntityDetailInventoryItemComponent } from './components/entity-detail-inventory-item/entity-detail-inventory-item.component';
 
 @NgModule({
     imports: [
@@ -154,6 +155,7 @@ import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-c
         AigWarehouseHandlingFormComplexComponent,
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,
+        AigEntityDetailInventoryItemComponent,
         
         
     ],
@@ -220,6 +222,8 @@ import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-c
         AigWarehouseHandlingItemNewUpdateFormComponent,
         
         AigPurchaseComplexFormComponent,
+
+        AigEntityDetailInventoryItemComponent,
     ],
 })
 export class AigCommonCommerceModule {}
