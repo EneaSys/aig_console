@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { aigStandardRoute } from './aig-standard.route';
 import { AigStandardClientModule } from 'aig-standard';
@@ -48,10 +49,13 @@ import { AigIppSectorDetailPageComponent } from './components/ipp-sector-detail-
 import { AigIppSectorNewUpdateModalComponent } from './components/ipp-sector-new-update-modal/ipp-sector-new-update-modal.component';
 import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
 import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-category-new-update-modal/lot-category-new-update-modal.component';
+import { AigStandardCustomListPageComponent } from './components/standard-custom-list-page/standard-custom-list-page.component';
 
 @NgModule({
     declarations: [
         AigStandardHeaderComponent,
+
+        AigStandardCustomListPageComponent,
 
         AigCityListPageComponent,
         AigCityDetailPageComponent,
@@ -109,6 +113,7 @@ import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-cate
         MatFormFieldModule,
         MatInputModule,
         MatPaginatorModule,
+        MatTabsModule,
     ],
     exports: [],
     providers: [],

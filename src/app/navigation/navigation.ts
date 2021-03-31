@@ -111,6 +111,21 @@ export const navigation: FuseNavigation[] = [
             },
         ]
     },
+    {
+        id       : 'pd',
+        title    : 'Public database',
+        type     : 'group',
+        children : [
+            {
+                id       : 'standard-custom',
+                title    : 'Standard custom page',
+                type     : 'item',
+                icon     : 'view_carousel',
+                url      : '/s6d/standard-custom',
+                permission: ['c6e.admin'],
+            }
+        ]
+    },
 	{
         id       : 'temp',
         title    : 'Temporanei',

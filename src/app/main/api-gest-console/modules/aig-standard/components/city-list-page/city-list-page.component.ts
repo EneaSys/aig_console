@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 
 @Component({
+	selector: 'aig-city-list-page',
     templateUrl: './city-list-page.component.html',
     styleUrls: ['./city-list-page.component.scss']
 })
@@ -24,8 +25,6 @@ export class AigCityListPageComponent extends GenericComponent {
 		this.initCitySearch();
 
 		this.showAllCity();
-
-		this.citySearchFormGroup.reset();
 	}
 
 	reloadPage() {
@@ -34,21 +33,19 @@ export class AigCityListPageComponent extends GenericComponent {
 
     //			---- CITY TABLE AND SEARCH SECTION ----
     
-    citySearchFormGroup: FormGroup;
-	cityPagination: any;
-	cityFilters: any;
-
-	cityLength: number;
 	cityDTOs: CityDTO[];
+    cityDC: string[];
 	cityError: any;
 
-    cityDC: string[];
+    citySearchFormGroup: FormGroup;
+	cityFilters: any;
+
+	cityPaginationSize: number;
+	cityLength: number;
+
     
     private initCitySearch() {
-		this.cityPagination = {
-			size: 10,
-			page: 0,
-		}
+		this.cityPaginationSize = 10;
 
 		this.citySearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -61,17 +58,21 @@ export class AigCityListPageComponent extends GenericComponent {
     
     private clearFiltersCity() {
 		this.cityFilters = {
-			id: null,
-			name: null,
-			code: null,
+			idEquals: null,
+			nameContains: null,
+			codeEquals: null,
+			page: 0,
 		}
     }
     
     private async searchCity(page: number) {
-		this.cityPagination.page = page;
 		this.cityDTOs = null;
+
+		this.cityFilters.page = page;
+		this.cityFilters.size = this.cityPaginationSize;
+
 		try {
-			this.cityLength = await this.cityResourceService.countCitiesUsingGET(null,null,this.cityFilters.code,null,null,null,this.cityFilters.id,null,null,null,null,null,null,null,this.cityFilters.name,null,null,null,null,null,null,null,null,null,null,null,null,).toPromise();
+			this.cityLength = await this.cityResourceService.countCitiesUsingGET(null, null, this.cityFilters.codeEquals, null, null, null, this.cityFilters.idEquals, null, null, null, null, null, null, null, this.cityFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
 
 			if(this.cityLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -79,24 +80,24 @@ export class AigCityListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.cityDTOs = await this.cityResourceService.getAllCitiesUsingGET(null,null,this.cityFilters.code,null,null,null,this.cityFilters.id,null,null,null,null,null,null,null,this.cityFilters.name,null,null,null,null,null,this.cityPagination.page,this.cityPagination.size,null,null,null,null,null,null,null,null,).toPromise();
+			this.cityDTOs = await this.cityResourceService.getAllCitiesUsingGET(null, null, this.cityFilters.codeEquals, null, null, null, this.cityFilters.idEquals, null, null, null, null, null, null, null, this.cityFilters.nameContains, null, null, null, null, null, this.cityFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
 		} catch (e) {
 			this.cityError = e;
 		}
     }
     
     showAllCity() {
-		this.clearFiltersCity();
-		this.searchCity(0);
+		this.resetFiltersCity()
     }
     
     resetFiltersCity() {
 		this.citySearchFormGroup.reset();
-		this.showAllCity();
+		this.clearFiltersCity();
+		this.searchCity(0);
     }
     
     cityPaginationEvent(pageEvent: PageEvent) {
-		this.cityPagination.size = pageEvent.pageSize;
+		this.cityPaginationSize = pageEvent.pageSize;
 		this.searchCity(pageEvent.pageIndex);
 	}
 
@@ -106,14 +107,14 @@ export class AigCityListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersCity();
 			this.citySearchFormGroup.reset();
-			this.cityFilters.id = searchedId;
+			this.cityFilters.idEquals = searchedId;
 			this.searchCity(0);
 			return;
 		}
 
-		this.cityFilters.name = this.citySearchFormGroup.controls.name.value;
+		this.cityFilters.idEquals = null;
 
-		this.cityFilters.code = this.citySearchFormGroup.controls.code.value;
+		this.cityFilters.nameContains = this.citySearchFormGroup.controls.name.value;
 
 		this.searchCity(0);
 	}
