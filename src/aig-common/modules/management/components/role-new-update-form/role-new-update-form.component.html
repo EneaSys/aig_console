@@ -3,26 +3,15 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Name</mat-label>
-            <input name="name" formControlName="name" matInput required>
+            <input formControlName="name" matInput required>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Role Code</mat-label>
-            <input name="roleCode" formControlName="roleCode" matInput required>
+            <input formControlName="roleCode" matInput required>
         </mat-form-field>
-    </div>
-
-    <div *ngIf="!role.permission" fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Permission</mat-label>
-            <input FormControlName="permission" matInput required [matAutocomplete]="permissionAutocomplete">
-            <mat-autocomplete #permissionAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.permissionDisplayFn">
-                <mat-option *ngFor="let permission of filteredPermissions| async" [value]="permission">{{ permission.name }}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">

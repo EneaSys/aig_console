@@ -111,85 +111,12 @@ export const navigation: FuseNavigation[] = [
             },
         ]
     },
-	{
-        id       : 'temp',
-        title    : 'Temporanei',
-        type     : 'group',
-        children : [
-            {
-                id       : 'price-list-item',
-                title    : 'Price list item',
-                type     : 'item',
-                icon     : 'person_pin_circle',
-                url      : '/commerce/price-list-item',
-                permission: ['c6e.admin'],
-            },
-			{
-                id       : 'buyer',
-                title    : 'Clienti - seller manager',
-                type     : 'item',
-                icon     : 'person_pin_circle',
-                url      : '/commerce/buyer',
-                permission: ['c6e.admin'],
-            },
-            {
-                id       : 'purchase',
-                title    : 'Vendite - seller manager',
-                type     : 'item',
-                icon     : 'shopping_bag',
-                url      : '/commerce/purchase',
-                permission: ['c6e.admin'],
-            },
-            {
-                id       : 'purchase-item',
-                title    : 'Purchase item - seller manager - purchase',
-                type     : 'item',
-                icon     : 'shopping_bag',
-                url      : '/commerce/purchase-item',
-                permission: ['c6e.admin'],
-            },
-			{
-				id       : 'fiscal-transaction-list-page',
-				title    : 'Transazioni Fiscali  - seller manager - purchase',
-				type     : 'item',
-				icon     : 'how_to_reg',
-				url      : '/commerce/fiscal-transaction',
-				permission: ['c6e.admin'],
-			},
-            {
-                id       : 'warehouse-handling-item',
-                title    : 'Warehouse Handling',
-                type     : 'item',
-                icon     : 'euro_symbol',
-                url      : '/commerce/warehouse-handling-item',
-                permission: ['c6e.admin'],
-            },
-            /*{
-                id       : 'price-list-item',
-                title    : 'Price list item',
-                type     : 'item',
-                icon     : 'euro_symbol',
-                url      : '/commerce/price-list-item',
-                permission: ['c6e.admin'],
-            },*/
-            {
-                id       : 'catalog-item',
-                title    : 'Catalog item',
-                type     : 'item',
-                icon     : 'euro_symbol',
-                url      : '/commerce/catalog-item',
-                permission: ['c6e.admin'],
-            },
-            {
-                id       : 'payement-list-page',
-                title    : 'Pagamenti',
-                type     : 'item',
-                icon     : 'euro_symbol',
-                url      : '/commerce/payement',
-                permission: ['c6e.admin'],
-            },
-        ]
-    },
+
+
+
+
+
+    
 ];
 
 
