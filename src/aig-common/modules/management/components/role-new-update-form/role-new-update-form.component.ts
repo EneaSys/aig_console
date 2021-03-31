@@ -25,32 +25,28 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private _formBuilder: FormBuilder,
         private eventService: EventService,
-        private _fuseProgressBarService: FuseProgressBarService,       
+        private _fuseProgressBarService: FuseProgressBarService,
         private roleResourceService: RoleResourceService,
         private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
         public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
- ) { }
+    ) { }
 
- @Input()
- role: RoleDTO;
+    @Input()
+    role: RoleDTO;
 
- roleNewUpdateForm: FormGroup;
-
- filteredPermissions: Observable<PermissionDTO[]>;
+    roleNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.roleNewUpdateForm = this._formBuilder.group({
+            id: [''],
             name: ['', Validators.required],
             roleCode: ['', Validators.required],
-            permission: ['', Validators.required],
         })
 
         if (this.role != null) {
             this.roleNewUpdateForm.patchValue(this.role);
-        }    
+        }
 
-        this.filteredPermissions = this.managementAutocompleteFilterService.permissionFilter(this.roleNewUpdateForm.controls['permission'].valueChanges);
-         
     }
 
     async submit() {
@@ -60,14 +56,10 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let role: RoleDTO = {
-            id: this.roleNewUpdateForm.value.id,
-            name: this.roleNewUpdateForm.value.name,
-            roleCode: this.roleNewUpdateForm.value.role.code,         
-        }; 
+        let role: RoleDTO = this.roleNewUpdateForm.value;
         try {
             let postOrPut;
-            if ( role.id != 0) {
+            if (role.id != 0) {
                 await this.roleResourceService.updateRoleUsingPUT(role).toPromise();
                 postOrPut = "updated";
             } else {
@@ -90,7 +82,7 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(step: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
