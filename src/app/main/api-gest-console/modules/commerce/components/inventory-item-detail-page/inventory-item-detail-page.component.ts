@@ -3,6 +3,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemCombinationResourceService, InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
+import { EventService } from 'aig-common/event-manager/event.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigInventoryItemCombinationNewUpdateDialogComponent } from '../inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
@@ -23,6 +24,7 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
         private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
+        private eventService: EventService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
