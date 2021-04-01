@@ -1,13 +1,38 @@
 <div id="aig-social-detail-page" class="page-layout blank">
+
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
         <div class="widget p-16" fxFlex.gt-sm="50">
+
             <div class="fuse-card auto-width p-16">
 
                 <pre>{{ sellerDTO | json }}</pre>
 
                 <button mat-stroked-button color="primary" (click)="editSeller(sellerDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteSeller(sellerDTO.id)">Delete</button>
+
             </div>
+
+            <br>
+
+            <div class="fuse-card auto-width p-16">
+
+                <aig-catalog-list-table [displayColumns]="catalogDC" [dataSource]="catalogDTOs" [error]="catalogError">
+                </aig-catalog-list-table>
+
+            </div>
+
+            <br>
+
+            <div class="fuse-card auto-width p-16">
+
+                <aig-buyer-list-table [displayColumns]="buyerDC" [dataSource]="buyerDTOs" [error]="buyerError">
+                </aig-buyer-list-table>
+
+            </div>
+
         </div>
+
     </div>
+
 </div>
