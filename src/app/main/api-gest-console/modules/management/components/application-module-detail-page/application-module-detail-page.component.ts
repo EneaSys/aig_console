@@ -21,7 +21,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
 		private _fuseProgressBarService: FuseProgressBarService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
-        ) { super(aigGenericComponentService) }
+    ) { super(aigGenericComponentService) }
 
 	applicationModuleDTO: ApplicationModuleDTO;
 
