@@ -15,8 +15,12 @@
 
             <br>
 
-            <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC"
-                [error]="inventoryItemError"></aig-inventory-item-list-table>
+            <div class="fuse-card auto-width p-16">
+
+                <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC"
+                    [error]="inventoryItemError"></aig-inventory-item-list-table>
+
+            </div>
 
         </div>
 

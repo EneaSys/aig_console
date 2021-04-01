@@ -59,7 +59,7 @@ export class AigProducerDetailPageComponent extends GenericComponent {
 		this._fuseProgressBarService.hide();
 	}
 
-	inventoryItemDC: string[] = ["id", "inventoryCategoryName", "name", "buttons",];
+	inventoryItemDC: string[] = ["id", "inventoryCategoryName", "name", "buttons"];
 	inventoryItemDTOs: InventoryItemDTO[];
 	inventoryItemError: any;
 	async loadInventoryItem() {
