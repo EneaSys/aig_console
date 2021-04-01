@@ -179,14 +179,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/commerce/warehouse-handling-item',
                 permission: ['c6e.admin'],
             },
-            /*{
-                id       : 'price-list-item',
-                title    : 'Price list item',
-                type     : 'item',
-                icon     : 'euro_symbol',
-                url      : '/commerce/price-list-item',
-                permission: ['c6e.admin'],
-            },*/
             {
                 id       : 'catalog-item',
                 title    : 'Catalog item',
@@ -201,6 +193,14 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'euro_symbol',
                 url      : '/commerce/payement',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'inventory-item-combination-list-page',
+                title    : 'Inventory item combination',
+                type     : 'item',
+                icon     : 'euro_symbol',
+                url      : '/commerce/inventory-item-combination',
                 permission: ['c6e.admin'],
             },
         ]
