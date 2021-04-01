@@ -1,6 +1,9 @@
 <div id="aig-social-detail-page" class="page-layout blank">
+
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
         <div class="widget p-16" fxFlex.gt-sm="50">
+
             <div class="fuse-card auto-width p-16">
 
                 <pre>{{ warehouseDTO | json }}</pre>
@@ -9,6 +12,17 @@
                 <button mat-stroked-button color="primary" (click)="deleteWarehouse(warehouseDTO.id)">Delete</button>
 
             </div>
+
+            <br>
+
+            <div class="fuse-card auto-width p-16">
+                <aig-warehouse-handling-list-table [displayColumns]="warehouseHandlingDC"
+                    [dataSource]="warehouseHandlingDTOs" [error]="warehouseHandlingError">
+                </aig-warehouse-handling-list-table>
+            </div>
+
         </div>
+
     </div>
+
 </div>
