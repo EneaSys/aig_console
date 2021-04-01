@@ -69,12 +69,14 @@ export class AigWarehouseDetailPageComponent extends GenericComponent {
   warehouseHandlingDTOs: WarehouseHandlingDTO[];
   warehouseHandlingError: any;
   async loadWarehouseHandling() {
-    let filters = {
-      /*warehouseToLoadIdEquals: this.warehouseDTO.id,
-      warehouseToUnloadIdEquals: this.warehouseDTO.id*/
+    let warehouseToLoadFilters = {
+      warehouseToLoadIdEquals: this.warehouseDTO.id || null, 
+    };
+    let warehouseToUnloadFilters = {
+      warehouseToLoadIdEquals: this.warehouseDTO.id || null,
     };
     try {
-      this.warehouseHandlingDTOs = await this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(filters).toPromise();
+      this.warehouseHandlingDTOs = await this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(warehouseToLoadFilters && warehouseToUnloadFilters).toPromise();
     } catch (e) {
       this.warehouseHandlingError = e;
     }
