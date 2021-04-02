@@ -1,4 +1,4 @@
-<div id="aig-seller-manager" class="page-layout simple right-sidebar" fxLayout="row">
+<div id="aig-catalog-manager" class="page-layout simple right-sidebar" fxLayout="row">
 
     <!-- CENTER -->
     <div class="center" fusePerfectScrollbar *ngIf="selectedCatalog">
@@ -14,8 +14,8 @@
 
             <div fxLayout="row">
 
-                <div class="selected-seller">{{ selectedCatalog.name }}</div>
-                <button mat-icon-button class="seller-selector" [matMenuTriggerFor]="catalogMenu"
+                <div class="selected-catalog">{{ selectedCatalog.name }}</div>
+                <button mat-icon-button class="catalog-selector" [matMenuTriggerFor]="catalogMenu"
                     aria-label="Select catalog">
                     <mat-icon>more_horiz</mat-icon>
                 </button>

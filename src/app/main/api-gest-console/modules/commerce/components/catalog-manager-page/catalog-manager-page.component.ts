@@ -19,11 +19,9 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
 
     selectedCatalog: CatalogDTO;
 
-    loadingPage: boolean = true;
-    errorInLoading: any;
-
-    priceListItemDC: string[] = ["id", "priceList", "catalogItem", "amount", "buttons"];    
     priceListDC: string[] = ["id", "name", "seller", "buttons"];
+
+    errorInLoading: any;
 
     private setCatalog(selectedCatalog: CatalogDTO) {
         this.selectedCatalog = selectedCatalog;
