@@ -4,7 +4,8 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { ProcurementResourceService, ProcurementDTO } from 'aig-italian-public-procurement';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { AigProcurementNewUpdateFormComponent } from 'aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form';
+import { AigProcurementNewUpdateFormComponent } from 'aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form.component';
+import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
 
 @Component({
     templateUrl: './ipp-list-page.component.html',
@@ -125,7 +126,7 @@ export class AigIppListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newProcurement(): void {
-        this.dialog.open(AigProcurementNewUpdateFormComponent, { data: { procurement: {} } });
+        this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: {} } });
     }
 
 	

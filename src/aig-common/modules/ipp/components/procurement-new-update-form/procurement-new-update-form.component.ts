@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italian-public-procurement';
 
 @Component({
@@ -34,7 +33,14 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.procurementNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
+            description: ['', Validators.required],
+            code: ['', Validators.required],
+            ref:[''],
+            totalAmount: ['', Validators.required],
+            contractorEopooCode: ['', Validators.required],
+            ippSectorCode: ['', Validators.required],
+            ippProcedureCode: ['', Validators.required],
+            ippModalityCode: ['', Validators.required]
         })
         
         if (this.procurement != null) {
@@ -50,8 +56,19 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurement: ProcurementDTO = this.procurementNewUpdateForm.value;
+        let procurement: ProcurementDTO = {
+            id: this.procurementNewUpdateForm.controls.id.value,
+            description: this.procurementNewUpdateForm.controls.id.value,
+            code: this.procurementNewUpdateForm.controls.code.value,
+            ref: this.procurementNewUpdateForm.controls.ref.value,
+            totalAmount: this.procurementNewUpdateForm.controls.totalAmount.value,
+            contractorEopooCode: this.procurementNewUpdateForm.controls.contractorEopooCode.value,
+            ippSectorCode: this.procurementNewUpdateForm.controls.ippSectorCode.value,
+            ippProcedureCode: this.procurementNewUpdateForm.controls.ippProcedureCode.value,
+            ippModalityCode: this.procurementNewUpdateForm.controls.ippModalityCode.value,
+        }
 
+        console.log(this.procurement);
         try {
             let postOrPut: string;
 

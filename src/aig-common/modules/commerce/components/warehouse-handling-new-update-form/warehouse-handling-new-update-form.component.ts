@@ -70,13 +70,10 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
             date: ['', Validators.required]
         });
 
-        console.log(this.warehouseHandling);
-
 
         if (this.warehouseHandling != null) {
             this.isUpdate = true;
             this.warehouseHandlingFormGroup.patchValue(this.warehouseHandling);
-            console.log("divento true", this.isUpdate);
         }
 
         if (this.warehouse!= null) {

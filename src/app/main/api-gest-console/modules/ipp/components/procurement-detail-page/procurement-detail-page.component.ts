@@ -3,7 +3,7 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 
-import { AigProcurementNewUpdateFormComponent } from "aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form";
+import { AigProcurementNewUpdateFormComponent } from "aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form.component";
 import { ProcurementDTO, ProcurementResourceService } from "aig-italian-public-procurement";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";

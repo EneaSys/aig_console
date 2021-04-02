@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italian-public-procurement';
-import { AigProcurementNewUpdateFormComponent } from '../procurement-new-update-form/procurement-new-update-form';
+import { AigProcurementNewUpdateFormComponent } from '../procurement-new-update-form/procurement-new-update-form.component';
 
 @Component({
     selector: 'aig-procurement-list-table',
