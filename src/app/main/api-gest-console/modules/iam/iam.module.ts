@@ -43,6 +43,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
+
 @NgModule({
     imports: [
         AigCommonModule,
@@ -93,6 +94,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
         AiguserEopooAssociateDialogComponent,
+       
 
     ],
     entryComponents: [
@@ -108,6 +110,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     exports: [
         AigUserGroupChipsComponent,
         AigUserGroupChipsChildComponent,
+     
     ],
 })
 export class AigIamModule {}

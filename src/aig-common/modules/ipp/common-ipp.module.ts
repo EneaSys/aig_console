@@ -17,6 +17,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AigProcurementLotListTableComponent } from './components/procurement-lot-list-table/procurement-lot-list-table.component';
+import { AigProcurementNewUpdateFormComponent } from './components/procurement-new-update-form/procurement-new-update-form';
+import { AigProcurementLotNewUpdateFormComponent } from './components/procurement-lot-new-update-form/procurement-lot-new-update-form.component';
+import { MatMenu, MatMenuModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -39,6 +42,7 @@ import { AigProcurementLotListTableComponent } from './components/procurement-lo
         MatInputModule,
         MatAutocompleteModule,
         MatSelectModule,
+        MatMenuModule
     ],
     providers: [
 
@@ -46,10 +50,14 @@ import { AigProcurementLotListTableComponent } from './components/procurement-lo
     declarations: [
         AigProcurementListTableComponent,
         AigProcurementLotListTableComponent,
+        AigProcurementNewUpdateFormComponent,
+        AigProcurementLotNewUpdateFormComponent,
     ],
     exports: [
         AigProcurementListTableComponent,
         AigProcurementLotListTableComponent,
+        AigProcurementNewUpdateFormComponent,
+        AigProcurementLotNewUpdateFormComponent
     ],
 })
 export class AigCommonIppModule {}
