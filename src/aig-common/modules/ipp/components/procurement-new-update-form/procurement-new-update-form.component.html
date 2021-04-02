@@ -1,0 +1,65 @@
+<form *ngIf="step.form" [formGroup]="procurementNewUpdateForm" (ngSubmit)="submit()">
+
+
+    <mat-form-field>
+        <mat-label>Procurement Description</mat-label>
+        <input formControlName="description" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Procurement Code</mat-label>
+        <input formControlName="code" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Ref</mat-label>
+        <input formControlName="ref" matInput>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Procurement total Amount</mat-label>
+        <input formControlName="totalAmount" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Procurement contractor Eopoo Code</mat-label>
+        <input formControlName="contractorEopooCode" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Procurement ipp Sector Code</mat-label>
+        <input formControlName="ippSectorCode" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Procurement ipp Procedure Code</mat-label>
+        <input formControlName="ippProcedureCode" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Procurement ipp Modality Code</mat-label>
+        <input formControlName="ippModalityCode" matInput required>
+    </mat-form-field>
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ procurementNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!procurementNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newProcurement()">Create New</button>
+</div>

@@ -27,6 +27,7 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
 
     ippLotType: ItalianPublicProcurementLotTypeDTO;
     
+    
     async loadComponent() {
         if(this.firstLoad) {
             this.ippLotType = this.route.snapshot.data.ippLotType;

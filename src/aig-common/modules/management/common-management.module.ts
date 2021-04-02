@@ -14,6 +14,8 @@ import { AigContextModuleListTableComponent } from "./components/context-module-
 import { AigContextModuleNewUpdateFormComponent } from "./components/context-module-new-update-form/context-module-new-update-form.component";
 import { AigContextUserListTableComponent } from "./components/context-user-list-table/context-user-list-table.component";
 import { AigContextUserNewUpdateFormComponent } from "./components/context-user-new-update-form/context-user-new-update-form.component";
+import { AigEntityDetailRoleComponent } from "./components/entity-detail-role/entity-detail-role.component";
+import { AigEntityDetailTenantContextComponent } from "./components/entity-detail-tenant-context/entity-detail-tenant-context.component";
 import { AigEntityReferenceListTableComponent } from "./components/entity-reference-list-table/entity-reference-list-table.component";
 import { AigEntityReferenceNewUpdateFormComponent } from "./components/entity-reference-new-update-form/entity-reference-new-update-form.component";
 import { AigPermissionListTableComponent } from "./components/permission-list-table/permission-list-table.component";
@@ -24,6 +26,7 @@ import { AigRoleListTableComponent } from "./components/role-list-table/role-lis
 import { AigRoleNewUpdateFormComponent } from "./components/role-new-update-form/role-new-update-form.component";
 import { AigTenantContextListTableComponent } from "./components/tenant-context-list-table/tenant-context-list-table.component";
 import { AigTenantContextNewUpdateFormComponent } from "./components/tenant-context-new-update-form/tenant-context-new-update-form.component";
+import { AigEntityDetailPermissionComponent } from "./entity-detail-permission/entity-detail-permission.component";
 import { AigApplicationModuleResolver } from "./resolver/application-module.resolver";
 import { AigContextModuleResolver } from "./resolver/context-module.resolver";
 import { AigContextUserResolver } from "./resolver/context-user.resolver";
@@ -92,6 +95,9 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
         AigTenantContextNewUpdateFormComponent,
         
 		AigAssociateRolePermissionFormComponent, 
+        AigEntityDetailRoleComponent,
+        AigEntityDetailPermissionComponent,
+        AigEntityDetailTenantContextComponent
     ],
 	exports: [
         AigApplicationModuleListTableComponent,
@@ -119,6 +125,9 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
         AigTenantContextNewUpdateFormComponent,
         
 		AigAssociateRolePermissionFormComponent,
+        AigEntityDetailRoleComponent,
+        AigEntityDetailPermissionComponent,
+        AigEntityDetailTenantContextComponent
     ],
     providers: [
         AigManagementAutocompleteFilterService,
