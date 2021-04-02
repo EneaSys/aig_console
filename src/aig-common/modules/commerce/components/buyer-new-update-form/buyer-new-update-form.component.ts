@@ -46,6 +46,8 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
             seller: ['', Validators.required],
         })
         
+
+        
         if (this.buyer != null) {
             this.buyerNewUpdateForm.patchValue(this.buyer);
         }

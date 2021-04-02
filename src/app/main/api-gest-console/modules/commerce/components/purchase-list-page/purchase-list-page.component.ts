@@ -8,6 +8,7 @@ import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/serv
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
+import { AigPurchaseComplexDialogComponent } from '../purchase-complex-dialog/purchase-complex-dialog.component';
 import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 
 @Component({
@@ -169,7 +170,10 @@ export class AigPurchaseListPageComponent extends GenericComponent {
   
   
    newPurchase(): void {
-    this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: {} } });
+    this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { } });
   }
   
+  newPurchaseComplex(): void {
+		this.dialog.open(AigPurchaseComplexDialogComponent, { data: { } });
+	}
 }

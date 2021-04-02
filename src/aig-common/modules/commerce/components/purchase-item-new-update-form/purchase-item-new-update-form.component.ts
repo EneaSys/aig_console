@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -32,6 +32,19 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 	@Input()
 	purchaseItem: PurchaseItemDTO;
 
+	@Input()
+	purchase: PurchaseDTO;
+
+	@Input()
+	returnToParent: boolean = false; 	
+	@Output()
+	purchaseItemOutput = new EventEmitter<PurchaseItemDTO>();
+
+	@Input()
+	continueInsertion: boolean = false;
+
+	isUpdate: boolean = false;
+
 	purchaseItemNewUpdateForm: FormGroup;
 
 	filteredInventoryItemCombination: Observable<InventoryItemCombinationDTO[]>;
@@ -48,7 +61,7 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
             quantity: ['', Validators.required],
             price: ['', Validators.required],
             tax: [''],
-            purchase: [''],
+            purchase: [this.purchase],
             warehouseHandlingItem: [''],
             inventoryItemCombination: [''],
 		});
@@ -56,6 +69,7 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 
 		if(this.purchaseItem != null) {
 			this.purchaseItemNewUpdateForm.patchValue(this.purchaseItem);
+			this.isUpdate = true
 		}
 
 		this.filteredInventoryItemCombination = this.commerceAutocompleteService.filterInventoryItemCombination(this.purchaseItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);
@@ -71,40 +85,49 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 		this._fuseProgressBarService.show();
 		this.setStep("loading");
 
-		let purchaseItem: PurchaseItemDTO = {
-			id: this.purchaseItemNewUpdateForm.value.id,
-            quantity: this.purchaseItemNewUpdateForm.value.quantity,
-            price: +this.purchaseItemNewUpdateForm.value.price,
-            tax: this.purchaseItemNewUpdateForm.value.tax,
-			purchaseId: this.purchaseItemNewUpdateForm.value.purchase.id,
-			inventoryItemCombinationId: this.purchaseItemNewUpdateForm.value.inventoryItemCombination.id,
-			warehouseHandlingItemId: this.purchaseItemNewUpdateForm.value.warehouseHandlingItem.id,
-		};
-		console.log(purchaseItem)
 
-		try {
-			let postOrPut;
-			if (purchaseItem.id != 0) {
-				await this.purchaseItemResourceService.updatePurchaseItemUsingPUT(purchaseItem).toPromise();
-				postOrPut = "updated";
-			} else {
-				await this.purchaseItemResourceService.createPurchaseItemUsingPOST(purchaseItem).toPromise();
-				postOrPut = "created";
-			}
-			this.eventService.reloadCurrentPage();
-
-			this._snackBar.open(`Ipp Social: '${purchaseItem.id}' ${postOrPut}.`, null, { duration: 2000, });
+		let purchaseItem: PurchaseItemDTO = this.purchaseItemNewUpdateForm.value;
+		purchaseItem.purchaseId = this.purchaseItemNewUpdateForm.value.purchase.id;
+		purchaseItem.inventoryItemCombinationId = this.purchaseItemNewUpdateForm.value.inventoryItemCombination.id;
+		purchaseItem.warehouseHandlingItemId = this.purchaseItemNewUpdateForm.value.warehouseHandlingItem.id;
+		
+		if(this.returnToParent) {
+			this.purchaseItemOutput.emit(purchaseItem);
 			this.setStep("complete");
-		} catch (error) {
-			this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+		} 
+
+		if(!this.returnToParent) {
+			try {
+				let postOrPut;
+				if (purchaseItem.id != 0) {
+					await this.purchaseItemResourceService.updatePurchaseItemUsingPUT(purchaseItem).toPromise();
+					postOrPut = "updated";
+				} else {
+					await this.purchaseItemResourceService.createPurchaseItemUsingPOST(purchaseItem).toPromise();
+					postOrPut = "created";
+				}
+				this.eventService.reloadCurrentPage();
+
+				this._snackBar.open(`Ipp Social: '${purchaseItem.id}' ${postOrPut}.`, null, { duration: 2000, });
+				this.setStep("complete");
+			} catch (error) {
+				this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+				this.setStep("form");
+			}
+		}
+
+		if(this.continueInsertion) {
 			this.setStep("form");
 		}
+
 		this._fuseProgressBarService.hide();
 	}
 
 
 
 	newPurchaseItem() {
+		this.purchaseItem = null;
+		this.purchaseItemOutput.emit(this.purchaseItem);
 		this.setStep("form");
 	}
 
