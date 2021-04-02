@@ -1,19 +1,16 @@
 <div id="aig-ipp-modality-detail-page" class="page-layout blank">
-    
+
     <aig-standard-header [sectionName]="ippModalityDTO.name" [search]="false"></aig-standard-header>
-    
+
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
-               <div class="h4 m-8 ml-16 mb-0 secondary-text">Ipp Modality</div>
-                <div class="h1 m-16">{{ ippModalityDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ ippModalityDTO.id }}</div>
-                <div class="h4 m-8 ml-16">Code: {{ ippModalityDTO.code }}</div>
-                <div class="h4 m-8 ml-16">WikiCode: {{ ippModalityDTO.wikiCode }}</div>
+
+                <entity-detail-ipp-modality [ippModalityDTO]="ippModalityDTO"></entity-detail-ipp-modality>
+
+
                 <button mat-stroked-button color="primary" (click)="editIppModality(ippModalityDTO)">Edit</button>
-                <button mat-stroked-button color="primary"
-                (click)="deleteIppModality(ippModalityDTO.id)">Delete
-            </button>
+                <button mat-stroked-button color="primary" (click)="deleteIppModality(ippModalityDTO.id)">Delete</button>
             </div>
         </div>
     </div>

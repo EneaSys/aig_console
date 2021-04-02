@@ -3,7 +3,8 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ warehouseDTO | json }}</pre>
+                <entity-detail-warehouse [warehouseDTO]="warehouseDTO"></entity-detail-warehouse>
+                 <!--<pre>{{ warehouseDTO | json }}</pre> !-->
 
                 <button mat-stroked-button color="primary" (click)="editWarehouse(warehouseDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteWarehouse(warehouseDTO.id)">Delete</button>

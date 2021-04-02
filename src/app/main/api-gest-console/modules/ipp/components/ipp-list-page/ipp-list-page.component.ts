@@ -67,8 +67,8 @@ export class AigIppListPageComponent extends GenericComponent {
 	private async searchProcurement(page: number) {
 		this.procurementDTOs = null;
 
-		//this.procurementFilters.page = page;
-		//this.procurementFilters.size = this.procurementPaginationSize;
+		this.procurementFilters.page = page;
+		this.procurementFilters.size = this.procurementPaginationSize;
 
 		try {                                                                       
 			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();  

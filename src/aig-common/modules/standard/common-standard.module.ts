@@ -53,6 +53,15 @@ import { AigStandardAutocompleteFunctionService } from './services/autocomplete-
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
 import { ContextModuleResolver } from './resolver/context-module.resolver';
 import { MatMenuModule } from '@angular/material';
+import { AigEntityDetailCityComponent } from './components/entity-detail-city/entity-detail-city.component';
+import { AigEntityDetailSocialComponent } from './components/entity-detail-social/entity-detail-social.component';
+import { AigEntityDetailCpvComponent } from './components/entity-detail-cpv/entity-detail-cpv.component';
+import { AigEntityDetailIppLotTypeComponent } from './components/entity-detail-ipp-lot-type/entity-detail-ipp-lot-type.component';
+import { AigEntityDetailIppLotCategoryComponent } from './components/entity-detail-ipp-lot-category/entity-detail-ipp-lot-category.component';
+import { AigEntityDetailIppModalityComponent } from './components/entity-detail-ipp-modality/entity-detail-ipp-modality.component';
+import { AigEntityDetailIppProcedureComponent } from './components/entity-detail-ipp-procedure/entity-detail-ipp-procedure.component';
+import { AigEntityDetailIppSectorComponent } from './components/entity-detail-ipp-sector/entity-detail-ipp-sector.component';
+
 
 @NgModule({
     declarations: [
@@ -83,7 +92,16 @@ import { MatMenuModule } from '@angular/material';
         
 
         AigLotCategoryNewUpdateFormComponent,
-        AigLotCategoryListTableComponent
+        AigLotCategoryListTableComponent,
+        AigEntityDetailCityComponent,
+        AigEntityDetailSocialComponent,
+        AigEntityDetailCpvComponent,
+        AigEntityDetailIppLotTypeComponent,
+        AigEntityDetailIppLotCategoryComponent,
+        AigEntityDetailIppModalityComponent,
+        AigEntityDetailIppProcedureComponent,
+        AigEntityDetailIppSectorComponent
+
 
     ],
     imports: [ 
@@ -137,7 +155,15 @@ import { MatMenuModule } from '@angular/material';
         AigIppProcedureNewUpdateFormComponent,
 
         AigLotCategoryListTableComponent,
-        AigLotCategoryNewUpdateFormComponent
+        AigLotCategoryNewUpdateFormComponent,
+        AigEntityDetailCityComponent,
+        AigEntityDetailSocialComponent,
+        AigEntityDetailCpvComponent,
+        AigEntityDetailIppLotTypeComponent,
+        AigEntityDetailIppLotCategoryComponent,
+        AigEntityDetailIppModalityComponent,
+        AigEntityDetailIppProcedureComponent,
+        AigEntityDetailIppSectorComponent 
 
     ],
     entryComponents: [

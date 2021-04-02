@@ -81,5 +81,11 @@ import { AigProcurementLotNewUpdateDialogComponent } from './components/procurem
     exports: [
 
     ],
+
+    entryComponents: [
+        AigProcurementNewUpdateDialogComponent,
+        AigProcurementLotNewUpdateDialogComponent
+
+    ],
 })
 export class AigIppModule {}
