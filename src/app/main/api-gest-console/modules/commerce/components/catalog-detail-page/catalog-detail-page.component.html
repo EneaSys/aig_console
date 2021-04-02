@@ -1,17 +1,41 @@
 <div id="aig-social-detail-page" class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
         <div class="widget p-16" fxFlex.gt-sm="50">
+
             <div class="fuse-card auto-width p-16">
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Cataloghi</div>
-                <div class="h1 m-16">{{ catalogDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ catalogDTO.id }}</div>
-                <div *ngIf="catalogDTO.seller" class="h4 m-8 ml-16 mb-0 secondary-text">Seller: {{ catalogDTO.seller.name }}</div>
-                <br>
+
+                <entity-detail-catalog [catalogDTO]="catalogDTO"></entity-detail-catalog>
+                
+                 
                 <button mat-stroked-button color="primary" (click)="editCatalog(catalogDTO)">Edit</button>
-                <button mat-stroked-button color="primary"
-                    (click)="deleteCatalog(catalogDTO.id)">Delete</button>
+                <button mat-stroked-button color="primary" (click)="deleteCatalog(catalogDTO.id)">Delete</button>
+
             </div>
+
+            <br>
+
+            <div class="fuse-card auto-width p-16">
+
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Catalog items</b></div>
+                <aig-catalog-item-list-table [displayColumns]="catalogItemDC" [dataSource]="catalogItemDTOs"
+                    [error]="catalogItemError"></aig-catalog-item-list-table>
+
+            </div>
+
+            <br>
+
+            <div class="fuse-card auto-width p-16">
+
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Price lists</b></div>
+                <aig-price-list-table [displayColumns]="priceListDC" [dataSource]="priceListDTOs"
+                    [error]="priceListError"></aig-price-list-table>
+
+            </div>
+
         </div>
+
     </div>
+
 </div>

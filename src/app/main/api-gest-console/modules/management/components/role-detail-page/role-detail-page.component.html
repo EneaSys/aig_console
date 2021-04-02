@@ -4,7 +4,7 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ roleDTO | json }}</pre>
+                <entity-detail-role [roleDTO]="roleDTO"></entity-detail-role>
 
                 <button mat-stroked-button color="primary" (click)="editRole(roleDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteRole(roleDTO.id)">Delete</button>
