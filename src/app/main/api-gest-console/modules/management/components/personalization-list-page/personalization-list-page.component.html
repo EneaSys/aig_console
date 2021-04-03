@@ -38,7 +38,7 @@
     <!-- / SIDEBAR -->
 
     <!-- CENTER -->
-    <div class= "center">
+    <div class="center">
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
@@ -52,7 +52,7 @@
 
             <aig-personalization-list-table [displayColumns]="personalizationDC" [dataSource]="personalizationDTOs" [error]="personalizationError"></aig-personalization-list-table>
 
-            <mat-paginator #paginator [length]="permissionLength" [pageSize]="this.permissionPaginationSize" [pageIndex]="this.permissionFilters.page" [pageSizeOptions]="[10, 20, 50]" (page)="permissionPaginationEvent($event)">
+            <mat-paginator #paginator [length]="personalizationLength" [pageSize]="this.personalizationPaginationSize" [pageIndex]="this.personalizationFilters.page" [pageSizeOptions]="[10, 20, 50]" (page)="personalizationPaginationEvent($event)">
             </mat-paginator>
 
             <button mat-fab class="accent" id="add-personalization-button" (click)="newPersonalization()" aria-label="add personalization">

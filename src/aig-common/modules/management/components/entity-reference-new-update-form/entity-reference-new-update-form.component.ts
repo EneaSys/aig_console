@@ -86,6 +86,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         }
         this._fuseProgressBarService.hide();
     }
+    
     newEntityReference() {
         this.setStep("form");
     }

@@ -3,14 +3,14 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>User Code</mat-label>
-            <input name="user-code" formControlName="user-code" matInput required>
+            <input name="userCode" formControlName="userCode" matInput required>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Tenant Context</mat-label>
-            <input FormControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
+            <input formControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
             <mat-autocomplete #tenantContextAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.tenantContextDisplayFn">
                 <mat-option *ngFor="let tenantContext of filteredTenantContexts| async" [value]="tenantContext">{{ tenantContext.name }}</mat-option>
             </mat-autocomplete>

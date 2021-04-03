@@ -50,7 +50,12 @@ export class AigTenantContextNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let tenantContext: TenantContextDTO = this.tenantContextNewUpdateForm.value;
+        let tenantContext: TenantContextDTO = {
+            contextCode: this.tenantContextNewUpdateForm.value.contextCode,
+            name: this.tenantContextNewUpdateForm.value.name,
+            nameDatabase: this.tenantContextNewUpdateForm.value.nameDatabase,
+            id: this.tenantContextNewUpdateForm.value.id,
+        }
 
         try {
             let postOrPut;

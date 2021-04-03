@@ -63,10 +63,10 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
         let contextModule: ContextModuleDTO = {
             id: this.contextModuleNewUpdateForm.value.id,
             active: this.contextModuleNewUpdateForm.value.active,
-            moduleId: this.contextModuleNewUpdateForm.value.module.id,
-            moduleName: this.contextModuleNewUpdateForm.value.module.name,
-            contextId: this.contextModuleNewUpdateForm.value.context.id,
-            contextName: this.contextModuleNewUpdateForm.value.context.name,
+            moduleId: this.contextModuleNewUpdateForm.value.applicationModule.id,
+            moduleName: this.contextModuleNewUpdateForm.value.applicationModule.name,
+            contextId: this.contextModuleNewUpdateForm.value.tenantContext.id,
+            contextName: this.contextModuleNewUpdateForm.value.tenantContext.name,
          
         }; 
         try {

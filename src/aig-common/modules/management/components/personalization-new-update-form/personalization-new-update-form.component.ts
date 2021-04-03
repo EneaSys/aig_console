@@ -63,8 +63,8 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
         let personalization: PersonalizationDTO = {
             id: this.personalizationNewUpdateForm.value.id,
             name: this.personalizationNewUpdateForm.value.name,
-            moduleId: this.personalizationNewUpdateForm.value.module.id,
-            moduleName: this.personalizationNewUpdateForm.value.module.name,         
+            moduleId: this.personalizationNewUpdateForm.value.applicationModule.id,
+            moduleName: this.personalizationNewUpdateForm.value.applicationModule.name,         
         }; 
         try {
             let postOrPut;

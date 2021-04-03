@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 export class AigManagementAutocompleteFilterService {
     constructor(
@@ -19,9 +19,9 @@ export class AigManagementAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 1) {
-					let filter = {
-						nameContains: value
-					};
+                    let filter = {
+                        nameContains: value
+                    };
                     return this.roleResourceService.getAllRolesUsingGET(filter);
                 } else {
                     return of([]);
@@ -35,9 +35,9 @@ export class AigManagementAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 1) {
-					let filter = {
-						nameContains: value
-					};
+                    let filter = {
+                        nameContains: value
+                    };
                     return this.permissionResourceService.getAllPermissionsUsingGET(filter);
                 } else {
                     return of([]);
@@ -51,9 +51,9 @@ export class AigManagementAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 1) {
-					let filter = {
-						nameContains: value
-					};
+                    let filter = {
+                        nameContains: value
+                    };
                     return this.applicationModuleResourceService.getAllApplicationModulesUsingGET(filter);
                 } else {
                     return of([]);
@@ -62,15 +62,15 @@ export class AigManagementAutocompleteFilterService {
         );
     }
 
-     
+
     tenantContextFilter(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 1) {
-					let filter = {
-						nameContains: value
-					};
+                    let filter = {
+                        nameContains: value
+                    };
                     return this.tenantContextResourceService.getAllTenantContextsUsingGET(filter);
                 } else {
                     return of([]);
