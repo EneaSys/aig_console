@@ -80,6 +80,7 @@ import { AigWarehouseHandlingItemNewUpdateModalComponent } from './components/wa
 import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-detail-page/purchase-item-detail-page.component';
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
+import { AigPurchaseComplexDialogComponent } from './components/purchase-complex-dialog/purchase-complex-dialog.component';
 
 
 
@@ -180,6 +181,7 @@ import { AigSellerManagerPageComponent } from './components/seller-manager-page/
         AigInventoryItemCombinationListPageComponent,
         AigPurchaseItemListPageComponent,
         AigPurchaseItemNewUpdateDialogComponent,
+        AigPurchaseComplexDialogComponent,
         AigSellerManagerPageComponent,
 
         AigInventoryItemCombinationDetailPageComponent,
@@ -210,6 +212,7 @@ import { AigSellerManagerPageComponent } from './components/seller-manager-page/
         AigWarehouseHandlingNewUpdateModalComponent,
         AigWarehouseHandlingComplexModalComponent,
         AigWarehouseHandlingItemNewUpdateModalComponent,
+        AigPurchaseComplexDialogComponent,
     ],
     exports: [],
 })

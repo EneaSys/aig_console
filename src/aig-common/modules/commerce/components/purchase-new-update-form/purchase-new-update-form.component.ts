@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -32,15 +32,17 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 	@Input()
 	purchase: PurchaseDTO;
+	@Input()
+	returnToParent: boolean = false; 
+
+	@Output()
+	purchaseOutput = new EventEmitter<PurchaseDTO>();
 
 	purchaseNewUpdateForm: FormGroup;
 
-
 	filteredBuyer: Observable<BuyerDTO[]>;
 
-	closed: boolean;
-
-
+	isUpdate: boolean = false;
 
 
 
@@ -54,12 +56,10 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
             statusNote: [''],
 		});
 
-
 		if(this.purchase != null) {
 			this.purchaseNewUpdateForm.patchValue(this.purchase);
+			this.isUpdate = true;
 		}
-
-
 
 		this.filteredBuyer = this.commerceAutocompleteService.filterBuyer(this.purchaseNewUpdateForm.controls['buyer'].valueChanges);
 	}
@@ -80,29 +80,39 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 			insertedDateTime: this.purchaseNewUpdateForm.value.insertedDateTime,
 		};
 
-		try {
-			let postOrPut;
-			if (purchase.id != 0) {
-				await this.purchaseResourceService.updatePurchaseUsingPUT(purchase).toPromise();
-				postOrPut = "updated";
-			} else {
-				await this.purchaseResourceService.createPurchaseUsingPOST(purchase).toPromise();
-				postOrPut = "created";
-			}
-			this.eventService.reloadCurrentPage();
-
-			this._snackBar.open(`Ipp Social: '${purchase.id}' ${postOrPut}.`, null, { duration: 2000, });
+		if(this.returnToParent) {
+			this.purchaseOutput.emit(purchase);
 			this.setStep("complete");
-		} catch (error) {
-			this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
-			this.setStep("form");
+		} 
+
+		if(!this.returnToParent) {
+			try {
+				let postOrPut;
+				if (purchase.id != 0) {
+					await this.purchaseResourceService.updatePurchaseUsingPUT(purchase).toPromise();
+					postOrPut = "updated";
+				} else {
+					await this.purchaseResourceService.createPurchaseUsingPOST(purchase).toPromise();
+					postOrPut = "created";
+				}
+				this.eventService.reloadCurrentPage();
+
+				this._snackBar.open(`Purchase: '${purchase.id}' ${postOrPut}.`, null, { duration: 2000, });
+				this.setStep("complete");
+			} catch (error) {
+				this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+				this.setStep("form");
+			}
 		}
+
 		this._fuseProgressBarService.hide();
 	}
 
 
 
 	newPurchase() {
+		this.purchase = null;
+		this.purchaseOutput.emit(this.purchase);
 		this.setStep("form");
 	}
 

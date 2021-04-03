@@ -35,7 +35,7 @@
 
         <ng-container matColumnDef="price">
             <mat-header-cell *matHeaderCellDef> Prezzo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.price}} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.price | currency:"EUR" }} </mat-cell>
         </ng-container>
 
 
@@ -58,7 +58,7 @@
 
         <ng-container matColumnDef="tax">
             <mat-header-cell *matHeaderCellDef> Tassa </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.tax }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.tax | currency:"EUR"  }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="warehouseHandlingItem">

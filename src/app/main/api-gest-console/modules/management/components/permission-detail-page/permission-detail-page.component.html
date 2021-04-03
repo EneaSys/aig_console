@@ -4,7 +4,8 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ permissionDTO | json }}</pre>
+                <entity-detail-permission [permissionDTO]="permissionDTO"></entity-detail-permission>
+                
 
                 <button mat-stroked-button color="primary" (click)="editPermission(permissionDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deletePermission(permissionDTO.id)">Delete</button>

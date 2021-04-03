@@ -6,7 +6,9 @@
 
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ sellerDTO | json }}</pre>
+                <entity-detail-seller [sellerDTO]="sellerDTO"></entity-detail-seller>
+                <!--<pre>{{ sellerDTO  | json }}</pre> !-->
+                
 
                 <button mat-stroked-button color="primary" (click)="editSeller(sellerDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteSeller(sellerDTO.id)">Delete</button>
