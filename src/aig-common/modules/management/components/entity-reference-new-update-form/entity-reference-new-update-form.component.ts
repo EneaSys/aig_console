@@ -62,9 +62,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
     
         let entityReference: EntityReferenceDTO = {
             id: this.entityReferenceNewUpdateForm.value.id,
-            name: this.entityReferenceNewUpdateForm.value.name,
-            moduleId: this.entityReferenceNewUpdateForm.value.module.id, 
-            moduleName: this.entityReferenceNewUpdateForm.value.module.name,  
+            name: this.entityReferenceNewUpdateForm.value.name,  
         }; 
 
         try {
@@ -86,6 +84,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         }
         this._fuseProgressBarService.hide();
     }
+    
     newEntityReference() {
         this.setStep("form");
     }

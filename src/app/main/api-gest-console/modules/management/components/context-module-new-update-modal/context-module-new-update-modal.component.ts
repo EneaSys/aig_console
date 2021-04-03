@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     templateUrl: './context-module-new-update-modal.component.html',
@@ -8,7 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AigContextModuleNewUpdateModalComponent implements OnInit {
     constructor(
         public matDialogRef: MatDialogRef<AigContextModuleNewUpdateModalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private dialog: MatDialog,
     ) { }
 
     ngOnInit(): void { 
