@@ -33,8 +33,17 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            name: ['', Validators.required],
+            id: [''],
+            cig: ['', Validators.required],
+            description: ['', Validators.required],
+            offerExpiryDate: ['', Validators.required],
+            baseAmount: ['', Validators.required],
+            securityAmount: [''],
+            istatCode: [''],
+            nustCode: [''],
+            ippLotTypeCode: ['', Validators.required],
+            ippLotCategoryCode: ['', Validators.required],
+            cpvCode: ['', Validators.required],
         })
         
         if (this.procurementLot != null) {
