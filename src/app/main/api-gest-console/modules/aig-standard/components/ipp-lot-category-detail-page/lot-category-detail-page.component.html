@@ -4,11 +4,12 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
-               <div class="h4 m-8 ml-16 mb-0 secondary-text">City</div>
-                <div class="h1 m-16">{{ ippLotCategoryDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ ippLotCategoryDTO.id }}</div>
-                <div class="h4 m-8 ml-16">Code: {{ ippLotCategoryDTO.code }}</div>
-                <div class="h4 m-8 ml-16">WikiCode: {{ ippLotCategoryDTO.wikiCode }}</div>
+
+                <entity-detail-ipp-lot-category [ippLotCategoryDTO]="ippLotCategoryDTO"></entity-detail-ipp-lot-category>
+
+               
+
+
                 <button mat-stroked-button color="primary" (click)="editIppLotCategory(ippLotCategoryDTO)">Edit</button>
                 <button mat-stroked-button color="primary"
                 (click)="deleteIppLotCategory(ippLotCategory.id)">Delete
