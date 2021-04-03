@@ -10,7 +10,7 @@
     <div *ngIf="!contextModule.applicationModule" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Application Module</mat-label>
-            <input FormControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <input formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
             <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
                 <mat-option *ngFor="let applicationModule of filteredApplicationModules| async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
             </mat-autocomplete>
@@ -21,7 +21,7 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Tenant Context</mat-label>
-            <input FormControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
+            <input formControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">
             <mat-autocomplete #tenantContextAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.tenantContextDisplayFn">
                 <mat-option *ngFor="let tenantContext of filteredTenantContexts| async" [value]="tenantContext">{{ tenantContext.name }}</mat-option>
             </mat-autocomplete>
