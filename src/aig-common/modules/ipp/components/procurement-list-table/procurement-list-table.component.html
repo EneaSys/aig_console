@@ -13,15 +13,20 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
+        
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="code">
             <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+        <ng-container matColumnDef="ref">
+            <mat-header-cell *matHeaderCellDef> Ref </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.ref }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="amount">

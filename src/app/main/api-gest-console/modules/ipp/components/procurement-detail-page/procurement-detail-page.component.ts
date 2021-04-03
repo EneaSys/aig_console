@@ -7,6 +7,7 @@ import { AigProcurementNewUpdateFormComponent } from "aig-common/modules/ipp/com
 import { ProcurementDTO, ProcurementResourceService } from "aig-italian-public-procurement";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
 
 @Component({
@@ -43,7 +44,7 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
   }
 
   editProcurement(procurementDTO: ProcurementDTO) {
-    this.dialog.open(AigProcurementNewUpdateFormComponent, { data: { procurement: procurementDTO } });
+    this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: procurementDTO } });
   }
 
   async deleteProcurement(id: number) {
