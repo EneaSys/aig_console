@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italian-public-procurement';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { PageEvent } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AigProcurementLotNewUpdateDialogComponent } from '../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 declare const google: any;
 
 @Component({
@@ -15,6 +16,7 @@ export class AigIppLotListPageComponent extends GenericComponent {
         private procurementLotResourceService: ProcurementLotResourceService,
         private _formBuilder: FormBuilder,
         aigGenericComponentService: AigGenericComponentService,
+        private dialog: MatDialog,
     ) { super(aigGenericComponentService) }
 
 
@@ -135,6 +137,10 @@ export class AigIppLotListPageComponent extends GenericComponent {
             path
         );
     }
+    
+    newProcurementLot(): void {
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
+    }
 
 
 
@@ -223,7 +229,7 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
 
     // IPP LOT
-    ippLotDisplayedColumns: string[] = ['cig', 'sa', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
+    ippLotDisplayedColumns: string[] = ['cig', 'description', 'amount', 'securityAmount', 'nustCode', 'locality','type','category','cpvCode', 'offerExpiryDate'];
     ippLotDTOs: ProcurementLotDTO[];
     ippLotError: any;
 

@@ -1,8 +1,7 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.purchase.id" class="title dialog-title">Update Procurement Lot </span>
-            <span *ngIf="!data.purchase.id" class="title dialog-title">Create New Procurement Lot </span>
+            <span class="title dialog-title"> Form Procurement Lot </span>
             
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>

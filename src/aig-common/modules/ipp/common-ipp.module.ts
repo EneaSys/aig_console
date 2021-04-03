@@ -19,7 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AigProcurementLotListTableComponent } from './components/procurement-lot-list-table/procurement-lot-list-table.component';
 import { AigProcurementNewUpdateFormComponent } from './components/procurement-new-update-form/procurement-new-update-form.component';
 import { AigProcurementLotNewUpdateFormComponent } from './components/procurement-lot-new-update-form/procurement-lot-new-update-form.component';
-import { MatMenu, MatMenuModule } from '@angular/material';
+import { MatDatepickerModule, MatMenu, MatMenuModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -42,7 +42,8 @@ import { MatMenu, MatMenuModule } from '@angular/material';
         MatInputModule,
         MatAutocompleteModule,
         MatSelectModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule,
     ],
     providers: [
 

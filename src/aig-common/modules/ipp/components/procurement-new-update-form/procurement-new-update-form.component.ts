@@ -56,23 +56,13 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurement: ProcurementDTO = {
-            id: this.procurementNewUpdateForm.controls.id.value,
-            description: this.procurementNewUpdateForm.controls.id.value,
-            code: this.procurementNewUpdateForm.controls.code.value,
-            ref: this.procurementNewUpdateForm.controls.ref.value,
-            totalAmount: this.procurementNewUpdateForm.controls.totalAmount.value,
-            contractorEopooCode: this.procurementNewUpdateForm.controls.contractorEopooCode.value,
-            ippSectorCode: this.procurementNewUpdateForm.controls.ippSectorCode.value,
-            ippProcedureCode: this.procurementNewUpdateForm.controls.ippProcedureCode.value,
-            ippModalityCode: this.procurementNewUpdateForm.controls.ippModalityCode.value,
-        }
+        let procurement: ProcurementDTO = this.procurementNewUpdateForm.value;
 
         console.log(this.procurement);
         try {
             let postOrPut: string;
 
-            if (this.procurement.id != 0) {
+            if (this.procurement.id > 0) {
                 await this.procurementResourceService.updateProcurementUsingPUT(procurement).toPromise();
                 postOrPut = "updated";
             } else {

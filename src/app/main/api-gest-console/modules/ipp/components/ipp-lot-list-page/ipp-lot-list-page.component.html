@@ -47,7 +47,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="ippLotFilters.amountMin">{{ ippLotFilters.amountMin | currency:'EUR' }}</span>
+                                <span *ngIf="ippLotFilters.amountMin">{{ ippLotFilters.amountMin | currency:'EUR'
+                                    }}</span>
                                 <span *ngIf="!ippLotFilters.amountMin">non definito</span>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center start">
@@ -59,7 +60,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="ippLotFilters.amountMax">{{ ippLotFilters.amountMax | currency:'EUR' }}</span>
+                                <span *ngIf="ippLotFilters.amountMax">{{ ippLotFilters.amountMax | currency:'EUR'
+                                    }}</span>
                                 <span *ngIf="!ippLotFilters.amountMax">illimitato</span>
                             </div>
                             <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
@@ -116,21 +118,26 @@
             <agm-map [zoom]="5" [latitude]="lat" [longitude]="lng" (mapReady)="onMapReady($event)"></agm-map>
             <mat-list role="list">
                 <mat-list-item role="listitem" *ngFor="let point of pointList">
-                  {{ point.lat.toPrecision(5) }},
-                  {{ point.lng.toPrecision(5) }}</mat-list-item
-                >
-              </mat-list>
-              <mat-card *ngIf="selectedArea > 0">
-                  <button (click)="deleteSelectedShape()">cancella</button>
-                Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup></mat-card
-              >
+                    {{ point.lat.toPrecision(5) }},
+                    {{ point.lng.toPrecision(5) }}</mat-list-item>
+            </mat-list>
+            <mat-card *ngIf="selectedArea > 0">
+                <button (click)="deleteSelectedShape()">cancella</button>
+                Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
+            </mat-card>
 
             <ipp-lot-list-table [displayedColumns]="ippLotDisplayedColumns" [dataSource]="ippLotDTOs">
             </ipp-lot-list-table>
 
             <mat-paginator #ippLotPaginator [length]="ippLotLength" [pageIndex]="ippLotIndex"
                 [pageSize]="ippLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
-                (page)="ippLotPaginatorEvent($event)"></mat-paginator>
+                (page)="ippLotPaginatorEvent($event)">
+            </mat-paginator>
+
+            <button mat-fab class="accent" id="add-procurement-button" (click)="newProcurementLot()"
+                aria-label="add procurement">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
         <!-- / CONTENT -->
     </div>
