@@ -62,13 +62,9 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
     
         let entityReference: EntityReferenceDTO = {
             id: this.entityReferenceNewUpdateForm.value.id,
-<<<<<<< HEAD
-            name: this.entityReferenceNewUpdateForm.value.name,  
-=======
             name: this.entityReferenceNewUpdateForm.value.name,
             moduleId: this.entityReferenceNewUpdateForm.value.applicationModule.id, 
             moduleName: this.entityReferenceNewUpdateForm.value.applicationModule.name,  
->>>>>>> develop
         }; 
 
         try {
