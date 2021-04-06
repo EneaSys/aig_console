@@ -1,8 +1,7 @@
 <div id="aig-purchase-item-new-update-form" *ngIf="step.form">
     <form [formGroup]="purchaseItemNewUpdateForm" (ngSubmit)="submit()">
 
-        <div fxLayout="row" fxLayoutAlign="start start">
-
+        <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!purchase">
             <div class="form-group col-md-6">
                 <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Vendita</mat-label>
@@ -12,63 +11,51 @@
                     </mat-autocomplete>
                 </mat-form-field>
             </div>
-
-        </div>
-        <div  fxLayout="row" fxLayoutAlign="start start">
-            <div class="form-group col-md-6">
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Combinazioni</mat-label>
-                    <input type="text" matInput formControlName="inventoryItemCombination" [matAutocomplete]="inventoryItemCombinationAutocomplete">
-                 <mat-autocomplete #inventoryItemCombinationAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemCombinationDisplayFn">
-                        <mat-option *ngFor="let inventoryItemCombination of filteredInventoryItemCombination | async" [value]="inventoryItemCombination">
-                            {{ inventoryItemCombination.name }}
-                            {{ inventoryItemCombination.inventoryItem.producer.name }}
-                            {{ inventoryItemCombination.inventoryItem.name }}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </div>
-
         </div>
 
+
+        
         <div fxLayout="row" fxLayoutAlign="start start">
-            <div class="form-group col-md-2">
-                <mat-form-field  appearance="outline" fxFlex>
-                    <mat-label>Prezzo</mat-label> 
-                    <mat-icon matSuffix>euro_symbol</mat-icon>
-                    <input matInput required formControlName="price">
-                </mat-form-field>
-            </div>
 
-            <mat-form-field appearance="outline" fxFlex>
+            <mat-form-field appearance="outline" [style.width.%]=45>
+                <mat-label>Combinazione</mat-label>
+                <input type="text" matInput formControlName="inventoryItemCombination" [matAutocomplete]="inventoryItemCombinationAutocomplete">
+                <mat-autocomplete #inventoryItemCombinationAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemCombinationDisplayFn">
+                    <mat-option *ngFor="let inventoryItemCombination of filteredInventoryItemCombination | async" [value]="inventoryItemCombination">
+                        {{ inventoryItemCombination.name }}
+                        {{ inventoryItemCombination.inventoryItem.producer.name }}
+                        {{ inventoryItemCombination.inventoryItem.name }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" [style.width.%]=15>
                 <mat-label>Quantità</mat-label>
                 <input type="number" matInput formControlName="quantity" placeholder="Quantità">
             </mat-form-field>
             
-            <mat-form-field appearance="outline" fxFlex>
+            
+            <mat-form-field  appearance="outline" [style.width.%]=15>
+                <mat-label>Prezzo</mat-label> 
+
+                <input matInput required formControlName="price">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" [style.width.%]=15>
                 <mat-label>Tassa</mat-label>
                 <input matInput formControlName="tax">
             </mat-form-field>
 
+            <button *ngIf="continueInsertion" type="submit" mat-icon-button color="accent" [style.width.%]=10 [style.font.size]=16>
+                <mat-icon>add</mat-icon>
+            </button>
+            
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="start start">
-            <div class="form-group col-md-2">
-                <mat-form-field appearance="outline" fxFlex>
-                    <mat-label>Prodotto di movimentazione di magazzino</mat-label>
-                    <input type="text" matInput formControlName="warehouseHandlingItem" [matAutocomplete]="warehouseHandlingItemAutocomplete">
-                    <mat-autocomplete #warehouseHandlingItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.warehouseHandlingItemDisplayFn">
-                        <mat-option *ngFor="let warehouseHandlingItem of filteredWarehouseHandlingItem | async" [value]="warehouseHandlingItem">{{ warehouseHandlingItem.id }}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </div>
-           
-
-
-        </div>    
-        <div fxLayout="row" fxLayoutAlign="end top">
+        <div fxLayout="row" fxLayoutAlign="end top" *ngIf="!continueInsertion">
             <button type="submit" mat-raised-button color="accent">Crea</button>
         </div>
+
     </form>
 </div>
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -76,6 +63,11 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ purchaseItemNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!purchaseItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPurchaseItem()">Create New</button>
+    <pre>TODO METTERE DETTAGLI INSERIMENTO</pre>
+    <div *ngIf="!isUpdate">
+        <button mat-stroked-button color="primary" (click)="newPurchaseItem()">
+            <span *ngIf="!returnToParent">Create New</span>
+            <span *ngIf="returnToParent">Edit</span>
+        </button>
+    </div>
 </div>

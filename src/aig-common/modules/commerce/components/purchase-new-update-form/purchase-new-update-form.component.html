@@ -56,5 +56,10 @@
 
 <div *ngIf="step.complete">
     <pre>{{ purchaseNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!purchaseNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPurchase()">Create New</button>
+    <div *ngIf="!isUpdate">
+        <button mat-stroked-button color="primary" (click)="newPurchase()">
+            <span *ngIf="!returnToParent">Create New</span>
+            <span *ngIf="returnToParent">Edit</span>
+        </button>
+    </div>
 </div>

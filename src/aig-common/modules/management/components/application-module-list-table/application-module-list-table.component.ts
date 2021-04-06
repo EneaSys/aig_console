@@ -30,21 +30,21 @@ export class AigApplicationModuleListTableComponent implements OnInit {
     
    ngOnInit(): void { }
 
-   async deleteApplicationModule(id: number) {
-    this._fuseProgressBarService.show();
+    async deleteApplicationModule(id: number) {
+        this._fuseProgressBarService.show();
 
-    try {
-        await this.applicationModuleResourceService.deleteApplicationModuleUsingDELETE(id).toPromise();
-        this._snackBar.open(`Application Module: '${id}' deleted.`, null, { duration: 2000, });
+        try {
+            await this.applicationModuleResourceService.deleteApplicationModuleUsingDELETE(id).toPromise();
+            this._snackBar.open(`Application Module: '${id}' deleted.`, null, { duration: 2000, });
 
-        this.eventService.reloadCurrentPage();
-    } catch (e) {
-        this._snackBar.open(`Error during deleting Application Module: '${id}'. (${e.message})`, null, { duration: 5000, });
+            this.eventService.reloadCurrentPage();
+        } catch (e) {
+            this._snackBar.open(`Error during deleting Application Module: '${id}'. (${e.message})`, null, { duration: 5000, });
+        }
+        this._fuseProgressBarService.hide();
     }
-    this._fuseProgressBarService.hide();
-}
 
-editApplicationModule(applicationModuleDTO: ApplicationModuleDTO) {
-    this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
-}
+    editApplicationModule(applicationModuleDTO: ApplicationModuleDTO) {
+        this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
+    }
 }

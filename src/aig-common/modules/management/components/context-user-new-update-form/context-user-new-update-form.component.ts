@@ -62,9 +62,9 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
     
         let contextUser: ContextUserDTO = {
             id: this.contextUserNewUpdateForm.value.id,
-            userCode: this.contextUserNewUpdateForm.value.user.code,
-            tenantContext: this.contextUserNewUpdateForm.value.tenant.context, 
-            tenantContextId: this.contextUserNewUpdateForm.value.tenant.context.id, 
+            userCode: this.contextUserNewUpdateForm.value.userCode,
+            tenantContext: this.contextUserNewUpdateForm.value.tenantContext, 
+            tenantContextId: this.contextUserNewUpdateForm.value.tenantContext.id, 
         }; 
 
         try {

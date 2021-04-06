@@ -31,11 +31,35 @@ import { LotResolver } from 'aig-common/modules/standard/resolver/lot.resolver';
 import { IppModalityResolver } from 'aig-common/modules/standard/resolver/ipp-modality.resolver';
 import { CategoryResolver } from 'aig-common/modules/standard/resolver/category.resolver';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
+import { AigStandardCustomListPageComponent } from './components/standard-custom-list-page/standard-custom-list-page.component';
 
 export const aigStandardRoute: Routes = [
     {
         path: 's6d',
         children: [
+            {
+                path: 'standard-custom',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigStandardCustomListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigCityDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            city: CityResolver,
+                        },
+                    },*/
+                ]
+            },
             {
                 path: '',
                 pathMatch: 'full',

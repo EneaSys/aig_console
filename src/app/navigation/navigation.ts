@@ -60,18 +60,19 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'build',
                 url      : '/ipp/procurement',
-                permission: ['ipp.p9t.get'],
+                permission: ['c6e.admin'],
             },
             {
                 id       : 'ipp-lot-list-page',
                 title    : 'Procurement Lot',
                 type     : 'item',
                 icon     : 'child_care',
-                url      : '/ipp/lot',
-                permission: ['ipp.p9t.get'],
+                url      : '/ipp/procurement-lot',
+                permission: ['c6e.admin'],
             },
         ]
     },
+
     {
         id       : 'commerce',
         title    : 'Commerce',
@@ -111,12 +112,21 @@ export const navigation: FuseNavigation[] = [
             },
         ]
     },
-
-
-
-
-
-    
+    {
+        id       : 'pd',
+        title    : 'Public database',
+        type     : 'group',
+        children : [
+            {
+                id       : 'standard-custom',
+                title    : 'Standard custom page',
+                type     : 'item',
+                icon     : 'view_carousel',
+                url      : '/s6d/standard-custom',
+                permission: ['c6e.admin'],
+            }
+        ]
+    },
 ];
 
 

@@ -35,6 +35,8 @@ import { RouterModule } from '@angular/router';
 import { AigUserEopooAssociateFormComponent } from './components/user-eopoo-associate-form/user-eopoo-associate-form.component';
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material';
+import { AigEntityDetailGroupComponent } from './components/entity-detail-group/entity-detail-group.component';
+import { AigEntityDetailRoleCustomComponent } from './components/entity-detail-role-custom/entity-detail-role-custom.component';
 
 @NgModule({
     imports: [
@@ -81,6 +83,8 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material';
         AigGroupAssociateComponent,
         AigRoleAssociateComponent,
         AigUserEopooAssociateFormComponent,
+        AigEntityDetailGroupComponent,
+        AigEntityDetailRoleCustomComponent,
 
     ],
     exports: [
@@ -103,6 +107,8 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material';
         AigGroupAssociateComponent,
         AigRoleAssociateComponent,
         AigUserEopooAssociateFormComponent,
+        AigEntityDetailGroupComponent,
+        AigEntityDetailRoleCustomComponent
 
 
         
@@ -112,6 +118,7 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material';
         AigAutocompleteFunctionService,
         
         AigValidatorService,
+       
     ],
 })
 export class AigCommonIamModule {}

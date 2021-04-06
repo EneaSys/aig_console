@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { InventoryItemCombinationDTO, InventoryItemCombinationResourceService } from 'aig-commerce';
+import { CatalogItemDTO, CatalogItemResourceService, InventoryItemCombinationDTO, InventoryItemCombinationResourceService, PurchaseItemDTO, PurchaseItemResourceService, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigInventoryItemCombinationNewUpdateDialogComponent } from '../inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
@@ -18,6 +18,9 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
         private inventoryItemCombinationResourceService: InventoryItemCombinationResourceService,
+        private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
+        private catalogItemResourceService: CatalogItemResourceService,
+        private purchaseItemResourceService: PurchaseItemResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
@@ -27,11 +30,23 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
 
     loadPage() {
         this.inventoryItemCombinationDTO = this.route.snapshot.data.inventoryItemCombination;
+        this.loadOther();
     }
 
     async reloadPage() {
 		this.inventoryItemCombinationDTO = await this.inventoryItemCombinationResourceService.getInventoryItemCombinationUsingGET(this.inventoryItemCombinationDTO.id).toPromise();
+        this.loadOther();
 	}
+
+    async loadOther() {
+        this.warehouseHandlingItem();
+        this.loadCatalogItem();
+        this.loadPurchaseItem();
+    }
+
+    editInventoryItemCombination(inventoryItemCombinationDTO: InventoryItemCombinationDTO) {
+        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: inventoryItemCombinationDTO } });
+    }
 
     async deleteInventoryItemCombination(id: number) {
         this._fuseProgressBarService.show();
@@ -48,7 +63,45 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
         this._fuseProgressBarService.hide();
       }
 
-    editInventoryItemCombination(inventoryItemCombinationDTO: InventoryItemCombinationDTO) {
-        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: inventoryItemCombinationDTO } });
+    warehouseHandlingItemDC: string[] = ["id","warehouseDate","warehouseHandlingType","warehouse","inventoryItemProducer","quantity", "buttons"];
+    warehouseHandlingItemDTOs: WarehouseHandlingItemDTO[];
+    warehouseHandlingItemError: any;
+    async warehouseHandlingItem() {
+        let filters = {
+            inventoryItemCombinationIdEquals: this.inventoryItemCombinationDTO.id
+        };
+        try {
+            this.warehouseHandlingItemDTOs = await this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(filters).toPromise();
+        } catch (e) {
+            this.warehouseHandlingItemError = e;
+        }
+    }
+
+    catalogItemDC: string[] = ["id", "active", "catalog", "inventoryItemProducer", "buttons"];
+    catalogItemDTOs: CatalogItemDTO[];
+    catalogItemError: any;
+    async loadCatalogItem() {
+        let filters = {
+            inventoryItemCombinationIdEquals: this.inventoryItemCombinationDTO.id
+        };
+        try {
+            this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(filters).toPromise();
+        } catch (e) {
+            this.catalogItemError = e;
+        }
+    }
+
+    purchaseItemDC: string[] = ["id","price","purchase","quantity","tax","warehouseHandlingItem","buttons"];
+    purchaseItemDTOs: PurchaseItemDTO[];
+    purchaseItemError: any;
+    async loadPurchaseItem() {
+        let filters = {
+            inventoryItemCombinationIdEquals: this.inventoryItemCombinationDTO.id
+        };
+        try {
+            this.purchaseItemDTOs = await this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filters).toPromise();
+        } catch (e) {
+            this.purchaseItemError = e;
+        }
     }
 }

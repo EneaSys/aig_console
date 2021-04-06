@@ -8,6 +8,7 @@
                 <pre>{{ buyerDTO | json }}</pre>
 
                 <button mat-stroked-button color="primary" (click)="editBuyer(buyerDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteBuyer(buyerDTO.id)">Delete</button>
 
             </div>
 
