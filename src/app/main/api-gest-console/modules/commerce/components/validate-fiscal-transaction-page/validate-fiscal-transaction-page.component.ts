@@ -74,6 +74,7 @@ export class ValidateFiscalTransactionPageComponent extends GenericComponent {
     }
 
     async loadNextCustomerToValidate() {
+        /*
         try {
             let fiscalTransactions = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
             let randomIndex = this.getRandomArbitrary(0, fiscalTransactions.length)
@@ -84,6 +85,7 @@ export class ValidateFiscalTransactionPageComponent extends GenericComponent {
         } catch(e) {
             this._snackBar.open(`Problema nel recupero di un documento fiscale.`, null, { duration: 10000, });
         }
+        */
     }
 
     private getRandomArbitrary(min, max) {
