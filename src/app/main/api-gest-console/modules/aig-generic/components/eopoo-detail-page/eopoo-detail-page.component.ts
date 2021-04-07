@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { EopooResourceService, EopooDTO, AddressResourceService, AddressDTO } from 'aig-generic';
@@ -10,6 +10,8 @@ import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.co
 import { AigAddressNewUpdateModalComponent } from '../address-new-update-modal/address-new-update-modal.component';
 import { ContextUserEopooResourceService, ContextUserEopooDTO } from 'api-gest';
 import { SellerResourceService, SellerDTO } from 'aig-commerce';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -18,11 +20,14 @@ import { SellerResourceService, SellerDTO } from 'aig-commerce';
 })
 export class AigEopooDetailPageComponent extends GenericComponent {
     constructor(
+        private _fuseProgressBarService: FuseProgressBarService,
+        private _snackBar: MatSnackBar,
+        private dialog: MatDialog,
+        private router: Router,
+        private route: ActivatedRoute,
         private eopooResourceService: EopooResourceService,
         private contextUserEopooResourceService: ContextUserEopooResourceService,
         private sellerResourceService: SellerResourceService,
-        private route: ActivatedRoute,
-        private dialog: MatDialog,
         private addressResourceService: AddressResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
@@ -56,6 +61,21 @@ export class AigEopooDetailPageComponent extends GenericComponent {
     editEopoo(eopooDTO: EopooDTO) {
         this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: eopooDTO } });
     }
+
+    async deleteEopoo(id: number) {
+        this._fuseProgressBarService.show();
+    
+        try {
+            await this.eopooResourceService.deleteEopooUsingDELETE(id).toPromise();
+    
+            this._snackBar.open(`Eopoo: '${id}' deleted.`, null, { duration: 2000, });
+            
+            this.router.navigate(['/g5c', 'eopoo']);
+        } catch (e) {
+            this._snackBar.open(`Error during deleting eopoo: '${id}'. (${e.message})`, null, { duration: 5000, });
+        }
+        this._fuseProgressBarService.hide();
+      }
 
     addAddress(eopooDTO: EopooDTO) {
         this.dialog.open(AigAddressNewUpdateModalComponent, { data: { eopoo: eopooDTO } });

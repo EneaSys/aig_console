@@ -1,6 +1,7 @@
 <div id="aig-eopoo-detail-page" class="page-layout blank">
 
-    <aig-generic-header [sectionName]="'Eoppo detail > ' + (eopooDTO | eopooName)" [search]="false"></aig-generic-header>
+    <aig-generic-header [sectionName]="(eopooDTO | eopooName)" [search]="false">
+    </aig-generic-header>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
@@ -16,15 +17,15 @@
                     <div class="h4 m-8 ml-16">Data nascita: {{ eopooDTO.person.bornDate }}</div>
                     <div class="h4 m-8 ml-16">Città nascita: {{ eopooDTO.person.city.name }}</div>
                 </div>
-            </div>
-            <div class="fuse-card auto-width p-16 m-16">
                 <button mat-stroked-button color="primary" (click)="editEopoo(eopooDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteEopoo(eopooDTO.id)">Delete</button>
             </div>
         </div>
         <div class="widget p-16" fxFlex.gt-sm="33">
             <div class="fuse-card auto-width p-16" id="address-list">
                 <div class="h4 m-16 mt-0 mb-0">Indirizzi</div>
-                <aig-eopoo-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDisplayedColumns"></aig-eopoo-address-list-table>
+                <aig-eopoo-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDisplayedColumns">
+                </aig-eopoo-address-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addAddress(eopooDTO)">
                     <mat-icon>add</mat-icon>

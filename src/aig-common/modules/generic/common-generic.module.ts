@@ -30,6 +30,7 @@ import { AigAddressNewUpdateFormComponent } from './components/address-new-updat
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
 import { AigGenericAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { MatMenuModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -56,6 +57,7 @@ import { AigGenericAutocompleteFunctionService } from './services/form/autocompl
         MatAutocompleteModule,
         MatSelectModule,
         MatDatepickerModule,
+        MatMenuModule,
 
 
     ],
