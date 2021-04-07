@@ -32,7 +32,7 @@ import { AigCommonManagementModule } from 'aig-common/modules/management/common-
 import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
 import { AIG_M8T_BASE_PATH } from 'aig-management';
-/*import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';*/
+import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
 
 
 @NgModule({
@@ -120,10 +120,10 @@ import { AIG_M8T_BASE_PATH } from 'aig-management';
             provide: AIG_M8T_BASE_PATH,
             useValue: API_URL + "/m8t"
         },
-        /*{
+        {
             provide: AIG_ITALIANLEGISLATION_PATH,
             useValue: API_URL + "/i16n"
-        },*/
+        },
 
     ],
 })

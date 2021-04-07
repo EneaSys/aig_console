@@ -4,10 +4,15 @@
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
-                <pre>{{ eopooTypeDTO | json }}</pre>
+        <div class="widget p-16" fxFlex.gt-sm="34">
+            <div class="fuse-card auto-width p-16 m-16">
+                <div class="h1 m-16">{{ eopooTypeDTO.name }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Id: {{ eopooTypeDTO.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Eopoo type code: {{ eopooTypeDTO.eopooTypeCode }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Eopoo category: {{ eopooTypeDTO.eopooCategory }}</div>
+                <br>
                 <button mat-stroked-button color="primary" (click)="editEopooType(eopooTypeDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteEopooType(eopooTypeDTO.id)">Delete</button>
             </div>
         </div>
         
