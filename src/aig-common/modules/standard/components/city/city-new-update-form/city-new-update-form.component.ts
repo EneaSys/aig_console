@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CityDTO, CityResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { EventEmitter } from 'events';
 
 @Component({
     selector: 'aig-city-new-update-form',
@@ -28,6 +29,12 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     @Input()
     city: CityDTO;
 
+    @Input()
+	returnToParent: boolean = false; 
+
+    /*@Output()
+	cityOutput = new EventEmitter<CityDTO>();*/
+
     cityNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -51,27 +58,37 @@ export class AigCityNewUpdateFormComponent implements OnInit {
 
         let city: CityDTO = this.cityNewUpdateForm.value;
 
-        try {
-            let postOrPut;
-            if (city.id != 0) {
-                await this.cityResourceService.updateCityUsingPUT(city).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.cityResourceService.createCityUsingPOST(city).toPromise();
-                postOrPut = "created";
-            }
-            this.eventService.reloadCurrentPage();
+        /*if(this.returnToParent) {
+			this.cityOutput.emit(city);
+			this.setStep("complete");
+		} */
 
-            this._snackBar.open(`City: '${city.name}' ${postOrPut}.`, null, { duration: 2000, });
-            this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
-            this.setStep("form");
+        if(!this.returnToParent){
+            try {
+                let postOrPut;
+                if (city.id != 0) {
+                    await this.cityResourceService.updateCityUsingPUT(city).toPromise();
+                    postOrPut = "updated";
+                } else {
+                    await this.cityResourceService.createCityUsingPOST(city).toPromise();
+                    postOrPut = "created";
+                }
+                this.eventService.reloadCurrentPage();
+    
+                this._snackBar.open(`City: '${city.name}' ${postOrPut}.`, null, { duration: 2000, });
+                this.setStep("complete");
+            } catch (error) {
+                this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+                this.setStep("form");
+            }
         }
+        
         this._fuseProgressBarService.hide();
     }
 
     newCity() {
+        this.city = null;
+        //this.cityOutput.emit(this.city);
         this.setStep("form");
     }
 
