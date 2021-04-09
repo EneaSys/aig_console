@@ -52,7 +52,7 @@ export class AigPurchaseDetailPageComponent extends GenericComponent {
     fiscalTransactionError: any;
     async loadFiscalTransactions() {
         let filters = {
-            idEquals : this.purchaseDTO.id
+            purchaseIdEquals : this.purchaseDTO.id
         }; 
         try {
             this.fiscalTransactionDTOs = await this.fiscalTransactionResourceService.getAllFiscalTransactionsUsingGET(filters).toPromise();

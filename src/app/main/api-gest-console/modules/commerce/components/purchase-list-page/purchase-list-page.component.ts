@@ -91,7 +91,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     
   private clearFiltersPurchase() {
     this.purchaseFilters = {
-      idEquals: null,
+      purchaseIdEquals: null,
       insertedDateTimeEquals : null,
       statusNoteContains : null,
       sellerIdEquals: null,
@@ -141,7 +141,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     if(searchedId != null) {
       this.clearFiltersPurchase();
       this.purchaseSearchFormGroup.reset();
-      this.purchaseFilters.idEquals= searchedId;
+      this.purchaseFilters.purchaseIdEquals= searchedId;
       this.searchPurchase(0);
       return;
     } else {

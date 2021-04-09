@@ -67,7 +67,7 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
 
 	private clearFiltersCatalogItem() {
 		this.catalogItemFilters = {
-			idEquals: null,
+			catalogItemIdEquals: null,
 			inventoryItemCombinationIdEquals: null,
 			catalogIdEquals: null,
 			page: 0,
@@ -124,7 +124,7 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
 			this.searchCatalogItem(0);
 			return;
 		}
-		this.catalogItemFilters.idEquals = null;
+		this.catalogItemFilters.catalogItemIdEquals = null;
 
 		if (this.catalogItemSearchFormGroup.controls.inventoryItemCombination.value) {
 			this.catalogItemFilters.inventoryItemCombinationIdEquals = this.catalogItemSearchFormGroup.controls.inventoryItemCombination.value.id;

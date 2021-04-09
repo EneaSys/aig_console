@@ -73,7 +73,7 @@ export class AigWarehouseDetailPageComponent extends GenericComponent {
       warehouseToLoadIdEquals: this.warehouseDTO.id || null, 
     };
     let warehouseToUnloadFilters = {
-      warehouseToLoadIdEquals: this.warehouseDTO.id || null,
+      warehouseToUnloadIdEquals: this.warehouseDTO.id || null,
     };
     try {
       this.warehouseHandlingDTOs = await this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(warehouseToLoadFilters && warehouseToUnloadFilters).toPromise();
