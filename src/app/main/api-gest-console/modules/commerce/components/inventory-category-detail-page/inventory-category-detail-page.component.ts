@@ -65,7 +65,7 @@ export class AigInventoryCategoryDetailPageComponent extends GenericComponent {
     inventoryItemError: any;
     async loadInventoryItem() {
         let filters = {
-            inventoryCategoryIdEquals: this.inventoryCategoryDTO.id
+            inventoryCategoryIDEquals: this.inventoryCategoryDTO.id
         };
         try {
             this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filters).toPromise();

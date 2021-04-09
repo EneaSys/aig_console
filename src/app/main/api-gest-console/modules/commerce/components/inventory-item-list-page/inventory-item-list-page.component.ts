@@ -71,10 +71,10 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
 
   private clearFiltersInventoryItem() {
     this.inventoryItemFilters = {
-      inventoryItemIdEquals: null,
+      inventoryItemIDEquals: null,
       inventoryItemNameContains: null,
-      inventoryCategoryIdEquals: null,
-      producerIdEquals: null,
+      inventoryCategoryIDEquals: null,
+      producerIDEquals: null,
       page: 0,
     }
   }
@@ -123,7 +123,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
     if (searchedId != null) {
       this.clearFiltersInventoryItem();
       this.inventoryItemSearchFormGroup.reset();
-      this.inventoryItemFilters.inventoryItemIdEquals = searchedId;
+      this.inventoryItemFilters.inventoryItemIDEquals = searchedId;
       this.searchInventoryItem(0);
       return;
     } else {
@@ -133,11 +133,11 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
       }
 
       if (this.inventoryItemSearchFormGroup.controls.inventoryCategory.value) {
-        this.inventoryItemFilters.inventoryCategoryIdEquals = this.inventoryItemSearchFormGroup.controls.inventoryCategory.value.id;
+        this.inventoryItemFilters.inventoryCategoryIDEquals = this.inventoryItemSearchFormGroup.controls.inventoryCategory.value.id;
       }
 
       if (this.inventoryItemSearchFormGroup.controls.producer.value) {
-        this.inventoryItemFilters.producerIdEquals = this.inventoryItemSearchFormGroup.controls.producer.value.id;
+        this.inventoryItemFilters.producerIDEquals = this.inventoryItemSearchFormGroup.controls.producer.value.id;
       }
 
       this.searchInventoryItem(0);

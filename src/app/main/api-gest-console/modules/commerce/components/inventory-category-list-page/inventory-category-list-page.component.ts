@@ -55,7 +55,7 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 
 	private clearFiltersInventoryCategory() {
 		this.inventoryCategoryFilters = {
-			inventoryCategoryIdEquals: null,
+			inventoryCategoryIDEquals: null,
 			inventoryCategoryNameContains: null,
 			page: 0,
 			
@@ -104,11 +104,11 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersInventoryCategory();
 			this.inventoryCategorySearchFormGroup.reset();
-			this.inventoryCategoryFilters.inventoryCategoryIdEquals = searchedId;
+			this.inventoryCategoryFilters.inventoryCategoryIDEquals = searchedId;
 			this.searchInventoryCategory(0);
 			return;
 		}
-		this.inventoryCategoryFilters.inventoryCategoryIdEquals = null;
+		this.inventoryCategoryFilters.inventoryCategoryIDEquals = null;
 
 		this.inventoryCategoryFilters.inventoryCategoryNameContains = this.inventoryCategorySearchFormGroup.controls.name.value;
 

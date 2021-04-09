@@ -81,7 +81,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 
 	private clearFiltersWarehouseHandlingItem() {
 		this.warehouseHandlingItemFilters = {
-			warehouseHandlingItemIdEquals: null,
+			warehouseHandlingItemIDEquals: null,
 			warehouseHandlingItemNameContains: null,
 			page: 0,
 		}
@@ -132,7 +132,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 		if(searchedId != null) {
 			this.clearFiltersWarehouseHandlingItem();
 			this.warehouseHandlingItemSearchFormGroup.reset();
-			this.warehouseHandlingItemFilters.warehouseHandlingItemIdEquals = searchedId;
+			this.warehouseHandlingItemFilters.warehouseHandlingItemIDEquals = searchedId;
 			this.searchWarehouseHandlingItem(0);
 			return;
 		}
@@ -152,7 +152,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 		if(this.warehouseHandlingItemSearchFormGroup.controls.warehouseToUnload.value){
 			this.warehouseHandlingItemFilters.warehouseToUnloadIdEquals = this.warehouseHandlingItemSearchFormGroup.controls.warehouseToUnload.value.id;
 		}*/
-		this.warehouseHandlingItemFilters.warehouseHandlingItemIdEquals = null;
+		this.warehouseHandlingItemFilters.warehouseHandlingItemIDEquals = null;
 
 		
 

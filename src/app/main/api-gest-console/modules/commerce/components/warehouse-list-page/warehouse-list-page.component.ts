@@ -60,7 +60,7 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 
 	private clearFiltersWarehouse() {
 		this.warehouseFilters = {
-			warehouseIdEquals: null,
+			warehouseIDEquals: null,
 			warehouseNameContains: null,
 			page: 0,
 		}
@@ -111,11 +111,11 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersWarehouse();
 			this.warehouseSearchFormGroup.reset();
-			this.warehouseFilters.warehouseIdEquals = searchedId;
+			this.warehouseFilters.warehouseIDEquals = searchedId;
 			this.searchWarehouse(0);
 			return;
 		}
-		this.warehouseFilters.warehouseIdEquals = null;
+		this.warehouseFilters.warehouseIDEquals = null;
 
 		this.warehouseFilters.warehouseNameContains = this.warehouseSearchFormGroup.controls.name.value;
 

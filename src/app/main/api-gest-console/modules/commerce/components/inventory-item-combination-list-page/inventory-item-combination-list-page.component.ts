@@ -62,7 +62,7 @@ export class AigInventoryItemCombinationListPageComponent extends GenericCompone
 
 	private clearFiltersInventoryItemCombination() {
 		this.inventoryItemCombinationFilters = {
-			inventoryItemCombinationIdEquals: null,
+			inventoryItemCombinationIDEquals: null,
 			inventoryItemCombinationNameContains: null,
 			page: 0,
 		}
@@ -113,11 +113,11 @@ export class AigInventoryItemCombinationListPageComponent extends GenericCompone
 		if(searchedId != null) {
 			this.clearFiltersInventoryItemCombination();
 			this.inventoryItemCombinationSearchFormGroup.reset();
-			this.inventoryItemCombinationFilters.inventoryItemCombinationIdEquals = searchedId;
+			this.inventoryItemCombinationFilters.inventoryItemCombinationIDEquals = searchedId;
 			this.searchInventoryItemCombination(0);
 			return;
 		}
-		this.inventoryItemCombinationFilters.inventoryItemCombinationIdEquals = null;
+		this.inventoryItemCombinationFilters.inventoryItemCombinationIDEquals = null;
 
 		this.inventoryItemCombinationFilters.inventoryItemCombinationNameContains = this.inventoryItemCombinationSearchFormGroup.controls.name.value;
 

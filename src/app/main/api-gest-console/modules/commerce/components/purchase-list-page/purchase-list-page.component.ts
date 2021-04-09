@@ -91,11 +91,11 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     
   private clearFiltersPurchase() {
     this.purchaseFilters = {
-      purchaseIdEquals: null,
+      purchaseIDEquals: null,
       insertedDateTimeEquals : null,
       statusNoteContains : null,
-      sellerIdEquals: null,
-      buyerIdEquals: null,
+      sellerIDEquals: null,
+      buyerIDEquals: null,
       page: 0,
     }
   }
@@ -141,7 +141,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     if(searchedId != null) {
       this.clearFiltersPurchase();
       this.purchaseSearchFormGroup.reset();
-      this.purchaseFilters.purchaseIdEquals= searchedId;
+      this.purchaseFilters.purchaseIDEquals= searchedId;
       this.searchPurchase(0);
       return;
     } else {
@@ -156,11 +156,11 @@ export class AigPurchaseListPageComponent extends GenericComponent {
       }
       
       if(this.purchaseSearchFormGroup.controls.seller.value){
-        this.purchaseFilters.sellerIdEquals = this.purchaseSearchFormGroup.controls.seller.value.id;
+        this.purchaseFilters.sellerIDEquals = this.purchaseSearchFormGroup.controls.seller.value.id;
       }
 
       if(this.purchaseSearchFormGroup.controls.buyer.value){
-        this.purchaseFilters.buyerIdEquals = this.purchaseSearchFormGroup.controls.buyer.value;
+        this.purchaseFilters.buyerIDEquals = this.purchaseSearchFormGroup.controls.buyer.value;
       }
 
       this.searchPurchase(0);

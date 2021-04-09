@@ -85,8 +85,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 	private clearFiltersBuyer() {
 		this.buyerFilters = {
-			buyerIdEquals: null,
-			sellerIdEquals: this.staticSeller ? this.staticSeller.id : null,
+			buyerIDEquals: null,
+			sellerIDEquals: this.staticSeller ? this.staticSeller.id : null,
 			statusNoteContains: null,
 			page: 0,
 		}
@@ -142,12 +142,12 @@ export class AigBuyerListPageComponent extends GenericComponent {
 		if (searchedId != null) {
 			this.clearFiltersBuyer();
 			this.buyerSearchFormGroup.reset();
-			this.buyerFilters.buyerIdEquals = searchedId;
+			this.buyerFilters.buyerIDEquals = searchedId;
 			this.searchBuyer(0);
 			return;
 		} else {
 			if(this.buyerSearchFormGroup.controls.seller.value){
-				this.buyerFilters.sellerIdEquals = this.buyerSearchFormGroup.controls.seller.value.id;
+				this.buyerFilters.sellerIDEquals = this.buyerSearchFormGroup.controls.seller.value.id;
 			}
 
 			if(this.buyerSearchFormGroup.controls.statusNote.value){
