@@ -70,7 +70,7 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         this.purchaseDTOs = null;
 
 		let filter = {
-			idEqual: this.buyerDTO.id
+			buyerIdEqual: this.buyerDTO.id
 		};
         try {
             this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(filter).toPromise();

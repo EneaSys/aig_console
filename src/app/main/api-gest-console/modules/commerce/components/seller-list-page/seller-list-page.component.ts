@@ -57,8 +57,8 @@ export class AigSellerListPageComponent extends GenericComponent {
 
 	private clearFiltersSeller() {
 		this.sellerFilters = {
-			idEquals: null,
-			nameContains: null,
+			sellerIdEquals: null,
+			sellerNameContains: null,
 			page: 0,
 		}
 	}

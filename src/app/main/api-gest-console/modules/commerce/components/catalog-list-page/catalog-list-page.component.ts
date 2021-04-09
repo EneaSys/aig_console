@@ -65,8 +65,8 @@ export class AigCatalogListPageComponent extends GenericComponent {
 
 	private clearFiltersCatalog() {
 		this.catalogFilters = {
-			idEquals: null,
-			nameContains: null,
+			catalogIdEquals: null,
+			catalogNameContains: null,
 			sellerIdEquals: null,
 			page: 0,
 			

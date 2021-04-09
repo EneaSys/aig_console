@@ -76,8 +76,8 @@ export class AigPriceListListPageComponent extends GenericComponent {
 
 	private clearFiltersPriceList() {
 		this.priceListFilters = {
-			idEquals: null,
-			nameContains: null,
+			priceListIdEquals: null,
+			priceListNameContains: null,
 			catalogIdEquals: this.staticCatalog ? this.staticCatalog.id : null,
 			page: 0,
 

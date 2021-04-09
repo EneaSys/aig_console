@@ -60,8 +60,8 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 
 	private clearFiltersWarehouse() {
 		this.warehouseFilters = {
-			idEquals: null,
-			nameContains: null,
+			warehouseIdEquals: null,
+			warehouseNameContains: null,
 			page: 0,
 		}
 	}

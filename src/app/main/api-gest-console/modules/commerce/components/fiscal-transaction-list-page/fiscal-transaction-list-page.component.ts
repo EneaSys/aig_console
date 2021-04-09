@@ -61,8 +61,8 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
 
 	private clearFiltersFiscalTransaction() {
 		this.fiscalTransactionFilters = {
-			idEquals: null,
-			nameContains: null,
+			fiscalTransactionIdEquals: null,
+			fiscalTransactionNameContains: null,
 			page: 0,
 		}
 	}

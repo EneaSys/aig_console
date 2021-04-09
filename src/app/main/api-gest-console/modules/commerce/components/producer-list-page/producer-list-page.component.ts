@@ -55,8 +55,8 @@ export class AigProducerListPageComponent extends GenericComponent {
 
 	private clearFiltersProducer() {
 		this.producerFilters = {
-			idEquals: null,
-			nameContains: null,
+			producerIdEquals: null,
+			producerNameContains: null,
 			page: 0,
 		}
 	}

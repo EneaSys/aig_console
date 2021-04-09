@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CityDTO, CityResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { EventEmitter } from 'events';
 
 @Component({
     selector: 'aig-city-new-update-form',
@@ -32,8 +31,8 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     @Input()
 	returnToParent: boolean = false; 
 
-    /*@Output()
-	cityOutput = new EventEmitter<CityDTO>();*/
+    @Output()
+	cityOutput = new EventEmitter<CityDTO>();
 
     cityNewUpdateForm: FormGroup;
 
@@ -58,10 +57,10 @@ export class AigCityNewUpdateFormComponent implements OnInit {
 
         let city: CityDTO = this.cityNewUpdateForm.value;
 
-        /*if(this.returnToParent) {
+        if(this.returnToParent) {
 			this.cityOutput.emit(city);
 			this.setStep("complete");
-		} */
+		} 
 
         if(!this.returnToParent){
             try {
@@ -88,7 +87,7 @@ export class AigCityNewUpdateFormComponent implements OnInit {
 
     newCity() {
         this.city = null;
-        //this.cityOutput.emit(this.city);
+        this.cityOutput.emit(this.city);
         this.setStep("form");
     }
 

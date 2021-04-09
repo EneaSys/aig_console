@@ -72,7 +72,7 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
 
   private clearFiltersPurchaseItem() {
 		this.purchaseItemFilters = {
-			idEquals: null,
+			purchaseItemIdEquals: null,
 			priceEquals: null,
 			page: 0,
 		}

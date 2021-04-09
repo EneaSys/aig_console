@@ -86,7 +86,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	
 	private clearFiltersWarehouseHandling() {
 		this.warehouseHandlingFilters = {
-			idEquals: null,
+			warehouseHandlingIdEquals: null,
 			dateEquals:null,
 			warehouseHandlingTypeEquals:null,
 			warehouseToLoadIdEquals: this.staticWarehouseToLoad ? this.staticWarehouseToLoad.id : null,
