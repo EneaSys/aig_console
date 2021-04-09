@@ -112,13 +112,13 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersFiscalTransaction();
 			this.fiscalTransactionSearchFormGroup.reset();
-			this.fiscalTransactionFilters.idEquals = searchedId;
+			this.fiscalTransactionFilters.fiscalTransactionIdEquals = searchedId;
 			this.searchFiscalTransaction(0);
 			return;
 		}
-		this.fiscalTransactionFilters.idEquals = null;
+		this.fiscalTransactionFilters.fiscalTransactionIdEquals = null;
 
-		this.fiscalTransactionFilters.nameContains = this.fiscalTransactionSearchFormGroup.controls.name.value;
+		this.fiscalTransactionFilters.fiscalTransactionNameContains = this.fiscalTransactionSearchFormGroup.controls.name.value;
 
 		this.searchFiscalTransaction(0);
 	}

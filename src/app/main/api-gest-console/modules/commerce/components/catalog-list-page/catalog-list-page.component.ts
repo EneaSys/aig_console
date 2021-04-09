@@ -117,13 +117,13 @@ export class AigCatalogListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersCatalog();
 			this.catalogSearchFormGroup.reset();
-			this.catalogFilters.idEquals = searchedId;
+			this.catalogFilters.catalogIdEquals = searchedId;
 			this.searchCatalog(0);
 			return;
 		}
-		this.catalogFilters.idEquals = null;
+		this.catalogFilters.catalogIdEquals = null;
 
-		this.catalogFilters.nameContains = this.catalogSearchFormGroup.controls.name.value;
+		this.catalogFilters.catalogNameContains = this.catalogSearchFormGroup.controls.name.value;
 
 		if (this.catalogSearchFormGroup.controls.seller.value) {
 			this.catalogFilters.sellerIdEquals = this.catalogSearchFormGroup.controls.seller.value.id;

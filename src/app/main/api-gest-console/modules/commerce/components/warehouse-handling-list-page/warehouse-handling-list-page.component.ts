@@ -87,7 +87,7 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	private clearFiltersWarehouseHandling() {
 		this.warehouseHandlingFilters = {
 			warehouseHandlingIdEquals: null,
-			dateEquals:null,
+			warehouseHandlingDateEquals:null,
 			warehouseHandlingTypeEquals:null,
 			warehouseToLoadIdEquals: this.staticWarehouseToLoad ? this.staticWarehouseToLoad.id : null,
 			warehouseToUnloadIdEquals:null,
@@ -135,13 +135,13 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersWarehouseHandling();
 			this.warehouseHandlingSearchFormGroup.reset();
-			this.warehouseHandlingFilters.idEquals = searchedId;
+			this.warehouseHandlingFilters.warehouseHandlingIdEquals = searchedId;
 			this.searchWarehouseHandling(0);
 			return;
 		} else{
 
 			if(this.warehouseHandlingSearchFormGroup.controls.date.value){
-				this.warehouseHandlingFilters.dateEquals = this.warehouseHandlingSearchFormGroup.controls.date.value;
+				this.warehouseHandlingFilters.warehouseHandlingDateEquals = this.warehouseHandlingSearchFormGroup.controls.date.value;
 			}
 
 			if(this.warehouseHandlingSearchFormGroup.controls.warehouseHandlingType.value){

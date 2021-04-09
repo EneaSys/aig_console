@@ -104,13 +104,13 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersInventoryCategory();
 			this.inventoryCategorySearchFormGroup.reset();
-			this.inventoryCategoryFilters.idEquals = searchedId;
+			this.inventoryCategoryFilters.inventoryCategoryIdEquals = searchedId;
 			this.searchInventoryCategory(0);
 			return;
 		}
-		this.inventoryCategoryFilters.idEquals = null;
+		this.inventoryCategoryFilters.inventoryCategoryIdEquals = null;
 
-		this.inventoryCategoryFilters.nameContains = this.inventoryCategorySearchFormGroup.controls.name.value;
+		this.inventoryCategoryFilters.inventoryCategoryNameContains = this.inventoryCategorySearchFormGroup.controls.name.value;
 
 		this.searchInventoryCategory(0);
 	}

@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO, ValidationImageReturnTO } from 'aig-commerce';
-import { EventService } from 'aig-common/event-manager/event.service';
+import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO } from 'aig-commerce';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { HttpClient } from '@angular/common/http';
-import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
 import { AigBuyerNewUpdateFormComponent } from 'aig-common/modules/commerce/components/buyer-new-update-form/buyer-new-update-form.component';
 
 @Component({

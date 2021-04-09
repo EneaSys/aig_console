@@ -111,13 +111,13 @@ export class AigWarehouseListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersWarehouse();
 			this.warehouseSearchFormGroup.reset();
-			this.warehouseFilters.idEquals = searchedId;
+			this.warehouseFilters.warehouseIdEquals = searchedId;
 			this.searchWarehouse(0);
 			return;
 		}
-		this.warehouseFilters.idEquals = null;
+		this.warehouseFilters.warehouseIdEquals = null;
 
-		this.warehouseFilters.nameContains = this.warehouseSearchFormGroup.controls.name.value;
+		this.warehouseFilters.warehouseNameContains = this.warehouseSearchFormGroup.controls.name.value;
 
 		this.searchWarehouse(0);
 	}
