@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'auth/auth-guard.service';
-import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
-import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
+import { AigProcurementLotListPageComponent } from './components/procurement-lot-list-page/procurement-lot-list-page.component';
+import { AigProcurementListPageComponent } from './procurement-list-page/procurement-list-page.component';
 
 
 export const ippRoute: Routes = [
@@ -24,12 +24,12 @@ export const ippRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigIppListPageComponent,
+                        component: AigProcurementListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
                         path: 'detail/:id',
-                        component: AigIppListPageComponent,
+                        component: AigProcurementListPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                       //      eopoo: EopooResolver,
@@ -48,12 +48,12 @@ export const ippRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigIppLotListPageComponent,
+                        component: AigProcurementLotListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
                         path: 'detail/:id',
-                        component: AigIppLotListPageComponent,
+                        component: AigProcurementLotListPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                       //      eopoo: EopooResolver,

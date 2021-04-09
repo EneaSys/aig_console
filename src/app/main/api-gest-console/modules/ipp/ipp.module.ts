@@ -18,8 +18,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FuseSidebarModule } from '@fuse/components';
 import { AigIppClientModule } from 'aig-italian-public-procurement';
-import { AigIppListPageComponent } from './components/ipp-list-page/ipp-list-page.component';
-import { AigIppLotListPageComponent } from './components/ipp-lot-list-page/ipp-lot-list-page.component';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
@@ -27,6 +25,8 @@ import { AigProcurementDetailPageComponent } from './components/procurement-deta
 import { AigProcurementNewUpdateDialogComponent } from './components/procurement-new-update-dialog/procurement-new-update-dialog.component';
 import { AigProcurementLotDetailPageComponent } from './components/procurement-lot-detail-page/procurement-lot-detail-page.component';
 import { AigProcurementLotNewUpdateDialogComponent } from './components/procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
+import { AigProcurementListPageComponent } from './procurement-list-page/procurement-list-page.component';
+import { AigProcurementLotListPageComponent } from './components/procurement-lot-list-page/procurement-lot-list-page.component';
 
 
 @NgModule({
@@ -71,8 +71,8 @@ import { AigProcurementLotNewUpdateDialogComponent } from './components/procurem
     declarations: [
         AigIppHeaderComponent,
 
-        AigIppListPageComponent,
-        AigIppLotListPageComponent,
+        AigProcurementListPageComponent,
+        AigProcurementLotListPageComponent,
         AigProcurementDetailPageComponent,
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotDetailPageComponent,

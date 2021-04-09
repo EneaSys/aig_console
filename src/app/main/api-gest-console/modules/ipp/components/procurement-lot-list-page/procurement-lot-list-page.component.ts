@@ -7,10 +7,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 declare const google: any;
 
 @Component({
-    templateUrl: './ipp-lot-list-page.component.html',
-    styleUrls: ['./ipp-lot-list-page.component.scss']
+    templateUrl: './procurement-lot-list-page.component.html',
+    styleUrls: ['./procurement-lot-list-page.component.scss']
 })
-export class AigIppLotListPageComponent extends GenericComponent {
+export class AigProcurementLotListPageComponent extends GenericComponent {
     constructor(
         private procurementLotResourceService: ProcurementLotResourceService,
         private _formBuilder: FormBuilder,
@@ -20,7 +20,7 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
     loadComponent() {
         this.loadForm();
-        this.cleanFiltersAndLoadIppLot();
+        this.cleanFiltersAndLoadProcurementLot();
     }
 
 
@@ -157,14 +157,14 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
 
     formatFilterAmountMin(event: any) {
-        this.ippLotFilters.amountMin = event.value;
+        this.procurementLotFilters.amountMin = event.value;
     }
 
     formatFilterAmountMax(event: any) {
         if (event.value < 1000001) {
-            this.ippLotFilters.amountMax = event.value;
+            this.procurementLotFilters.amountMax = event.value;
         } else {
-            this.ippLotFilters.amountMax = null;
+            this.procurementLotFilters.amountMax = null;
         }
     }
 
@@ -191,11 +191,11 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
 
     // Filters
-    ippLotSearchForm: FormGroup;
+    procurementLotSearchForm: FormGroup;
 
 
     loadForm() {
-        this.ippLotSearchForm = this._formBuilder.group({
+        this.procurementLotSearchForm = this._formBuilder.group({
             cig: [''],
             description: [''],
             date: [''],
@@ -204,18 +204,18 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
 
 
-    ippLotSearch() {
-        if (this.ippLotSearchForm.value.cig) {
-            let cig = this.ippLotSearchForm.value.cig;
-            this.cleanFiltersIppLot();
-            this.setFilterIppLot('cig', cig);
-            this.cleanFiltersIppLot();
+    procurementLotSearch() {
+        if (this.procurementLotSearchForm.value.cig) {
+            let cig = this.procurementLotSearchForm.value.cig;
+            this.cleanFiltersProcurementLot();
+            this.setFilterProcurementLot('cig', cig);
+            this.cleanFiltersProcurementLot();
         } else {
-            if (this.ippLotSearchForm.value.description != "") {
-                this.ippLotFilters.description = this.ippLotSearchForm.value.description;
+            if (this.procurementLotSearchForm.value.description != "") {
+                this.procurementLotFilters.description = this.procurementLotSearchForm.value.description;
             }
-            if (this.ippLotSearchForm.value.date != "") {
-                this.ippLotFilters.date = this.ippLotSearchForm.value.date;
+            if (this.procurementLotSearchForm.value.date != "") {
+                this.procurementLotFilters.date = this.procurementLotSearchForm.value.date;
             }
             this.reloadFilter();
         }
@@ -223,30 +223,30 @@ export class AigIppLotListPageComponent extends GenericComponent {
 
 
     // IPP LOT
-    ippLotDisplayedColumns: string[] = ['cig', 'sa', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
-    ippLotDTOs: ProcurementLotDTO[];
-    ippLotError: any;
+    procurementLotDisplayedColumns: string[] = ['cig', 'sa', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
+    procurementLotDTOs: ProcurementLotDTO[];
+    procurementLotError: any;
 
-    ippLotPageable = {
+    procurementLotPageable = {
         page: 0,
         size: 30,
     }
-    ippLotIndex: number;
-    ippLotLength: number;
+    procurementLotIndex: number;
+    procurementLotLength: number;
 
-    ippLotFilters: any;
+    procurementLotFilters: any;
 
-    cleanFiltersAndLoadIppLot() {
-        this.cleanFiltersIppLot();
+    cleanFiltersAndLoadProcurementLot() {
+        this.cleanFiltersProcurementLot();
         this.reloadFilter();
     }
 
-    private cleanFiltersIppLot() {
-        this.ippLotSearchForm.reset();
+    private cleanFiltersProcurementLot() {
+        this.procurementLotSearchForm.reset();
 
-        this.ippLotIndex = 0;
+        this.procurementLotIndex = 0;
 
-        this.ippLotFilters = {
+        this.procurementLotFilters = {
             cig: null,
             description: null,
             amountMin: null,
@@ -256,32 +256,32 @@ export class AigIppLotListPageComponent extends GenericComponent {
         }
     }
 
-    setFilterIppLot(filterKey: string, value: any) {
-        this.ippLotFilters[filterKey] = value;
+    setFilterProcurementLot(filterKey: string, value: any) {
+        this.procurementLotFilters[filterKey] = value;
         this.reloadFilter();
     }
 
     private async reloadFilter() {
-        this.loadIppLots(0);
+        this.loadProcurementLots(0);
         try {
-            this.ippLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(null, null, this.ippLotFilters.amountMin, null, null, this.ippLotFilters.amountMax, null, null, null, null, this.ippLotFilters.cig, null, null, null, null, null, null, null, null, null, this.ippLotFilters.description, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotFilters.ippLotCategoryCode, null, null, null, null, null, this.ippLotFilters.ippLotTypeCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+            this.procurementLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(this.procurementLotFilters).toPromise();
         } catch (e) { }
     }
 
-    ippLotPaginatorEvent(event: PageEvent) {
-        this.ippLotPageable.size = event.pageSize;
-        this.loadIppLots(event.pageIndex);
+    procurementLotPaginatorEvent(event: PageEvent) {
+        this.procurementLotPageable.size = event.pageSize;
+        this.loadProcurementLots(event.pageIndex);
     }
 
-    private async loadIppLots(page) {
-        this.ippLotDTOs = null;
+    private async loadProcurementLots(page) {
+        this.procurementLotDTOs = null;
 
-        this.ippLotIndex = page
-        this.ippLotPageable.page = page;
+        this.procurementLotIndex = page
+        this.procurementLotPageable.page = page;
         try {
-            this.ippLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(null, null, this.ippLotFilters.amountMin, null, null, this.ippLotFilters.amountMax, null, null, null, null, this.ippLotFilters.cig, null, null, null, null, null, null, null, null, null, this.ippLotFilters.description, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotFilters.ippLotCategoryCode, null, null, null, null, null, this.ippLotFilters.ippLotTypeCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotPageable.page, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.ippLotPageable.size, null).toPromise();
+            this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(this.procurementLotFilters).toPromise();
         } catch (e) {
-            this.ippLotError = e;
+            this.procurementLotError = e;
         }
     }
 

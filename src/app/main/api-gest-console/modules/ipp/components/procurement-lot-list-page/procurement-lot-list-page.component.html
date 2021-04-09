@@ -1,11 +1,11 @@
 <div class="page-layout simple left-sidebar">
     <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="ipp-lot-filter-sidebar" position="left" lockedOpen="gt-md">
+    <fuse-sidebar class="sidebar" name="procurement-lot-filter-sidebar" position="left" lockedOpen="gt-md">
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
                 <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="center start">
-                    <button mat-raised-button (click)="cleanFiltersAndLoadIppLot()">Pulisci filtri</button>
+                    <button mat-raised-button (click)="cleanFiltersAndLoadProcurementLot()">Pulisci filtri</button>
                 </div>
             </div>
             <div>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
-                        <form [formGroup]="ippLotSearchForm" (ngSubmit)="ippLotSearch()" class="p-8">
+                        <form [formGroup]="procurementLotSearchForm" (ngSubmit)="procurementLotSearch()" class="p-8">
                             <div fxLayout="row">
                                 <mat-form-field appearance="outline" fxFlex="100">
                                     <mat-label>Cig</mat-label>
@@ -47,8 +47,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="ippLotFilters.amountMin">{{ ippLotFilters.amountMin | currency:'EUR' }}</span>
-                                <span *ngIf="!ippLotFilters.amountMin">non definito</span>
+                                <span *ngIf="procurementLotFilters.amountMin">{{ procurementLotFilters.amountMin | currency:'EUR' }}</span>
+                                <span *ngIf="!procurementLotFilters.amountMin">non definito</span>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center start">
                                 <div appearance="outline" fxFlex="100">
@@ -59,8 +59,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="ippLotFilters.amountMax">{{ ippLotFilters.amountMax | currency:'EUR' }}</span>
-                                <span *ngIf="!ippLotFilters.amountMax">illimitato</span>
+                                <span *ngIf="procurementLotFilters.amountMax">{{ procurementLotFilters.amountMax | currency:'EUR' }}</span>
+                                <span *ngIf="!procurementLotFilters.amountMax">illimitato</span>
                             </div>
                             <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
                                 <button type="submit" mat-raised-button color="accent">Cerca</button>
@@ -76,20 +76,20 @@
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', null)"
-                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == null}">
+                            <a class="nav-link" matRipple (click)="setFilterprocurementLot('procurementLotTypeCode', null)"
+                                [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == null}">
                                 <span class="title">Tutto</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', 'FORNITURE')"
-                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == 'FORNITURE'}">
+                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'FORNITURE')"
+                                [ngClass]="{'accent': procurementLotFilters.ippProcurementTypeCode == 'FORNITURE'}">
                                 <span class="title">Forniture</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', 'LAVORI')"
-                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == 'LAVORI'}">
+                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'LAVORI')"
+                                [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == 'LAVORI'}">
                                 <span class="title">Lavori</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterIppLot('ippLotTypeCode', 'SERVIZI')"
-                                [ngClass]="{'accent': ippLotFilters.ippLotTypeCode == 'SERVIZI'}">
+                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'SERVIZI')"
+                                [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == 'SERVIZI'}">
                                 <span class="title">Servizi</span>
                             </a>
                         </div>
@@ -105,7 +105,7 @@
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                (click)="toggleSidebar('ipp-lot-filter-sidebar')">
+                (click)="toggleSidebar('procurement-lot-filter-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
             <h2>Elenco Lotti</h2>
@@ -125,12 +125,12 @@
                 Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup></mat-card
               >
 
-            <ipp-lot-list-table [displayedColumns]="ippLotDisplayedColumns" [dataSource]="ippLotDTOs">
-            </ipp-lot-list-table>
+            <procurement-lot-list-table [displayedColumns]="procurementLotDisplayedColumns" [dataSource]="procurementLotDTOs">
+            </procurement-lot-list-table>
 
-            <mat-paginator #ippLotPaginator [length]="ippLotLength" [pageIndex]="ippLotIndex"
-                [pageSize]="ippLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
-                (page)="ippLotPaginatorEvent($event)"></mat-paginator>
+            <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="procurementLotIndex"
+                [pageSize]="procurementLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
+                (page)="procurementLotPaginatorEvent($event)"></mat-paginator>
         </div>
         <!-- / CONTENT -->
     </div>

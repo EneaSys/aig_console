@@ -63,7 +63,7 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
-                id       : 'ipp-lot-list-page',
+                id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',
                 type     : 'item',
                 icon     : 'child_care',

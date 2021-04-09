@@ -5,13 +5,12 @@ import { ProcurementResourceService, ProcurementDTO } from 'aig-italian-public-p
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AigProcurementNewUpdateFormComponent } from 'aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form.component';
-import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
-
+import { AigProcurementNewUpdateDialogComponent } from '../components/procurement-new-update-dialog/procurement-new-update-dialog.component';
 @Component({
-    templateUrl: './ipp-list-page.component.html',
-    styleUrls: ['./ipp-list-page.component.scss']
+    templateUrl: './procurement-list-page.component.html',
+    styleUrls: ['./procurement-list-page.component.scss']
 })
-export class AigIppListPageComponent extends GenericComponent {
+export class AigProcurementListPageComponent extends GenericComponent {
     constructor(
        
 		private _formBuilder: FormBuilder,
