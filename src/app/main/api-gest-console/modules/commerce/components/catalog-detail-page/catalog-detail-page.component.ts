@@ -66,7 +66,7 @@ export class AigCatalogDetailPageComponent extends GenericComponent {
     catalogItemError: any;
     async loadCatalogItem() {
         let filters = {
-            catalogIdEquals: this.catalogDTO.id
+            catalogIDEquals: this.catalogDTO.id
         };
         try {
             this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(filters).toPromise();
@@ -80,7 +80,7 @@ export class AigCatalogDetailPageComponent extends GenericComponent {
     priceListError: any;
     async loadPriceList() {
         let filters = {
-            catalogIdEquals: this.catalogDTO.id
+            catalogIDEquals: this.catalogDTO.id
         };
         try {
             this.priceListDTOs = await this.priceListResourceService.getAllPriceListsUsingGET(filters).toPromise();

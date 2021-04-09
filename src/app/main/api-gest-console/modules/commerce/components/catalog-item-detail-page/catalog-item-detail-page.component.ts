@@ -64,7 +64,7 @@ export class AigCatalogItemDetailPageComponent extends GenericComponent {
     priceListItemError: any;
     async loadPriceListItem() {
         let filters = {
-            catalogItemIdEquals: this.catalogItemDTO.id
+            catalogItemIDEquals: this.catalogItemDTO.id
         };
         try {
             this.priceListItemDTOs = await this.priceListItemResourceService.getAllPriceListItemsUsingGET(filters).toPromise();

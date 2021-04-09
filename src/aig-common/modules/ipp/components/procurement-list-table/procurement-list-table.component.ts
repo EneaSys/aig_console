@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italian-public-procurement';
+import { AigProcurementNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-new-update-dialog/procurement-new-update-dialog.component';
 import { AigProcurementNewUpdateFormComponent } from '../procurement-new-update-form/procurement-new-update-form.component';
 
 @Component({
@@ -17,7 +18,6 @@ export class AigProcurementListTableComponent implements OnInit {
         private eventService: EventService,
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
-        private router: Router,
         private dialog: MatDialog,
     ) { }
 
@@ -45,7 +45,7 @@ export class AigProcurementListTableComponent implements OnInit {
     }
 
     editProcurement(procurementDTO: ProcurementDTO) {
-        this.dialog.open(AigProcurementNewUpdateFormComponent, { data: {procurement:procurementDTO } });
+        this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: {procurement:procurementDTO } });
     }
 }
 

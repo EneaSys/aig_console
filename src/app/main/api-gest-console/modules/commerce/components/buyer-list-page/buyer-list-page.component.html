@@ -24,7 +24,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <!--<div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Venditore</mat-label>
                                         <input formControlName="seller" matInput
@@ -35,7 +35,7 @@
                                                 [value]="seller">{{ seller.name }}</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
-                                </div>
+                                </div>-->
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
@@ -73,7 +73,7 @@
             <mat-paginator #paginator [length]="buyerLength" [pageIndex]="this.buyerFilters.page" [pageSize]="this.buyerPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="buyerPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-buyer-button" (click)="newBuyer()" aria-label="add buyer">
+            <button mat-fab class="accent" id="add-buyer-button" (click)="newBuyer(sellerDTO)" aria-label="add buyer">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

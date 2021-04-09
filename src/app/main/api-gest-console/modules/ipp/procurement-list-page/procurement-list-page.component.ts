@@ -45,7 +45,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 
 	
 	private initProcurementSearch() {
-		this.procurementDC = ["code", "buttons"];
+		this.procurementDC = ["code","description","ref","amount","SA","sector","procedure","modality", "buttons"];
 
 		this.procurementPaginationSize = 10;
 		
@@ -59,8 +59,6 @@ export class AigProcurementListPageComponent extends GenericComponent {
 	private clearFiltersProcurement() {
 		this.procurementFilters = {
 			idEquals: null,
-			
-			
 		}
 	}
 
@@ -71,7 +69,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		this.procurementFilters.size = this.procurementPaginationSize;
 
 		try {                                                                       
-			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();  
+			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET().toPromise();  
 			
 			if(this.procurementLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});

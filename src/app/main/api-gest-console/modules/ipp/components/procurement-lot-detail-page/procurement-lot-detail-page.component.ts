@@ -8,6 +8,7 @@ import { AigProcurementLotNewUpdateFormComponent } from "aig-common/modules/ipp/
 import {  ProcurementLotDTO, ProcurementLotResourceService,  } from "aig-italian-public-procurement";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
 
 
 @Component({
@@ -44,7 +45,7 @@ export class AigProcurementLotDetailPageComponent extends GenericComponent {
   }
 
   editProcurementLot(procurementLotDTO: ProcurementLotDTO) {
-    this.dialog.open(AigProcurementLotNewUpdateFormComponent, { data: { procurementLot: procurementLotDTO } });
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: procurementLotDTO } });
   }
 
   async deleteProcurementLot(id: number) {

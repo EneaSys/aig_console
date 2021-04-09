@@ -33,8 +33,17 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            name: ['', Validators.required],
+            id: [''],
+            cig: ['', Validators.required],
+            description: ['', Validators.required],
+            offerExpiryDate: ['', Validators.required],
+            baseAmount: ['', Validators.required],
+            securityAmount: [''],
+            istatCode: [''],
+            nustCode: [''],
+            ippLotTypeCode: ['', Validators.required],
+            ippLotCategoryCode: ['', Validators.required],
+            cpvCode: ['', Validators.required],
         })
         
         if (this.procurementLot != null) {
@@ -50,12 +59,26 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurementLot: ProcurementLotDTO = this.procurementLotNewUpdateForm.value;
+        let procurementLot: ProcurementLotDTO = {
+            baseAmount: this.procurementLotNewUpdateForm.value.baseAmount,
+            cig: this.procurementLotNewUpdateForm.value.cig,
+            cpvCode: this.procurementLotNewUpdateForm.value.cpvCode,
+            description: this.procurementLotNewUpdateForm.value.description,
+            ippLotCategoryCode: this.procurementLotNewUpdateForm.value.ippLotCategoryCode,
+            ippLotTypeCode: this.procurementLotNewUpdateForm.value.ippLotTypeCode,
+            offerExpiryDate: this.procurementLotNewUpdateForm.value.offerExpiryDate,
+            id: this.procurementLotNewUpdateForm.value.id,
+            istatCode: this.procurementLotNewUpdateForm.value.istatCode,
+            nutsCode: this.procurementLotNewUpdateForm.value.nutsCode,
+            securityAmount: this.procurementLotNewUpdateForm.value.securityAmount,
+            procurementId:1,
+        }
+        
 
         try {
             let postOrPut: string;
 
-            if (this.procurementLot.id != 0) {
+            if (this.procurementLot.id > 0) {
                 await this.procurementLotResourceService.updateProcurementLotUsingPUT(procurementLot).toPromise();
                 postOrPut = "updated";
             } else {

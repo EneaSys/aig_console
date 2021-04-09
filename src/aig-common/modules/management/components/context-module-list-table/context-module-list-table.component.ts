@@ -6,7 +6,6 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { ContextModuleDTO, ContextModuleResourceService } from 'aig-management';
 import { AigContextModuleNewUpdateModalComponent } from 'app/main/api-gest-console/modules/management/components/context-module-new-update-modal/context-module-new-update-modal.component';
 
-
 @Component({
     selector: 'aig-context-module-list-table',
     templateUrl: './context-module-list-table.component.html',

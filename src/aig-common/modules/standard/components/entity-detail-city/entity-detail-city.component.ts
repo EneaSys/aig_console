@@ -15,7 +15,6 @@ export class AigEntityDetailCityComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     city: CityDTO;
 
 }

@@ -70,10 +70,10 @@ export class AigWarehouseDetailPageComponent extends GenericComponent {
   warehouseHandlingError: any;
   async loadWarehouseHandling() {
     let warehouseToLoadFilters = {
-      warehouseToLoadIdEquals: this.warehouseDTO.id || null, 
+      warehouseToLoadIDEquals: this.warehouseDTO.id || null, 
     };
     let warehouseToUnloadFilters = {
-      warehouseToLoadIdEquals: this.warehouseDTO.id || null,
+      warehouseToUnloadIDEquals: this.warehouseDTO.id || null,
     };
     try {
       this.warehouseHandlingDTOs = await this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(warehouseToLoadFilters && warehouseToUnloadFilters).toPromise();

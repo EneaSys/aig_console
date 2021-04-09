@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
     templateUrl: './role-new-update-modal.component.html',
@@ -8,7 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AigRoleNewUpdateModalComponent implements OnInit {
     constructor(
         public matDialogRef: MatDialogRef<AigRoleNewUpdateModalComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private dialog: MatDialog,
     ) { }
 
     ngOnInit(): void { }

@@ -28,6 +28,7 @@ export class AigCatalogItemListTableComponent implements OnInit {
     ) { }
 
     ngOnInit(): void { }
+    
     async deleteCatalogItem(id: number) {
         this._fuseProgressBarService.show();
 

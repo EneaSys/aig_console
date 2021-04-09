@@ -72,7 +72,7 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
 
   private clearFiltersPurchaseItem() {
 		this.purchaseItemFilters = {
-			idEquals: null,
+			purchaseItemIDEquals: null,
 			priceEquals: null,
 			page: 0,
 		}
@@ -118,12 +118,12 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
     if(searchedId != null) {
       this.clearFiltersPurchaseItem();
       this.purchaseItemSearchFormGroup.reset();
-      this.purchaseItemFilters.idEquals= searchedId;
+      this.purchaseItemFilters.purchaseItemIDEquals= searchedId;
       this.searchPurchaseItem(0);
       return;
     }
       
-		this.purchaseItemFilters.idEquals = null;
+		this.purchaseItemFilters.purchaseItemIDEquals = null;
 		this.purchaseItemFilters.priceEquals = this.purchaseItemSearchFormGroup.controls.price.value;
 
 		this.searchPurchaseItem(0);

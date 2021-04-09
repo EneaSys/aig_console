@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italian-public-procurement';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { PageEvent } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AigProcurementLotNewUpdateDialogComponent } from '../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 declare const google: any;
 
 @Component({
@@ -15,6 +16,7 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
         private procurementLotResourceService: ProcurementLotResourceService,
         private _formBuilder: FormBuilder,
         aigGenericComponentService: AigGenericComponentService,
+        private dialog: MatDialog,
     ) { super(aigGenericComponentService) }
 
 
@@ -134,6 +136,10 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
         this.selectedArea = google.maps.geometry.spherical.computeArea(
             path
         );
+    }
+    
+    newProcurementLot(): void {
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
     }
 
 

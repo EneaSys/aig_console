@@ -86,11 +86,11 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	
 	private clearFiltersWarehouseHandling() {
 		this.warehouseHandlingFilters = {
-			idEquals: null,
-			dateEquals:null,
+			warehouseHandlingIDEquals: null,
+			warehouseHandlingDateEquals:null,
 			warehouseHandlingTypeEquals:null,
-			warehouseToLoadIdEquals: this.staticWarehouseToLoad ? this.staticWarehouseToLoad.id : null,
-			warehouseToUnloadIdEquals:null,
+			warehouseToLoadIDEquals: this.staticWarehouseToLoad ? this.staticWarehouseToLoad.id : null,
+			warehouseToUnloadIDEquals:null,
 			page: 0,
 		}
 	}
@@ -135,13 +135,13 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersWarehouseHandling();
 			this.warehouseHandlingSearchFormGroup.reset();
-			this.warehouseHandlingFilters.idEquals = searchedId;
+			this.warehouseHandlingFilters.warehouseHandlingIDEquals = searchedId;
 			this.searchWarehouseHandling(0);
 			return;
 		} else{
 
 			if(this.warehouseHandlingSearchFormGroup.controls.date.value){
-				this.warehouseHandlingFilters.dateEquals = this.warehouseHandlingSearchFormGroup.controls.date.value;
+				this.warehouseHandlingFilters.warehouseHandlingDateEquals = this.warehouseHandlingSearchFormGroup.controls.date.value;
 			}
 
 			if(this.warehouseHandlingSearchFormGroup.controls.warehouseHandlingType.value){
@@ -149,11 +149,11 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 			}
 
 			if(this.warehouseHandlingSearchFormGroup.controls.warehouseToLoad.value){
-				this.warehouseHandlingFilters.warehouseToLoadIdEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseToLoad.value.id;
+				this.warehouseHandlingFilters.warehouseToLoadIDEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseToLoad.value.id;
 			}
 
 			if(this.warehouseHandlingSearchFormGroup.controls.warehouseToUnload.value){
-				this.warehouseHandlingFilters.warehouseToUnloadIdEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseToUnload.value.id;
+				this.warehouseHandlingFilters.warehouseToUnloadIDEquals = this.warehouseHandlingSearchFormGroup.controls.warehouseToUnload.value.id;
 			}
 
 			this.searchWarehouseHandling(0);

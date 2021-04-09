@@ -116,14 +116,13 @@
             <agm-map [zoom]="5" [latitude]="lat" [longitude]="lng" (mapReady)="onMapReady($event)"></agm-map>
             <mat-list role="list">
                 <mat-list-item role="listitem" *ngFor="let point of pointList">
-                  {{ point.lat.toPrecision(5) }},
-                  {{ point.lng.toPrecision(5) }}</mat-list-item
-                >
-              </mat-list>
-              <mat-card *ngIf="selectedArea > 0">
-                  <button (click)="deleteSelectedShape()">cancella</button>
-                Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup></mat-card
-              >
+                    {{ point.lat.toPrecision(5) }},
+                    {{ point.lng.toPrecision(5) }}</mat-list-item>
+            </mat-list>
+            <mat-card *ngIf="selectedArea > 0">
+                <button (click)="deleteSelectedShape()">cancella</button>
+                Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
+            </mat-card>
 
             <procurement-lot-list-table [displayedColumns]="procurementLotDisplayedColumns" [dataSource]="procurementLotDTOs">
             </procurement-lot-list-table>
@@ -131,6 +130,12 @@
             <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="procurementLotIndex"
                 [pageSize]="procurementLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
                 (page)="procurementLotPaginatorEvent($event)"></mat-paginator>
+    
+
+            <button mat-fab class="accent" id="add-procurement-button" (click)="newProcurementLot()"
+                aria-label="add procurement">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
         <!-- / CONTENT -->
     </div>

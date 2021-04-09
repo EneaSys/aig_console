@@ -66,8 +66,9 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 
 
+
 	private initBuyerSearch() {
-		this.buyerDC = ["id", "buyer", "seller", "statusNote" ,"buttons"];
+		this.buyerDC = ["id", "buyer", "statusNote" ,"buttons"];
 
 		this.buyerPaginationSize = 10;
 
@@ -84,8 +85,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 	private clearFiltersBuyer() {
 		this.buyerFilters = {
-			idEquals: null,
-			sellerIdEquals: this.staticSeller ? this.staticSeller.id : null,
+			buyerIDEquals: null,
+			sellerIDEquals: this.staticSeller ? this.staticSeller.id : null,
 			statusNoteContains: null,
 			page: 0,
 		}
@@ -96,7 +97,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 		this.buyerFilters.page = page;
 		this.buyerFilters.size = this.buyerPaginationSize;
-		this.buyerFilters.idEquals = null;
+		this.buyerFilters.buyerIdEquals = null;
 
 		
 		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.buyerSearchFormGroup.controls['seller'].valueChanges);
@@ -141,12 +142,12 @@ export class AigBuyerListPageComponent extends GenericComponent {
 		if (searchedId != null) {
 			this.clearFiltersBuyer();
 			this.buyerSearchFormGroup.reset();
-			this.buyerFilters.idEquals = searchedId;
+			this.buyerFilters.buyerIDEquals = searchedId;
 			this.searchBuyer(0);
 			return;
 		} else {
 			if(this.buyerSearchFormGroup.controls.seller.value){
-				this.buyerFilters.sellerIdEquals = this.buyerSearchFormGroup.controls.seller.value.id;
+				this.buyerFilters.sellerIDEquals = this.buyerSearchFormGroup.controls.seller.value.id;
 			}
 
 			if(this.buyerSearchFormGroup.controls.statusNote.value){
@@ -160,8 +161,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 	//			---- !BUYER TABLE AND SEARCH SECTION ----
 
-	newBuyer(): void {
-		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: {} } });
+	newBuyer(sellerDTO: SellerDTO ): void {
+		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { seller: sellerDTO } });
 	}
 
 }

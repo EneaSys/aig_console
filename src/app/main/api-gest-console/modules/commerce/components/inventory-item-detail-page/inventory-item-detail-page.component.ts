@@ -42,7 +42,7 @@ export class AigInventoryItemDetailPageComponent extends GenericComponent {
 
     private async loadInventoryItemCombination() {
         let filter = {
-            inventoryItemIdEquals: this.inventoryItemDTO.id
+            inventoryItemIDEquals: this.inventoryItemDTO.id
         };
         this.inventoryItemCombinationDTOs = await this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter).toPromise();
     }

@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO, ValidationImageReturnTO } from 'aig-commerce';
-import { EventService } from 'aig-common/event-manager/event.service';
+import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO } from 'aig-commerce';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { HttpClient } from '@angular/common/http';
-import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
 import { AigBuyerNewUpdateFormComponent } from 'aig-common/modules/commerce/components/buyer-new-update-form/buyer-new-update-form.component';
 
 @Component({
@@ -19,9 +16,8 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
     constructor(
         private buyerResourceService: BuyerResourceService,
         private purchaseResourceService: PurchaseResourceService,
-        private httpClient: HttpClient,
         private _fuseProgressBarService: FuseProgressBarService,
-        private eventService: EventService,
+        private router: Router,
         private _snackBar: MatSnackBar,
         private route: ActivatedRoute,
         private dialog: MatDialog,
@@ -44,6 +40,21 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
 		this.dialog.open(AigBuyerNewUpdateFormComponent, { data: { buyer: buyerDTO } });
     }
 
+    async deleteBuyer(id: number) {
+        this._fuseProgressBarService.show();
+
+        try {
+            await this.buyerResourceService.deleteBuyerUsingDELETE(id).toPromise();
+
+            this._snackBar.open(`Buyer: '${id}' deleted.`, null, { duration: 2000, });
+
+            this.router.navigate(['/commerce', 'buyer']);
+        } catch (e) {
+            this._snackBar.open(`Error during deleting buyer: '${id}'. (${e.message})`, null, { duration: 5000, });
+        }
+        this._fuseProgressBarService.hide();
+    }
+
     loadOther() {
         this.loadPurchases();
     }
@@ -56,7 +67,7 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
         this.purchaseDTOs = null;
 
 		let filter = {
-			idEqual: this.buyerDTO.id
+			buyerIdEqual: this.buyerDTO.id
 		};
         try {
             this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(filter).toPromise();
