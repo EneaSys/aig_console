@@ -72,7 +72,7 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 		this.ippProcedureFilters.size = this.ippProcedurePaginationSize;
 
 		try {
-			this.ippProcedureLength = await this.ippProcedureResourceService.countItalianPublicProcurementProceduresUsingGET(null, null, this.ippProcedureFilters.codeEquals, null, null, null, this.ippProcedureFilters.idEquals, null, null, null, null, null, null, null, this.ippProcedureFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.ippProcedureLength = await this.ippProcedureResourceService.countItalianPublicProcurementProceduresUsingGET().toPromise();
 
 			if(this.ippProcedureLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippProcedureDTOs = await this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(null, null, this.ippProcedureFilters.codeEquals, null, null, null, this.ippProcedureFilters.idEquals, null, null, null, null, null, null, null, this.ippProcedureFilters.nameContains, null, null, null, null, null, this.ippProcedureFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.ippProcedureDTOs = await this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET().toPromise();
 		} catch (e) {
 			this.ippProcedureError = e;
 		}

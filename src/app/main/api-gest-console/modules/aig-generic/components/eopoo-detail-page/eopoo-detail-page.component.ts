@@ -47,8 +47,8 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         let filters = {
             sellerEopooIdEqual: +this.eopooDTO.id
         };
-        this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, this.eopooDTO.id, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null).toPromise();
-        this.contextUserEopooDTOs = await this.contextUserEopooResourceService.getAllContextUserEopoosUsingGET(null, null, null, null, null, null, null, null, null, null, this.eopooDTO.id+"", null, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+        this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET().toPromise();
+        this.contextUserEopooDTOs = await this.contextUserEopooResourceService.getAllContextUserEopoosUsingGET().toPromise();
         this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(filters).toPromise()
     }
 
