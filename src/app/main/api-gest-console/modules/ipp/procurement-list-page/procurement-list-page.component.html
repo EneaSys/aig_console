@@ -43,7 +43,7 @@
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                (click)="toggleSidebar('purchase-sidebar')">
+                (click)="toggleSidebar('procurement-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
             <h2>Procurement</h2>
@@ -51,7 +51,7 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-           <aig-procurement-list-table [displayedColumns]="procurementDC" [dataSource]="procurementDTOs"
+           <aig-procurement-list-table [displayColumns]="procurementDC" [dataSource]="procurementDTOs"
                 [error]="procurementError"></aig-procurement-list-table>
 
             <mat-paginator #paginator [length]="procurementLength" [pageIndex]="this.procurementFilters.page"

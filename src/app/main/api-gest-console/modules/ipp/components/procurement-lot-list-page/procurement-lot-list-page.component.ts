@@ -229,7 +229,7 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
 
 
     // IPP LOT
-    procurementLotDisplayedColumns: string[] = ['cig', 'sa', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
+    procurementLotDisplayColumns: string[] = ['cig', 'sa', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
     procurementLotDTOs: ProcurementLotDTO[];
     procurementLotError: any;
 

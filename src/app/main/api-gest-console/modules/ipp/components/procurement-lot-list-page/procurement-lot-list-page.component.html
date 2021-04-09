@@ -124,8 +124,8 @@
                 Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
             </mat-card>
 
-            <procurement-lot-list-table [displayedColumns]="procurementLotDisplayedColumns" [dataSource]="procurementLotDTOs">
-            </procurement-lot-list-table>
+            <aig-procurement-lot-list-table [displayColumns]="procurementLotDisplayColumns" [dataSource]="procurementLotDTOs">
+            </aig-procurement-lot-list-table>
 
             <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="procurementLotIndex"
                 [pageSize]="procurementLotPageable.size" [pageSizeOptions]="[30, 100, 200]"

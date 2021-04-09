@@ -6,7 +6,7 @@ import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italian-pu
 import { AigProcurementLotNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 
 @Component({
-    selector: 'ipp-lot-list-table',
+    selector: 'aig-procurement-lot-list-table',
     templateUrl: './procurement-lot-list-table.component.html',
     styleUrls: ['./procurement-lot-list-table.component.scss']
 })
@@ -22,7 +22,7 @@ export class AigProcurementLotListTableComponent implements OnInit {
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
 
