@@ -1,0 +1,23 @@
+<form *ngIf="step.form" [formGroup]="genericEopooNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nome</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ genericEopooNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!genericEopooNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newGenericEopoo()">Crea nuova</button>
+</div>

@@ -6,6 +6,7 @@ import { EopooTypeResolver } from 'aig-common/modules/generic/resolver/eopoo-typ
 import { AigEopooTypeDetailPageComponent } from './components/eopoo-type-detail-page/eopoo-type-detail-page.component';
 import { EopooResolver } from 'aig-common/modules/generic/resolver/eopoo.resolver';
 import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
+import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
 
 export const aigGenericRoute: Routes = [
     {
@@ -62,6 +63,30 @@ export const aigGenericRoute: Routes = [
                             eopooType: EopooTypeResolver,
                         },
                     },
+                ]
+            },
+            {
+                path: 'generic-eopoo',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigGenericEopooListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigEopooTypeDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            eopooType: EopooTypeResolver,
+                        },
+                    },*/
                 ]
             },
         ]

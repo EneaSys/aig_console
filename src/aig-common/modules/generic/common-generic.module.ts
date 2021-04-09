@@ -21,8 +21,6 @@ import { EopooTypeResolver } from './resolver/eopoo-type.resolver';
 import { RouterModule } from '@angular/router';
 import { AigEopooTypeNewUpdateFormComponent } from './components/eopoo-type-new-update-form/eopoo-type-new-update-form.component';
 import { MatInputModule } from '@angular/material/input';
-import { AigEopooGenericNewUpdateFormComponent } from './components/eopoo-form/eopoo-generic-new-update-form/eopoo-generic-new-update-form.component';
-import { AigEopooPersonNewUpdateFormComponent } from './components/eopoo-form/eopoo-person-new-update-form/eopoo-person-new-update-form.component';
 import { EopooResolver } from './resolver/eopoo.resolver';
 import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { AigEopooAddressListTableComponent } from './components/address-list-table/address-list-table.component';
@@ -31,6 +29,8 @@ import { AigSolidaretyApiModule } from 'aig-solidarety';
 import { AigGenericAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from './services/form/autocomplete-function.service';
 import { MatMenuModule } from '@angular/material';
+import { AigGenericEopooListTableComponent } from './components/generic-eopoo-list-table/generic-eopoo-list-table.component';
+import { AigGenericEopooNewUpdateFormComponent } from './components/generic-eopoo-new-update-form/generic-eopoo-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -66,14 +66,15 @@ import { MatMenuModule } from '@angular/material';
         
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
-        AigEopooGenericNewUpdateFormComponent,
-        AigEopooPersonNewUpdateFormComponent,
         
         AigEopooAddressListTableComponent,
         AigAddressNewUpdateFormComponent,
         
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
+
+        AigGenericEopooListTableComponent,
+        AigGenericEopooNewUpdateFormComponent,
     ],
     providers: [
         EopooResolver,
@@ -86,14 +87,15 @@ import { MatMenuModule } from '@angular/material';
         
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
-        AigEopooGenericNewUpdateFormComponent,
-        AigEopooPersonNewUpdateFormComponent,
 
         AigEopooAddressListTableComponent,
         AigAddressNewUpdateFormComponent,
 
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
+
+        AigGenericEopooListTableComponent,
+        AigGenericEopooNewUpdateFormComponent,
     ],
 })
 export class CommonGenericModule {}

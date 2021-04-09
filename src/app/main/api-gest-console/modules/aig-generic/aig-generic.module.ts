@@ -19,6 +19,8 @@ import { AigAddressNewUpdateModalComponent } from './components/address-new-upda
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
+import { AigGenericEopooNewUpdateDialogComponent } from './components/generic-eopoo-new-update-dialog/generic-eopoo-new-update-dialog.component';
 
 @NgModule({
     imports: [
@@ -51,13 +53,16 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
         AigEopooTypeListPageComponent,
         AigEopooTypeDetailPageComponent,
         AigEopooTypeNewUpdateModalComponent,
-        AigEopooDetailPageComponent,
+
+        AigGenericEopooListPageComponent,
+        AigGenericEopooNewUpdateDialogComponent,
+
         AigAddressNewUpdateModalComponent,
     ],
     entryComponents: [
         AigEopooNewModalComponent,
         AigEopooTypeNewUpdateModalComponent,
-        AigEopooDetailPageComponent,
+        AigGenericEopooNewUpdateDialogComponent,
         AigAddressNewUpdateModalComponent,
     ],
     exports: [
