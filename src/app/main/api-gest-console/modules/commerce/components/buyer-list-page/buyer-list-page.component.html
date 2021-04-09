@@ -73,7 +73,7 @@
             <mat-paginator #paginator [length]="buyerLength" [pageIndex]="this.buyerFilters.page" [pageSize]="this.buyerPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="buyerPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-buyer-button" (click)="newBuyer()" aria-label="add buyer">
+            <button mat-fab class="accent" id="add-buyer-button" (click)="newBuyer(sellerDTO)" aria-label="add buyer">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

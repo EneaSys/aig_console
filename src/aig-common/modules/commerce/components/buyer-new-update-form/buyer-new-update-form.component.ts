@@ -33,6 +33,9 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     @Input()
     buyer: BuyerDTO;
 
+    @Input()
+    seller: SellerDTO;
+
     buyerNewUpdateForm: FormGroup;
 
     filteredSellers: Observable<SellerDTO[]>;
@@ -51,6 +54,11 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         if (this.buyer != null) {
             this.buyerNewUpdateForm.patchValue(this.buyer);
         }
+
+        if (this.seller!= null) {
+            this.buyerNewUpdateForm.controls['seller'].patchValue(this.seller);
+        }
+        
         this.filteredSellers = this.commerceAutocompleteService.filterSeller(this.buyerNewUpdateForm.controls['seller'].valueChanges);
 
     }

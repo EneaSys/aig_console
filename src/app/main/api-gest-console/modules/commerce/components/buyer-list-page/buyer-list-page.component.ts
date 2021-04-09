@@ -66,6 +66,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 
 
+
 	private initBuyerSearch() {
 		this.buyerDC = ["id", "buyer", "statusNote" ,"buttons"];
 
@@ -160,8 +161,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 	//			---- !BUYER TABLE AND SEARCH SECTION ----
 
-	newBuyer(): void {
-		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: {} } });
+	newBuyer(sellerDTO: SellerDTO ): void {
+		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { seller: sellerDTO } });
 	}
 
 }
