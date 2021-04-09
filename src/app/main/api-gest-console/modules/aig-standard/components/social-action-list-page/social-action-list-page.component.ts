@@ -72,7 +72,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 		this.socialActionFilters.size = this.socialActionPaginationSize;
 
 		try {
-			this.socialActionLength = await this.socialActionResourceService.countSocialActionsUsingGET(null, null, this.socialActionFilters.codeEquals, null, null, null, this.socialActionFilters.idEquals, null, null, null, null, null, null, null, this.socialActionFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.socialActionLength = await this.socialActionResourceService.countSocialActionsUsingGET().toPromise();
 
 			if(this.socialActionLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.socialActionDTOs = await this.socialActionResourceService.getAllSocialActionsUsingGET(null, null, this.socialActionFilters.codeEquals, null, null, null, this.socialActionFilters.idEquals, null, null, null, null, null, null, null, this.socialActionFilters.nameContains, null, null, null, null, null, this.socialActionFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.socialActionDTOs = await this.socialActionResourceService.getAllSocialActionsUsingGET().toPromise();
 		} catch (e) {
 			this.socialActionError = e;
 		}

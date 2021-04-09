@@ -32,7 +32,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     errorInLoading: any;
 
     sellerFilters = {
-        sellerIdEquals: null,
+        sellerIDEquals: null,
         sellerNameContains: null,
         page: 0,
     }

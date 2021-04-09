@@ -57,7 +57,7 @@ export class AigSellerListPageComponent extends GenericComponent {
 
 	private clearFiltersSeller() {
 		this.sellerFilters = {
-			sellerIdEquals: null,
+			sellerIDEquals: null,
 			sellerNameContains: null,
 			page: 0,
 		}
@@ -108,11 +108,11 @@ export class AigSellerListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersSeller();
 			this.sellerSearchFormGroup.reset();
-			this.sellerFilters.sellerIdEquals = searchedId;
+			this.sellerFilters.sellerIDEquals = searchedId;
 			this.searchSeller(0);
 			return;
 		}
-		this.sellerFilters.sellerIdEquals = null;
+		this.sellerFilters.sellerIDEquals = null;
 
 		this.sellerFilters.sellerNameContains = this.sellerSearchFormGroup.controls.name.value;
 

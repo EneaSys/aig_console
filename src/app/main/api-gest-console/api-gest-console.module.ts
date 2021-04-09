@@ -17,8 +17,8 @@ import { AigStandardModule } from './modules/aig-standard/aig-standard.module';
 import { AigIppModule } from './modules/ipp/ipp.module';
 
 import { AIG_PATH } from 'api-gest';
-import { AIG_STANDARD_BASE_PATH } from 'aig-standard';
-import { AIG_GENERIC_BASE_PATH } from 'aig-generic';
+import { AIG_STANDARD_PATH } from 'aig-standard';
+import { AIG_GENERIC_PATH } from 'aig-generic';
 import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
 import { AIG_SOLIDARETY_BASE_PATH } from 'aig-solidarety';
@@ -31,7 +31,7 @@ import { FuseSharedModule } from '@fuse/shared.module';
 import { AigCommonManagementModule } from 'aig-common/modules/management/common-management.module';
 import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
-import { AIG_M8T_BASE_PATH } from 'aig-management';
+import { AIG_M8T_PATH } from 'aig-management';
 import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
 
 
@@ -97,11 +97,11 @@ import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
             useValue: API_URL
         },
         {
-            provide: AIG_STANDARD_BASE_PATH,
+            provide: AIG_STANDARD_PATH,
             useValue: API_URL + "/s6d"
         },
         {
-            provide: AIG_GENERIC_BASE_PATH,
+            provide: AIG_GENERIC_PATH,
             useValue: API_URL + "/g5c"
         },
         {
@@ -117,7 +117,7 @@ import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
             useValue: API_URL + "/c6e"
         },
         {
-            provide: AIG_M8T_BASE_PATH,
+            provide: AIG_M8T_PATH,
             useValue: API_URL + "/m8t"
         },
         {

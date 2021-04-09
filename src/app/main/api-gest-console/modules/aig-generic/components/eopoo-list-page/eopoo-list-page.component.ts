@@ -9,19 +9,19 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
-    templateUrl: './eopoo-list-page.component.html',
-    styleUrls: ['./eopoo-list-page.component.scss']
+	templateUrl: './eopoo-list-page.component.html',
+	styleUrls: ['./eopoo-list-page.component.scss']
 })
 export class AigEopooListPageComponent extends GenericComponent {
-    constructor(
-        private eopooResourceService: EopooResourceService,
-        private _formBuilder: FormBuilder,
-        private dialog: MatDialog,
-        private _snackBar: MatSnackBar,
-        aigGenericComponentService: AigGenericComponentService,
-    ) { super(aigGenericComponentService) }
+	constructor(
+		private eopooResourceService: EopooResourceService,
+		private _formBuilder: FormBuilder,
+		private dialog: MatDialog,
+		private _snackBar: MatSnackBar,
+		aigGenericComponentService: AigGenericComponentService,
+	) { super(aigGenericComponentService) }
 
-    loadPage() {
+	loadPage() {
 		this.initEopooSearch();
 
 		this.showAllEopoo();
@@ -31,77 +31,77 @@ export class AigEopooListPageComponent extends GenericComponent {
 		this.showAllEopoo();
 	}
 
-    //			---- EOPOO TABLE AND SEARCH SECTION ----
+	//			---- EOPOO TABLE AND SEARCH SECTION ----
 
-    eopooDTOs: EopooDTO[];
-    eopooDC: string[];
-    eopooError: any;
+	eopooDTOs: EopooDTO[];
+	eopooDC: string[];
+	eopooError: any;
 
-    searchForm: FormGroup;
-    eopooFilters: any;
+	searchForm: FormGroup;
+	eopooFilters: any;
 
-    eopooPaginationSize: number;
+	eopooPaginationSize: number;
 	eopooLength: number;
 
-    private initEopooSearch() {
+	private initEopooSearch() {
 		this.eopooPaginationSize = 30;
 
 		this.searchForm = this._formBuilder.group({
 			id: [''],
-            taxId: [''],
+			taxId: [''],
 		});
 
 		this.eopooDC = ['id', 'type', 'name', 'taxid', 'buttons'];
-    }
+	}
 
-    private clearFiltersEopoo() {
+	private clearFiltersEopoo() {
 		this.eopooFilters = {
 			idEquals: null,
 			taxNumber: null,
 			page: 0,
 		}
-    }
+	}
 
-    private async searchEopoo(page: number) {
+	private async searchEopoo(page: number) {
 		this.eopooDTOs = null;
 
 		this.eopooFilters.page = page;
 		this.eopooFilters.size = this.eopooPaginationSize;
 
 		try {
-			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.eopooFilters.idEquals, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.eopooFilters.taxNumber, null, null, null, null, null, null, null).toPromise();
+			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
 
-			if(this.eopooLength == 0) {
-				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+			if (this.eopooLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
 				this.eopooDTOs = [];
 				return;
 			}
 
-			this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.eopooFilters.idEquals, null, null, null, null, null, null, null, this.eopooFilters.page, null, null, null, null, null, null, null, null, null, null, this.eopooFilters.taxNumber, null, null, null, null, null, null, null).toPromise();
+			this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(this.eopooFilters).toPromise();
 		} catch (e) {
 			this.eopooError = e;
 		}
     }
 
-    showAllEopoo() {
+	showAllEopoo() {
 		this.resetFiltersEopoo()
-    }
+	}
 
-    resetFiltersEopoo() {
+	resetFiltersEopoo() {
 		this.searchForm.reset();
 		this.clearFiltersEopoo();
 		this.searchEopoo(0);
-    }
+	}
 
-    eopooPaginationEvent(pageEvent: PageEvent) {
+	eopooPaginationEvent(pageEvent: PageEvent) {
 		this.eopooPaginationSize = pageEvent.pageSize;
 		this.searchEopoo(pageEvent.pageIndex);
 	}
 
-    eopooSearchWithFilter() {
+	eopooSearchWithFilter() {
 		let searchedId = this.searchForm.controls.id.value;
 
-		if(searchedId != null) {
+		if (searchedId != null) {
 			this.clearFiltersEopoo();
 			this.searchForm.reset();
 			this.eopooFilters.idEquals = searchedId;
@@ -116,8 +116,8 @@ export class AigEopooListPageComponent extends GenericComponent {
 		this.searchEopoo(0);
 	}
 
-    newEopoo(){
-        this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: {} } });
-    }
-    //			---- !EOPOO TABLE AND SEARCH SECTION ----
+	newEopoo() {
+		this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: {} } });
+	}
+	//			---- !EOPOO TABLE AND SEARCH SECTION ----
 }

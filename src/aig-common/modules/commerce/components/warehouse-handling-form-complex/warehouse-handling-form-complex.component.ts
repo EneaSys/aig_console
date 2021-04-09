@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
@@ -19,12 +19,6 @@ import { cloneDeep } from 'lodash';
     }]
 })
 export class AigWarehouseHandlingFormComplexComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
-
     constructor(
         public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
@@ -35,14 +29,26 @@ export class AigWarehouseHandlingFormComplexComponent implements OnInit {
         private commerceAutocompleteService: AigCommerceAutocompleteService,
     ) { }
 
+    step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
+
+
     warehouseHandling: WarehouseHandlingDTO;
 
 	warehouseHandlingIsCompleted: boolean = false;
 
 	warehouseHandlingItemDTOs: any[] = [];
 
+    askWarehouseCreationFormGroup: FormGroup;
+
 
     ngOnInit(): void {
+        this.askWarehouseCreationFormGroup = this._formBuilder.group({
+			create: ['', Validators.required],
+		});
     }
 
 	checkStep1(stepper: any) {

@@ -69,10 +69,10 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 
 	private clearFiltersPriceListItem() {
 		this.priceListItemFilters = {
-			priceListItemIdEquals: null,
+			priceListItemIDEquals: null,
 			amountEquals: null,
-			catalogItemIdEquals: null,
-			priceListIdEquals: this.staticCatalog ? this.staticCatalog.id : null,
+			catalogItemIDEquals: null,
+			priceListIDEquals: this.staticCatalog ? this.staticCatalog.id : null,
 			page: 0,
 		}
 	}
@@ -122,18 +122,18 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersPriceListItem();
 			this.priceListItemSearchFormGroup.reset();
-			this.priceListItemFilters.priceListItemIdEquals = searchedId;
+			this.priceListItemFilters.priceListItemIDEquals = searchedId;
 			this.searchPriceListItem(0);
 			return;
 		}
-		this.priceListItemFilters.priceListItemIdEquals = null;
+		this.priceListItemFilters.priceListItemIDEquals = null;
 		
 		if (this.priceListItemSearchFormGroup.controls.catalogItem.value) {
-			this.priceListItemFilters.catalogItemIdEquals = this.priceListItemSearchFormGroup.controls.catalogItem.value.id;
+			this.priceListItemFilters.catalogItemIDEquals = this.priceListItemSearchFormGroup.controls.catalogItem.value.id;
 		}
 
 		if (this.priceListItemSearchFormGroup.controls.priceList.value) {
-			this.priceListItemFilters.priceListIdEquals = this.priceListItemSearchFormGroup.controls.priceList.value.id;
+			this.priceListItemFilters.priceListIDEquals = this.priceListItemSearchFormGroup.controls.priceList.value.id;
 		}
 
 		this.searchPriceListItem(0);

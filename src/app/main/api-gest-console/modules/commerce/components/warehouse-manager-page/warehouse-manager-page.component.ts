@@ -23,7 +23,7 @@ export class AigWarehouseManagerPageComponent extends GenericComponent {
     errorInLoading: any;
 
     warehouseFilters = {
-        warehouseIdEquals: null,
+        warehouseIDEquals: null,
         warehouseNameContains: null,
         page: 0,
     }

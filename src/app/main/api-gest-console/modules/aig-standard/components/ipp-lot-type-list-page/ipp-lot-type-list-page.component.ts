@@ -72,7 +72,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 		this.ippLotTypeFilters.size = this.ippLotTypePaginationSize;
 
 		try {
-			this.ippLotTypeLength = await this.ippLotTypeResourceService.countItalianPublicProcurementLotTypesUsingGET(null, null, this.ippLotTypeFilters.codeEquals, null, null, null, this.ippLotTypeFilters.idEquals, null, null, null, null, null, null, null, this.ippLotTypeFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.ippLotTypeLength = await this.ippLotTypeResourceService.countItalianPublicProcurementLotTypesUsingGET().toPromise();
 
 			if(this.ippLotTypeLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippLotTypeDTOs = await this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(null, null, this.ippLotTypeFilters.codeEquals, null, null, null, this.ippLotTypeFilters.idEquals, null, null, null, null, null, null, null, this.ippLotTypeFilters.nameContains, null, null, null, null, null, this.ippLotTypeFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.ippLotTypeDTOs = await this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET().toPromise();
 		} catch (e) {
 			this.ippLotTypeError = e;
 		}
