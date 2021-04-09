@@ -55,8 +55,8 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 
 	private clearFiltersInventoryCategory() {
 		this.inventoryCategoryFilters = {
-			idEquals: null,
-			nameContains: null,
+			inventoryCategoryIdEquals: null,
+			inventoryCategoryNameContains: null,
 			page: 0,
 			
 		}

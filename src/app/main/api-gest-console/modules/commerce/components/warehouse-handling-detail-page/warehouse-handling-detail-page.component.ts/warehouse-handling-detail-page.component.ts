@@ -61,8 +61,8 @@ export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
 
   async loadWarehouseHandlingItem(){
     this.warehouseHandlingItemFilters = {
-      idEquals: null,
-      nameContains: null,
+      warehouseHandlingItemIdEquals: null,
+      warehouseHandlingItemNameContains: null,
       warehouseHandlingIdEquals: this.warehouseHandlingDTO.id,
       page: 0,
     };
