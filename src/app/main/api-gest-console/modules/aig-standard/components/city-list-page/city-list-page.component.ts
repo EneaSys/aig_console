@@ -85,11 +85,11 @@ export class AigCityListPageComponent extends GenericComponent {
 			this.cityError = e;
 		}
     }
-    
+	//             ---- FILTER CITY SECTION ----
     showAllCity() {
 		this.resetFiltersCity()
     }
-    
+                   
     resetFiltersCity() {
 		this.citySearchFormGroup.reset();
 		this.clearFiltersCity();
@@ -118,6 +118,7 @@ export class AigCityListPageComponent extends GenericComponent {
 
 		this.searchCity(0);
 	}
+	//             ---- !FILTER CITY SECTION ----
 
     newCity(){
         this.dialog.open(AigCityNewUpdateModalComponent, { data: { city: {} } });
