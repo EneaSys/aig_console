@@ -61,7 +61,7 @@ export class AigEopooListPageComponent extends GenericComponent {
         this.pageable.page = page;
 
         try {
-            this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.pageable.page,null,null,null,null,null,null,null,null,this.pageable.size,null,null,null,this.filters.taxId,null,null,null).toPromise();
+            this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET().toPromise();
         } catch(error) {
             this.error = error;
         }

@@ -72,7 +72,7 @@ export class AigCityListPageComponent extends GenericComponent {
 		this.cityFilters.size = this.cityPaginationSize;
 
 		try {
-			this.cityLength = await this.cityResourceService.countCitiesUsingGET(null, null, this.cityFilters.codeEquals, null, null, null, this.cityFilters.idEquals, null, null, null, null, null, null, null, this.cityFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.cityLength = await this.cityResourceService.countCitiesUsingGET().toPromise();
 
 			if(this.cityLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigCityListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.cityDTOs = await this.cityResourceService.getAllCitiesUsingGET(null, null, this.cityFilters.codeEquals, null, null, null, this.cityFilters.idEquals, null, null, null, null, null, null, null, this.cityFilters.nameContains, null, null, null, null, null, this.cityFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.cityDTOs = await this.cityResourceService.getAllCitiesUsingGET().toPromise();
 		} catch (e) {
 			this.cityError = e;
 		}
