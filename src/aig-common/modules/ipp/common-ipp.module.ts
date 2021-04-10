@@ -20,6 +20,8 @@ import { AigProcurementLotListTableComponent } from './components/procurement-lo
 import { AigProcurementNewUpdateFormComponent } from './components/procurement-new-update-form/procurement-new-update-form.component';
 import { AigProcurementLotNewUpdateFormComponent } from './components/procurement-lot-new-update-form/procurement-lot-new-update-form.component';
 import { MatDatepickerModule, MatMenu, MatMenuModule } from '@angular/material';
+import { AigDossierListTableComponent } from './components/dossier-list-table/dossier-list-table.component';
+import { AigDossierNewUpdateFormComponent } from './components/dossier-new-update-form/dossier-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -51,14 +53,19 @@ import { MatDatepickerModule, MatMenu, MatMenuModule } from '@angular/material';
     declarations: [
         AigProcurementListTableComponent,
         AigProcurementLotListTableComponent,
+        AigDossierListTableComponent,
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
+        AigDossierNewUpdateFormComponent
+        
     ],
     exports: [
         AigProcurementListTableComponent,
         AigProcurementLotListTableComponent,
+        AigDossierListTableComponent,
         AigProcurementNewUpdateFormComponent,
-        AigProcurementLotNewUpdateFormComponent
+        AigProcurementLotNewUpdateFormComponent,
+        AigDossierListTableComponent,
     ],
 })
 export class AigCommonIppModule {}

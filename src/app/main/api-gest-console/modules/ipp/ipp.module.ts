@@ -27,6 +27,9 @@ import { AigProcurementLotDetailPageComponent } from './components/procurement-l
 import { AigProcurementLotNewUpdateDialogComponent } from './components/procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 import { AigProcurementListPageComponent } from './procurement-list-page/procurement-list-page.component';
 import { AigProcurementLotListPageComponent } from './components/procurement-lot-list-page/procurement-lot-list-page.component';
+import { AigDossierNewUpdateDialogComponent } from './components/dossier-new-update-dialog/dossier-new-update-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AigDossierListPageComponent } from './components/dossier-list-page/dossier-list-page.component';
 
 
 @NgModule({
@@ -36,6 +39,9 @@ import { AigProcurementLotListPageComponent } from './components/procurement-lot
         CommonModule,
         AigCommonIppModule,
         AigIppClientModule,
+       
+        FormsModule,
+        ReactiveFormsModule,
         
         FuseSharedModule,
         FuseSidebarModule,
@@ -73,10 +79,12 @@ import { AigProcurementLotListPageComponent } from './components/procurement-lot
 
         AigProcurementListPageComponent,
         AigProcurementLotListPageComponent,
+        AigDossierListPageComponent,
         AigProcurementDetailPageComponent,
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotDetailPageComponent,
         AigProcurementLotNewUpdateDialogComponent,
+        AigDossierNewUpdateDialogComponent,
     ],
     exports: [
 
@@ -84,7 +92,8 @@ import { AigProcurementLotListPageComponent } from './components/procurement-lot
 
     entryComponents: [
         AigProcurementNewUpdateDialogComponent,
-        AigProcurementLotNewUpdateDialogComponent
+        AigProcurementLotNewUpdateDialogComponent,
+        AigDossierNewUpdateDialogComponent,
 
     ],
 })

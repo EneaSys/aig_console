@@ -70,6 +70,15 @@ export const navigation: FuseNavigation[] = [
                 url      : '/ipp/procurement-lot',
                 permission: ['c6e.admin'],
             },
+
+            {
+                id       : 'dossier-list-page',
+                title    : 'Dossier',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/dossier',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 

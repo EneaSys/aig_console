@@ -1,0 +1,71 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="dossier-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="content py-16" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <div fxLayout="row" fxLayoutAlign="center top">
+                                <button mat-raised-button (click)="showAllDossier()">Resetta filtri</button>
+                            </div>
+                            <form [formGroup]="dossierSearchFormGroup" (ngSubmit)="dossierSearchWithFilter()"
+                                class="p-8">
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput type="number" formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput type="text" formControlName="name">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                (click)="toggleSidebar('dossier-sidebar')">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h2>Dossier</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+           <aig-dossier-list-table [displayColumns]="dossierDC" [dataSource]="dossierDTOs"
+                [error]="dossierError"></aig-dossier-list-table>
+
+            <mat-paginator #paginator [length]="dossierLength" [pageIndex]="this.dossierFilters.page"
+                [pageSize]="this.dossierPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                (page)="dossierPaginationEvent($event)">
+            </mat-paginator>
+
+            <button mat-fab class="accent" id="add-dossier-button" (click)="newDossier()"
+                aria-label="add dossier">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+
+</div>
