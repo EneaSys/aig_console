@@ -68,7 +68,7 @@ export class AigEopooTypeListPageComponent extends GenericComponent {
 		this.eopooTypeFilters.size = this.eopooTypePaginationSize;
 
 		try {
-			this.eopooTypeLength = await this.eopooTypeResourceService.countEopooTypesUsingGET(null, null, null, null, null, null, null, null, null, null, this.eopooTypeFilters.idEquals, null, null, null, null, null, null, null, this.eopooTypeFilters.nameContains, null, null, null, null, null, null, null).toPromise();
+			this.eopooTypeLength = await this.eopooTypeResourceService.countEopooTypesUsingGET(this.eopooTypeFilters).toPromise();
 
 			if(this.eopooTypeLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -76,7 +76,7 @@ export class AigEopooTypeListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET(null, null, null, null, null, null, null, null, null, null, this.eopooTypeFilters.idEquals, null, null,null,null,null,null,null, this.eopooTypeFilters.nameContains, null, null, null, null, null, this.eopooTypeFilters.page, null, null,null,null).toPromise();
+			this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET(this.eopooTypeFilters).toPromise();
 		} catch (e) {
 			this.eopooTypeError = e;
 		}
