@@ -35,6 +35,9 @@ import { AigAddressListTableComponent } from './components/address-list-table/ad
 import { AigGenericEopooEntityDetailComponent } from './components/generic-eopoo-entity-detail/generic-eopoo-entity-detail.component';
 import { AigEopooEntityDetailComponent } from './components/eopoo-entity-detail/eopoo-entity-detail.component';
 import { AigEopooTypeEntityDetailComponent } from './components/eopoo-type-entity-detail/eopoo-type-entity-detail.component';
+import { AigReferentListTableComponent } from './components/referent-list-table/referent-list-table.component';
+import { AigReferentEntityDetailComponent } from './components/referent-entity-detail/referent-entity-detail.component';
+import { AigReferentNewUpdateFormComponent } from './components/referent-new-update-form/referent-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -83,6 +86,10 @@ import { AigEopooTypeEntityDetailComponent } from './components/eopoo-type-entit
         AigGenericEopooListTableComponent,
         AigGenericEopooNewUpdateFormComponent,
         AigGenericEopooEntityDetailComponent,
+
+        AigReferentListTableComponent,
+        AigReferentNewUpdateFormComponent,
+        AigReferentEntityDetailComponent,
     ],
     providers: [
         EopooResolver,
@@ -108,6 +115,10 @@ import { AigEopooTypeEntityDetailComponent } from './components/eopoo-type-entit
         AigGenericEopooListTableComponent,
         AigGenericEopooNewUpdateFormComponent,
         AigGenericEopooEntityDetailComponent,
+
+        AigReferentListTableComponent,
+        AigReferentNewUpdateFormComponent,
+        AigReferentEntityDetailComponent,
     ],
 })
 export class CommonGenericModule {}

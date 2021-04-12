@@ -24,6 +24,9 @@ import { AigGenericEopooNewUpdateDialogComponent } from './components/generic-eo
 import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
 import { AigAddressDetailPageComponent } from './components/address-detail-page/address-detail-page.component';
 import { GenericEopooDetailPageComponent } from './components/generic-eopoo-detail-page/generic-eopoo-detail-page.component';
+import { AigReferentListPageComponent } from './components/referent-list-page/referent-list-page.component';
+import { AigReferentNewUpdateDialogComponent } from './components/referent-new-update-dialog/referent-new-update-dialog.component';
+import { AigReferentDetailPageComponent } from './components/referent-detail-page/referent-detail-page.component';
 
 @NgModule({
     imports: [
@@ -64,12 +67,17 @@ import { GenericEopooDetailPageComponent } from './components/generic-eopoo-deta
         AigAddressListPageComponent,
         AigAddressDetailPageComponent,
         AigAddressNewUpdateModalComponent,
+
+        AigReferentListPageComponent,
+        AigReferentDetailPageComponent,
+        AigReferentNewUpdateDialogComponent,
     ],
     entryComponents: [
         AigEopooNewModalComponent,
         AigEopooTypeNewUpdateModalComponent,
         AigGenericEopooNewUpdateDialogComponent,
         AigAddressNewUpdateModalComponent,
+        AigReferentNewUpdateDialogComponent,
     ],
     exports: [
 

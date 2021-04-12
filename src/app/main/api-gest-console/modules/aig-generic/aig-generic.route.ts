@@ -8,6 +8,7 @@ import { EopooResolver } from 'aig-common/modules/generic/resolver/eopoo.resolve
 import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopoo-detail-page.component';
 import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
 import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
+import { AigReferentListPageComponent } from './components/referent-list-page/referent-list-page.component';
 
 export const aigGenericRoute: Routes = [
     {
@@ -102,6 +103,30 @@ export const aigGenericRoute: Routes = [
                     {
                         path: 'list',
                         component: AigAddressListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigEopooTypeDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            eopooType: EopooTypeResolver,
+                        },
+                    },*/
+                ]
+            },
+            {
+                path: 'referent',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigReferentListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     /*{
