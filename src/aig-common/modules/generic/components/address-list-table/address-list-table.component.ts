@@ -5,11 +5,11 @@ import { AigAddressNewUpdateModalComponent } from 'app/main/api-gest-console/mod
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-eopoo-address-list-table',
+    selector: 'aig-address-list-table',
     templateUrl: './address-list-table.component.html',
     styleUrls: ['./address-list-table.component.scss']
 })
-export class AigEopooAddressListTableComponent implements OnInit {
+export class AigAddressListTableComponent implements OnInit {
     constructor(
         private dialog: MatDialog,
         private addressResourceService: AddressResourceService,

@@ -7,16 +7,9 @@
 
         <div class="widget" fxFlex.gt-sm="34">
             <div class="fuse-card auto-width p-16 m-16">
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ eopooDTO.id }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Type: {{ eopooDTO.eopooType.name }}</div>
-                <div class="h1 m-16">{{ eopooDTO | eopooName }}</div>
-                <div class="h4 m-8 ml-16 secondary-text">Tax Number: {{ eopooDTO.taxNumber }}</div>
-                <div *ngIf="eopooDTO.person">
-                    <hr />
-                    <div class="h4 m-8 ml-16">Sesso: {{ eopooDTO.person.sex }}</div>
-                    <div class="h4 m-8 ml-16">Data nascita: {{ eopooDTO.person.bornDate }}</div>
-                    <div class="h4 m-8 ml-16">Città nascita: {{ eopooDTO.person.city.name }}</div>
-                </div>
+
+                <aig-eopoo-entity-detail [eopooDTO]="eopooDTO"></aig-eopoo-entity-detail>
+
                 <button mat-stroked-button color="primary" (click)="editEopoo(eopooDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteEopoo(eopooDTO.id)">Delete</button>
             </div>
@@ -24,8 +17,8 @@
         <div class="widget p-16" fxFlex.gt-sm="33">
             <div class="fuse-card auto-width p-16" id="address-list">
                 <div class="h4 m-16 mt-0 mb-0">Indirizzi</div>
-                <aig-eopoo-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDisplayedColumns">
-                </aig-eopoo-address-list-table>
+                <aig-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDisplayedColumns">
+                </aig-address-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addAddress(eopooDTO)">
                     <mat-icon>add</mat-icon>

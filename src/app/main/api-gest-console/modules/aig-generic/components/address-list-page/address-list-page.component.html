@@ -13,7 +13,7 @@
                 <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <!-- <form [formGroup]="eopooTypeSearchFormGroup" (ngSubmit)="eopooTypeSearchWithFilter()"
+                            <form [formGroup]="addressSearchFormGroup" (ngSubmit)="addressSearchWithFilter()"
                                 class="p-8">
 
                                 <div fxLayout="row">
@@ -28,10 +28,22 @@
                                         <input matInput type="text" formControlName="name">
                                     </mat-form-field>
                                 </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>City code</mat-label>
+                                        <input matInput type="text" formControlName="cityCode">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Address</mat-label>
+                                        <input matInput type="text" formControlName="address">
+                                    </mat-form-field>
+                                </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
-                            </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -49,12 +61,13 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <aig-eopoo-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDC" [error]="addressError"></aig-eopoo-address-list-table>
+            <aig-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDC"
+                [error]="addressError"></aig-address-list-table>
 
-           <!--  <mat-paginator #paginator [length]="genericEopooLength" [pageIndex]="index"
-                [pageSize]="this.genericEopooPaginationSize" [pageSizeOptions]="[10, 50, 100]"
-                (page)="genericEopooPaginationEvent($event)"></mat-paginator>
-        </div> -->
+            <mat-paginator #paginator [length]="addressLength" [pageIndex]="index"
+                [pageSize]="this.addressPaginationSize" [pageSizeOptions]="[10, 50, 100]"
+                (page)="addressPaginationEvent($event)"></mat-paginator>
+        </div>
 
         <button mat-fab class="accent" id="add-address-button" (click)="newAddress()" aria-label="add address">
             <mat-icon>add</mat-icon>

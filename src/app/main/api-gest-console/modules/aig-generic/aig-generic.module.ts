@@ -22,6 +22,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
 import { AigGenericEopooNewUpdateDialogComponent } from './components/generic-eopoo-new-update-dialog/generic-eopoo-new-update-dialog.component';
 import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
+import { AigAddressDetailPageComponent } from './components/address-detail-page/address-detail-page.component';
+import { GenericEopooDetailPageComponent } from './components/generic-eopoo-detail-page/generic-eopoo-detail-page.component';
 
 @NgModule({
     imports: [
@@ -56,9 +58,11 @@ import { AigAddressListPageComponent } from './components/address-list-page/addr
         AigEopooTypeNewUpdateModalComponent,
 
         AigGenericEopooListPageComponent,
+        GenericEopooDetailPageComponent,
         AigGenericEopooNewUpdateDialogComponent,
 
         AigAddressListPageComponent,
+        AigAddressDetailPageComponent,
         AigAddressNewUpdateModalComponent,
     ],
     entryComponents: [
