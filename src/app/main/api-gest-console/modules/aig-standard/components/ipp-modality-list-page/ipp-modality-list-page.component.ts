@@ -72,7 +72,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 		this.ippModalityFilters.size = this.ippModalityPaginationSize;
 
 		try {
-			this.ippModalityLength = await this.ippModalityResourceService.countItalianPublicProcurementModalitiesUsingGET(null, null, this.ippModalityFilters.codeEquals, null, null, null, this.ippModalityFilters.idEquals, null, null, null, null, null, null, null, this.ippModalityFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.ippModalityLength = await this.ippModalityResourceService.countItalianPublicProcurementModalitiesUsingGET().toPromise();
 
 			if(this.ippModalityLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippModalityDTOs = await this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(null, null, this.ippModalityFilters.codeEquals, null, null, null, this.ippModalityFilters.idEquals, null, null, null, null, null, null, null, this.ippModalityFilters.nameContains, null, null, null, null, null, this.ippModalityFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.ippModalityDTOs = await this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET().toPromise();
 		} catch (e) {
 			this.ippModalityError = e;
 		}

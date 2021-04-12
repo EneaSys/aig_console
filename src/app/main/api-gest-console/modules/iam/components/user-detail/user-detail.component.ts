@@ -62,7 +62,7 @@ export class AigUserDetailComponent extends GenericComponent {
                 });
             }
             if(eopooIds.length > 0) {
-                this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, eopooIds, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+                this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET().toPromise();
             } else {
                 this.eopooDTOs = [];
             }

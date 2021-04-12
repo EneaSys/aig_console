@@ -72,7 +72,7 @@ export class AigSocialListPageComponent extends GenericComponent {
 		this.socialFilters.size = this.socialPaginationSize;
 
 		try {
-			this.socialLength = await this.socialResourceService.countSocialsUsingGET(null, null, this.socialFilters.codeEquals, null, null, null, this.socialFilters.idEquals, null, null, null, null, null, null, null, this.socialFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.socialLength = await this.socialResourceService.countSocialsUsingGET().toPromise();
 
 			if(this.socialLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigSocialListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.socialDTOs = await this.socialResourceService.getAllSocialsUsingGET(null, null, this.socialFilters.codeEquals, null, null, null, this.socialFilters.idEquals, null, null, null, null, null, null, null, this.socialFilters.nameContains, null, null, null, null, null, this.socialFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.socialDTOs = await this.socialResourceService.getAllSocialsUsingGET().toPromise();
 		} catch (e) {
 			this.socialError = e;
 		}
