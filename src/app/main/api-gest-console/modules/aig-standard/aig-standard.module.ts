@@ -65,6 +65,9 @@ import { AigTipoRitenutaNewUpdateDialogComponent } from './components/tipo-riten
 import { AigTipoCessionePrestazioneListPageComponent } from './components/tipo-cessione-prestazione-list-page/tipo-cessione-prestazione-list-page.component';
 import { AigTipoCessionePrestazioneDetailPageComponent } from './components/tipo-cessione-prestazione-detail-page/tipo-cessione-prestazione-detail-page.component';
 import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from './components/tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
+import { AigTipoScontoMaggioranzaListPageComponent } from './components/tipo-sconto-maggioranza-list-page/tipo-sconto-maggioranza-list-page.component';
+import { AigTipoScontoMaggioranzaDetailPageComponent } from './components/tipo-sconto-maggioranza-detail-page/tipo-sconto-maggioranza-detail-page.component';
+import { AigTipoScontMaggioranzaNewUpdateDialogComponent } from './components/tipo-sconto-maggioranza-new-update-dialog/tipo-sconto-maggioranza-new-update-dialog.component';
 
 @NgModule({
     declarations: [
@@ -122,7 +125,10 @@ import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from './components
         AigTipoRitenutaNewUpdateDialogComponent,
         AigTipoCessionePrestazioneListPageComponent,
         AigTipoCessionePrestazioneDetailPageComponent,
-        AigTipoCessionePrestazioneNewUpdateDialogComponent
+        AigTipoCessionePrestazioneNewUpdateDialogComponent,
+        AigTipoScontoMaggioranzaListPageComponent,
+        AigTipoScontoMaggioranzaDetailPageComponent,
+        AigTipoScontMaggioranzaNewUpdateDialogComponent
 
     ],
     imports: [
@@ -162,7 +168,8 @@ import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from './components
         AigTipoCassaNewUpdateDialogComponent,
         AigNaturaNewUpdateDialogComponent,
         AigTipoRitenutaNewUpdateDialogComponent,
-        AigTipoCessionePrestazioneNewUpdateDialogComponent 
+        AigTipoCessionePrestazioneNewUpdateDialogComponent,
+        AigTipoScontMaggioranzaNewUpdateDialogComponent 
     
     ],
 })

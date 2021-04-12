@@ -83,6 +83,10 @@ import { AigTipoCessionePrestazioneListTableComponent } from './components/tipo-
 import { AigTipoCessionePrestazioneNewUpdateFormComponent } from './components/tipo-cessione-prestazione-new-update-form/tipo-cessione-prestazione-new-update-form.component';
 import { AigEntityDetailTipoCessionePrestazioneComponent } from './components/entity-detail-tipo-cessione-prestazione/entity-detail-tipo-cessione-prestazione.component';
 import { TipoCessionePestazioneResolver } from './resolver/tipo-cessione-prestazione.resolver.ts/tipo-cessione-prestazione.resolver';
+import { AigTipoScontoMaggioranzaListTableComponent } from './components/tipo-sconto-maggioranza-list-table/tipo-sconto-maggioranza-list-table.component';
+import { AigTipoScontoMaggioranzaNewUpdateFormComponent } from './components/tipo-sconto-maggioranza-new-update-form/tipo-sconto-maggioranza-new-update-form.component';
+import { AigEntityDetailTipoScontoMaggioranzaComponent } from './components/entity-detail-tipo-sconto-maggioranza/entity-detail-tipo-sconto-maggioranza.component';
+import { TipoScontoMaggioranzaResolver } from './resolver/tipo-sconto-maggioranza.resolver.ts/tipo-sconto-maggioranza.resolver';
 
 
 @NgModule({
@@ -137,7 +141,10 @@ import { TipoCessionePestazioneResolver } from './resolver/tipo-cessione-prestaz
         AigEntityDetailTipoRitenutaComponent,
         AigTipoCessionePrestazioneListTableComponent,
         AigTipoCessionePrestazioneNewUpdateFormComponent,
-        AigEntityDetailTipoCessionePrestazioneComponent
+        AigEntityDetailTipoCessionePrestazioneComponent,
+        AigTipoScontoMaggioranzaListTableComponent,
+        AigTipoScontoMaggioranzaNewUpdateFormComponent,
+        AigEntityDetailTipoScontoMaggioranzaComponent
 
 
     ],
@@ -214,7 +221,10 @@ import { TipoCessionePestazioneResolver } from './resolver/tipo-cessione-prestaz
         AigEntityDetailTipoRitenutaComponent,
         AigTipoCessionePrestazioneListTableComponent,
         AigTipoCessionePrestazioneNewUpdateFormComponent,
-        AigEntityDetailTipoCessionePrestazioneComponent
+        AigEntityDetailTipoCessionePrestazioneComponent,
+        AigTipoScontoMaggioranzaListTableComponent,
+        AigTipoScontoMaggioranzaNewUpdateFormComponent,
+        AigEntityDetailTipoScontoMaggioranzaComponent
    
 
     ],
@@ -241,7 +251,8 @@ import { TipoCessionePestazioneResolver } from './resolver/tipo-cessione-prestaz
         TipoCassaResolver,
         NaturaResolver,
         TipoRitenutaResolver,
-        TipoCessionePestazioneResolver
+        TipoCessionePestazioneResolver,
+        TipoScontoMaggioranzaResolver
     ],
 })
 export class AigCommonStandardModule {}

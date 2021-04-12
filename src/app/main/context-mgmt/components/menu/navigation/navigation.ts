@@ -326,6 +326,14 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/s6d/tipo-cessione-prestazione',
 						permission: ['e4y.account.get'],
 					},
+					{
+						id       : '',
+						title    : 'Tipo Sconto Maggioranza',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/tipo-sconto-maggioranza',
+						permission: ['e4y.account.get'],
+					},
 				]
 			},
 			{

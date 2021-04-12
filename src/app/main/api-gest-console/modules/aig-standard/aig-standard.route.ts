@@ -47,6 +47,9 @@ import { TipoRitenutaResolver } from 'aig-common/modules/standard/resolver/tipo-
 import { AigTipoCessionePrestazioneListPageComponent } from './components/tipo-cessione-prestazione-list-page/tipo-cessione-prestazione-list-page.component';
 import { AigTipoCessionePrestazioneDetailPageComponent } from './components/tipo-cessione-prestazione-detail-page/tipo-cessione-prestazione-detail-page.component';
 import { TipoCessionePestazioneResolver } from 'aig-common/modules/standard/resolver/tipo-cessione-prestazione.resolver.ts/tipo-cessione-prestazione.resolver';
+import { AigTipoScontoMaggioranzaListPageComponent } from './components/tipo-sconto-maggioranza-list-page/tipo-sconto-maggioranza-list-page.component';
+import { AigTipoScontoMaggioranzaDetailPageComponent } from './components/tipo-sconto-maggioranza-detail-page/tipo-sconto-maggioranza-detail-page.component';
+import { TipoScontoMaggioranzaResolver } from 'aig-common/modules/standard/resolver/tipo-sconto-maggioranza.resolver.ts/tipo-sconto-maggioranza.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -404,6 +407,30 @@ export const aigStandardRoute: Routes = [
                         canActivate: [AuthGuardService],
                         resolve: {
                             tipoCessionePrestazione: TipoCessionePestazioneResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'tipo-sconto-maggioranza',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTipoScontoMaggioranzaListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigTipoScontoMaggioranzaDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            tipoScontoMaggioranzaPrestazione: TipoScontoMaggioranzaResolver,
                         },
                     },
                 ]
