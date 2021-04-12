@@ -6,29 +6,29 @@
         <mat-spinner></mat-spinner>
     </div>
 </div>
-<!-- <div *ngIf="error == null && dataSource != null">
+<div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell> -->
         </ng-container>
 
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell> -->
         </ng-container>
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let element">
+           <!-- <mat-cell *matCellDef="let element">
 
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
 
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="'/g5c/eopoo-type/detail/' + element.id">
+                    <button mat-menu-item [routerLink]="'/g5c/generic-eopoo/detail/' + element.id">
                         <mat-icon>details</mat-icon>
                         <span>Details</span>
                     </button>
@@ -44,11 +44,11 @@
                     </button>
                 </mat-menu>
 
-            </mat-cell>
+            </mat-cell> -->
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
         <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
     </mat-table>
 
-</div> -->
+</div>
