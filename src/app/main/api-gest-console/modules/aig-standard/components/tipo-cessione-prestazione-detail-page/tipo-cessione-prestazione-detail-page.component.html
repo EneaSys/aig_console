@@ -1,0 +1,15 @@
+<div id="aig-tipo-cessione-prestazione-detail-page" class="page-layout blank">
+    <aig-standard-header [sectionName]="city.name" [search]="false"></aig-standard-header>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+               
+
+               <entity-detail-tipo-cessione-prestazione [tipoCessionePrestazione]="tipoCessionePrestazione"></entity-detail-tipo-cessione-prestazione>
+
+                <button mat-stroked-button color="primary" (click)="editTipoCessionePrestazione(TipoCessionePrestazione)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteTipoCessionePrestazione(TipoCessionePrestazione.id)">Delete </button>
+            </div>
+        </div>
+    </div>
+</div>

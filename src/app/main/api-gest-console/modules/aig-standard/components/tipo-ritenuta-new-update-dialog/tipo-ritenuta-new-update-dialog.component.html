@@ -1,0 +1,15 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span *ngIf="data.tipoRitenuta.id" class="title dialog-title">Update Tipo Ritenuta </span>
+            <span *ngIf="!data.tipoRitenuta.id" class="title dialog-title">Create New Tipo Ritenuta </span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <aig-tipo-ritenuta-new-update-form [tipoRitenuta]="data.tipoRitenuta"></aig-tipo-ritenuta-new-update-form>
+    </div>
+</div>
