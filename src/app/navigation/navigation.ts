@@ -48,6 +48,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/referent',
                 permission: ['g5c.eopoo.get'],
             },
+            {
+                id       : 'contact-list-page',
+                title    : 'Contact',
+                type     : 'item',
+                icon     : 'how_to_reg',
+                url      : '/g5c/contact',
+                permission: ['g5c.eopoo.get'],
+            },
         ]
     },
     {

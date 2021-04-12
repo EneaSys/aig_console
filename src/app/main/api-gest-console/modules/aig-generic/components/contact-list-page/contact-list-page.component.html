@@ -1,0 +1,85 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="contact-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button>Resetta filtri</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <form [formGroup]="contactSearchFormGroup" (ngSubmit)="contactSearchWithFilter()"
+                                class="p-8">
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput type="number" formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Contact Type Code</mat-label>
+                                        <input matInput type="text" formControlName="contactTypeCode">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Value</mat-label>
+                                        <input matInput type="text" formControlName="value">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Referent last name</mat-label>
+                                        <input matInput type="text" formControlName="referentLastname">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Eopoo tax number</mat-label>
+                                        <input matInput type="text" formControlName="eopooTaxNumber">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <h2>Contact</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            
+            <aig-contact-list-table [dataSource]="contactDTOs" [displayedColumns]="contactDC"
+            [error]="contactError"></aig-contact-list-table>
+
+            <mat-paginator #paginator [length]="contactLength" [pageIndex]="index"
+                [pageSize]="this.contactPaginationSize" [pageSizeOptions]="[10, 50, 100]"
+                (page)="contactPaginationEvent($event)"></mat-paginator>
+        </div>
+
+        <button mat-fab class="accent" id="add-contact-button" (click)="newContact()" aria-label="add contact">
+            <mat-icon>add</mat-icon>
+        </button>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+</div>
