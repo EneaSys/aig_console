@@ -14,11 +14,6 @@
 
     <mat-table #table [dataSource]="dataSource">
         
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
-        </ng-container>
-
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
@@ -32,15 +27,15 @@
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="'/ipp/dossier/detail/' + e.id">
+                    <button mat-menu-item [routerLink]="'/ipp/partecipation/detail/' + e.id">
                       <mat-icon>details</mat-icon>
                       <span>Details</span>
                     </button>
-                    <button mat-menu-item (click)="editDossier(e)">
+                    <button mat-menu-item (click)="editPartecipation(e)">
                         <mat-icon>edit</mat-icon>
                         <span>Edit</span>
                       </button>
-                    <button mat-menu-item (click)="deleteDossier(e.id)">
+                    <button mat-menu-item (click)="deletePartecipation(e.id)">
                         <mat-icon>delete</mat-icon>
                         <span>Delete</span>
                       </button>

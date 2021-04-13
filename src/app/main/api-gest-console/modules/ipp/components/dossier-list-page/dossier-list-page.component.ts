@@ -45,7 +45,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 	
 	private initDossierSearch() {
-		this.dossierDC = ["description","buttons"];
+		this.dossierDC = ["id","description","buttons"];
 
 		this.dossierPaginationSize = 10;
 		
@@ -68,18 +68,18 @@ export class AigDossierListPageComponent extends GenericComponent {
 		this.dossierFilters.page = page;
 		this.dossierFilters.size = this.dossierPaginationSize;
 
-		try {                                                                       
-			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET().toPromise();  
-			
+		try {
+			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET({}).toPromise();  
+
 			if(this.dossierLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
 				this.dossierDTOs = [];
 				return;
 			}
 
-			this.dossierDTOs =  await this.dossierResourceService.getAllDossiersUsingGET().toPromise();
-		console.log(this.dossierDTOs);
+			this.dossierDTOs =  await this.dossierResourceService.getAllDossiersUsingGET({}).toPromise();
 		} catch (e) {
+			console.log(e);
 			this.dossierError = e;
 		}
 	}
@@ -98,7 +98,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 	}
 
-	procurementPaginationEvent(pageEvent: PageEvent) {
+	dossierPaginationEvent(pageEvent: PageEvent) {
 		this.dossierPaginationSize = pageEvent.pageSize;
 		this.searchDossier(pageEvent.pageIndex);
 	}
@@ -123,7 +123,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newDossier(): void {
-        this.dialog.open(AigDossierNewUpdateDialogComponent, { data: { procurement: {} } });
+        this.dialog.open(AigDossierNewUpdateDialogComponent, { data: { dossier: {} } });
     }
 
 	

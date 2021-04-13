@@ -22,6 +22,9 @@ import { AigProcurementLotNewUpdateFormComponent } from './components/procuremen
 import { MatDatepickerModule, MatMenu, MatMenuModule } from '@angular/material';
 import { AigDossierListTableComponent } from './components/dossier-list-table/dossier-list-table.component';
 import { AigDossierNewUpdateFormComponent } from './components/dossier-new-update-form/dossier-new-update-form.component';
+import { DossierResolver } from './components/resolver/dossier.resolver';
+import { AigPartecipationListTableComponent } from './components/partecipation-list-table/partecipation-list-table.component';
+import { AigPartecipationNewUpdateFormComponent } from './components/partecipation-new-update-form/partecipation-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -49,23 +52,30 @@ import { AigDossierNewUpdateFormComponent } from './components/dossier-new-updat
     ],
     providers: [
 
+        DossierResolver,
+
     ],
     declarations: [
         AigProcurementListTableComponent,
         AigProcurementLotListTableComponent,
         AigDossierListTableComponent,
+        AigPartecipationListTableComponent,
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
-        AigDossierNewUpdateFormComponent
+        AigDossierNewUpdateFormComponent,
+        AigPartecipationNewUpdateFormComponent,
         
     ],
     exports: [
         AigProcurementListTableComponent,
         AigProcurementLotListTableComponent,
         AigDossierListTableComponent,
+        AigPartecipationListTableComponent,
+        AigDossierNewUpdateFormComponent,
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
-        AigDossierListTableComponent,
+        AigPartecipationNewUpdateFormComponent,
+        
     ],
 })
 export class AigCommonIppModule {}

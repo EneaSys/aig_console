@@ -79,6 +79,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/ipp/dossier',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'partecipation-list-page',
+                title    : 'Partecipation',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/partecipation',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 

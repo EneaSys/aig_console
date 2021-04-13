@@ -30,6 +30,11 @@ import { AigProcurementLotListPageComponent } from './components/procurement-lot
 import { AigDossierNewUpdateDialogComponent } from './components/dossier-new-update-dialog/dossier-new-update-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AigDossierListPageComponent } from './components/dossier-list-page/dossier-list-page.component';
+import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
+import { AigPartecipationListPageComponent } from './components/partecipation-list-page/partecipation-list-page.component';
+import { AigPartecipationNewUpdateDialogComponent } from './components/partecipation-new-update-dialog/partecipation-new-update-dialog.component';
+import { AigPartecipationDetailPageComponent } from './components/partecipation-detail-page/partecipation-detail-page.component';
+import { AigDossierDetailPageComponent } from './components/dossier-detail-page/dossier-detail-page.component';
 
 
 @NgModule({
@@ -39,6 +44,7 @@ import { AigDossierListPageComponent } from './components/dossier-list-page/doss
         CommonModule,
         AigCommonIppModule,
         AigIppClientModule,
+        AigItalianLegislationApiModule,
        
         FormsModule,
         ReactiveFormsModule,
@@ -80,11 +86,15 @@ import { AigDossierListPageComponent } from './components/dossier-list-page/doss
         AigProcurementListPageComponent,
         AigProcurementLotListPageComponent,
         AigDossierListPageComponent,
+        AigPartecipationListPageComponent,
         AigProcurementDetailPageComponent,
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotDetailPageComponent,
         AigProcurementLotNewUpdateDialogComponent,
         AigDossierNewUpdateDialogComponent,
+        AigPartecipationNewUpdateDialogComponent,
+        AigPartecipationDetailPageComponent,
+        AigDossierDetailPageComponent,
     ],
     exports: [
 
@@ -94,6 +104,7 @@ import { AigDossierListPageComponent } from './components/dossier-list-page/doss
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotNewUpdateDialogComponent,
         AigDossierNewUpdateDialogComponent,
+        AigPartecipationNewUpdateDialogComponent,
 
     ],
 })
