@@ -25,6 +25,7 @@ import { AigDossierNewUpdateFormComponent } from './components/dossier-new-updat
 import { DossierResolver } from './components/resolver/dossier.resolver';
 import { AigPartecipationListTableComponent } from './components/partecipation-list-table/partecipation-list-table.component';
 import { AigPartecipationNewUpdateFormComponent } from './components/partecipation-new-update-form/partecipation-new-update-form.component';
+import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { AigPartecipationNewUpdateFormComponent } from './components/partecipati
         FlexLayoutModule,
 
         AigIppClientModule,
+        AigItalianLegislationApiModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -76,6 +78,8 @@ import { AigPartecipationNewUpdateFormComponent } from './components/partecipati
         AigProcurementLotNewUpdateFormComponent,
         AigPartecipationNewUpdateFormComponent,
         
+        AigDossierListTableComponent,
+        AigDossierNewUpdateFormComponent,
     ],
 })
 export class AigCommonIppModule {}
