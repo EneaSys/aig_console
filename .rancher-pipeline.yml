@@ -34,5 +34,18 @@ stages:
       branch:
         include:
         - develop
+  - runScriptConfig:
+      image: gcr.io/api-gest/deployer
+      shellScript: |-
+        ssh -p1088 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
+        scp -P1088 -r dist/public_html/ $user@$url:$path
+    env:
+      path: public_html/api-gest.dev/public_html 
+      url: cpanel.sm-host.com
+      user: eneasys
+    when:
+      branch:
+        include:
+        - develop-for-backend
 timeout: 60
 notification: {}

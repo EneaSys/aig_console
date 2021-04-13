@@ -15,7 +15,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
                 if (value.length > 4) {
-                    return this.cityResourceService.getAllCitiesUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, value, null, null, null, null, null, null, 10, null, null, null, null, null, null, null);
+                    return this.cityResourceService.getAllCitiesUsingGET();
                 } else {
                     return of([]);
                 }
