@@ -69,7 +69,8 @@ export class AigDossierListPageComponent extends GenericComponent {
 		this.dossierFilters.size = this.dossierPaginationSize;
 
 		try {                                                                       
-			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET().toPromise();  
+			console.log("vai");
+			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET({}).toPromise();  
 			
 			if(this.dossierLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -78,7 +79,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 			}
 
 			this.dossierDTOs =  await this.dossierResourceService.getAllDossiersUsingGET().toPromise();
-		console.log(this.dossierDTOs);
+			console.log(this.dossierDTOs);
 		} catch (e) {
 			this.dossierError = e;
 		}

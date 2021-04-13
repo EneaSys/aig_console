@@ -22,6 +22,7 @@ import { AigProcurementLotNewUpdateFormComponent } from './components/procuremen
 import { MatDatepickerModule, MatMenu, MatMenuModule } from '@angular/material';
 import { AigDossierListTableComponent } from './components/dossier-list-table/dossier-list-table.component';
 import { AigDossierNewUpdateFormComponent } from './components/dossier-new-update-form/dossier-new-update-form.component';
+import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
 
 @NgModule({
     imports: [
@@ -35,6 +36,7 @@ import { AigDossierNewUpdateFormComponent } from './components/dossier-new-updat
         FlexLayoutModule,
 
         AigIppClientModule,
+        AigItalianLegislationApiModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -56,7 +58,7 @@ import { AigDossierNewUpdateFormComponent } from './components/dossier-new-updat
         AigDossierListTableComponent,
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
-        AigDossierNewUpdateFormComponent
+        AigDossierNewUpdateFormComponent,
         
     ],
     exports: [
@@ -66,6 +68,7 @@ import { AigDossierNewUpdateFormComponent } from './components/dossier-new-updat
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
         AigDossierListTableComponent,
+        AigDossierNewUpdateFormComponent,
     ],
 })
 export class AigCommonIppModule {}
