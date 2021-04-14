@@ -83,10 +83,14 @@ import { AigTipoCessionePrestazioneListTableComponent } from './components/tipo-
 import { AigTipoCessionePrestazioneNewUpdateFormComponent } from './components/tipo-cessione-prestazione-new-update-form/tipo-cessione-prestazione-new-update-form.component';
 import { AigEntityDetailTipoCessionePrestazioneComponent } from './components/entity-detail-tipo-cessione-prestazione/entity-detail-tipo-cessione-prestazione.component';
 import { TipoCessionePestazioneResolver } from './resolver/tipo-cessione-prestazione.resolver.ts/tipo-cessione-prestazione.resolver';
-import { AigTipoScontoMaggioranzaListTableComponent } from './components/tipo-sconto-maggioranza-list-table/tipo-sconto-maggioranza-list-table.component';
-import { AigTipoScontoMaggioranzaNewUpdateFormComponent } from './components/tipo-sconto-maggioranza-new-update-form/tipo-sconto-maggioranza-new-update-form.component';
-import { AigEntityDetailTipoScontoMaggioranzaComponent } from './components/entity-detail-tipo-sconto-maggioranza/entity-detail-tipo-sconto-maggioranza.component';
-import { TipoScontoMaggioranzaResolver } from './resolver/tipo-sconto-maggioranza.resolver.ts/tipo-sconto-maggioranza.resolver';
+import {  AigTipoScontoMaggiorazioneListTableComponent } from './components/tipo-sconto-maggiorazione-list-table/tipo-sconto-maggiorazione-list-table.component';
+import {  AigTipoScontoMaggiorazioneNewUpdateFormComponent } from './components/tipo-sconto-maggiorazione-new-update-form/tipo-sconto-maggiorazione-new-update-form.component';
+import {  AigEntityDetailTipoScontoMaggiorazioneComponent } from './components/entity-detail-tipo-sconto-maggiorazione/entity-detail-tipo-sconto-maggiorazione.component';
+import {  TipoScontoMaggiorazioneResolver } from './resolver/tipo-sconto-maggiorazione.resolver.ts/tipo-sconto-maggiorazione.resolver';
+import { AigEsigibilitaIvaListTableComponent } from './components/esigibilita-iva-list-table/esigibilita-iva-list-table.component';
+import { AigEsigibilitaIvaNewUpdateFormComponent } from './components/esigibilita-iva-new-update-form/esigibilita-iva-new-update-form.component';
+import { AigEntityDetailEsigibilitaIvaComponent } from './components/entity-detail-esigibilita-iva/entity-detail-esigibilita-iva.component';
+import { EsigibilitaIvaResolver } from './resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
 
 
 @NgModule({
@@ -142,9 +146,13 @@ import { TipoScontoMaggioranzaResolver } from './resolver/tipo-sconto-maggioranz
         AigTipoCessionePrestazioneListTableComponent,
         AigTipoCessionePrestazioneNewUpdateFormComponent,
         AigEntityDetailTipoCessionePrestazioneComponent,
-        AigTipoScontoMaggioranzaListTableComponent,
-        AigTipoScontoMaggioranzaNewUpdateFormComponent,
-        AigEntityDetailTipoScontoMaggioranzaComponent
+        AigTipoScontoMaggiorazioneListTableComponent,
+        
+        AigEntityDetailTipoScontoMaggiorazioneComponent,
+        AigEsigibilitaIvaListTableComponent,
+        AigEsigibilitaIvaNewUpdateFormComponent,
+        AigEntityDetailEsigibilitaIvaComponent,
+        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
 
 
     ],
@@ -222,9 +230,13 @@ import { TipoScontoMaggioranzaResolver } from './resolver/tipo-sconto-maggioranz
         AigTipoCessionePrestazioneListTableComponent,
         AigTipoCessionePrestazioneNewUpdateFormComponent,
         AigEntityDetailTipoCessionePrestazioneComponent,
-        AigTipoScontoMaggioranzaListTableComponent,
-        AigTipoScontoMaggioranzaNewUpdateFormComponent,
-        AigEntityDetailTipoScontoMaggioranzaComponent
+        AigTipoScontoMaggiorazioneListTableComponent,
+        
+        AigEntityDetailTipoScontoMaggiorazioneComponent,
+        AigEsigibilitaIvaListTableComponent,
+        AigEsigibilitaIvaNewUpdateFormComponent,
+        AigEntityDetailEsigibilitaIvaComponent,
+        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
    
 
     ],
@@ -252,7 +264,8 @@ import { TipoScontoMaggioranzaResolver } from './resolver/tipo-sconto-maggioranz
         NaturaResolver,
         TipoRitenutaResolver,
         TipoCessionePestazioneResolver,
-        TipoScontoMaggioranzaResolver
+        TipoScontoMaggiorazioneResolver,
+        EsigibilitaIvaResolver
     ],
 })
 export class AigCommonStandardModule {}

@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.tipoScontoMaggioranza.id" class="title dialog-title">Update Tipo Sconto Maggiornaza </span>
-            <span *ngIf="!data.tipoScontoMaggioranza.id" class="title dialog-title">Create New Tipo Sconto Maggiornaza </span>
+            <span *ngIf="data.esigibilitaIva.id" class="title dialog-title">Update Esigibilita Iva </span>
+            <span *ngIf="!data.esigibilitaIva.id" class="title dialog-title">Create New Esigibilita Iva </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -10,6 +10,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-tipo-sconto-maggioranza-new-update-form [tipoScontoMaggioranza]="data.tipoScontoMaggioranza"></aig-tipo-sconto-maggioranza-new-update-form>
+        <aig-esigibilita-iva-new-update-form [esigibilitaIva]="data.esigibilitaIva"></aig-esigibilita-iva-new-update-form>
     </div>
 </div>

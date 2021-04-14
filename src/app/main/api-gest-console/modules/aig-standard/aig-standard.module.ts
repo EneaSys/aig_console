@@ -65,9 +65,14 @@ import { AigTipoRitenutaNewUpdateDialogComponent } from './components/tipo-riten
 import { AigTipoCessionePrestazioneListPageComponent } from './components/tipo-cessione-prestazione-list-page/tipo-cessione-prestazione-list-page.component';
 import { AigTipoCessionePrestazioneDetailPageComponent } from './components/tipo-cessione-prestazione-detail-page/tipo-cessione-prestazione-detail-page.component';
 import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from './components/tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
-import { AigTipoScontoMaggioranzaListPageComponent } from './components/tipo-sconto-maggioranza-list-page/tipo-sconto-maggioranza-list-page.component';
-import { AigTipoScontoMaggioranzaDetailPageComponent } from './components/tipo-sconto-maggioranza-detail-page/tipo-sconto-maggioranza-detail-page.component';
-import { AigTipoScontMaggioranzaNewUpdateDialogComponent } from './components/tipo-sconto-maggioranza-new-update-dialog/tipo-sconto-maggioranza-new-update-dialog.component';
+import { AigTipoScontoMaggiorazioneListPageComponent } from './components/tipo-sconto-maggiorazione-list-page/tipo-sconto-maggiorazione-list-page.component';
+
+
+import { AigEsigibilitaIvaListPageComponent } from './components/esigibilita-iva-list-page/esigibilita-iva-list-page.component';
+import { AigTipoScontoMaggiorazioneNewUpdateDialogComponent } from './components/tipo-sconto-maggiorazione-new-update-dialog/tipo-sconto-maggiorazione-new-update-dialog.component';
+import { AigTipoScontoMaggiorazioneDetailPageComponent } from './components/tipo-sconto-maggiorazione-detail-page/tipo-sconto-maggiorazione-detail-page.component';
+import { AigEsigibilitaIvaDetailPageComponent } from './components/esigibilita-iva-detail-page/esigibilita-iva-detail-page.component';
+import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibilita-iva-new-update-dialog/esigibilita-iva-new-update-dialog.component';
 
 @NgModule({
     declarations: [
@@ -126,9 +131,12 @@ import { AigTipoScontMaggioranzaNewUpdateDialogComponent } from './components/ti
         AigTipoCessionePrestazioneListPageComponent,
         AigTipoCessionePrestazioneDetailPageComponent,
         AigTipoCessionePrestazioneNewUpdateDialogComponent,
-        AigTipoScontoMaggioranzaListPageComponent,
-        AigTipoScontoMaggioranzaDetailPageComponent,
-        AigTipoScontMaggioranzaNewUpdateDialogComponent
+        AigTipoScontoMaggiorazioneListPageComponent,
+        AigTipoScontoMaggiorazioneDetailPageComponent,
+        AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
+        AigEsigibilitaIvaListPageComponent,
+        AigEsigibilitaIvaDetailPageComponent,
+        AigEsigibilitaIvaNewUpdateDialogComponent
 
     ],
     imports: [
@@ -169,7 +177,8 @@ import { AigTipoScontMaggioranzaNewUpdateDialogComponent } from './components/ti
         AigNaturaNewUpdateDialogComponent,
         AigTipoRitenutaNewUpdateDialogComponent,
         AigTipoCessionePrestazioneNewUpdateDialogComponent,
-        AigTipoScontMaggioranzaNewUpdateDialogComponent 
+        AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
+        AigEsigibilitaIvaNewUpdateDialogComponent
     
     ],
 })

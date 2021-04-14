@@ -328,10 +328,18 @@ export const contextNavigation: FuseNavigation[] = [
 					},
 					{
 						id       : '',
-						title    : 'Tipo Sconto Maggioranza',
+						title    : 'Tipo Sconto Maggiorazione',
 						type     : 'item',
 						icon     : 'arrow_right',
-						url      : '/s6d/tipo-sconto-maggioranza',
+						url      : '/s6d/tipo-sconto-maggiorazione',
+						permission: ['e4y.account.get'],
+					},
+					{
+						id       : '',
+						title    : 'Esigibilita Iva',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/esigibilita-iva',
 						permission: ['e4y.account.get'],
 					},
 				]

@@ -2,15 +2,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoRitenutaDTO, TipoRitenutaResourceService, TipoScontoMaggiorazioneDTO, TipoScontoMaggiorazioneResourceService } from 'aig-standard';
+import { CityDTO, CityResourceService, EsigibilitaIvaDTO, EsigibilitaIvaResourceService, NaturaDTO, NaturaResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
-    selector: 'aig-tipo-sconto-maggioranza-new-update-form',
-    templateUrl: './tipo-sconto-maggioranza-new-update-form.component.html',
-    styleUrls: ['./tipo-sconto-maggioranza-new-update-form.component.scss']
+    selector: 'aig-esigibilita-iva-new-update-form',
+    templateUrl: './esigibilita-iva-new-update-form.component.html',
+    styleUrls: ['./esigibilita-iva-new-update-form.component.scss']
 })
-export class AigTipoScontoMaggioranzaNewUpdateFormComponent implements OnInit {
+export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -18,7 +18,7 @@ export class AigTipoScontoMaggioranzaNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        private tipoScontoMaggioranzaResourceService: TipoScontoMaggiorazioneResourceService,
+        private esigibilitaIvaResourceService: EsigibilitaIvaResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,46 +26,46 @@ export class AigTipoScontoMaggioranzaNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    tipoScontoMaggioranza: TipoScontoMaggiorazioneDTO;
+    esigibilitaIva: EsigibilitaIvaDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	tipoScontoMaggioranzaOutput = new EventEmitter<TipoScontoMaggiorazioneDTO>();
+	esigibilitaIvaOutput = new EventEmitter<EsigibilitaIvaDTO>();
 
-    tipoScontoMaggioranzaNewUpdateForm: FormGroup;
+    esigibilitaIvaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.tipoScontoMaggioranzaNewUpdateForm = this._formBuilder.group({
+        this.esigibilitaIvaNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['']
         })
-        if (this.tipoScontoMaggioranza!= null) {
-            this.tipoScontoMaggioranzaNewUpdateForm.patchValue(this.tipoScontoMaggioranza);
+        if (this.esigibilitaIva!= null) {
+            this.esigibilitaIvaNewUpdateForm.patchValue(this.esigibilitaIva);
         }
     }
 
     async submit() {
-        if (!this.tipoScontoMaggioranzaNewUpdateForm.valid) {
+        if (!this.esigibilitaIvaNewUpdateForm.valid) {
             return;
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let tipoScontoMaggioranza: TipoScontoMaggiorazioneDTO = this.tipoScontoMaggioranzaNewUpdateForm.value;
+        let esigibilitaIva: EsigibilitaIvaDTO = this.esigibilitaIvaNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
-            if (tipoScontoMaggioranza.id != 0) {
-                await this.tipoScontoMaggioranzaResourceService.updateTipoScontoMaggiorazioneUsingPUT(tipoScontoMaggioranza).toPromise();
+            if (esigibilitaIva.id != 0) {
+                await this.esigibilitaIvaResourceService.updateEsigibilitaIvaUsingPUT(esigibilitaIva).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoScontoMaggioranzaResourceService.createTipoScontoMaggiorazioneUsingPOST(tipoScontoMaggioranza).toPromise();
+                await this.esigibilitaIvaResourceService.createEsigibilitaIvaUsingPOST(esigibilitaIva).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
@@ -78,9 +78,9 @@ export class AigTipoScontoMaggioranzaNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newTipoScontoMaggioranza() {
-        this.tipoScontoMaggioranza = null;
-        this.tipoScontoMaggioranzaOutput.emit(this.tipoScontoMaggioranza);
+    newEsigibilitaIva() {
+        this.esigibilitaIva = null;
+        this.esigibilitaIvaOutput.emit(this.esigibilitaIva);
         this.setStep("form");
     }
 

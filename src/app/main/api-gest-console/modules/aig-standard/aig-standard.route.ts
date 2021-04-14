@@ -47,9 +47,14 @@ import { TipoRitenutaResolver } from 'aig-common/modules/standard/resolver/tipo-
 import { AigTipoCessionePrestazioneListPageComponent } from './components/tipo-cessione-prestazione-list-page/tipo-cessione-prestazione-list-page.component';
 import { AigTipoCessionePrestazioneDetailPageComponent } from './components/tipo-cessione-prestazione-detail-page/tipo-cessione-prestazione-detail-page.component';
 import { TipoCessionePestazioneResolver } from 'aig-common/modules/standard/resolver/tipo-cessione-prestazione.resolver.ts/tipo-cessione-prestazione.resolver';
-import { AigTipoScontoMaggioranzaListPageComponent } from './components/tipo-sconto-maggioranza-list-page/tipo-sconto-maggioranza-list-page.component';
-import { AigTipoScontoMaggioranzaDetailPageComponent } from './components/tipo-sconto-maggioranza-detail-page/tipo-sconto-maggioranza-detail-page.component';
-import { TipoScontoMaggioranzaResolver } from 'aig-common/modules/standard/resolver/tipo-sconto-maggioranza.resolver.ts/tipo-sconto-maggioranza.resolver';
+import {  AigTipoScontoMaggiorazioneListPageComponent } from './components/tipo-sconto-maggiorazione-list-page/tipo-sconto-maggiorazione-list-page.component';
+
+
+import { TipoScontoMaggiorazioneResolver } from 'aig-common/modules/standard/resolver/tipo-sconto-maggiorazione.resolver.ts/tipo-sconto-maggiorazione.resolver';
+import { AigTipoScontoMaggiorazioneDetailPageComponent } from './components/tipo-sconto-maggiorazione-detail-page/tipo-sconto-maggiorazione-detail-page.component';
+import { AigEsigibilitaIvaListPageComponent } from './components/esigibilita-iva-list-page/esigibilita-iva-list-page.component';
+import { AigEsigibilitaIvaDetailPageComponent } from './components/esigibilita-iva-detail-page/esigibilita-iva-detail-page.component';
+import { EsigibilitaIvaResolver } from 'aig-common/modules/standard/resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -412,7 +417,7 @@ export const aigStandardRoute: Routes = [
                 ]
             },
             {
-                path: 'tipo-sconto-maggioranza',
+                path: 'tipo-sconto-maggiorazione',
                 children: [
                     {
                         path: '',
@@ -421,16 +426,40 @@ export const aigStandardRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigTipoScontoMaggioranzaListPageComponent,
+                        component: AigTipoScontoMaggiorazioneListPageComponent,
                         canActivate: [AuthGuardService],
                     },
 
                     {
                         path: 'detail/:id',
-                        component: AigTipoScontoMaggioranzaDetailPageComponent,
+                        component: AigTipoScontoMaggiorazioneDetailPageComponent,
                         canActivate: [AuthGuardService],
                         resolve: {
-                            tipoScontoMaggioranzaPrestazione: TipoScontoMaggioranzaResolver,
+                            tipoScontoMaggiorazionePrestazione: TipoScontoMaggiorazioneResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'esigibilita-iva',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigEsigibilitaIvaListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigEsigibilitaIvaDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            esigibilitaIvaPrestazione: EsigibilitaIvaResolver,
                         },
                     },
                 ]
