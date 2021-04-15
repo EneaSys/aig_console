@@ -61,9 +61,8 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
     
     private clearFiltersTipoScontoMaggiorazione() {
 		this.tipoScontoMaggiorazioneFilters = {
-			idEquals: null,
-			nameContains: null,
-			codeEquals: null,
+			tipoScontoMaggiorazioneIDEquals: null,
+			tipoScontoMaggiorazioneNameContains: null,
 			page: 0,
 		}
     }
@@ -111,14 +110,14 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
 		if(searchedId != null) {
 			this.clearFiltersTipoScontoMaggiorazione();
 			this.tipoScontoMaggiorazioneSearchFormGroup.reset();
-			this.tipoScontoMaggiorazioneFilters.idEquals = searchedId;
+			this.tipoScontoMaggiorazioneFilters.tipoScontoMaggiorazioneIDEquals = searchedId;
 			this.searchTipoScontoMaggiorazione(0);
 			return;
 		}
 
-		this.tipoScontoMaggiorazioneFilters.idEquals = null;
+		this.tipoScontoMaggiorazioneFilters.tipoScontoMaggiorazioneIDEquals = null;
 
-		this.tipoScontoMaggiorazioneFilters.nameContains = this.tipoScontoMaggiorazioneSearchFormGroup.controls.name.value;
+		this.tipoScontoMaggiorazioneFilters.tipoScontoMaggiorazioneNameContains = this.tipoScontoMaggiorazioneSearchFormGroup.controls.name.value;
 
 		this.searchTipoScontoMaggiorazione(0);
 	}
