@@ -4,7 +4,7 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre> {{ contextUserDTO | json }} </pre>
+                <entity-detail-context-user [contextUserDTO]="contextUserDTO"></entity-detail-context-user>
 
                 <button mat-stroked-button color="primary" (click)="editContextUser(contextUserDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteContextUser(contextUserDTO.id)">Delete</button>
