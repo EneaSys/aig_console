@@ -3,26 +3,17 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         
-
-        <mat-form-field  appearance="outline" [style.width.%]=40>
-            <mat-label>Procurement Description</mat-label>
-            <input formControlName="description" matInput required>
-        </mat-form-field>
-    
-
-        <mat-form-field  appearance="outline" [style.width.%]=20>
+        <mat-form-field appearance="outline" fxFlex="20">
             <mat-label>Procurement Code</mat-label>
             <input formControlName="code" matInput required>
         </mat-form-field>
-        
 
-        <mat-form-field  appearance="outline" [style.width.%]=20>
-            <mat-label>Ref</mat-label>
-            <input formControlName="ref" matInput>
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+            <mat-label>Procurement contractor Eopoo Code</mat-label>
+            <input formControlName="contractorEopooCode" matInput required>
         </mat-form-field>
-        
 
-        <mat-form-field  appearance="outline" [style.width.%]=20>
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
             <mat-label>Procurement total Amount</mat-label>
             <input type="number" matInput formControlName="totalAmount" placeholder="Quantità" required>
         </mat-form-field>
@@ -30,24 +21,30 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" [style.width.%]=50>
-            <mat-label>Procurement contractor Eopoo Code</mat-label>
-            <input formControlName="contractorEopooCode" matInput required>
+        <mat-form-field appearance="outline" fxFlex="20">
+            <mat-label>Ref</mat-label>
+            <input formControlName="ref" matInput>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" [style.width.%]=50>
-            <mat-label>Procurement ipp Sector Code</mat-label>
-            <input formControlName="ippSectorCode" matInput required>
+        <mat-form-field appearance="outline" fxFlex="80" class="pl-4">
+            <mat-label>Procurement Description</mat-label>
+            <input formControlName="description" matInput required>
         </mat-form-field>
+        
     </div>
        
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" [style.width.%]=50>
+        <mat-form-field appearance="outline" fxFlex="33">
             <mat-label>Procurement ipp Procedure Code</mat-label>
             <input formControlName="ippProcedureCode" matInput required>
         </mat-form-field>
         
-        <mat-form-field appearance="outline" [style.width.%]=50>
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement ipp Sector Code</mat-label>
+            <input formControlName="ippSectorCode" matInput required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="34" class="pl-4">
             <mat-label>Procurement ipp Modality Code</mat-label>
             <input formControlName="ippModalityCode" matInput required>
         </mat-form-field>
