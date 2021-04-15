@@ -55,6 +55,9 @@ import { AigTipoScontoMaggiorazioneDetailPageComponent } from './components/tipo
 import { AigEsigibilitaIvaListPageComponent } from './components/esigibilita-iva-list-page/esigibilita-iva-list-page.component';
 import { AigEsigibilitaIvaDetailPageComponent } from './components/esigibilita-iva-detail-page/esigibilita-iva-detail-page.component';
 import { EsigibilitaIvaResolver } from 'aig-common/modules/standard/resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
+import { AigModalitaPagamentoListPageComponent } from './components/modalita-pagamento-list-page/modalita-pagamento-list-page.component';
+import { AigModalitaPagamentoDetailPageComponent } from './components/modalita-pagamento-detail-page/modalita-pagamento-detail-page.component';
+import { ModalitaPagamentoResolver } from 'aig-common/modules/standard/resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -464,7 +467,30 @@ export const aigStandardRoute: Routes = [
                     },
                 ]
             },
+            {
+                path: 'modalita-pagamento',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigModalitaPagamentoListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
 
+                    {
+                        path: 'detail/:id',
+                        component: AigModalitaPagamentoDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            modalitaPagamento: ModalitaPagamentoResolver,
+                        },
+                    },
+                ]
+            },
         ]
     },
 ]

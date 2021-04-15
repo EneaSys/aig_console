@@ -342,6 +342,14 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/s6d/esigibilita-iva',
 						permission: ['e4y.account.get'],
 					},
+					{
+						id       : '',
+						title    : 'Modalita Pagamento',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/modalita-pagamento',
+						permission: ['e4y.account.get'],
+					},
 				]
 			},
 			{

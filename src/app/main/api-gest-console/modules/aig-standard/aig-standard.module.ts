@@ -73,6 +73,9 @@ import { AigTipoScontoMaggiorazioneNewUpdateDialogComponent } from './components
 import { AigTipoScontoMaggiorazioneDetailPageComponent } from './components/tipo-sconto-maggiorazione-detail-page/tipo-sconto-maggiorazione-detail-page.component';
 import { AigEsigibilitaIvaDetailPageComponent } from './components/esigibilita-iva-detail-page/esigibilita-iva-detail-page.component';
 import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibilita-iva-new-update-dialog/esigibilita-iva-new-update-dialog.component';
+import { AigModalitaPagamentoListPageComponent } from './components/modalita-pagamento-list-page/modalita-pagamento-list-page.component';
+import { AigModalitaPagamentoDetailPageComponent } from './components/modalita-pagamento-detail-page/modalita-pagamento-detail-page.component';
+import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modalita-pagamento-new-update-dialog/modalita-pagamento-new-update-dialog.component';
 
 @NgModule({
     declarations: [
@@ -136,7 +139,10 @@ import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibil
         AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
         AigEsigibilitaIvaListPageComponent,
         AigEsigibilitaIvaDetailPageComponent,
-        AigEsigibilitaIvaNewUpdateDialogComponent
+        AigEsigibilitaIvaNewUpdateDialogComponent,
+        AigModalitaPagamentoListPageComponent,
+        AigModalitaPagamentoDetailPageComponent,
+        AigModalitaPagamentoNewUpdateDialogComponent
 
     ],
     imports: [
@@ -178,7 +184,9 @@ import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibil
         AigTipoRitenutaNewUpdateDialogComponent,
         AigTipoCessionePrestazioneNewUpdateDialogComponent,
         AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
-        AigEsigibilitaIvaNewUpdateDialogComponent
+        AigEsigibilitaIvaNewUpdateDialogComponent,
+        AigModalitaPagamentoNewUpdateDialogComponent
+      
     
     ],
 })
