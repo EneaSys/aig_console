@@ -1,0 +1,25 @@
+<div id="aig-regime-fiscale-detail-page" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+
+            <div class="fuse-card auto-width p-16">
+
+                 <!--<entity-detail-regime-fiscale [regimeFiscale]="regimeFiscale"></entity-detail-regime-fiscale>!-->
+                 <pre>{{ regimeFiscaleDTO | json }}</pre> 
+
+                <button mat-stroked-button color="primary" (click)="editRegimeFiscale(regimeFiscale)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteRegimeFiscale(regimeFiscale.id)">Delete</button>
+
+            </div>
+
+            <br>
+
+        
+
+        </div>
+
+    </div>
+
+</div>

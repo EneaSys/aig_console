@@ -1,0 +1,15 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span *ngIf="data.tipoScontoMaggiorazione.id" class="title dialog-title">Update Tipo Sconto Maggiorazione </span>
+            <span *ngIf="!data.tipoScontoMaggiorazione.id" class="title dialog-title">Create New Tipo Sconto Maggiorazione </span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <aig-tipo-sconto-maggiorazione-new-update-form [tipoScontoMaggiorazione]="data.tipoScontoMaggiorazione"></aig-tipo-sconto-maggiorazione-new-update-form>
+    </div>
+</div>
