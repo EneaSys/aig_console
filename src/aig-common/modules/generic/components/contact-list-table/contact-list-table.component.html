@@ -1,0 +1,59 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="contactTypeCode">
+            <mat-header-cell *matHeaderCellDef> Contact Type Code </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="eopooId">
+            <mat-header-cell *matHeaderCellDef> Eopoo Id </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element">{{ element.address }}</mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="eopooTaxNumber">
+            <mat-header-cell *matHeaderCellDef> Eopoo Tax Number </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="referentId">
+            <mat-header-cell *matHeaderCellDef> Referent Id </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="referentLastname">
+            <mat-header-cell *matHeaderCellDef> Referent Last Name </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-stroked-button color="primary" (click)="editContact(element)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteContact(element)">Delete</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+</div>

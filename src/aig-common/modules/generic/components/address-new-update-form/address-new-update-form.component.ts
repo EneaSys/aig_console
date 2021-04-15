@@ -41,7 +41,6 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
     filteredCitys: Observable<CityDTO[]>;
     
     ngOnInit(): void {
-        // PREPARE FORM
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
@@ -50,21 +49,16 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
             eopooId: [],
         })
 
-        // Is creation
         if(this.address == undefined && this.eopoo != null) {
             let newAddress: any = {}
             newAddress.eopooId = this.eopoo.id;
             this.addressNewUpdateForm.patchValue(newAddress);
         }
 
-        // PRECOMPILE
-        // Is update
         if (this.address != null) {
             this.addressNewUpdateForm.patchValue(this.address);
         }
 
-
-        // EVENT ON ITERACTION
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.addressNewUpdateForm.controls['city'].valueChanges);
     }
 
@@ -106,7 +100,6 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
         this.step[step] = true;
     }
 }

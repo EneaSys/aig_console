@@ -1,25 +1,34 @@
-<div id="aig-eopoo-list-page" class="page-layout simple left-sidebar inner-sidebar">
-
-    <aig-generic-header [sectionName]="'Anagrafiche'" [search]="false"></aig-generic-header>
-
-    <div class="content">
-        <!-- SIDEBAR -->
-        <fuse-sidebar class="sidebar" name="aig-user-list-filters-sidebar" position="left" lockedOpen="gt-sm">
-            <div class="content" fusePerfectScrollbar>
-                <div class="sidebar-content">
-
-                    <div class="card mb-16">
-                        <div class="header p-24" fxLayout="row" fxLayoutAlign="start center">
-                            <span class="h5">Filters</span>
-                        </div>
-                        <div class="content py-16" fusePerfectScrollbar>
-                            <form [formGroup]="searchForm" (ngSubmit)="customSearch()" class="p-8">
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="eopoo-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="showAllEopoo()">Resetta filtri</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <form [formGroup]="searchForm" (ngSubmit)="eopooSearchWithFilter()" class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
                                         <input matInput formControlName="id">
                                     </mat-form-field>
                                 </div>
+                                <div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Tipo</mat-label>
+										<input matInput formControlName="eopooType" [matAutocomplete]="eopooTypeAutocomplete">
+										<mat-autocomplete #eopooTypeAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooTypeDisplayFn">
+											<mat-option *ngFor="let eopooType of filteredEopooType | async" [value]="eopooType">{{ eopooType.name }}</mat-option>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>TaxId</mat-label>
@@ -32,27 +41,32 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </fuse-sidebar>
-        <!-- / SIDEBAR -->
-
-        <!-- CENTER -->
-        <div class="center p-24 pb-56 mb-24" fusePerfectScrollbar>
-            <div class="content">
-                <aig-eopoo-list-table [displayColumns]="displayColumns" [dataSource]="eopooDTOs" [error]="error">
-                </aig-eopoo-list-table>
-
-                <mat-paginator #paginator [length]="length" [pageIndex]="index" [pageSize]="30" [pageSizeOptions]="[30, 100, 200]" (page)="pageEvent($event)"></mat-paginator>
-            </div>
         </div>
-        <!-- /CENTER -->
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <h2>Anagrafiche</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <aig-eopoo-list-table [displayColumns]="eopooDC" [dataSource]="eopooDTOs" [error]="eopooError">
+            </aig-eopoo-list-table>
 
+            <mat-paginator #paginator [length]="eopooLength" [pageIndex]="index" [pageSize]="this.eopooPaginationSize"
+                [pageSizeOptions]="[30, 100, 200]" (page)="eopooPaginationEvent($event)"></mat-paginator>
+        </div>
+
+        <button mat-fab class="accent" id="add-eopoo-button" (click)="newEopoo()" aria-label="add eopoo">
+            <mat-icon>how_to_reg</mat-icon>
+        </button>
+        <!-- / CONTENT -->
     </div>
-
+    <!-- / CENTER -->
 </div>
-
-<button mat-fab class="accent" id="add-eopoo-button" (click)="newEopoo()" aria-label="add eopoo">
-    <mat-icon>how_to_reg</mat-icon>
-</button>

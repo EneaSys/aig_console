@@ -1,0 +1,44 @@
+<form *ngIf="step.form" [formGroup]="referentNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>First name</mat-label>
+            <input formControlName="firstname" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Last name</mat-label>
+            <input formControlName="lastname" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Position</mat-label>
+            <input formControlName="position" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo Tax Number</mat-label>
+            <input formControlName="eopooTaxNumber" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!referent.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="referent.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ referentNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!referentNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newReferent()">Crea nuovo</button>
+</div>
