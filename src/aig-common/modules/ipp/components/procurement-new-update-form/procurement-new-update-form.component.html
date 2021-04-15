@@ -1,52 +1,57 @@
 <form *ngIf="step.form" [formGroup]="procurementNewUpdateForm" (ngSubmit)="submit()">
 
 
-    <mat-form-field>
-        <mat-label>Procurement Description</mat-label>
-        <input formControlName="description" matInput required>
-    </mat-form-field>
-    <br><br>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        
 
-    <mat-form-field>
-        <mat-label>Procurement Code</mat-label>
-        <input formControlName="code" matInput required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field  appearance="outline" [style.width.%]=40>
+            <mat-label>Procurement Description</mat-label>
+            <input formControlName="description" matInput required>
+        </mat-form-field>
+    
 
-    <mat-form-field>
-        <mat-label>Ref</mat-label>
-        <input formControlName="ref" matInput>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field  appearance="outline" [style.width.%]=20>
+            <mat-label>Procurement Code</mat-label>
+            <input formControlName="code" matInput required>
+        </mat-form-field>
+        
 
-    <mat-form-field>
-        <mat-label>Procurement total Amount</mat-label>
-        <input type="number" matInput formControlName="totalAmount" placeholder="Quantità" required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field  appearance="outline" [style.width.%]=20>
+            <mat-label>Ref</mat-label>
+            <input formControlName="ref" matInput>
+        </mat-form-field>
+        
 
-    <mat-form-field>
-        <mat-label>Procurement contractor Eopoo Code</mat-label>
-        <input formControlName="contractorEopooCode" matInput required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field  appearance="outline" [style.width.%]=20>
+            <mat-label>Procurement total Amount</mat-label>
+            <input type="number" matInput formControlName="totalAmount" placeholder="Quantità" required>
+        </mat-form-field>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Procurement ipp Sector Code</mat-label>
-        <input formControlName="ippSectorCode" matInput required>
-    </mat-form-field>
-    <br><br>
+    <div fxLayout="row" fxLayoutAlign="start start">
 
-    <mat-form-field>
-        <mat-label>Procurement ipp Procedure Code</mat-label>
-        <input formControlName="ippProcedureCode" matInput required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Procurement contractor Eopoo Code</mat-label>
+            <input formControlName="contractorEopooCode" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Procurement ipp Modality Code</mat-label>
-        <input formControlName="ippModalityCode" matInput required>
-    </mat-form-field>
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Procurement ipp Sector Code</mat-label>
+            <input formControlName="ippSectorCode" matInput required>
+        </mat-form-field>
+    </div>
+       
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Procurement ipp Procedure Code</mat-label>
+            <input formControlName="ippProcedureCode" matInput required>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Procurement ipp Modality Code</mat-label>
+            <input formControlName="ippModalityCode" matInput required>
+        </mat-form-field>
+    </div>
 
 
     <div fxLayout="row" fxLayoutAlign="end top">

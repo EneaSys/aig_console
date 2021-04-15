@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
 import { DossierDTO, DossierResourceService, PartecipationDTO, PartecipationResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
@@ -46,14 +46,20 @@ partecipationDC: string[];
 
 	
 private initPartecipationSearch() {
-	this.partecipationDC = ["id","buttons"];
+	this.partecipationDC = ["id","partecipationTypeCode","procurementLotCig","procurementLotId","proposerEopooCode","siteInspection","statusDescription","statusId","buttons"]
 
 	this.partecipationPaginationSize = 10;
 		
 
 	this.partecipationSearchFormGroup = this._formBuilder.group({
-		id: [''],
-		name: [''],
+		id: ['',Validators.required],
+		partecipationTypeCode: [''],
+		procurementLotCig: ['',Validators.required],
+		procurementLotId: ['',Validators.required],
+		proposerEopooCode: [''],
+		siteInspection: [''],
+		statusDescription: ['',Validators.required],
+		statusId: ['',Validators.required],
 	});
 }
 
@@ -80,7 +86,6 @@ private async searchPartecipation(page: number) {
 
 		    this.partecipationDTOs =  await this.partecipationResourceService.getAllPartecipationsUsingGET({}).toPromise();
 		} catch (e) {
-			console.log(e);
 			this.partecipationError = e;
 		}
 	}

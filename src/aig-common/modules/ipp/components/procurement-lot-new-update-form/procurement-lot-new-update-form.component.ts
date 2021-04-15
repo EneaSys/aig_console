@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 
-import { ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italian-public-procurement';
+import { ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
 
 @Component({
     selector: 'aig-procurement-lot-new-update-form',
@@ -44,6 +44,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             ippLotTypeCode: ['', Validators.required],
             ippLotCategoryCode: ['', Validators.required],
             cpvCode: ['', Validators.required],
+            awardCriterionCode: [''],
+            procurementLotStatusCode: [''],
         })
         
         if (this.procurementLot != null) {
@@ -72,6 +74,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             nutsCode: this.procurementLotNewUpdateForm.value.nutsCode,
             securityAmount: this.procurementLotNewUpdateForm.value.securityAmount,
             procurementId:1,
+            awardCriterionCode: this.procurementLotNewUpdateForm.value.awardCriterionCode,
+            procurementLotStatusCode: this.procurementLotNewUpdateForm.value.procurementLotStatusCode,
         }
         
 

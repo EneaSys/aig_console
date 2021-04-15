@@ -25,16 +25,30 @@ import { AigProcurementDetailPageComponent } from './components/procurement-deta
 import { AigProcurementNewUpdateDialogComponent } from './components/procurement-new-update-dialog/procurement-new-update-dialog.component';
 import { AigProcurementLotDetailPageComponent } from './components/procurement-lot-detail-page/procurement-lot-detail-page.component';
 import { AigProcurementLotNewUpdateDialogComponent } from './components/procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
-import { AigProcurementListPageComponent } from './procurement-list-page/procurement-list-page.component';
 import { AigProcurementLotListPageComponent } from './components/procurement-lot-list-page/procurement-lot-list-page.component';
 import { AigDossierNewUpdateDialogComponent } from './components/dossier-new-update-dialog/dossier-new-update-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AigDossierListPageComponent } from './components/dossier-list-page/dossier-list-page.component';
 import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
-import { AigPartecipationListPageComponent } from './components/partecipation-list-page/partecipation-list-page.component';
+
 import { AigPartecipationNewUpdateDialogComponent } from './components/partecipation-new-update-dialog/partecipation-new-update-dialog.component';
 import { AigPartecipationDetailPageComponent } from './components/partecipation-detail-page/partecipation-detail-page.component';
 import { AigDossierDetailPageComponent } from './components/dossier-detail-page/dossier-detail-page.component';
+
+import { AigPartecipationStatusNewUpdateDialogComponent } from './components/partecipation-status-new-update-dialog/partecipation-status-new-update-dialog.component';
+import { AigPartecipationStatusDetailPageComponent } from './components/partecipation-status-detail-page/partecipation-status-detail-page.component';
+import { AigPreparationNewUpdateDialogComponent } from './components/preparation-new-update-dialog/preparation-new-update-dialog.component';
+import { AigPreparationDetailPageComponent } from './components/preparation-detail-page/preparation-detail-page.component';
+import { AigPreparationStatusNewUpdateDialogComponent } from './components/preparation-status-new-update-dialog/preparation-status-new-update-dialog.component';
+import { AigPreparationStatusDetailPageComponent } from './components/preparation-status-detail-page/preparation-status-detail-page.component';
+import { AigInsurancePolicyListPageComponent } from './components/insurance-policy-list-page/insurance-policy-list-page.component';
+import { AigInsurancePolicyNewUpdateDialogComponent } from './components/insurance-policy-new-update-dialog/insurance-policy-new-update-dialog.component';
+import { AigInsurancePolicyDetailPageComponent } from './components/insurance-policy-detail-page/insurance-policy-detail-page.component';
+import { AigProcurementListPageComponent } from './components/procurement-list-page/procurement-list-page.component';
+import { AigPartecipationListPageComponent } from './components/partecipation-list-page/partecipation-list-page.component';
+import { AigPartecipationStatusListPageComponent } from './components/partecipation-status-list-page/partecipation-status-list-page.component';
+import { AigPreparationListPageComponent } from './components/preparation-list-page/preparation-list-page.component';
+import { AigPreparationStatusListPageComponent } from './components/preparation-status-list-page/preparation-status-list-page.component';
 
 
 @NgModule({
@@ -87,14 +101,29 @@ import { AigDossierDetailPageComponent } from './components/dossier-detail-page/
         AigProcurementLotListPageComponent,
         AigDossierListPageComponent,
         AigPartecipationListPageComponent,
-        AigProcurementDetailPageComponent,
+        AigPartecipationStatusListPageComponent,
+        AigPreparationListPageComponent,
+        AigPreparationStatusListPageComponent,
+        AigInsurancePolicyListPageComponent,
+
+       
         AigProcurementNewUpdateDialogComponent,
-        AigProcurementLotDetailPageComponent,
         AigProcurementLotNewUpdateDialogComponent,
         AigDossierNewUpdateDialogComponent,
         AigPartecipationNewUpdateDialogComponent,
+        AigPartecipationStatusNewUpdateDialogComponent,
+        AigPreparationNewUpdateDialogComponent,
+        AigPreparationStatusNewUpdateDialogComponent,
+        AigInsurancePolicyNewUpdateDialogComponent,
+
         AigPartecipationDetailPageComponent,
         AigDossierDetailPageComponent,
+        AigPartecipationStatusDetailPageComponent,
+        AigProcurementDetailPageComponent,
+        AigProcurementLotDetailPageComponent,
+        AigPreparationDetailPageComponent,
+        AigPreparationStatusDetailPageComponent,
+        AigInsurancePolicyDetailPageComponent,
     ],
     exports: [
 
@@ -105,6 +134,10 @@ import { AigDossierDetailPageComponent } from './components/dossier-detail-page/
         AigProcurementLotNewUpdateDialogComponent,
         AigDossierNewUpdateDialogComponent,
         AigPartecipationNewUpdateDialogComponent,
+        AigPartecipationStatusNewUpdateDialogComponent,
+        AigPreparationNewUpdateDialogComponent,
+        AigPreparationStatusNewUpdateDialogComponent,
+        AigInsurancePolicyNewUpdateDialogComponent,
 
     ],
 })

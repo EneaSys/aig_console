@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { ProcurementResourceService, ProcurementDTO } from 'aig-italian-public-procurement';
+import { ProcurementResourceService, ProcurementDTO } from 'aig-italianlegislation';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { AigProcurementNewUpdateFormComponent } from 'aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form.component';
-import { AigProcurementNewUpdateDialogComponent } from '../components/procurement-new-update-dialog/procurement-new-update-dialog.component';
+import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
 @Component({
     templateUrl: './procurement-list-page.component.html',
     styleUrls: ['./procurement-list-page.component.scss']
@@ -45,20 +44,28 @@ export class AigProcurementListPageComponent extends GenericComponent {
 
 	
 	private initProcurementSearch() {
-		this.procurementDC = ["code","description","ref","amount","SA","sector","procedure","modality", "buttons"];
+		this.procurementDC = ["code","description","ref","id","contractorEopooCode","ippModalityCode","ippProcedureCode","ippSectorCode","totalAmount","buttons"];
 
 		this.procurementPaginationSize = 10;
 		
 
 		this.procurementSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			description: [''],
+			ref: [''],
+			code: [''],
+			contractorEopooCode: [''],
+			ippModalityCode: [''],
+			ippProcedureCode: [''],
+			ippSectorCode: [''],
+			totalAmount: [''],
 		});
 	}
 
 	private clearFiltersProcurement() {
 		this.procurementFilters = {
 			idEquals: null,
+
 		}
 	}
 
@@ -69,7 +76,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		this.procurementFilters.size = this.procurementPaginationSize;
 
 		try {                                                                       
-			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET().toPromise();  
+			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();  
 			
 			if(this.procurementLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -77,8 +84,8 @@ export class AigProcurementListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.procurementDTOs =  await this.procurementResourceService.getAllProcurementsUsingGET().toPromise();
-		console.log(this.procurementDTOs);
+			this.procurementDTOs =  await this.procurementResourceService.getAllProcurementsUsingGET(this.procurementFilters).toPromise();
+	
 		} catch (e) {
 			this.procurementError = e;
 		}

@@ -87,6 +87,38 @@ export const navigation: FuseNavigation[] = [
                 url      : '/ipp/partecipation',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'partecipation-status-list-page',
+                title    : 'Partecipation Status',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/partecipation-status',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'preparation-list-page',
+                title    : 'Preparation',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/preparation',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'preparation-status-list-page',
+                title    : 'Preparation Status',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/preparation-status',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'insurance-policy-list-page',
+                title    : 'Insurance Policy',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/insurance-policy',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 

@@ -20,6 +20,41 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="partecipationTypeCode">
+            <mat-header-cell *matHeaderCellDef> Partecipation Type Code </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipationTypeCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotCig">
+            <mat-header-cell *matHeaderCellDef> Procurement Lot Cig </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLotCig }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotId">
+            <mat-header-cell *matHeaderCellDef> Procurement Lot Id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLotId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="proposerEopooCode">
+            <mat-header-cell *matHeaderCellDef> Proposer EopooCode </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.proposerEopooCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="siteInspection">
+            <mat-header-cell *matHeaderCellDef> Site Inspection </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.siteInspection }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusDescription">
+            <mat-header-cell *matHeaderCellDef> Status Description </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.statusDescription }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusId">
+            <mat-header-cell *matHeaderCellDef> Status Id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.statusId}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">

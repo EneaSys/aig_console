@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ProcurementDTO, ProcurementResourceService } from 'aig-italian-public-procurement';
+import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
 
 @Component({
     selector: 'aig-procurement-new-update-form',
@@ -32,7 +32,6 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.procurementNewUpdateForm = this._formBuilder.group({
-            id:[''],
             description: ['', Validators.required],
             code: ['', Validators.required],
             ref:[''],
@@ -40,7 +39,8 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
             contractorEopooCode: ['', Validators.required],
             ippSectorCode: ['', Validators.required],
             ippProcedureCode: ['', Validators.required],
-            ippModalityCode: ['', Validators.required]
+            ippModalityCode: ['', Validators.required],
+            procurementStatusCode:[''],
         })
         
         if (this.procurement != null) {

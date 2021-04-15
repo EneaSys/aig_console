@@ -32,10 +32,9 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.dossierNewUpdateForm = this._formBuilder.group({
-            id:[''],
             description: ['', Validators.required],
-            code: ['', Validators.required],
-            
+            dossierCode: ['', Validators.required],
+        
         })
         
         if (this.dossier != null) {

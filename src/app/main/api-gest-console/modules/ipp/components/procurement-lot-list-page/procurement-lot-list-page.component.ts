@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italian-public-procurement';
+import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italianlegislation';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { MatDialog, PageEvent } from '@angular/material';
@@ -229,7 +229,7 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
 
 
     // IPP LOT
-    procurementLotDisplayColumns: string[] = ['cig', 'sa', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
+    procurementLotDisplayColumns: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
     procurementLotDTOs: ProcurementLotDTO[];
     procurementLotError: any;
 

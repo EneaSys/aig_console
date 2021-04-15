@@ -1,6 +1,6 @@
 <div class="page-layout simple left-sidebar">
     <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="procurement-sidebar" position="left" lockedOpen="gt-md">
+    <fuse-sidebar class="sidebar" name="partecipation-status-sidebar" position="left" lockedOpen="gt-md">
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
@@ -8,9 +8,9 @@
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
                             <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllProcurement()">Resetta filtri</button>
+                                <button mat-raised-button (click)="showAllPartecipationStatus()">Resetta filtri</button>
                             </div>
-                            <form [formGroup]="procurementSearchFormGroup" (ngSubmit)="procurementSearchWithFilter()"
+                            <form [formGroup]="partecipationStatusSearchFormGroup" (ngSubmit)="partecipationStatusSearchWithFilter()"
                                 class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
@@ -43,24 +43,24 @@
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                (click)="toggleSidebar('procurement-sidebar')">
+                (click)="toggleSidebar('partecipation-status-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Procurement</h2>
+            <h2>Partecipation Status</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-           <aig-procurement-list-table [displayColumns]="procurementDC" [dataSource]="procurementDTOs"
-                [error]="procurementError"></aig-procurement-list-table>
+           <aig-partecipation-status-list-table [displayColumns]="partecipationStatusDC" [dataSource]="partecipationStatusDTOs"
+                [error]="partecipationStatusError"></aig-partecipation-status-list-table>
 
-            <mat-paginator #paginator [length]="procurementLength" [pageIndex]="this.procurementFilters.page"
-                [pageSize]="this.procurementPaginationSize" [pageSizeOptions]="[10, 20, 50]"
-                (page)="procurementPaginationEvent($event)">
+            <mat-paginator #paginator [length]="partecipationStatusLength" [pageIndex]="this.partecipationStatusFilters.page"
+                [pageSize]="this.partecipationStatusPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                (page)="partecipationStatusPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-procurement-button" (click)="newProcurement()"
-                aria-label="add procurement">
+            <button mat-fab class="accent" id="add-partecipation-status-button" (click)="newPartecipationStatus()"
+                aria-label="add partecipation status">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

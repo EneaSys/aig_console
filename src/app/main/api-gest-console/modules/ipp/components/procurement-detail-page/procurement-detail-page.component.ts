@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 
 import { AigProcurementNewUpdateFormComponent } from "aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form.component";
-import { ProcurementDTO, ProcurementResourceService } from "aig-italian-public-procurement";
+import { ProcurementDTO, ProcurementResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";

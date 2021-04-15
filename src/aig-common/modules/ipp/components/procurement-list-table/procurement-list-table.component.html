@@ -14,6 +14,11 @@
 
     <mat-table #table [dataSource]="dataSource">
         
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
@@ -29,29 +34,34 @@
             <mat-cell *matCellDef="let e"> {{ e.ref }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="amount">
+        <ng-container matColumnDef="totalAmount">
             <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR' }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="SA">
-            <mat-header-cell *matHeaderCellDef> SA </mat-header-cell>
+        <ng-container matColumnDef="contractorEopooCode">
+            <mat-header-cell *matHeaderCellDef> contractorEopooCode </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.contractorEopooCode }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="sector">
+        <ng-container matColumnDef="ippSectorCode">
             <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.ippSectorCode }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="procedure">
+        <ng-container matColumnDef="ippProcedureCode">
             <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.ippProcedureCode }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="modality">
+        <ng-container matColumnDef="ippModalityCode">
             <mat-header-cell *matHeaderCellDef> Modality </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.ippModalityCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef=" procurementStatusCode">
+            <mat-header-cell *matHeaderCellDef> procurementStatusCode </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. procurementStatusCode}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

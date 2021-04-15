@@ -5,7 +5,7 @@ import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-b
 import { AigProcurementLotNewUpdateFormComponent } from "aig-common/modules/ipp/components/procurement-lot-new-update-form/procurement-lot-new-update-form.component";
 
 
-import {  ProcurementLotDTO, ProcurementLotResourceService,  } from "aig-italian-public-procurement";
+import {  ProcurementLotDTO, ProcurementLotResourceService,  } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";

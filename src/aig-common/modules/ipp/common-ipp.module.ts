@@ -19,13 +19,21 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AigProcurementLotListTableComponent } from './components/procurement-lot-list-table/procurement-lot-list-table.component';
 import { AigProcurementNewUpdateFormComponent } from './components/procurement-new-update-form/procurement-new-update-form.component';
 import { AigProcurementLotNewUpdateFormComponent } from './components/procurement-lot-new-update-form/procurement-lot-new-update-form.component';
-import { MatDatepickerModule, MatMenu, MatMenuModule } from '@angular/material';
+import { MatDatepickerModule, MatMenu, MatMenuModule, MatSlideToggleModule } from '@angular/material';
 import { AigDossierListTableComponent } from './components/dossier-list-table/dossier-list-table.component';
 import { AigDossierNewUpdateFormComponent } from './components/dossier-new-update-form/dossier-new-update-form.component';
 import { DossierResolver } from './components/resolver/dossier.resolver';
 import { AigPartecipationListTableComponent } from './components/partecipation-list-table/partecipation-list-table.component';
 import { AigPartecipationNewUpdateFormComponent } from './components/partecipation-new-update-form/partecipation-new-update-form.component';
 import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
+import { AigPartecipationStatusNewUpdateFormComponent } from './components/partecipation-status-new-update-form/partecipation-status-new-update-form.component';
+import { AigPartecipationStatusListTableComponent } from './components/partecipation-status-list-table/partecipation-status-list-table.component';
+import { AigPreparationListTableComponent } from './components/preparation-list-table/preparation-list-table.component';
+import { AigPreparationNewUpdateFormComponent } from './components/preparation-new-update-form/preparation-new-update-form.component';
+import { AigPreparationStatusListTableComponent } from './components/preparation-status-list-table/preparation-status-list-table.component';
+import { AigPreparationStatusNewUpdateFormComponent } from './components/preparation-status-new-update-form/preparation-status-new-update-form.component';
+import { AigInsurancePolicyNewUpdateFormComponent } from './components/insurance-policy-new-update-form/insurance-policy-new-update-form.component';
+import { AigInsurancePolicyListTableComponent } from './components/insurance-policy-list-table/insurance-policy-list-table.component';
 
 @NgModule({
     imports: [
@@ -46,6 +54,7 @@ import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
         MatIconModule,
         MatButtonModule,
         MatFormFieldModule,
+        MatSlideToggleModule,
         MatInputModule,
         MatAutocompleteModule,
         MatSelectModule,
@@ -62,10 +71,19 @@ import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
         AigProcurementLotListTableComponent,
         AigDossierListTableComponent,
         AigPartecipationListTableComponent,
+        AigPartecipationStatusListTableComponent,
+        AigPreparationListTableComponent,
+        AigPreparationStatusListTableComponent,
+        AigInsurancePolicyListTableComponent,
+
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
         AigDossierNewUpdateFormComponent,
         AigPartecipationNewUpdateFormComponent,
+        AigPartecipationStatusNewUpdateFormComponent,
+        AigPreparationNewUpdateFormComponent,
+        AigPreparationStatusNewUpdateFormComponent,
+        AigInsurancePolicyNewUpdateFormComponent,
         
     ],
     exports: [
@@ -73,13 +91,21 @@ import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
         AigProcurementLotListTableComponent,
         AigDossierListTableComponent,
         AigPartecipationListTableComponent,
+        AigPartecipationStatusListTableComponent,
+        AigPreparationListTableComponent,
+        AigPreparationStatusListTableComponent,
+        AigInsurancePolicyListTableComponent,
+        
         AigDossierNewUpdateFormComponent,
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
         AigPartecipationNewUpdateFormComponent,
+        AigPartecipationStatusNewUpdateFormComponent,
+        AigPreparationNewUpdateFormComponent,
+        AigPreparationStatusNewUpdateFormComponent,
+        AigInsurancePolicyNewUpdateFormComponent,
+    ]
         
-        AigDossierListTableComponent,
-        AigDossierNewUpdateFormComponent,
-    ],
+    
 })
 export class AigCommonIppModule {}

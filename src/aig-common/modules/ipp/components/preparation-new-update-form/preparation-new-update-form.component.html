@@ -1,0 +1,23 @@
+<form *ngIf="step.form" [formGroup]="preparationNewUpdateForm" (ngSubmit)="submit()">
+
+    <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input formControlName="id" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ preparationNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!preparationNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newPreparation()">Create New</button>
+</div>

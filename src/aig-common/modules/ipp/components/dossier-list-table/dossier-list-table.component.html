@@ -19,6 +19,31 @@
             <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="dossierCode">
+            <mat-header-cell *matHeaderCellDef> Dossier Code </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.dossierCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="partecipationId">
+            <mat-header-cell *matHeaderCellDef> Id partecipazione </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipationId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="preparationId">
+            <mat-header-cell *matHeaderCellDef> Id preparation </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.preparationId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementId">
+            <mat-header-cell *matHeaderCellDef> Id procurement </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotId">
+            <mat-header-cell *matHeaderCellDef> Id procurement lot</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLotId }} </mat-cell>
+        </ng-container>
+
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>

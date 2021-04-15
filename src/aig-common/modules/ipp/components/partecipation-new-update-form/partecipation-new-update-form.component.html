@@ -1,10 +1,51 @@
 <form *ngIf="step.form" [formGroup]="partecipationNewUpdateForm" (ngSubmit)="submit()">
 
-    <mat-form-field>
-        <mat-label>Id</mat-label>
-        <input formControlName="id" matInput required>
-    </mat-form-field>
-    <br><br>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" [style.width.%]=33>
+            <mat-label>Codice tipo di partecipazione</mat-label>
+            <input formControlName="partecipationTypeCode" matInput required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" [style.width.%]=33>
+            <mat-label>Anagrafica proposer</mat-label>
+            <input formControlName="proposerEopooCode" matInput required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" [style.width.%]=33>
+            <mat-label>procurementLotCig</mat-label>
+            <input formControlName="procurementLotCig" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>procurementLotId</mat-label>
+            <input formControlName="procurementLotId" matInput required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>statusDescription</mat-label>
+            <input formControlName="statusDescription" matInput required>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>statusId</mat-label>
+            <input formControlName="statusId" matInput required>
+        </mat-form-field>
+    </div>
+
+            
+    <div fxLayout="row" fxLayoutAlign="start start">   
+        <mat-slide-toggle formControlName="siteInspection">Site Inspection</mat-slide-toggle>
+    </div>
+        
+
+
+   
 
     
     <div fxLayout="row" fxLayoutAlign="end top">

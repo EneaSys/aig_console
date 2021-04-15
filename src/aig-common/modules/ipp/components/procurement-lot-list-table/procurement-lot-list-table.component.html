@@ -60,6 +60,16 @@
             <mat-cell *matCellDef="let e"> {{ e.cpvCode }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="awardCriterionCode ">
+            <mat-header-cell *matHeaderCellDef> award Criterion Code </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.awardCriterionCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotStatusCode">
+            <mat-header-cell *matHeaderCellDef>  procurementLotStatusCode </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. procurementLotStatusCode}} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
@@ -67,7 +77,7 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="'/ipp/lot/detail/' + e.id">
+                    <button mat-menu-item [routerLink]="'/ipp/procurement-lot/detail/' + e.id">
                       <mat-icon>details</mat-icon>
                       <span>Details</span>
                     </button>

@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
 import { DossierDTO, DossierResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
@@ -20,111 +20,116 @@ export class AigDossierListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    loadPage() {
-		this.initDossierSearch();
+loadPage() {
+	this.initDossierSearch();
 
-		this.showAllDossier();
-	}
+	this.showAllDossier();
+}
 
-	reloadPage() {
-		this.showAllDossier();
-	}
+reloadPage() {
+	this.showAllDossier();
+}
 
 
 //			---- TABLE AND SEARCH SECTION ----
 
-    dossierSearchFormGroup: FormGroup;
-	dossierPaginationSize: number;
-	dossierFilters: any;
+dossierSearchFormGroup: FormGroup;
+dossierPaginationSize: number;
+dossierFilters: any;
 
-	dossierLength: number;
-	dossierDTOs: DossierDTO[];
-	dossierError: any;
+dossierLength: number;
+dossierDTOs: DossierDTO[];
+dossierError: any;
 
-	dossierDC: string[];
-
-	
-	private initDossierSearch() {
-		this.dossierDC = ["id","description","buttons"];
-
-		this.dossierPaginationSize = 10;
-		
-
-		this.dossierSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			name: [''],
-		});
-	}
-
-	private clearFiltersDossier() {
-		this.dossierFilters = {
-			idEquals: null,
-		}
-	}
-
-	private async searchDossier(page: number) {
-		this.dossierDTOs = null;
-
-		this.dossierFilters.page = page;
-		this.dossierFilters.size = this.dossierPaginationSize;
-
-		try {
-			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET({}).toPromise();  
-
-			if(this.dossierLength == 0) {
-				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-				this.dossierDTOs = [];
-				return;
-			}
-
-			this.dossierDTOs =  await this.dossierResourceService.getAllDossiersUsingGET({}).toPromise();
-		} catch (e) {
-			console.log(e);
-			this.dossierError = e;
-		}
-	}
+dossierDC: string[];
 
 	
+private initDossierSearch() {
+	this.dossierDC = ["id","description","dossierCode","partecipationId","preparationId","procurementId","procurementLotId","buttons"];
 
-	showAllDossier() {
-		this.resetFiltersDossier();
+	this.dossierPaginationSize = 10;
 		
+
+	this.dossierSearchFormGroup = this._formBuilder.group({
+		id: [''],
+		description: [''],
+		dossierCode: [''],
+		partecipationId: ['',Validators.required],
+		preparationId: [''],
+		procurementId: [''],
+		procurementLotId: ['']
+
+	});
+}
+
+private clearFiltersDossier() {
+	this.dossierFilters = {
+		idEquals: null,
+		dossierCodeContains: null,
 	}
+}
 
-	resetFiltersDossier() {
-		this.dossierSearchFormGroup.reset();
-		this.clearFiltersDossier();
-		this.searchDossier(0);
+private async searchDossier(page: number) {
+	this.dossierDTOs = null;
 
-	}
+	this.dossierFilters.page = page;
+	this.dossierFilters.size = this.dossierPaginationSize;
 
-	dossierPaginationEvent(pageEvent: PageEvent) {
-		this.dossierPaginationSize = pageEvent.pageSize;
-		this.searchDossier(pageEvent.pageIndex);
-	}
+	try {
+		this.dossierLength = await this.dossierResourceService.countDossiersUsingGET({}).toPromise();  
 
-	dossierSearchWithFilter() {
-		let searchedId = this.dossierSearchFormGroup.controls.id.value;
-
-		if(searchedId != null) {
-			this.clearFiltersDossier();
-			this.dossierSearchFormGroup.reset();
-			this.dossierFilters.idEquals = searchedId;
-			this.searchDossier(0);
+		if(this.dossierLength == 0) {
+			this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+			this.dossierDTOs = [];
 			return;
 		}
-		this.dossierFilters.idEquals = null;
+
+		this.dossierDTOs =  await this.dossierResourceService.getAllDossiersUsingGET({}).toPromise();
+	} catch (e) {
+		console.log(e);
+		this.dossierError = e;
+	}
+}
+
+	
+
+showAllDossier() {
+	this.resetFiltersDossier();
+		
+}
+
+resetFiltersDossier() {
+	this.dossierSearchFormGroup.reset();
+	this.clearFiltersDossier();
+	this.searchDossier(0);
+}
+
+dossierPaginationEvent(pageEvent: PageEvent) {
+	this.dossierPaginationSize = pageEvent.pageSize;
+	this.searchDossier(pageEvent.pageIndex);
+}
+
+dossierSearchWithFilter() {
+	let searchedId = this.dossierSearchFormGroup.controls.id.value;
+	if(searchedId != null) {
+		this.clearFiltersDossier();
+		this.dossierSearchFormGroup.reset();
+		this.dossierFilters.idEquals = searchedId;
+		this.searchDossier(0);
+		return;
+	}
+	this.dossierFilters.idEquals = null;
 
 		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
 
-		this.searchDossier(0);
-	}
+	this.searchDossier(0);
+}
 
 	//			---- !TABLE AND SEARCH SECTION ----
 
-	newDossier(): void {
-        this.dialog.open(AigDossierNewUpdateDialogComponent, { data: { dossier: {} } });
-    }
+newDossier(): void {
+    this.dialog.open(AigDossierNewUpdateDialogComponent, { data: { dossier: {} } });
+}
 
 	
 }
