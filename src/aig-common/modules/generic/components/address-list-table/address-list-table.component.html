@@ -9,8 +9,18 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="eopooId">
+            <mat-header-cell *matHeaderCellDef> Eopoo Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.eopooId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eopooTaxNumber">
+            <mat-header-cell *matHeaderCellDef> Eopoo Tax Number </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.eopooTaxNumber }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
         </ng-container>
 
@@ -32,8 +42,25 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-stroked-button color="primary" (click)="editAddress(element)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteAddress(element)">Delete</button>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/g5c/address/detail/' + element.id">
+                        <mat-icon>details</mat-icon>
+                        <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editAddress(element)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteAddress(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+
             </mat-cell>
         </ng-container>
 

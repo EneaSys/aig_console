@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ReferentDTO, ReferentResourceService } from 'aig-generic';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { EopooDTO, ReferentDTO, ReferentResourceService } from 'aig-generic';
+import { Observable } from 'rxjs';
+import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-referent-new-update-form',
@@ -11,7 +14,6 @@ import { ReferentDTO, ReferentResourceService } from 'aig-generic';
     styleUrls: ['./referent-new-update-form.component.scss']
 })
 export class AigReferentNewUpdateFormComponent implements OnInit {
-
     step: any = {
         form: true,
         loading: false,
@@ -24,6 +26,8 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private referentResourceService: ReferentResourceService,
         private eventService: EventService,
+        public autocompleteDisplayService: AigAutocompleteDisplayService,
+        private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
     ) { }
 
     @Input()
@@ -31,19 +35,23 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
 
     referentNewUpdateForm: FormGroup;
 
+    filteredEopoos: Observable<EopooDTO[]>;
+
     ngOnInit(): void {
         
         this.referentNewUpdateForm = this._formBuilder.group({
             id: [''],
+            eopooTaxNumber: ['', Validators.required],
             firstname: ['', Validators.required],
             lastname: [''],
             position: [''],
-            eopooTaxNumber: [''],
         })
         
         if (this.referent != null) {
             this.referentNewUpdateForm.patchValue(this.referent);
         }
+
+        this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.referentNewUpdateForm.controls['eopooTaxNumber'].valueChanges);
     }
 
     async submit() {
@@ -53,31 +61,23 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let referent: ReferentDTO = {
-            id: this.referentNewUpdateForm.value.id,
+        let referentDTO: ReferentDTO = {
+            eopooId: this.referentNewUpdateForm.value.eopoo.id,
             firstname: this.referentNewUpdateForm.value.firstname,
             lastname: this.referentNewUpdateForm.value.lastname,
             position: this.referentNewUpdateForm.value.position,
-            eopooTaxNumber: this.referentNewUpdateForm.value.eopooTaxNumber,
         }
 
         try {
-            let postOrPut;
-            if (referent.id != 0) {
-                await this.referentResourceService.updateReferentUsingPUT(referent).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.referentResourceService.createReferentUsingPOST(referent).toPromise();
-                postOrPut = "created";
-            }
+            await this.referentResourceService.createReferentUsingPOST(referentDTO).toPromise();
             this.eventService.reloadCurrentPage();
-
-            this._snackBar.open(`Referent: '${referent.firstname} ${referent.lastname}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open("Referent created", null, { duration: 5000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+        } catch(e) {
+            this._snackBar.open("Error: " + e.error.message, null, { duration: 10000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 

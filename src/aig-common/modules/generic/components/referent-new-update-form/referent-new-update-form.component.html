@@ -1,5 +1,16 @@
 <form *ngIf="step.form" [formGroup]="referentNewUpdateForm" (ngSubmit)="submit()">
 
+    <div *ngIf="!referent.id" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo</mat-label>
+            <input type="text" matInput formControlName="eopooTaxNumber" required [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>è obbligatorio!</mat-error>
+        </mat-form-field>
+    </div>
+    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>First name</mat-label>
@@ -18,13 +29,6 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Position</mat-label>
             <input formControlName="position" matInput>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Eopoo Tax Number</mat-label>
-            <input formControlName="eopooTaxNumber" matInput>
         </mat-form-field>
     </div>
 

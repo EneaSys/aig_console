@@ -1,5 +1,16 @@
 <form *ngIf="step.form" [formGroup]="addressNewUpdateForm" (ngSubmit)="submit()">
 
+    <div *ngIf="!address.id" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo</mat-label>
+            <input type="text" matInput formControlName="eopooTaxNumber" required [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>è obbligatorio!</mat-error>
+        </mat-form-field>
+    </div>
+    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Name</mat-label>
@@ -40,6 +51,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <button *ngIf="!addressNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newAddress()">Create
-        New</button>
+    <pre>{{ addressNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!addressNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newAddress()">Crea nuovo</button>
 </div>

@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 
 @Component({
     selector: 'aig-address-new-update-form',
@@ -26,38 +28,35 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private eventService: EventService,
+        public autocompleteDisplayService: AigAutocompleteDisplayService,
+        private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
         private addressResourceService: AddressResourceService,
     ) { }
 
     @Input()
-    eopoo: EopooDTO;
-    @Input()
     address: AddressDTO;
 
     addressNewUpdateForm: FormGroup;
 
     filteredCitys: Observable<CityDTO[]>;
-    
+    filteredEopoos: Observable<EopooDTO[]>;
+
     ngOnInit(): void {
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
+            eopooTaxNumber: ['', Validators.required],
             name: ['', Validators.required],
             address: ['', Validators.required],
             city: ['', Validators.required],
-            eopooId: [],
         })
-
-        if(this.address == undefined && this.eopoo != null) {
-            let newAddress: any = {}
-            newAddress.eopooId = this.eopoo.id;
-            this.addressNewUpdateForm.patchValue(newAddress);
-        }
 
         if (this.address != null) {
             this.addressNewUpdateForm.patchValue(this.address);
         }
+
+        this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopooTaxNumber'].valueChanges);
 
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.addressNewUpdateForm.controls['city'].valueChanges);
     }
@@ -69,26 +68,23 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let address: AddressDTO = this.addressNewUpdateForm.value;
-        address.cityCode = this.addressNewUpdateForm.value.city.code;
+        let addressDTO: AddressDTO = {
+            eopooId: this.addressNewUpdateForm.value.eopooTaxNumber.id,
+            name: this.addressNewUpdateForm.value.name,
+            address: this.addressNewUpdateForm.value.address,
+            cityCode: this.addressNewUpdateForm.value.city.code,
+        }
 
         try {
-            let postOrPut;
-            if (address.id != 0) {
-                await this.addressResourceService.updateAddressUsingPUT(address).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.addressResourceService.createAddressUsingPOST(address).toPromise();
-                postOrPut = "created";
-            }
+            await this.addressResourceService.createAddressUsingPOST(addressDTO).toPromise();
             this.eventService.reloadCurrentPage();
-
-            this._snackBar.open(`Address: '${address.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open("Address created", null, { duration: 5000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+        } catch(e) {
+            this._snackBar.open("Error: " + e.error.message, null, { duration: 10000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 

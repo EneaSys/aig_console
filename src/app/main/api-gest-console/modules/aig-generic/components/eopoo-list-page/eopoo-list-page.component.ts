@@ -49,6 +49,7 @@ export class AigEopooListPageComponent extends GenericComponent {
 	eopooLength: number;
 
 	filteredEopooType: Observable<EopooTypeDTO[]>;
+	filteredEopoo: Observable<EopooDTO[]>;
 
 	private initEopooSearch() {
 		this.eopooPaginationSize = 30;
@@ -60,6 +61,8 @@ export class AigEopooListPageComponent extends GenericComponent {
 		});
 
 		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
+
+		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.searchForm.controls['taxId'].valueChanges);
 
 		this.eopooDC = ['id', 'eopooType', 'name', 'taxId', 'buttons'];
 	}
@@ -80,6 +83,8 @@ export class AigEopooListPageComponent extends GenericComponent {
 		this.eopooFilters.size = this.eopooPaginationSize;
 
 		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
+
+		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.searchForm.controls['taxId'].valueChanges);
 
 		try {
 			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
@@ -124,10 +129,12 @@ export class AigEopooListPageComponent extends GenericComponent {
 
 		this.eopooFilters.idEquals = null;
 
-		this.eopooFilters.taxNumberContains = this.searchForm.controls.taxId.value;
-
 		if (this.searchForm.controls.eopooType.value) {
 			this.eopooFilters.eopooTypeIdEquals = this.searchForm.controls.eopooType.value.id;
+		}
+
+		if (this.searchForm.controls.taxId.value) {
+			this.eopooFilters.taxNumberContains = this.searchForm.controls.taxId.value.taxNumber;
 		}
 
 		this.searchEopoo(0);

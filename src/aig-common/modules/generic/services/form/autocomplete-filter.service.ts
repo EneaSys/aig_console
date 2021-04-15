@@ -14,14 +14,17 @@ export class AigGenericAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length == 1) {
-                    return this.eopooResourceService.getAllEopoosUsingGET();
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+                if (value && value.length > 0) {
+					let filter = {
+						taxNumberContains: value
+					};
+					return this.eopooResourceService.getAllEopoosUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 
     filterEopooType(observable: Observable<any>) {
 		return observable.pipe(

@@ -10,6 +10,10 @@ import { AigGenericEopooListPageComponent } from './components/generic-eopoo-lis
 import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
 import { AigReferentListPageComponent } from './components/referent-list-page/referent-list-page.component';
 import { AigContactListPageComponent } from './components/contact-list-page/contact-list-page.component';
+import { AigAddressDetailPageComponent } from './components/address-detail-page/address-detail-page.component';
+import { AddressResolver } from 'aig-common/modules/generic/resolver/address.resolver';
+import { AigReferentDetailPageComponent } from './components/referent-detail-page/referent-detail-page.component';
+import { ReferentResolver } from 'aig-common/modules/generic/resolver/referent.resolver';
 
 export const aigGenericRoute: Routes = [
     {
@@ -106,14 +110,14 @@ export const aigGenericRoute: Routes = [
                         component: AigAddressListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*{
+                    {
                         path: 'detail/:id',
-                        component: AigEopooTypeDetailPageComponent,
+                        component: AigAddressDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            eopooType: EopooTypeResolver,
+                            address: AddressResolver,
                         },
-                    },*/
+                    },
                 ]
             },
             {
@@ -130,14 +134,14 @@ export const aigGenericRoute: Routes = [
                         component: AigReferentListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*{
+                    {
                         path: 'detail/:id',
-                        component: AigEopooTypeDetailPageComponent,
+                        component: AigReferentDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            eopooType: EopooTypeResolver,
+                            referent: ReferentResolver,
                         },
-                    },*/
+                    },
                 ]
             },
             {

@@ -51,7 +51,7 @@ export class AigAddressListPageComponent extends GenericComponent {
             address: [''],
         });
 
-        this.addressDC = ["id", "name", "address", "city", "buttons"];
+        this.addressDC = ["eopooId", "eopooTaxNumber", "id", "name", "address", "city", "buttons"];
     }
 
     private clearFiltersAddress() {

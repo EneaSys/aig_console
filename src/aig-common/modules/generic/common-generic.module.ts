@@ -42,6 +42,8 @@ import { AigContactListTableComponent } from './components/contact-list-table/co
 import { AigContactEntityDetailComponent } from './components/contact-entity-detail/contact-entity-detail.component';
 import { AigContactNewUpdateFormComponent } from './components/contact-new-update-form/contact-new-update-form.component';
 import { AigPersonNewUpdateFormComponent } from './components/person-new-update-form/person-new-update-form.component';
+import { AddressResolver } from './resolver/address.resolver';
+import { ReferentResolver } from './resolver/referent.resolver';
 
 @NgModule({
     imports: [
@@ -104,6 +106,9 @@ import { AigPersonNewUpdateFormComponent } from './components/person-new-update-
     providers: [
         EopooResolver,
         EopooTypeResolver,
+        AddressResolver,
+        ReferentResolver,
+        
         AigGenericAutocompleteFilterService,
         AigGenericAutocompleteFunctionService,
     ],
