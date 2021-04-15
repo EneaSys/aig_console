@@ -13,15 +13,19 @@ export class AigEopooNewFormComponent implements OnInit {
 
     @Input()
     eopoo: EopooDTO;
-    
+
     eopooTypeDTOs: EopooTypeDTO[];
     selectedEopooType: EopooTypeDTO;
     isUpdate: boolean = false;
 
+    eopooTypeFilters = {
+        idEquals: null
+    }
+
     async ngOnInit() {
-        this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET().toPromise();
-        
-        if(this.eopoo != null && this.eopoo.eopooType != null) {
+        this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET(this.eopooTypeFilters).toPromise()
+
+        if (this.eopoo != null && this.eopoo.eopooType != null) {
             this.isUpdate = true;
             this.selectedEopooType = this.eopoo.eopooType;
         }
@@ -30,5 +34,5 @@ export class AigEopooNewFormComponent implements OnInit {
     onEopooTypeChange(eopooType: any) {
         this.selectedEopooType = eopooType;
     }
-    
+
 }

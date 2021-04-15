@@ -19,11 +19,9 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        //public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        //private commerceAutocompleteService: AigCommerceAutocompleteService,
         private referentResourceService: ReferentResourceService,
         private eventService: EventService,
     ) { }
@@ -31,23 +29,20 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
     @Input()
     referent: ReferentDTO;
 
-    isUpdate: boolean = false;
-
     referentNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         
         this.referentNewUpdateForm = this._formBuilder.group({
-            id:[''],
+            id: [''],
             firstname: ['', Validators.required],
-            lastname: ['', Validators.required],
-            position: ['', Validators.required],
-            eopoo: ['', Validators.required],
+            lastname: [''],
+            position: [''],
+            eopooTaxNumber: [''],
         })
         
         if (this.referent != null) {
             this.referentNewUpdateForm.patchValue(this.referent);
-            this.isUpdate = true;
         }
     }
 
@@ -63,7 +58,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
             firstname: this.referentNewUpdateForm.value.firstname,
             lastname: this.referentNewUpdateForm.value.lastname,
             position: this.referentNewUpdateForm.value.position,
-            eopooTaxNumber: this.referentNewUpdateForm.value.eopoo,
+            eopooTaxNumber: this.referentNewUpdateForm.value.eopooTaxNumber,
         }
 
         try {

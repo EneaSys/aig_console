@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { EopooResourceService, EopooDTO, EopooTypeDTO } from 'aig-generic';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { GenericEopooDTO } from 'aig-generic';
 
 @Component({
     selector: 'aig-generic-eopoo-new-update-form',
@@ -11,7 +11,6 @@ import { GenericEopooDTO } from 'aig-generic';
     styleUrls: ['./generic-eopoo-new-update-form.component.scss']
 })
 export class AigGenericEopooNewUpdateFormComponent implements OnInit {
-
     step: any = {
         form: true,
         loading: false,
@@ -19,81 +18,85 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        //public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
+        private eopooResourceService: EopooResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        //private commerceAutocompleteService: AigCommerceAutocompleteService,
-        //private priceListResourceService: PriceListResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    genericEopoo: GenericEopooDTO;
+    eopooType: EopooTypeDTO;
+    @Input()
+    eopoo: EopooDTO;
 
-    isUpdate: boolean = false;
-
-    genericEopooNewUpdateForm: FormGroup;
+    eopooGenericNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        
-        this.genericEopooNewUpdateForm = this._formBuilder.group({
-            id:[''],
+        this.eopooGenericNewUpdateForm = this._formBuilder.group({
+            id: [''],
+            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+            eopooTypeId: [''],
+
             name: ['', Validators.required],
-        })
-        
-        if (this.genericEopoo != null) {
-            this.genericEopooNewUpdateForm.patchValue(this.genericEopoo);
-            this.isUpdate = true;
+        });
+
+        if(this.eopoo == undefined && this.eopooType != null) {
+            let newEopoo: any = {}
+            newEopoo.eopooTypeId = this.eopooType.id;
+            this.eopooGenericNewUpdateForm.patchValue(newEopoo);
         }
 
-        /*if(this.catalog != null){
-            this.priceListNewUpdateForm.controls['catalog'].patchValue(this.catalog);
-        }*/
-
-        //this.filteredCatalog = this.commerceAutocompleteService.filterCatalog(this.priceListNewUpdateForm.controls['catalog'].valueChanges);
+        if (this.eopoo != null && this.eopoo.genericEopoo != null) {
+            this.eopooGenericNewUpdateForm.patchValue(this.eopoo.genericEopoo);
+            this.eopooGenericNewUpdateForm.patchValue(this.eopoo);
+        }
     }
 
     async submit() {
-        if (!this.genericEopooNewUpdateForm.valid) {
+        if (!this.eopooGenericNewUpdateForm.valid) {
             return;
         }
+
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let genericEopoo: GenericEopooDTO = {
-            id: this.genericEopooNewUpdateForm.value.id,
-            name: this.genericEopooNewUpdateForm.value.name,
-        }
+        let eopooGeneric: EopooDTO = {
+            id: this.eopooGenericNewUpdateForm.value.id,
+            taxNumber: this.eopooGenericNewUpdateForm.value.taxNumber,
+            eopooTypeId: this.eopooGenericNewUpdateForm.value.eopooTypeId,
+            genericEopoo: this.eopooGenericNewUpdateForm.value,
+        };
 
         try {
             let postOrPut;
-            if (genericEopoo.id != 0) {
-                /*await this.priceListResourceService.updatePriceListUsingPUT(priceList).toPromise();
+            if (eopooGeneric.id != 0) {
+                await this.eopooResourceService.updateEopooUsingPUT(eopooGeneric).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.priceListResourceService.createPriceListUsingPOST(priceList).toPromise();
-                postOrPut = "created";*/
+                await this.eopooResourceService.createEopooUsingPOST(eopooGeneric).toPromise();
+                postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Generic Eopoo: '${genericEopoo.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Eopoo with tax id: '${eopooGeneric.taxNumber}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
         this._fuseProgressBarService.hide();
-     }
+    }
 
-     newGenericEopoo() {
+    newEopoo() {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(step: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
+
         this.step[step] = true;
     }
 }

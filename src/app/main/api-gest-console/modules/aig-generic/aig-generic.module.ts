@@ -18,7 +18,7 @@ import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopo
 import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
 import { AigGenericEopooNewUpdateDialogComponent } from './components/generic-eopoo-new-update-dialog/generic-eopoo-new-update-dialog.component';
 import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
@@ -51,6 +51,7 @@ import { AigContactDetailPageComponent } from './components/contact-detail-page/
         MatPaginatorModule,
         MatFormFieldModule,
         MatInputModule,
+        MatAutocompleteModule,
     ],
     declarations: [
         AigGenericHeaderComponent,

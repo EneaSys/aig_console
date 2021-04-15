@@ -50,7 +50,7 @@ export class AigReferentListPageComponent extends GenericComponent {
             firstname: [''],
             lastname: [''],
             position: [''],
-            eopoo: [''],
+            eopooTaxNumber: [''],
         });
 
         this.referentDC = ["id", "eopooId", "eopooTaxNumber", "firstname", "lastname", "position", "buttons"];
@@ -59,7 +59,6 @@ export class AigReferentListPageComponent extends GenericComponent {
     private clearFiltersReferent() {
         this.referentFilters = {
             idEquals: null,
-            nameContains: null,
             page: 0,
         }
     }
@@ -112,8 +111,6 @@ export class AigReferentListPageComponent extends GenericComponent {
 		}
 
 		this.referentFilters.idEquals = null;
-
-		this.referentFilters.nameContains = this.referentSearchFormGroup.controls.name.value;
 
 		this.searchReferent(0);
 	}

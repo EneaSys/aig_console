@@ -21,6 +21,15 @@
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Tipo</mat-label>
+										<input matInput formControlName="eopooType" [matAutocomplete]="eopooTypeAutocomplete">
+										<mat-autocomplete #eopooTypeAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooTypeDisplayFn">
+											<mat-option *ngFor="let eopooType of filteredEopooType | async" [value]="eopooType">{{ eopooType.name }}</mat-option>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
+                                <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>TaxId</mat-label>
                                         <input matInput formControlName="taxId">

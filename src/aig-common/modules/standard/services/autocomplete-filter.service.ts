@@ -14,12 +14,15 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 4) {
-                    return this.cityResourceService.getAllCitiesUsingGET();
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
+                if (value && value.length > 0) {
+					let filter = {
+						nameContains: value
+					};
+					return this.cityResourceService.getAllCitiesUsingGET(filter);
+				} else {
+					return of([]);
+				}
+			})
+		);
+	}
 }

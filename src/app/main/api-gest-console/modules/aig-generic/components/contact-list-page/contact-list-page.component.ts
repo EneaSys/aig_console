@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ContactDTO, ContactResourceService } from 'aig-generic';
@@ -47,8 +47,6 @@ export class AigContactListPageComponent extends GenericComponent {
 
         this.contactSearchFormGroup = this._formBuilder.group({
             id: [''],
-            contactTypeCode: [''],
-            value: [''],
             referentLastname: [''],
             eopooTaxNumber: [''],
         });
@@ -59,7 +57,6 @@ export class AigContactListPageComponent extends GenericComponent {
     private clearFiltersContact() {
         this.contactFilters = {
             idEquals: null,
-            nameContains: null,
             page: 0,
         }
     }
@@ -112,8 +109,6 @@ export class AigContactListPageComponent extends GenericComponent {
 		}
 
 		this.contactFilters.idEquals = null;
-
-		this.contactFilters.nameContains = this.contactSearchFormGroup.controls.name.value;
 
 		this.searchContact(0);
 	}

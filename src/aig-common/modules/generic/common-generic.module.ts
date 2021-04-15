@@ -41,6 +41,7 @@ import { AigReferentNewUpdateFormComponent } from './components/referent-new-upd
 import { AigContactListTableComponent } from './components/contact-list-table/contact-list-table.component';
 import { AigContactEntityDetailComponent } from './components/contact-entity-detail/contact-entity-detail.component';
 import { AigContactNewUpdateFormComponent } from './components/contact-new-update-form/contact-new-update-form.component';
+import { AigPersonNewUpdateFormComponent } from './components/person-new-update-form/person-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -97,6 +98,8 @@ import { AigContactNewUpdateFormComponent } from './components/contact-new-updat
         AigContactListTableComponent,
         AigContactNewUpdateFormComponent,
         AigContactEntityDetailComponent,
+
+        AigPersonNewUpdateFormComponent,
     ],
     providers: [
         EopooResolver,
@@ -130,6 +133,8 @@ import { AigContactNewUpdateFormComponent } from './components/contact-new-updat
         AigContactListTableComponent,
         AigContactNewUpdateFormComponent,
         AigContactEntityDetailComponent,
+
+        AigPersonNewUpdateFormComponent,
     ],
 })
 export class CommonGenericModule {}

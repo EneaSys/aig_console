@@ -14,7 +14,7 @@
             <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="type">
+        <ng-container matColumnDef="eopooType">
             <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{ element.eopooType.name }} </mat-cell>
         </ng-container>
@@ -24,7 +24,7 @@
             <mat-cell *matCellDef="let element">{{ element | eopooName }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="taxid">
+        <ng-container matColumnDef="taxId">
             <mat-header-cell *matHeaderCellDef> TaxID </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.taxNumber}} </mat-cell>
         </ng-container>

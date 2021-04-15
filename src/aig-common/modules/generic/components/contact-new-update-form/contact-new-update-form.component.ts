@@ -19,19 +19,15 @@ export class AigContactNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        //public autocompleteDisplayService: AigAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        //private commerceAutocompleteService: AigCommerceAutocompleteService,
         private contactResourceService: ContactResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
     contact: ContactDTO;
-
-    isUpdate: boolean = false;
 
     contactNewUpdateForm: FormGroup;
 
@@ -47,7 +43,6 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         
         if (this.contact != null) {
             this.contactNewUpdateForm.patchValue(this.contact);
-            this.isUpdate = true;
         }
     }
 

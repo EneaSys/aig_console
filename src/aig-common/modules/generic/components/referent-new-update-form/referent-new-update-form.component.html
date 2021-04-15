@@ -10,27 +10,27 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Last name</mat-label>
-            <input formControlName="lastname" matInput required>
+            <input formControlName="lastname" matInput>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Position</mat-label>
-            <input formControlName="position" matInput required>
+            <input formControlName="position" matInput>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Eopoo</mat-label>
-            <input formControlName="eopoo" matInput required>
+            <mat-label>Eopoo Tax Number</mat-label>
+            <input formControlName="eopooTaxNumber" matInput>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!referent.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="referent.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 

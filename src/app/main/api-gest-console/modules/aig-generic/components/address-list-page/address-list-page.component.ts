@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AddressDTO, AddressResourceService } from 'aig-generic';
@@ -48,7 +48,6 @@ export class AigAddressListPageComponent extends GenericComponent {
         this.addressSearchFormGroup = this._formBuilder.group({
             id: [''],
             name: [''],
-            cityCode: [''],
             address: [''],
         });
 
@@ -58,7 +57,6 @@ export class AigAddressListPageComponent extends GenericComponent {
     private clearFiltersAddress() {
         this.addressFilters = {
             idEquals: null,
-            nameContains: null,
             page: 0,
         }
     }
@@ -111,8 +109,6 @@ export class AigAddressListPageComponent extends GenericComponent {
 		}
 
 		this.addressFilters.idEquals = null;
-
-		this.addressFilters.nameContains = this.addressSearchFormGroup.controls.name.value;
 
 		this.searchAddress(0);
 	}

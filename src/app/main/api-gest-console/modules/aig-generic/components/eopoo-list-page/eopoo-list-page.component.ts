@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { EopooResourceService, EopooDTO } from 'aig-generic';
+import { EopooResourceService, EopooDTO, EopooTypeDTO } from 'aig-generic';
 import { MatDialog } from '@angular/material/dialog';
 import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 import { PageEvent } from '@angular/material/paginator';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
+import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 
 @Component({
 	templateUrl: './eopoo-list-page.component.html',
@@ -15,6 +18,8 @@ import { MatSnackBar } from '@angular/material';
 export class AigEopooListPageComponent extends GenericComponent {
 	constructor(
 		private eopooResourceService: EopooResourceService,
+		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		private genericAutocompleteService: AigGenericAutocompleteFilterService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -43,21 +48,27 @@ export class AigEopooListPageComponent extends GenericComponent {
 	eopooPaginationSize: number;
 	eopooLength: number;
 
+	filteredEopooType: Observable<EopooTypeDTO[]>;
+
 	private initEopooSearch() {
 		this.eopooPaginationSize = 30;
 
 		this.searchForm = this._formBuilder.group({
 			id: [''],
+			eopooType:[''],
 			taxId: [''],
 		});
 
-		this.eopooDC = ['id', 'type', 'name', 'taxid', 'buttons'];
+		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
+
+		this.eopooDC = ['id', 'eopooType', 'name', 'taxId', 'buttons'];
 	}
 
 	private clearFiltersEopoo() {
 		this.eopooFilters = {
 			idEquals: null,
-			taxNumber: null,
+			eopooTypeIdEquals: null,
+			taxNumberContains: null,
 			page: 0,
 		}
 	}
@@ -67,6 +78,8 @@ export class AigEopooListPageComponent extends GenericComponent {
 
 		this.eopooFilters.page = page;
 		this.eopooFilters.size = this.eopooPaginationSize;
+
+		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
 
 		try {
 			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
@@ -111,7 +124,11 @@ export class AigEopooListPageComponent extends GenericComponent {
 
 		this.eopooFilters.idEquals = null;
 
-		this.eopooFilters.taxNumber = this.searchForm.controls.taxId.value;
+		this.eopooFilters.taxNumberContains = this.searchForm.controls.taxId.value;
+
+		if (this.searchForm.controls.eopooType.value) {
+			this.eopooFilters.eopooTypeIdEquals = this.searchForm.controls.eopooType.value.id;
+		}
 
 		this.searchEopoo(0);
 	}
