@@ -4,7 +4,7 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <entity-detail-application-module [applicationModuleDTO]="applicationModuleDTO"></entity-detail-application-module>
+                <pre>{{ applicationModuleDTO | json }} </pre>
 
                 <button mat-stroked-button color="primary" (click)="editApplicationModule(applicationModuleDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteApplicationModule(applicationModuleDTO.id)">Delete</button>
