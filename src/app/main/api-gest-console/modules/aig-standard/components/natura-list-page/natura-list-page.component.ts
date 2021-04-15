@@ -22,6 +22,8 @@ export class AigNaturaListPageComponent extends GenericComponent {
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+
+
     loadPage() {
 		this.initNaturaSearch();
 
@@ -46,25 +48,26 @@ export class AigNaturaListPageComponent extends GenericComponent {
 
     
     private initNaturaSearch() {
+		this.naturaDC = ["id", "value","description", "buttons"];
+
 		this.naturaPaginationSize = 10;
+		
 
 		this.naturaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
-			code: [''],
+			value: [''],
+			
 		});
+	}
 
-		this.naturaDC = ['id', 'code', 'name','wikiCode', 'buttons'];
-    }
-    
-    private clearFiltersNatura() {
+	private clearFiltersNatura() {
 		this.naturaFilters = {
-			idEquals: null,
-			nameContains: null,
-			codeEquals: null,
+			naturaIDEquals: null,
+			naturaNameContains: null,
 			page: 0,
 		}
-    }
+	}
+
 
 	
     
@@ -118,9 +121,9 @@ export class AigNaturaListPageComponent extends GenericComponent {
 			return;
 		}
 
-		this.naturaFilters.idEquals = null;
+		this.naturaFilters.naturaIDEquals = null;
 
-		this.naturaFilters.nameContains = this.naturaSearchFormGroup.controls.name.value;
+		this.naturaFilters.naturaNameContains = this.naturaSearchFormGroup.controls.name.value;
 
 		this.searchNatura(0);
 	}

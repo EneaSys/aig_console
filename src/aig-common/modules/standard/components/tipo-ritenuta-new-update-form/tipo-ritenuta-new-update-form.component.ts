@@ -38,10 +38,10 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.tipoRitenutaNewUpdateForm = this._formBuilder.group({
-            id: [''],
-            name: ['', Validators.required],
-            code: ['', Validators.required],
-            wikiCode:['']
+            id:[''],
+            value: ['', Validators.required],
+            description: [''],
+
         })
         if (this.tipoRitenuta!= null) {
             this.tipoRitenutaNewUpdateForm.patchValue(this.tipoRitenuta);
@@ -62,10 +62,10 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
             let postOrPut: string;
 
             if (tipoRitenuta.id != 0) {
-                await this.tipoRitenutaResourceService.updateTipoRitenutaUsingPUT(tipoRitenuta).toPromise();
+                await this.tipoRitenutaResourceService.updateTipoRitenutaUsingPUT(this.tipoRitenuta).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoRitenutaResourceService.createTipoRitenutaUsingPOST(tipoRitenuta).toPromise();
+                await this.tipoRitenutaResourceService.createTipoRitenutaUsingPOST(this.tipoRitenuta).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

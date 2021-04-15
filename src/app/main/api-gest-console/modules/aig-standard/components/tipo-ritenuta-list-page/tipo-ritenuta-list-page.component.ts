@@ -46,22 +46,23 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 
     
     private initTipoRitenutaSearch() {
+		this.tipoRitenutaDC = ["id", "value","description", "buttons"];
+
 		this.tipoRitenutaPaginationSize = 10;
+		
 
 		this.tipoRitenutaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
-			code: [''],
+			value: [''],
+			
 		});
+	}
 
-		this.tipoRitenutaDC = ['id', 'code', 'name','wikiCode', 'buttons'];
-    }
     
     private clearFiltersTipoRitenuta() {
 		this.tipoRitenutaFilters = {
-			idEquals: null,
-			nameContains: null,
-			codeEquals: null,
+			tipoRitenutaFiltersIDEquals: null,
+			tipoRitenutaFiltersNameContains: null,
 			page: 0,
 		}
     }
@@ -73,7 +74,7 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 		this.tipoRitenutaFilters.size = this.tipoRitenutaPaginationSize;
 
 		try {
-			this.tipoRitenutaLength = await this.tipoRitenutaResourceService.countTipoRitenutasUsingGET().toPromise();
+			this.tipoRitenutaLength = await this.tipoRitenutaResourceService.countTipoRitenutasUsingGET(this.tipoRitenutaFilters).toPromise();
 
 			if(this.tipoRitenutaLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -81,7 +82,7 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.tipoRitenutaDTOs = await this.tipoRitenutaResourceService.getAllTipoRitenutasUsingGET().toPromise();
+			this.tipoRitenutaDTOs = await this.tipoRitenutaResourceService.getAllTipoRitenutasUsingGET(this.tipoRitenutaFilters).toPromise();
 		} catch (e) {
 			this.tipoRitenutaError = e;
 		}
@@ -113,9 +114,9 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 			return;
 		}
 
-		this.tipoRitenutaFilters.idEquals = null;
+		this.tipoRitenutaFilters.tipoRitenutaIDEquals = null;
 
-		this.tipoRitenutaFilters.nameContains = this.tipoRitenutaSearchFormGroup.controls.name.value;
+		this.tipoRitenutaFilters.tipoRitenutaNameContains = this.tipoRitenutaSearchFormGroup.controls.name.value;
 
 		this.searchTipoRitenuta(0);
 	}

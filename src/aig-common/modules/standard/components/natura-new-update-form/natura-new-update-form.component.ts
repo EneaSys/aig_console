@@ -38,16 +38,15 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.naturaNewUpdateForm = this._formBuilder.group({
-            id: [''],
-            name: ['', Validators.required],
-            code: ['', Validators.required],
-            wikiCode:['']
+            id:[''],
+            value: ['', Validators.required],
+            description: [''],
+
         })
         if (this.natura!= null) {
             this.naturaNewUpdateForm.patchValue(this.natura);
         }
     }
-
     async submit() {
         if (!this.naturaNewUpdateForm.valid) {
             return;
@@ -62,10 +61,10 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
             let postOrPut: string;
 
             if (natura.id != 0) {
-                await this.naturaResourceService.updateNaturaUsingPUT(natura).toPromise();
+                await this.naturaResourceService.updateNaturaUsingPUT(this.natura).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.naturaResourceService.createNaturaUsingPOST(natura).toPromise();
+                await this.naturaResourceService.createNaturaUsingPOST(this.natura).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

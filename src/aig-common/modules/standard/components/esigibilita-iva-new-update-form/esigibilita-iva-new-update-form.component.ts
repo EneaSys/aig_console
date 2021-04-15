@@ -38,17 +38,18 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.esigibilitaIvaNewUpdateForm = this._formBuilder.group({
-            id: [''],
-            name: ['', Validators.required],
-            code: ['', Validators.required],
-            wikiCode:['']
+            id:[''],
+            value: ['', Validators.required],
+            description: [''],
+
         })
         if (this.esigibilitaIva!= null) {
             this.esigibilitaIvaNewUpdateForm.patchValue(this.esigibilitaIva);
         }
     }
-
+    
     async submit() {
+        
         if (!this.esigibilitaIvaNewUpdateForm.valid) {
             return;
         }
@@ -62,10 +63,10 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
             let postOrPut: string;
 
             if (esigibilitaIva.id != 0) {
-                await this.esigibilitaIvaResourceService.updateEsigibilitaIvaUsingPUT(esigibilitaIva).toPromise();
+                await this.esigibilitaIvaResourceService.updateEsigibilitaIvaUsingPUT(this.esigibilitaIva).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.esigibilitaIvaResourceService.createEsigibilitaIvaUsingPOST(esigibilitaIva).toPromise();
+                await this.esigibilitaIvaResourceService.createEsigibilitaIvaUsingPOST(this.esigibilitaIva).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
