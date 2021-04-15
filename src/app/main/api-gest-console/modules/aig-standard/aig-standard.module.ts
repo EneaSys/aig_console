@@ -50,6 +50,29 @@ import { AigIppSectorNewUpdateModalComponent } from './components/ipp-sector-new
 import { AigLotCategoryDetailPageComponent } from './components/ipp-lot-category-detail-page/lot-category-detail-page.component';
 import { AigLotCategoryNewUpdateModalComponent } from './components/ipp-lot-category-new-update-modal/lot-category-new-update-modal.component';
 import { AigStandardCustomListPageComponent } from './components/standard-custom-list-page/standard-custom-list-page.component';
+import { AigRegimeFiscaleListPageComponent } from './components/regime-fiscale-list-page/regime-fiscale-list-page.component';
+import { AigRegimeFiscaleDetailPageComponent } from './components/regime-fiscale-detail-page/regime-fiscale-detail-page.component';
+import { AigRegimeFiscaleNewUpdateDialogComponent } from './components/regime-fiscale-new-update-dialog/regime-fiscale-new-update-dialog.component';
+import { AigTipoCassaListPageComponent } from './components/tipo-cassa-list-page/tipo-cassa-list-page.component';
+import { AigTipoCassaDetailPageComponent } from './components/tipo-cassa-detail-page/tipo-cassa-detail-page.component';
+import { AigTipoCassaNewUpdateDialogComponent } from './components/tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
+import { AigNaturaListPageComponent } from './components/natura-list-page/natura-list-page.component';
+import { AigNaturaDetailPageComponent } from './components/natura-detail-page/natura-detail-page.component';
+import { AigNaturaNewUpdateDialogComponent } from './components/natura-new-update-dialog/natura-new-update-dialog.component';
+import { AigTipoRitenutaListPageComponent } from './components/tipo-ritenuta-list-page/tipo-ritenuta-list-page.component';
+import { AigTipoRitenutaDetailPageComponent } from './components/tipo-ritenuta-detail-page/tipo-ritenuta-detail-page.component';
+import { AigTipoRitenutaNewUpdateDialogComponent } from './components/tipo-ritenuta-new-update-dialog/tipo-ritenuta-new-update-dialog.component';
+import { AigTipoCessionePrestazioneListPageComponent } from './components/tipo-cessione-prestazione-list-page/tipo-cessione-prestazione-list-page.component';
+import { AigTipoCessionePrestazioneDetailPageComponent } from './components/tipo-cessione-prestazione-detail-page/tipo-cessione-prestazione-detail-page.component';
+import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from './components/tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
+import { AigTipoScontoMaggiorazioneListPageComponent } from './components/tipo-sconto-maggiorazione-list-page/tipo-sconto-maggiorazione-list-page.component';
+
+
+import { AigEsigibilitaIvaListPageComponent } from './components/esigibilita-iva-list-page/esigibilita-iva-list-page.component';
+import { AigTipoScontoMaggiorazioneNewUpdateDialogComponent } from './components/tipo-sconto-maggiorazione-new-update-dialog/tipo-sconto-maggiorazione-new-update-dialog.component';
+import { AigTipoScontoMaggiorazioneDetailPageComponent } from './components/tipo-sconto-maggiorazione-detail-page/tipo-sconto-maggiorazione-detail-page.component';
+import { AigEsigibilitaIvaDetailPageComponent } from './components/esigibilita-iva-detail-page/esigibilita-iva-detail-page.component';
+import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibilita-iva-new-update-dialog/esigibilita-iva-new-update-dialog.component';
 
 @NgModule({
     declarations: [
@@ -93,6 +116,28 @@ import { AigStandardCustomListPageComponent } from './components/standard-custom
 
         AigSocialActionDetailPageComponent,
         AigSocialActionNewUpdateModalComponent,
+        AigRegimeFiscaleListPageComponent,
+        AigRegimeFiscaleDetailPageComponent,
+        AigRegimeFiscaleNewUpdateDialogComponent,
+        AigTipoCassaListPageComponent,
+        AigTipoCassaDetailPageComponent,
+        AigTipoCassaNewUpdateDialogComponent,
+        AigNaturaListPageComponent,
+        AigNaturaDetailPageComponent,
+        AigNaturaNewUpdateDialogComponent,
+        AigTipoRitenutaListPageComponent,
+        AigTipoRitenutaDetailPageComponent,
+        AigTipoRitenutaNewUpdateDialogComponent,
+        AigTipoCessionePrestazioneListPageComponent,
+        AigTipoCessionePrestazioneDetailPageComponent,
+        AigTipoCessionePrestazioneNewUpdateDialogComponent,
+        AigTipoScontoMaggiorazioneListPageComponent,
+        AigTipoScontoMaggiorazioneDetailPageComponent,
+        AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
+        AigEsigibilitaIvaListPageComponent,
+        AigEsigibilitaIvaDetailPageComponent,
+        AigEsigibilitaIvaNewUpdateDialogComponent
+
     ],
     imports: [
         RouterModule.forChild(aigStandardRoute),
@@ -127,6 +172,14 @@ import { AigStandardCustomListPageComponent } from './components/standard-custom
         AigIppProcedureNewUpdateModalComponent,
         AigIppSectorNewUpdateModalComponent,
         AigLotCategoryNewUpdateModalComponent,
+        AigRegimeFiscaleNewUpdateDialogComponent,
+        AigTipoCassaNewUpdateDialogComponent,
+        AigNaturaNewUpdateDialogComponent,
+        AigTipoRitenutaNewUpdateDialogComponent,
+        AigTipoCessionePrestazioneNewUpdateDialogComponent,
+        AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
+        AigEsigibilitaIvaNewUpdateDialogComponent
+    
     ],
 })
 export class AigStandardModule {}
