@@ -1,0 +1,44 @@
+<form *ngIf="step.form" [formGroup]="contactNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Contact Type Code</mat-label>
+            <input formControlName="contactTypeCode" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Value</mat-label>
+            <input formControlName="value" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Referent Last Name</mat-label>
+            <input formControlName="referentLastname" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo Tax Number</mat-label>
+            <input formControlName="eopooTaxNumber" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!contact.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="contact.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ contactNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!contactNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newContact()">Crea nuovo</button>
+</div>

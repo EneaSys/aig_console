@@ -72,7 +72,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 		this.ippLotTypeFilters.size = this.ippLotTypePaginationSize;
 
 		try {
-			this.ippLotTypeLength = await this.ippLotTypeResourceService.countItalianPublicProcurementLotTypesUsingGET().toPromise();
+			this.ippLotTypeLength = await this.ippLotTypeResourceService.countItalianPublicProcurementLotTypesUsingGET(this.ippLotTypeFilters).toPromise();
 
 			if(this.ippLotTypeLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippLotTypeDTOs = await this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET().toPromise();
+			this.ippLotTypeDTOs = await this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(this.ippLotTypeFilters).toPromise();
 		} catch (e) {
 			this.ippLotTypeError = e;
 		}

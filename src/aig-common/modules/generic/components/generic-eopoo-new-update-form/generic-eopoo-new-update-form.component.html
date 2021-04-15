@@ -1,0 +1,50 @@
+<div *ngIf="step.form" fxLayout="column">
+    <form [formGroup]="eopooGenericNewUpdateForm" (ngSubmit)="submit()">
+        
+        <div fxLayout="row" *ngIf="!eopooType">
+            <mat-form-field appearance="outline" fxFlex>
+                <mat-label>Tipo Anagrafica</mat-label>
+                <mat-select (selectionChange)="onEopooTypeChange($event.value)">
+                    <mat-option *ngFor="let eopooType of eopooTypeDTOs" [value]="eopooType">
+                        {{ eopooType.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix class="secondary-text">list</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Partita IVA</mat-label>
+                <input matInput #taxIdO formControlName="taxNumber" maxlength="11" required>
+                <mat-icon matSuffix class="secondary-text">code</mat-icon>
+                <mat-hint [align]="end">{{taxIdO.value.length}} / 10 or 11</mat-hint>
+                <mat-error>La partita Iva è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex="100">
+                <mat-label>Denominazione</mat-label>
+                <input matInput formControlName="name" required>
+                <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                <mat-error>La denominazione è obbligatoria!</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button *ngIf="!eopoo.id" type="submit" mat-raised-button color="accent">Crea</button>
+            <button *ngIf="eopoo.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        </div>
+
+    </form>
+</div>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ eopooGenericNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!eopooGenericNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEopoo()">Create New</button>
+</div>

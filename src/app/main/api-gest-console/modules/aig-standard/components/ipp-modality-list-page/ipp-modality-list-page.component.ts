@@ -72,7 +72,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 		this.ippModalityFilters.size = this.ippModalityPaginationSize;
 
 		try {
-			this.ippModalityLength = await this.ippModalityResourceService.countItalianPublicProcurementModalitiesUsingGET().toPromise();
+			this.ippModalityLength = await this.ippModalityResourceService.countItalianPublicProcurementModalitiesUsingGET(this.ippModalityFilters).toPromise();
 
 			if(this.ippModalityLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippModalityDTOs = await this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET().toPromise();
+			this.ippModalityDTOs = await this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(this.ippModalityFilters).toPromise();
 		} catch (e) {
 			this.ippModalityError = e;
 		}
