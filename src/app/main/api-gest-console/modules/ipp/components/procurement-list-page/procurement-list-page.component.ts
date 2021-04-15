@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ProcurementResourceService, ProcurementDTO } from 'aig-italianlegislation';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
 import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementModalityResourceService } from 'aig-standard';
 import { Observable } from 'rxjs';
+
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 @Component({
     templateUrl: './procurement-list-page.component.html',
@@ -57,21 +58,22 @@ italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 
 	
 	private initProcurementSearch() {
-		this.procurementDC = ["code","description","ref","id","contractorEopooCode","ippModalityCode","ippProcedureCode","ippSectorCode","totalAmount","buttons"];
+		this.procurementDC = ["code","description","ref","id","contractorEopoo","ippModality","ippProcedure","ippSector","totalAmount","procurementStatus","buttons"];
 
 		this.procurementPaginationSize = 10;
 		
 
 		this.procurementSearchFormGroup = this._formBuilder.group({
-			id: [''],
+			id: ['', Validators.required],
 			description: [''],
-			ref: [''],
+			ref: ['',Validators.required],
 			code: [''],
-			contractorEopooCode: [''],
-			ippModalityCode: [''],
-			ippProcedureCode: [''],
-			ippSectorCode: [''],
+			contractorEopoo: [''],
+			ippModality: [''],
+			ippProcedure: [''],
+			ippSector: [''],
 			totalAmount: [''],
+			procurementStatus: [''],
 		});
 	}
 
@@ -87,7 +89,7 @@ italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 
 		this.procurementFilters.page = page;
 		this.procurementFilters.size = this.procurementPaginationSize;
-		this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterItalianPublicProcurementModality(this.procurementSearchFormGroup.controls['ippModalityCode'].valueChanges);
+		//this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterItalianPublicProcurementModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);
 
 		try {                                                                       
 			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();  

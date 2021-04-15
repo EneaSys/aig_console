@@ -3,10 +3,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { EopooDTO } from 'aig-generic';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
-import { ItalianPublicProcurementModalityDTO } from 'aig-standard';
+import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
@@ -24,8 +27,10 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
-        public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
+        public genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
         private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+        public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private procurementResourceService: ProcurementResourceService,
@@ -37,26 +42,38 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     procurementNewUpdateForm: FormGroup;
 
-    filteredItalianPublicProcurementModality: Observable<ItalianPublicProcurementModalityDTO[]>;
+    filteredEopoo: Observable<EopooDTO[]>;
+
+    filteredIppProcedure: Observable<ItalianPublicProcurementProcedureDTO[]>;
+    filteredIppSector: Observable<ItalianPublicProcurementSectorDTO[]>;
+    filteredIppModality: Observable<ItalianPublicProcurementModalityDTO[]>;
 
 
     ngOnInit(): void {
         this.procurementNewUpdateForm = this._formBuilder.group({
-            description: ['', Validators.required],
+            id: [''],
             code: ['', Validators.required],
-            ref:[''],
+            description: ['', Validators.required],
             totalAmount: ['', Validators.required],
+            ref:[''],
+
             contractorEopoo: ['', Validators.required],
+            status:[''],
+
             ippSector: ['', Validators.required],
             ippProcedure: ['', Validators.required],
             ippModality: ['', Validators.required],
-            procurementStatus:[''],
         })
         
         if (this.procurement != null) {
             this.procurementNewUpdateForm.patchValue(this.procurement);
         }
-        this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterItalianPublicProcurementModality(this.procurementNewUpdateForm.controls['ippModality'].valueChanges);
+        
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementNewUpdateForm.controls['contractorEopoo'].valueChanges);
+
+        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementNewUpdateForm.controls['ippProcedure'].valueChanges);
+        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementNewUpdateForm.controls['ippSector'].valueChanges);
+        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementNewUpdateForm.controls['ippModality'].valueChanges);
     }
 
     async submit() {
@@ -68,6 +85,14 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let procurement: ProcurementDTO = this.procurementNewUpdateForm.value;
+        
+        
+        procurement.contractorEopooCode = this.procurementNewUpdateForm.value.contractorEopoo.id;
+        //procurement.procurementStatusCode = this.procurementNewUpdateForm.value.status.id;
+        procurement.procurementStatusCode = "OPEN"; // TODO
+        procurement.ippProcedureCode = this.procurementNewUpdateForm.value.ippProcedure.id;
+        procurement.ippSectorCode = this.procurementNewUpdateForm.value.ippSector.id;
+        procurement.ippModalityCode = this.procurementNewUpdateForm.value.ippModality.id;
 
         try {
             let postOrPut: string;

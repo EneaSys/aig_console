@@ -36,12 +36,14 @@ import { AigInsurancePolicyListTableComponent } from './components/insurance-pol
 import { DossierResolver } from './resolver/dossier.resolver';
 import { AigIppAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
+import { CommonGenericModule } from '../generic/common-generic.module';
 
 
 @NgModule({
     imports: [
         AigCommonModule,
         CommonModule,
+        CommonGenericModule,
 
         RouterModule,
         BrowserModule,
