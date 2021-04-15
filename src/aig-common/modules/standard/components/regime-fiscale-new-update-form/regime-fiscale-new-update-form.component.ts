@@ -34,7 +34,8 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.regimeFiscaleNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
+            value: ['', Validators.required],
+            description: [''],
         })
         
         if (this.regimeFiscale != null) {

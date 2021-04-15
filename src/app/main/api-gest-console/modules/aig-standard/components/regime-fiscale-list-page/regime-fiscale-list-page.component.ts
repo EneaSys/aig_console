@@ -50,7 +50,7 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 
 	
 	private initRegimeFiscaleSearch() {
-		this.regimeFiscaleDC = ["id", "name", "buttons"];
+		this.regimeFiscaleDC = ["id", "value","description", "buttons"];
 
 		this.regimeFiscalePaginationSize = 10;
 		
