@@ -32,6 +32,29 @@ import { IppModalityResolver } from 'aig-common/modules/standard/resolver/ipp-mo
 import { CategoryResolver } from 'aig-common/modules/standard/resolver/category.resolver';
 import { RoleSystemResolver } from 'aig-common/old-common/resolver/role-system.resolver';
 import { AigStandardCustomListPageComponent } from './components/standard-custom-list-page/standard-custom-list-page.component';
+import { AigRegimeFiscaleListPageComponent } from './components/regime-fiscale-list-page/regime-fiscale-list-page.component';
+import { AigRegimeFiscaleDetailPageComponent } from './components/regime-fiscale-detail-page/regime-fiscale-detail-page.component';
+import { RegimeFiscaleResolver } from 'aig-common/modules/standard/resolver/regime-fiscale.resolver.ts/regime-fiscale.resolver';
+import { AigTipoCassaListPageComponent } from './components/tipo-cassa-list-page/tipo-cassa-list-page.component';
+import { AigTipoCassaDetailPageComponent } from './components/tipo-cassa-detail-page/tipo-cassa-detail-page.component';
+import { TipoCassaResolver } from 'aig-common/modules/standard/resolver/tipo-cassa.resolver.ts/tipo-cassa.resolver';
+import { AigNaturaListPageComponent } from './components/natura-list-page/natura-list-page.component';
+import { NaturaResolver } from 'aig-common/modules/standard/resolver/natura.resolver.ts/natura.resolver';
+import { AigNaturaDetailPageComponent } from './components/natura-detail-page/natura-detail-page.component';
+import { AigTipoRitenutaListPageComponent } from './components/tipo-ritenuta-list-page/tipo-ritenuta-list-page.component';
+import { AigTipoRitenutaDetailPageComponent } from './components/tipo-ritenuta-detail-page/tipo-ritenuta-detail-page.component';
+import { TipoRitenutaResolver } from 'aig-common/modules/standard/resolver/tipo-ritenuta.resolver.ts/tipo-ritenuta.resolver';
+import { AigTipoCessionePrestazioneListPageComponent } from './components/tipo-cessione-prestazione-list-page/tipo-cessione-prestazione-list-page.component';
+import { AigTipoCessionePrestazioneDetailPageComponent } from './components/tipo-cessione-prestazione-detail-page/tipo-cessione-prestazione-detail-page.component';
+import { TipoCessionePestazioneResolver } from 'aig-common/modules/standard/resolver/tipo-cessione-prestazione.resolver.ts/tipo-cessione-prestazione.resolver';
+import {  AigTipoScontoMaggiorazioneListPageComponent } from './components/tipo-sconto-maggiorazione-list-page/tipo-sconto-maggiorazione-list-page.component';
+
+
+import { TipoScontoMaggiorazioneResolver } from 'aig-common/modules/standard/resolver/tipo-sconto-maggiorazione.resolver.ts/tipo-sconto-maggiorazione.resolver';
+import { AigTipoScontoMaggiorazioneDetailPageComponent } from './components/tipo-sconto-maggiorazione-detail-page/tipo-sconto-maggiorazione-detail-page.component';
+import { AigEsigibilitaIvaListPageComponent } from './components/esigibilita-iva-list-page/esigibilita-iva-list-page.component';
+import { AigEsigibilitaIvaDetailPageComponent } from './components/esigibilita-iva-detail-page/esigibilita-iva-detail-page.component';
+import { EsigibilitaIvaResolver } from 'aig-common/modules/standard/resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -48,7 +71,7 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigStandardCustomListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     /*{
                         path: 'detail/:id',
@@ -76,12 +99,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigCityListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigCityDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             city: CityResolver,
                         },
@@ -99,13 +122,13 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigSocialListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
-                    
+
                     {
                         path: 'detail/:id',
                         component: AigSocialDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             social: SocialResolver,
                         },
@@ -123,12 +146,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigSocialActionListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigSocialActionDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             socialaction: ActionResolver,
                         },
@@ -146,12 +169,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigCpvListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigCpvDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             cpv: CpvResolver,
                         },
@@ -169,12 +192,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigIppModalityListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigIppModalityDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             ippModality: IppModalityResolver,
                         },
@@ -192,12 +215,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigIppProcedureListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigIppProcedureDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             ippProcedure: IppProcedureResolver,
                         },
@@ -215,12 +238,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigIppSectorListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigIppSectorDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             ippSector: SectorResolver,
                         },
@@ -238,12 +261,12 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigIppLotTypeListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigIppLotTypeDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             ippLotType: LotResolver,
                         },
@@ -261,18 +284,187 @@ export const aigStandardRoute: Routes = [
                     {
                         path: 'list',
                         component: AigIppLotCategoryListPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                     },
                     {
                         path: 'detail/:id',
                         component: AigLotCategoryDetailPageComponent,
-                        canActivate: [ AuthGuardService ],
+                        canActivate: [AuthGuardService],
                         resolve: {
                             ippCategory: CategoryResolver,
                         },
                     },
+                ],
+            },
+            {
+                path: 'regime-fiscale',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigRegimeFiscaleListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigRegimeFiscaleDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            regimeFiscale: RegimeFiscaleResolver,
+                        },
+                    },
                 ]
             },
+            {
+                path: 'tipo-cassa',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTipoCassaListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigTipoCassaDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            tipoCassa: TipoCassaResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'natura',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigNaturaListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigNaturaDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            natura: NaturaResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'tipo-ritenuta',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTipoRitenutaListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigTipoRitenutaDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            tipoRitenuta: TipoRitenutaResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'tipo-cessione-prestazione',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTipoCessionePrestazioneListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigTipoCessionePrestazioneDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            tipoCessionePrestazione: TipoCessionePestazioneResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'tipo-sconto-maggiorazione',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTipoScontoMaggiorazioneListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigTipoScontoMaggiorazioneDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            tipoScontoMaggiorazionePrestazione: TipoScontoMaggiorazioneResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'esigibilita-iva',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigEsigibilitaIvaListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+
+                    {
+                        path: 'detail/:id',
+                        component: AigEsigibilitaIvaDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            esigibilitaIvaPrestazione: EsigibilitaIvaResolver,
+                        },
+                    },
+                ]
+            },
+
         ]
-    }
-];
+    },
+]
