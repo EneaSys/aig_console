@@ -63,10 +63,10 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
             let postOrPut: string;
 
             if (esigibilitaIva.id != 0) {
-                await this.esigibilitaIvaResourceService.updateEsigibilitaIvaUsingPUT(this.esigibilitaIva).toPromise();
+                await this.esigibilitaIvaResourceService.updateEsigibilitaIvaUsingPUT(esigibilitaIva).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.esigibilitaIvaResourceService.createEsigibilitaIvaUsingPOST(this.esigibilitaIva).toPromise();
+                await this.esigibilitaIvaResourceService.createEsigibilitaIvaUsingPOST(esigibilitaIva).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

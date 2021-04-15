@@ -61,10 +61,10 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
             let postOrPut: string;
 
             if (natura.id != 0) {
-                await this.naturaResourceService.updateNaturaUsingPUT(this.natura).toPromise();
+                await this.naturaResourceService.updateNaturaUsingPUT(natura).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.naturaResourceService.createNaturaUsingPOST(this.natura).toPromise();
+                await this.naturaResourceService.createNaturaUsingPOST(natura).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

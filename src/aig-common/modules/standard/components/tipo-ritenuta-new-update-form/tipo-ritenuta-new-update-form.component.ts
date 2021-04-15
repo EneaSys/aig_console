@@ -62,10 +62,10 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
             let postOrPut: string;
 
             if (tipoRitenuta.id != 0) {
-                await this.tipoRitenutaResourceService.updateTipoRitenutaUsingPUT(this.tipoRitenuta).toPromise();
+                await this.tipoRitenutaResourceService.updateTipoRitenutaUsingPUT(tipoRitenuta).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoRitenutaResourceService.createTipoRitenutaUsingPOST(this.tipoRitenuta).toPromise();
+                await this.tipoRitenutaResourceService.createTipoRitenutaUsingPOST(tipoRitenuta).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
