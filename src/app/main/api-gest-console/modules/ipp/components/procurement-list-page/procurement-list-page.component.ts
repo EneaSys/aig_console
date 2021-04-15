@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { ProcurementResourceService, ProcurementDTO } from 'aig-italianlegislation';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
+import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementModalityResourceService } from 'aig-standard';
+import { Observable } from 'rxjs';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 @Component({
     templateUrl: './procurement-list-page.component.html',
     styleUrls: ['./procurement-list-page.component.scss']
@@ -16,8 +19,18 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
         private procurementResourceService: ProcurementResourceService,
+		private italianPublicProcurementModalityResourceService: ItalianPublicProcurementModalityResourceService,
+		private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
+
+
+	@Input()
+    staticItalianPublicProcurementModality:ItalianPublicProcurementModalityDTO = null;
+
+filteredItalianPublicProcurementModality: Observable<ItalianPublicProcurementModalityDTO[]>;
+
+italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 
     loadPage() {
 		this.initProcurementSearch();
@@ -74,6 +87,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 
 		this.procurementFilters.page = page;
 		this.procurementFilters.size = this.procurementPaginationSize;
+		this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterItalianPublicProcurementModality(this.procurementSearchFormGroup.controls['ippModalityCode'].valueChanges);
 
 		try {                                                                       
 			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();  
@@ -122,7 +136,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		}
 		this.procurementFilters.idEquals = null;
 
-		this.procurementFilters.nameContains = this.procurementSearchFormGroup.controls.name.value;
+	
 
 		this.searchProcurement(0);
 	}

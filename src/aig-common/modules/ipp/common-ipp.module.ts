@@ -22,7 +22,6 @@ import { AigProcurementLotNewUpdateFormComponent } from './components/procuremen
 import { MatDatepickerModule, MatMenu, MatMenuModule, MatSlideToggleModule } from '@angular/material';
 import { AigDossierListTableComponent } from './components/dossier-list-table/dossier-list-table.component';
 import { AigDossierNewUpdateFormComponent } from './components/dossier-new-update-form/dossier-new-update-form.component';
-import { DossierResolver } from './components/resolver/dossier.resolver';
 import { AigPartecipationListTableComponent } from './components/partecipation-list-table/partecipation-list-table.component';
 import { AigPartecipationNewUpdateFormComponent } from './components/partecipation-new-update-form/partecipation-new-update-form.component';
 import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
@@ -34,6 +33,10 @@ import { AigPreparationStatusListTableComponent } from './components/preparation
 import { AigPreparationStatusNewUpdateFormComponent } from './components/preparation-status-new-update-form/preparation-status-new-update-form.component';
 import { AigInsurancePolicyNewUpdateFormComponent } from './components/insurance-policy-new-update-form/insurance-policy-new-update-form.component';
 import { AigInsurancePolicyListTableComponent } from './components/insurance-policy-list-table/insurance-policy-list-table.component';
+import { DossierResolver } from './resolver/dossier.resolver';
+import { AigIppAutocompleteService } from './service/autocomplete-filter.service';
+import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
+
 
 @NgModule({
     imports: [
@@ -64,6 +67,8 @@ import { AigInsurancePolicyListTableComponent } from './components/insurance-pol
     providers: [
 
         DossierResolver,
+        AigAutocompleteDisplayService,
+        AigIppAutocompleteService,
 
     ],
     declarations: [

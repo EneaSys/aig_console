@@ -49,7 +49,6 @@ import { LotResolver } from "./resolver/lot.resolver";
 import { CategoryResolver } from "./resolver/category.resolver";
 
 import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
-import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
 import { ContextModuleResolver } from './resolver/context-module.resolver';
 import { MatMenuModule } from '@angular/material';
@@ -91,6 +90,7 @@ import { AigEsigibilitaIvaListTableComponent } from './components/esigibilita-iv
 import { AigEsigibilitaIvaNewUpdateFormComponent } from './components/esigibilita-iva-new-update-form/esigibilita-iva-new-update-form.component';
 import { AigEntityDetailEsigibilitaIvaComponent } from './components/entity-detail-esigibilita-iva/entity-detail-esigibilita-iva.component';
 import { EsigibilitaIvaResolver } from './resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
+import { AigStandardAutocompleteDisplayService } from './services/autocomplete-function.service';
 
 
 @NgModule({
@@ -257,7 +257,7 @@ import { EsigibilitaIvaResolver } from './resolver/esigibilita-iva.resolver.ts/e
         ItFiscalCodeService,
         
         AigStandardAutocompleteFilterService,
-        AigStandardAutocompleteFunctionService,
+        AigStandardAutocompleteDisplayService,
         ContextModuleResolver,
         RegimeFiscaleResolver,
         TipoCassaResolver,

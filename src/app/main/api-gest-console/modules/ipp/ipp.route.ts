@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DossierResolver } from 'aig-common/modules/ipp/components/resolver/dossier.resolver';
+import { DossierResolver } from 'aig-common/modules/ipp/resolver/dossier.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigDossierDetailPageComponent } from './components/dossier-detail-page/dossier-detail-page.component';
 import { AigDossierListPageComponent } from './components/dossier-list-page/dossier-list-page.component';

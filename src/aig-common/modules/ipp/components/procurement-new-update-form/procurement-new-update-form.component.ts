@@ -3,7 +3,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
+import { ItalianPublicProcurementModalityDTO } from 'aig-standard';
+import { Observable } from 'rxjs';
+import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
 @Component({
     selector: 'aig-procurement-new-update-form',
@@ -19,6 +24,8 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     constructor(
         private _formBuilder: FormBuilder,
+        public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
+        private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private procurementResourceService: ProcurementResourceService,
@@ -30,22 +37,26 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     procurementNewUpdateForm: FormGroup;
 
+    filteredItalianPublicProcurementModality: Observable<ItalianPublicProcurementModalityDTO[]>;
+
+
     ngOnInit(): void {
         this.procurementNewUpdateForm = this._formBuilder.group({
             description: ['', Validators.required],
             code: ['', Validators.required],
             ref:[''],
             totalAmount: ['', Validators.required],
-            contractorEopooCode: ['', Validators.required],
-            ippSectorCode: ['', Validators.required],
-            ippProcedureCode: ['', Validators.required],
-            ippModalityCode: ['', Validators.required],
-            procurementStatusCode:[''],
+            contractorEopoo: ['', Validators.required],
+            ippSector: ['', Validators.required],
+            ippProcedure: ['', Validators.required],
+            ippModality: ['', Validators.required],
+            procurementStatus:[''],
         })
         
         if (this.procurement != null) {
             this.procurementNewUpdateForm.patchValue(this.procurement);
         }
+        this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterItalianPublicProcurementModality(this.procurementNewUpdateForm.controls['ippModality'].valueChanges);
     }
 
     async submit() {
@@ -58,7 +69,6 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
         let procurement: ProcurementDTO = this.procurementNewUpdateForm.value;
 
-        console.log(this.procurement);
         try {
             let postOrPut: string;
 

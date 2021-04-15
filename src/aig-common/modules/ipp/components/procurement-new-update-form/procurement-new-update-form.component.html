@@ -8,9 +8,10 @@
             <input formControlName="code" matInput required>
         </mat-form-field>
 
+        <!--inserire autocomplete-->
         <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
-            <mat-label>Procurement contractor Eopoo Code</mat-label>
-            <input formControlName="contractorEopooCode" matInput required>
+            <mat-label>Procurement contractor Eopoo </mat-label>
+            <input formControlName="contractorEopoo" matInput required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
@@ -33,20 +34,27 @@
         
     </div>
        
+    <!--inserire autocomplete-->
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="33">
             <mat-label>Procurement ipp Procedure Code</mat-label>
-            <input formControlName="ippProcedureCode" matInput required>
+            <input formControlName="ippProcedure" matInput required>
         </mat-form-field>
-        
+    <!--inserire autocomplete-->    
         <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
             <mat-label>Procurement ipp Sector Code</mat-label>
-            <input formControlName="ippSectorCode" matInput required>
+            <input formControlName="ippSector" matInput required>
         </mat-form-field>
-
+    <!--inserire autocomplete-->
         <mat-form-field appearance="outline" fxFlex="34" class="pl-4">
             <mat-label>Procurement ipp Modality Code</mat-label>
-            <input formControlName="ippModalityCode" matInput required>
+            <input formControlName="ippModality" matInput
+                [matAutocomplete]="italianPublicProcurementModalityAutocomplete">
+            <mat-autocomplete #italianPublicProcurementModalityAutocomplete="matAutocomplete"
+                [displayWith]="standardAutocompleteDisplayService.italianPublicProcurementModalityDisplayFn">
+                <mat-option *ngFor="let italianPublicProcurementModality of filtereditalianPublicProcurementModality | async"
+                    [value]="italianPublicProcurementModality">{{ italianPublicProcurementModality.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
