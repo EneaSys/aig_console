@@ -72,7 +72,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 		this.ippLotCategoryFilters.size = this.ippLotCategoryPaginationSize;
 
 		try {
-			this.ippLotCategoryLength = await this.ippLotCategoryResourceService.countItalianPublicProcurementLotCategoriesUsingGET().toPromise();
+			this.ippLotCategoryLength = await this.ippLotCategoryResourceService.countItalianPublicProcurementLotCategoriesUsingGET(this.ippLotCategoryFilters).toPromise();
 
 			if(this.ippLotCategoryLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippLotCategoryDTOs = await this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET().toPromise();
+			this.ippLotCategoryDTOs = await this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(this.ippLotCategoryFilters).toPromise();
 		} catch (e) {
 			this.ippLotCategoryError = e;
 		}
