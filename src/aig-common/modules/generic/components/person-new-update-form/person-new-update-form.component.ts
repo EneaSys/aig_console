@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EopooDTO, EopooResourceService, EopooTypeDTO } from 'aig-generic';
+import { EopooDTO, EopooResourceService, EopooTypeDTO, EopooTypeResourceService } from 'aig-generic';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
@@ -22,6 +22,7 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
+        private eopooTypeResourceService: EopooTypeResourceService,
         private _formBuilder: FormBuilder,
         private eopooResourceService: EopooResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -36,6 +37,8 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
+    eopooTypeDTOs: EopooTypeDTO[];
+
     eopooPersonNewUpdateForm: FormGroup;
 
     filteredCitys: Observable<CityDTO[]>;
@@ -44,7 +47,7 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
             id: [''],
             taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
-            eopooTypeId: [''],
+            eopooType: [this.eopooType],
 
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
@@ -67,6 +70,10 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['city'].valueChanges);
     }
 
+    async loadTypes() {
+        this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET({}).toPromise();
+    }
+
     async submit() {
         if (!this.eopooPersonNewUpdateForm.valid) {
             return;
@@ -80,7 +87,7 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         let eopooPerson: EopooDTO = {
             id: formValue.id,
             taxNumber: formValue.taxNumber,
-            eopooTypeId: formValue.eopooTypeId,
+            eopooTypeId: formValue.eopooType.id,
             person: formValue,
         };
         eopooPerson.person.cityCode = formValue.city.code;

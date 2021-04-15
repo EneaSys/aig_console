@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EopooResourceService, EopooDTO, EopooTypeDTO } from 'aig-generic';
+import { EopooResourceService, EopooDTO, EopooTypeDTO, EopooTypeResourceService } from 'aig-generic';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
@@ -18,6 +18,7 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
+        private eopooTypeResourceService: EopooTypeResourceService,
         private _formBuilder: FormBuilder,
         private eopooResourceService: EopooResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -30,16 +31,19 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
+    eopooTypeDTOs: EopooTypeDTO[];
+
     eopooGenericNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
+            eopooType: [this.eopooType],
             taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
-            eopooTypeId: [''],
-
             name: ['', Validators.required],
         });
+
+        this.loadTypes();
 
         if(this.eopoo == undefined && this.eopooType != null) {
             let newEopoo: any = {}
@@ -53,6 +57,10 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         }
     }
 
+    async loadTypes() {
+        this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET({}).toPromise();
+    }
+
     async submit() {
         if (!this.eopooGenericNewUpdateForm.valid) {
             return;
@@ -64,7 +72,7 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         let eopooGeneric: EopooDTO = {
             id: this.eopooGenericNewUpdateForm.value.id,
             taxNumber: this.eopooGenericNewUpdateForm.value.taxNumber,
-            eopooTypeId: this.eopooGenericNewUpdateForm.value.eopooTypeId,
+            eopooTypeId: this.eopooGenericNewUpdateForm.value.eopooType.id,
             genericEopoo: this.eopooGenericNewUpdateForm.value,
         };
 
