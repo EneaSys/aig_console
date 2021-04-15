@@ -115,7 +115,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 
 		this.tipoCessionePrestazioneFilters.idEquals = null;
 
-		this.tipoCessionePrestazioneFilters.valueContains = this.tipoCessionePrestazioneSearchFormGroup.controls.name.value;
+		this.tipoCessionePrestazioneFilters.nameContains = this.tipoCessionePrestazioneSearchFormGroup.controls.name.value;
 
 		this.searchTipoCessionePrestazione(0);
 	}
