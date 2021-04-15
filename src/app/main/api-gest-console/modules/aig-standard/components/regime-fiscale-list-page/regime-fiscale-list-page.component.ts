@@ -57,7 +57,8 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 
 		this.regimeFiscaleSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			value: [''],
+			
 		});
 	}
 

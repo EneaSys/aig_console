@@ -1,5 +1,9 @@
 <div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <h3>Error!</h3>
     <span *ngIf="error.status == 401">No access to this info</span>
+
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json}}</pre>
 </div>
 <div *ngIf="error == null && dataSource == null" class="p-48">
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
@@ -15,19 +19,14 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="code">
-            <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+        <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.value }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="wikiCode">
-            <mat-header-cell *matHeaderCellDef> Wiki Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.wikiCode }} </mat-cell>
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

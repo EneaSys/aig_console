@@ -4,7 +4,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { CityResourceService, CityDTO, TipoRitenutaResourceService, TipoRitenutaDTO, TipoCessionePrestazioneResourceService, TipoCessionePrestazioneDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { AigTipoRitenutaNewUpdateDialogComponent } from '../tipo-ritenuta-new-update-dialog/tipo-ritenuta-new-update-dialog.component';
 import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from '../tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
@@ -45,24 +45,23 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 	tipoCessionePrestazionePaginationSize: number;
 	tipoCessionePrestazioneLength: number;
 
-    
-    private initTipoCessionePrestazioneSearch() {
+	private initTipoCessionePrestazioneSearch() {
+		this.tipoCessionePrestazioneDC = ["id", "value","description", "buttons"];
+
 		this.tipoCessionePrestazionePaginationSize = 10;
+		
 
 		this.tipoCessionePrestazioneSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
-			code: [''],
+			value: [''],
+			
 		});
-
-		this.tipoCessionePrestazioneDC = ['id', 'code', 'name','wikiCode', 'buttons'];
-    }
+	}
     
     private clearFiltersTipoCessionePrestazione() {
 		this.tipoCessionePrestazioneFilters = {
 			idEquals: null,
 			nameContains: null,
-			codeEquals: null,
 			page: 0,
 		}
     }
@@ -116,12 +115,12 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 
 		this.tipoCessionePrestazioneFilters.idEquals = null;
 
-		this.tipoCessionePrestazioneFilters.nameContains = this.tipoCessionePrestazioneSearchFormGroup.controls.name.value;
+		this.tipoCessionePrestazioneFilters.valueContains = this.tipoCessionePrestazioneSearchFormGroup.controls.name.value;
 
 		this.searchTipoCessionePrestazione(0);
 	}
 
-    newTipoCessionePrestazione(){
+    newTipoCessionePrestazione(): void {
         this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: { tipoCessionePrestazione: {} } });
     }
     //			---- !TABLE AND SEARCH SECTION ----

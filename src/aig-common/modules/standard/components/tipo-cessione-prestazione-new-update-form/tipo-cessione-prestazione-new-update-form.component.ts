@@ -28,20 +28,16 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     @Input()
     tipoCessionePrestazione: TipoCessionePrestazioneDTO;
 
-    @Input()
-	returnToParent: boolean = false; 
-
-    @Output()
-	tipoCessionePrestazioneOutput = new EventEmitter<TipoCessionePrestazioneDTO>();
-
     tipoCessionePrestazioneNewUpdateForm: FormGroup;
+
+  
 
     ngOnInit(): void {
         this.tipoCessionePrestazioneNewUpdateForm = this._formBuilder.group({
-            id: [''],
-            name: ['', Validators.required],
-            code: ['', Validators.required],
-            wikiCode:['']
+            id:[''],
+            value: ['', Validators.required],
+            description: [''],
+
         })
         if (this.tipoCessionePrestazione!= null) {
             this.tipoCessionePrestazioneNewUpdateForm.patchValue(this.tipoCessionePrestazione);
@@ -79,9 +75,7 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     }
 
     newTipoCessionePrestazione() {
-        this.tipoCessionePrestazione = null;
-        this.tipoCessionePrestazioneOutput.emit(this.tipoCessionePrestazione);
-        this.setStep("form");
+            this.setStep("form");
     }
 
     private setStep(step: string){

@@ -40,7 +40,7 @@ export class AigRegimeFiscaleListTableComponent implements OnInit {
 
             this.eventService.reloadCurrentPage();
         } catch (e) {
-            this._snackBar.open(`Error during deleting warehouse: '${id}'. (${e.message})`, null, { duration: 5000, });
+            this._snackBar.open(`Error during deleting regime fiscale: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
     }
