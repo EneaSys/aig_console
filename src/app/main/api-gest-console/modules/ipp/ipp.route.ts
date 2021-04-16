@@ -1,7 +1,10 @@
 import { Routes } from '@angular/router';
+import { DeisgnatedCompanyResolver } from 'aig-common/modules/ipp/resolver/designated-company.resolver';
 import { DossierResolver } from 'aig-common/modules/ipp/resolver/dossier.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
+import { AigDesignatedCompanyDetailPageComponent } from './components/designated-company-detail-page/designated-company-detail-page.component';
+import { AigDesignatedCompanyListPageComponent } from './components/designated-company-list-page/designated-company-list-page.component';
 import { AigDossierDetailPageComponent } from './components/dossier-detail-page/dossier-detail-page.component';
 import { AigDossierListPageComponent } from './components/dossier-list-page/dossier-list-page.component';
 import { AigInsurancePolicyDetailPageComponent } from './components/insurance-policy-detail-page/insurance-policy-detail-page.component';
@@ -99,6 +102,31 @@ export const ippRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             dossier: DossierResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'designated-company',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigDesignatedCompanyListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigDesignatedCompanyDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            dossier: DeisgnatedCompanyResolver,
                         },
                     },
                 ]

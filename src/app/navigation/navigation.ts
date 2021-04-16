@@ -80,6 +80,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
+                id       : 'designated-company-list-page',
+                title    : 'Designated Company',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/designated-company',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'partecipation-list-page',
                 title    : 'Partecipation',
                 type     : 'item',

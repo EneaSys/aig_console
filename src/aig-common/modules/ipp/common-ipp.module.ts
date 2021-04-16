@@ -38,6 +38,9 @@ import { AigIppAutocompleteService } from './service/autocomplete-filter.service
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { ProcurementResolver } from './resolver/procurement.resolver';
+import { AigDesignatedCompanyListTableComponent } from './components/designated-compnay-list-table/designated-company-list-table.component';
+import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designated-company-new-update-form/designated-company-new-update-form.component';
+import { DeisgnatedCompanyResolver } from './resolver/designated-company.resolver';
 
 
 @NgModule({
@@ -71,6 +74,7 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
 
         DossierResolver,
         ProcurementResolver,
+        DeisgnatedCompanyResolver,
         AigAutocompleteDisplayService,
         AigIppAutocompleteService,
 
@@ -84,6 +88,7 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
         AigPreparationListTableComponent,
         AigPreparationStatusListTableComponent,
         AigInsurancePolicyListTableComponent,
+        AigDesignatedCompanyListTableComponent,
 
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
@@ -93,6 +98,8 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
         AigPreparationNewUpdateFormComponent,
         AigPreparationStatusNewUpdateFormComponent,
         AigInsurancePolicyNewUpdateFormComponent,
+        AigDesignatedCompanyNewUpdateFormComponent,
+    
         
     ],
     exports: [
@@ -104,6 +111,7 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
         AigPreparationListTableComponent,
         AigPreparationStatusListTableComponent,
         AigInsurancePolicyListTableComponent,
+        AigDesignatedCompanyListTableComponent,
         
         AigDossierNewUpdateFormComponent,
         AigProcurementNewUpdateFormComponent,
@@ -113,6 +121,7 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
         AigPreparationNewUpdateFormComponent,
         AigPreparationStatusNewUpdateFormComponent,
         AigInsurancePolicyNewUpdateFormComponent,
+        AigDesignatedCompanyNewUpdateFormComponent,
     ]
         
     

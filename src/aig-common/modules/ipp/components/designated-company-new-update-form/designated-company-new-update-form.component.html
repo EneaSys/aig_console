@@ -1,0 +1,42 @@
+<form *ngIf="step.form" [formGroup]="designatedCompanyNewUpdateForm" (ngSubmit)="submit()">
+
+
+    <mat-form-field>
+        <mat-label>Company Eopoo Code</mat-label>
+        <input formControlName="companyEopooCode" matInput required [matAutocomplete]="EopooAutocomplete">
+            <mat-autocomplete #EopooAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.person }}</mat-option>
+            </mat-autocomplete>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Note</mat-label>
+        <input formControlName="note" matInput required>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+        <mat-label>Partecipation</mat-label>
+        <input formControlName="partecipation" matInput required [matAutocomplete]="PartecipationAutocomplete">
+            <mat-autocomplete #PartecipationAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipations | async" [value]="partecipation">{{ partecipation.id }}</mat-option>
+            </mat-autocomplete>
+    </mat-form-field>
+    <br><br>
+
+    
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ designatedCompanyNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!designatedCompanyNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newDesignatedCompany()">Create New</button>
+</div>

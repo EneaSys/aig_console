@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ProcurementDTO } from 'aig-italianlegislation';
+import { EopooDTO } from 'aig-generic';
+import { PartecipationDTO, ProcurementDTO } from 'aig-italianlegislation';
 
 
 @Injectable({
@@ -8,5 +9,11 @@ import { ProcurementDTO } from 'aig-italianlegislation';
 export class AigAutocompleteDisplayService {
 	procurementDisplayFn(procurement?: ProcurementDTO): number | undefined {
         return procurement ? procurement.id : undefined;
+    }
+    eopooDisplayFn(eopoo?: EopooDTO): any | undefined {
+        return eopoo ? eopoo.person : undefined;
+    }
+    partecipationDisplayFn(partecipation?: PartecipationDTO): any | undefined {
+        return partecipation ? partecipation.id : undefined;
     }
 }

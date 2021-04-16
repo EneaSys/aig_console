@@ -49,6 +49,9 @@ import { AigPartecipationListPageComponent } from './components/partecipation-li
 import { AigPartecipationStatusListPageComponent } from './components/partecipation-status-list-page/partecipation-status-list-page.component';
 import { AigPreparationListPageComponent } from './components/preparation-list-page/preparation-list-page.component';
 import { AigPreparationStatusListPageComponent } from './components/preparation-status-list-page/preparation-status-list-page.component';
+import { AigDesignatedCompanyListPageComponent } from './components/designated-company-list-page/designated-company-list-page.component';
+import { AigDesignatedCompanyNewUpdateDialogComponent } from './components/designated-company-new-update-dialog/designated-company-new-update-dialog.component';
+import { AigDesignatedCompanyDetailPageComponent } from './components/designated-company-detail-page/designated-company-detail-page.component';
 
 
 @NgModule({
@@ -115,6 +118,7 @@ import { AigPreparationStatusListPageComponent } from './components/preparation-
         AigPreparationNewUpdateDialogComponent,
         AigPreparationStatusNewUpdateDialogComponent,
         AigInsurancePolicyNewUpdateDialogComponent,
+        AigDesignatedCompanyNewUpdateDialogComponent,
 
         AigPartecipationDetailPageComponent,
         AigDossierDetailPageComponent,
@@ -124,6 +128,9 @@ import { AigPreparationStatusListPageComponent } from './components/preparation-
         AigPreparationDetailPageComponent,
         AigPreparationStatusDetailPageComponent,
         AigInsurancePolicyDetailPageComponent,
+        AigDesignatedCompanyDetailPageComponent,
+
+        AigDesignatedCompanyListPageComponent,
     ],
     exports: [
 
@@ -138,6 +145,7 @@ import { AigPreparationStatusListPageComponent } from './components/preparation-
         AigPreparationNewUpdateDialogComponent,
         AigPreparationStatusNewUpdateDialogComponent,
         AigInsurancePolicyNewUpdateDialogComponent,
+        AigDesignatedCompanyNewUpdateDialogComponent,
 
     ],
 })
