@@ -113,6 +113,7 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
+            <!--
             <agm-map [zoom]="5" [latitude]="lat" [longitude]="lng" (mapReady)="onMapReady($event)"></agm-map>
             <mat-list role="list">
                 <mat-list-item role="listitem" *ngFor="let point of pointList">
@@ -123,7 +124,7 @@
                 <button (click)="deleteSelectedShape()">cancella</button>
                 Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
             </mat-card>
-
+-->
             <aig-procurement-lot-list-table [displayColumns]="procurementLotDisplayColumns" [dataSource]="procurementLotDTOs">
             </aig-procurement-lot-list-table>
 
