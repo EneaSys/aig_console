@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { ReferentDTO, ReferentResourceService } from 'aig-generic';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { EopooDTO, ReferentDTO, ReferentResourceService } from 'aig-generic';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigReferentNewUpdateDialogComponent } from '../referent-new-update-dialog/referent-new-update-dialog.component';
 
 @Component({
@@ -14,6 +17,8 @@ import { AigReferentNewUpdateDialogComponent } from '../referent-new-update-dial
 export class AigReferentListPageComponent extends GenericComponent {
     constructor(
         private referentResourceService: ReferentResourceService,
+        private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
         private _snackBar: MatSnackBar,
@@ -42,16 +47,17 @@ export class AigReferentListPageComponent extends GenericComponent {
     referentPaginationSize: number;
     referentLength: number;
 
+    filteredEopoo: Observable<EopooDTO[]>;
+
     private initReferentSearch() {
         this.referentPaginationSize = 10;
 
         this.referentSearchFormGroup = this._formBuilder.group({
             id: [''],
-            firstname: [''],
-            lastname: [''],
-            position: [''],
             eopooTaxNumber: [''],
         });
+
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.referentSearchFormGroup.controls['eopooTaxNumber'].valueChanges);
 
         this.referentDC = ["id", "eopooId", "eopooTaxNumber", "firstname", "lastname", "position", "buttons"];
     }
@@ -59,6 +65,7 @@ export class AigReferentListPageComponent extends GenericComponent {
     private clearFiltersReferent() {
         this.referentFilters = {
             idEquals: null,
+            eopooIdEquals: null,
             page: 0,
         }
     }
@@ -68,6 +75,8 @@ export class AigReferentListPageComponent extends GenericComponent {
 
 		this.referentFilters.page = page;
 		this.referentFilters.size = this.referentPaginationSize;
+
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.referentSearchFormGroup.controls['eopooTaxNumber'].valueChanges);
 
 		try {
 			this.referentLength = await this.referentResourceService.countReferentsUsingGET(this.referentFilters).toPromise();
@@ -111,6 +120,10 @@ export class AigReferentListPageComponent extends GenericComponent {
 		}
 
 		this.referentFilters.idEquals = null;
+
+        if (this.referentSearchFormGroup.controls.eopooTaxNumber.value) {
+            this.referentFilters.eopooIdEquals = this.referentSearchFormGroup.controls.eopooTaxNumber.value.id;
+        }
 
 		this.searchReferent(0);
 	}

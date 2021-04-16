@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { AddressDTO, AddressResourceService } from 'aig-generic';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AddressDTO, AddressResourceService, EopooDTO } from 'aig-generic';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigAddressNewUpdateModalComponent } from '../address-new-update-modal/address-new-update-modal.component';
 
 @Component({
@@ -14,6 +17,8 @@ import { AigAddressNewUpdateModalComponent } from '../address-new-update-modal/a
 export class AigAddressListPageComponent extends GenericComponent {
     constructor(
         private addressResourceService: AddressResourceService,
+        private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
         private _snackBar: MatSnackBar,
@@ -42,14 +47,21 @@ export class AigAddressListPageComponent extends GenericComponent {
     addressPaginationSize: number;
     addressLength: number;
 
+    filteredEopoo: Observable<EopooDTO[]>;
+    filteredAddress: Observable<AddressDTO[]>;
+
     private initAddressSearch() {
         this.addressPaginationSize = 10;
 
         this.addressSearchFormGroup = this._formBuilder.group({
             id: [''],
-            name: [''],
+            eopooTaxNumber: [''],
             address: [''],
         });
+
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.addressSearchFormGroup.controls['eopooTaxNumber'].valueChanges);
+
+        this.filteredAddress = this.genericAutocompleteFilterService.filterAddress(this.addressSearchFormGroup.controls['address'].valueChanges);
 
         this.addressDC = ["eopooId", "eopooTaxNumber", "id", "name", "address", "city", "buttons"];
     }
@@ -57,61 +69,75 @@ export class AigAddressListPageComponent extends GenericComponent {
     private clearFiltersAddress() {
         this.addressFilters = {
             idEquals: null,
+            eopooIdEquals: null,
+            addressContains: null,
             page: 0,
         }
     }
 
     private async searchAddress(page: number) {
-		this.addressDTOs = null;
+        this.addressDTOs = null;
 
-		this.addressFilters.page = page;
-		this.addressFilters.size = this.addressPaginationSize;
+        this.addressFilters.page = page;
+        this.addressFilters.size = this.addressPaginationSize;
 
-		try {
-			this.addressLength = await this.addressResourceService.countAddressesUsingGET(this.addressFilters).toPromise();
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.addressSearchFormGroup.controls['eopooTaxNumber'].valueChanges);
 
-			if(this.addressLength == 0) {
-				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-				this.addressDTOs = [];
-				return;
-			}
+        this.filteredAddress = this.genericAutocompleteFilterService.filterAddress(this.addressSearchFormGroup.controls['address'].valueChanges);
 
-			this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET(this.addressFilters).toPromise();
-		} catch (e) {
-			this.addressError = e;
-		}
+        try {
+            this.addressLength = await this.addressResourceService.countAddressesUsingGET(this.addressFilters).toPromise();
+
+            if (this.addressLength == 0) {
+                this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
+                this.addressDTOs = [];
+                return;
+            }
+
+            this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET(this.addressFilters).toPromise();
+        } catch (e) {
+            this.addressError = e;
+        }
     }
 
     showAllAddress() {
-		this.resetFiltersAddress()
+        this.resetFiltersAddress()
     }
 
     resetFiltersAddress() {
-		this.addressSearchFormGroup.reset();
-		this.clearFiltersAddress();
-		this.searchAddress(0);
+        this.addressSearchFormGroup.reset();
+        this.clearFiltersAddress();
+        this.searchAddress(0);
     }
 
     addressPaginationEvent(pageEvent: PageEvent) {
-		this.addressPaginationSize = pageEvent.pageSize;
-		this.searchAddress(pageEvent.pageIndex);
-	}
+        this.addressPaginationSize = pageEvent.pageSize;
+        this.searchAddress(pageEvent.pageIndex);
+    }
 
     addressSearchWithFilter() {
-		let searchedId = this.addressSearchFormGroup.controls.id.value;
+        let searchedId = this.addressSearchFormGroup.controls.id.value;
 
-		if(searchedId != null) {
-			this.clearFiltersAddress();
-			this.addressSearchFormGroup.reset();
-			this.addressFilters.idEquals = searchedId;
-			this.searchAddress(0);
-			return;
-		}
+        if (searchedId != null) {
+            this.clearFiltersAddress();
+            this.addressSearchFormGroup.reset();
+            this.addressFilters.idEquals = searchedId;
+            this.searchAddress(0);
+            return;
+        }
 
-		this.addressFilters.idEquals = null;
+        this.addressFilters.idEquals = null;
 
-		this.searchAddress(0);
-	}
+        if (this.addressSearchFormGroup.controls.eopooTaxNumber.value) {
+            this.addressFilters.eopooIdEquals = this.addressSearchFormGroup.controls.eopooTaxNumber.value.id;
+        }
+
+        if (this.addressSearchFormGroup.controls.address.value) {
+            this.addressFilters.addressContains = this.addressSearchFormGroup.controls.address.value;
+        }
+
+        this.searchAddress(0);
+    }
 
     newAddress() {
         this.dialog.open(AigAddressNewUpdateModalComponent, { data: { address: {} } });

@@ -5,7 +5,7 @@
         <div class="content">
             <div>
                 <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-                    <button mat-raised-button>Resetta filtri</button>
+                    <button mat-raised-button (click)="showAllReferent()">Resetta filtri</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
                     <span class="h3">Filtri</span>
@@ -24,26 +24,11 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>First name</mat-label>
-                                        <input matInput type="text" formControlName="firstname">
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Last name</mat-label>
-                                        <input matInput type="text" formControlName="lastname">
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Position</mat-label>
-                                        <input matInput type="text" formControlName="position">
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Eopoo Tax Number</mat-label>
-                                        <input matInput type="text" formControlName="eopooTaxNumber">
+                                        <input matInput type="text" formControlName="eopooTaxNumber" [matAutocomplete]="eopooAutocomplete">
+										<mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+											<mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
+										</mat-autocomplete>
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
