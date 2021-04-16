@@ -82,6 +82,10 @@ import { AigWarehouseHandlingItemDetailPageComponent } from './components/wareho
 import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 import { AigPurchaseComplexDialogComponent } from './components/purchase-complex-dialog/purchase-complex-dialog.component';
 import { DashboardWarehouseManagerComponent } from './components/dashboard-warehouse-manager/dashboard-warehouse-manager.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
+import { AgmCoreModule } from '@agm/core';
+import { AnalyticsDashboardService } from './components/dashboard-warehouse-manager/dashboard-warehouse-manager.service';
 
 
 
@@ -121,9 +125,18 @@ import { DashboardWarehouseManagerComponent } from './components/dashboard-wareh
         MatAutocompleteModule,
         MatSlideToggleModule,
 
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyD81ecsCj4yYpcXSLFcYU97PvRsE_X8Bx8'
+        }),
+        ChartsModule,
+        NgxChartsModule,
+
+        FuseSharedModule,
+        FuseWidgetModule
+
     ],
     providers: [
-
+        AnalyticsDashboardService,
     ],
     declarations: [
         AigNewCustomBuyDialogComponent,
