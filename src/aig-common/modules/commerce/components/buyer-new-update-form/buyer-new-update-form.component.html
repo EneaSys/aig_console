@@ -3,7 +3,10 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Eopoo Code</mat-label>
-            <input formControlName="eopooCode" matInput required>
+            <input type="text" matInput formControlName="eopooCode" required [matAutocomplete]="eopooCodeAutocomplete">
+            <mat-autocomplete #eopooCodeAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooCodeDisplayFn">
+                <mat-option *ngFor="let eopooCode of filteredEoopoCodes | async" [value]="eopooCode">{{ eopooCode.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 

@@ -4,6 +4,7 @@ import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { BuyerDTO, BuyerResourceService, SellerDTO } from "aig-commerce";
 import { EventService } from "aig-common/event-manager/event.service";
+import { EopooDTO } from "aig-generic";
 import { Observable } from "rxjs";
 import { AigAutocompleteDisplayService } from "../../service/autocomplete-display.service";
 import { AigCommerceAutocompleteService } from "../../service/autocomplete-filter.service";
@@ -39,6 +40,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     buyerNewUpdateForm: FormGroup;
 
     filteredSellers: Observable<SellerDTO[]>;
+    filteredEoopoCode: Observable<EopooDTO[]>;
 
     ngOnInit(): void {
         this.buyerNewUpdateForm = this._formBuilder.group({
@@ -60,6 +62,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         }
         
         this.filteredSellers = this.commerceAutocompleteService.filterSeller(this.buyerNewUpdateForm.controls['seller'].valueChanges);
+        this.filteredEoopoCode = this.commerceAutocompleteService.filterEopoo(this.buyerNewUpdateForm.controls['eopooCode'].valueChanges);
 
     }
 

@@ -3,6 +3,7 @@ import { CatalogItemResourceService, CatalogResourceService, InventoryCategoryRe
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { combineAll, concatAll, map, mergeMap, startWith, switchMap } from 'rxjs/operators';
 import { BuyerResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
+import { EopooResourceService } from 'aig-generic';
 
 @Injectable({
 	providedIn: 'root'
@@ -22,7 +23,8 @@ export class AigCommerceAutocompleteService {
         private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,  
         private purchaseResourceService: PurchaseResourceService,  
         private purchaseItemResourceService: PurchaseItemResourceService,       
-        private warehouseHandlingResourceService: WarehouseHandlingResourceService,        
+        private warehouseHandlingResourceService: WarehouseHandlingResourceService,
+		private eopooResourceService: EopooResourceService,    
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -222,7 +224,6 @@ export class AigCommerceAutocompleteService {
         return observable.pipe(
             startWith(''),
             switchMap((value: any) => {
-                console.log("banana")
                 if (value && value != null) {
 					let filter = {
 						warehouseHandlingItemDateEquals: value
@@ -260,6 +261,20 @@ export class AigCommerceAutocompleteService {
 						purchaseItemNameContains: value
 					};
                     return this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filter);
+                }
+            })
+        )
+    }
+
+	filterEopoo(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value && value.length > 1) {
+					let filter = {
+						eopooNameContains: value
+					};
+                    return this.eopooResourceService.getAllEopoosUsingGET(filter);
                 }
             })
         )
