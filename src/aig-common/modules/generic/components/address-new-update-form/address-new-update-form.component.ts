@@ -10,6 +10,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-address-new-update-form',
@@ -30,6 +31,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
         public autocompleteDisplayService: AigAutocompleteDisplayService,
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
         private addressResourceService: AddressResourceService,
