@@ -37,6 +37,7 @@ import { DossierResolver } from './resolver/dossier.resolver';
 import { AigIppAutocompleteService } from './service/autocomplete-filter.service';
 import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { CommonGenericModule } from '../generic/common-generic.module';
+import { ProcurementResolver } from './resolver/procurement.resolver';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { CommonGenericModule } from '../generic/common-generic.module';
     providers: [
 
         DossierResolver,
+        ProcurementResolver,
         AigAutocompleteDisplayService,
         AigIppAutocompleteService,
 

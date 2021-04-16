@@ -64,9 +64,9 @@ italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 		
 
 		this.procurementSearchFormGroup = this._formBuilder.group({
-			id: ['', Validators.required],
+			id: [''],
 			description: [''],
-			ref: ['',Validators.required],
+			ref: [''],
 			code: [''],
 			contractorEopoo: [''],
 			ippModality: [''],
@@ -80,6 +80,15 @@ italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 	private clearFiltersProcurement() {
 		this.procurementFilters = {
 			idEquals: null,
+			descriptionContains: null,
+			refEquals: null,
+			codeEquals: null,
+			contractorEopooEquals: null,
+			ippModalityEquals: null,
+			ippProcedureEquals: null,
+			ippSectorEquals: null,
+			totalAmountEquals: null,
+			procurementStatusEquals: null,
 
 		}
 	}
@@ -89,7 +98,7 @@ italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 
 		this.procurementFilters.page = page;
 		this.procurementFilters.size = this.procurementPaginationSize;
-		//this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterItalianPublicProcurementModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);
+		/*this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);*/
 
 		try {                                                                       
 			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();  
@@ -137,6 +146,7 @@ italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 			return;
 		}
 		this.procurementFilters.idEquals = null;
+		this.procurementFilters.descriptionContains = this.procurementSearchFormGroup.controls.description.value;
 
 	
 
