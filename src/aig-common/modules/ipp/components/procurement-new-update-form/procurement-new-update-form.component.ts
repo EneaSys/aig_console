@@ -11,7 +11,7 @@ import { EopooDTO } from 'aig-generic';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
 import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
 @Component({
     selector: 'aig-procurement-new-update-form',

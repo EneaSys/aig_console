@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { DossierResolver } from 'aig-common/modules/ipp/resolver/dossier.resolver';
+import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
 import { AigDossierDetailPageComponent } from './components/dossier-detail-page/dossier-detail-page.component';
@@ -73,7 +74,7 @@ export const ippRoute: Routes = [
                         component: AigProcurementLotDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                      //      eopoo: EopooResolver,
+                           procurementLot: ProcurementLotResolver,
                         },
                     },
                 ]

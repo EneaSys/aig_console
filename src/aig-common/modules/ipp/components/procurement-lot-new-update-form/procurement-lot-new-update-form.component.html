@@ -51,23 +51,33 @@
         </mat-form-field>
     </div>
     
+     <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement ipp Lot Type </mat-label>
+            <input formControlName="ippLotType" matInput [matAutocomplete]="ippLotTypeAutocomplete">
+            <mat-autocomplete #ippLotTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+                <mat-option *ngFor="let ippLotType of filteredIppLotType | async" [value]="ippLotType">{{ ippLotType.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    
+    
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement ipp Lot Category </mat-label>
+            <input formControlName="ippLotCategory" matInput [matAutocomplete]="ippLotCategoryAutocomplete">
+            <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategoryType | async" [value]="ippLotCategoryType">{{ ippLotCategory.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
         
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" [style.width.%]=33>
-            <mat-label>Procurement ipp Lot Type Code</mat-label>
-            <input formControlName="ippLotTypeCode" matInput required>
-        </mat-form-field>
-    
-        <mat-form-field appearance="outline" [style.width.%]=33>
-            <mat-label>Procurement ipp Lot Category Code</mat-label>
-            <input formControlName="ippLotCategoryCode" matInput required>
-        </mat-form-field>
-    
+        
         <mat-form-field appearance="outline" [style.width.%]=33>
             <mat-label>Procurement Cpv Code</mat-label>
             <input formControlName="cpvCode" matInput required>
         </mat-form-field>
+
     </div>
+   
 
 
 <div fxLayout="row" fxLayoutAlign="end top">

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CityDTO, ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
+import { CityDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteDisplayService {
@@ -18,6 +18,17 @@ export class AigStandardAutocompleteDisplayService {
     ippModalityDisplayFn (italianPublicProcurementModality?: ItalianPublicProcurementModalityDTO): string | undefined {
         return italianPublicProcurementModality ? italianPublicProcurementModality.name : undefined;
     }
+
+    ippLotTypeDisplayFn (italianPublicProcurementLotType?: ItalianPublicProcurementLotTypeDTO): string | undefined {
+        return italianPublicProcurementLotType ? italianPublicProcurementLotType.name : undefined;
+    }
+
+    ippLotCategoryDisplayFn (italianPublicProcurementLotCategory?: ItalianPublicProcurementLotCategoryDTO): string | undefined {
+        return italianPublicProcurementLotCategory ? italianPublicProcurementLotCategory.name : undefined;
+    }
+
+
+
 
 
 }

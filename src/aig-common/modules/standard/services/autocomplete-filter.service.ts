@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { CityResourceService, ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { CityResourceService, ItalianPublicProcurementLotCategoryResourceService, ItalianPublicProcurementLotTypeResourceService, ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
@@ -11,6 +11,8 @@ export class AigStandardAutocompleteFilterService {
         private ippProcedureResourceService: ItalianPublicProcurementProcedureResourceService,
         private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
         private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
+        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
     ) {}
 
     filterCity(observable: Observable<any>) {
@@ -67,6 +69,38 @@ export class AigStandardAutocompleteFilterService {
                         nameContains: value
                     }
                     return this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterIppLotType(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 2) {
+                    let filter = {
+                        nameContains: value
+                    }
+                    return this. ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterIppLotCategory(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 2) {
+                    let filter = {
+                        nameContains: value
+                    }
+                    return this. ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
                 } else {
                     return of([]);
                 }

@@ -35,9 +35,10 @@ import { AigInsurancePolicyNewUpdateFormComponent } from './components/insurance
 import { AigInsurancePolicyListTableComponent } from './components/insurance-policy-list-table/insurance-policy-list-table.component';
 import { DossierResolver } from './resolver/dossier.resolver';
 import { AigIppAutocompleteService } from './service/autocomplete-filter.service';
-import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
+import { AigIppAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { ProcurementResolver } from './resolver/procurement.resolver';
+import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
 
 
 @NgModule({
@@ -71,8 +72,9 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
 
         DossierResolver,
         ProcurementResolver,
-        AigAutocompleteDisplayService,
+        AigIppAutocompleteDisplayService,
         AigIppAutocompleteService,
+        ProcurementLotResolver,
 
     ],
     declarations: [

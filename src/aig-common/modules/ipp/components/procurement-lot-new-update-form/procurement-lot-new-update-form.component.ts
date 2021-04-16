@@ -3,8 +3,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 import { ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
+import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
+import { Observable } from 'rxjs';
+import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
 @Component({
     selector: 'aig-procurement-lot-new-update-form',
@@ -23,6 +28,10 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private procurementLotResourceService: ProcurementLotResourceService,
+        private standardAutocompleteFilterService : AigStandardAutocompleteFilterService,
+        private standardAutocompleteDisplayService : AigStandardAutocompleteDisplayService,
+        private ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
+        
         private eventService: EventService,
     ) { }
 
@@ -30,6 +39,12 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
     procurementLot: ProcurementLotDTO;
 
     procurementLotNewUpdateForm: FormGroup;
+
+    filteredIppLotType: Observable<ItalianPublicProcurementLotTypeDTO[]>;
+    filteredIppLotCategory: Observable<ItalianPublicProcurementLotCategoryDTO[]>;
+
+
+
 
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
@@ -41,8 +56,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             securityAmount: [''],
             istatCode: [''],
             nustCode: [''],
-            ippLotTypeCode: ['', Validators.required],
-            ippLotCategoryCode: ['', Validators.required],
+            ippLotType: ['', Validators.required],
+            ippLotCategory: ['', Validators.required],
             cpvCode: ['', Validators.required],
             awardCriterionCode: [''],
             procurementLotStatusCode: [''],
@@ -51,6 +66,10 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         if (this.procurementLot != null) {
             this.procurementLotNewUpdateForm.patchValue(this.procurementLot);
         }
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['ippLotType'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotNewUpdateForm.controls['ippLotCategory'].valueChanges);
+
+
     }
 
     async submit() {
@@ -66,8 +85,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             cig: this.procurementLotNewUpdateForm.value.cig,
             cpvCode: this.procurementLotNewUpdateForm.value.cpvCode,
             description: this.procurementLotNewUpdateForm.value.description,
-            ippLotCategoryCode: this.procurementLotNewUpdateForm.value.ippLotCategoryCode,
-            ippLotTypeCode: this.procurementLotNewUpdateForm.value.ippLotTypeCode,
+            ippLotCategoryCode: this.procurementLotNewUpdateForm.value.ippLotCategory.id,
+            ippLotTypeCode: this.procurementLotNewUpdateForm.value.ippLotType,
             offerExpiryDate: this.procurementLotNewUpdateForm.value.offerExpiryDate,
             id: this.procurementLotNewUpdateForm.value.id,
             istatCode: this.procurementLotNewUpdateForm.value.istatCode,

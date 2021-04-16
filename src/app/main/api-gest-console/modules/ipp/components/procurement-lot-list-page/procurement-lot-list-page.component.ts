@@ -136,29 +136,7 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
         this.selectedArea = google.maps.geometry.spherical.computeArea(
             path
         );
-    }
-    
-    newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
 
 
 
@@ -186,13 +164,6 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
         }
         return value;
     }
-
-
-
-
-
-
-
 
 
 
@@ -229,7 +200,7 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
 
 
     // IPP LOT
-    procurementLotDisplayColumns: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate'];
+    procurementLotDisplayColumns: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate','buttons'];
     procurementLotDTOs: ProcurementLotDTO[];
     procurementLotError: any;
 
@@ -291,4 +262,7 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
         }
     }
 
+    newProcurementLot(): void {
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
+    }
 }
