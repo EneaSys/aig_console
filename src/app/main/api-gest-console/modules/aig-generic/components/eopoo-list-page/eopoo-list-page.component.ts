@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 
 @Component({
 	templateUrl: './eopoo-list-page.component.html',
@@ -20,6 +21,7 @@ export class AigEopooListPageComponent extends GenericComponent {
 		private eopooResourceService: EopooResourceService,
 		public autocompleteDisplayService: AigAutocompleteDisplayService,
 		private genericAutocompleteService: AigGenericAutocompleteFilterService,
+		public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,

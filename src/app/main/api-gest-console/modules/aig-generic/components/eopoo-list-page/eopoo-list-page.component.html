@@ -33,7 +33,7 @@
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>TaxId</mat-label>
                                         <input matInput formControlName="taxId" [matAutocomplete]="eopooAutocomplete">
-										<mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooDisplayFn">
+										<mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
 											<mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
 										</mat-autocomplete>
                                     </mat-form-field>
