@@ -39,6 +39,10 @@ import { AigIppAutocompleteDisplayService } from './service/autocomplete-display
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { ProcurementResolver } from './resolver/procurement.resolver';
 import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
+import { AigDesignatedCompanyListTableComponent } from './components/designated-compnay-list-table/designated-company-list-table.component';
+import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designated-company-new-update-form/designated-company-new-update-form.component';
+import { DeisgnatedCompanyResolver } from './resolver/designated-company.resolver';
+import { AigAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
 
 
 @NgModule({
@@ -73,7 +77,9 @@ import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
         DossierResolver,
         ProcurementResolver,
         AigIppAutocompleteDisplayService,
-        AigIppAutocompleteService,
+        DeisgnatedCompanyResolver,
+        AigAutocompleteDisplayService,
+        AigIppAutocompleteDisplayService,
         ProcurementLotResolver,
 
     ],
@@ -86,6 +92,7 @@ import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
         AigPreparationListTableComponent,
         AigPreparationStatusListTableComponent,
         AigInsurancePolicyListTableComponent,
+        AigDesignatedCompanyListTableComponent,
 
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
@@ -95,6 +102,8 @@ import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
         AigPreparationNewUpdateFormComponent,
         AigPreparationStatusNewUpdateFormComponent,
         AigInsurancePolicyNewUpdateFormComponent,
+        AigDesignatedCompanyNewUpdateFormComponent,
+    
         
     ],
     exports: [
@@ -106,6 +115,7 @@ import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
         AigPreparationListTableComponent,
         AigPreparationStatusListTableComponent,
         AigInsurancePolicyListTableComponent,
+        AigDesignatedCompanyListTableComponent,
         
         AigDossierNewUpdateFormComponent,
         AigProcurementNewUpdateFormComponent,
@@ -115,6 +125,7 @@ import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
         AigPreparationNewUpdateFormComponent,
         AigPreparationStatusNewUpdateFormComponent,
         AigInsurancePolicyNewUpdateFormComponent,
+        AigDesignatedCompanyNewUpdateFormComponent,
     ]
         
     
