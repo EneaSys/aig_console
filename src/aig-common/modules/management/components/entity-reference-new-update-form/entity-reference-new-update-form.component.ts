@@ -30,6 +30,9 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
+
+    isUpdate: boolean = false;
+
     entityReference: EntityReferenceDTO;
 
     entityReferenceNewUpdateForm: FormGroup;
@@ -46,6 +49,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
 
         if (this.entityReference != null) {
+            this.isUpdate = true;
             this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
         }
 

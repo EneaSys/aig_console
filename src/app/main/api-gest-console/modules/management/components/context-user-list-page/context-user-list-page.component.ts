@@ -113,15 +113,15 @@ export class AigContextUserListPageComponent extends GenericComponent {
 		}
 		this.contextUserFilters.idEquals = null;
 
-		this.contextUserFilters.userCodeContains = this.contextUserSearchFormGroup.controls.userCode.value;
-
+		if(this.contextUserSearchFormGroup.controls.userCode.value){
+			this.contextUserFilters.userCodeContains = this.contextUserSearchFormGroup.controls.userCode.value;
+		}
+		
 		this.searchContextUser(0);
 	}
 
 	newContextUser(): void {
 		this.dialog.open(AigContextUserNewUpdateModalComponent, { data: { contextUser: {} } });
-   }
+    }
 
 }
-
-

@@ -11,7 +11,7 @@
     <div *ngIf="!entityReference.applicationModule" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Application Module</mat-label>
-            <input formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <input type="text" formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
             <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
                 <mat-option *ngFor="let applicationModule of filteredApplicationModules | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
             </mat-autocomplete>
