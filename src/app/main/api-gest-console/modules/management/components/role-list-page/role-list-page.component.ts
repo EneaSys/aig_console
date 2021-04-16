@@ -62,6 +62,7 @@ export class AigRoleListPageComponent extends GenericComponent {
 		this.roleFilters = {
 			idEquals: null,
 			nameContains: null,
+			roleCodeEquals: null,
 			page: 0,
 		}
 	}
@@ -112,9 +113,16 @@ export class AigRoleListPageComponent extends GenericComponent {
 			this.searchRole(0);
 			return;
 		}
-		this.roleFilters.idEquals = null;
 
-		this.roleFilters.nameContains = this.roleSearchFormGroup.controls.name.value;
+		if(this.roleSearchFormGroup.controls.name.value){
+			this.roleFilters.nameContains = this.roleSearchFormGroup.controls.name.value;
+		}
+
+		if(this.roleSearchFormGroup.controls.roleCode.value){
+			this.roleFilters.roleCodeEquals = this.roleSearchFormGroup.controls.roleCode.value;
+		}
+
+		this.roleFilters.idEquals = null;
 
 		this.searchRole(0);
 	}
