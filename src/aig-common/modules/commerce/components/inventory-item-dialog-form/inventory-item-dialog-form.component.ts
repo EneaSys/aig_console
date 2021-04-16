@@ -36,7 +36,7 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 	filteredProducers: Observable<ProducerDTO[]>;
 	filteredInventoryCategories: Observable<InventoryCategoryDTO[]>;
-	
+
 	inventoryItemNewUpdateForm: FormGroup;
 
 	ngOnInit(): void {
@@ -67,13 +67,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		this._fuseProgressBarService.show();
 		this.setStep("loading");
 
-		let inventoryItem: InventoryItemDTO = {
-			id: this.inventoryItemNewUpdateForm.controls.id.value,
-			name: this.inventoryItemNewUpdateForm.controls.name.value,
-			inventoryCategoryId: this.inventoryItemNewUpdateForm.controls.inventoryCategory.value.id,
-			producerId: this.inventoryItemNewUpdateForm.controls.producer.value.id,
-		}
- 
+		let inventoryItem: InventoryItemDTO = this.inventoryItemNewUpdateForm.value;
+		inventoryItem.producerId = this.inventoryItemNewUpdateForm.value.producer.id;
+		inventoryItem.inventoryCategoryId = this.inventoryItemNewUpdateForm.value.inventoryCategory.id;
 
 		try {
 			let postOrPut;
