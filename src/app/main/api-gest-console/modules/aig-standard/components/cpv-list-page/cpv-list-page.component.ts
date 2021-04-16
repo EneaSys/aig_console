@@ -72,7 +72,7 @@ export class AigCpvListPageComponent extends GenericComponent {
 		this.cpvFilters.size = this.cpvPaginationSize;
 
 		try {
-			this.cpvLength = await this.cpvResourceService.countCpvsUsingGET().toPromise();
+			this.cpvLength = await this.cpvResourceService.countCpvsUsingGET(this.cpvFilters).toPromise();
 
 			if(this.cpvLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigCpvListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.cpvDTOs = await this.cpvResourceService.getAllCpvsUsingGET().toPromise();
+			this.cpvDTOs = await this.cpvResourceService.getAllCpvsUsingGET(this.cpvFilters).toPromise();
 		} catch (e) {
 			this.cpvError = e;
 		}

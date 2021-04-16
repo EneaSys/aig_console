@@ -46,26 +46,24 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 
     
     private initTipoCassaSearch() {
+		this.tipoCassaDC = ["id", "value","description", "buttons"];
+
 		this.tipoCassaPaginationSize = 10;
+		
 
 		this.tipoCassaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
-			code: [''],
+			value: [''],
+			
 		});
-
-		this.tipoCassaDC = ['id', 'code', 'name','wikiCode', 'buttons'];
-    }
-    
-    private clearFiltersTipoCassa() {
+	}
+	private clearFiltersTipoCassa() {
 		this.tipoCassaFilters = {
-			idEquals: null,
-			nameContains: null,
-			codeEquals: null,
+			tipoCassaIDEquals: null,
+			tipoCassaNameContains: null,
 			page: 0,
 		}
     }
-    
     private async searchTipoCassa(page: number) {
 		this.tipoCassaDTOs = null;
 
@@ -114,9 +112,9 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 			return;
 		}
 
-		this.tipoCassaFilters.idEquals = null;
+		this.tipoCassaFilters.tipoCassaIDEquals = null;
 
-		this.tipoCassaFilters.nameContains = this.tipoCassaSearchFormGroup.controls.name.value;
+		this.tipoCassaFilters.tipoCassaNameContains = this.tipoCassaSearchFormGroup.controls.name.value;
 
 		this.searchTipoCassa(0);
 	}

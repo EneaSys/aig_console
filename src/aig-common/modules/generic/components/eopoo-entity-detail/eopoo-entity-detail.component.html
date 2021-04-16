@@ -1,0 +1,16 @@
+<div>
+    <div class="h3 m-16 mt-0 mb-0">Detail</div>
+    <hr size=”1″ width=”300″ color="black" noshade>
+
+    <p>Id: {{ eopooDTO.id }}</p>
+    <p>Type: {{ eopooDTO.eopooType.name }}</p>
+    <p>Name: {{ eopooDTO | eopooName }}</p>
+    <p>Tax Number: {{ eopooDTO.taxNumber }}</p>
+    <div *ngIf="eopooDTO.person">
+        <hr />
+        <p>Sesso: {{ eopooDTO.person.sex }}</p>
+        <p>Data nascita: {{ eopooDTO.person.bornDate }}</p>
+        <p>Città nascita: {{ eopooDTO.person.city.name }}</p>
+    </div>
+
+</div>

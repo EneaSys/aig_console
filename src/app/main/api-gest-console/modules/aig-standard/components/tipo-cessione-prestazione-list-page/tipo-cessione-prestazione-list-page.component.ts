@@ -60,8 +60,8 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
     
     private clearFiltersTipoCessionePrestazione() {
 		this.tipoCessionePrestazioneFilters = {
-			idEquals: null,
-			nameContains: null,
+			tipoCessionePrestazioneIDEquals: null,
+			tipoCessionePrestazioneNameContains: null,
 			page: 0,
 		}
     }
@@ -73,7 +73,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 		this.tipoCessionePrestazioneFilters.size = this.tipoCessionePrestazionePaginationSize;
 
 		try {
-			this.tipoCessionePrestazioneLength = await this.tipoCessionePrestazioneResourceService.countTipoCessionePrestazionesUsingGET().toPromise();
+			this.tipoCessionePrestazioneLength = await this.tipoCessionePrestazioneResourceService.countTipoCessionePrestazionesUsingGET(this.tipoCessionePrestazioneFilters).toPromise();
 
 			if(this.tipoCessionePrestazioneLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -81,7 +81,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 				return;
 			}
 
-			this.tipoCessionePrestazioneDTOs = await this.tipoCessionePrestazioneResourceService.getAllTipoCessionePrestazionesUsingGET().toPromise();
+			this.tipoCessionePrestazioneDTOs = await this.tipoCessionePrestazioneResourceService.getAllTipoCessionePrestazionesUsingGET(this.tipoCessionePrestazioneFilters).toPromise();
 		} catch (e) {
 			this.tipoCessionePrestazioneError = e;
 		}
@@ -115,7 +115,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 
 		this.tipoCessionePrestazioneFilters.idEquals = null;
 
-		this.tipoCessionePrestazioneFilters.valueContains = this.tipoCessionePrestazioneSearchFormGroup.controls.name.value;
+		this.tipoCessionePrestazioneFilters.nameContains = this.tipoCessionePrestazioneSearchFormGroup.controls.name.value;
 
 		this.searchTipoCessionePrestazione(0);
 	}

@@ -72,7 +72,7 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 		this.ippProcedureFilters.size = this.ippProcedurePaginationSize;
 
 		try {
-			this.ippProcedureLength = await this.ippProcedureResourceService.countItalianPublicProcurementProceduresUsingGET().toPromise();
+			this.ippProcedureLength = await this.ippProcedureResourceService.countItalianPublicProcurementProceduresUsingGET(this.ippProcedureFilters).toPromise();
 
 			if(this.ippProcedureLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippProcedureDTOs = await this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET().toPromise();
+			this.ippProcedureDTOs = await this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(this.ippProcedureFilters).toPromise();
 		} catch (e) {
 			this.ippProcedureError = e;
 		}

@@ -46,26 +46,26 @@ export class AigEsigibilitaIvaListPageComponent extends GenericComponent {
 	esigibilitaIvaLength: number;
 
     
-    private initEsigibilitaIvaSearch() {
+	private initEsigibilitaIvaSearch() {
+		this.esigibilitaIvaDC = ["id", "value","description", "buttons"];
+
 		this.esigibilitaIvaPaginationSize = 10;
+		
 
 		this.esigibilitaIvaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
-			code: [''],
+			value: [''],
+			
 		});
+	}
 
-		this.esigibilitaIvaDC = ['id', 'code', 'name','wikiCode', 'buttons'];
-    }
-    
-    private clearFiltersEsigibilitaIva() {
+	private clearFiltersEsigibilitaIva() {
 		this.esigibilitaIvaFilters = {
-			idEquals: null,
-			nameContains: null,
-			codeEquals: null,
+			esigibilitaIvaIDEquals: null,
+			esigibilitaIvaNameContains: null,
 			page: 0,
 		}
-    }
+	}
     
     private async searchEsigibilitaIva(page: number) {
 		this.esigibilitaIvaDTOs = null;
@@ -115,9 +115,9 @@ export class AigEsigibilitaIvaListPageComponent extends GenericComponent {
 			return;
 		}
 
-		this.esigibilitaIvaFilters.idEquals = null;
+		this.esigibilitaIvaFilters.esigibilitaIvaIDEquals = null;
 
-		this.esigibilitaIvaFilters.nameContains = this.esigibilitaIvaSearchFormGroup.controls.name.value;
+		this.esigibilitaIvaFilters.esigibilitaIvaNameContains = this.esigibilitaIvaSearchFormGroup.controls.name.value;
 
 		this.searchEsigibilitaIva(0);
 	}
