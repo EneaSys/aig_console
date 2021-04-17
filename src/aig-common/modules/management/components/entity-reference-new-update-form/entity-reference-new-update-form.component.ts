@@ -30,10 +30,10 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
+    entityReference: EntityReferenceDTO;
 
     isUpdate: boolean = false;
 
-    entityReference: EntityReferenceDTO;
 
     entityReferenceNewUpdateForm: FormGroup;
 
