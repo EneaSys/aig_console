@@ -39,7 +39,7 @@ export class AigRoleListTableComponent implements OnInit {
 
             this.eventService.reloadCurrentPage();
         } catch (e) {
-            this._snackBar.open(`Error during deleting role: '${id}'. (${e.message})`, null, { duration: 5000, });
+            this._snackBar.open(`Error during deleting Role: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
     }

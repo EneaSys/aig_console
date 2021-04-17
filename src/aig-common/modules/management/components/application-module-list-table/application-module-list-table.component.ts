@@ -35,11 +35,11 @@ export class AigApplicationModuleListTableComponent implements OnInit {
 
         try {
             await this.applicationModuleResourceService.deleteApplicationModuleUsingDELETE(id).toPromise();
-            this._snackBar.open(`Application Module: '${id}' deleted.`, null, { duration: 2000, });
+            this._snackBar.open(`ApplicationModule: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
         } catch (e) {
-            this._snackBar.open(`Error during deleting Application Module: '${id}'. (${e.message})`, null, { duration: 5000, });
+            this._snackBar.open(`Error during deleting ApplicationModule: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
     }

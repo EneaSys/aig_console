@@ -6,7 +6,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { AigManagementAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigManagementAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
-import { PermissionDTO, RoleDTO, RoleResourceService } from 'aig-management';
+import { ApplicationModuleDTO, RoleDTO, RoleResourceService } from 'aig-management';
 
 @Component({
     selector: 'aig-role-new-update-form',
@@ -36,16 +36,20 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
 
     roleNewUpdateForm: FormGroup;
 
+    filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
+
     ngOnInit(): void {
         this.roleNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', Validators.required],
             roleCode: ['', Validators.required],
+            applicationModule: ['', Validators.required],
         })
 
         if (this.role != null) {
             this.roleNewUpdateForm.patchValue(this.role);
         }
+        this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.roleNewUpdateForm.controls['applicationModule'].valueChanges);
 
     }
 
@@ -56,7 +60,12 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let role: RoleDTO = this.roleNewUpdateForm.value;
+        let role: RoleDTO = {
+            name: this.roleNewUpdateForm.value.name,
+            roleCode: this.roleNewUpdateForm.value.roleCode,
+            id: this.roleNewUpdateForm.value.id,
+        }
+        
         try {
             let postOrPut;
             if (role.id != 0) {

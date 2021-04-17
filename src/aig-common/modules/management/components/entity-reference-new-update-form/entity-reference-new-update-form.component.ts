@@ -32,6 +32,9 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
     @Input()
     entityReference: EntityReferenceDTO;
 
+    isUpdate: boolean = false;
+
+
     entityReferenceNewUpdateForm: FormGroup;
 
 	filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
@@ -46,6 +49,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
 
         if (this.entityReference != null) {
+            this.isUpdate = true;
             this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
         }
 

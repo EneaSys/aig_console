@@ -17,8 +17,7 @@ export class AigRoleListPageComponent extends GenericComponent {
         private roleResourceService: RoleResourceService,
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
-        private dialog: MatDialog,
-        private eventService: EventService,        
+        private dialog: MatDialog,        
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
@@ -62,7 +61,7 @@ export class AigRoleListPageComponent extends GenericComponent {
 		this.roleFilters = {
 			idEquals: null,
 			nameContains: null,
-			roleCodeEquals: null,
+			roleCodeContains: null,
 			page: 0,
 		}
 	}
@@ -119,7 +118,7 @@ export class AigRoleListPageComponent extends GenericComponent {
 		}
 
 		if(this.roleSearchFormGroup.controls.roleCode.value){
-			this.roleFilters.roleCodeEquals = this.roleSearchFormGroup.controls.roleCode.value;
+			this.roleFilters.roleCodeContains = this.roleSearchFormGroup.controls.roleCode.value;
 		}
 
 		this.roleFilters.idEquals = null;
