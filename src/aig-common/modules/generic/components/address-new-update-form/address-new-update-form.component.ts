@@ -9,7 +9,6 @@ import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 
 @Component({
@@ -29,11 +28,10 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private eventService: EventService,
-        public autocompleteDisplayService: AigAutocompleteDisplayService,
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
-        public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
+        public standardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
         private addressResourceService: AddressResourceService,
     ) { }
 
