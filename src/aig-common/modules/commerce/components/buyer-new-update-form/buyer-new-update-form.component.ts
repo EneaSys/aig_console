@@ -4,6 +4,9 @@ import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { BuyerDTO, BuyerResourceService, SellerDTO } from "aig-commerce";
 import { EventService } from "aig-common/event-manager/event.service";
+import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
+import { AigGenericAutocompleteFunctionService } from "aig-common/modules/generic/services/form/autocomplete-function.service";
+import { EopooDTO } from "aig-generic";
 import { Observable } from "rxjs";
 import { AigAutocompleteDisplayService } from "../../service/autocomplete-display.service";
 import { AigCommerceAutocompleteService } from "../../service/autocomplete-filter.service";
@@ -28,6 +31,8 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
         public autocompleteDisplayService: AigAutocompleteDisplayService,
         private commerceAutocompleteService: AigCommerceAutocompleteService,
+        private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
     ) { }
 
     @Input()
@@ -39,6 +44,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     buyerNewUpdateForm: FormGroup;
 
     filteredSellers: Observable<SellerDTO[]>;
+    filteredEopoos: Observable<EopooDTO[]>;
 
     ngOnInit(): void {
         this.buyerNewUpdateForm = this._formBuilder.group({
@@ -58,6 +64,8 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         if (this.seller!= null) {
             this.buyerNewUpdateForm.controls['seller'].patchValue(this.seller);
         }
+
+        this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.buyerNewUpdateForm.controls['eopooCode'].valueChanges);
         
         this.filteredSellers = this.commerceAutocompleteService.filterSeller(this.buyerNewUpdateForm.controls['seller'].valueChanges);
 
