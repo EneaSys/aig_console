@@ -32,21 +32,6 @@ export class AigIppAutocompleteService {
 		);
 	}
 
-	filterEopoo(observable: Observable<any>) {
-		return observable.pipe(
-			startWith(''),
-			switchMap((value: string) => {
-				if (value && value.length > 2) {
-					let filter = {
-						eopooIdEquals: value
-					};
-					return this.eopooResourceService.getAllEopoosUsingGET(filter);
-				} else {
-					return of([]);
-				}
-			})
-		);
-	}
 
 	filterProcurementLot(observable: Observable<any>) {
 		return observable.pipe(

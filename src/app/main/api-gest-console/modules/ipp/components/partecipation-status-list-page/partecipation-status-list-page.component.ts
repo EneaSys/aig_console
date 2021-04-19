@@ -46,14 +46,14 @@ partecipationStatusDC: string[];
 
 	
 private initPartecipationStatusSearch() {
-	this.partecipationStatusDC = ["id","buttons"];
+	this.partecipationStatusDC = ["id","description","buttons"];
 
 	this.partecipationStatusPaginationSize = 10;
 		
 
 	this.partecipationStatusSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			description: [''],
 		});
 	}
 

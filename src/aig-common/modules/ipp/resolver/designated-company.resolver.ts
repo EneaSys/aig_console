@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { DesignatedCompanyDTO, DesignatedCompanyResourceService, DossierDTO, DossierResourceService } from 'aig-italianlegislation';
 
 @Injectable()
-export class DeisgnatedCompanyResolver implements Resolve<Observable<DesignatedCompanyDTO>> {
+export class DesignatedCompanyResolver implements Resolve<Observable<DesignatedCompanyDTO>> {
     constructor(private designatedCompanyResourceService: DesignatedCompanyResourceService) { }
 
     resolve(route: ActivatedRouteSnapshot) {

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DeisgnatedCompanyResolver } from 'aig-common/modules/ipp/resolver/designated-company.resolver';
+import { DesignatedCompanyResolver } from 'aig-common/modules/ipp/resolver/designated-company.resolver';
 import { DossierResolver } from 'aig-common/modules/ipp/resolver/dossier.resolver';
 import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
@@ -127,7 +127,7 @@ export const ippRoute: Routes = [
                         component: AigDesignatedCompanyDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            dossier: DeisgnatedCompanyResolver,
+                            dossier: DesignatedCompanyResolver,
                         },
                     },
                 ]

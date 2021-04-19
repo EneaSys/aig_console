@@ -26,15 +26,9 @@ export class AigPartecipationStatusDetailPageComponent extends GenericComponent 
 
   partecipationStatusDTO: PartecipationStatusDTO;
 
-  partecipationStatusConfig = {
-    details: true,
-    removePartecipationStatus: null,
-  }
 
   loadPage() {
     this.partecipationStatusDTO = this.route.snapshot.data.partecipationStatus;
-
-    this.partecipationStatusConfig.removePartecipationStatus = this.partecipationStatusDTO;
   }
 
   async reloadPage() {

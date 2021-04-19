@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
 import { DesignatedCompanyDTO, DesignatedCompanyResourceService, DossierDTO, DossierResourceService, PartecipationDTO } from 'aig-italianlegislation';
 import { Observable } from 'rxjs';
@@ -28,6 +30,8 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
         private designatedCompanyResourceService: DesignatedCompanyResourceService,
         private eventService: EventService,
         private ippAutocompleteService: AigIppAutocompleteService,
+        private genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+        private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public autocompleteDisplayService: AigAutocompleteDisplayService,
     ) { }
 
@@ -51,7 +55,7 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
             this.designatedCompanyNewUpdateForm.patchValue(this.designatedCompany);
         }
 
-        this.filteredEopoos = this.ippAutocompleteService.filterEopoo(this.designatedCompanyNewUpdateForm.controls['companyEopooCode'].valueChanges);
+        this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.designatedCompanyNewUpdateForm.controls['companyEopooCode'].valueChanges);
         this.filteredPartecipations = this.ippAutocompleteService.filterPartecipation(this.designatedCompanyNewUpdateForm.controls['partecipation'].valueChanges);
     }
 

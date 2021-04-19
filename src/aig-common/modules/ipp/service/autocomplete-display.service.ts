@@ -16,9 +16,6 @@ export class AigIppAutocompleteDisplayService {
         return procurementLot ? procurementLot.id : undefined;
 
     }
-    eopooDisplayFn(eopoo?: EopooDTO): any | undefined {
-        return eopoo ? eopoo.person : undefined;
-    }
     partecipationDisplayFn(partecipation?: PartecipationDTO): any | undefined {
         return partecipation ? partecipation.id : undefined;
     }

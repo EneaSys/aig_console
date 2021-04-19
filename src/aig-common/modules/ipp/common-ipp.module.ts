@@ -41,8 +41,9 @@ import { ProcurementResolver } from './resolver/procurement.resolver';
 import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
 import { AigDesignatedCompanyListTableComponent } from './components/designated-compnay-list-table/designated-company-list-table.component';
 import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designated-company-new-update-form/designated-company-new-update-form.component';
-import { DeisgnatedCompanyResolver } from './resolver/designated-company.resolver';
+import { DesignatedCompanyResolver } from './resolver/designated-company.resolver';
 import { AigAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
+import { PartecipationStatusResolver } from './resolver/partecipation-status.resolver';
 
 
 @NgModule({
@@ -77,10 +78,11 @@ import { AigAutocompleteDisplayService } from '../commerce/service/autocomplete-
         DossierResolver,
         ProcurementResolver,
         AigIppAutocompleteDisplayService,
-        DeisgnatedCompanyResolver,
+        DesignatedCompanyResolver,
         AigAutocompleteDisplayService,
         AigIppAutocompleteDisplayService,
         ProcurementLotResolver,
+        PartecipationStatusResolver,
 
     ],
     declarations: [

@@ -1,10 +1,10 @@
 <form *ngIf="step.form" [formGroup]="partecipationStatusNewUpdateForm" (ngSubmit)="submit()">
 
+    
     <mat-form-field>
-        <mat-label>Id</mat-label>
-        <input formControlName="id" matInput required>
+        <mat-label>Description</mat-label>
+        <input formControlName="description" matInput required>
     </mat-form-field>
-    <br><br>
 
     
     <div fxLayout="row" fxLayoutAlign="end top">

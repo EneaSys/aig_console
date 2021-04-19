@@ -37,7 +37,7 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
     this.procurement = this.route.snapshot.data.procurement;
     this.procurementLotDC = ["cig","description","buttons"];
     this.loadProcurementLot();
-    console.log(this.procurement);
+    console.log(this.procurement)
 }
 
 private async loadProcurementLot() {

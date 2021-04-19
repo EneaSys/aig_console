@@ -65,7 +65,7 @@
             <mat-label>Procurement ipp Lot Category </mat-label>
             <input formControlName="ippLotCategory" matInput [matAutocomplete]="ippLotCategoryAutocomplete">
             <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategoryType | async" [value]="ippLotCategoryType">{{ ippLotCategory.name }}</mat-option>
+                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategoryType | async" [value]="ippLotCategoryType">{{ ippLotCategory.name}}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 
