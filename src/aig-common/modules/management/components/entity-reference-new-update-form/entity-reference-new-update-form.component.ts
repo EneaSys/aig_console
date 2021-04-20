@@ -49,8 +49,8 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
 
         if (this.entityReference != null) {
-            this.isUpdate = true;
             this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
+            this.isUpdate = true;
         }
 
 		this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
