@@ -1,5 +1,16 @@
 <form *ngIf="step.form" [formGroup]="addressNewUpdateForm" (ngSubmit)="submit()">
 
+    <div *ngIf="!address.id" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Eopoo</mat-label>
+            <input type="text" matInput formControlName="eopooTaxNumber" required [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.person ? eopoo.person.firstname + " " + eopoo.person.lastname : eopoo.genericEopoo.name }}</mat-option>
+            </mat-autocomplete>
+            <mat-error>è obbligatorio!</mat-error>
+        </mat-form-field>
+    </div>
+    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Name</mat-label>
@@ -20,7 +31,12 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Comune</mat-label>
             <input type="text" matInput formControlName="city" required [matAutocomplete]="cityAutocomplete">
+<<<<<<< HEAD
             <mat-autocomplete #cityAutocomplete="matAutocomplete" [displayWith]="aigStandardAutocompleteDisplayService.cityDisplayFn">
+=======
+            <mat-autocomplete #cityAutocomplete="matAutocomplete"
+                [displayWith]="standardAutocompleteFunctionService.cityDisplayFn">
+>>>>>>> develop
                 <mat-option *ngFor="let city of filteredCitys | async" [value]="city">{{ city.name }}</mat-option>
             </mat-autocomplete>
             <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
@@ -29,7 +45,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Salva</button>
+        <button *ngIf="!address.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="address.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -38,5 +55,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <button *ngIf="!addressNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newAddress()">Create New</button>
+    <pre>{{ addressNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!addressNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newAddress()">Crea nuovo</button>
 </div>

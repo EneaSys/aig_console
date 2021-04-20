@@ -90,6 +90,10 @@ import { AigEsigibilitaIvaListTableComponent } from './components/esigibilita-iv
 import { AigEsigibilitaIvaNewUpdateFormComponent } from './components/esigibilita-iva-new-update-form/esigibilita-iva-new-update-form.component';
 import { AigEntityDetailEsigibilitaIvaComponent } from './components/entity-detail-esigibilita-iva/entity-detail-esigibilita-iva.component';
 import { EsigibilitaIvaResolver } from './resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
+import { AigModalitaPagamentoNewUpdateFormComponent } from './components/modalita-pagamento-new-update-form/modalita-pagamento-new-update-form.component';
+import { AigModalitaPagamentoListTableComponent } from './components/modalita-pagamento-list-table/modalita-pagamento-list-table.component';
+import { AigEntityDetailModalitaPagamentoComponent } from './components/entity-detail-modalita-pagamento/entity-detail-modalita-pagamento.component';
+import { ModalitaPagamentoResolver } from './resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
 import { AigStandardAutocompleteDisplayService } from './services/autocomplete-function.service';
 
 
@@ -153,6 +157,9 @@ import { AigStandardAutocompleteDisplayService } from './services/autocomplete-f
         AigEsigibilitaIvaNewUpdateFormComponent,
         AigEntityDetailEsigibilitaIvaComponent,
         AigTipoScontoMaggiorazioneNewUpdateFormComponent,
+        AigModalitaPagamentoNewUpdateFormComponent,
+        AigModalitaPagamentoListTableComponent,
+        AigEntityDetailModalitaPagamentoComponent
 
 
     ],
@@ -179,6 +186,7 @@ import { AigStandardAutocompleteDisplayService } from './services/autocomplete-f
         MatAutocompleteModule,
         MatSelectModule,
         MatMenuModule,
+        
     ],
     exports: [
 
@@ -237,6 +245,9 @@ import { AigStandardAutocompleteDisplayService } from './services/autocomplete-f
         AigEsigibilitaIvaNewUpdateFormComponent,
         AigEntityDetailEsigibilitaIvaComponent,
         AigTipoScontoMaggiorazioneNewUpdateFormComponent,
+        AigModalitaPagamentoNewUpdateFormComponent,
+        AigModalitaPagamentoListTableComponent,
+        AigEntityDetailModalitaPagamentoComponent
    
 
     ],
@@ -265,7 +276,8 @@ import { AigStandardAutocompleteDisplayService } from './services/autocomplete-f
         TipoRitenutaResolver,
         TipoCessionePestazioneResolver,
         TipoScontoMaggiorazioneResolver,
-        EsigibilitaIvaResolver
+        EsigibilitaIvaResolver,
+        ModalitaPagamentoResolver
     ],
 })
 export class AigCommonStandardModule {}

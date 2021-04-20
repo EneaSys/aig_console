@@ -3,16 +3,17 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Eopoo Code</mat-label>
-            <input type="text" matInput formControlName="eopooCode" required [matAutocomplete]="eopooCodeAutocomplete">
-            <mat-autocomplete #eopooCodeAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooCodeDisplayFn">
-                <mat-option *ngFor="let eopooCode of filteredEoopoCodes | async" [value]="eopooCode">{{ eopooCode.name }}</mat-option>
+            <input formControlName="eopooCode" matInput required [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete"
+                [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo"> {{  eopoo.person ? eopoo.person.firstname + " " + eopoo.person.lastname : eopoo.genericEopoo.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-slide-toggle required formControlName="confirmation">Confirmation</mat-slide-toggle>
-    </div> 
+    </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -25,8 +26,10 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Seller</mat-label>
             <input formControlName="seller" matInput required [matAutocomplete]="sellerAutocomplete">
-            <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
-                <mat-option *ngFor="let seller of filteredSellers | async" [value]="seller">{{ seller.name }}</mat-option>
+            <mat-autocomplete #sellerAutocomplete="matAutocomplete"
+                [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+                <mat-option *ngFor="let seller of filteredSellers | async" [value]="seller">{{ seller.name }}
+                </mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
@@ -43,5 +46,6 @@
 
 <div *ngIf="step.complete">
     <pre>{{ buyerNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!buyerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newBuyer()">Create New</button>
+    <button *ngIf="!buyerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newBuyer()">Create
+        New</button>
 </div>

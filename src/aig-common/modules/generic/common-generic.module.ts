@@ -21,15 +21,29 @@ import { EopooTypeResolver } from './resolver/eopoo-type.resolver';
 import { RouterModule } from '@angular/router';
 import { AigEopooTypeNewUpdateFormComponent } from './components/eopoo-type-new-update-form/eopoo-type-new-update-form.component';
 import { MatInputModule } from '@angular/material/input';
-import { AigEopooGenericNewUpdateFormComponent } from './components/eopoo-form/eopoo-generic-new-update-form/eopoo-generic-new-update-form.component';
-import { AigEopooPersonNewUpdateFormComponent } from './components/eopoo-form/eopoo-person-new-update-form/eopoo-person-new-update-form.component';
 import { EopooResolver } from './resolver/eopoo.resolver';
 import { AigCommonStandardModule } from '../standard/common-standard.module';
-import { AigEopooAddressListTableComponent } from './components/address-list-table/address-list-table.component';
 import { AigAddressNewUpdateFormComponent } from './components/address-new-update-form/address-new-update-form.component';
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
 import { AigGenericAutocompleteFilterService } from './services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { MatMenuModule } from '@angular/material';
+import { AigGenericEopooListTableComponent } from './components/generic-eopoo-list-table/generic-eopoo-list-table.component';
+import { AigGenericEopooNewUpdateFormComponent } from './components/generic-eopoo-new-update-form/generic-eopoo-new-update-form.component';
+import { AigAddressEntityDetailComponent } from './components/address-entity-detail/address-entity-detail.component';
+import { AigAddressListTableComponent } from './components/address-list-table/address-list-table.component';
+import { AigGenericEopooEntityDetailComponent } from './components/generic-eopoo-entity-detail/generic-eopoo-entity-detail.component';
+import { AigEopooEntityDetailComponent } from './components/eopoo-entity-detail/eopoo-entity-detail.component';
+import { AigEopooTypeEntityDetailComponent } from './components/eopoo-type-entity-detail/eopoo-type-entity-detail.component';
+import { AigReferentListTableComponent } from './components/referent-list-table/referent-list-table.component';
+import { AigReferentEntityDetailComponent } from './components/referent-entity-detail/referent-entity-detail.component';
+import { AigReferentNewUpdateFormComponent } from './components/referent-new-update-form/referent-new-update-form.component';
+import { AigContactListTableComponent } from './components/contact-list-table/contact-list-table.component';
+import { AigContactEntityDetailComponent } from './components/contact-entity-detail/contact-entity-detail.component';
+import { AigContactNewUpdateFormComponent } from './components/contact-new-update-form/contact-new-update-form.component';
+import { AigPersonNewUpdateFormComponent } from './components/person-new-update-form/person-new-update-form.component';
+import { AddressResolver } from './resolver/address.resolver';
+import { ReferentResolver } from './resolver/referent.resolver';
 
 @NgModule({
     imports: [
@@ -56,6 +70,7 @@ import { AigGenericAutocompleteFunctionService } from './services/form/autocompl
         MatAutocompleteModule,
         MatSelectModule,
         MatDatepickerModule,
+        MatMenuModule,
 
 
     ],
@@ -64,18 +79,36 @@ import { AigGenericAutocompleteFunctionService } from './services/form/autocompl
         
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
-        AigEopooGenericNewUpdateFormComponent,
-        AigEopooPersonNewUpdateFormComponent,
+        AigEopooEntityDetailComponent,
         
-        AigEopooAddressListTableComponent,
+        AigAddressListTableComponent,
         AigAddressNewUpdateFormComponent,
+        AigAddressEntityDetailComponent,
         
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
+        AigEopooTypeEntityDetailComponent,
+
+        AigGenericEopooListTableComponent,
+        AigGenericEopooNewUpdateFormComponent,
+        AigGenericEopooEntityDetailComponent,
+
+        AigReferentListTableComponent,
+        AigReferentNewUpdateFormComponent,
+        AigReferentEntityDetailComponent,
+
+        AigContactListTableComponent,
+        AigContactNewUpdateFormComponent,
+        AigContactEntityDetailComponent,
+
+        AigPersonNewUpdateFormComponent,
     ],
     providers: [
         EopooResolver,
         EopooTypeResolver,
+        AddressResolver,
+        ReferentResolver,
+        
         AigGenericAutocompleteFilterService,
         AigGenericAutocompleteFunctionService,
     ],
@@ -84,14 +117,29 @@ import { AigGenericAutocompleteFunctionService } from './services/form/autocompl
         
         AigEopooListTableComponent,
         AigEopooNewFormComponent,
-        AigEopooGenericNewUpdateFormComponent,
-        AigEopooPersonNewUpdateFormComponent,
+        AigEopooEntityDetailComponent,
 
-        AigEopooAddressListTableComponent,
+        AigAddressListTableComponent,
         AigAddressNewUpdateFormComponent,
+        AigAddressEntityDetailComponent,
 
         AigEopooTypeListTableComponent,
         AigEopooTypeNewUpdateFormComponent,
+        AigEopooTypeEntityDetailComponent,
+
+        AigGenericEopooListTableComponent,
+        AigGenericEopooNewUpdateFormComponent,
+        AigGenericEopooEntityDetailComponent,
+
+        AigReferentListTableComponent,
+        AigReferentNewUpdateFormComponent,
+        AigReferentEntityDetailComponent,
+
+        AigContactListTableComponent,
+        AigContactNewUpdateFormComponent,
+        AigContactEntityDetailComponent,
+
+        AigPersonNewUpdateFormComponent,
     ],
 })
 export class CommonGenericModule {}

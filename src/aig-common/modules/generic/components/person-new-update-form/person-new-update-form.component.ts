@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EopooDTO, EopooResourceService, EopooTypeDTO } from 'aig-generic';
+import { EopooDTO, EopooResourceService, EopooTypeDTO, EopooTypeResourceService } from 'aig-generic';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
@@ -10,12 +10,11 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-    selector: 'aig-eopoo-person-new-update-form',
-    templateUrl: './eopoo-person-new-update-form.component.html',
-    styleUrls: ['./eopoo-person-new-update-form.component.scss']
+    selector: 'aig-person-new-update-form',
+    templateUrl: './person-new-update-form.component.html',
+    styleUrls: ['./person-new-update-form.component.scss']
 })
-export class AigEopooPersonNewUpdateFormComponent implements OnInit {
-    // Form preparation Objects
+export class AigPersonNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -23,6 +22,7 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
+        private eopooTypeResourceService: EopooTypeResourceService,
         private _formBuilder: FormBuilder,
         private eopooResourceService: EopooResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -37,16 +37,17 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
+    eopooTypeDTOs: EopooTypeDTO[];
+
     eopooPersonNewUpdateForm: FormGroup;
 
     filteredCitys: Observable<CityDTO[]>;
 
     ngOnInit(): void {
-        // PREPARE FORM
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
             id: [''],
             taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
-            eopooTypeId: [''],
+            eopooType: [this.eopooType],
 
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
@@ -55,26 +56,22 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
             city: ['', Validators.required],
         });
 
-        // Is creation
         if(this.eopoo == undefined && this.eopooType != null) {
             let newEopoo: any = {}
             newEopoo.eopooTypeId = this.eopooType.id;
             this.eopooPersonNewUpdateForm.patchValue(newEopoo);
         }
 
-
-
-        // PRECOMPILE
-        // Is update
         if (this.eopoo != null && this.eopoo.person != null) {
             this.eopooPersonNewUpdateForm.patchValue(this.eopoo.person);
             this.eopooPersonNewUpdateForm.patchValue(this.eopoo);
         }
 
-
-
-        // EVENT ON ITERACTION
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['city'].valueChanges);
+    }
+
+    async loadTypes() {
+        this.eopooTypeDTOs = await this.eopooTypeResourceService.getAllEopooTypesUsingGET({}).toPromise();
     }
 
     async submit() {
@@ -90,7 +87,7 @@ export class AigEopooPersonNewUpdateFormComponent implements OnInit {
         let eopooPerson: EopooDTO = {
             id: formValue.id,
             taxNumber: formValue.taxNumber,
-            eopooTypeId: formValue.eopooTypeId,
+            eopooTypeId: formValue.eopooType.id,
             person: formValue,
         };
         eopooPerson.person.cityCode = formValue.city.code;

@@ -130,6 +130,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
 			}
 		}
 
+        this.eventService.reloadCurrentPage();
         this._fuseProgressBarService.hide();
     }
 

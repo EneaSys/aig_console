@@ -1,14 +1,14 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.address" class="title dialog-title">Update Address</span>
-            <span *ngIf="!data.address" class="title dialog-title">Create new Address</span>
+            <span *ngIf="data.address.id" class="title dialog-title">Update Address</span>
+            <span *ngIf="!data.address.id" class="title dialog-title">Create new Address</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-toolbar-row>
     </mat-toolbar>
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-address-new-update-form [eopoo]="data.eopoo" [address]="data.address"></aig-address-new-update-form>
+        <aig-address-new-update-form [address]="data.address"></aig-address-new-update-form>
     </div>
 </div>

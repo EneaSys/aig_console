@@ -61,7 +61,7 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 	private clearFiltersContextModule() {
 		this.contextModuleFilters = {
 			idEquals: null,
-			activeContains: null,
+			activeEquals: null,
 			page: 0,
 		}
 	}
@@ -114,7 +114,9 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 		}
 		this.contextModuleFilters.idEquals = null;
 
-		this.contextModuleFilters.activeContains = this.contextModuleSearchFormGroup.controls.active.value;
+		if(this.contextModuleSearchFormGroup.controls.active.value){
+			this.contextModuleFilters.activeEquals = this.contextModuleSearchFormGroup.controls.active.value;
+		}
 
 		this.searchContextModule(0);
 	}
@@ -124,4 +126,3 @@ export class AigContextModuleListPageComponent extends GenericComponent {
    }
 
 }
-

@@ -1,0 +1,71 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eopooId">
+            <mat-header-cell *matHeaderCellDef> Eopoo Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.eopooId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="eopooTaxNumber">
+            <mat-header-cell *matHeaderCellDef> Eopoo tax number </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.eopooTaxNumber }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="firstname">
+            <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.firstname }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="lastname">
+            <mat-header-cell *matHeaderCellDef> Last name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.lastname }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/g5c/referent/detail/' + element.id">
+                        <mat-icon>details</mat-icon>
+                        <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editReferent(element)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteReferent(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+</div>
