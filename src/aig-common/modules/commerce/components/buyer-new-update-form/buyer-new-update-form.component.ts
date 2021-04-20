@@ -32,7 +32,6 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         public autocompleteDisplayService: AigAutocompleteDisplayService,
         private commerceAutocompleteService: AigCommerceAutocompleteService,
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
     ) { }
 
     @Input()

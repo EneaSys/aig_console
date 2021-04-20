@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { CityResourceService } from 'aig-standard';
+import { CityResourceService, CpvResourceService, ItalianPublicProcurementLotCategoryResourceService, ItalianPublicProcurementLotTypeResourceService, ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
 
     constructor(
         private cityResourceService: CityResourceService,
+        private ippProcedureResourceService: ItalianPublicProcurementProcedureResourceService,
+        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
+        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private cpvResourceService: CpvResourceService,
     ) {}
 
     filterCity(observable: Observable<any>) {

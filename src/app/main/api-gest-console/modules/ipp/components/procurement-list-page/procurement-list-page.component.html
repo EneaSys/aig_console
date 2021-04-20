@@ -1,0 +1,110 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="procurement-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="showAllProcurement()">Resetta filtri</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <form [formGroup]="procurementSearchFormGroup" (ngSubmit)="procurementSearchWithFilter()" class="p-8">
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput type="number" formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Ref</mat-label>
+                                        <input matInput type="text" formControlName="ref">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Code</mat-label>
+                                        <input matInput type="text" formControlName="code">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Contractor Eopoo Code</mat-label>
+                                        <input matInput type="text" formControlName="contractorEopoo">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Ipp Modality Code</mat-label>
+                                        <input matInput type="text" formControlName="ippModality">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Ipp Procedure Code</mat-label>
+                                        <input matInput type="text" formControlName="ippProcedure">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Ipp Sector Code</mat-label>
+                                        <input matInput type="text" formControlName="ippSector">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Total Amount</mat-label>
+                                        <input matInput type="number" formControlName="totalAmount">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                (click)="toggleSidebar('procurement-sidebar')">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h2>Procurement</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+           <aig-procurement-list-table [displayColumns]="procurementDC" [dataSource]="procurementDTOs"
+                [error]="procurementError"></aig-procurement-list-table>
+
+            <mat-paginator #paginator [length]="procurementLength" [pageIndex]="this.procurementFilters.page"
+                [pageSize]="this.procurementPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                (page)="procurementPaginationEvent($event)">
+            </mat-paginator>
+
+            <button mat-fab class="accent" id="add-procurement-button" (click)="newProcurement()"
+                aria-label="add procurement">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+
+</div>

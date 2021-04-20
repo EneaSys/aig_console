@@ -49,7 +49,6 @@ import { LotResolver } from "./resolver/lot.resolver";
 import { CategoryResolver } from "./resolver/category.resolver";
 
 import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
-import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
 import { ContextModuleResolver } from './resolver/context-module.resolver';
 import { MatMenuModule } from '@angular/material';
@@ -95,6 +94,7 @@ import { AigModalitaPagamentoNewUpdateFormComponent } from './components/modalit
 import { AigModalitaPagamentoListTableComponent } from './components/modalita-pagamento-list-table/modalita-pagamento-list-table.component';
 import { AigEntityDetailModalitaPagamentoComponent } from './components/entity-detail-modalita-pagamento/entity-detail-modalita-pagamento.component';
 import { ModalitaPagamentoResolver } from './resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
+import { AigStandardAutocompleteDisplayService } from './services/autocomplete-function.service';
 
 
 @NgModule({
@@ -268,7 +268,7 @@ import { ModalitaPagamentoResolver } from './resolver/modalita-pagamento.resolve
         ItFiscalCodeService,
         
         AigStandardAutocompleteFilterService,
-        AigStandardAutocompleteFunctionService,
+        AigStandardAutocompleteDisplayService,
         ContextModuleResolver,
         RegimeFiscaleResolver,
         TipoCassaResolver,

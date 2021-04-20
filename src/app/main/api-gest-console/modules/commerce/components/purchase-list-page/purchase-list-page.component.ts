@@ -94,8 +94,8 @@ export class AigPurchaseListPageComponent extends GenericComponent {
       purchaseIDEquals: null,
       insertedDateTimeEquals : null,
       statusNoteContains : null,
-      sellerIDEquals: null,
-      buyerIDEquals: null,
+      sellerIdEquals: null,
+      buyerIdEquals: null,
       page: 0,
     }
   }

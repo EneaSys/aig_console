@@ -1,0 +1,31 @@
+<form *ngIf="step.form" [formGroup]="dossierNewUpdateForm" (ngSubmit)="submit()">
+
+
+    <mat-form-field>
+        <mat-label>Dossier Description</mat-label>
+        <input formControlName="description" matInput required>
+    </mat-form-field>
+    
+
+    <mat-form-field>
+        <mat-label>Dossier Code</mat-label>
+        <input formControlName="dossierCode" matInput >
+    </mat-form-field>
+    
+    
+
+    
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ dossierNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!dossierNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newDossier()">Create New</button>
+</div>

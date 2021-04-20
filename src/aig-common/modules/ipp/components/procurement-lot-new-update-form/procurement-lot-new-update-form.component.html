@@ -1,69 +1,92 @@
 <form *ngIf="step.form" [formGroup]="procurementLotNewUpdateForm" (ngSubmit)="submit()">
 
-    <mat-form-field>
-        <mat-label>Cig</mat-label>
-        <input formControlName="cig" matInput required>
-    </mat-form-field>
-    <br><br>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" [style.width.%]=20>
+            <mat-label>Cig</mat-label>
+            <input formControlName="cig" matInput required>
+        </mat-form-field>
+        
+    
+        <mat-form-field appearance="outline" [style.width.%]=45>
+            <mat-label>Procurement Description</mat-label>
+            <input formControlName="description" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Procurement Description</mat-label>
-        <input formControlName="description" matInput required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field>
+            <mat-label>Offer Expiry Date</mat-label>
+            <input formControlName="offerExpiryDate" matInput [matDatepicker]="picker" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Offer Expiry Date</mat-label>
-        <input formControlName="offerExpiryDate" matInput [matDatepicker]="picker" required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <br><br>-
-
-    <mat-form-field>
-        <mat-label>Base Amount</mat-label>
-        <input type="number" matInput formControlName="baseAmount" required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Security Amount</mat-label>
-        <input type="number" matInput formControlName="securityAmount" required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Istat Code</mat-label>
-        <input formControlName="istatCode" matInput required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Nust Code</mat-label>
-        <input formControlName="nustCode" matInput required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Procurement ipp Lot Type Code</mat-label>
-        <input formControlName="ippLotTypeCode" matInput required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Procurement ipp Lot Category Code</mat-label>
-        <input formControlName="ippLotCategoryCode" matInput required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Procurement Cpv Code</mat-label>
-        <input formControlName="cpvCode" matInput required>
-    </mat-form-field>
-
-    <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
     </div>
+       
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Base Amount</mat-label>
+            <input type="number" matInput formControlName="baseAmount" required>
+        </mat-form-field>
+       
+   
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Security Amount</mat-label>
+            <input type="number" matInput formControlName="securityAmount" required>
+        </mat-form-field>
+    
+    </div>
+    
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Istat Code</mat-label>
+            <input formControlName="istatCode" matInput required>
+        </mat-form-field>
+    
+
+    
+        <mat-form-field appearance="outline" [style.width.%]=50>
+            <mat-label>Nust Code</mat-label>
+            <input formControlName="nustCode" matInput required>
+        </mat-form-field>
+    </div>
+    
+     <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement ipp Lot Type </mat-label>
+            <input formControlName="ippLotType" matInput [matAutocomplete]="ippLotTypeAutocomplete">
+            <mat-autocomplete #ippLotTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+                <mat-option *ngFor="let ippLotType of filteredIppLotType | async" [value]="ippLotType">{{ ippLotType.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    
+    
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement ipp Lot Category </mat-label>
+            <input formControlName="ippLotCategory" matInput [matAutocomplete]="ippLotCategoryAutocomplete">
+            <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        
+
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement  Lot Cpv Code </mat-label>
+            <input formControlName="cpv" matInput [matAutocomplete]="cpvAutocomplete">
+            <mat-autocomplete #cpvAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.cpvDisplayFn">
+                <mat-option *ngFor="let cpv of filteredCpv | async" [value]="cpv">{{ cpv.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        
+
+    </div>
+   
+
+
+<div fxLayout="row" fxLayoutAlign="end top">
+    <button type="submit" mat-raised-button color="accent">Crea</button>
+</div>
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">

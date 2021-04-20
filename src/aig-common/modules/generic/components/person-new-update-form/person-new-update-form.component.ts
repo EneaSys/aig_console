@@ -4,7 +4,7 @@ import { EopooDTO, EopooResourceService, EopooTypeDTO, EopooTypeResourceService 
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
-import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -27,7 +27,7 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         private eopooResourceService: EopooResourceService,
         private _fuseProgressBarService: FuseProgressBarService,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
-        public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
+        public aigStandardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private eventService: EventService,
         private _snackBar: MatSnackBar,
     ) { }

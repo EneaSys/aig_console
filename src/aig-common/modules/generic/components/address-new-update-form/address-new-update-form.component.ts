@@ -7,9 +7,13 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+<<<<<<< HEAD
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+=======
 import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
+>>>>>>> develop
 
 @Component({
     selector: 'aig-address-new-update-form',
@@ -31,7 +35,11 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+<<<<<<< HEAD
+        public aigStandardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
+=======
         public standardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
+>>>>>>> develop
         private addressResourceService: AddressResourceService,
     ) { }
 

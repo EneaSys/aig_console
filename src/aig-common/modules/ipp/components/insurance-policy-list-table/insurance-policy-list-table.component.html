@@ -1,0 +1,88 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <h3>Error!</h3>
+    <span *ngIf="error.status == 401">No access to this info</span>
+
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json}}</pre>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+        
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="companyPreparatorEopooCode">
+            <mat-header-cell *matHeaderCellDef>Company Preparator Eopoo Code</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopooCode }} </mat-cell>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="note">
+            <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.note }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="partecipationId">
+            <mat-header-cell *matHeaderCellDef>Partecipation Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipationId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="partecipationProposerEopooCode">
+            <mat-header-cell *matHeaderCellDef>Partecipation Proposer Eopoo Code</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. partecipationProposerEopooCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusDescription">
+            <mat-header-cell *matHeaderCellDef>Status Description</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. statusDescription}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusId">
+            <mat-header-cell *matHeaderCellDef>Status Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. statusId}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef>Total Amount</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. totalAmount}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/ipp/insurance-policy/detail/' + e.id">
+                      <mat-icon>details</mat-icon>
+                      <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editInsurancePolicy(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                    <button mat-menu-item (click)="deleteInsurancePolicy(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                  </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+
+    </mat-table>
+
+</div>
