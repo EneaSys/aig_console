@@ -1,6 +1,12 @@
 import { Routes } from '@angular/router';
 import { DesignatedCompanyResolver } from 'aig-common/modules/ipp/resolver/designated-company.resolver';
 import { DossierResolver } from 'aig-common/modules/ipp/resolver/dossier.resolver';
+import { InsurancePolicyStatusResolver } from 'aig-common/modules/ipp/resolver/insurance-policy-status.resolver';
+import { InsurancePolicyResolver } from 'aig-common/modules/ipp/resolver/insurance-policy.resolver';
+import { PartecipationStatusResolver } from 'aig-common/modules/ipp/resolver/partecipation-status.resolver';
+import { PartecipationResolver } from 'aig-common/modules/ipp/resolver/partecipation.resolver';
+import { PreparationStatusResolver } from 'aig-common/modules/ipp/resolver/preparation-status.resolver';
+import { PreparationResolver } from 'aig-common/modules/ipp/resolver/preparation.resolver';
 import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
@@ -10,6 +16,8 @@ import { AigDossierDetailPageComponent } from './components/dossier-detail-page/
 import { AigDossierListPageComponent } from './components/dossier-list-page/dossier-list-page.component';
 import { AigInsurancePolicyDetailPageComponent } from './components/insurance-policy-detail-page/insurance-policy-detail-page.component';
 import { AigInsurancePolicyListPageComponent } from './components/insurance-policy-list-page/insurance-policy-list-page.component';
+import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
+import { AigInsurancePolicyStatusListPageComponent } from './components/insurance-policy-status-list-page/insurance-policy-status-list-page.component';
 import { AigPartecipationDetailPageComponent } from './components/partecipation-detail-page/partecipation-detail-page.component';
 import { AigPartecipationListPageComponent } from './components/partecipation-list-page/partecipation-list-page.component';
 import { AigPartecipationStatusDetailPageComponent } from './components/partecipation-status-detail-page/partecipation-status-detail-page.component';
@@ -84,6 +92,31 @@ export const ippRoute: Routes = [
             },
 
             {
+                path: 'insurance-policy-status',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigInsurancePolicyStatusListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigInsurancePolicyStatusDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            insurancePolicyStatus:  InsurancePolicyStatusResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
                 path: 'dossier',
                 children: [
                     
@@ -127,7 +160,7 @@ export const ippRoute: Routes = [
                         component: AigDesignatedCompanyDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            dossier: DesignatedCompanyResolver,
+                            designetedCompany: DesignatedCompanyResolver,
                         },
                     },
                 ]
@@ -151,9 +184,9 @@ export const ippRoute: Routes = [
                         path: 'detail/:id',
                         component: AigPartecipationDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        /*resolve: {
-                            dossier: DossierResolver,
-                        },*/
+                        resolve: {
+                            partecipation: PartecipationResolver,
+                        },
                     },
                 ]
             },
@@ -175,9 +208,9 @@ export const ippRoute: Routes = [
                         path: 'detail/:id',
                         component: AigPartecipationStatusDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        /*resolve: {
-                            dossier: DossierResolver,
-                        },*/
+                        resolve: {
+                            partecipationStatus: PartecipationStatusResolver,
+                        },
                     },
                 ]
             },
@@ -199,9 +232,9 @@ export const ippRoute: Routes = [
                         path: 'detail/:id',
                         component: AigPreparationDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        /*resolve: {
-                            dossier: DossierResolver,
-                        },*/
+                        resolve: {
+                            preparation: PreparationResolver,
+                        },
                     },
                 ]
             },
@@ -223,9 +256,9 @@ export const ippRoute: Routes = [
                         path: 'detail/:id',
                         component: AigPreparationStatusDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        /*resolve: {
-                            dossier: DossierResolver,
-                        },*/
+                        resolve: {
+                            preparationStatus: PreparationStatusResolver,
+                        },
                     },
                 ]
             },
@@ -247,9 +280,9 @@ export const ippRoute: Routes = [
                         path: 'detail/:id',
                         component: AigInsurancePolicyDetailPageComponent,
                         canActivate: [ AuthGuardService ],
-                        /*resolve: {
-                            dossier: DossierResolver,
-                        },*/
+                        resolve: {
+                            insurancePolicy: InsurancePolicyResolver,
+                        },
                     },
                 ]
             },

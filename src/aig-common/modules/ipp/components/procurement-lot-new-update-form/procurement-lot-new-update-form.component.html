@@ -65,16 +65,20 @@
             <mat-label>Procurement ipp Lot Category </mat-label>
             <input formControlName="ippLotCategory" matInput [matAutocomplete]="ippLotCategoryAutocomplete">
             <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategoryType | async" [value]="ippLotCategoryType">{{ ippLotCategory.name}}</mat-option>
+                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 
         
-        
-        <mat-form-field appearance="outline" [style.width.%]=33>
-            <mat-label>Procurement Cpv Code</mat-label>
-            <input formControlName="cpvCode" matInput required>
+
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement  Lot Cpv Code </mat-label>
+            <input formControlName="cpv" matInput [matAutocomplete]="cpvAutocomplete">
+            <mat-autocomplete #cpvAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.cpvDisplayFn">
+                <mat-option *ngFor="let cpv of filteredCpv | async" [value]="cpv">{{ cpv.name}}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
+        
 
     </div>
    

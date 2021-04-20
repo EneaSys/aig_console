@@ -33,6 +33,12 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.insurancePolicyNewUpdateForm = this._formBuilder.group({
             id:[''],
+            companyPreparatorEopooCode:[''],
+            note:[''],
+            partecipationId:[''],
+            statusDescription:[''],
+            statusId:[''],
+            totalAmount:[''],
             
         })
         

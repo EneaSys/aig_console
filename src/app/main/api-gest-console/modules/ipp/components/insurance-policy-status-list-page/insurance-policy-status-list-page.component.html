@@ -1,17 +1,20 @@
 <div class="page-layout simple left-sidebar">
     <!-- SIDEBAR -->
-    <fuse-sidebar class="sidebar" name="preparation-status-sidebar" position="left" lockedOpen="gt-md">
+    <fuse-sidebar class="sidebar" name="insurance-policy-status-sidebar" position="left" lockedOpen="gt-md">
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
-                <div class="content py-16" fusePerfectScrollbar>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="showAllInsurancePolicyStatus()">Resetta filtri</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllPreparationStatus()">Resetta filtri</button>
-                            </div>
-                            <form [formGroup]="preparationStatusSearchFormGroup" (ngSubmit)="preparationStatusSearchWithFilter()"
-                                class="p-8">
+                            <form [formGroup]="insurancePolicyStatusSearchFormGroup" (ngSubmit)="insurancePolicyStatusSearchWithFilter()" class="p-8">
+
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
@@ -24,6 +27,7 @@
                                         <input matInput type="text" formControlName="description">
                                     </mat-form-field>
                                 </div>
+                                
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
@@ -43,24 +47,24 @@
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                (click)="toggleSidebar('preparation-status-sidebar')">
+                (click)="toggleSidebar('insurance-policy-status-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Preparation Status </h2>
+            <h2>Insurance Policy Status</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-           <aig-preparation-status-list-table [displayColumns]="preparationStatusDC" [dataSource]="preparationStatusDTOs"
-                [error]="preparationStatusError"></aig-preparation-status-list-table>
+           <aig-insurance-policy-status-list-table [displayColumns]="insurancePolicyStatusDC" [dataSource]="insurancePolicyStatusDTOs"
+                [error]="insurancePolicyStatusError"></aig-insurance-policy-status-list-table>
 
-            <mat-paginator #paginator [length]="preparationStatusLength" [pageIndex]="this.preparationStatusFilters.page"
-                [pageSize]="this.preparationStatusPaginationSize" [pageSizeOptions]="[10, 20, 50]"
-                (page)="preparationStatusPaginationEvent($event)">
+            <mat-paginator #paginator [length]="insurancePolicyStatusLength" [pageIndex]="this.insurancePolicyStatusFilters.page"
+                [pageSize]="this.insurancePolicyStatusPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                (page)="insurancePolicyStatusPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-preparation-status-button" (click)="newPreparationStatus()"
-                aria-label="add preparation status">
+            <button mat-fab class="accent" id="add-insurance-policy-status-button" (click)="newInsurancePolicyStatus()"
+                aria-label="add insurance policy status">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

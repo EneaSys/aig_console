@@ -3,14 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { DossierDTO, DossierResourceService } from 'aig-italianlegislation';
+import { InsurancePolicyStatusDTO, InsurancePolicyStatusResourceService} from 'aig-italianlegislation';
 
 @Component({
-    selector: 'aig-dossier-new-update-form',
-    templateUrl: './dossier-new-update-form.component.html',
-    styleUrls: ['./dossier-new-update-form.component.scss']
+    selector: 'aig-insurance-policy-status-new-update-form',
+    templateUrl: './insurance-policy-status-new-update-form.component.html',
+    styleUrls: ['./insurance-policy-status-new-update-form.component.scss']
 })
-export class AigDossierNewUpdateFormComponent implements OnInit {
+export class AigInsurancePolicyStatusNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -21,48 +21,45 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private dossierResourceService: DossierResourceService,
+        private insurancePolicyStatusResourceService: InsurancePolicyStatusResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    dossier: DossierDTO;
+    insurancePolicyStatus: InsurancePolicyStatusDTO;
 
-    dossierNewUpdateForm: FormGroup;
+    insurancePolicyStatusNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
-        this.dossierNewUpdateForm = this._formBuilder.group({
+        this.insurancePolicyStatusNewUpdateForm = this._formBuilder.group({
             id:[''],
-            description: ['', Validators.required],
-            dossierCode: ['', Validators.required],
-
-        
+            description:[''],
         })
         
-        if (this.dossier != null) {
-            this.dossierNewUpdateForm.patchValue(this.dossier);
+        if (this.insurancePolicyStatus != null) {
+            this.insurancePolicyStatusNewUpdateForm.patchValue(this.insurancePolicyStatus);
         }
     }
 
     async submit() {
-        if (!this.dossierNewUpdateForm.valid) {
+        if (!this.insurancePolicyStatusNewUpdateForm.valid) {
             return;
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let dossier: DossierDTO = this.dossierNewUpdateForm.value;
+        let insurancePolicyStatus: InsurancePolicyStatusDTO = this.insurancePolicyStatusNewUpdateForm.value;
+        console.log(this.insurancePolicyStatus);
 
-        console.log(this.dossier);
         try {
             let postOrPut: string;
 
-            if (this.dossier.id > 0) {
-                await this.dossierResourceService.updateDossierUsingPUT(dossier).toPromise();
+            if (this.insurancePolicyStatus.id > 0) {
+                await this.insurancePolicyStatusResourceService.updateInsurancePolicyStatusUsingPUT(insurancePolicyStatus).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.dossierResourceService.createDossierUsingPOST(dossier).toPromise();
+                await this.insurancePolicyStatusResourceService.createInsurancePolicyStatusUsingPOST(insurancePolicyStatus).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
@@ -75,7 +72,7 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newDossier() {
+    newInsurancePolicy() {
         this.setStep("form");
     }
 

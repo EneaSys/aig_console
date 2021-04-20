@@ -228,8 +228,8 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
             description: null,
             amountMin: null,
             amountMax: null,
-            ippLotTypeCode: null,
-            ippLotCategoryCode: null,
+            ippLotType: null,
+            ippLotCategory: null,
         }
     }
 

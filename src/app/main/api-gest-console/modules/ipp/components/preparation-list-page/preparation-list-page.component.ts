@@ -47,14 +47,19 @@ preparationDC: string[];
 
 	
 private initPreparationSearch() {
-	this.preparationDC = ["id","buttons"];
+	this.preparationDC = ["id","companyPreparatorEopooCode","note","partecipationId","partecipationProposerEopooCode","statusDescription","statusId","buttons"];
 
 	this.preparationPaginationSize = 10;
 		
 
 	this.preparationSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			companyPreparatorEopooCode: [''],
+			note: [''],
+			partecipationId: [''],
+			partecipationProposerEopooCode: [''],
+			statusDescription: [''],
+			statusId: [''],
 		});
 	}
 

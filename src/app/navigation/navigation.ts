@@ -127,6 +127,15 @@ export const navigation: FuseNavigation[] = [
                 url      : '/ipp/insurance-policy',
                 permission: ['c6e.admin'],
             },
+
+            {
+                id       : 'insurance-policy-status-list-page',
+                title    : 'Insurance Policy Status',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/insurance-policy-status',
+                permission: ['c6e.admin'],
+            },
         ]
     },
 

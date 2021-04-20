@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CityDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
+import { CityDTO, CpvDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteDisplayService {
@@ -15,16 +15,19 @@ export class AigStandardAutocompleteDisplayService {
         return ippSector ? ippSector.name : undefined;
     }
 
-    ippModalityDisplayFn (italianPublicProcurementModality?: ItalianPublicProcurementModalityDTO): string | undefined {
-        return italianPublicProcurementModality ? italianPublicProcurementModality.name : undefined;
+    ippModalityDisplayFn (ippModality?: ItalianPublicProcurementModalityDTO): string | undefined {
+        return ippModality ? ippModality.name : undefined;
     }
 
-    ippLotTypeDisplayFn (italianPublicProcurementLotType?: ItalianPublicProcurementLotTypeDTO): string | undefined {
-        return italianPublicProcurementLotType ? italianPublicProcurementLotType.name : undefined;
+    ippLotTypeDisplayFn (ippLotType?: ItalianPublicProcurementLotTypeDTO): string | undefined {
+        return ippLotType ? ippLotType.name : undefined;
     }
 
-    ippLotCategoryDisplayFn (italianPublicProcurementLotCategory?: ItalianPublicProcurementLotCategoryDTO): string | undefined {
-        return italianPublicProcurementLotCategory ? italianPublicProcurementLotCategory.name : undefined;
+    ippLotCategoryDisplayFn (ippLotCategory?: ItalianPublicProcurementLotCategoryDTO): string | undefined {
+        return ippLotCategory ? ippLotCategory.name : undefined;
+    }
+    cpvDisplayFn (cpv?: CpvDTO): string | undefined {
+        return cpv ? cpv.name : undefined;
     }
 
 

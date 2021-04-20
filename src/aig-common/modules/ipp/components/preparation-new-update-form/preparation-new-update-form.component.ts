@@ -33,6 +33,12 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.preparationNewUpdateForm = this._formBuilder.group({
             id:[''],
+            companyPreparatorEopooCode:[''],
+            note:[''],
+            partecipationId:[''],
+            partecipationProposerEopooCode:[''],
+            statusDescription:[''],
+            statusId:[''],
             
         })
         

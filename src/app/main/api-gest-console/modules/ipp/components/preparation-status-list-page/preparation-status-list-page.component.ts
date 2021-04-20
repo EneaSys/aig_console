@@ -48,14 +48,14 @@ preparationStatusDC: string[];
 
 	
 private initPreparationStatusSearch() {
-	this.preparationStatusDC = ["id","buttons"];
+	this.preparationStatusDC = ["id","description","buttons"];
 
 	this.preparationStatusPaginationSize = 10;
 		
 
 	this.preparationStatusSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			description: [''],
 		});
 	}
 

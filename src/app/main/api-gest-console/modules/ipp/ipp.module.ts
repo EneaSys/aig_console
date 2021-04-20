@@ -52,6 +52,9 @@ import { AigPreparationStatusListPageComponent } from './components/preparation-
 import { AigDesignatedCompanyListPageComponent } from './components/designated-company-list-page/designated-company-list-page.component';
 import { AigDesignatedCompanyNewUpdateDialogComponent } from './components/designated-company-new-update-dialog/designated-company-new-update-dialog.component';
 import { AigDesignatedCompanyDetailPageComponent } from './components/designated-company-detail-page/designated-company-detail-page.component';
+import { AigInsurancePolicyStatusNewUpdateDialogComponent } from './components/insurance-policy-status-new-update-dialog/insurance-policy-status-new-update-dialog.component';
+import { AigInsurancePolicyStatusListPageComponent } from './components/insurance-policy-status-list-page/insurance-policy-status-list-page.component';
+import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
 
 
 @NgModule({
@@ -108,6 +111,9 @@ import { AigDesignatedCompanyDetailPageComponent } from './components/designated
         AigPreparationListPageComponent,
         AigPreparationStatusListPageComponent,
         AigInsurancePolicyListPageComponent,
+        AigDesignatedCompanyListPageComponent,
+        AigInsurancePolicyStatusListPageComponent,
+        
 
        
         AigProcurementNewUpdateDialogComponent,
@@ -119,6 +125,7 @@ import { AigDesignatedCompanyDetailPageComponent } from './components/designated
         AigPreparationStatusNewUpdateDialogComponent,
         AigInsurancePolicyNewUpdateDialogComponent,
         AigDesignatedCompanyNewUpdateDialogComponent,
+        AigInsurancePolicyStatusNewUpdateDialogComponent,
 
         AigPartecipationDetailPageComponent,
         AigDossierDetailPageComponent,
@@ -129,8 +136,9 @@ import { AigDesignatedCompanyDetailPageComponent } from './components/designated
         AigPreparationStatusDetailPageComponent,
         AigInsurancePolicyDetailPageComponent,
         AigDesignatedCompanyDetailPageComponent,
+        AigInsurancePolicyStatusDetailPageComponent,
 
-        AigDesignatedCompanyListPageComponent,
+        
     ],
     exports: [
 
@@ -146,6 +154,7 @@ import { AigDesignatedCompanyDetailPageComponent } from './components/designated
         AigPreparationStatusNewUpdateDialogComponent,
         AigInsurancePolicyNewUpdateDialogComponent,
         AigDesignatedCompanyNewUpdateDialogComponent,
+        AigInsurancePolicyStatusNewUpdateDialogComponent,
 
     ],
 })

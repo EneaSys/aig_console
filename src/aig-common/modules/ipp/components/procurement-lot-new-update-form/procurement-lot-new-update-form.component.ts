@@ -7,7 +7,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 import { ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
-import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
+import { CpvDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
@@ -42,6 +42,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     filteredIppLotType: Observable<ItalianPublicProcurementLotTypeDTO[]>;
     filteredIppLotCategory: Observable<ItalianPublicProcurementLotCategoryDTO[]>;
+    filteredCpv: Observable<CpvDTO[]>;
 
 
 
@@ -58,7 +59,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             nustCode: [''],
             ippLotType: ['', Validators.required],
             ippLotCategory: ['', Validators.required],
-            cpvCode: ['', Validators.required],
+            cpv: ['', Validators.required],
             awardCriterionCode: [''],
             procurementLotStatusCode: [''],
         })
@@ -68,6 +69,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         }
         this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['ippLotType'].valueChanges);
         this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotNewUpdateForm.controls['ippLotCategory'].valueChanges);
+        this.filteredCpv = this.standardAutocompleteFilterService.filterCpv(this.procurementLotNewUpdateForm.controls['cpv'].valueChanges);
 
 
     }
@@ -85,7 +87,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             cig: this.procurementLotNewUpdateForm.value.cig,
             cpvCode: this.procurementLotNewUpdateForm.value.cpvCode,
             description: this.procurementLotNewUpdateForm.value.description,
-            ippLotCategoryCode: this.procurementLotNewUpdateForm.value.ippLotCategory.id,
+            ippLotCategoryCode: this.procurementLotNewUpdateForm.value.ippLotCategory,
             ippLotTypeCode: this.procurementLotNewUpdateForm.value.ippLotType,
             offerExpiryDate: this.procurementLotNewUpdateForm.value.offerExpiryDate,
             id: this.procurementLotNewUpdateForm.value.id,

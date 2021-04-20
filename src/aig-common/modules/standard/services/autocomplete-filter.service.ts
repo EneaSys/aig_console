@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { CityResourceService, ItalianPublicProcurementLotCategoryResourceService, ItalianPublicProcurementLotTypeResourceService, ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { CityResourceService, CpvResourceService, ItalianPublicProcurementLotCategoryResourceService, ItalianPublicProcurementLotTypeResourceService, ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
@@ -13,6 +13,7 @@ export class AigStandardAutocompleteFilterService {
         private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
         private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
         private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private cpvResourceService: CpvResourceService,
     ) {}
 
     filterCity(observable: Observable<any>) {
@@ -101,6 +102,22 @@ export class AigStandardAutocompleteFilterService {
                         nameContains: value
                     }
                     return this. ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    filterCpv(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 2) {
+                    let filter = {
+                        nameContains: value
+                    }
+                    return this. cpvResourceService.getAllCpvsUsingGET(filter);
                 } else {
                     return of([]);
                 }

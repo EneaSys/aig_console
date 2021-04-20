@@ -44,6 +44,13 @@ import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designa
 import { DesignatedCompanyResolver } from './resolver/designated-company.resolver';
 import { AigAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
 import { PartecipationStatusResolver } from './resolver/partecipation-status.resolver';
+import { PartecipationResolver } from './resolver/partecipation.resolver';
+import { PreparationResolver } from './resolver/preparation.resolver';
+import { PreparationStatusResolver } from './resolver/preparation-status.resolver';
+import { InsurancePolicyResolver } from './resolver/insurance-policy.resolver';
+import { InsurancePolicyStatusResolver } from './resolver/insurance-policy-status.resolver';
+import { AigInsurancePolicyStatusListTableComponent } from './components/insurance-policy-status-list-table/insurance-policy-status-list-table.component';
+import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/insurance-policy-status-new-update-form/insurance-policy-status-new-update-form.component';
 
 
 @NgModule({
@@ -83,6 +90,11 @@ import { PartecipationStatusResolver } from './resolver/partecipation-status.res
         AigIppAutocompleteDisplayService,
         ProcurementLotResolver,
         PartecipationStatusResolver,
+        PartecipationResolver,
+        PreparationResolver,
+        PreparationStatusResolver,
+        InsurancePolicyResolver,
+        InsurancePolicyStatusResolver,
 
     ],
     declarations: [
@@ -95,6 +107,7 @@ import { PartecipationStatusResolver } from './resolver/partecipation-status.res
         AigPreparationStatusListTableComponent,
         AigInsurancePolicyListTableComponent,
         AigDesignatedCompanyListTableComponent,
+        AigInsurancePolicyStatusListTableComponent,
 
         AigProcurementNewUpdateFormComponent,
         AigProcurementLotNewUpdateFormComponent,
@@ -105,6 +118,7 @@ import { PartecipationStatusResolver } from './resolver/partecipation-status.res
         AigPreparationStatusNewUpdateFormComponent,
         AigInsurancePolicyNewUpdateFormComponent,
         AigDesignatedCompanyNewUpdateFormComponent,
+        AigInsurancePolicyStatusNewUpdateFormComponent,
     
         
     ],
@@ -118,6 +132,8 @@ import { PartecipationStatusResolver } from './resolver/partecipation-status.res
         AigPreparationStatusListTableComponent,
         AigInsurancePolicyListTableComponent,
         AigDesignatedCompanyListTableComponent,
+        AigInsurancePolicyStatusListTableComponent,
+
         
         AigDossierNewUpdateFormComponent,
         AigProcurementNewUpdateFormComponent,
@@ -128,6 +144,7 @@ import { PartecipationStatusResolver } from './resolver/partecipation-status.res
         AigPreparationStatusNewUpdateFormComponent,
         AigInsurancePolicyNewUpdateFormComponent,
         AigDesignatedCompanyNewUpdateFormComponent,
+        AigInsurancePolicyStatusNewUpdateFormComponent,
     ]
         
     

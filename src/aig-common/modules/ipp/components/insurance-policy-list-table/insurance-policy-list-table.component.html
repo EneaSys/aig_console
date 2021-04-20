@@ -20,6 +20,43 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="companyPreparatorEopooCode">
+            <mat-header-cell *matHeaderCellDef>Company Preparator Eopoo Code</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopooCode }} </mat-cell>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="note">
+            <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.note }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="partecipationId">
+            <mat-header-cell *matHeaderCellDef>Partecipation Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipationId }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="partecipationProposerEopooCode">
+            <mat-header-cell *matHeaderCellDef>Partecipation Proposer Eopoo Code</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. partecipationProposerEopooCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusDescription">
+            <mat-header-cell *matHeaderCellDef>Status Description</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. statusDescription}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="statusId">
+            <mat-header-cell *matHeaderCellDef>Status Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. statusId}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef>Total Amount</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e. totalAmount}} </mat-cell>
+        </ng-container>
+
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">

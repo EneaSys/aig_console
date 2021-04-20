@@ -6,16 +6,27 @@
             <mat-label>Codice tipo di partecipazione</mat-label>
             <input formControlName="partecipationTypeCode" matInput required>
         </mat-form-field>
+        
 
-        <mat-form-field appearance="outline" [style.width.%]=33>
-            <mat-label>Anagrafica proposer</mat-label>
-            <input formControlName="proposerEopooCode" matInput required>
+    
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Anagrafica proposer </mat-label>
+            <input formControlName="proposerEopooCode" matInput [matAutocomplete]="proposerEopooCodeAutocomplete">
+            <mat-autocomplete #proposerEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.name}}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" [style.width.%]=33>
-            <mat-label>procurementLotCig</mat-label>
-            <input formControlName="procurementLotCig" matInput required>
+    
+        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+            <mat-label>Procurement Lot Cig </mat-label>
+            <input formControlName="procurementLotCig" matInput [matAutocomplete]="procurementLotCigAutocomplete">
+            <mat-autocomplete #procurementLotCigAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
+                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.cig}}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
+
+        
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
