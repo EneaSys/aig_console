@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PartecipationStatusResourceService, PreparationDTO, PreparationResourceService } from 'aig-italianlegislation';
+import {PreparationDTO, PreparationResourceService } from 'aig-italianlegislation';
 
 @Injectable()
 export class PreparationResolver implements Resolve<Observable<PreparationDTO>> {

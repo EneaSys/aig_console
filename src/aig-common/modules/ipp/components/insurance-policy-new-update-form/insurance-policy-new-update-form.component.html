@@ -1,36 +1,40 @@
 <form *ngIf="step.form" [formGroup]="insurancePolicyNewUpdateForm" (ngSubmit)="submit()">
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" >
+            <mat-label>Company Preparator Eopoo Code</mat-label>
+            <input formControlName="companyPreparatorEopooCode" matInput [matAutocomplete]="companyPreparatorEopooCodeAutocomplete">
+            <mat-autocomplete #companyPreparatorEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Note</mat-label>
+            <input formControlName="note" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Company Preparator Eopoo Code</mat-label>
-        <input formControlName="companyPreparatorEopooCode" matInput required>
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Status Description</mat-label>
+            <input formControlName="statusDescription" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Note</mat-label>
-        <input formControlName="note" matInput required>
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>partecipationId</mat-label>
+            <input formControlName="partecipationId" matInput required>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Status Id</mat-label>
+            <input formControlName="statusId" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Status Description</mat-label>
-        <input formControlName="statusDescription" matInput required>
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>partecipationId</mat-label>
-        <input formControlName="partecipationId" matInput required>
-    </mat-form-field>
-
-
-    <mat-form-field>
-        <mat-label>Status Id</mat-label>
-        <input formControlName="statusId" matInput required>
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label> Total Amount</mat-label>
-        <input formControlName="totalAmount" matInput required>
-    </mat-form-field>
- 
+        <mat-form-field appearance="outline">
+            <mat-label> Total Amount</mat-label>
+            <input formControlName="totalAmount" matInput required>
+        </mat-form-field>
+    </div>
 
     
     <div fxLayout="row" fxLayoutAlign="end top">

@@ -1,38 +1,55 @@
 <form *ngIf="step.form" [formGroup]="preparationNewUpdateForm" (ngSubmit)="submit()">
 
-    <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
-        <mat-label>Company Preparator Eopoo Code</mat-label>
-        <input formControlName="companyPreparatorEopooCode" matInput [matAutocomplete]="companyPreparatorEopooCodeAutocomplete">
-        <mat-autocomplete #companyPreparatorEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-            <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Company Preparator Eopoo Code</mat-label>
+            <input formControlName="companyPreparatorEopooCode" matInput [matAutocomplete]="companyPreparatorEopooCodeAutocomplete">
+            <mat-autocomplete #companyPreparatorEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Note</mat-label>
-        <input formControlName="note" matInput required>
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Note</mat-label>
+            <input formControlName="note" matInput required>
+        </mat-form-field>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Partecipation Id</mat-label>
-        <input formControlName="partecipationId" matInput required>
-    </mat-form-field>
 
-    <mat-form-field>
-        <mat-label> Partecipation Proposer Eopoo Code</mat-label>
-        <input formControlName="partecipationProposerEopooCode" matInput required>
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Partecipation Id</mat-label>
+            <input formControlName="partecipationId" matInput required>
+        </mat-form-field>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Status Description</mat-label>
-        <input formControlName="statusDescription" matInput required>
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start start">
 
-    <mat-form-field>
-        <mat-label>Status Id</mat-label>
-        <input formControlName="statusId" matInput required>
-    </mat-form-field>
-    
+        <mat-form-field appearance="outline">
+            <mat-label>Partecipation Proposer Eopoo Code</mat-label>
+            <input formControlName="partecipationProposerEopooCode" matInput [matAutocomplete]="partecipationProposerEopooCodeAutocomplete">
+            <mat-autocomplete #partecipationProposerEopooCodeAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field  appearance="outline">
+            <mat-label>Status Description</mat-label>
+            <input formControlName="statusDescription" matInput required>
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Status Id</mat-label>
+            <input formControlName="statusId" matInput required>
+        </mat-form-field>
+    </div>
+        
     <div fxLayout="row" fxLayoutAlign="end top">
         <button type="submit" mat-raised-button color="accent">Crea</button>
     </div>
