@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ProcurementDTO, ProcurementLotDTO } from 'aig-italianlegislation';
-import { EopooDTO } from 'aig-generic';
 import { PartecipationDTO } from 'aig-italianlegislation';
 
 

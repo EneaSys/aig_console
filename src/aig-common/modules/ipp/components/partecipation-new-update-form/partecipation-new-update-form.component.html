@@ -13,7 +13,7 @@
             <mat-label>Anagrafica proposer </mat-label>
             <input formControlName="proposerEopooCode" matInput [matAutocomplete]="proposerEopooCodeAutocomplete">
             <mat-autocomplete #proposerEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.name}}</mat-option>
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName}}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 

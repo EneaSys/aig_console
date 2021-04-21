@@ -29,8 +29,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private procurementLotResourceService: ProcurementLotResourceService,
         private standardAutocompleteFilterService : AigStandardAutocompleteFilterService,
-        private standardAutocompleteDisplayService : AigStandardAutocompleteDisplayService,
-        private ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
+        public standardAutocompleteDisplayService : AigStandardAutocompleteDisplayService,
+        public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
         
         private eventService: EventService,
     ) { }

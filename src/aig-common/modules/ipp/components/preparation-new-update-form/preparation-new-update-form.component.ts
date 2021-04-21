@@ -3,7 +3,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { PreparationDTO, PreparationResourceService } from 'aig-italianlegislation';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { EopooDTO } from 'aig-generic';
+import { PartecipationDTO, PreparationDTO, PreparationResourceService } from 'aig-italianlegislation';
+import { Observable } from 'rxjs';
+import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-preparation-new-update-form',
@@ -23,12 +29,20 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private preparationResourceService: PreparationResourceService,
         private eventService: EventService,
+        private ippAutocompleteFilterService:  AigIppAutocompleteService,
+        public ippAutocompleteDisplayService: AigIppAutocompleteDisplayService,
+        public genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
     ) { }
 
     @Input()
     preparation: PreparationDTO;
 
     preparationNewUpdateForm: FormGroup;
+
+    filteredEopoo: Observable<EopooDTO[]>;
+    filteredPartecipation: Observable<PartecipationDTO[]>;
+
 
     ngOnInit(): void {
         this.preparationNewUpdateForm = this._formBuilder.group({
@@ -45,6 +59,8 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         if (this.preparation != null) {
             this.preparationNewUpdateForm.patchValue(this.preparation);
         }
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.preparationNewUpdateForm.controls['companyPreparatorEopooCode'].valueChanges);
+        this.filteredPartecipation = this.ippAutocompleteFilterService.filterPartecipation(this.preparationNewUpdateForm.controls['partecipationProposerEopooCode'].valueChanges);
     }
 
     async submit() {
@@ -57,7 +73,6 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
 
         let preparation: PreparationDTO = this.preparationNewUpdateForm.value;
 
-        console.log(this.preparation);
         try {
             let postOrPut: string;
 

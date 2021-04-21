@@ -49,6 +49,7 @@ export class AigIppAutocompleteService {
 		);
 	}
 
+
 	filterPartecipation(observable: Observable<any>) {
 		return observable.pipe(
 			startWith(''),

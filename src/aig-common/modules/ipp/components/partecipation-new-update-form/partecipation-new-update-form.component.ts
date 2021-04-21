@@ -29,10 +29,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private partecipationResourceService: PartecipationResourceService,
         private eventService: EventService,
-        private ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
+        public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
         private ippAutocompleteService :AigIppAutocompleteService,
         private genericAutocompleteFilterService :AigGenericAutocompleteFilterService,
-        private genericAutocompleteFunctionService :AigGenericAutocompleteFunctionService,
+        public genericAutocompleteFunctionService :AigGenericAutocompleteFunctionService,
     ) { }
 
     @Input()
