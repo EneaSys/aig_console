@@ -6,10 +6,11 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
-import { ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
+import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
 import { CpvDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-procurement-lot-new-update-form',
@@ -28,9 +29,12 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private procurementLotResourceService: ProcurementLotResourceService,
+        
         private standardAutocompleteFilterService : AigStandardAutocompleteFilterService,
-        private standardAutocompleteDisplayService : AigStandardAutocompleteDisplayService,
-        private ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
+        public standardAutocompleteDisplayService : AigStandardAutocompleteDisplayService,
+        
+        private ippAutocompleteFilterService : AigIppAutocompleteService,
+        public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
         
         private eventService: EventService,
     ) { }
@@ -40,6 +44,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     procurementLotNewUpdateForm: FormGroup;
 
+    filteredProcurement: Observable<ProcurementDTO[]>;
     filteredIppLotType: Observable<ItalianPublicProcurementLotTypeDTO[]>;
     filteredIppLotCategory: Observable<ItalianPublicProcurementLotCategoryDTO[]>;
     filteredCpv: Observable<CpvDTO[]>;
@@ -50,6 +55,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
             id: [''],
+            procurement: ['', Validators.required],
             cig: ['', Validators.required],
             description: ['', Validators.required],
             offerExpiryDate: ['', Validators.required],
@@ -67,6 +73,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         if (this.procurementLot != null) {
             this.procurementLotNewUpdateForm.patchValue(this.procurementLot);
         }
+
+        this.filteredProcurement = this.ippAutocompleteFilterService.filterProcurement(this.procurementLotNewUpdateForm.controls['procurement'].valueChanges);
         this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['ippLotType'].valueChanges);
         this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotNewUpdateForm.controls['ippLotCategory'].valueChanges);
         this.filteredCpv = this.standardAutocompleteFilterService.filterCpv(this.procurementLotNewUpdateForm.controls['cpv'].valueChanges);
@@ -82,22 +90,11 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurementLot: ProcurementLotDTO = {
-            baseAmount: this.procurementLotNewUpdateForm.value.baseAmount,
-            cig: this.procurementLotNewUpdateForm.value.cig,
-            cpvCode: this.procurementLotNewUpdateForm.value.cpvCode,
-            description: this.procurementLotNewUpdateForm.value.description,
-            ippLotCategoryCode: this.procurementLotNewUpdateForm.value.ippLotCategory,
-            ippLotTypeCode: this.procurementLotNewUpdateForm.value.ippLotType,
-            offerExpiryDate: this.procurementLotNewUpdateForm.value.offerExpiryDate,
-            id: this.procurementLotNewUpdateForm.value.id,
-            istatCode: this.procurementLotNewUpdateForm.value.istatCode,
-            nutsCode: this.procurementLotNewUpdateForm.value.nutsCode,
-            securityAmount: this.procurementLotNewUpdateForm.value.securityAmount,
-            procurementId:1,
-            awardCriterionCode: this.procurementLotNewUpdateForm.value.awardCriterionCode,
-            procurementLotStatusCode: this.procurementLotNewUpdateForm.value.procurementLotStatusCode,
-        }
+        let procurementLot: ProcurementLotDTO = this.procurementLotNewUpdateForm.value;
+        procurementLot.procurementId = this.procurementLotNewUpdateForm.value.procurement.id;
+        procurementLot.ippLotCategoryCode = this.procurementLotNewUpdateForm.value.ippLotCategory.id;
+        procurementLot.ippLotTypeCode = this.procurementLotNewUpdateForm.value.ippLotType.id;
+        procurementLot.cpvCode = this.procurementLotNewUpdateForm.value.cpv.id;
         
 
         try {

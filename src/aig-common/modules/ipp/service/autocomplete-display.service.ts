@@ -8,15 +8,15 @@ import { PartecipationDTO } from 'aig-italianlegislation';
 	providedIn: 'root'
 })
 export class AigIppAutocompleteDisplayService {
-	procurementDisplayFn(procurement?: ProcurementDTO): number | undefined {
-        return procurement ? procurement.id : undefined;
+	procurementDisplayFn(procurement?: ProcurementDTO): string | undefined {
+        return procurement ? procurement.description : undefined;
     }
 
-    procurementLotDisplayFn(procurementLot?: ProcurementLotDTO): number | undefined {
-        return procurementLot ? procurementLot.id : undefined;
-
+    procurementLotDisplayFn(procurementLot?: ProcurementLotDTO): string | undefined {
+        return procurementLot ? procurementLot.description : undefined;
     }
+
     partecipationDisplayFn(partecipation?: PartecipationDTO): any | undefined {
-        return partecipation ? partecipation.id : undefined;
+        return partecipation ? partecipation.procurementLotCig + " > " + partecipation.proposerEopooCode : undefined;
     }
 }
