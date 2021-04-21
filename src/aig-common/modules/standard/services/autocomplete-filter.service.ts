@@ -56,7 +56,7 @@ export class AigStandardAutocompleteFilterService {
 					let filter = {
 						nameContains: value
 					};
-					return this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(filter);
+					return this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
 				} else {
 					return of([]);
 				}
@@ -104,7 +104,7 @@ export class AigStandardAutocompleteFilterService {
 					let filter = {
 						nameContains: value
 					};
-					return this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
+					return this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(filter);
 				} else {
 					return of([]);
 				}

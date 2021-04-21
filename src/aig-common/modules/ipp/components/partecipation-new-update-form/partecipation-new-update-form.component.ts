@@ -46,21 +46,21 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.partecipationNewUpdateForm = this._formBuilder.group({
             id: [''],
-            partecipationTypeCode: [''],
-            procurementLotCig: [''],
-            procurementLotId: [''],
-            proposerEopooCode: [''],
             siteInspection: [''],
-            statusDescription: [''],
-            statusId: [''],
-            
+
+            status: [''],
+            procurementLot: [''],
+            partecipationType: [''],
+
+            proposerEopoo: [''],
         })
         
         if (this.partecipation != null) {
             this.partecipationNewUpdateForm.patchValue(this.partecipation);
         }
-        this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLotCig'].valueChanges);
-        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationNewUpdateForm.controls['proposerEopooCode'].valueChanges);
+        
+        this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLot'].valueChanges);
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationNewUpdateForm.controls['proposerEopoo'].valueChanges);
     }
 
     async submit() {
@@ -73,7 +73,6 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
 
         let partecipation: PartecipationDTO = this.partecipationNewUpdateForm.value;
 
-        console.log(this.partecipation);
         try {
             let postOrPut: string;
 

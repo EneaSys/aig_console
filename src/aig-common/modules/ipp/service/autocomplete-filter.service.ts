@@ -22,7 +22,7 @@ export class AigIppAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 0) {
 					let filter = {
-						procurementIdEquals: value
+						descriptionContains: value
 					};
 					return this.procurementResourceService.getAllProcurementsUsingGET(filter);
 				} else {
@@ -39,7 +39,7 @@ export class AigIppAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 0) {
 					let filter = {
-						procurementLotIdEquals: value
+						descriptionContains: value
 					};
 					return this.procurementLotResourceService.getAllProcurementLotsUsingGET(filter);
 				} else {

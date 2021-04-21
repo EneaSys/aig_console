@@ -1,64 +1,39 @@
 <form *ngIf="step.form" [formGroup]="partecipationNewUpdateForm" (ngSubmit)="submit()">
 
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Procurement Lot</mat-label>
+            <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete">
+            <mat-autocomplete #procurementLotAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
+                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.description }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" [style.width.%]=33>
-            <mat-label>Codice tipo di partecipazione</mat-label>
-            <input formControlName="partecipationTypeCode" matInput required>
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Status</mat-label>
+            <input formControlName="status" matInput required>
         </mat-form-field>
-        
+        <div fxFlex="50">
+            <mat-slide-toggle formControlName="siteInspection">Site Inspection</mat-slide-toggle>
+        </div>
+    </div>
 
-    
-        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
-            <mat-label>Anagrafica proposer </mat-label>
-            <input formControlName="proposerEopooCode" matInput [matAutocomplete]="proposerEopooCodeAutocomplete">
-            <mat-autocomplete #proposerEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Tipo di partecipazione</mat-label>
+            <input formControlName="partecipationType" matInput required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>Proponente</mat-label>
+            <input formControlName="proposerEopoo" matInput [matAutocomplete]="proposerEopooAutocomplete">
+            <mat-autocomplete #proposerEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
                 <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName}}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
-
-    
-        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
-            <mat-label>Procurement Lot Cig </mat-label>
-            <input formControlName="procurementLotCig" matInput [matAutocomplete]="procurementLotCigAutocomplete">
-            <mat-autocomplete #procurementLotCigAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
-                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.cig}}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
-        
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" [style.width.%]=50>
-            <mat-label>procurementLotId</mat-label>
-            <input formControlName="procurementLotId" matInput required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" [style.width.%]=50>
-            <mat-label>statusDescription</mat-label>
-            <input formControlName="statusDescription" matInput required>
-        </mat-form-field>
-
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" [style.width.%]=50>
-            <mat-label>statusId</mat-label>
-            <input formControlName="statusId" matInput required>
-        </mat-form-field>
-    </div>
-
-            
-    <div fxLayout="row" fxLayoutAlign="start start">   
-        <mat-slide-toggle formControlName="siteInspection">Site Inspection</mat-slide-toggle>
-    </div>
-        
-
-
-   
-
-    
     <div fxLayout="row" fxLayoutAlign="end top">
         <button type="submit" mat-raised-button color="accent">Crea</button>
     </div>
