@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
@@ -63,7 +64,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             securityAmount: [''],
             istatCode: [''],
             nustCode: [''],
-            ippLotType: ['', Validators.required],
+            ippLotType: ['', [Validators.required, AigValidator.haveId] ],
             ippLotCategory: ['', Validators.required],
             cpv: ['', Validators.required],
             awardCriterionCode: [''],

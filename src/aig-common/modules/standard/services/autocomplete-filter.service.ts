@@ -20,14 +20,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.cityResourceService.getAllCitiesUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.cityResourceService.getAllCitiesUsingGET(filter);
 			})
 		);
 	}
@@ -36,14 +35,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(filter);
 			})
 		);
 	}
@@ -52,14 +50,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
 			})
 		);
 	}
@@ -68,14 +65,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.ippSectorResourceService.getAllItalianPublicProcurementSectorsUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.ippSectorResourceService.getAllItalianPublicProcurementSectorsUsingGET(filter);
 			})
 		);
 	}
@@ -84,14 +80,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(filter);
 			})
 		);
 	}
@@ -100,14 +95,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(filter);
 			})
 		);
 	}
@@ -115,14 +109,13 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
+				let filter = {};
                 if (value && value.length > 0) {
-					let filter = {
+					filter = {
 						nameContains: value
 					};
-					return this.cpvResourceService.getAllCpvsUsingGET(filter);
-				} else {
-					return of([]);
 				}
+				return this.cpvResourceService.getAllCpvsUsingGET(filter);
 			})
 		);
 	}

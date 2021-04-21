@@ -87,6 +87,14 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
+                id       : 'dossier-list-page',
+                title    : 'Dossier',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/dossier',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
                 type     : 'item',
@@ -102,13 +110,12 @@ export const navigation: FuseNavigation[] = [
                 url      : '/ipp/procurement-lot',
                 permission: ['c6e.admin'],
             },
-
             {
-                id       : 'dossier-list-page',
-                title    : 'Dossier',
+                id       : 'partecipation-list-page',
+                title    : 'Partecipation',
                 type     : 'item',
                 icon     : 'child_care',
-                url      : '/ipp/dossier',
+                url      : '/ipp/partecipation',
                 permission: ['c6e.admin'],
             },
             {
@@ -120,22 +127,6 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
-                id       : 'partecipation-list-page',
-                title    : 'Partecipation',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/partecipation',
-                permission: ['c6e.admin'],
-            },
-            {
-                id       : 'partecipation-status-list-page',
-                title    : 'Partecipation Status',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/partecipation-status',
-                permission: ['c6e.admin'],
-            },
-            {
                 id       : 'preparation-list-page',
                 title    : 'Preparation',
                 type     : 'item',
@@ -144,28 +135,11 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
             {
-                id       : 'preparation-status-list-page',
-                title    : 'Preparation Status',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/preparation-status',
-                permission: ['c6e.admin'],
-            },
-            {
                 id       : 'insurance-policy-list-page',
                 title    : 'Insurance Policy',
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/insurance-policy',
-                permission: ['c6e.admin'],
-            },
-
-            {
-                id       : 'insurance-policy-status-list-page',
-                title    : 'Insurance Policy Status',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/insurance-policy-status',
                 permission: ['c6e.admin'],
             },
         ]
