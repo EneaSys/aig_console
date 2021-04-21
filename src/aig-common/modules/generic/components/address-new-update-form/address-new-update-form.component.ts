@@ -7,13 +7,9 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
-<<<<<<< HEAD
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
-=======
-import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
->>>>>>> develop
 
 @Component({
     selector: 'aig-address-new-update-form',
@@ -32,14 +28,10 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private eventService: EventService,
-        private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
-        private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
-<<<<<<< HEAD
-        public aigStandardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
-=======
-        public standardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
->>>>>>> develop
+        private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+        public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private addressResourceService: AddressResourceService,
     ) { }
 
@@ -64,9 +56,9 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
             this.addressNewUpdateForm.patchValue(this.address);
         }
 
-        this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopooTaxNumber'].valueChanges);
+        this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopooTaxNumber'].valueChanges);
 
-        this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.addressNewUpdateForm.controls['city'].valueChanges);
+        this.filteredCitys = this.standardAutocompleteFilterService.filterCity(this.addressNewUpdateForm.controls['city'].valueChanges);
     }
 
     async submit() {

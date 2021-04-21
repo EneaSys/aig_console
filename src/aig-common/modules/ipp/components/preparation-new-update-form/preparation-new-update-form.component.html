@@ -1,15 +1,13 @@
 <form *ngIf="step.form" [formGroup]="preparationNewUpdateForm" (ngSubmit)="submit()">
 
-    <mat-form-field>
-        <mat-label>Id</mat-label>
-        <input formControlName="id" matInput required>
+    <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+        <mat-label>Company Preparator Eopoo Code</mat-label>
+        <input formControlName="companyPreparatorEopooCode" matInput [matAutocomplete]="companyPreparatorEopooCodeAutocomplete">
+        <mat-autocomplete #companyPreparatorEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+            <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+        </mat-autocomplete>
     </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Company Preparator Eopoo Code</mat-label>
-        <input formControlName="companyPreparatorEopooCode" matInput required>
-    </mat-form-field>
-   
     <mat-form-field>
         <mat-label>Note</mat-label>
         <input formControlName="note" matInput required>

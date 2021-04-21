@@ -15,16 +15,6 @@ export class AigGenericAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-<<<<<<< HEAD
-                if (value.length == 1) {
-                    return this.eopooResourceService.getAllEopoosUsingGET({});
-                } else {
-                    return of([]);
-                }
-            })
-        );
-    }
-=======
                 if (value && value.length > 0) {
 					let filter = {
 						taxNumberContains: value
@@ -68,5 +58,4 @@ export class AigGenericAutocompleteFilterService {
 			})
 		);
 	}
->>>>>>> develop
 }

@@ -31,12 +31,8 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Comune</mat-label>
             <input type="text" matInput formControlName="city" required [matAutocomplete]="cityAutocomplete">
-<<<<<<< HEAD
-            <mat-autocomplete #cityAutocomplete="matAutocomplete" [displayWith]="aigStandardAutocompleteDisplayService.cityDisplayFn">
-=======
             <mat-autocomplete #cityAutocomplete="matAutocomplete"
                 [displayWith]="standardAutocompleteFunctionService.cityDisplayFn">
->>>>>>> develop
                 <mat-option *ngFor="let city of filteredCitys | async" [value]="city">{{ city.name }}</mat-option>
             </mat-autocomplete>
             <mat-icon matSuffix class="secondary-text">location_city</mat-icon>
