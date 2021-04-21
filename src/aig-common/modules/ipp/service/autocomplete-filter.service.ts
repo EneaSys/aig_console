@@ -20,13 +20,13 @@ export class AigIppAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value && value.length > 2) {
+				if (value && value.length > 0) {
 					let filter = {
 						procurementIdEquals: value
 					};
 					return this.procurementResourceService.getAllProcurementsUsingGET(filter);
 				} else {
-					return of([]);
+					return this.procurementResourceService.getAllProcurementsUsingGET({});
 				}
 			})
 		);
@@ -37,13 +37,13 @@ export class AigIppAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value && value.length > 2) {
+				if (value && value.length > 0) {
 					let filter = {
 						procurementLotIdEquals: value
 					};
 					return this.procurementLotResourceService.getAllProcurementLotsUsingGET(filter);
 				} else {
-					return of([]);
+					return this.procurementLotResourceService.getAllProcurementLotsUsingGET({});
 				}
 			})
 		);
@@ -54,13 +54,13 @@ export class AigIppAutocompleteService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value && value.length > 2) {
+				if (value && value.length > 0) {
 					let filter = {
 						partecipationdIdEquals: value
 					};
 					return this.partecipationResourceService.getAllPartecipationsUsingGET(filter);
 				} else {
-					return of([]);
+					return this.partecipationResourceService.getAllPartecipationsUsingGET({});
 				}
 			})
 		);
