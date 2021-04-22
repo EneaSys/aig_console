@@ -17,7 +17,7 @@
         <div class="widget p-16" fxFlex.gt-sm="33">
             <div class="fuse-card auto-width p-16" id="address-list">
                 <div class="h4 m-16 mt-0 mb-0">Indirizzi</div>
-                <aig-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDisplayedColumns">
+                <aig-address-list-table [dataSource]="addressDTOs" [displayedColumns]="addressDC" [error]="addressError">
                 </aig-address-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addAddress(eopooDTO)">

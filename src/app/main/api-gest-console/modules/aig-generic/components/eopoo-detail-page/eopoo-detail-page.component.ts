@@ -34,30 +34,32 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
     eopooDTO: EopooDTO;
 
-    addressDisplayedColumns: string[] = ['name', 'address', 'city', 'buttons'];
-
-    addressDTOs: AddressDTO[];
-    contextUserEopooDTOs: ContextUserEopooDTO[];
-    sellerDTOs: SellerDTO[];
-
     loadPage() {
         this.eopooDTO = this.route.snapshot.data.eopoo;
+        this.loadAddress();
     }
 
     async reloadPage() {
         this.eopooDTO = await this.eopooResourceService.getEopooUsingGET(this.eopooDTO.id).toPromise();
+        this.loadAddress();
     }
 
-    async afterLoad() {
+
+
+    addressDC: string[] = ['name', 'address', 'city', 'buttons'];
+    addressDTOs: AddressDTO[];
+    addressError: any;
+
+    async loadAddress() {
         let filters = {
-            sellerEopooIdEqual: +this.eopooDTO.id
+            eopooIdEquals: this.eopooDTO.id,
         };
-        this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET().toPromise();
-        this.contextUserEopooDTOs = await this.contextUserEopooResourceService.getAllContextUserEopoosUsingGET().toPromise();
-        this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(filters).toPromise()
+        this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET(filters).toPromise();  
     }
 
 
+
+    
     editEopoo(eopooDTO: EopooDTO) {
         this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: eopooDTO } });
     }
