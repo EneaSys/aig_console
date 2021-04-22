@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { AddressResourceService, EopooResourceService, EopooTypeResourceService } from 'aig-generic';
+import { AddressResourceService, EopooResourceService, EopooTypeResourceService, ReferentResourceService } from 'aig-generic';
 
 @Injectable()
 export class AigGenericAutocompleteFilterService {
@@ -9,6 +9,7 @@ export class AigGenericAutocompleteFilterService {
         private eopooResourceService: EopooResourceService,
         private eopooTypeResourceService: EopooTypeResourceService,
 		private addressResourceService: AddressResourceService,
+		private referentResourceService: ReferentResourceService,
     ) { }
 
     filterEopoo(observable: Observable<any>) {
@@ -54,6 +55,22 @@ export class AigGenericAutocompleteFilterService {
 					return this.addressResourceService.getAllAddressesUsingGET(filter);
 				} else {
 					return this.addressResourceService.getAllAddressesUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterReferent(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						firstnameContains: value
+					};
+					return this.referentResourceService.getAllReferentsUsingGET(filter);
+				} else {
+					return this.referentResourceService.getAllReferentsUsingGET({});
 				}
 			})
 		);

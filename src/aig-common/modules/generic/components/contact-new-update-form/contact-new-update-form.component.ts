@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ContactDTO, ContactResourceService } from 'aig-generic';
+import { ContactDTO, ContactResourceService, EopooDTO, ReferentDTO } from 'aig-generic';
+import { Observable } from 'rxjs';
+import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-contact-new-update-form',
@@ -24,12 +27,17 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private contactResourceService: ContactResourceService,
         private eventService: EventService,
+        private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
     ) { }
 
     @Input()
     contact: ContactDTO;
 
     contactNewUpdateForm: FormGroup;
+
+    filteredEopoos: Observable<EopooDTO[]>;
+    filteredReferents: Observable<ReferentDTO[]>;
 
     ngOnInit(): void {
         
@@ -46,6 +54,10 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         if (this.contact != null) {
             this.contactNewUpdateForm.patchValue(this.contact);
         }
+
+        this.filteredReferents = this.genericAutocompleteFilterService.filterReferent(this.contactNewUpdateForm.controls['referent'].valueChanges);
+
+        this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.contactNewUpdateForm.controls['eopoo'].valueChanges);
     }
 
     async submit() {

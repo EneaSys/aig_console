@@ -3,12 +3,18 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="50">
             <mat-label>Referent</mat-label>
-            <input formControlName="referent" matInput required>
+            <input formControlName="referent" matInput required [matAutocomplete]="referentAutocomplete">
+            <mat-autocomplete #referentAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.referentDisplayFn">
+                <mat-option *ngFor="let referent of filteredReferents | async" [value]="referent">{{ referent.firstname + " " + referent.lastname }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>Eopoo</mat-label>
-            <input formControlName="eopoo" matInput required>
+            <input formControlName="eopoo" matInput required [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.person ? eopoo.person.firstname + " " + eopoo.person.lastname : eopoo.genericEopoo.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
