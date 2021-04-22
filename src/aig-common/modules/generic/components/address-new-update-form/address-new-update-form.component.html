@@ -1,5 +1,5 @@
 <form *ngIf="step.form" [formGroup]="addressNewUpdateForm" (ngSubmit)="submit()">
-
+    {{ address | json }}
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Eopoo</mat-label>
