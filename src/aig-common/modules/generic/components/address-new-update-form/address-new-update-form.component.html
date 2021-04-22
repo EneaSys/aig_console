@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="addressNewUpdateForm" (ngSubmit)="submit()">
 
-    <div *ngIf="!address.id" fxLayout="row" fxLayoutAlign="start start">
+    <div  fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Eopoo</mat-label>
             <input type="text" matInput formControlName="eopooTaxNumber" required [matAutocomplete]="eopooAutocomplete">

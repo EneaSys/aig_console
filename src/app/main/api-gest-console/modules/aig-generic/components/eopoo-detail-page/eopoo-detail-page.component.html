@@ -49,4 +49,31 @@
         </div>
     </div>
 
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16" id="contact-list">
+                <div class="h4 m-16 mt-0 mb-0">Contatti</div>
+                <aig-contact-list-table [dataSource]="contactDTOs" [displayedColumns]="contactDC" [error]="contactError">
+                </aig-contact-list-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addContact(eopooDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>   
+        </div>
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16" id="referent-list">
+                <div class="h4 m-16 mt-0 mb-0">Referent</div>
+                <aig-referent-list-table [dataSource]="referentDTOs" [displayedColumns]="referentDC" [error]="referentError">
+                </aig-referent-list-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addReferent(eopooDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>
