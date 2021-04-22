@@ -33,6 +33,8 @@ export class AigAddressDetailPageComponent extends GenericComponent {
     }
 
     editAddress(addressDTO: AddressDTO) {
+        console.log(this.addressDTO);
+        console.log(addressDTO);
         this.dialog.open(AigAddressNewUpdateModalComponent, { data: { address: addressDTO } });
     }
 
