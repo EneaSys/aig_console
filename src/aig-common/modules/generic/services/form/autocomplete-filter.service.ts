@@ -21,7 +21,7 @@ export class AigGenericAutocompleteFilterService {
 					};
 					return this.eopooResourceService.getAllEopoosUsingGET(filter);
 				} else {
-					return of([]);
+					return this.eopooResourceService.getAllEopoosUsingGET({});
 				}
 			})
 		);
@@ -37,7 +37,7 @@ export class AigGenericAutocompleteFilterService {
 					};
 					return this.eopooTypeResourceService.getAllEopooTypesUsingGET(filter);
 				} else {
-					return of([]);
+					return this.eopooTypeResourceService.getAllEopooTypesUsingGET({});
 				}
 			})
 		);
@@ -53,7 +53,7 @@ export class AigGenericAutocompleteFilterService {
 					};
 					return this.addressResourceService.getAllAddressesUsingGET(filter);
 				} else {
-					return of([]);
+					return this.addressResourceService.getAllAddressesUsingGET({});
 				}
 			})
 		);
