@@ -8,6 +8,7 @@ import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standa
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-person-new-update-form',
@@ -53,7 +54,7 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
             lastname: ['', Validators.required],
             sex: ['', Validators.required],
             bornDate: ['', Validators.required],
-            city: ['', Validators.required],
+            city: ['', [Validators.required, AigValidator.haveId]],
         });
 
         if(this.eopoo == undefined && this.eopooType != null) {

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { EopooDTO, ReferentDTO, ReferentResourceService } from 'aig-generic';
 import { Observable } from 'rxjs';
@@ -41,7 +42,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         
         this.referentNewUpdateForm = this._formBuilder.group({
             id: [''],
-            eopoo: ['', Validators.required],
+            eopoo: ['', [Validators.required, AigValidator.haveId]],
             firstname: ['', Validators.required],
             lastname: [''],
             position: [''],

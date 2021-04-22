@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { ContactDTO, ContactResourceService } from 'aig-generic';
 
@@ -36,8 +37,8 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         this.contactNewUpdateForm = this._formBuilder.group({
             id: [''],
             
-            referent: ['', Validators.required],
-            eopoo: ['', Validators.required],
+            referent: ['', [Validators.required, AigValidator.haveId]],
+            eopoo: ['', [Validators.required, AigValidator.haveId]],
 
             contactType: ['', Validators.required],
             value: ['', Validators.required],
