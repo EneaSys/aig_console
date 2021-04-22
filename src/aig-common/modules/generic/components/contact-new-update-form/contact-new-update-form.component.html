@@ -1,9 +1,21 @@
 <form *ngIf="step.form" [formGroup]="contactNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Referent</mat-label>
+            <input formControlName="referent" matInput required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>Eopoo</mat-label>
+            <input formControlName="eopoo" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Contact Type Code</mat-label>
-            <input formControlName="contactTypeCode" matInput required>
+            <mat-label>Contact Type</mat-label>
+            <input formControlName="contactType" matInput required>
         </mat-form-field>
     </div>
 
@@ -14,19 +26,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Referent Last Name</mat-label>
-            <input formControlName="referentLastname" matInput required>
-        </mat-form-field>
-    </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Eopoo Tax Number</mat-label>
-            <input formControlName="eopooTaxNumber" matInput required>
-        </mat-form-field>
-    </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
         <button *ngIf="!contact.id" type="submit" mat-raised-button color="accent">Crea</button>

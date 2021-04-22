@@ -35,10 +35,12 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         
         this.contactNewUpdateForm = this._formBuilder.group({
             id: [''],
-            contactTypeCode: ['', Validators.required],
+            
+            referent: ['', Validators.required],
+            eopoo: ['', Validators.required],
+
+            contactType: ['', Validators.required],
             value: ['', Validators.required],
-            referentLastname: ['', Validators.required],
-            eopooTaxNumber: ['', Validators.required],
         })
         
         if (this.contact != null) {
@@ -53,13 +55,11 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let contact: ContactDTO = {
-            id: this.contactNewUpdateForm.value.id,
-            contactTypeCode: this.contactNewUpdateForm.value.contactTypeCode,
-            value: this.contactNewUpdateForm.value.value,
-            referentLastname: this.contactNewUpdateForm.value.referentLastname,
-            eopooTaxNumber: this.contactNewUpdateForm.value.eopooTaxNumber,
-        }
+        let contact: ContactDTO = this.contactNewUpdateForm.value;
+        contact.referentId = this.contactNewUpdateForm.value.referent.id;
+        contact.eopooId = this.contactNewUpdateForm.value.eopoo.id;
+        //contact.contactTypeCode = this.contactNewUpdateForm.value.contactType.id; //TODO
+        contact.contactTypeCode = this.contactNewUpdateForm.value.contactType;
 
         try {
             let postOrPut;

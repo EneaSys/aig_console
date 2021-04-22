@@ -3,7 +3,7 @@
     <div *ngIf="!referent.id" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Eopoo</mat-label>
-            <input type="text" matInput formControlName="eopooTaxNumber" required [matAutocomplete]="eopooAutocomplete">
+            <input type="text" matInput formControlName="eopoo" required [matAutocomplete]="eopooAutocomplete">
             <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
                 <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.person ? eopoo.person.firstname + " " + eopoo.person.lastname : eopoo.genericEopoo.name }}</mat-option>
             </mat-autocomplete>

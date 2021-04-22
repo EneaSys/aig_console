@@ -29,7 +29,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private eventService: EventService,
         private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
         private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private addressResourceService: AddressResourceService,

@@ -41,7 +41,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         
         this.referentNewUpdateForm = this._formBuilder.group({
             id: [''],
-            eopooTaxNumber: ['', Validators.required],
+            eopoo: ['', Validators.required],
             firstname: ['', Validators.required],
             lastname: [''],
             position: [''],
@@ -51,7 +51,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
             this.referentNewUpdateForm.patchValue(this.referent);
         }
 
-        this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.referentNewUpdateForm.controls['eopooTaxNumber'].valueChanges);
+        this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.referentNewUpdateForm.controls['eopoo'].valueChanges);
     }
 
     async submit() {
@@ -61,12 +61,8 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let referentDTO: ReferentDTO = {
-            eopooId: this.referentNewUpdateForm.value.eopoo.id,
-            firstname: this.referentNewUpdateForm.value.firstname,
-            lastname: this.referentNewUpdateForm.value.lastname,
-            position: this.referentNewUpdateForm.value.position,
-        }
+        let referentDTO: ReferentDTO = this.referentNewUpdateForm.value;
+        referentDTO.eopooId = this.referentNewUpdateForm.value.eopoo.id;
 
         try {
             await this.referentResourceService.createReferentUsingPOST(referentDTO).toPromise();
