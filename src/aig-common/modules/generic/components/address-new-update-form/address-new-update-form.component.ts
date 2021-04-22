@@ -39,6 +39,9 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
     @Input()
     address: AddressDTO;
 
+    @Input()
+    eopoo: EopooDTO;
+
     addressNewUpdateForm: FormGroup;
 
     filteredCitys: Observable<CityDTO[]>;
@@ -55,7 +58,10 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
 
         if (this.address != null) {
             this.addressNewUpdateForm.patchValue(this.address);
-            console.log(this.address)
+        }
+
+        if(this.eopoo != null){
+            this.addressNewUpdateForm.controls['eopoo'].patchValue(this.eopoo); 
         }
 
         this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopoo'].valueChanges);
