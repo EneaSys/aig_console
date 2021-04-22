@@ -80,6 +80,6 @@ export class AigEopooDetailPageComponent extends GenericComponent {
       }
 
     addAddress(eopooDTO: EopooDTO) {
-        this.dialog.open(AigAddressNewUpdateModalComponent, { data: { eopoo: eopooDTO } });
+        this.dialog.open(AigAddressNewUpdateModalComponent, { data: { address: { }, eopoo: eopooDTO } });
     }
 }

@@ -30,7 +30,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private eventService: EventService,
         private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
         private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private addressResourceService: AddressResourceService,
@@ -47,7 +47,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
-            eopooTaxNumber: ['', [Validators.required, AigValidator.haveId]],
+            eopoo: ['', [Validators.required, AigValidator.haveId]],
             name: ['', Validators.required],
             address: ['', Validators.required],
             city: ['', [Validators.required, AigValidator.haveId]],
@@ -55,9 +55,10 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
 
         if (this.address != null) {
             this.addressNewUpdateForm.patchValue(this.address);
+            console.log(this.address)
         }
 
-        this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopooTaxNumber'].valueChanges);
+        this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopoo'].valueChanges);
 
         this.filteredCitys = this.standardAutocompleteFilterService.filterCity(this.addressNewUpdateForm.controls['city'].valueChanges);
     }
@@ -70,7 +71,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let addressDTO: AddressDTO = {
-            eopooId: this.addressNewUpdateForm.value.eopooTaxNumber.id,
+            eopooId: this.addressNewUpdateForm.value.eopoo.id,
             name: this.addressNewUpdateForm.value.name,
             address: this.addressNewUpdateForm.value.address,
             cityCode: this.addressNewUpdateForm.value.city.code,
