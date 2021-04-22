@@ -45,7 +45,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         
         this.referentNewUpdateForm = this._formBuilder.group({
             id: [''],
-            eopoo: ['', [Validators.required, AigValidator.haveId]],
+            eopoo: [this.eopoo, [Validators.required, AigValidator.haveId]],
             firstname: ['', Validators.required],
             lastname: [''],
             position: [''],
@@ -53,10 +53,6 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         
         if (this.referent != null) {
             this.referentNewUpdateForm.patchValue(this.referent);
-        }
-
-        if(this.eopoo != null){
-            this.referentNewUpdateForm.controls['eopoo'].patchValue(this.eopoo); 
         }
 
         this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.referentNewUpdateForm.controls['eopoo'].valueChanges);

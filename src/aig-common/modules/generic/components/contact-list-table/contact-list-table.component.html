@@ -9,39 +9,31 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
+
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell> -->
+            <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="contactTypeCode">
-            <mat-header-cell *matHeaderCellDef> Contact Type Code </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell> -->
+        
+        <ng-container matColumnDef="eopoo">
+            <mat-header-cell *matHeaderCellDef> Eopoo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.eopoo }} </mat-cell>
         </ng-container>
-
-        <ng-container matColumnDef="eopooId">
-            <mat-header-cell *matHeaderCellDef> Eopoo Id </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element">{{ element.address }}</mat-cell> -->
+        
+        <ng-container matColumnDef="referent">
+            <mat-header-cell *matHeaderCellDef> Referent </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.referent.lastname }}  {{ element.referent.firstname }} </mat-cell> -
         </ng-container>
-
-        <ng-container matColumnDef="eopooTaxNumber">
-            <mat-header-cell *matHeaderCellDef> Eopoo Tax Number </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
+        
+        <ng-container matColumnDef="contactType">
+            <mat-header-cell *matHeaderCellDef> Contact Type </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.contactTypeCode }} </mat-cell>
         </ng-container>
-
-        <ng-container matColumnDef="referentId">
-            <mat-header-cell *matHeaderCellDef> Referent Id </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
-        </ng-container>
-
-        <ng-container matColumnDef="referentLastname">
-            <mat-header-cell *matHeaderCellDef> Referent Last Name </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
-        </ng-container>
-
+        
         <ng-container matColumnDef="value">
             <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
-            <!-- <mat-cell *matCellDef="let element"> {{ element.city.name }} </mat-cell> -->
+            <mat-cell *matCellDef="let element"> {{ element.value }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

@@ -32,30 +32,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/generic-eopoo',
                 permission: ['g5c.eopoo.get'],
             },*/
-            {
-                id       : 'address-list-page',
-                title    : 'Address',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/address',
-                permission: ['g5c.eopoo.get'],
-            },
-            {
-                id       : 'referent-list-page',
-                title    : 'Referent',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/referent',
-                permission: ['g5c.eopoo.get'],
-            },
-            {
-                id       : 'contact-list-page',
-                title    : 'Contact',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/contact',
-                permission: ['g5c.eopoo.get'],
-            },
         ]
     },
     {

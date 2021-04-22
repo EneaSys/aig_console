@@ -51,7 +51,7 @@ export class AigContactListPageComponent extends GenericComponent {
             eopooTaxNumber: [''],
         });
 
-        this.contactDC = ["id", "contactTypeCode", "eopooId", "eopooTaxNumber", "referentId", "referentLastname", "value", "buttons"];
+        this.contactDC = ["id", "eopoo", "referent", "contactType", "value", "buttons"];
     }
 
     private clearFiltersContact() {

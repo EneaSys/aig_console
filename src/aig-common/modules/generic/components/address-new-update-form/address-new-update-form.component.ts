@@ -42,6 +42,8 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
+    isUpdate: boolean = false;
+
     addressNewUpdateForm: FormGroup;
 
     filteredCitys: Observable<CityDTO[]>;
@@ -50,7 +52,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
-            eopoo: ['', [Validators.required, AigValidator.haveId]],
+            eopoo: [this.eopoo, [Validators.required, AigValidator.haveId]],
             name: ['', Validators.required],
             address: ['', Validators.required],
             city: ['', [Validators.required, AigValidator.haveId]],
@@ -58,10 +60,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
 
         if (this.address != null) {
             this.addressNewUpdateForm.patchValue(this.address);
-        }
-
-        if(this.eopoo != null){
-            this.addressNewUpdateForm.controls['eopoo'].patchValue(this.eopoo); 
+            this.isUpdate = true;
         }
 
         this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopoo'].valueChanges);
@@ -76,24 +75,30 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let addressDTO: AddressDTO = {
-            eopooId: this.addressNewUpdateForm.value.eopoo.id,
-            name: this.addressNewUpdateForm.value.name,
-            address: this.addressNewUpdateForm.value.address,
-            cityCode: this.addressNewUpdateForm.value.city.code,
-        }
+        let address: AddressDTO = this.addressNewUpdateForm.value;
+        address.eopooId = this.addressNewUpdateForm.value.eopoo.id;
+        address.cityCode = this.addressNewUpdateForm.value.city.code;
+
 
         try {
-            await this.addressResourceService.createAddressUsingPOST(addressDTO).toPromise();
+            let postOrPut;
+            if (address.id != 0) {
+                await this.addressResourceService.updateAddressUsingPUT(address).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.addressResourceService.createAddressUsingPOST(address).toPromise();
+                postOrPut = "created";
+            }
             this.eventService.reloadCurrentPage();
-            this._snackBar.open("Address created", null, { duration: 5000, });
+
+            this._snackBar.open(`Address: '${address.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
-        } catch(e) {
-            this._snackBar.open("Error: " + e.error.message, null, { duration: 10000, });
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
-
         this._fuseProgressBarService.hide();
+
     }
 
     newAddress() {
