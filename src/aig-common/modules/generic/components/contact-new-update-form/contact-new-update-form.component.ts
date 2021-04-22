@@ -35,6 +35,9 @@ export class AigContactNewUpdateFormComponent implements OnInit {
     @Input()
     contact: ContactDTO;
 
+    @Input()
+    eopoo: EopooDTO;
+
     contactNewUpdateForm: FormGroup;
 
     filteredEopoos: Observable<EopooDTO[]>;
@@ -54,6 +57,10 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         
         if (this.contact != null) {
             this.contactNewUpdateForm.patchValue(this.contact);
+        }
+
+        if(this.eopoo != null){
+            this.contactNewUpdateForm.controls['eopoo'].patchValue(this.eopoo); 
         }
 
         this.filteredReferents = this.genericAutocompleteFilterService.filterReferent(this.contactNewUpdateForm.controls['referent'].valueChanges);
