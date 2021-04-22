@@ -25,28 +25,6 @@
                 </button>
             </div>
         </div>
-        <div class="widget p-16" fxFlex.gt-sm="33">
-            <div class="fuse-card auto-width p-16">
-                <div class="h4 m-16 mt-0 mb-0">Utenti per questa anagrafica</div>
-                <pre>{{ contextUserEopooDTOs | json }}</pre>
-            </div>
-        </div>
-    </div>
-
-    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
-        <div class="widget p-16" fxFlex.gt-sm="100">
-            <div class="fuse-card auto-width p-16">
-                <h3>Commerce</h3>
-            </div>
-        </div>
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
-                <div class="h4 m-16 mt-0 mb-16">Negozi associati a questa anagrafica</div>
-                <div *ngFor="let sellerDTO of sellerDTOs">
-                    {{ sellerDTO.id }} - {{ sellerDTO.name }}
-                </div>
-            </div>
-        </div>
     </div>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
@@ -72,6 +50,29 @@
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addReferent(eopooDTO)">
                     <mat-icon>add</mat-icon>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        
+        <div class="widget p-16" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-16 mt-0 mb-0">Utenti per questa anagrafica</div>
+                <pre>{{ contextUserEopooDTOs | json }}</pre>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16">
+                <h3>Commerce</h3>
+            </div>
+        </div>
+        <div class="widget p-16" fxFlex.gt-sm="34">
+            <div class="fuse-card auto-width p-16">
+                <div class="h4 m-16 mt-0 mb-16">Negozi associati a questa anagrafica</div>
+                <div *ngFor="let sellerDTO of sellerDTOs">
+                    {{ sellerDTO.id }} - {{ sellerDTO.name }}
+                </div>
             </div>
         </div>
     </div>
