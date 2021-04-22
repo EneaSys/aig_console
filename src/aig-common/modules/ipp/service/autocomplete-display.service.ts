@@ -16,6 +16,6 @@ export class AigIppAutocompleteDisplayService {
     }
 
     partecipationDisplayFn(partecipation?: PartecipationDTO): any | undefined {
-        return partecipation ? partecipation.procurementLot.cig + " > " + partecipation.proposerEopooCode : undefined;
+        return partecipation ? partecipation.procurementLotCig + " > " + partecipation.proposerEopooCode : undefined;
     }
 }
