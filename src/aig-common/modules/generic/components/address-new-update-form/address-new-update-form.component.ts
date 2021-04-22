@@ -10,6 +10,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-address-new-update-form',
@@ -46,10 +47,10 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
-            eopooTaxNumber: ['', Validators.required],
+            eopooTaxNumber: ['', [Validators.required, AigValidator.haveId]],
             name: ['', Validators.required],
             address: ['', Validators.required],
-            city: ['', Validators.required],
+            city: ['', [Validators.required, AigValidator.haveId]],
         })
 
         if (this.address != null) {
