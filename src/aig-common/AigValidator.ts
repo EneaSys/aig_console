@@ -10,6 +10,6 @@ export class AigValidator {
                 }
             };
         } 
-        return null;
+        return null; // funziona
     }        
 }
