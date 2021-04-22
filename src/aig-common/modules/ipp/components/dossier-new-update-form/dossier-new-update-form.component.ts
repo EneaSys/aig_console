@@ -54,7 +54,6 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
 
         let dossier: DossierDTO = this.dossierNewUpdateForm.value;
 
-        console.log(this.dossier);
         try {
             let postOrPut: string;
 
