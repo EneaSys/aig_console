@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
+import { InsurancePolicyStatusResourceService, PartecipationStatusResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
 import { EopooResourceService } from 'aig-generic';
 import { PartecipationResourceService } from 'aig-italianlegislation';
 import { combineLatest, from, Observable, of } from 'rxjs';
@@ -12,8 +12,10 @@ export class AigIppAutocompleteService {
 	constructor(
         private procurementResourceService: ProcurementResourceService,
 		private procurementLotResourceService: ProcurementLotResourceService,
-		private eopooResourceService: EopooResourceService,
+		private partecipationStatusResourceService: PartecipationStatusResourceService, 
 		private partecipationResourceService: PartecipationResourceService,
+		private preparationStatusResourceService: PreparationStatusResourceService,
+		private insurancePolicyStatusResourceService: InsurancePolicyStatusResourceService,
     ) {}
 
     filterProcurement(observable: Observable<any>) {
@@ -27,6 +29,54 @@ export class AigIppAutocompleteService {
 					return this.procurementResourceService.getAllProcurementsUsingGET(filter);
 				} else {
 					return this.procurementResourceService.getAllProcurementsUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterPartecipationStatus(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						descriptionContains: value
+					};
+					return this.partecipationStatusResourceService.getAllPartecipationStatusesUsingGET(filter);
+				} else {
+					return this.partecipationStatusResourceService.getAllPartecipationStatusesUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterPreparationStatus(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						descriptionContains: value
+					};
+					return this.preparationStatusResourceService.getAllPreparationStatusesUsingGET(filter);
+				} else {
+					return this.preparationStatusResourceService.getAllPreparationStatusesUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterInsurancePolicyStatus(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						descriptionContains: value
+					};
+					return this.insurancePolicyStatusResourceService.getAllInsurancePolicyStatusesUsingGET(filter);
+				} else {
+					return this.insurancePolicyStatusResourceService.getAllInsurancePolicyStatusesUsingGET({});
 				}
 			})
 		);

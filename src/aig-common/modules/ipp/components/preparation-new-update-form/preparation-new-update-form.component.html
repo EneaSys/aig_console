@@ -2,9 +2,9 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline">
-            <mat-label>Company Preparator Eopoo Code</mat-label>
-            <input formControlName="companyPreparatorEopooCode" matInput [matAutocomplete]="companyPreparatorEopooCodeAutocomplete">
-            <mat-autocomplete #companyPreparatorEopooCodeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+            <mat-label>Company Preparator Eopoo</mat-label>
+            <input formControlName="companyPreparatorEopoo" matInput [matAutocomplete]="companyPreparatorEopooAutocomplete">
+            <mat-autocomplete #companyPreparatorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
                 <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
@@ -12,43 +12,30 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline">
-            <mat-label>Note</mat-label>
-            <input formControlName="note" matInput required>
-        </mat-form-field>
-    </div>
-
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Partecipation Id</mat-label>
-            <input formControlName="partecipationId" matInput required>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-
-        <mat-form-field appearance="outline">
-            <mat-label>Partecipation Proposer Eopoo Code</mat-label>
-            <input formControlName="partecipationProposerEopooCode" matInput [matAutocomplete]="partecipationProposerEopooCodeAutocomplete">
-            <mat-autocomplete #partecipationProposerEopooCodeAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
-                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id}}</mat-option>
+            <mat-label>Partecipation</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
+            <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-
-        <mat-form-field  appearance="outline">
-            <mat-label>Status Description</mat-label>
-            <input formControlName="statusDescription" matInput required>
-        </mat-form-field>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline">
-            <mat-label>Status Id</mat-label>
-            <input formControlName="statusId" matInput required>
+            <mat-label>Note</mat-label>
+            <input formControlName="note" matInput>
         </mat-form-field>
     </div>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete">
+                <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationStatusDisplayFn">
+                    <mat-option *ngFor="let preparationStatus of filteredPreparationStatus | async" [value]="preparationStatus">{{ preparationStatus.description }}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>  
         
     <div fxLayout="row" fxLayoutAlign="end top">
         <button type="submit" mat-raised-button color="accent">Crea</button>

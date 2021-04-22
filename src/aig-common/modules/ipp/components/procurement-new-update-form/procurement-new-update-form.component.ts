@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
@@ -57,12 +58,12 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
             totalAmount: ['', Validators.required],
             ref:[''],
 
-            contractorEopoo: ['', Validators.required],
+            contractorEopoo: ['',[Validators.required, AigValidator.haveId]],
             status:[''],
 
-            ippSector: ['', Validators.required],
-            ippProcedure: ['', Validators.required],
-            ippModality: ['', Validators.required],
+            ippSector: ['', [Validators.required, AigValidator.haveId]],
+            ippProcedure: ['', [Validators.required, AigValidator.haveId]],
+            ippModality: ['', [Validators.required, AigValidator.haveId]],
         })
         
         if (this.procurement != null) {

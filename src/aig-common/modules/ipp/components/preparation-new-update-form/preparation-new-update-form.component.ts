@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
-import { PartecipationDTO, PreparationDTO, PreparationResourceService } from 'aig-italianlegislation';
+import { PartecipationDTO, PreparationDTO, PreparationResourceService, PreparationStatusDTO } from 'aig-italianlegislation';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
@@ -42,21 +43,27 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
 
     filteredEopoo: Observable<EopooDTO[]>;
     filteredPartecipation: Observable<PartecipationDTO[]>;
+    filteredPreparationStatus: Observable<PreparationStatusDTO[]>;
 
 
     ngOnInit(): void {
         this.preparationNewUpdateForm = this._formBuilder.group({
             id: [''],
+
+            partecipation: ['',[Validators.required, AigValidator.haveId] ],
+            status: ['',[Validators.required, AigValidator.haveId] ],
+
+            companyPreparatorEopoo: ['',[Validators.required, AigValidator.haveId] ],
+           
             note: [''],
-            partecipation: [''],
-            status: [''],
         })
         
         if (this.preparation != null) {
             this.preparationNewUpdateForm.patchValue(this.preparation);
         }
-        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.preparationNewUpdateForm.controls['companyPreparatorEopooCode'].valueChanges);
-        this.filteredPartecipation = this.ippAutocompleteFilterService.filterPartecipation(this.preparationNewUpdateForm.controls['partecipationProposerEopooCode'].valueChanges);
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.preparationNewUpdateForm.controls['companyPreparatorEopoo'].valueChanges);
+        this.filteredPartecipation = this.ippAutocompleteFilterService.filterPartecipation(this.preparationNewUpdateForm.controls['partecipation'].valueChanges);
+        this.filteredPreparationStatus = this.ippAutocompleteFilterService.filterPreparationStatus(this.preparationNewUpdateForm.controls['status'].valueChanges);
     }
 
     async submit() {
@@ -68,6 +75,9 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let preparation: PreparationDTO = this.preparationNewUpdateForm.value;
+        preparation.companyPreparatorEopooCode = this.preparationNewUpdateForm.value.companyPreparatorEopoo.id;
+        preparation.statusId = this.preparationNewUpdateForm.value.status.id;
+        preparation.partecipationId = this.preparationNewUpdateForm.value.partecipation.id;
 
         try {
             let postOrPut: string;

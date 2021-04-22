@@ -1,29 +1,32 @@
 <form *ngIf="step.form" [formGroup]="designatedCompanyNewUpdateForm" (ngSubmit)="submit()">
 
-
-    <mat-form-field>
-        <mat-label>Company Eopoo Code</mat-label>
-        <input formControlName="companyEopooCode" matInput required [matAutocomplete]="EopooAutocomplete">
-            <mat-autocomplete #EopooAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.person }}</mat-option>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Partecipation</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
+            <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutoCompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.procurementLot.cig }} > {{ partecipation.proposerEopooCode }}</mat-option>
             </mat-autocomplete>
-    </mat-form-field>
-    <br><br>
+        </mat-form-field>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Note</mat-label>
-        <input formControlName="note" matInput required>
-    </mat-form-field>
-    <br><br>
-
-    <mat-form-field>
-        <mat-label>Partecipation</mat-label>
-        <input formControlName="partecipation" matInput required [matAutocomplete]="PartecipationAutocomplete">
-            <mat-autocomplete #PartecipationAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.partecipationDisplayFn">
-                <mat-option *ngFor="let partecipation of filteredPartecipations | async" [value]="partecipation">{{ partecipation.id }}</mat-option>
-            </mat-autocomplete>
-    </mat-form-field>
-    <br><br>
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Company Eopoo </mat-label>
+            <input formControlName="companyEopoo" matInput [matAutocomplete]="companyEopooAutocomplete">
+                <mat-autocomplete #companyEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                    <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Note</mat-label>
+            <input formControlName="note" matInput>
+        </mat-form-field>
+    </div>
+    
 
     
     <div fxLayout="row" fxLayoutAlign="end top">

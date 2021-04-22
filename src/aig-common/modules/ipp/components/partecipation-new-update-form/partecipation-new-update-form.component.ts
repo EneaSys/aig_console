@@ -2,11 +2,14 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
-import { PartecipationDTO, PartecipationResourceService, ProcurementLotDTO } from 'aig-italianlegislation';
+import { PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from 'aig-italianlegislation';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
@@ -33,6 +36,8 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         private ippAutocompleteService :AigIppAutocompleteService,
         private genericAutocompleteFilterService :AigGenericAutocompleteFilterService,
         public genericAutocompleteFunctionService :AigGenericAutocompleteFunctionService,
+        private standardAutocompleteFilterService :AigStandardAutocompleteFilterService,
+        public standardAutocompleteFunctionService :AigStandardAutocompleteDisplayService,
     ) { }
 
     @Input()
@@ -42,17 +47,20 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
 
     filteredProcurementLot: Observable<ProcurementLotDTO[]>;
     filteredEopoo: Observable<EopooDTO[]>;
+    filteredPartecipationStatus: Observable<PartecipationStatusDTO[]>;
+    
 
     ngOnInit(): void {
         this.partecipationNewUpdateForm = this._formBuilder.group({
             id: [''],
-            siteInspection: [''],
 
-            status: [''],
-            procurementLot: [''],
+            status: ['',[Validators.required, AigValidator.haveId] ],
+            procurementLot: ['',[Validators.required, AigValidator.haveId] ],
+
             partecipationType: [''],
+            proposerEopoo: ['',[Validators.required, AigValidator.haveId] ],
 
-            proposerEopoo: [''],
+            siteInspection: [true],
         })
         
         if (this.partecipation != null) {
@@ -61,6 +69,8 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         
         this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLot'].valueChanges);
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationNewUpdateForm.controls['proposerEopoo'].valueChanges);
+        this.filteredPartecipationStatus = this.ippAutocompleteService.filterPartecipationStatus(this.partecipationNewUpdateForm.controls['status'].valueChanges);
+
     }
 
     async submit() {
@@ -72,6 +82,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let partecipation: PartecipationDTO = this.partecipationNewUpdateForm.value;
+        partecipation.statusId = this.partecipationNewUpdateForm.value.status.id;
+        partecipation.procurementLotId = this.partecipationNewUpdateForm.value.procurementLot.id;
+        partecipation.partecipationTypeCode = this.partecipationNewUpdateForm.value.partecipationType;
+        partecipation.proposerEopooCode = this.partecipationNewUpdateForm.value.proposerEopoo.id;
 
         try {
             let postOrPut: string;

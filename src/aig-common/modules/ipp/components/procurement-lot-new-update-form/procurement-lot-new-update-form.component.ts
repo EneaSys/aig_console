@@ -67,8 +67,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             ippLotType: ['', [Validators.required, AigValidator.haveId] ],
             ippLotCategory: ['', [Validators.required, AigValidator.haveId] ],
             cpv: ['', [Validators.required, AigValidator.haveId]],
-            awardCriterionCode: [''],
-            procurementLotStatusCode: [''],
+            awardCriterion: [''],
+            procurementLotStatus: [''],
         })
         
         if (this.procurementLot != null) {
@@ -96,6 +96,10 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         procurementLot.ippLotCategoryCode = this.procurementLotNewUpdateForm.value.ippLotCategory.id;
         procurementLot.ippLotTypeCode = this.procurementLotNewUpdateForm.value.ippLotType.id;
         procurementLot.cpvCode = this.procurementLotNewUpdateForm.value.cpv.id;
+        procurementLot.awardCriterionCode = "1";
+        procurementLot.procurementLotStatusCode = "1";
+
+
         
 
         try {
