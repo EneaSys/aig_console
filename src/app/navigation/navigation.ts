@@ -166,6 +166,14 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
+                id       : 'management-custom',
+                title    : 'Management custom page',
+                type     : 'item',
+                icon     : 'view_carousel',
+                url      : '/m8t/management-custom',
+                permission: ['c6e.admin'],
+            },
+            {
                 id       : 'standard-custom',
                 title    : 'Standard custom page',
                 type     : 'item',

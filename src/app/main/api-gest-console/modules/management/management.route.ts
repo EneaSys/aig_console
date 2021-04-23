@@ -16,6 +16,7 @@ import { AigContextUserDetailPageComponent } from "./components/context-user-det
 import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-user-list-page.component";
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
+import { AigManagementCustomListPageComponent } from "./components/management-custom-list-page/management-custom-list-page.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigPersonalizationDetailPageComponent } from "./components/personalization-detail-page/personalization-detail-page.component";
@@ -29,6 +30,29 @@ export const managementRoute: Routes = [
     {
         path: 'm8t',
         children: [
+            {
+                path: 'management-custom',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigManagementCustomListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigContextUserDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            contextUser: AigContextUserResolver,
+                        },
+                    },*/
+                ]
+            },
             {
                 path: '',
                 pathMatch: 'full',
