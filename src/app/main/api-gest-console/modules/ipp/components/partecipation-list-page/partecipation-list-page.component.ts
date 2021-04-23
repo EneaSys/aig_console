@@ -46,7 +46,7 @@ partecipationDC: string[];
 
 	
 private initPartecipationSearch() {
-	this.partecipationDC = ["id","partecipationTypeCode","procurementLotCig","proposerEopooCode","siteInspection","expiryDate","baseAmount","ippLotCategoryCode","statusDescription","buttons"]
+	this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"]
 
 	this.partecipationPaginationSize = 10;
 		

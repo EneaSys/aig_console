@@ -20,26 +20,26 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="partecipationTypeCode">
-            <mat-header-cell *matHeaderCellDef> Partecipation Type Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipationTypeCode }} </mat-cell>
+        <ng-container matColumnDef="contractorEopoo">
+            <mat-header-cell *matHeaderCellDef> Ente </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.procurement.contractorEopooCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotDescription">
+            <mat-header-cell *matHeaderCellDef> Oggetto </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.description }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurementLotCig">
-            <mat-header-cell *matHeaderCellDef> Procurement Lot Cig </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Cig </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.procurementLot.cig }} </mat-cell>
         </ng-container>
 
-
-        <ng-container matColumnDef="proposerEopooCode">
+         <ng-container matColumnDef="proposerEopooCode">
             <mat-header-cell *matHeaderCellDef> Proposer Eopoo </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.proposerEopoo | json }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="siteInspection">
-            <mat-header-cell *matHeaderCellDef> Site Inspection </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.siteInspection }} </mat-cell>
-        </ng-container>
 
         <ng-container matColumnDef="expiryDate">
             <mat-header-cell *matHeaderCellDef> Data di scadenza </mat-header-cell>
@@ -54,11 +54,6 @@
         <ng-container matColumnDef="ippLotCategoryCode">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.procurementLot.ippLotCategoryCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="statusDescription">
-            <mat-header-cell *matHeaderCellDef> Status Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.statusDescription }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
