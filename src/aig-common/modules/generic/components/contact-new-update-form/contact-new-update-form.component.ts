@@ -38,6 +38,8 @@ export class AigContactNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
+    isUpdate: boolean = false;
+
     contactNewUpdateForm: FormGroup;
 
     filteredEopoos: Observable<EopooDTO[]>;
@@ -48,8 +50,8 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         this.contactNewUpdateForm = this._formBuilder.group({
             id: [''],
             
-            referent: ['', [Validators.required, AigValidator.haveId]],
-            eopoo: ['', [Validators.required, AigValidator.haveId]],
+            referent: ['', ],
+            eopoo: [this.eopoo, ],
 
             contactType: ['', Validators.required],
             value: ['', Validators.required],
@@ -59,9 +61,6 @@ export class AigContactNewUpdateFormComponent implements OnInit {
             this.contactNewUpdateForm.patchValue(this.contact);
         }
 
-        if(this.eopoo != null){
-            this.contactNewUpdateForm.controls['eopoo'].patchValue(this.eopoo); 
-        }
 
         this.filteredReferents = this.genericAutocompleteFilterService.filterReferent(this.contactNewUpdateForm.controls['referent'].valueChanges);
 
@@ -76,8 +75,12 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let contact: ContactDTO = this.contactNewUpdateForm.value;
-        contact.referentId = this.contactNewUpdateForm.value.referent.id;
-        contact.eopooId = this.contactNewUpdateForm.value.eopoo.id;
+        if(this.contactNewUpdateForm.value.referent){
+            contact.referentId = this.contactNewUpdateForm.value.referent.id;
+        }
+        if(this.contactNewUpdateForm.value.eopoo){
+            contact.eopooId = this.contactNewUpdateForm.value.eopoo.id;
+        }
         //contact.contactTypeCode = this.contactNewUpdateForm.value.contactType.id; //TODO
         contact.contactTypeCode = this.contactNewUpdateForm.value.contactType;
 

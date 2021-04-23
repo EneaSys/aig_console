@@ -32,30 +32,6 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/generic-eopoo',
                 permission: ['g5c.eopoo.get'],
             },*/
-            {
-                id       : 'address-list-page',
-                title    : 'Address',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/address',
-                permission: ['g5c.eopoo.get'],
-            },
-            {
-                id       : 'referent-list-page',
-                title    : 'Referent',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/referent',
-                permission: ['g5c.eopoo.get'],
-            },
-            {
-                id       : 'contact-list-page',
-                title    : 'Contact',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/contact',
-                permission: ['g5c.eopoo.get'],
-            },
         ]
     },
     {
@@ -189,6 +165,14 @@ export const navigation: FuseNavigation[] = [
         title    : 'Public database',
         type     : 'group',
         children : [
+            {
+                id       : 'management-custom',
+                title    : 'Management custom page',
+                type     : 'item',
+                icon     : 'view_carousel',
+                url      : '/m8t/management-custom',
+                permission: ['c6e.admin'],
+            },
             {
                 id       : 'standard-custom',
                 title    : 'Standard custom page',

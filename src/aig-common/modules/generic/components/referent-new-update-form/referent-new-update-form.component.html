@@ -1,11 +1,11 @@
 <form *ngIf="step.form" [formGroup]="referentNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!eopoo" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Eopoo</mat-label>
             <input type="text" matInput formControlName="eopoo" required [matAutocomplete]="eopooAutocomplete">
             <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo.person ? eopoo.person.firstname + " " + eopoo.person.lastname : eopoo.genericEopoo.name }}</mat-option>
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
             <mat-error>è obbligatorio!</mat-error>
         </mat-form-field>

@@ -86,7 +86,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.dialog.open(AigAddressNewUpdateModalComponent, { data: { address: { }, eopoo: eopooDTO } });
     }
 
-    contactDC: string[] = ["contactTypeCode", "eopooId", 'buttons'];
+    contactDC: string[] = ["referent", "contactType", 'value'];
     contactDTOs: ContactDTO[];
     contactError: any;
 

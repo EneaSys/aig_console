@@ -3,6 +3,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { WarehouseResourceService, WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     templateUrl: './warehouse-manager-page.component.html',
@@ -12,6 +13,7 @@ export class AigWarehouseManagerPageComponent extends GenericComponent {
     constructor(
         private warehouseResourceService: WarehouseResourceService,
         private eventService :EventService,
+        private _snackBar: MatSnackBar,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
@@ -31,6 +33,9 @@ export class AigWarehouseManagerPageComponent extends GenericComponent {
     async loadPage() {
         try {
             this.warehouseDTOs = await this.warehouseResourceService.getAllWarehousesUsingGET(this.warehouseFilters).toPromise();
+            if(this.warehouseDTOs.length == 0){
+                this._snackBar.open("Nessun Magazzino trovato!", null, {duration: 5000,});
+            }
             if (this.warehouseDTOs.length > 0) {
                 this.setWarehouse(this.warehouseDTOs[0]);
             } else {

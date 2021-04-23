@@ -1,0 +1,78 @@
+<div id="aig-management-custom" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar>
+
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Management custom page</span>
+
+            </div>
+
+        </div>
+
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <mat-tab-group dynamicHeight>
+
+                <mat-tab label="Ruoli">
+
+                    <aig-role-list-page></aig-role-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Application Module">
+
+                    <aig-application-module-list-page></aig-application-module-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Entity Reference">
+
+                    <aig-entity-reference-list-page></aig-entity-reference-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Permessi">
+
+                    <aig-permission-list-page></aig-permission-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Tenant Context">
+
+                   <aig-tenant-context-list-page></aig-tenant-context-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Context Module">
+
+                    <aig-context-module-list-page></aig-context-module-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Contesti">
+
+                    <aig-context-user-list-page></aig-context-user-list-page>
+
+                </mat-tab>
+
+                <mat-tab label="Personalizzazione">
+
+                    <aig-personalization-list-page></aig-personalization-list-page>
+
+                </mat-tab>
+
+            </mat-tab-group>
+
+        </div>
+
+    </div>
+
+</div>
