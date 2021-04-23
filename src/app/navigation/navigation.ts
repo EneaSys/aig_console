@@ -68,7 +68,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/dossier',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'procurement-list-page',
@@ -76,7 +76,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'build',
                 url      : '/ipp/procurement',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'procurement-lot-list-page',
@@ -84,7 +84,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/procurement-lot',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'partecipation-list-page',
@@ -92,7 +92,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/partecipation',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'designated-company-list-page',
@@ -100,7 +100,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/designated-company',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'preparation-list-page',
@@ -108,7 +108,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/preparation',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'insurance-policy-list-page',
@@ -116,7 +116,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/insurance-policy',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
         ]
     },
