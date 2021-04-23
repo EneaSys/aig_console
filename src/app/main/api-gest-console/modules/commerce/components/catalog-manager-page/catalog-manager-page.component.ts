@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { CatalogDTO, CatalogResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
@@ -11,6 +12,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 export class AigCatalogManagerPageComponent extends GenericComponent {
     constructor(
         private catalogResourceService: CatalogResourceService,
+        private _snackBar: MatSnackBar,
         aigGenericComponentService: AigGenericComponentService,
         private eventService: EventService,
     ) { super(aigGenericComponentService) }
@@ -33,6 +35,9 @@ export class AigCatalogManagerPageComponent extends GenericComponent {
     async loadPage() {
         try {
             this.catalogDTOs = await this.catalogResourceService.getAllCatalogsUsingGET({}).toPromise();
+            if(this.catalogDTOs.length == 0){
+                this._snackBar.open("Nessun Catalogo trovato!", null, {duration: 5000,});
+            }
             if (this.catalogDTOs.length > 0) {
                 this.setCatalog(this.catalogDTOs[0]);
             } else {
