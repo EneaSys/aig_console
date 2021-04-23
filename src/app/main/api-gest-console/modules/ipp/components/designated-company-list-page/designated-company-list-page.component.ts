@@ -46,13 +46,14 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 
 
 	private initDesignatedCompanySearch() {
-		this.designatedCompanyDC = ["id", "companyEopooCode", "partecipationId", "partecipationProposerEopooCode", "note", "buttons"];
+		this.designatedCompanyDC = ["id","note", "companyEopooCode", "partecipationId", "partecipationProposerEopooCode", "note", "buttons"];
 
 		this.designatedCompanyPaginationSize = 10;
 
 
 		this.designatedCompanySearchFormGroup = this._formBuilder.group({
 			id: [''],
+			note: [''],
 			partecipationId: [''],
 			companyEopooCode: [''],
 			partecipationProposerEopooCode: ['']

@@ -42,7 +42,7 @@ export class AigDesignatedCompanyDetailPageComponent extends GenericComponent {
     this.designatedCompanyDTO = await this.designatedCompanyResourceService.getDesignatedCompanyUsingGET(this.designatedCompanyDTO.id).toPromise();
   }
 
-  editDesignatedCompany(designatedCompanyDTO: DossierDTO) {
+  editDesignatedCompany(designatedCompanyDTO: DesignatedCompanyDTO) {
     this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { designatedCompany: designatedCompanyDTO } });
   }
 

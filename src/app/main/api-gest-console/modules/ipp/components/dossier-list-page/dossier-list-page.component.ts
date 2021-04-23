@@ -45,7 +45,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 
 	private initDossierSearch() {
-		this.dossierDC = ["id", "description", "dossierCode", "partecipationId", "preparationId", "procurementId", "procurementLotId", "buttons"];
+		this.dossierDC = ["id", "description", "dossierCode", "partecipation", "preparation", "procurement", "procurementLot", "buttons"];
 
 		this.dossierPaginationSize = 10;
 
@@ -54,10 +54,10 @@ export class AigDossierListPageComponent extends GenericComponent {
 			id: [''],
 			description: [''],
 			dossierCode: [''],
-			partecipationId: ['', Validators.required],
-			preparationId: [''],
-			procurementId: [''],
-			procurementLotId: ['']
+			partecipation: ['', Validators.required],
+			preparation: [''],
+			procurement: [''],
+			procurementLot: ['']
 
 		});
 	}

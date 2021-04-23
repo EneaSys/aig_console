@@ -46,7 +46,7 @@ partecipationDC: string[];
 
 	
 private initPartecipationSearch() {
-	this.partecipationDC = ["id","partecipationTypeCode","procurementLotCig","procurementLotId","proposerEopooCode","siteInspection","statusDescription","statusId","buttons"]
+	this.partecipationDC = ["id","partecipationTypeCode","procurementLotCig","proposerEopooCode","siteInspection","expiryDate","baseAmount","ippLotCategoryCode","statusDescription","buttons"]
 
 	this.partecipationPaginationSize = 10;
 		
@@ -55,11 +55,9 @@ private initPartecipationSearch() {
 		id: ['',Validators.required],
 		partecipationTypeCode: [''],
 		procurementLotCig: ['',Validators.required],
-		procurementLotId: ['',Validators.required],
 		proposerEopooCode: [''],
 		siteInspection: [''],
 		statusDescription: ['',Validators.required],
-		statusId: ['',Validators.required],
 	});
 }
 

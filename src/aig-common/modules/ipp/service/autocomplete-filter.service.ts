@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InsurancePolicyStatusResourceService, PartecipationStatusResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
+import { InsurancePolicyStatusResourceService, PartecipationStatusResourceService, PreparationResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
 import { EopooResourceService } from 'aig-generic';
 import { PartecipationResourceService } from 'aig-italianlegislation';
 import { combineLatest, from, Observable, of } from 'rxjs';
@@ -15,6 +15,7 @@ export class AigIppAutocompleteService {
 		private partecipationStatusResourceService: PartecipationStatusResourceService, 
 		private partecipationResourceService: PartecipationResourceService,
 		private preparationStatusResourceService: PreparationStatusResourceService,
+		private preparationResourceService: PreparationResourceService,
 		private insurancePolicyStatusResourceService: InsurancePolicyStatusResourceService,
     ) {}
 
@@ -61,6 +62,22 @@ export class AigIppAutocompleteService {
 					return this.preparationStatusResourceService.getAllPreparationStatusesUsingGET(filter);
 				} else {
 					return this.preparationStatusResourceService.getAllPreparationStatusesUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterPreparation(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						descriptionContains: value
+					};
+					return this.preparationResourceService.getAllPreparationsUsingGET(filter);
+				} else {
+					return this.preparationResourceService.getAllPreparationsUsingGET({});
 				}
 			})
 		);

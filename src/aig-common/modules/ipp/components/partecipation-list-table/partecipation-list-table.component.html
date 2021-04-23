@@ -27,17 +27,13 @@
 
         <ng-container matColumnDef="procurementLotCig">
             <mat-header-cell *matHeaderCellDef> Procurement Lot Cig </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.procurementLotCig }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.cig }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="procurementLotId">
-            <mat-header-cell *matHeaderCellDef> Procurement Lot Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.procurementLotId }} </mat-cell>
-        </ng-container>
 
         <ng-container matColumnDef="proposerEopooCode">
-            <mat-header-cell *matHeaderCellDef> Proposer EopooCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.proposerEopooCode }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> Proposer Eopoo </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.proposerEopoo | json }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="siteInspection">
@@ -45,14 +41,24 @@
             <mat-cell *matCellDef="let e"> {{ e.siteInspection }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="expiryDate">
+            <mat-header-cell *matHeaderCellDef> Data di scadenza </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.offerExpiryDate | date }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="baseAmount">
+            <mat-header-cell *matHeaderCellDef> Importo </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.baseAmount | currency:'EUR'  }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ippLotCategoryCode">
+            <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.ippLotCategoryCode }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="statusDescription">
             <mat-header-cell *matHeaderCellDef> Status Description </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.statusDescription }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="statusId">
-            <mat-header-cell *matHeaderCellDef> Status Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.statusId}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

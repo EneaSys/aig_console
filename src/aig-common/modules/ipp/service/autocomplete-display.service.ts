@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InsurancePolicyStatusDTO, PartecipationStatusDTO, PreparationStatusDTO, ProcurementDTO, ProcurementLotDTO } from 'aig-italianlegislation';
+import { InsurancePolicyStatusDTO, PartecipationStatusDTO, PreparationDTO, PreparationStatusDTO, ProcurementDTO, ProcurementLotDTO } from 'aig-italianlegislation';
 import { PartecipationDTO } from 'aig-italianlegislation';
 
 
@@ -25,6 +25,10 @@ export class AigIppAutocompleteDisplayService {
 
     preparationStatusDisplayFn(preparationStatus?: PreparationStatusDTO): any | undefined {
         return preparationStatus ? preparationStatus.description : undefined;
+    }
+
+    preparationDisplayFn(preparation?: PreparationDTO): any | undefined {
+        return preparation ? preparation.id : undefined;
     }
 
     insurancePolicyStatusDisplayFn(insurancePolicyStatus?: InsurancePolicyStatusDTO): any | undefined {

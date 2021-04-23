@@ -2,8 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { DossierDTO, DossierResourceService } from 'aig-italianlegislation';
+import { DossierDTO, DossierResourceService, PartecipationDTO, PreparationDTO, ProcurementDTO, ProcurementLotDTO } from 'aig-italianlegislation';
+import { Observable } from 'rxjs';
+import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-dossier-new-update-form',
@@ -23,6 +27,8 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private dossierResourceService: DossierResourceService,
         private eventService: EventService,
+        public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
+        private ippAutocompleteService :AigIppAutocompleteService,
     ) { }
 
     @Input()
@@ -30,18 +36,34 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
 
     dossierNewUpdateForm: FormGroup;
 
+    filteredProcurementLot: Observable<ProcurementLotDTO[]>;
+    filteredProcurement: Observable<ProcurementDTO[]>;
+    filteredPartecipation: Observable<PartecipationDTO[]>;
+    filteredPreparation: Observable<PreparationDTO[]>;
+
     ngOnInit(): void {
         this.dossierNewUpdateForm = this._formBuilder.group({
             id:[''],
+
+            
+            partecipation: ['', [Validators.required, AigValidator.haveId] ],
+            preparation : ['', [Validators.required, AigValidator.haveId] ],
+            procurementLot: ['',[Validators.required, AigValidator.haveId] ],
+            procurement: ['',[Validators.required, AigValidator.haveId] ],
+
             description: ['', Validators.required],
             dossierCode: ['', Validators.required],
-
         
         })
         
         if (this.dossier != null) {
             this.dossierNewUpdateForm.patchValue(this.dossier);
         }
+        this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.dossierNewUpdateForm.controls['procurementLot'].valueChanges);
+        this.filteredProcurement = this.ippAutocompleteService.filterProcurement(this.dossierNewUpdateForm.controls['procurement'].valueChanges);
+        this.filteredPartecipation = this.ippAutocompleteService.filterPartecipation(this.dossierNewUpdateForm.controls['partecipation'].valueChanges);
+        this.filteredPreparation = this.ippAutocompleteService.filterPreparation(this.dossierNewUpdateForm.controls['preparation'].valueChanges);
+
     }
 
     async submit() {
@@ -53,7 +75,11 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let dossier: DossierDTO = this.dossierNewUpdateForm.value;
-
+        dossier.procurementLotId = this.dossierNewUpdateForm.value.procurementLot.id;
+        dossier.procurementId = this.dossierNewUpdateForm.value.procurement.id;
+        dossier.partecipationId = this.dossierNewUpdateForm.value.partecipation.id;
+        dossier.preparationId = this.dossierNewUpdateForm.value.preparation.id;
+        
         console.log(this.dossier);
         try {
             let postOrPut: string;
