@@ -24,7 +24,7 @@ import { SocialResolver } from 'aig-common/modules/standard/resolver/social.reso
 import { CityResolver } from 'aig-common/modules/standard/resolver/city.resolver';
 import { CityService } from 'aig-common/old-common/services/city.service';
 import { CpvResolver } from 'aig-common/modules/standard/resolver/cpv.resolver';
-import { ActionResolver } from 'aig-common/modules/standard/resolver/social-action.resolver';
+import { SocialActionResolver } from 'aig-common/modules/standard/resolver/social-action.resolver';
 import { SectorResolver } from 'aig-common/modules/standard/resolver/sector.resolver';
 import { IppProcedureResolver } from 'aig-common/modules/standard/resolver/procedure.resolver';
 import { LotResolver } from 'aig-common/modules/standard/resolver/lot.resolver';
@@ -156,7 +156,7 @@ export const aigStandardRoute: Routes = [
                         component: AigSocialActionDetailPageComponent,
                         canActivate: [AuthGuardService],
                         resolve: {
-                            socialaction: ActionResolver,
+                            socialAction: SocialActionResolver,
                         },
                     },
                 ]

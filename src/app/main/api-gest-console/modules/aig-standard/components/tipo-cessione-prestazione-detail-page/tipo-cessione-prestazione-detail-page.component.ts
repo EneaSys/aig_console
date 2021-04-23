@@ -46,7 +46,7 @@ export class AigTipoCessionePrestazioneDetailPageComponent extends GenericCompon
     
             this._snackBar.open(`Tipo Cessione Prestazione: '${id}' deleted.`, null, { duration: 2000, });
             
-            this.router.navigate(['/s6d', 'tipo-cessione-prestazioni']);
+            this.router.navigate(['/s6d', 'tipo-cessione-prestazione']);
         } catch (e) {
             this._snackBar.open(`Error during deleting tipo cessione-prestazione: '${id}'. (${e.message})`, null, { duration: 5000, });
         }

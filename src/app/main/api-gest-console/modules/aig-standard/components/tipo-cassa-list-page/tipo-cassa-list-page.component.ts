@@ -59,8 +59,8 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 	}
 	private clearFiltersTipoCassa() {
 		this.tipoCassaFilters = {
-			tipoCassaIDEquals: null,
-			tipoCassaNameContains: null,
+			idEquals: null,
+			valueContains: null,
 			page: 0,
 		}
     }
@@ -112,9 +112,9 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 			return;
 		}
 
-		this.tipoCassaFilters.tipoCassaIDEquals = null;
+		this.tipoCassaFilters.idEquals = null;
 
-		this.tipoCassaFilters.tipoCassaNameContains = this.tipoCassaSearchFormGroup.controls.name.value;
+		this.tipoCassaFilters.valueContains = this.tipoCassaSearchFormGroup.controls.value.value;
 
 		this.searchTipoCassa(0);
 	}

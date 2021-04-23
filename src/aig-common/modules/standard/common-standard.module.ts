@@ -41,7 +41,6 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
 import { SocialResolver } from "./resolver/social.resolver";
 import { CityResolver } from './resolver/city.resolver';
 import { CpvResolver } from './resolver/cpv.resolver';
-import { ActionResolver } from "./resolver/social-action.resolver";
 import { SectorResolver } from "./resolver/sector.resolver";
 import { IppProcedureResolver } from "./resolver/procedure.resolver";
 import { IppModalityResolver } from "./resolver/ipp-modality.resolver";
@@ -95,6 +94,7 @@ import { AigModalitaPagamentoListTableComponent } from './components/modalita-pa
 import { AigEntityDetailModalitaPagamentoComponent } from './components/entity-detail-modalita-pagamento/entity-detail-modalita-pagamento.component';
 import { ModalitaPagamentoResolver } from './resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
 import { AigStandardAutocompleteDisplayService } from './services/autocomplete-function.service';
+import { SocialActionResolver } from './resolver/social-action.resolver';
 
 
 @NgModule({
@@ -258,7 +258,7 @@ import { AigStandardAutocompleteDisplayService } from './services/autocomplete-f
         SocialResolver,
         CityResolver,
         CpvResolver,
-        ActionResolver,
+        SocialActionResolver,
         SectorResolver,
         IppProcedureResolver,
         IppModalityResolver,

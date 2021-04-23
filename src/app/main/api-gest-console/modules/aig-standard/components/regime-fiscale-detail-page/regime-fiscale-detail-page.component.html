@@ -7,7 +7,7 @@
             <div class="fuse-card auto-width p-16">
 
                  <!--<entity-detail-regime-fiscale [regimeFiscale]="regimeFiscale"></entity-detail-regime-fiscale>!-->
-                 <pre>{{ regimeFiscaleDTO | json }}</pre> 
+                 <pre>{{ regimeFiscale | json }}</pre> 
 
                 <button mat-stroked-button color="primary" (click)="editRegimeFiscale(regimeFiscale)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteRegimeFiscale(regimeFiscale.id)">Delete</button>

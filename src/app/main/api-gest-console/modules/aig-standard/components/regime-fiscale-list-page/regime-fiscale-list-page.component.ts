@@ -64,8 +64,8 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 
 	private clearFiltersRegimeFiscale() {
 		this.regimeFiscaleFilters = {
-			regimeFiscaleIDEquals: null,
-			regimeFiscaleNameContains: null,
+			idEquals: null,
+			valueContains: null,
 			page: 0,
 		}
 	}
@@ -115,13 +115,13 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersRegimeFiscale();
 			this.regimeFiscaleSearchFormGroup.reset();
-			this.regimeFiscaleFilters.warehouseIDEquals = searchedId;
+			this.regimeFiscaleFilters.idEquals = searchedId;
 			this.searchRegimeFiscale(0);
 			return;
 		}
-		this.regimeFiscaleFilters.regimeFiscaleIDEquals = null;
+		this.regimeFiscaleFilters.idEquals = null;
 
-		this.regimeFiscaleFilters.regimeFiscaleNameContains = this.regimeFiscaleSearchFormGroup.controls.name.value;
+		this.regimeFiscaleFilters.valueContains = this.regimeFiscaleSearchFormGroup.controls.value.value;
 
 		this.searchRegimeFiscale(0);
 	}

@@ -1,6 +1,6 @@
 <div id="aig-modalita-pagamento-detail-page" class="page-layout blank">
     
-    <aig-standard-header [sectionName]="modalita-pagamento.name" [search]="false"></aig-standard-header>
+    <aig-standard-header [sectionName]="modalitaPagamento.value" [search]="false"></aig-standard-header>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         <div class="widget p-16" fxFlex.gt-sm="50">
@@ -10,7 +10,7 @@
 
                 <button mat-stroked-button color="primary" (click)="editModalitaPagamento(modalitaPagamento)">Edit</button>
                 <button mat-stroked-button color="primary"
-                    (click)="deleteModalitaPagamento(modalitaPagamento.id)">Delete
+                    (click)="deleteMmodalitaPagamento(modalitaPagamento.id)">Delete
                 </button>
             </div>
         </div>

@@ -44,7 +44,7 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
     
             this._snackBar.open(`Ipp Lot Type: '${id}' deleted.`, null, { duration: 2000, });
             
-            this.router.navigate(['/s6d', 'ipp lot type']);
+            this.router.navigate(['/s6d', 'ipp-lot-type']);
         } catch (e) {
             this._snackBar.open(`Error during deleting ipp lot type: '${id}'. (${e.message})`, null, { duration: 5000, });
         }

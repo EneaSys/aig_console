@@ -31,7 +31,7 @@ export class AigTipoCassaDetailPageComponent extends GenericComponent {
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.tipoCassa = this.route.snapshot.data.city;
+            this.tipoCassa = this.route.snapshot.data.tipoCassa;
         } else {
             this.tipoCassa = await this.tipoCassaResourceService.getTipoCassaUsingGET(this.tipoCassa.id).toPromise();
         }

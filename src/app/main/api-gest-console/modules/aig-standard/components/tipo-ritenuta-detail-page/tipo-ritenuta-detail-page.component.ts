@@ -32,7 +32,7 @@ export class AigTipoRitenutaDetailPageComponent extends GenericComponent {
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.tipoRitenuta = this.route.snapshot.data.city;
+            this.tipoRitenuta = this.route.snapshot.data.tipoRitenuta;
         } else {
             this.tipoRitenuta = await this.tipoRitenutaResourceService.getTipoRitenutaUsingGET(this.tipoRitenuta.id).toPromise();
         }

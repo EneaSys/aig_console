@@ -32,7 +32,7 @@ export class AigEsigibilitaIvaDetailPageComponent extends GenericComponent {
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.esigibilitaIva = this.route.snapshot.data.natura;
+            this.esigibilitaIva = this.route.snapshot.data.esigibilitaIvaPrestazione;
         } else {
             this.esigibilitaIva = await this.esigibilitaIvaResourceService.getEsigibilitaIvaUsingGET(this.esigibilitaIva.id).toPromise();
         }

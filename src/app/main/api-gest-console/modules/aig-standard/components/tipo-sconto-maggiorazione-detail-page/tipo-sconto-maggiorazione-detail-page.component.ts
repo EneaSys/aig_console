@@ -32,7 +32,7 @@ export class AigTipoScontoMaggiorazioneDetailPageComponent extends GenericCompon
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.tipoScontoMaggiorazione = this.route.snapshot.data.city;
+            this.tipoScontoMaggiorazione = this.route.snapshot.data.tipoScontoMaggiorazionePrestazione;
         } else {
             this.tipoScontoMaggiorazione = await this.tipoScontoMaggiorazioneResourceService.getTipoScontoMaggiorazioneUsingGET(this.tipoScontoMaggiorazione.id).toPromise();
         }
