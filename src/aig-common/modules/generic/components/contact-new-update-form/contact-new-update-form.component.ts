@@ -7,7 +7,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { ContactDTO, ContactResourceService, EopooDTO, ReferentDTO } from 'aig-generic';
 import { Observable } from 'rxjs';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from '../../services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-contact-new-update-form',
@@ -29,7 +29,7 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         private contactResourceService: ContactResourceService,
         private eventService: EventService,
         private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
     ) { }
 
     @Input()

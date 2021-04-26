@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { AigAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
 import { AigAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-user-eopoo-associate-form',
@@ -32,7 +32,7 @@ export class AigUserEopooAssociateFormComponent implements OnInit {
         private aigAutocompleteFilterService: AigAutocompleteFilterService,
         public aigAutocompleteFunctionService: AigAutocompleteFunctionService,
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public aigGenericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+        public AigGenericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
         private contextUserEopooResourceService: ContextUserEopooResourceService,
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,

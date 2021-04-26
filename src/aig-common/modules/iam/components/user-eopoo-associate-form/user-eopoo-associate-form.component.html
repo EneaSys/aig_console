@@ -22,7 +22,7 @@
                 <input type="text" matInput formControlName="eopoo" required
                     [matAutocomplete]="eopooPersonAutocomplete">
                 <mat-autocomplete #eopooPersonAutocomplete="matAutocomplete"
-                    [displayWith]="aigGenericAutocompleteFunctionService.eopooDisplayFn">
+                    [displayWith]="AigGenericAutocompleteDisplayService.eopooDisplayFn">
                     <mat-option *ngFor="let filteredEopoo of filteredEopoos | async" [value]="filteredEopoo">
                         {{ filteredEopoo | eopooName }}</mat-option>
                 </mat-autocomplete>

@@ -8,9 +8,9 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 
 @Component({
 	templateUrl: './eopoo-list-page.component.html',
@@ -19,9 +19,9 @@ import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generi
 export class AigEopooListPageComponent extends GenericComponent {
 	constructor(
 		private eopooResourceService: EopooResourceService,
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
 		private genericAutocompleteService: AigGenericAutocompleteFilterService,
-		public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+		public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,

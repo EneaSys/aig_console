@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CatalogDTO, CatalogItemDTO, InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemDTO, PriceListDTO, ProducerDTO, SellerDTO, WarehouseDTO } from 'aig-commerce';
 import { BuyerDTO, PurchaseDTO, WarehouseHandlingItemDTO } from 'aig-commerce';
-import { EopooTypeDTO } from 'aig-generic';
-
 
 @Injectable({
 	providedIn: 'root'
 })
-export class AigAutocompleteDisplayService {
+export class AigCommerceAutocompleteDisplayService {
 	producerDisplayFn(producer?: ProducerDTO): string | undefined {
         return producer ? producer.name : undefined;
     }
@@ -54,9 +52,5 @@ export class AigAutocompleteDisplayService {
 
     warehouseHandlingItemDisplayFn(warehouseHandlingItem?: WarehouseHandlingItemDTO): any | undefined {
         return warehouseHandlingItem ? warehouseHandlingItem : undefined;
-    }
-
-    eopooTypeDisplayFn(eopooType?: EopooTypeDTO): any | undefined {
-        return eopooType ? eopooType.name : undefined;
     }
 }

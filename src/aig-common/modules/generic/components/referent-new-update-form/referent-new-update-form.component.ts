@@ -7,7 +7,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { EopooDTO, ReferentDTO, ReferentResourceService } from 'aig-generic';
 import { Observable } from 'rxjs';
 import { AigGenericAutocompleteFilterService } from '../../services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from '../../services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-referent-new-update-form',
@@ -27,7 +27,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private referentResourceService: ReferentResourceService,
         private eventService: EventService,
-        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
     ) { }
 

@@ -5,7 +5,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { EopooDTO } from 'aig-generic';
 
@@ -22,7 +22,7 @@ export class AigSellerNewUpdateFormComponent implements OnInit {
     
     constructor(
         private aigGenericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public aigGenericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+        public AigGenericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
         private sellerResourceService: SellerResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,

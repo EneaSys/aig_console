@@ -42,7 +42,7 @@ import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
 import { AigDesignatedCompanyListTableComponent } from './components/designated-compnay-list-table/designated-company-list-table.component';
 import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designated-company-new-update-form/designated-company-new-update-form.component';
 import { DesignatedCompanyResolver } from './resolver/designated-company.resolver';
-import { AigAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
 import { PartecipationStatusResolver } from './resolver/partecipation-status.resolver';
 import { PartecipationResolver } from './resolver/partecipation.resolver';
 import { PreparationResolver } from './resolver/preparation.resolver';
@@ -86,7 +86,7 @@ import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/ins
         ProcurementResolver,
         AigIppAutocompleteDisplayService,
         DesignatedCompanyResolver,
-        AigAutocompleteDisplayService,
+        AigCommerceAutocompleteDisplayService,
         AigIppAutocompleteDisplayService,
         ProcurementLotResolver,
         PartecipationStatusResolver,

@@ -5,7 +5,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { PurchaseDTO, PurchaseItemDTO, WarehouseHandlingDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { cloneDeep } from 'lodash';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
 @Component({
 	selector: 'aig-purchase-complex-form',
@@ -18,7 +18,7 @@ export class AigPurchaseComplexFormComponent implements OnInit {
 		private _fuseProgressBarService: FuseProgressBarService,
 		private _snackBar: MatSnackBar,
 		private eventService: EventService,
-		public 	autocompleteDisplayService: AigAutocompleteDisplayService,
+		public 	autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
 		
 	) { }
 

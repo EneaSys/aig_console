@@ -4,8 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { cloneDeep } from 'lodash';
 
@@ -20,13 +20,13 @@ import { cloneDeep } from 'lodash';
 })
 export class AigWarehouseHandlingFormComplexComponent implements OnInit {
     constructor(
-        public autocompleteDisplayService: AigAutocompleteDisplayService,
+        public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private warehouseHandlingResourceService: WarehouseHandlingResourceService,
         private eventService: EventService,
-        private commerceAutocompleteService: AigCommerceAutocompleteService,
+        private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
     ) { }
 
     step: any = {

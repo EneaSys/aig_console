@@ -5,8 +5,8 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, InventoryItemCombinationDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 
 @Component({
     selector: 'aig-catalog-item-new-update-form',
@@ -21,11 +21,11 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        public autocompleteDisplayService: AigAutocompleteDisplayService,
+        public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private commerceAutocompleteService: AigCommerceAutocompleteService,
+        private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
         private catalogItemResourceService: CatalogItemResourceService,
         private eventService: EventService,
     ) { }

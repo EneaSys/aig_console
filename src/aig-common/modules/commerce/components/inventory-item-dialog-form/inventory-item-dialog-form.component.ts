@@ -5,8 +5,8 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 
 @Component({
 	selector: 'aig-inventory-item-dialog-form',
@@ -20,8 +20,8 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		complete: false
 	};
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _fuseProgressBarService: FuseProgressBarService,
 		private inventoryItemResourceService: InventoryItemResourceService,
 		private _formBuilder: FormBuilder,

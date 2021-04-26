@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { BuyerDTO, PurchaseDTO, PurchaseResourceService, SellerDTO, SellerResourceService } from 'aig-commerce';
 import { AigPurchaseNewUpdateFormComponent } from 'aig-common/modules/commerce/components/purchase-new-update-form/purchase-new-update-form.component';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -18,13 +18,13 @@ import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dial
 })
 export class AigPurchaseListPageComponent extends GenericComponent {
   constructor(
-    public autocompleteDisplayService: AigAutocompleteDisplayService,
+    public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
     private purchaseResourceService : PurchaseResourceService,
     private sellerResourceService : SellerResourceService,
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private commerceAutocompleteService: AigCommerceAutocompleteService,
+    private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
     aigGenericComponentService: AigGenericComponentService,
   ) { super(aigGenericComponentService) }
 

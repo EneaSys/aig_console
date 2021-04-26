@@ -5,7 +5,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
 import { InsurancePolicyDTO, InsurancePolicyResourceService, InsurancePolicyStatusDTO, PartecipationDTO} from 'aig-italianlegislation';
 import { Observable } from 'rxjs';
@@ -26,7 +26,7 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
 
     constructor(
         private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public genericAutocompleteDisplayService: AigGenericAutocompleteFunctionService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
         private ippAutocompleteService: AigIppAutocompleteService,
         public ippAutocompleteDisplayService: AigIppAutocompleteDisplayService,
         private _formBuilder: FormBuilder,

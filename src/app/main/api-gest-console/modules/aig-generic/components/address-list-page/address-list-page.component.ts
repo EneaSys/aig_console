@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { AddressDTO, AddressResourceService, EopooDTO } from 'aig-generic';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -18,7 +18,7 @@ export class AigAddressListPageComponent extends GenericComponent {
     constructor(
         private addressResourceService: AddressResourceService,
         private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
-        public genericAutocompleteFunctionService: AigGenericAutocompleteFunctionService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
         private _snackBar: MatSnackBar,

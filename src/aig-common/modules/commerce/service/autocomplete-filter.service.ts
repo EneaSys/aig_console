@@ -8,7 +8,7 @@ import { EopooResourceService } from 'aig-generic';
 @Injectable({
 	providedIn: 'root'
 })
-export class AigCommerceAutocompleteService {
+export class AigCommerceAutocompleteFilterService {
 	constructor(
 		private producerResourceService: ProducerResourceService,
 		private inventoryCategoryResourceService: InventoryCategoryResourceService,

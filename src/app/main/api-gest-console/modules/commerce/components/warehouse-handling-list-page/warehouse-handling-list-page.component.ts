@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService, WarehouseResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -18,12 +18,12 @@ import { AigWarehouseHandlingNewUpdateModalComponent } from '../warehouse-handli
 export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
 		private warehouseHandlingResourceService: WarehouseHandlingResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private warehouseResourceService: WarehouseResourceService,
         aigGenericComponentService: AigGenericComponentService,
 	

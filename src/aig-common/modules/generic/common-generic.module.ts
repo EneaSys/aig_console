@@ -26,7 +26,7 @@ import { AigCommonStandardModule } from '../standard/common-standard.module';
 import { AigAddressNewUpdateFormComponent } from './components/address-new-update-form/address-new-update-form.component';
 import { AigSolidaretyApiModule } from 'aig-solidarety'; 
 import { AigGenericAutocompleteFilterService } from './services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteFunctionService } from './services/form/autocomplete-function.service';
+import { AigGenericAutocompleteDisplayService } from './services/form/autocomplete-function.service';
 import { MatMenuModule } from '@angular/material';
 import { AigGenericEopooListTableComponent } from './components/generic-eopoo-list-table/generic-eopoo-list-table.component';
 import { AigGenericEopooNewUpdateFormComponent } from './components/generic-eopoo-new-update-form/generic-eopoo-new-update-form.component';
@@ -110,7 +110,7 @@ import { ReferentResolver } from './resolver/referent.resolver';
         ReferentResolver,
         
         AigGenericAutocompleteFilterService,
-        AigGenericAutocompleteFunctionService,
+        AigGenericAutocompleteDisplayService,
     ],
     exports: [
         EopooNamePipe,

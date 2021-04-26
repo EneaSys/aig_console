@@ -3,7 +3,7 @@ import { AddressDTO, EopooDTO, ReferentDTO } from 'aig-generic';
 import { EopooNamePipe } from '../../pipe/eopoo-name.pipe';
 
 @Injectable()
-export class AigGenericAutocompleteFunctionService {
+export class AigGenericAutocompleteDisplayService {
     eopooDisplayFn(eopoo?: EopooDTO): string | undefined {
         return eopoo ? new EopooNamePipe().transform(eopoo) : undefined;
     }
