@@ -3,12 +3,12 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         
-        <mat-form-field appearance="outline" fxFlex="20">
+        <mat-form-field appearance="outline" fxFlex="30">
             <mat-label>Procurement Code</mat-label>
             <input formControlName="code" matInput required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>Eopoo</mat-label>
             <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
             <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
@@ -16,7 +16,7 @@
             </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+        <mat-form-field appearance="outline" fxFlex="20" class="pl-4">
             <mat-label>Procurement total Amount</mat-label>
             <input type="number" matInput formControlName="totalAmount" placeholder="Quantità" required>
         </mat-form-field>
