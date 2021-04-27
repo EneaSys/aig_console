@@ -57,7 +57,7 @@ private initPartecipationSearch() {
 		procurementLotCig: ['',Validators.required],
 		proposerEopooCode: [''],
 		siteInspection: [''],
-		statusDescription: ['',Validators.required],
+		status: ['',Validators.required],
 	});
 }
 

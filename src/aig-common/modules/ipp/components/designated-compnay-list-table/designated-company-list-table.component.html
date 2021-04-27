@@ -13,10 +13,16 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
+
         
-        <ng-container matColumnDef="companyEopooCode">
-            <mat-header-cell *matHeaderCellDef> Company Eopoo Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.companyEopooCode }} </mat-cell>
+        <ng-container matColumnDef="companyEopoo">
+            <mat-header-cell *matHeaderCellDef> Company Eopoo </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.companyEopoo}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="note">
@@ -24,20 +30,11 @@
             <mat-cell *matCellDef="let e"> {{ e.note }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="partecipationId">
-            <mat-header-cell *matHeaderCellDef> Id partecipazione </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipationId }} </mat-cell>
+        <ng-container matColumnDef="partecipation">
+            <mat-header-cell *matHeaderCellDef> Partecipation </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipation.id}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="partecipationProposerEopooCode">
-            <mat-header-cell *matHeaderCellDef> Partecipation Proposer Eopoo Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipationProposerEopooCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
-        </ng-container>
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>

@@ -160,7 +160,7 @@ export const ippRoute: Routes = [
                         component: AigDesignatedCompanyDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            designetedCompany: DesignatedCompanyResolver,
+                            designatedCompany: DesignatedCompanyResolver,
                         },
                     },
                 ]

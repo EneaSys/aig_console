@@ -12,23 +12,19 @@
                             </div>
                             <form [formGroup]="designatedCompanySearchFormGroup"
                                 (ngSubmit)="designatedCompanySearchWithFilter()" class="p-8">
+
+                                
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Id</mat-label>
                                         <input matInput type="number" formControlName="id">
                                     </mat-form-field>
                                 </div>
+                            
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Partecipation</mat-label>
-                                        <input matInput type="text" formControlName="partecipationId">
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Company Eopoo Code</mat-label>
-                                        <input matInput type="text" formControlName="companyEopooCode">
+                                        <mat-label>Company Eopoo</mat-label>
+                                        <input matInput type="text" formControlName="companyEopoo">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">

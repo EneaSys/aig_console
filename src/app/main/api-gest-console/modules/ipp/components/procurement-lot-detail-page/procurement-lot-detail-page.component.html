@@ -3,7 +3,13 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ procurementLotDTO | json }}</pre>
+                <div class="h1 m-16">Procurement Lot</div>
+                <div class="h1 m-16">ID:{{ procurementLotDTO.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0">Descrizione:{{procurementLotDTO.description}}</div>
+                <div class="h4 m-8 ml-16 mb-0">Cig:{{procurementLotDTO.cig}}</div>
+                <div class="h4 m-8 ml-16 mb-0">Data scadenza:{{procurementLotDTO.offerExpiryDate}}</div>
+                <div class="h4 m-8 ml-16 mb-0">Importo:{{procurementLotDTO.baseAmount | currency : 'EUR'}}</div>
+
 
                 <button mat-stroked-button color="primary" (click)="editProcurementLot(procurementLotDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteProcurementLot(procurementLotDTO.id)">Delete</button>

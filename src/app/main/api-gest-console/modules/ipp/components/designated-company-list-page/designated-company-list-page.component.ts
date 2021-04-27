@@ -5,7 +5,6 @@ import { DesignatedCompanyDTO, DesignatedCompanyResourceService, DossierDTO, Dos
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
-import { AigDossierNewUpdateDialogComponent } from "../dossier-new-update-dialog/dossier-new-update-dialog.component";
 
 @Component({
 	templateUrl: './designated-company-list-page.component.html',
@@ -46,7 +45,7 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 
 
 	private initDesignatedCompanySearch() {
-		this.designatedCompanyDC = ["id","note", "companyEopooCode", "partecipationId", "partecipationProposerEopooCode", "note", "buttons"];
+		this.designatedCompanyDC = ["id","companyEopoo","partecipation","note", "buttons"];
 
 		this.designatedCompanyPaginationSize = 10;
 
@@ -54,9 +53,9 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 		this.designatedCompanySearchFormGroup = this._formBuilder.group({
 			id: [''],
 			note: [''],
-			partecipationId: [''],
-			companyEopooCode: [''],
-			partecipationProposerEopooCode: ['']
+			partecipation: [''],
+			partecipationId:[''],
+			companyEopoo: [''],
 		});
 	}
 

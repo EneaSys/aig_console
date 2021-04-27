@@ -5,7 +5,6 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { EventService } from 'aig-common/event-manager/event.service';
 import { DesignatedCompanyDTO, DesignatedCompanyResourceService, DossierDTO, DossierResourceService } from 'aig-italianlegislation';
 import { AigDesignatedCompanyNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/designated-company-new-update-dialog/designated-company-new-update-dialog.component';
-import { AigDossierNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/dossier-new-update-dialog/dossier-new-update-dialog.component';
 @Component({
     selector: 'aig-designated-company-list-table',
     templateUrl: './designated-company-list-table.component.html',

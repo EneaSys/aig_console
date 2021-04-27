@@ -48,18 +48,18 @@ insurancePolicyDC: string[];
 
 	
 private initInsurancePolicySearch() {
-	this.insurancePolicyDC = ["id","companyPreparatorEopooCode","note","partecipationId","partecipationProposerEopooCode","statusDescription","statusId","totalAmount","buttons"];
+	this.insurancePolicyDC = ["id","companyPreparatorEopoo","note","partecipationProposerEopoo","status","totalAmount","buttons"];
 
 	this.insurancePolicyPaginationSize = 10;
 		
 
 	this.insurancePolicySearchFormGroup = this._formBuilder.group({
 			id: [''],
-			companyPreparatorEopooCode: [''],
+			companyPreparatorEopoo: [''],
 			note: [''],
 			partecipationId: [''],
-			partecipationProposerEopooCode: [''],
-			statusDescription: [''],
+			partecipationProposerEopoo: [''],
+			status: [''],
 			statusId: [''],
 			totalAmount: [''],
 		});
