@@ -33,6 +33,7 @@ import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
 import { AIG_M8T_PATH } from 'aig-management';
 import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
+import { AigI16nModule } from './modules/i16n/i16n.module';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
         AigIppModule,
         AigSolidarityModule,
         AigCommerceModule,
+        AigI16nModule,
 
     ],
     exports: [],

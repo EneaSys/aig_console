@@ -29,9 +29,9 @@ export class AigProcurementListPageComponent extends GenericComponent {
 	@Input()
     staticItalianPublicProcurementModality:ItalianPublicProcurementModalityDTO = null;
 
-filteredItalianPublicProcurementModality: Observable<ItalianPublicProcurementModalityDTO[]>;
+    filteredItalianPublicProcurementModality: Observable<ItalianPublicProcurementModalityDTO[]>;
 
-italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
+    italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
 
     loadPage() {
 		this.initProcurementSearch();

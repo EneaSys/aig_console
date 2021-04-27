@@ -161,6 +161,21 @@ export const navigation: FuseNavigation[] = [
         ]
     },
     {
+        id       : 'i16n',
+        title    : 'I16n',
+        type     : 'group',
+        children : [
+			{
+                id       : 'dettaglio-pagamento',
+                title    : 'Dettaglio Pagamento',
+                type     : 'item',
+                icon     : 'assignment',
+                url      : '/i16n/dettaglio-pagamento',
+                permission: ['c6e.admin'],
+            },
+        ]
+    },
+    {
         id       : 'pd',
         title    : 'Public database',
         type     : 'group',
