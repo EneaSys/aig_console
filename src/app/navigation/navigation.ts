@@ -162,7 +162,7 @@ export const navigation: FuseNavigation[] = [
     },
     {
         id       : 'i16n',
-        title    : 'I16n',
+        title    : 'Itlian Legislation',
         type     : 'group',
         children : [
 			{
@@ -171,6 +171,22 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'assignment',
                 url      : '/i16n/dettaglio-pagamento',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'dati-pagamento',
+                title    : 'Dati Pagamento',
+                type     : 'item',
+                icon     : 'assignment',
+                url      : '/i16n/dati-pagamento',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'fattura-elettronica-body',
+                title    : 'Fattura Elettronica',
+                type     : 'item',
+                icon     : 'assignment',
+                url      : '/i16n/fattura-elettronica-body',
                 permission: ['c6e.admin'],
             },
         ]

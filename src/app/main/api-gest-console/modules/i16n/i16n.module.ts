@@ -28,6 +28,9 @@ import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-p
 import { AigCommonI16nModule } from 'aig-common/modules/i16n/common-i16n.module';
 import { AigDettaglioPagamentoNewUpdateDialogComponent } from './components/dettaglio-pagamento-new-update-dialog/dettaglio-pagamento-new-update-dialog.component';
 import { AigDettaglioPagamentoDetailPageComponent } from './components/dettaglio-pagamento-detail-page/dettaglio-pagamento-detail-page.component';
+import { AigDatiPagamentoListPageComponent } from './components/dati-pagamento-list-page/dati-pagamento-list-page.component';
+import { AigFatturaElettronicaBodyListPageComponent } from './components/fattura-elettronica-body-list-page/fattura-elettronica-body-list-page.component';
+
 
 
 
@@ -79,6 +82,9 @@ import { AigDettaglioPagamentoDetailPageComponent } from './components/dettaglio
     declarations: [
 
         AigDettaglioPagamentoListPageComponent,
+        AigDatiPagamentoListPageComponent,
+        AigFatturaElettronicaBodyListPageComponent,
+        
 
 
         AigDettaglioPagamentoDetailPageComponent,

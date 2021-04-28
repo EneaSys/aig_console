@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { DettaglioPagamentoDTO, DettaglioPagamentoResourceService } from 'aig-italianlegislation';
 

@@ -4,8 +4,12 @@ import { InsurancePolicyResolver } from 'aig-common/modules/ipp/resolver/insuran
 import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
+import { AigInsurancePolicyDetailPageComponent } from '../ipp/components/insurance-policy-detail-page/insurance-policy-detail-page.component';
+import { AigProcurementLotDetailPageComponent } from '../ipp/components/procurement-lot-detail-page/procurement-lot-detail-page.component';
+import { AigDatiPagamentoListPageComponent } from './components/dati-pagamento-list-page/dati-pagamento-list-page.component';
 import { AigDettaglioPagamentoDetailPageComponent } from './components/dettaglio-pagamento-detail-page/dettaglio-pagamento-detail-page.component';
 import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-pagamento-list-page/dettaglio-pagamento-list-page.component';
+import { AigFatturaElettronicaBodyListPageComponent } from './components/fattura-elettronica-body-list-page/fattura-elettronica-body-list-page.component';
 
 
 
@@ -43,9 +47,9 @@ export const i16nRoute: Routes = [
                         },
                     },
                 ]
-            },/*
+            },
             {
-                path: 'procurement-lot',
+                path: 'dati-pagamento',
                 children: [
                     
                     {
@@ -55,7 +59,7 @@ export const i16nRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigProcurementLotListPageComponent,
+                        component: AigDatiPagamentoListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
@@ -69,7 +73,7 @@ export const i16nRoute: Routes = [
                 ]
             },
             {
-                path: 'insurance-policy',
+                path: 'fattura-elettronica-body',
                 children: [
                     
                     {
@@ -79,7 +83,7 @@ export const i16nRoute: Routes = [
                     },
                     {
                         path: 'list',
-                        component: AigInsurancePolicyListPageComponent,
+                        component: AigFatturaElettronicaBodyListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     {
@@ -92,7 +96,6 @@ export const i16nRoute: Routes = [
                     },
                 ]
             },
-*/
         ]
     }
 ]

@@ -25,6 +25,9 @@ import { AigDettaglioPagamentoListTableComponent } from './components/dettaglio-
 import { AigDettaglioPagamentoNewUpdateFormComponent } from './components/dettaglio-pagamento-new-update-form/dettaglio-pagamento-new-update-form.component';
 import { AigDettaglioPagamentoDetailComponent } from './components/dettaglio-pagamento-detail/dettaglio-pagamento-detail.component';
 import { DettaglioPagamentoResolver } from './resolver/dettaglio-pagamento.resolver';
+import { AigDatiPagamentoListTableComponent } from './components/dati-pagamento-list-table/dati-pagamento-list-table.component';
+import { AigI16nAutocompleteFilterService } from './service/autocomplete-filter.service';
+import { AigI16nAutocompleteDisplayService } from './service/autocomplete-function.service';
 
 
 
@@ -60,10 +63,15 @@ import { DettaglioPagamentoResolver } from './resolver/dettaglio-pagamento.resol
         DettaglioPagamentoResolver,
 
 
+        AigI16nAutocompleteFilterService,
+        AigI16nAutocompleteDisplayService,
+
+
     ],
     declarations: [
 
         AigDettaglioPagamentoListTableComponent,
+        AigDatiPagamentoListTableComponent,
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
@@ -75,6 +83,7 @@ import { DettaglioPagamentoResolver } from './resolver/dettaglio-pagamento.resol
     exports: [
 
         AigDettaglioPagamentoListTableComponent,
+        AigDatiPagamentoListTableComponent,
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,

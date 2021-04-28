@@ -1,0 +1,82 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="fattura-elettronica-body-list-page-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="showAllFatturaElettronicaBody()">Resetta filtri</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <form [formGroup]="fatturaElettronicaBodySearchFormGroup" (ngSubmit)="fatturaElettronicaBodySearchWithFilter()" class="p-8">
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput type="number" formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Numero</mat-label>
+                                        <input matInput type="numero" formControlName="numero">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Dati Pagamento</mat-label>
+                                        <input matInput type="text" formControlName="datiPagamento">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Dettaglio Pagamento</mat-label>
+                                        <input matInput type="text" formControlName="dettaglioPagamento">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                (click)="toggleSidebar('dettaglio-pagamento-list-page-sidebar')">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h2>Fattura Elettronica</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <!--<aig-dettaglio-pagamento-list-table [displayColumns]="dettaglioPagamentoDC" [dataSource]="dettaglioPagamentoDTOs" [error]="dettaglioPagamentoError">
+            </aig-dettaglio-pagamento-list-table> -->
+
+            <mat-paginator #paginator [length]="fatturaElettronicaBodyLength"
+                [pageSize]="this.fatturaElettronicaBodyPaginationSize" [pageIndex]="this.fatturaElettronicaBodyFilters.page"
+                [pageSizeOptions]="[10, 20, 50]" (page)="fatturaElettronicaBodyPaginationEvent($event)">
+            </mat-paginator>
+
+            <button mat-fab class="accent" id="add-fattura-elettronica-button" (click)="newFatturaElettronicaBody()" aria-label="add fattura elettronica">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+</div>

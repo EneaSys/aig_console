@@ -59,8 +59,8 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
     private clearFiltersDettaglioPagamento() {
 		this.dettaglioPagamentoFilters = {
 			idEquals: null,
-			modalitaPagamentoEquals: null,
-			beneficiarioEquals: null,
+			modalitaPagamentoContains: null,
+			beneficiarioContains: null,
 			page: 0,
 		}
     }
@@ -72,7 +72,7 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
 		this.dettaglioPagamentoFilters.size = this.dettaglioPagamentoPaginationSize;
 
 		try {
-			this.dettaglioPagamentoLength = await this.dettaglioPagamentoResourceService.countDettaglioPagamentosUsingGET({}).toPromise();
+			this.dettaglioPagamentoLength = await this.dettaglioPagamentoResourceService.countDettaglioPagamentosUsingGET(this.dettaglioPagamentoFilters).toPromise();
 
 			if(this.dettaglioPagamentoLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.dettaglioPagamentoDTOs = await this.dettaglioPagamentoResourceService.getAllDettaglioPagamentosUsingGET({}).toPromise();
+			this.dettaglioPagamentoDTOs = await this.dettaglioPagamentoResourceService.getAllDettaglioPagamentosUsingGET(this.dettaglioPagamentoFilters).toPromise();
 		} catch (e) {
 			this.dettaglioPagamentoError = e;
 		}
@@ -114,7 +114,9 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
 
 		this.dettaglioPagamentoFilters.idEquals = null;
 
-		this.dettaglioPagamentoFilters.nameContains = this.dettaglioPagamentoSearchFormGroup.controls.name.value;
+		this.dettaglioPagamentoFilters.beneficiarioContains = this.dettaglioPagamentoSearchFormGroup.controls.beneficiario.value;
+
+		this.dettaglioPagamentoFilters.modalitaPagamentoContains = this.dettaglioPagamentoSearchFormGroup.controls.modalitaPagamento.value;
 
 		this.searchDettaglioPagamento(0);
 	}
