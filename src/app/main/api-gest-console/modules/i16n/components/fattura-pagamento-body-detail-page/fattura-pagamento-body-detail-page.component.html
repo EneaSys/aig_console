@@ -1,0 +1,14 @@
+<div id="aig-fattura-elettronica-body-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+            
+                <aig-fattura-elettronica-body-detail [fatturaElettronicaBody]="fatturaElettronicaBody"></aig-fattura-elettronica-body-detail>
+
+                <button mat-stroked-button color="primary" (click)="editFatturaElettronica(fatturaElettronicaBody)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteFatturaElettronica(fatturaElettronicaBody.id)">Delete </button>
+            </div>
+        </div>
+    </div>
+</div>

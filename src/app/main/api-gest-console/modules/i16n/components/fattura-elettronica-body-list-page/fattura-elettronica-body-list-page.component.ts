@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { FatturaElettronicaBodyDTO, FatturaElettronicaBodyResourceService } from 'aig-italianlegislation';
+import { AigFatturaElettronicaNewUpdateDialogComponent } from '../fattura-elettronica-new-update-dialog/fattura-elettronica-new-update-dialog.component';
 
 
 @Component({
@@ -50,19 +51,15 @@ export class AigFatturaElettronicaBodyListPageComponent extends GenericComponent
 		this.fatturaElettronicaBodySearchFormGroup = this._formBuilder.group({
 			id: [''],
 			numero: [''],
-			datiPagamento: [''],
-            dettaglioPagamento: [''],
 		});
 
-		this.fatturaElettronicaBodyDC = ['id', 'beneficiario','modalitaPagamentoCode', 'importoPagamento', 'buttons'];
+		this.fatturaElettronicaBodyDC = ['id', 'numero', 'buttons'];
     }
     
     private clearFiltersFatturaElettronicaBody() {
 		this.fatturaElettronicaBodyFilters = {
 			idEquals: null,
             numeroEquals: null,
-			datiPagamentoContains: null,
-			dettaglioPagamentoContains: null,
 			page: 0,
 		}
     }
@@ -116,15 +113,13 @@ export class AigFatturaElettronicaBodyListPageComponent extends GenericComponent
 
 		this.fatturaElettronicaBodyFilters.idEquals = null;
 
-		this.fatturaElettronicaBodyFilters.beneficiarioContains = this.fatturaElettronicaBodySearchFormGroup.controls.beneficiario.value;
-
-		this.fatturaElettronicaBodyFilters.modalitaPagamentoContains = this.fatturaElettronicaBodySearchFormGroup.controls.modalitaPagamento.value;
+		this.fatturaElettronicaBodyFilters.numeroEquals = this.fatturaElettronicaBodySearchFormGroup.controls.numero.value;
 
 		this.searchFatturaElettronicaBody(0);
 	}
 
-    newFatturaElettronicaBodySearchFormGroup(){
-        //this.dialog.open(AigDettaglioPagamentoNewUpdateDialogComponent, { data: { dettaglioPagamento: {} } });
+    newFatturaElettronicaBody(){
+        this.dialog.open(AigFatturaElettronicaNewUpdateDialogComponent, { data: { fatturaElettronica: {} } });
     }
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

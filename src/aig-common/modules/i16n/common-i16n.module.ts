@@ -28,6 +28,11 @@ import { DettaglioPagamentoResolver } from './resolver/dettaglio-pagamento.resol
 import { AigDatiPagamentoListTableComponent } from './components/dati-pagamento-list-table/dati-pagamento-list-table.component';
 import { AigI16nAutocompleteFilterService } from './service/autocomplete-filter.service';
 import { AigI16nAutocompleteDisplayService } from './service/autocomplete-function.service';
+import { AigFatturaElettronicaBodyListTableComponent } from './components/fattura-elettronica-body-list-table/fattura-elettronica-body-list-table.component';
+import { AigFatturaElettronicaBodyNewUpdateFormComponent } from './components/fattura-elettronica-body-new-update-form/fattura-elettronica-body-new-update-form.component';
+import { AigFatturaElettronicaBodyDetailComponent } from './components/fattura-elettronica-body-detail/fattura-elettronica-body-detail.component';
+import { AigDatiPagamentoDetailComponent } from './components/dati-pagamento-detail/dati-pagamento-detail.component';
+import { FatturaElettronicaBodyResolver } from './resolver/fattura-elettronica-body.resolver';
 
 
 
@@ -61,6 +66,7 @@ import { AigI16nAutocompleteDisplayService } from './service/autocomplete-functi
     providers: [
 
         DettaglioPagamentoResolver,
+        FatturaElettronicaBodyResolver,
 
 
         AigI16nAutocompleteFilterService,
@@ -72,24 +78,32 @@ import { AigI16nAutocompleteDisplayService } from './service/autocomplete-functi
 
         AigDettaglioPagamentoListTableComponent,
         AigDatiPagamentoListTableComponent,
+        AigFatturaElettronicaBodyListTableComponent,
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
+        AigFatturaElettronicaBodyNewUpdateFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,
+        AigFatturaElettronicaBodyDetailComponent,
+        AigDatiPagamentoDetailComponent,
         
     ],
     exports: [
 
         AigDettaglioPagamentoListTableComponent,
         AigDatiPagamentoListTableComponent,
+        AigFatturaElettronicaBodyListTableComponent,
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
+        AigFatturaElettronicaBodyNewUpdateFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,
+        AigFatturaElettronicaBodyDetailComponent,
+        AigDatiPagamentoDetailComponent,
     ]
         
     

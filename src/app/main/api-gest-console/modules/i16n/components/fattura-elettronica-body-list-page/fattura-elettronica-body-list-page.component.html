@@ -27,18 +27,6 @@
                                         <input matInput type="numero" formControlName="numero">
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Dati Pagamento</mat-label>
-                                        <input matInput type="text" formControlName="datiPagamento">
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Dettaglio Pagamento</mat-label>
-                                        <input matInput type="text" formControlName="dettaglioPagamento">
-                                    </mat-form-field>
-                                </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
@@ -64,8 +52,8 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <!--<aig-dettaglio-pagamento-list-table [displayColumns]="dettaglioPagamentoDC" [dataSource]="dettaglioPagamentoDTOs" [error]="dettaglioPagamentoError">
-            </aig-dettaglio-pagamento-list-table> -->
+            <aig-fattura-elettronica-body-list-table [displayColumns]="fatturaElettronicaBodyDC" [dataSource]="fatturaElettronicaBodyDTOs" [error]="fatturaElettronicaBodyError">
+            </aig-fattura-elettronica-body-list-table> 
 
             <mat-paginator #paginator [length]="fatturaElettronicaBodyLength"
                 [pageSize]="this.fatturaElettronicaBodyPaginationSize" [pageIndex]="this.fatturaElettronicaBodyFilters.page"

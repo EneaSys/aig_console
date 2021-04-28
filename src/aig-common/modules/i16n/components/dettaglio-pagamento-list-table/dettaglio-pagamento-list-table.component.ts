@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { DettaglioPagamentoDTO, DettaglioPagamentoResourceService, DossierDTO, DossierResourceService } from 'aig-italianlegislation';
 import { AigDettaglioPagamentoNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/i16n/components/dettaglio-pagamento-new-update-dialog/dettaglio-pagamento-new-update-dialog.component';
-import { AigDossierNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/dossier-new-update-dialog/dossier-new-update-dialog.component';
+
 @Component({
     selector: 'aig-dettaglio-pagamento-list-table',
     templateUrl: './dettaglio-pagamento-list-table.component.html',

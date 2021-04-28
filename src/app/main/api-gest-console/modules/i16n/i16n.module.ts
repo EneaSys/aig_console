@@ -30,6 +30,8 @@ import { AigDettaglioPagamentoNewUpdateDialogComponent } from './components/dett
 import { AigDettaglioPagamentoDetailPageComponent } from './components/dettaglio-pagamento-detail-page/dettaglio-pagamento-detail-page.component';
 import { AigDatiPagamentoListPageComponent } from './components/dati-pagamento-list-page/dati-pagamento-list-page.component';
 import { AigFatturaElettronicaBodyListPageComponent } from './components/fattura-elettronica-body-list-page/fattura-elettronica-body-list-page.component';
+import { AigFatturaElettronicaNewUpdateDialogComponent } from './components/fattura-elettronica-new-update-dialog/fattura-elettronica-new-update-dialog.component';
+import { AigFatturaElettronicaBodyDetailPageComponent } from './components/fattura-pagamento-body-detail-page/fattura-pagamento-body-detail-page.component';
 
 
 
@@ -88,10 +90,12 @@ import { AigFatturaElettronicaBodyListPageComponent } from './components/fattura
 
 
         AigDettaglioPagamentoDetailPageComponent,
+        AigFatturaElettronicaBodyDetailPageComponent,
 
 
 
         AigDettaglioPagamentoNewUpdateDialogComponent,
+        AigFatturaElettronicaNewUpdateDialogComponent,
 
         
     ],
@@ -102,6 +106,7 @@ import { AigFatturaElettronicaBodyListPageComponent } from './components/fattura
     entryComponents: [
 
         AigDettaglioPagamentoNewUpdateDialogComponent,
+        AigFatturaElettronicaNewUpdateDialogComponent,
 
 
     ],
