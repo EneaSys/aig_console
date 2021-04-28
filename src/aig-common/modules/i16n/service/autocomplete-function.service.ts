@@ -3,7 +3,7 @@ import { DatiPagamentoDTO, FatturaElettronicaBodyDTO } from 'aig-italianlegislat
 
 @Injectable()
 export class AigI16nAutocompleteDisplayService {
-    fatturaElettronicaBodyDisplayFn(fatturaElettronicaBody?: FatturaElettronicaBodyDTO): string | undefined {
+    fatturaElettronicaBodyDisplayFn(fatturaElettronicaBody?: FatturaElettronicaBodyDTO): any | undefined {
         return fatturaElettronicaBody ? fatturaElettronicaBody.numero : undefined;
     }
 

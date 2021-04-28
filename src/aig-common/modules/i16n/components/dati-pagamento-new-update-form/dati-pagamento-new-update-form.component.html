@@ -10,7 +10,10 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Fattura Elettronica</mat-label>
-            <input type="number" name="fatturaElettronicaBody" formControlName="fatturaElettronicaBody" matInput required>
+            <input type="number" formControlName="fatturaElettronicaBody" matInput required [matAutocomplete]="fatturaElettronicaBodyAutocomplete">
+            <mat-autocomplete #fatturaElettronicaBodyAutocomplete="matAutocomplete" [displayWith]="i16nAutoCompleteDisplayService.fatturaElettronicaBodyDisplayFn">
+                <mat-option *ngFor="let fatturaElettronicaBody of filteredFatturaElettronicaBody | async" [value]="fatturaElettronicaBody">{{ fatturaElettronicaBody.numero }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 

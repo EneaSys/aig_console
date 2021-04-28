@@ -16,107 +16,12 @@
 
         <ng-container matColumnDef="condizioniPagamento">
             <mat-header-cell *matHeaderCellDef> Condizioni Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.condizioniPagamento }} </mat-cell>
-        </ng-container>
-        
-        <ng-container matColumnDef="beneficiario">
-            <mat-header-cell *matHeaderCellDef> Beneficiario </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.beneficiario }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.condizioniPagamento }}  </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="modalitaPagamentoCode">
-            <mat-header-cell *matHeaderCellDef> Modalità Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.modalitaPagamentoCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dataRiferimentoTerminiPagamento">
-            <mat-header-cell *matHeaderCellDef> Data Riferimento Termini Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.dataRiferimentoTerminiPagamento }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="giorniTerminiPagamento">
-            <mat-header-cell *matHeaderCellDef> Giorni Termini Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.giorniTerminiPagamento }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dataScadenzaPagamento">
-            <mat-header-cell *matHeaderCellDef> Data Scadenza Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.dataScadenzaPagamento }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="importoPagamento">
-            <mat-header-cell *matHeaderCellDef> Importo Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.importoPagamento }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="codUfficioPostale">
-            <mat-header-cell *matHeaderCellDef> Codice Ufficio Postale </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.codUfficioPostale }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="cognomeQuietanzante">
-            <mat-header-cell *matHeaderCellDef> Cognome Quietanzante </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.cognomeQuietanzante }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="nomeQuietanzante">
-            <mat-header-cell *matHeaderCellDef> Nome Quietanzante </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.nomeQuietanzante }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="cfQuietanzante">
-            <mat-header-cell *matHeaderCellDef> Codice Fiscale Quietanzante </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.cfQuietanzante }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="titoloQuietanzante">
-            <mat-header-cell *matHeaderCellDef> Titolo Quietanzante </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.titoloQuietanzante }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="istitutoFinanziario">
-            <mat-header-cell *matHeaderCellDef> Istituto Finanziario </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.istitutoFinanziario }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="iBAN">
-            <mat-header-cell *matHeaderCellDef> IBAN</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.iBAN }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="aBI">
-            <mat-header-cell *matHeaderCellDef> ABI </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.aBI }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="cAB">
-            <mat-header-cell *matHeaderCellDef> CAB </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.cAB }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="scontoPagamentoAnticipato">
-            <mat-header-cell *matHeaderCellDef> Sconto Pagamento Anticipato </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.scontoPagamentoAnticipato }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dataLimitePagamentoAnticipato">
-            <mat-header-cell *matHeaderCellDef> Data Limite Pagamento Anticipato </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.dataLimitePagamentoAnticipato }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="penalitaPagamentiRitardati">
-            <mat-header-cell *matHeaderCellDef> Penalità Pagamenti Ritardati </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.penalitaPagamentiRitardati }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dataDecorrenzaPenale">
-            <mat-header-cell *matHeaderCellDef> Data Decorrenza Penale </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.dataDecorrenzaPenale }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="codicePagamento">
-            <mat-header-cell *matHeaderCellDef> Codice Pagamento </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.dettaglioPagamento.codicePagamento }} </mat-cell>
+        <ng-container matColumnDef="fatturaElettronicaBody">
+            <mat-header-cell *matHeaderCellDef> Numero Fattura </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.fatturaElettronicaBody | json}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="id">

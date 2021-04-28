@@ -2,8 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { DettaglioPagamentoDTO, DettaglioPagamentoResourceService } from 'aig-italianlegislation';
+import { DatiPagamentoDTO, DettaglioPagamentoDTO, DettaglioPagamentoResourceService } from 'aig-italianlegislation';
+import { Observable } from 'rxjs';
+import { AigI16nAutocompleteFilterService } from '../../service/autocomplete-filter.service';
+import { AigI16nAutocompleteDisplayService } from '../../service/autocomplete-function.service';
 
 @Component({
     selector: 'aig-dettaglio-pagamento-new-update-form',
@@ -23,6 +27,8 @@ export class AigDettaglioPagamentoNewUpdateFormComponent implements OnInit {
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private eventService: EventService,
+        private genericAutocompleteFilterService: AigI16nAutocompleteFilterService,
+        public i16nAutoCompleteDisplayService: AigI16nAutocompleteDisplayService,
     ) { }
 
     @Input()
@@ -36,9 +42,12 @@ export class AigDettaglioPagamentoNewUpdateFormComponent implements OnInit {
 
     dettaglioPagamentoNewUpdateForm: FormGroup;
 
+    filteredDatiPagamento: Observable<DatiPagamentoDTO[]>;
+
     ngOnInit(): void {
         this.dettaglioPagamentoNewUpdateForm = this._formBuilder.group({
             id: [''],
+            datiPagamento: ['', [Validators.required, AigValidator.haveId]],
             beneficiario: ['',],
             modalitaPagamentoCode: ['', Validators.required],
             dataRiferimentoTerminiPagamento:[''],
@@ -63,6 +72,8 @@ export class AigDettaglioPagamentoNewUpdateFormComponent implements OnInit {
         if (this.dettaglioPagamento != null) {
             this.dettaglioPagamentoNewUpdateForm.patchValue(this.dettaglioPagamento);
         }
+
+        this.filteredDatiPagamento = this.genericAutocompleteFilterService.filterDatiPagamento(this.dettaglioPagamentoNewUpdateForm.controls['datiPagamento'].valueChanges);
     }
 
     async submit() {

@@ -13,6 +13,11 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="datiPagamento">
+            <mat-header-cell *matHeaderCellDef> Dati Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.datiPagamento }} </mat-cell>
+        </ng-container>
         
         <ng-container matColumnDef="beneficiario">
             <mat-header-cell *matHeaderCellDef> Beneficiario </mat-header-cell>

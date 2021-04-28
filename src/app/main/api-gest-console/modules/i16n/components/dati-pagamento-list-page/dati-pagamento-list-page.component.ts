@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { DatiPagamentoDTO, DatiPagamentoResourceService } from 'aig-italianlegislation';
+import { AigDatiPagamentoNewUpdateDialogComponent } from '../dati-pagamento-new-update-dialog/dati-pagamento-new-update-dialog.component';
 
 
 @Component({
@@ -52,7 +53,7 @@ export class AigDatiPagamentoListPageComponent extends GenericComponent {
             condizioniPagamento: [''],
         });
 
-        this.datiPagamentoDC = ['id','condizioniPagamento', 'beneficiario', 'modalitaPagamentoCode', 'importoPagamento', 'buttons'];
+        this.datiPagamentoDC = ['id','condizioniPagamento', 'fatturaElettronicaBody', 'buttons'];
     }
 
     private clearFiltersDatiPagamento() {
@@ -118,7 +119,7 @@ export class AigDatiPagamentoListPageComponent extends GenericComponent {
     }
 
     newDatiPagamento() {
-        //this.dialog.open(AigDettaglioPagamentoNewUpdateDialogComponent, { data: { dettaglioPagamento: {} } });
+        this.dialog.open(AigDatiPagamentoNewUpdateDialogComponent, { data: { datiPagamento: {} } });
     }
     //			---- ! TABLE AND SEARCH SECTION ----
 }

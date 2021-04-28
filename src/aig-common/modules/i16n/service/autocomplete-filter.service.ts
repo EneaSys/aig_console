@@ -16,7 +16,7 @@ export class AigI16nAutocompleteFilterService {
             switchMap((value: string) => {
                 if (value && value.length > 0) {
 					let filter = {
-						taxNumberContains: value
+						numeroEquals: value
 					};
 					return this.fatturaElettronicaBodyResourceService.getAllFatturaElettronicaBodiesUsingGET(filter);
 				} else {

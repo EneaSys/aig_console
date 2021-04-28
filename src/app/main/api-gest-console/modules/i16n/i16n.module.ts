@@ -32,6 +32,8 @@ import { AigDatiPagamentoListPageComponent } from './components/dati-pagamento-l
 import { AigFatturaElettronicaBodyListPageComponent } from './components/fattura-elettronica-body-list-page/fattura-elettronica-body-list-page.component';
 import { AigFatturaElettronicaNewUpdateDialogComponent } from './components/fattura-elettronica-new-update-dialog/fattura-elettronica-new-update-dialog.component';
 import { AigFatturaElettronicaBodyDetailPageComponent } from './components/fattura-pagamento-body-detail-page/fattura-pagamento-body-detail-page.component';
+import { AigDatiPagamentoNewUpdateDialogComponent } from './components/dati-pagamento-new-update-dialog/dati-pagamento-new-update-dialog.component';
+import { AigDatiPagamentoDetailPageComponent } from './components/dati-pagamento-detail-page/dati-pagamento-detail-page.component';
 
 
 
@@ -91,11 +93,13 @@ import { AigFatturaElettronicaBodyDetailPageComponent } from './components/fattu
 
         AigDettaglioPagamentoDetailPageComponent,
         AigFatturaElettronicaBodyDetailPageComponent,
+        AigDatiPagamentoDetailPageComponent,
 
 
 
         AigDettaglioPagamentoNewUpdateDialogComponent,
         AigFatturaElettronicaNewUpdateDialogComponent,
+        AigDatiPagamentoNewUpdateDialogComponent,
 
         
     ],
@@ -107,6 +111,7 @@ import { AigFatturaElettronicaBodyDetailPageComponent } from './components/fattu
 
         AigDettaglioPagamentoNewUpdateDialogComponent,
         AigFatturaElettronicaNewUpdateDialogComponent,
+        AigDatiPagamentoNewUpdateDialogComponent,
 
 
     ],

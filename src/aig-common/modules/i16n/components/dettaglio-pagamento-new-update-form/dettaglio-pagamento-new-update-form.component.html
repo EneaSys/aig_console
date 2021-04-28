@@ -2,6 +2,16 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Dati Pagamento</mat-label>
+            <input type="number" formControlName="datiPagamento" matInput required [matAutocomplete]="datiPagamentoAutocomplete">
+            <mat-autocomplete #datiPagamentoAutocomplete="matAutocomplete" [displayWith]="i16nAutoCompleteDisplayService.datiPagamentoDisplayFn">
+                <mat-option *ngFor="let datiPagamento of filteredDatiPagamento | async" [value]="datiPagamento">{{ datiPagamento.condizioniPagamento }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
             <mat-label>Beneficiario</mat-label>
             <input name="beneficiario" formControlName="beneficiario" matInput required>
         </mat-form-field>

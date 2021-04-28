@@ -33,6 +33,10 @@ import { AigFatturaElettronicaBodyNewUpdateFormComponent } from './components/fa
 import { AigFatturaElettronicaBodyDetailComponent } from './components/fattura-elettronica-body-detail/fattura-elettronica-body-detail.component';
 import { AigDatiPagamentoDetailComponent } from './components/dati-pagamento-detail/dati-pagamento-detail.component';
 import { FatturaElettronicaBodyResolver } from './resolver/fattura-elettronica-body.resolver';
+import { AigDatiPagamentoNewUpdateFormComponent } from './components/dati-pagamento-new-update-form/dati-pagamento-new-update-form.component';
+import { DatiPagamentoResolver } from './resolver/dati-pagamento.resolver';
+import { DatiVeicoliResolver } from './resolver/dati-veicoli.resolver';
+import { AllegatiResolver } from './resolver/allegati.resolver';
 
 
 
@@ -67,6 +71,9 @@ import { FatturaElettronicaBodyResolver } from './resolver/fattura-elettronica-b
 
         DettaglioPagamentoResolver,
         FatturaElettronicaBodyResolver,
+        DatiPagamentoResolver,
+        DatiVeicoliResolver,
+        AllegatiResolver,
 
 
         AigI16nAutocompleteFilterService,
@@ -83,6 +90,7 @@ import { FatturaElettronicaBodyResolver } from './resolver/fattura-elettronica-b
 
         AigDettaglioPagamentoNewUpdateFormComponent,
         AigFatturaElettronicaBodyNewUpdateFormComponent,
+        AigDatiPagamentoNewUpdateFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,
@@ -99,6 +107,7 @@ import { FatturaElettronicaBodyResolver } from './resolver/fattura-elettronica-b
 
         AigDettaglioPagamentoNewUpdateFormComponent,
         AigFatturaElettronicaBodyNewUpdateFormComponent,
+        AigDatiPagamentoNewUpdateFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,

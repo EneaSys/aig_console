@@ -28,7 +28,7 @@ export class AigDatiPagamentoNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private eventService: EventService,
         private genericAutocompleteFilterService: AigI16nAutocompleteFilterService,
-        public ippAutoCompleteDisplayService: AigI16nAutocompleteDisplayService,
+        public i16nAutoCompleteDisplayService: AigI16nAutocompleteDisplayService,
     ) { }
 
     @Input()

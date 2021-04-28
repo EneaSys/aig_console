@@ -53,7 +53,7 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
 			beneficiario: [''],
 		});
 
-		this.dettaglioPagamentoDC = ['id', 'beneficiario','modalitaPagamentoCode', 'importoPagamento', 'buttons'];
+		this.dettaglioPagamentoDC = ['id','datiPagamento', 'beneficiario','modalitaPagamentoCode', 'importoPagamento', 'buttons'];
     }
     
     private clearFiltersDettaglioPagamento() {

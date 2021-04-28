@@ -3,6 +3,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { DatiPagamentoDTO, DatiPagamentoResourceService } from 'aig-italianlegislation';
+import { AigDatiPagamentoNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/i16n/components/dati-pagamento-new-update-dialog/dati-pagamento-new-update-dialog.component';
 
 @Component({
     selector: 'aig-dati-pagamento-list-table',
@@ -42,6 +43,6 @@ export class AigDatiPagamentoListTableComponent implements OnInit {
     }
 
     editDatiPagamento(datiPagamentoDTO: DatiPagamentoDTO) {
-        //this.dialog.open(AigDettaglioPagamentoNewUpdateDialogComponent, { data: { datiPagamento: datiPagamentoDTO } });
+        this.dialog.open(AigDatiPagamentoNewUpdateDialogComponent, { data: { datiPagamento: datiPagamentoDTO } });
     }
 }
