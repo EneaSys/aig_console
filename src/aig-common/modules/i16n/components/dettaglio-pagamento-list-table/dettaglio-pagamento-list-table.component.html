@@ -1,0 +1,150 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <h3>Error!</h3>
+    <span *ngIf="error.status == 401">No access to this info</span>
+
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json}}</pre>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+        
+        <ng-container matColumnDef="beneficiario">
+            <mat-header-cell *matHeaderCellDef> Beneficiario </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.beneficiario }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="modalitaPagamentoCode">
+            <mat-header-cell *matHeaderCellDef> Modalità Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.modalitaPagamentoCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dataRiferimentoTerminiPagamento">
+            <mat-header-cell *matHeaderCellDef> Data Riferimento Termini Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.dataRiferimentoTerminiPagamento }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="giorniTerminiPagamento">
+            <mat-header-cell *matHeaderCellDef> Giorni Termini Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.giorniTerminiPagamento }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dataScadenzaPagamento">
+            <mat-header-cell *matHeaderCellDef> Data Scadenza Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.dataScadenzaPagamento }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="importoPagamento">
+            <mat-header-cell *matHeaderCellDef> Importo Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.importoPagamento }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="codUfficioPostale">
+            <mat-header-cell *matHeaderCellDef> Codice Ufficio Postale </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.codUfficioPostale }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cognomeQuietanzante">
+            <mat-header-cell *matHeaderCellDef> Cognome Quietanzante </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.cognomeQuietanzante }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nomeQuietanzante">
+            <mat-header-cell *matHeaderCellDef> Nome Quietanzante </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.nomeQuietanzante }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cfQuietanzante">
+            <mat-header-cell *matHeaderCellDef> Codice Fiscale Quietanzante </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.cfQuietanzante }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="titoloQuietanzante">
+            <mat-header-cell *matHeaderCellDef> Titolo Quietanzante </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.titoloQuietanzante }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="istitutoFinanziario">
+            <mat-header-cell *matHeaderCellDef> Istituto Finanziario </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.istitutoFinanziario }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="iBAN">
+            <mat-header-cell *matHeaderCellDef> IBAN</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.iBAN }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="aBI">
+            <mat-header-cell *matHeaderCellDef> ABI </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.aBI }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cAB">
+            <mat-header-cell *matHeaderCellDef> CAB </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.cAB }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="scontoPagamentoAnticipato">
+            <mat-header-cell *matHeaderCellDef> Sconto Pagamento Anticipato </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.scontoPagamentoAnticipato }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dataLimitePagamentoAnticipato">
+            <mat-header-cell *matHeaderCellDef> Data Limite Pagamento Anticipato </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.dataLimitePagamentoAnticipato }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="penalitaPagamentiRitardati">
+            <mat-header-cell *matHeaderCellDef> Penalità Pagamenti Ritardati </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.penalitaPagamentiRitardati }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="dataDecorrenzaPenale">
+            <mat-header-cell *matHeaderCellDef> Data Decorrenza Penale </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.dataDecorrenzaPenale }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="codicePagamento">
+            <mat-header-cell *matHeaderCellDef> Codice Pagamento </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.codicePagamento }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/i16n/dettaglio-pagamento/detail/' + e.id">
+                      <mat-icon>details</mat-icon>
+                      <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editDettaglioPagamento(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                    <button mat-menu-item (click)="deleteDettaglioPagamento(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+                  </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+
+    </mat-table>
+
+</div>

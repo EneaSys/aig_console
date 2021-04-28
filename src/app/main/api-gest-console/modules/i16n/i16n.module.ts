@@ -25,6 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
 import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-pagamento-list-page/dettaglio-pagamento-list-page.component';
+import { AigCommonI16nModule } from 'aig-common/modules/i16n/common-i16n.module';
+import { AigDettaglioPagamentoNewUpdateDialogComponent } from './components/dettaglio-pagamento-new-update-dialog/dettaglio-pagamento-new-update-dialog.component';
 
 
 
@@ -37,6 +39,7 @@ import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-p
         AigCommonIppModule,
         AigIppClientModule,
         AigItalianLegislationApiModule,
+        AigCommonI16nModule,
        
         FormsModule,
         ReactiveFormsModule,
@@ -76,6 +79,10 @@ import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-p
 
         AigDettaglioPagamentoListPageComponent,
 
+
+
+        AigDettaglioPagamentoNewUpdateDialogComponent,
+
         
     ],
     exports: [
@@ -83,6 +90,8 @@ import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-p
     ],
 
     entryComponents: [
+
+        AigDettaglioPagamentoNewUpdateDialogComponent,
 
 
     ],

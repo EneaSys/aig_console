@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { DettaglioPagamentoDTO, DettaglioPagamentoResourceService } from 'aig-italianlegislation';
+import { AigDettaglioPagamentoNewUpdateDialogComponent } from '../dettaglio-pagamento-new-update-dialog/dettaglio-pagamento-new-update-dialog.component';
 
 @Component({
 	selector: 'aig-dettaglio-pagamento-list-page',
@@ -52,7 +53,7 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
 			beneficiario: [''],
 		});
 
-		this.dettaglioPagamentoDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.dettaglioPagamentoDC = ['id', 'beneficiario','modalitaPagamentoCode', 'importoPagamento', 'buttons'];
     }
     
     private clearFiltersDettaglioPagamento() {
@@ -119,7 +120,7 @@ export class AigDettaglioPagamentoListPageComponent extends GenericComponent {
 	}
 
     newDettaglioPagamento(){
-        //this.dialog.open(AigCityNewUpdateModalComponent, { data: { city: {} } });
+        this.dialog.open(AigDettaglioPagamentoNewUpdateDialogComponent, { data: { dettaglioPagamento: {} } });
     }
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

@@ -58,8 +58,8 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <!--<aig-city-list-table [displayedColumns]="cityDC" [dataSource]="cityDTOs" [error]="cityError">
-            </aig-city-list-table> -->
+            <aig-dettaglio-pagamento-list-table [displayColumns]="dettaglioPagamentoDC" [dataSource]="dettaglioPagamentoDTOs" [error]="dettaglioPagamentoError">
+            </aig-dettaglio-pagamento-list-table> 
 
             <mat-paginator #paginator [length]="dettaglioPagamentoLength"
                 [pageSize]="this.dettaglioPagamentoPaginationSize" [pageIndex]="this.dettaglioPagamentoFilters.page"

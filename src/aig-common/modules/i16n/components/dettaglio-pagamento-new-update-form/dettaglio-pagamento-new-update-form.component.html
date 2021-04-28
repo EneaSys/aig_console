@@ -1,0 +1,36 @@
+<form *ngIf="step.form" [formGroup]="dettaglioPagamentoNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Beneficiario</mat-label>
+            <input name="beneficiario" formControlName="beneficiario" matInput>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>modalità Pagamento</mat-label>
+            <input name="modalitaPagamentoCode" formControlName="modalitaPagamentoCode" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Importo Pagamento</mat-label>
+            <input type="number" name="importoPagamento" formControlName="importoPagamento" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ dettaglioPagamentoNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!dettaglioPagamentoNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newDettaglioPagamento()">Create New</button>
+</div>
