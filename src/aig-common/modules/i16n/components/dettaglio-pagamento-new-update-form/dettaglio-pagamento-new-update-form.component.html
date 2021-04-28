@@ -3,7 +3,7 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Beneficiario</mat-label>
-            <input name="beneficiario" formControlName="beneficiario" matInput>
+            <input name="beneficiario" formControlName="beneficiario" matInput required>
         </mat-form-field>
     </div>
 
@@ -31,6 +31,7 @@
 </div>
 
 <div *ngIf="step.complete">
+    <!--<aig-dettaglio-pagamento-detail [dettaglioPagamento]="dettaglioPagamento"></aig-dettaglio-pagamento-detail>-->
     <pre>{{ dettaglioPagamentoNewUpdateForm.value | json }}</pre>
     <button *ngIf="!dettaglioPagamentoNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newDettaglioPagamento()">Create New</button>
 </div>

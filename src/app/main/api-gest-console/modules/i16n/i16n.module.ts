@@ -27,6 +27,7 @@ import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
 import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-pagamento-list-page/dettaglio-pagamento-list-page.component';
 import { AigCommonI16nModule } from 'aig-common/modules/i16n/common-i16n.module';
 import { AigDettaglioPagamentoNewUpdateDialogComponent } from './components/dettaglio-pagamento-new-update-dialog/dettaglio-pagamento-new-update-dialog.component';
+import { AigDettaglioPagamentoDetailPageComponent } from './components/dettaglio-pagamento-detail-page/dettaglio-pagamento-detail-page.component';
 
 
 
@@ -78,6 +79,9 @@ import { AigDettaglioPagamentoNewUpdateDialogComponent } from './components/dett
     declarations: [
 
         AigDettaglioPagamentoListPageComponent,
+
+
+        AigDettaglioPagamentoDetailPageComponent,
 
 
 

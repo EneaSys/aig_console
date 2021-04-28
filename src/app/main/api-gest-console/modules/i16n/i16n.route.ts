@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
+import { DettaglioPagamentoResolver } from 'aig-common/modules/i16n/resolver/dettaglio-pagamento.resolver';
 import { InsurancePolicyResolver } from 'aig-common/modules/ipp/resolver/insurance-policy.resolver';
 import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
+import { AigDettaglioPagamentoDetailPageComponent } from './components/dettaglio-pagamento-detail-page/dettaglio-pagamento-detail-page.component';
 import { AigDettaglioPagamentoListPageComponent } from './components/dettaglio-pagamento-list-page/dettaglio-pagamento-list-page.component';
 
 
@@ -34,10 +36,10 @@ export const i16nRoute: Routes = [
                     },
                     {
                         path: 'detail/:id',
-                        component: AigDettaglioPagamentoListPageComponent,
+                        component: AigDettaglioPagamentoDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            procurement:  ProcurementResolver,
+                            dettaglioPagamento:  DettaglioPagamentoResolver,
                         },
                     },
                 ]

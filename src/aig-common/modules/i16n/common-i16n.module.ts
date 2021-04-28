@@ -23,6 +23,8 @@ import { AigItalianLegislationApiModule } from 'aig-italianlegislation';
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { AigDettaglioPagamentoListTableComponent } from './components/dettaglio-pagamento-list-table/dettaglio-pagamento-list-table.component';
 import { AigDettaglioPagamentoNewUpdateFormComponent } from './components/dettaglio-pagamento-new-update-form/dettaglio-pagamento-new-update-form.component';
+import { AigDettaglioPagamentoDetailComponent } from './components/dettaglio-pagamento-detail/dettaglio-pagamento-detail.component';
+import { DettaglioPagamentoResolver } from './resolver/dettaglio-pagamento.resolver';
 
 
 
@@ -55,6 +57,8 @@ import { AigDettaglioPagamentoNewUpdateFormComponent } from './components/dettag
     ],
     providers: [
 
+        DettaglioPagamentoResolver,
+
 
     ],
     declarations: [
@@ -63,6 +67,9 @@ import { AigDettaglioPagamentoNewUpdateFormComponent } from './components/dettag
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
+
+
+        AigDettaglioPagamentoDetailComponent,
         
     ],
     exports: [
@@ -71,6 +78,9 @@ import { AigDettaglioPagamentoNewUpdateFormComponent } from './components/dettag
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
+
+
+        AigDettaglioPagamentoDetailComponent,
     ]
         
     

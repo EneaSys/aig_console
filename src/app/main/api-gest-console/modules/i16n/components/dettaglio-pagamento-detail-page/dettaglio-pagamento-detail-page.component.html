@@ -1,0 +1,14 @@
+<div id="aig-dettaglio-pagamento-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+            
+                <aig-dettaglio-pagamento-detail [dettaglioPagamento]="dettaglioPagamento"></aig-dettaglio-pagamento-detail>
+
+                <button mat-stroked-button color="primary" (click)="editDettaglioPagamento(dettaglioPagamento)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteDettaglioPagamento(dettaglioPagamento.id)">Delete </button>
+            </div>
+        </div>
+    </div>
+</div>
