@@ -9,7 +9,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -51,7 +50,9 @@ import { InsurancePolicyResolver } from './resolver/insurance-policy.resolver';
 import { InsurancePolicyStatusResolver } from './resolver/insurance-policy-status.resolver';
 import { AigInsurancePolicyStatusListTableComponent } from './components/insurance-policy-status-list-table/insurance-policy-status-list-table.component';
 import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/insurance-policy-status-new-update-form/insurance-policy-status-new-update-form.component';
+import { AigProcurementLotListTableNgComponent } from './components/procurement-lot-list-table-ng/procurement-lot-list-table-ng.component';
 
+import { TableModule } from 'primeng/table';
 
 @NgModule({
     imports: [
@@ -79,6 +80,8 @@ import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/ins
         MatSelectModule,
         MatMenuModule,
         MatDatepickerModule,
+
+        TableModule,
     ],
     providers: [
 
@@ -120,7 +123,7 @@ import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/ins
         AigDesignatedCompanyNewUpdateFormComponent,
         AigInsurancePolicyStatusNewUpdateFormComponent,
     
-        
+        AigProcurementLotListTableNgComponent,
     ],
     exports: [
         AigProcurementListTableComponent,
@@ -145,6 +148,8 @@ import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/ins
         AigInsurancePolicyNewUpdateFormComponent,
         AigDesignatedCompanyNewUpdateFormComponent,
         AigInsurancePolicyStatusNewUpdateFormComponent,
+
+        AigProcurementLotListTableNgComponent,
     ]
         
     

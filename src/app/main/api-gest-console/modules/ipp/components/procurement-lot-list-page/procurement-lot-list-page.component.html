@@ -47,7 +47,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="procurementLotFilters.amountMin">{{ procurementLotFilters.amountMin | currency:'EUR' }}</span>
+                                <span *ngIf="procurementLotFilters.amountMin">{{ procurementLotFilters.amountMin |
+                                    currency:'EUR' }}</span>
                                 <span *ngIf="!procurementLotFilters.amountMin">non definito</span>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center start">
@@ -59,7 +60,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="procurementLotFilters.amountMax">{{ procurementLotFilters.amountMax | currency:'EUR' }}</span>
+                                <span *ngIf="procurementLotFilters.amountMax">{{ procurementLotFilters.amountMax |
+                                    currency:'EUR' }}</span>
                                 <span *ngIf="!procurementLotFilters.amountMax">illimitato</span>
                             </div>
                             <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
@@ -76,19 +78,23 @@
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <a class="nav-link" matRipple (click)="setFilterprocurementLot('procurementLotTypeCode', null)"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterprocurementLot('procurementLotTypeCode', null)"
                                 [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == null}">
                                 <span class="title">Tutto</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'FORNITURE')"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterProcurementLot('procurementLotTypeCode', 'FORNITURE')"
                                 [ngClass]="{'accent': procurementLotFilters.ippProcurementTypeCode == 'FORNITURE'}">
                                 <span class="title">Forniture</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'LAVORI')"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterProcurementLot('procurementLotTypeCode', 'LAVORI')"
                                 [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == 'LAVORI'}">
                                 <span class="title">Lavori</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'SERVIZI')"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterProcurementLot('procurementLotTypeCode', 'SERVIZI')"
                                 [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == 'SERVIZI'}">
                                 <span class="title">Servizi</span>
                             </a>
@@ -125,13 +131,20 @@
                 Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
             </mat-card>
             -->
-            <aig-procurement-lot-list-table [displayColumns]="procurementLotDisplayColumns" [dataSource]="procurementLotDTOs">
-            </aig-procurement-lot-list-table>
 
+
+
+<!--
+            <aig-procurement-lot-list-table [displayColumns]="procurementLotDisplayColumns"
+                [dataSource]="procurementLotDTOs">
+            </aig-procurement-lot-list-table>
             <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="procurementLotIndex"
-                [pageSize]="procurementLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
-                (page)="procurementLotPaginatorEvent($event)"></mat-paginator>
-    
+                [pageSize]="procurementLotPageable.size" [pageSizeOptions]="[30, 100, 200]"></mat-paginator>
+        -->
+            <aig-procurement-lot-list-table-ng [displayColumns]="procurementLotDisplayColumns" [dataSource]="procurementLotDTOs">
+            </aig-procurement-lot-list-table-ng>
+
+
 
             <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"
                 aria-label="add procurement lot">

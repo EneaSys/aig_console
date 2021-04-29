@@ -1,0 +1,75 @@
+<p-table 
+    #dt [value]="dataSource" styleClass="p-datatable-responsive"
+    [lazy]="true" (onLazyLoad)="onLazy($event)" [loading]="loading" 
+
+    [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,25,50]" 
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" 
+    
+    [globalFilterFields]="['code','country.name', 'company', 'representative.name']"
+
+    [resizableColumns]="true" [reorderableColumns]="true"
+
+    [(selection)]="selectedCustomers" dataKey="id" stateStorage="session" stateKey="selected-procurement-lot-session"
+  >
+  <ng-template pTemplate="header">
+    <tr>
+      <th ></th>
+      <th pSortableColumn="name">
+        Cig <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th pSortableColumn="country.name">
+        Description <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th pSortableColumn="representative.name">
+        Data scadenza
+      </th>
+      <th pSortableColumn="date">
+        Importo
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Activity
+      </th>
+      <th style="width: 8rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-element>
+    <tr class="p-selectable-row">
+      <td>
+        <p-tableCheckbox [value]="element"></p-tableCheckbox>
+      </td>
+      <td>
+        <span class="p-column-title">CIG</span>
+        {{ element.cig }}
+      </td>
+      <td>
+        {{ element.description }}
+      </td>
+      <td>
+        {{ element.offerExpiryDate | date }}
+      </td>
+      <td>
+        {{ element.baseAmount | currency:'EUR' }}
+      </td>
+      <td>
+        {{ element.status }}
+      </td>
+      <td>
+        activity
+      </td>
+      <td style="text-align: center">
+        bottone
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No customers found.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<pre>{{ selectedCustomers | json }}</pre>
+<hr>
