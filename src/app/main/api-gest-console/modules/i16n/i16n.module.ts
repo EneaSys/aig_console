@@ -34,6 +34,12 @@ import { AigFatturaElettronicaNewUpdateDialogComponent } from './components/fatt
 import { AigFatturaElettronicaBodyDetailPageComponent } from './components/fattura-pagamento-body-detail-page/fattura-pagamento-body-detail-page.component';
 import { AigDatiPagamentoNewUpdateDialogComponent } from './components/dati-pagamento-new-update-dialog/dati-pagamento-new-update-dialog.component';
 import { AigDatiPagamentoDetailPageComponent } from './components/dati-pagamento-detail-page/dati-pagamento-detail-page.component';
+import { AigDatiVeicoliListPageComponent } from './components/dati-veicoli-list-page/dati-veicoli-list-page.component';
+import { AigDatiVeicoliNewUpdateDialogComponent } from './components/dati-veicoli-new-update-dialog/dati-veicoli-new-update-dialog.component';
+import { AigAllegatiNewUpdateDialogComponent } from './components/allegati-new-update-dialog/allegati-new-update-dialog.component';
+import { AigDatiVeicoliDetailPageComponent } from './components/dati-veicoli-detail-page/dati-veicoli-detail-page.component';
+import { AigAllegatiListPageComponent } from './components/allegati-list-page/allegati-list-page.component';
+import { AigAllegatiDetailPageComponent } from './components/allegati-detail-page/allegati-detail-page.component';
 
 
 
@@ -88,18 +94,24 @@ import { AigDatiPagamentoDetailPageComponent } from './components/dati-pagamento
         AigDettaglioPagamentoListPageComponent,
         AigDatiPagamentoListPageComponent,
         AigFatturaElettronicaBodyListPageComponent,
+        AigDatiVeicoliListPageComponent,
+        AigAllegatiListPageComponent,
         
 
 
         AigDettaglioPagamentoDetailPageComponent,
         AigFatturaElettronicaBodyDetailPageComponent,
         AigDatiPagamentoDetailPageComponent,
+        AigDatiVeicoliDetailPageComponent,
+        AigAllegatiDetailPageComponent,
 
 
 
         AigDettaglioPagamentoNewUpdateDialogComponent,
         AigFatturaElettronicaNewUpdateDialogComponent,
         AigDatiPagamentoNewUpdateDialogComponent,
+        AigDatiVeicoliNewUpdateDialogComponent,
+        AigAllegatiNewUpdateDialogComponent,
 
         
     ],
@@ -112,7 +124,8 @@ import { AigDatiPagamentoDetailPageComponent } from './components/dati-pagamento
         AigDettaglioPagamentoNewUpdateDialogComponent,
         AigFatturaElettronicaNewUpdateDialogComponent,
         AigDatiPagamentoNewUpdateDialogComponent,
-
+        AigDatiVeicoliNewUpdateDialogComponent,
+        AigAllegatiNewUpdateDialogComponent,
 
     ],
 })

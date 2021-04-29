@@ -189,6 +189,22 @@ export const navigation: FuseNavigation[] = [
                 url      : '/i16n/fattura-elettronica-body',
                 permission: ['c6e.admin'],
             },
+            {
+                id       : 'dati-veicoli',
+                title    : 'Dati Veicoli',
+                type     : 'item',
+                icon     : 'assignment',
+                url      : '/i16n/dati-veicoli',
+                permission: ['c6e.admin'],
+            },
+            {
+                id       : 'allegati',
+                title    : 'Allegati',
+                type     : 'item',
+                icon     : 'assignment',
+                url      : '/i16n/allegati',
+                permission: ['c6e.admin'],
+            },
         ]
     },
     {

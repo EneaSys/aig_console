@@ -1,0 +1,26 @@
+<form *ngIf="step.form" [formGroup]="datiVeicoliNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Fattura Elettronica</mat-label>
+            <input type="number" formControlName="fatturaElettronicaBody" matInput required [matAutocomplete]="fatturaElettronicaBodyAutocomplete">
+            <mat-autocomplete #fatturaElettronicaBodyAutocomplete="matAutocomplete" [displayWith]="i16nAutoCompleteDisplayService.fatturaElettronicaBodyDisplayFn">
+                <mat-option *ngFor="let fatturaElettronicaBody of filteredFatturaElettronicaBody | async" [value]="fatturaElettronicaBody">{{ fatturaElettronicaBody.numero }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <!--<aig-dettaglio-pagamento-detail [dettaglioPagamento]="dettaglioPagamento"></aig-dettaglio-pagamento-detail>-->
+    <pre>{{ datiVeicoliNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!datiVeicoliNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newDatiVeicoli()">Create New</button>
+</div>

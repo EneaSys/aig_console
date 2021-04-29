@@ -37,6 +37,12 @@ import { AigDatiPagamentoNewUpdateFormComponent } from './components/dati-pagame
 import { DatiPagamentoResolver } from './resolver/dati-pagamento.resolver';
 import { DatiVeicoliResolver } from './resolver/dati-veicoli.resolver';
 import { AllegatiResolver } from './resolver/allegati.resolver';
+import { AigDatiVeicoliListTableComponent } from './components/dati-veicoli-list-table/dati-veicoli-list-table.component';
+import { AigDatiVeicoliDetailComponent } from './components/dati-veicoli-detail/dati-veicoli-detail.component';
+import { AigDatiVeicoliNewUpdateFormComponent } from './components/dati-veicoli-new-update-form/dati-veicoli-new-update-form.component';
+import { AigAllegatiListTableComponent } from './components/allegati-list-table/allegati-list-table.component';
+import { AigAllegatiNewUpdateFormComponent } from './components/allegati-new-update-form/allegati-new-update-form.component';
+import { AigAllegatiDetailComponent } from './components/allegati-detail/allegati-detail.component';
 
 
 
@@ -86,16 +92,22 @@ import { AllegatiResolver } from './resolver/allegati.resolver';
         AigDettaglioPagamentoListTableComponent,
         AigDatiPagamentoListTableComponent,
         AigFatturaElettronicaBodyListTableComponent,
+        AigDatiVeicoliListTableComponent,
+        AigAllegatiListTableComponent,
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
         AigFatturaElettronicaBodyNewUpdateFormComponent,
         AigDatiPagamentoNewUpdateFormComponent,
+        AigDatiVeicoliNewUpdateFormComponent,
+        AigAllegatiNewUpdateFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,
         AigFatturaElettronicaBodyDetailComponent,
         AigDatiPagamentoDetailComponent,
+        AigDatiVeicoliDetailComponent,
+        AigAllegatiDetailComponent,
         
     ],
     exports: [
@@ -103,16 +115,22 @@ import { AllegatiResolver } from './resolver/allegati.resolver';
         AigDettaglioPagamentoListTableComponent,
         AigDatiPagamentoListTableComponent,
         AigFatturaElettronicaBodyListTableComponent,
+        AigDatiVeicoliListTableComponent,
+        AigAllegatiListTableComponent,
 
 
         AigDettaglioPagamentoNewUpdateFormComponent,
         AigFatturaElettronicaBodyNewUpdateFormComponent,
         AigDatiPagamentoNewUpdateFormComponent,
+        AigDatiVeicoliNewUpdateFormComponent,
+        AigAllegatiNewUpdateFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,
         AigFatturaElettronicaBodyDetailComponent,
         AigDatiPagamentoDetailComponent,
+        AigDatiVeicoliDetailComponent,
+        AigAllegatiDetailComponent,
     ]
         
     
