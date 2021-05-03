@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AwardCriterionDTO, AwardCriterionResourceService, PartecipationTypeDTO, PartecipationTypeResourceService} from 'aig-standard';
+import { IlPpPartecipationTypeDTO, IlPpPartecipationTypeResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
-import { AigAwardCriterionNewUpdateDialogComponent } from '../award-criterion-new-update-dialog/award-criterion-new-update-dialog.component';
 import { AigPartecipationTypeNewUpdateDialogComponent } from '../partecipation-type-new-update-dialog/partecipation-type-new-update-dialog.component';
 
 @Component({
@@ -15,7 +14,7 @@ import { AigPartecipationTypeNewUpdateDialogComponent } from '../partecipation-t
 })
 export class AigPartecipationTypeListPageComponent extends GenericComponent {
     constructor(
-        private partecipationTypeResourceService: PartecipationTypeResourceService,
+        private partecipationTypeResourceService: IlPpPartecipationTypeResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -34,7 +33,7 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 
     //			---- Partecipation Type TABLE AND SEARCH SECTION ----
     
-	partecipationTypeDTOs: PartecipationTypeDTO[];
+	partecipationTypeDTOs: IlPpPartecipationTypeDTO[];
     partecipationTypeDC: string[];
 	partecipationTypeError: any;
 
@@ -71,7 +70,7 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 		this.partecipationTypeFilters.size = this.partecipationTypePaginationSize;
 
 		try {
-			this.partecipationTypeLength = await this.partecipationTypeResourceService.countPartecipationTypesUsingGET(this.partecipationTypeFilters).toPromise();
+			this.partecipationTypeLength = await this.partecipationTypeResourceService.countIlPpPartecipationTypesUsingGET(this.partecipationTypeFilters).toPromise();
 
 			if(this.partecipationTypeLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -79,7 +78,7 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.partecipationTypeDTOs = await this.partecipationTypeResourceService.getAllPartecipationTypesUsingGET(this.partecipationTypeFilters).toPromise();
+			this.partecipationTypeDTOs = await this.partecipationTypeResourceService.getAllIlPpPartecipationTypesUsingGET(this.partecipationTypeFilters).toPromise();
 		} catch (e) {
 			this.partecipationTypeError = e;
 		}

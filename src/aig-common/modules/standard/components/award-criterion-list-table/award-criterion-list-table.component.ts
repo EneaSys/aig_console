@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { AwardCriterionDTO, AwardCriterionResourceService} from 'aig-standard';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotAwardCriterionResourceService } from 'aig-standard';
 import { AigAwardCriterionNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/award-criterion-new-update-dialog/award-criterion-new-update-dialog.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AigAwardCriterionNewUpdateDialogComponent } from 'app/main/api-gest-con
 })
 export class AigAwardCriterionListTableComponent implements OnInit {
     constructor(
-        private awardCriterionResourceService: AwardCriterionResourceService,
+        private awardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -32,7 +32,7 @@ export class AigAwardCriterionListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.awardCriterionResourceService.deleteAwardCriterionUsingDELETE(id).toPromise();
+            await this.awardCriterionResourceService.deleteIlPpProcurementLotAwardCriterionUsingDELETE(id).toPromise();
             this._snackBar.open(`Award Criterion: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -42,7 +42,7 @@ export class AigAwardCriterionListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editAwardCriterion(awardCriterionDTO: AwardCriterionDTO) {
+    editAwardCriterion(awardCriterionDTO: IlPpProcurementLotAwardCriterionDTO) {
         this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, { data: { awardCriterion: awardCriterionDTO } });
     }
 }

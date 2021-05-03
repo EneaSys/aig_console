@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { ItalianPublicProcurementSectorResourceService, ItalianPublicProcurementSectorDTO } from 'aig-standard';
+import { IlPpProcurementSectorDTO, IlPpProcurementSectorResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { AigIppSectorNewUpdateModalComponent } from '../ipp-sector-new-update-modal/ipp-sector-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -14,7 +14,7 @@ import { MatSnackBar, PageEvent } from '@angular/material';
 })
 export class AigIppSectorListPageComponent extends GenericComponent {
     constructor(
-        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private ippSectorResourceService: IlPpProcurementSectorResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -33,7 +33,7 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 
     //			---- IPP SECTOR TABLE AND SEARCH SECTION ----
     
-	ippSectorDTOs: ItalianPublicProcurementSectorDTO[];
+	ippSectorDTOs: IlPpProcurementSectorDTO[];
     ippSectorDC: string[];
 	ippSectorError: any;
 
@@ -72,7 +72,7 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 		this.ippSectorFilters.size = this.ippSectorPaginationSize;
 
 		try {
-			this.ippSectorLength = await this.ippSectorResourceService.countItalianPublicProcurementSectorsUsingGET(this.ippSectorFilters).toPromise();
+			this.ippSectorLength = await this.ippSectorResourceService.countIlPpProcurementSectorsUsingGET(this.ippSectorFilters).toPromise();
 
 			if(this.ippSectorLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippSectorDTOs = await this.ippSectorResourceService.getAllItalianPublicProcurementSectorsUsingGET(this.ippSectorFilters).toPromise();
+			this.ippSectorDTOs = await this.ippSectorResourceService.getAllIlPpProcurementSectorsUsingGET(this.ippSectorFilters).toPromise();
 		} catch (e) {
 			this.ippSectorError = e;
 		}

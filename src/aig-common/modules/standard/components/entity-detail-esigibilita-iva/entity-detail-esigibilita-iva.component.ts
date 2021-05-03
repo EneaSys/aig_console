@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
-import { EsigibilitaIvaDTO, ItalianPublicProcurementLotCategoryDTO } from 'aig-standard';
+import { IlFeEsigibilitaIvaDTO, IlPpProcurementLotCategoryDTO } from 'aig-standard';
 
 
 
@@ -17,6 +15,6 @@ export class AigEntityDetailEsigibilitaIvaComponent implements OnInit {
 
     @Input()
     
-    esigibilitaIva: EsigibilitaIvaDTO;
+    esigibilitaIva: IlFeEsigibilitaIvaDTO;
 
 }

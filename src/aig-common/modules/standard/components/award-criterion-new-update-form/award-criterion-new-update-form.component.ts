@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AwardCriterionDTO, AwardCriterionResourceService, ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService } from 'aig-standard';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotAwardCriterionResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -22,12 +22,12 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private awardCriterionResourceService: AwardCriterionResourceService,
+        private awardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    awardCriterion: AwardCriterionDTO;
+    awardCriterion: IlPpProcurementLotAwardCriterionDTO;
 
     awardCriterionNewUpdateForm: FormGroup;
 
@@ -50,15 +50,15 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let awardCriterion: AwardCriterionDTO = this.awardCriterionNewUpdateForm.value;
+        let awardCriterion: IlPpProcurementLotAwardCriterionDTO = this.awardCriterionNewUpdateForm.value;
 
         try {
             let postOrPut;
             if (awardCriterion.id != 0) {
-                await this.awardCriterionResourceService.updateAwardCriterionUsingPUT(awardCriterion).toPromise();
+                await this.awardCriterionResourceService.updateIlPpProcurementLotAwardCriterionUsingPUT(awardCriterion).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.awardCriterionResourceService.createAwardCriterionUsingPOST(awardCriterion).toPromise();
+                await this.awardCriterionResourceService.createIlPpProcurementLotAwardCriterionUsingPOST(awardCriterion).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

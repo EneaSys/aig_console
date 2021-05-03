@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementProcedureResourceService } from 'aig-standard';
+import { IlPpProcurementProcedureDTO, IlPpProcurementProcedureResourceService } from 'aig-standard';
 import { AigIppProcedureNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/ipp-procedure-new-update-modal/ipp-procedure-new-update-modal.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AigIppProcedureNewUpdateModalComponent } from 'app/main/api-gest-consol
 })
 export class AigIppProcedureListTableComponent implements OnInit {
     constructor(
-        private ippProcedureResourceService: ItalianPublicProcurementProcedureResourceService,
+        private ippProcedureResourceService: IlPpProcurementProcedureResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -32,7 +32,7 @@ export class AigIppProcedureListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.ippProcedureResourceService.deleteItalianPublicProcurementProcedureUsingDELETE(id).toPromise();
+            await this.ippProcedureResourceService.deleteIlPpProcurementProcedureUsingDELETE(id).toPromise();
             this._snackBar.open(`Ipp Procedure: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -42,7 +42,7 @@ export class AigIppProcedureListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editIppProcedure(IppProcedureDTO: ItalianPublicProcurementProcedureDTO) {
+    editIppProcedure(IppProcedureDTO: IlPpProcurementProcedureDTO) {
         this.dialog.open(AigIppProcedureNewUpdateModalComponent, { data: { ippProcedure: IppProcedureDTO } });
     }
 }

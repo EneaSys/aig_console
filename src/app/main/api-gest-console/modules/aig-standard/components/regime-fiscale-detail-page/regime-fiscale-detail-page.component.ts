@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import {  RegimeFiscaleResourceService, RegimeFiscaleDTO } from 'aig-standard';
+import { IlFeRegimeFiscaleDTO, IlFeRegimeFiscaleResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -23,18 +23,18 @@ export class AigRegimeFiscaleDetailPageComponent extends GenericComponent {
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private regimeFiscaleResourceService: RegimeFiscaleResourceService,
+        private regimeFiscaleResourceService: IlFeRegimeFiscaleResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    regimeFiscale: RegimeFiscaleDTO;
+    regimeFiscale: IlFeRegimeFiscaleDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.regimeFiscale = this.route.snapshot.data.regimeFiscale;
         } else {
-            this.regimeFiscale = await this.regimeFiscaleResourceService.getRegimeFiscaleUsingGET(this.regimeFiscale.id).toPromise();
+            this.regimeFiscale = await this.regimeFiscaleResourceService.getIlFeRegimeFiscaleUsingGET(this.regimeFiscale.id).toPromise();
         }
     }
 
@@ -42,7 +42,7 @@ export class AigRegimeFiscaleDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
 
         try {
-            await this.regimeFiscaleResourceService.deleteRegimeFiscaleUsingDELETE(id).toPromise();
+            await this.regimeFiscaleResourceService.deleteIlFeRegimeFiscaleUsingDELETE(id).toPromise();
 
             this._snackBar.open(`Regime Fiscale: '${id}' deleted.`, null, { duration: 2000, });
 
@@ -53,7 +53,7 @@ export class AigRegimeFiscaleDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
     }
 
-    editRegimeFiscale(regimeFiscale: RegimeFiscaleDTO) {
+    editRegimeFiscale(regimeFiscale: IlFeRegimeFiscaleDTO) {
         this.dialog.open(AigRegimeFiscaleNewUpdateDialogComponent, { data: { regimeFiscale: regimeFiscale} });
     }
 

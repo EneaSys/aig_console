@@ -2,14 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoRitenutaDTO, TipoRitenutaResourceService } from 'aig-standard';
+import { IlFeRitenutaTipoDTO, IlFeRitenutaTipoResourceService } from 'aig-standard';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AigTipoCassaNewUpdateDialogComponent } from '../tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
 import { AigTipoRitenutaNewUpdateDialogComponent } from '../tipo-ritenuta-new-update-dialog/tipo-ritenuta-new-update-dialog.component';
 
 @Component({
@@ -21,20 +19,20 @@ export class AigTipoRitenutaDetailPageComponent extends GenericComponent {
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private tipoRitenutaResourceService: TipoRitenutaResourceService,
+        private tipoRitenutaResourceService: IlFeRitenutaTipoResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
 
-        tipoRitenuta: TipoRitenutaDTO;
+        tipoRitenuta: IlFeRitenutaTipoDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.tipoRitenuta = this.route.snapshot.data.tipoRitenuta;
         } else {
-            this.tipoRitenuta = await this.tipoRitenutaResourceService.getTipoRitenutaUsingGET(this.tipoRitenuta.id).toPromise();
+            this.tipoRitenuta = await this.tipoRitenutaResourceService.getIlFeRitenutaTipoUsingGET(this.tipoRitenuta.id).toPromise();
         }
     }
 
@@ -42,7 +40,7 @@ export class AigTipoRitenutaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.tipoRitenutaResourceService.deleteTipoRitenutaUsingDELETE(id).toPromise();
+            await this.tipoRitenutaResourceService.deleteIlFeRitenutaTipoUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Tipo Ritenuta: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -53,7 +51,7 @@ export class AigTipoRitenutaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
     
-    editTipoRitenuta(tipoRitenuta: TipoRitenutaDTO) {
+    editTipoRitenuta(tipoRitenuta: IlFeRitenutaTipoDTO) {
         this.dialog.open(AigTipoRitenutaNewUpdateDialogComponent, { data: { tipoRitenuta: tipoRitenuta } });
     }
 

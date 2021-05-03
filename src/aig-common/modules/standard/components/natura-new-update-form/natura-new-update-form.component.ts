@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, NaturaDTO, NaturaResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
+import {  IlFeNaturaDTO, IlFeNaturaResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        private naturaResourceService: NaturaResourceService,
+        private naturaResourceService: IlFeNaturaResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,13 +26,13 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    natura: NaturaDTO;
+    natura: IlFeNaturaDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	naturaOutput = new EventEmitter<NaturaDTO>();
+	naturaOutput = new EventEmitter<IlFeNaturaDTO>();
 
     naturaNewUpdateForm: FormGroup;
 
@@ -55,16 +55,16 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let natura: NaturaDTO = this.naturaNewUpdateForm.value;
+        let natura: IlFeNaturaDTO = this.naturaNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (natura.id != 0) {
-                await this.naturaResourceService.updateNaturaUsingPUT(natura).toPromise();
+                await this.naturaResourceService.updateIlFeNaturaUsingPUT(natura).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.naturaResourceService.createNaturaUsingPOST(natura).toPromise();
+                await this.naturaResourceService.createIlFeNaturaUsingPOST(natura).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

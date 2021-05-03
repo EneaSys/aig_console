@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService } from 'aig-standard';
+import { IlPpProcurementLotTypeDTO, IlPpProcurementLotTypeResourceService } from 'aig-standard';
 import { AigIppLotTypeNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/ipp-lot-type-new-update-modal/ipp-lot-type-new-update-modal.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AigIppLotTypeNewUpdateModalComponent } from 'app/main/api-gest-console/
 })
 export class AigIppLotTypeListTableComponent implements OnInit {
     constructor(
-        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotTypeResourceService: IlPpProcurementLotTypeResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -32,7 +32,7 @@ export class AigIppLotTypeListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.ippLotTypeResourceService.deleteItalianPublicProcurementLotTypeUsingDELETE(id).toPromise();
+            await this.ippLotTypeResourceService.deleteIlPpProcurementLotTypeUsingDELETE(id).toPromise();
             this._snackBar.open(`Ipp Lot Type: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -42,7 +42,7 @@ export class AigIppLotTypeListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editIppLotType(ippLotTypeDTO: ItalianPublicProcurementLotTypeDTO) {
+    editIppLotType(ippLotTypeDTO: IlPpProcurementLotTypeDTO) {
         this.dialog.open(AigIppLotTypeNewUpdateModalComponent, { data: { ippLotType: ippLotTypeDTO } });
     }
 }

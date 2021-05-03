@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { PartecipationTypeResourceService, PartecipationTypeDTO  } from 'aig-standard';
+import { IlPpPartecipationTypeDTO, IlPpPartecipationTypeResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -20,19 +20,19 @@ export class AigPartecipationTypeDetailPageComponent extends GenericComponent {
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
       
-        private partecipationTypeResourceService: PartecipationTypeResourceService,
+        private partecipationTypeResourceService: IlPpPartecipationTypeResourceService,
         private route: ActivatedRoute,
         private dialog : MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    partecipationTypeDTO: PartecipationTypeDTO;
+    partecipationTypeDTO: IlPpPartecipationTypeDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.partecipationTypeDTO = this.route.snapshot.data.partecipationType;
         } else {
-            this.partecipationTypeDTO = await this.partecipationTypeResourceService.getPartecipationTypeUsingGET(this.partecipationTypeDTO.id).toPromise();
+            this.partecipationTypeDTO = await this.partecipationTypeResourceService.getIlPpPartecipationTypeUsingGET(this.partecipationTypeDTO.id).toPromise();
         }
     }
 
@@ -40,7 +40,7 @@ export class AigPartecipationTypeDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.partecipationTypeResourceService.deletePartecipationTypeUsingDELETE(id).toPromise();
+            await this.partecipationTypeResourceService.deleteIlPpPartecipationTypeUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Partecipation Type: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -51,7 +51,7 @@ export class AigPartecipationTypeDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
     
-    editPartecipationType(partecipationTypeDTO: PartecipationTypeDTO) {
+    editPartecipationType(partecipationTypeDTO: IlPpPartecipationTypeDTO) {
         this.dialog.open(AigPartecipationTypeNewUpdateDialogComponent, { data: { partecipationType: partecipationTypeDTO } });
     }
 

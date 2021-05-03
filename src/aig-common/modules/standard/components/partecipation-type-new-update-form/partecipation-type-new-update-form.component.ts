@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AwardCriterionDTO, AwardCriterionResourceService, ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService, PartecipationTypeDTO, PartecipationTypeResourceService } from 'aig-standard';
+import { IlPpPartecipationTypeDTO, IlPpPartecipationTypeResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -22,12 +22,12 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private partecipationTypeResourceService: PartecipationTypeResourceService,
+        private partecipationTypeResourceService: IlPpPartecipationTypeResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    partecipationType: PartecipationTypeDTO;
+    partecipationType: IlPpPartecipationTypeDTO;
 
     partecipationTypeNewUpdateForm: FormGroup;
 
@@ -50,15 +50,15 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let partecipationType: PartecipationTypeDTO = this.partecipationTypeNewUpdateForm.value;
+        let partecipationType: IlPpPartecipationTypeDTO = this.partecipationTypeNewUpdateForm.value;
 
         try {
             let postOrPut;
             if (partecipationType.id != 0) {
-                await this.partecipationTypeResourceService.updatePartecipationTypeUsingPUT(partecipationType).toPromise();
+                await this.partecipationTypeResourceService.updateIlPpPartecipationTypeUsingPUT(partecipationType).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.partecipationTypeResourceService.createPartecipationTypeUsingPOST(partecipationType).toPromise();
+                await this.partecipationTypeResourceService.createIlPpPartecipationTypeUsingPOST(partecipationType).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

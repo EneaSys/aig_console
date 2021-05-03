@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CityDTO, CityResourceService, RegimeFiscaleDTO, RegimeFiscaleResourceService, TipoCassaDTO, TipoCassaResourceService, TipoRitenutaDTO, TipoRitenutaResourceService } from 'aig-standard';
+import {IlFeRitenutaTipoDTO, IlFeRitenutaTipoResourceService } from 'aig-standard';
 
 @Injectable()
-export class TipoRitenutaResolver implements Resolve<Observable<TipoRitenutaDTO>> {
+export class TipoRitenutaResolver implements Resolve<Observable<IlFeRitenutaTipoDTO>> {
     constructor(
-        private tipoRitenutaResourceService: TipoRitenutaResourceService
+        private tipoRitenutaResourceService: IlFeRitenutaTipoResourceService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.tipoRitenutaResourceService.getTipoRitenutaUsingGET(id);
+        return this.tipoRitenutaResourceService.getIlFeRitenutaTipoUsingGET(id);
     }
 }

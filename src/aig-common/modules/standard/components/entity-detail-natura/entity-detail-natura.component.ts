@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
-import { NaturaDTO } from 'aig-standard';
+import { IlFeNaturaDTO } from 'aig-standard';
 
 
 
@@ -16,6 +14,6 @@ export class AigEntityDetailNaturaComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    natura: NaturaDTO;
+    natura: IlFeNaturaDTO;
 
 }

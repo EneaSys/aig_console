@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
-import { ModalitaPagamentoDTO, NaturaDTO } from 'aig-standard';
+import { IlFePagamentoModalitaDTO} from 'aig-standard';
 
 
 
@@ -16,6 +14,6 @@ export class AigEntityDetailModalitaPagamentoComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    modalitaPagamento: ModalitaPagamentoDTO;
+    modalitaPagamento: IlFePagamentoModalitaDTO;
 
 }

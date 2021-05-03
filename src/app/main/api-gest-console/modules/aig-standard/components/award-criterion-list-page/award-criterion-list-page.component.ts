@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AwardCriterionDTO, AwardCriterionResourceService} from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { AigAwardCriterionNewUpdateDialogComponent } from '../award-criterion-new-update-dialog/award-criterion-new-update-dialog.component';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotAwardCriterionResourceService } from 'aig-standard';
 
 @Component({
     selector: 'aig-award-criterion-list-page',
@@ -14,7 +14,7 @@ import { AigAwardCriterionNewUpdateDialogComponent } from '../award-criterion-ne
 })
 export class AigAwardCriterionListPageComponent extends GenericComponent {
     constructor(
-        private awardCriterionResourceService: AwardCriterionResourceService,
+        private procurementLotAwardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -33,7 +33,7 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 
     //			---- Award Criterion TABLE AND SEARCH SECTION ----
     
-	awardCriterionDTOs: AwardCriterionDTO[];
+	awardCriterionDTOs: IlPpProcurementLotAwardCriterionDTO[];
     awardCriterionDC: string[];
 	awardCriterionError: any;
 
@@ -70,7 +70,7 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 		this.awardCriterionFilters.size = this.awardCriterionPaginationSize;
 
 		try {
-			this.awardCriterionLength = await this.awardCriterionResourceService.countAwardCriteriaUsingGET(this.awardCriterionFilters).toPromise();
+			this.awardCriterionLength = await this.procurementLotAwardCriterionResourceService.countIlPpProcurementLotAwardCriteriaUsingGET(this.awardCriterionFilters).toPromise();
 
 			if(this.awardCriterionLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -78,7 +78,7 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.awardCriterionDTOs = await this.awardCriterionResourceService.getAllAwardCriteriaUsingGET(this.awardCriterionFilters).toPromise();
+			this.awardCriterionDTOs = await this.procurementLotAwardCriterionResourceService.getAllIlPpProcurementLotAwardCriteriaUsingGET(this.awardCriterionFilters).toPromise();
 		} catch (e) {
 			this.awardCriterionError = e;
 		}

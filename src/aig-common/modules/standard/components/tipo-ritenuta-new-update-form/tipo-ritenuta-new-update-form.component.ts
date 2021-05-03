@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoRitenutaDTO, TipoRitenutaResourceService } from 'aig-standard';
+import { IlFeRitenutaTipoDTO, IlFeRitenutaTipoResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        private tipoRitenutaResourceService: TipoRitenutaResourceService,
+        private tipoRitenutaResourceService: IlFeRitenutaTipoResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,13 +26,13 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    tipoRitenuta: TipoRitenutaDTO;
+    tipoRitenuta: IlFeRitenutaTipoDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	tipoRitenutaOutput = new EventEmitter<TipoRitenutaDTO>();
+	tipoRitenutaOutput = new EventEmitter<IlFeRitenutaTipoDTO>();
 
     tipoRitenutaNewUpdateForm: FormGroup;
 
@@ -56,16 +56,16 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let tipoRitenuta: TipoRitenutaDTO = this.tipoRitenutaNewUpdateForm.value;
+        let tipoRitenuta: IlFeRitenutaTipoDTO = this.tipoRitenutaNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (tipoRitenuta.id != 0) {
-                await this.tipoRitenutaResourceService.updateTipoRitenutaUsingPUT(tipoRitenuta).toPromise();
+                await this.tipoRitenutaResourceService.updateIlFeRitenutaTipoUsingPUT(tipoRitenuta).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoRitenutaResourceService.createTipoRitenutaUsingPOST(tipoRitenuta).toPromise();
+                await this.tipoRitenutaResourceService.createIlFeRitenutaTipoUsingPOST(tipoRitenuta).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

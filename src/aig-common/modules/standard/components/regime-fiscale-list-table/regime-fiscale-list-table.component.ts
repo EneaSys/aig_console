@@ -2,10 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { RegimeFiscaleResourceService } from 'aig-standard';
-import { AigWarehouseNewUpdateModalComponent } from 'app/main/api-gest-console/modules/commerce/components/warehouse-new-update-modal/warehouse-new-update-modal.component';
+import { IlFeRegimeFiscaleResourceService } from 'aig-standard';
+
 
 @Component({
     selector: 'aig-regime-fiscale-list-table',
@@ -21,7 +20,7 @@ export class AigRegimeFiscaleListTableComponent implements OnInit {
     dataSource: any[];
     
     constructor(
-        private regimeFiscaleResourceService: RegimeFiscaleResourceService,
+        private regimeFiscaleResourceService: IlFeRegimeFiscaleResourceService,
         private eventService: EventService,
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -35,7 +34,7 @@ export class AigRegimeFiscaleListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.regimeFiscaleResourceService.deleteRegimeFiscaleUsingDELETE(id).toPromise();
+            await this.regimeFiscaleResourceService.deleteIlFeRegimeFiscaleUsingDELETE(id).toPromise();
             this._snackBar.open(`Regime Fiscale: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();

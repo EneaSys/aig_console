@@ -2,14 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoCessionePrestazioneDTO, TipoCessionePrestazioneResourceService } from 'aig-standard';
+import { IlFeCessionePrestazioneTipoDTO, IlFeCessionePrestazioneTipoResourceService } from 'aig-standard';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AigTipoCassaNewUpdateDialogComponent } from '../tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
 import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from '../tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
 
 @Component({
@@ -21,20 +19,20 @@ export class AigTipoCessionePrestazioneDetailPageComponent extends GenericCompon
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private tipoCessionePrestazioneResourceService: TipoCessionePrestazioneResourceService,
+        private tipoCessionePrestazioneResourceService: IlFeCessionePrestazioneTipoResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
 
-        tipoCessionePrestazione: TipoCessionePrestazioneDTO;
+        tipoCessionePrestazione: IlFeCessionePrestazioneTipoDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.tipoCessionePrestazione = this.route.snapshot.data.tipoCessionePrestazione;
         } else {
-            this.tipoCessionePrestazione = await this.tipoCessionePrestazioneResourceService.getTipoCessionePrestazioneUsingGET(this.tipoCessionePrestazione.id).toPromise();
+            this.tipoCessionePrestazione = await this.tipoCessionePrestazioneResourceService.getIlFeCessionePrestazioneTipoUsingGET(this.tipoCessionePrestazione.id).toPromise();
         }
     }
 
@@ -42,7 +40,7 @@ export class AigTipoCessionePrestazioneDetailPageComponent extends GenericCompon
         this._fuseProgressBarService.show();
     
         try {
-            await this.tipoCessionePrestazioneResourceService.deleteTipoCessionePrestazioneUsingDELETE(id).toPromise();
+            await this.tipoCessionePrestazioneResourceService.deleteIlFeCessionePrestazioneTipoUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Tipo Cessione Prestazione: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -53,7 +51,7 @@ export class AigTipoCessionePrestazioneDetailPageComponent extends GenericCompon
         this._fuseProgressBarService.hide();
       }
     
-    editTipoCessionePrestazione(tipoCessionePrestazione: TipoCessionePrestazioneDTO) {
+    editTipoCessionePrestazione(tipoCessionePrestazione: IlFeCessionePrestazioneTipoDTO) {
         this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: { tipoCessionePrestazione: tipoCessionePrestazione } });
     }
 

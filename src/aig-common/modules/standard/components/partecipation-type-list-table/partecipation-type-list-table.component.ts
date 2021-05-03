@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { PartecipationTypeDTO, PartecipationTypeResourceService} from 'aig-standard';
+import { IlPpPartecipationTypeDTO, IlPpPartecipationTypeResourceService } from 'aig-standard';
 import { AigPartecipationTypeNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/partecipation-type-new-update-dialog/partecipation-type-new-update-dialog.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AigPartecipationTypeNewUpdateDialogComponent } from 'app/main/api-gest-
 })
 export class AigPartecipationTypeListTableComponent implements OnInit {
     constructor(
-        private partecipationTypeResourceService: PartecipationTypeResourceService,
+        private partecipationTypeResourceService: IlPpPartecipationTypeResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -32,7 +32,7 @@ export class AigPartecipationTypeListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.partecipationTypeResourceService.deletePartecipationTypeUsingDELETE(id).toPromise();
+            await this.partecipationTypeResourceService.deleteIlPpPartecipationTypeUsingDELETE(id).toPromise();
             this._snackBar.open(`Partecipation Type: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -42,7 +42,7 @@ export class AigPartecipationTypeListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editPartecipationType(partecipationTypeDTO: PartecipationTypeDTO) {
+    editPartecipationType(partecipationTypeDTO: IlPpPartecipationTypeDTO) {
         this.dialog.open(AigPartecipationTypeNewUpdateDialogComponent, { data: { partecipationType: partecipationTypeDTO } });
     }
 }

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AwardCriterionDTO, AwardCriterionResourceService} from 'aig-standard';
+import { IlPpProcurementLotAwardCriterionDTO,IlPpProcurementLotAwardCriterionResourceService} from 'aig-standard';
 
 @Injectable()
-export class AwardCriterionResolver implements Resolve<Observable<AwardCriterionDTO>> {
+export class AwardCriterionResolver implements Resolve<Observable< IlPpProcurementLotAwardCriterionDTO>> {
   constructor(
-    private awardCriterionResourceService: AwardCriterionResourceService
+    private awardCriterionResourceService:  IlPpProcurementLotAwardCriterionResourceService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot) {
     var id: number = +route.paramMap.get('id');
-    return this.awardCriterionResourceService.getAwardCriterionUsingGET(id);
+    return this.awardCriterionResourceService.getIlPpProcurementLotAwardCriterionUsingGET(id);
   }
 }

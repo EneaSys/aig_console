@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { AwardCriterionResourceService, AwardCriterionDTO  } from 'aig-standard';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotAwardCriterionResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -20,19 +20,19 @@ export class AigAwardCriterionDetailPageComponent extends GenericComponent {
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
       
-        private awardCriterionResourceService: AwardCriterionResourceService,
+        private awardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
         private route: ActivatedRoute,
         private dialog : MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    awardCriterionDTO: AwardCriterionDTO;
+    awardCriterionDTO: IlPpProcurementLotAwardCriterionDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.awardCriterionDTO = this.route.snapshot.data.awardCriterion;
         } else {
-            this.awardCriterionDTO = await this.awardCriterionResourceService.getAwardCriterionUsingGET(this.awardCriterionDTO.id).toPromise();
+            this.awardCriterionDTO = await this.awardCriterionResourceService.getIlPpProcurementLotAwardCriterionUsingGET(this.awardCriterionDTO.id).toPromise();
         }
     }
 
@@ -40,7 +40,7 @@ export class AigAwardCriterionDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.awardCriterionResourceService.deleteAwardCriterionUsingDELETE(id).toPromise();
+            await this.awardCriterionResourceService.deleteIlPpProcurementLotAwardCriterionUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Award Criterion: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -51,7 +51,7 @@ export class AigAwardCriterionDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
     
-    editAwardCriterion(awardCriterionDTO: AwardCriterionDTO) {
+    editAwardCriterion(awardCriterionDTO: IlPpProcurementLotAwardCriterionDTO) {
         this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, { data: { awardCriterion: awardCriterionDTO } });
     }
 

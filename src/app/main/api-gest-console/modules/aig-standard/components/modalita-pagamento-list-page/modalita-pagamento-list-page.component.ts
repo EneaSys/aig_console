@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { CityResourceService, CityDTO, NaturaResourceService, NaturaDTO, ModalitaPagamentoResourceService, ModalitaPagamentoDTO } from 'aig-standard';
+import { IlFePagamentoModalitaResourceService,IlFePagamentoModalitaDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
-import { AigNaturaNewUpdateDialogComponent } from '../natura-new-update-dialog/natura-new-update-dialog.component';
 import { AigModalitaPagamentoNewUpdateDialogComponent } from '../modalita-pagamento-new-update-dialog/modalita-pagamento-new-update-dialog.component';
 
 @Component({
@@ -16,7 +14,7 @@ import { AigModalitaPagamentoNewUpdateDialogComponent } from '../modalita-pagame
 })
 export class AigModalitaPagamentoListPageComponent extends GenericComponent {
     constructor(
-        private modalitaPagamentoResourceService: ModalitaPagamentoResourceService,
+        private modalitaPagamentoResourceService: IlFePagamentoModalitaResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -37,7 +35,7 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
 
     //			---- TABLE AND SEARCH SECTION ----
     
-	modalitaPagamentoDTOs: ModalitaPagamentoDTO[];
+	modalitaPagamentoDTOs: IlFePagamentoModalitaDTO[];
     modalitaPagamentoDC: string[];
 	modalitaPagamentoError: any;
 
@@ -81,7 +79,7 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
 
     
             try {                                                                       
-                this.modalitaPagamentoLength = await this.modalitaPagamentoResourceService.countModalitaPagamentosUsingGET(this.modalitaPagamentoFilters).toPromise();  
+                this.modalitaPagamentoLength = await this.modalitaPagamentoResourceService.countIlFePagamentoModalitasUsingGET(this.modalitaPagamentoFilters).toPromise();  
                 
                 if(this.modalitaPagamentoLength == 0) {
                     this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -89,7 +87,7 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
                     return;
                 }
     
-                this.modalitaPagamentoDTOs = await this.modalitaPagamentoResourceService.getAllModalitaPagamentosUsingGET(this.modalitaPagamentoFilters).toPromise();
+                this.modalitaPagamentoDTOs = await this.modalitaPagamentoResourceService.getAllIlFePagamentoModalitasUsingGET(this.modalitaPagamentoFilters).toPromise();
             } catch (e) {
                 this.modalitaPagamentoError = e;
             }

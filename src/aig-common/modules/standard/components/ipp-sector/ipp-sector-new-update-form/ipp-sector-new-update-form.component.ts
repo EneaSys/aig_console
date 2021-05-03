@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { ItalianPublicProcurementSectorDTO, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { IlPpProcurementSectorDTO, IlPpProcurementSectorResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -20,12 +20,12 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private ippSectorResourceService: IlPpProcurementSectorResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    ippSector: ItalianPublicProcurementSectorDTO;
+    ippSector: IlPpProcurementSectorDTO;
 
     ippSectorNewUpdateForm: FormGroup;
 
@@ -49,15 +49,15 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippSector: ItalianPublicProcurementSectorDTO = this.ippSectorNewUpdateForm.value;
+        let ippSector: IlPpProcurementSectorDTO = this.ippSectorNewUpdateForm.value;
 
         try {
             let postOrPut;
             if (ippSector.id != 0) {
-                await this.ippSectorResourceService.updateItalianPublicProcurementSectorUsingPUT(ippSector).toPromise();
+                await this.ippSectorResourceService.updateIlPpProcurementSectorUsingPUT(ippSector).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.ippSectorResourceService.createItalianPublicProcurementSectorUsingPOST(ippSector).toPromise();
+                await this.ippSectorResourceService.createIlPpProcurementSectorUsingPOST(ippSector).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
