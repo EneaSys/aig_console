@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementModalityDTO } from 'aig-standard';
+import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { AigIppModalityNewUpdateModalComponent } from '../ipp-modality-new-update-modal/ipp-modality-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -14,7 +14,7 @@ import { MatSnackBar, PageEvent } from '@angular/material';
 })
 export class AigIppModalityListPageComponent extends GenericComponent {
     constructor(
-        private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
+        private ippModalityResourceService: IlPpProcurementModalityResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -33,7 +33,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 
     //			---- IPP MODALITY TABLE AND SEARCH SECTION ----
     
-	ippModalityDTOs: ItalianPublicProcurementModalityDTO[];
+	ippModalityDTOs: IlPpProcurementModalityDTO[];
     ippModalityDC: string[];
 	ippModalityError: any;
 
@@ -72,7 +72,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 		this.ippModalityFilters.size = this.ippModalityPaginationSize;
 
 		try {
-			this.ippModalityLength = await this.ippModalityResourceService.countItalianPublicProcurementModalitiesUsingGET(this.ippModalityFilters).toPromise();
+			this.ippModalityLength = await this.ippModalityResourceService.countIlPpProcurementModalitiesUsingGET(this.ippModalityFilters).toPromise();
 
 			if(this.ippModalityLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +80,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippModalityDTOs = await this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(this.ippModalityFilters).toPromise();
+			this.ippModalityDTOs = await this.ippModalityResourceService.getAllIlPpProcurementModalitiesUsingGET(this.ippModalityFilters).toPromise();
 		} catch (e) {
 			this.ippModalityError = e;
 		}

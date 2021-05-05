@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { CityResourceService, CityDTO, TipoCassaResourceService, TipoCassaDTO, TipoScontoMaggiorazioneDTO, TipoScontoMaggiorazioneResourceService } from 'aig-standard';
+import { IlFeScontoMaggiorazioneTipoDTO, IlFeScontoMaggiorazioneTipoResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
-import { AigTipoCassaNewUpdateDialogComponent } from '../tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
 import { AigTipoScontoMaggiorazioneNewUpdateDialogComponent } from '../tipo-sconto-maggiorazione-new-update-dialog/tipo-sconto-maggiorazione-new-update-dialog.component';
 
 
@@ -17,7 +15,7 @@ import { AigTipoScontoMaggiorazioneNewUpdateDialogComponent } from '../tipo-scon
 })
 export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponent {
     constructor(
-        private tipoScontoMaggiorazioneResourceService: TipoScontoMaggiorazioneResourceService,
+        private tipoScontoMaggiorazioneResourceService: IlFeScontoMaggiorazioneTipoResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -36,7 +34,7 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
 
     //			---- TABLE AND SEARCH SECTION ----
     
-	tipoScontoMaggiorazioneDTOs: TipoScontoMaggiorazioneDTO[];
+	tipoScontoMaggiorazioneDTOs: IlFeScontoMaggiorazioneTipoDTO[];
     tipoScontoMaggiorazioneDC: string[];
 	tipoScontoMaggiorazioneError: any;
 
@@ -76,7 +74,7 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
 		this.tipoScontoMaggiorazioneFilters.size = this.tipoScontoMaggiorazionePaginationSize;
 
 		try {                                                                       
-			this.tipoScontoMaggiorazioneLength = await this.tipoScontoMaggiorazioneResourceService.countTipoScontoMaggiorazionesUsingGET(this.tipoScontoMaggiorazioneFilters).toPromise();  
+			this.tipoScontoMaggiorazioneLength = await this.tipoScontoMaggiorazioneResourceService.countIlFeScontoMaggiorazioneTiposUsingGET(this.tipoScontoMaggiorazioneFilters).toPromise();  
 			
 			if(this.tipoScontoMaggiorazioneLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -84,7 +82,7 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
 				return;
 			}
 
-			this.tipoScontoMaggiorazioneDTOs = await this.tipoScontoMaggiorazioneResourceService.getAllTipoScontoMaggiorazionesUsingGET(this.tipoScontoMaggiorazioneFilters).toPromise();
+			this.tipoScontoMaggiorazioneDTOs = await this.tipoScontoMaggiorazioneResourceService.getAllIlFeScontoMaggiorazioneTiposUsingGET(this.tipoScontoMaggiorazioneFilters).toPromise();
 		} catch (e) {
 			this.tipoScontoMaggiorazioneError = e;
 		}

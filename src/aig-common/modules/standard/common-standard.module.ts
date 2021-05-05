@@ -95,6 +95,13 @@ import { AigEntityDetailModalitaPagamentoComponent } from './components/entity-d
 import { ModalitaPagamentoResolver } from './resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
 import { AigStandardAutocompleteDisplayService } from './services/autocomplete-function.service';
 import { SocialActionResolver } from './resolver/social-action.resolver';
+import { AigAwardCriterionListTableComponent } from './components/award-criterion-list-table/award-criterion-list-table.component';
+import { AigAwardCriterionNewUpdateFormComponent } from './components/award-criterion-new-update-form/award-criterion-new-update-form.component';
+import { AwardCriterionResolver } from './resolver/award-criterion.resolver';
+import { AigPartecipationTypeNewUpdateFormComponent } from './components/partecipation-type-new-update-form/partecipation-type-new-update-form.component';
+import { AigPartecipationTypeListTableComponent } from './components/partecipation-type-list-table/partecipation-type-list-table.component';
+import { PartecipationTypeResolver } from './resolver/partecipation-type.resolver';
+import { AigIlPpProcurementStatusNewUpdateFormComponent } from './components/il-pp-procurement-status-new-update-form/il-pp-procurement-status-new-update-form.component';
 
 
 @NgModule({
@@ -102,6 +109,12 @@ import { SocialActionResolver } from './resolver/social-action.resolver';
 
         AigSocialListTableComponent,
         AigSocialNewUpdateFormComponent,
+
+        AigPartecipationTypeNewUpdateFormComponent,
+        AigPartecipationTypeListTableComponent,
+
+        AigAwardCriterionListTableComponent,
+        AigAwardCriterionNewUpdateFormComponent,
 
         AigSocialActionListTableComponent,
         AigSocialActionNewUpdateFormComponent,
@@ -159,7 +172,9 @@ import { SocialActionResolver } from './resolver/social-action.resolver';
         AigTipoScontoMaggiorazioneNewUpdateFormComponent,
         AigModalitaPagamentoNewUpdateFormComponent,
         AigModalitaPagamentoListTableComponent,
-        AigEntityDetailModalitaPagamentoComponent
+        AigEntityDetailModalitaPagamentoComponent,
+
+        AigIlPpProcurementStatusNewUpdateFormComponent,
 
 
     ],
@@ -192,6 +207,12 @@ import { SocialActionResolver } from './resolver/social-action.resolver';
 
         AigSocialListTableComponent,
         AigSocialNewUpdateFormComponent,
+
+        AigPartecipationTypeNewUpdateFormComponent,
+        AigPartecipationTypeListTableComponent,
+
+        AigAwardCriterionListTableComponent,
+        AigAwardCriterionNewUpdateFormComponent,
 
         AigSocialActionListTableComponent,
         AigSocialActionNewUpdateFormComponent,
@@ -247,7 +268,9 @@ import { SocialActionResolver } from './resolver/social-action.resolver';
         AigTipoScontoMaggiorazioneNewUpdateFormComponent,
         AigModalitaPagamentoNewUpdateFormComponent,
         AigModalitaPagamentoListTableComponent,
-        AigEntityDetailModalitaPagamentoComponent
+        AigEntityDetailModalitaPagamentoComponent,
+
+        AigIlPpProcurementStatusNewUpdateFormComponent,
    
 
     ],
@@ -264,6 +287,8 @@ import { SocialActionResolver } from './resolver/social-action.resolver';
         IppModalityResolver,
         LotResolver,
         CategoryResolver,
+        AwardCriterionResolver,
+        PartecipationTypeResolver,
 
         ItFiscalCodeService,
         

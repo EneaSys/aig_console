@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { CityResourceService, CityDTO, TipoRitenutaResourceService, TipoRitenutaDTO } from 'aig-standard';
+import { IlFeRitenutaTipoResourceService, IlFeRitenutaTipoDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { AigTipoRitenutaNewUpdateDialogComponent } from '../tipo-ritenuta-new-update-dialog/tipo-ritenuta-new-update-dialog.component';
@@ -15,7 +14,7 @@ import { AigTipoRitenutaNewUpdateDialogComponent } from '../tipo-ritenuta-new-up
 })
 export class AigTipoRitenutaListPageComponent extends GenericComponent {
     constructor(
-        private tipoRitenutaResourceService: TipoRitenutaResourceService,
+        private tipoRitenutaResourceService: IlFeRitenutaTipoResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -34,7 +33,7 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 
     //			---- TABLE AND SEARCH SECTION ----
     
-	tipoRitenutaDTOs: TipoRitenutaDTO[];
+	tipoRitenutaDTOs: IlFeRitenutaTipoDTO[];
     tipoRitenutaDC: string[];
 	tipoRitenutaError: any;
 
@@ -74,7 +73,7 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 		this.tipoRitenutaFilters.size = this.tipoRitenutaPaginationSize;
 
 		try {
-			this.tipoRitenutaLength = await this.tipoRitenutaResourceService.countTipoRitenutasUsingGET(this.tipoRitenutaFilters).toPromise();
+			this.tipoRitenutaLength = await this.tipoRitenutaResourceService.countIlFeRitenutaTiposUsingGET(this.tipoRitenutaFilters).toPromise();
 
 			if(this.tipoRitenutaLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -82,7 +81,7 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.tipoRitenutaDTOs = await this.tipoRitenutaResourceService.getAllTipoRitenutasUsingGET(this.tipoRitenutaFilters).toPromise();
+			this.tipoRitenutaDTOs = await this.tipoRitenutaResourceService.getAllIlFeRitenutaTiposUsingGET(this.tipoRitenutaFilters).toPromise();
 		} catch (e) {
 			this.tipoRitenutaError = e;
 		}

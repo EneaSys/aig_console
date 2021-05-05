@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementModalityResourceService } from 'aig-standard';
+import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService } from 'aig-standard';
 import { AigIppModalityNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/ipp-modality-new-update-modal/ipp-modality-new-update-modal.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AigIppModalityNewUpdateModalComponent } from 'app/main/api-gest-console
 })
 export class AigIppModalityListTableComponent implements OnInit {
     constructor(
-        private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
+        private ippModalityResourceService: IlPpProcurementModalityResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -31,7 +31,7 @@ export class AigIppModalityListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.ippModalityResourceService.deleteItalianPublicProcurementModalityUsingDELETE(id).toPromise();
+            await this.ippModalityResourceService.deleteIlPpProcurementModalityUsingDELETE(id).toPromise();
             this._snackBar.open(`Ipp Modality: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -41,7 +41,7 @@ export class AigIppModalityListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editIppModality(ippModalityDTO: ItalianPublicProcurementModalityDTO) {
+    editIppModality(ippModalityDTO: IlPpProcurementModalityDTO) {
         this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: { ippModality: ippModalityDTO } });
     }
 }

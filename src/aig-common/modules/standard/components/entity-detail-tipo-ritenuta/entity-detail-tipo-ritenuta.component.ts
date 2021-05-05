@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO, RegimeFiscaleDTO, TipoCassaDTO, TipoRitenutaDTO } from 'aig-standard';
+import {IlFeRitenutaTipoDTO } from 'aig-standard';
 
 @Component({
     selector: 'entity-detail-tipo-ritenuta',
@@ -13,6 +13,6 @@ export class AigEntityDetailTipoRitenutaComponent implements OnInit {
 
     @Input()
     
-    tipoRitenuta: TipoRitenutaDTO;
+    tipoRitenuta: IlFeRitenutaTipoDTO;
 
 }

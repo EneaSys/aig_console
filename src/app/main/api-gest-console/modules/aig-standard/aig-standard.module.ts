@@ -76,12 +76,28 @@ import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibil
 import { AigModalitaPagamentoListPageComponent } from './components/modalita-pagamento-list-page/modalita-pagamento-list-page.component';
 import { AigModalitaPagamentoDetailPageComponent } from './components/modalita-pagamento-detail-page/modalita-pagamento-detail-page.component';
 import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modalita-pagamento-new-update-dialog/modalita-pagamento-new-update-dialog.component';
+import { AigAwardCriterionNewUpdateDialogComponent } from './components/award-criterion-new-update-dialog/award-criterion-new-update-dialog.component';
+import { AigAwardCriterionListPageComponent } from './components/award-criterion-list-page/award-criterion-list-page.component';
+import { AigAwardCriterionDetailPageComponent } from './components/award-criterion-detail-page/award-criterion-detail-page.component';
+import { AigPartecipationTypeNewUpdateDialogComponent } from './components/partecipation-type-new-update-dialog/partecipation-type-new-update-dialog.component';
+import { AigPartecipationTypeListPageComponent } from './components/partecipation-type-list-page/partecipation-type-list-page.component';
+import { AigPartecipationTypeDetailPageComponent } from './components/partecipation-type-detail-page/partecipation-type-detail-page.component';
+
+
 
 @NgModule({
     declarations: [
         AigStandardHeaderComponent,
 
         AigStandardCustomListPageComponent,
+
+        AigAwardCriterionListPageComponent,
+        AigAwardCriterionNewUpdateDialogComponent,
+        AigAwardCriterionDetailPageComponent,
+
+        AigPartecipationTypeNewUpdateDialogComponent,
+        AigPartecipationTypeListPageComponent,
+        AigPartecipationTypeDetailPageComponent,
 
         AigCityListPageComponent,
         AigCityDetailPageComponent,
@@ -167,7 +183,8 @@ import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modal
         MatTabsModule,
     ],
     exports: [],
-    providers: [],
+    providers: [
+    ],
     entryComponents: [
         AigSocialNewUpdateModalComponent,
         AigSocialActionNewUpdateModalComponent,
@@ -185,7 +202,9 @@ import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modal
         AigTipoCessionePrestazioneNewUpdateDialogComponent,
         AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
         AigEsigibilitaIvaNewUpdateDialogComponent,
-        AigModalitaPagamentoNewUpdateDialogComponent
+        AigModalitaPagamentoNewUpdateDialogComponent,
+        AigAwardCriterionNewUpdateDialogComponent,
+        AigPartecipationTypeNewUpdateDialogComponent,
       
     
     ],

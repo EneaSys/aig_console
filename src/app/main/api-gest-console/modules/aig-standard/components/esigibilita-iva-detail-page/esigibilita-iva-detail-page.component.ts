@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
-import { SocialActionResourceService, SocialActionDTO, NaturaResourceService, NaturaDTO, EsigibilitaIvaResourceService, EsigibilitaIvaDTO } from 'aig-standard';
+import { IlFeEsigibilitaIvaDTO, IlFeEsigibilitaIvaResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigSocialActionNewUpdateModalComponent } from '../social-action-new-update-modal/social-action-new-update-modal.component';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AigNaturaNewUpdateDialogComponent } from '../natura-new-update-dialog/natura-new-update-dialog.component';
 import { AigEsigibilitaIvaNewUpdateDialogComponent } from '../esigibilita-iva-new-update-dialog/esigibilita-iva-new-update-dialog.component';
 
 @Component({
@@ -23,18 +20,18 @@ export class AigEsigibilitaIvaDetailPageComponent extends GenericComponent {
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private esigibilitaIvaResourceService: EsigibilitaIvaResourceService,
+        private esigibilitaIvaResourceService: IlFeEsigibilitaIvaResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-        esigibilitaIva: EsigibilitaIvaDTO;
+        esigibilitaIva: IlFeEsigibilitaIvaDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.esigibilitaIva = this.route.snapshot.data.esigibilitaIvaPrestazione;
         } else {
-            this.esigibilitaIva = await this.esigibilitaIvaResourceService.getEsigibilitaIvaUsingGET(this.esigibilitaIva.id).toPromise();
+            this.esigibilitaIva = await this.esigibilitaIvaResourceService.getIlFeEsigibilitaIvaUsingGET(this.esigibilitaIva.id).toPromise();
         }
     }
 
@@ -42,7 +39,7 @@ export class AigEsigibilitaIvaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.esigibilitaIvaResourceService.deleteEsigibilitaIvaUsingDELETE(id).toPromise();
+            await this.esigibilitaIvaResourceService.deleteIlFeEsigibilitaIvaUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Esigibilita Iva: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -53,7 +50,7 @@ export class AigEsigibilitaIvaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
 
-    editEsigibilitaIva(esigibilitaIva: EsigibilitaIvaDTO) {
+    editEsigibilitaIva(esigibilitaIva: IlFeEsigibilitaIvaDTO) {
         this.dialog.open(AigEsigibilitaIvaNewUpdateDialogComponent, { data: { esigibilitaIva: esigibilitaIva } });
     }
 

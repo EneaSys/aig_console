@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, ModalitaPagamentoDTO, ModalitaPagamentoResourceService, NaturaDTO, NaturaResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
+import {IlFePagamentoModalitaDTO, IlFePagamentoModalitaResourceService} from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        private modalitaPagamentoResourceService: ModalitaPagamentoResourceService,
+        private modalitaPagamentoResourceService: IlFePagamentoModalitaResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,13 +26,13 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    modalitaPagamento: ModalitaPagamentoDTO;
+    modalitaPagamento: IlFePagamentoModalitaDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	modalitaPagamentoOutput = new EventEmitter<ModalitaPagamentoDTO>();
+	modalitaPagamentoOutput = new EventEmitter<IlFePagamentoModalitaDTO>();
 
     modalitaPagamentoNewUpdateForm: FormGroup;
 
@@ -55,16 +55,16 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let modalitaPagamento: ModalitaPagamentoDTO = this.modalitaPagamentoNewUpdateForm.value;
+        let modalitaPagamento: IlFePagamentoModalitaDTO = this.modalitaPagamentoNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (modalitaPagamento.id != 0) {
-                await this.modalitaPagamentoResourceService.updateModalitaPagamentoUsingPUT(modalitaPagamento).toPromise();
+                await this.modalitaPagamentoResourceService.updateIlFePagamentoModalitaUsingPUT(modalitaPagamento).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.modalitaPagamentoResourceService.createModalitaPagamentoUsingPOST(modalitaPagamento).toPromise();
+                await this.modalitaPagamentoResourceService.createIlFePagamentoModalitaUsingPOST(modalitaPagamento).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

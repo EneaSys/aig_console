@@ -10,6 +10,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
 import { PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from 'aig-italianlegislation';
+import { IlPpPartecipationTypeDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
@@ -32,21 +33,24 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private partecipationResourceService: PartecipationResourceService,
         private eventService: EventService,
-        public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
-        private ippAutocompleteService :AigIppAutocompleteService,
-        private genericAutocompleteFilterService :AigGenericAutocompleteFilterService,
-        public genericAutocompleteFunctionService :AigGenericAutocompleteDisplayService,
-        private standardAutocompleteFilterService :AigStandardAutocompleteFilterService,
-        public standardAutocompleteFunctionService :AigStandardAutocompleteDisplayService,
+        public ippAutocompleteDisplayService: AigIppAutocompleteDisplayService,
+        private ippAutocompleteService: AigIppAutocompleteService,
+        private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
+        private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+        public standardAutocompleteFunctionService: AigStandardAutocompleteDisplayService,
     ) { }
 
     @Input()
     partecipation: PartecipationDTO;
 
     partecipationNewUpdateForm: FormGroup;
+    
+    filteredPartecipationType: Observable<IlPpPartecipationTypeDTO[]>;
+
+    filteredEopoo: Observable<EopooDTO[]>;
 
     filteredProcurementLot: Observable<ProcurementLotDTO[]>;
-    filteredEopoo: Observable<EopooDTO[]>;
     filteredPartecipationStatus: Observable<PartecipationStatusDTO[]>;
     
 
@@ -54,11 +58,11 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         this.partecipationNewUpdateForm = this._formBuilder.group({
             id: [''],
 
-            status: ['',[Validators.required, AigValidator.haveId] ],
-            procurementLot: ['',[Validators.required, AigValidator.haveId] ],
+            status: ['', [Validators.required, AigValidator.haveId]],
+            procurementLot: ['', [Validators.required, AigValidator.haveId]],
 
-            partecipationType: [''],
-            proposerEopoo: ['',[Validators.required, AigValidator.haveId] ],
+            partecipationType: ['', [Validators.required, AigValidator.haveId]],
+            proposerEopoo: ['', [Validators.required, AigValidator.haveId]],
 
             siteInspection: [true],
         })
@@ -67,8 +71,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             this.partecipationNewUpdateForm.patchValue(this.partecipation);
         }
         
-        this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLot'].valueChanges);
+        this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationNewUpdateForm.controls['partecipationType'].valueChanges);
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationNewUpdateForm.controls['proposerEopoo'].valueChanges);
+
+        this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLot'].valueChanges);
         this.filteredPartecipationStatus = this.ippAutocompleteService.filterPartecipationStatus(this.partecipationNewUpdateForm.controls['status'].valueChanges);
 
     }
@@ -82,10 +88,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let partecipation: PartecipationDTO = this.partecipationNewUpdateForm.value;
+        partecipation.partecipationTypeCode = this.partecipationNewUpdateForm.value.partecipationType.code;
+        partecipation.proposerEopooCode = this.partecipationNewUpdateForm.value.proposerEopoo.id;
         partecipation.statusId = this.partecipationNewUpdateForm.value.status.id;
         partecipation.procurementLotId = this.partecipationNewUpdateForm.value.procurementLot.id;
-        partecipation.partecipationTypeCode = this.partecipationNewUpdateForm.value.partecipationType;
-        partecipation.proposerEopooCode = this.partecipationNewUpdateForm.value.proposerEopoo.id;
 
         try {
             let postOrPut: string;

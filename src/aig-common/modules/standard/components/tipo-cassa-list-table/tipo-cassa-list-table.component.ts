@@ -2,9 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { CityDTO } from 'aig-generic';
-import { CityResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
-import { AigCityNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/city-new-update-modal/city-new-update-modal.component';
+import { IlFeCassaTipoDTO, IlFeCassaTipoResourceService } from 'aig-standard';
 import { AigTipoCassaNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
 
 @Component({
@@ -14,7 +12,7 @@ import { AigTipoCassaNewUpdateDialogComponent } from 'app/main/api-gest-console/
 })
 export class AigTipoCassaListTableComponent implements OnInit {
     constructor(
-        private tipoCassaResourceService: TipoCassaResourceService,
+        private tipoCassaResourceService: IlFeCassaTipoResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -34,7 +32,7 @@ export class AigTipoCassaListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.tipoCassaResourceService.deleteTipoCassaUsingDELETE(id).toPromise();
+            await this.tipoCassaResourceService.deleteIlFeCassaTipoUsingDELETE(id).toPromise();
             this._snackBar.open(`Tipo Cassa: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -44,7 +42,7 @@ export class AigTipoCassaListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editTipoCassa(tipoCassaDTO: TipoCassaDTO) {
+    editTipoCassa(tipoCassaDTO: IlFeCassaTipoDTO) {
         this.dialog.open(AigTipoCassaNewUpdateDialogComponent, { data: { tipoCassa: tipoCassaDTO } });
     }
 }

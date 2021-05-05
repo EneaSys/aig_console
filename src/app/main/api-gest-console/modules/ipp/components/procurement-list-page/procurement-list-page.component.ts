@@ -5,7 +5,7 @@ import { ProcurementResourceService, ProcurementDTO } from 'aig-italianlegislati
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
-import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementModalityResourceService } from 'aig-standard';
+import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService } from 'aig-standard';
 import { Observable } from 'rxjs';
 
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
@@ -20,18 +20,18 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
         private procurementResourceService: ProcurementResourceService,
-		private italianPublicProcurementModalityResourceService: ItalianPublicProcurementModalityResourceService,
+		private italianPublicProcurementModalityResourceService: IlPpProcurementModalityResourceService,
 		private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
 
 	@Input()
-    staticItalianPublicProcurementModality:ItalianPublicProcurementModalityDTO = null;
+    staticItalianPublicProcurementModality:IlPpProcurementModalityDTO = null;
 
-    filteredItalianPublicProcurementModality: Observable<ItalianPublicProcurementModalityDTO[]>;
+filteredItalianPublicProcurementModality: Observable<IlPpProcurementModalityDTO[]>;
 
-    italianPublicProcurementModalityDTO: ItalianPublicProcurementModalityDTO;
+italianPublicProcurementModalityDTO: IlPpProcurementModalityDTO;
 
     loadPage() {
 		this.initProcurementSearch();

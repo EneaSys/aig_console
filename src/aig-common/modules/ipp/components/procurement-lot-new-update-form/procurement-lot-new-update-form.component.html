@@ -73,7 +73,7 @@
 
         <mat-form-field appearance="outline" fxFlex="25">
             <mat-label>Type</mat-label>
-            <input formControlName="ippLotType" matInput [matAutocomplete]="ippLotTypeAutocomplete" required>
+            <input formControlName="type" matInput [matAutocomplete]="ippLotTypeAutocomplete" required>
             <mat-autocomplete #ippLotTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
                 <mat-option *ngFor="let ippLotType of filteredIppLotType | async" [value]="ippLotType">{{ ippLotType.name }}</mat-option>
             </mat-autocomplete>
@@ -81,7 +81,7 @@
     
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
             <mat-label>Category</mat-label>
-            <input formControlName="ippLotCategory" matInput [matAutocomplete]="ippLotCategoryAutocomplete" required>
+            <input formControlName="category" matInput [matAutocomplete]="ippLotCategoryAutocomplete" required>
             <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
                 <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
             </mat-autocomplete>
@@ -91,15 +91,15 @@
             <mat-label>Criterio Aggiudicazione</mat-label>
             <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete" required>
             <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotAwardCriterion | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
             <mat-label>Stato</mat-label>
-            <input formControlName="procurementLotStatus" matInput [matAutocomplete]="procurementLotStatusAutocomplete" required>
+            <input formControlName="status" matInput [matAutocomplete]="procurementLotStatusAutocomplete" required>
             <mat-autocomplete #procurementLotStatusAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotStatus | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 

@@ -2,11 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { CityDTO } from 'aig-generic';
-import { CityResourceService, ModalitaPagamentoDTO, ModalitaPagamentoResourceService, NaturaDTO, NaturaResourceService } from 'aig-standard';
-import { AigCityNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/city-new-update-modal/city-new-update-modal.component';
+import { IlFePagamentoModalitaDTO, IlFePagamentoModalitaResourceService, } from 'aig-standard';
 import { AigModalitaPagamentoNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/modalita-pagamento-new-update-dialog/modalita-pagamento-new-update-dialog.component';
-import { AigNaturaNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/natura-new-update-dialog/natura-new-update-dialog.component';
 
 @Component({
     selector: 'aig-modalita-pagamento-list-table',
@@ -15,7 +12,7 @@ import { AigNaturaNewUpdateDialogComponent } from 'app/main/api-gest-console/mod
 })
 export class AigModalitaPagamentoListTableComponent implements OnInit {
     constructor(
-        private modalitaPagamentoResourceService: ModalitaPagamentoResourceService,
+        private modalitaPagamentoResourceService: IlFePagamentoModalitaResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -35,7 +32,7 @@ export class AigModalitaPagamentoListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.modalitaPagamentoResourceService.deleteModalitaPagamentoUsingDELETE(id).toPromise();
+            await this.modalitaPagamentoResourceService.deleteIlFePagamentoModalitaUsingDELETE(id).toPromise();
             this._snackBar.open(`Modalita Pagamento: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -45,7 +42,7 @@ export class AigModalitaPagamentoListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editModalitaPagamento(modalitaPagamentoDTO: ModalitaPagamentoDTO) {
+    editModalitaPagamento(modalitaPagamentoDTO: IlFePagamentoModalitaDTO) {
         this.dialog.open(AigModalitaPagamentoNewUpdateDialogComponent, { data: { modalitaPagamento: modalitaPagamentoDTO } });
     }
 }

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CityDTO, CityResourceService, ModalitaPagamentoDTO, ModalitaPagamentoResourceService, NaturaDTO, NaturaResourceService, RegimeFiscaleDTO, RegimeFiscaleResourceService } from 'aig-standard';
+import {IlFePagamentoModalitaDTO, IlFePagamentoModalitaResourceService} from 'aig-standard';
 
 @Injectable()
-export class ModalitaPagamentoResolver implements Resolve<Observable<ModalitaPagamentoDTO>> {
+export class ModalitaPagamentoResolver implements Resolve<Observable<IlFePagamentoModalitaDTO>> {
     constructor(
-        private modalitaPagamentoResourceService: ModalitaPagamentoResourceService
+        private modalitaPagamentoResourceService: IlFePagamentoModalitaResourceService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.modalitaPagamentoResourceService.getModalitaPagamentoUsingGET(id);
+        return this.modalitaPagamentoResourceService.getIlFePagamentoModalitaUsingGET(id);
     }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ItalianPublicProcurementSectorDTO, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { IlPpProcurementSectorDTO, IlPpProcurementSectorResourceService } from 'aig-standard';
 import { AigIppSectorNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/ipp-sector-new-update-modal/ipp-sector-new-update-modal.component';
 
 @Component({
@@ -12,7 +12,7 @@ import { AigIppSectorNewUpdateModalComponent } from 'app/main/api-gest-console/m
 })
 export class AigIppSectorListTableComponent implements OnInit {
     constructor(
-        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private ippSectorResourceService: IlPpProcurementSectorResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -32,7 +32,7 @@ export class AigIppSectorListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.ippSectorResourceService.deleteItalianPublicProcurementSectorUsingDELETE(id).toPromise();
+            await this.ippSectorResourceService.deleteIlPpProcurementSectorUsingDELETE(id).toPromise();
             this._snackBar.open(`Ipp Sector: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -42,7 +42,7 @@ export class AigIppSectorListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editIppSector(ippSectorDTO: ItalianPublicProcurementSectorDTO) {
+    editIppSector(ippSectorDTO: IlPpProcurementSectorDTO) {
         this.dialog.open(AigIppSectorNewUpdateModalComponent, { data: { ippSector: ippSectorDTO } });
     }
 }
