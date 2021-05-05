@@ -10,7 +10,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
-import { ItalianPublicProcurementModalityDTO, ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO } from 'aig-standard';
+import { IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 
@@ -45,9 +45,9 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     filteredEopoo: Observable<EopooDTO[]>;
 
-    filteredIppProcedure: Observable<ItalianPublicProcurementProcedureDTO[]>;
-    filteredIppSector: Observable<ItalianPublicProcurementSectorDTO[]>;
-    filteredIppModality: Observable<ItalianPublicProcurementModalityDTO[]>;
+    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
+    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
 
 
     ngOnInit(): void {

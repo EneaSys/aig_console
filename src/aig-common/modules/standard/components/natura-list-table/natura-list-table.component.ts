@@ -2,9 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { CityDTO } from 'aig-generic';
-import { CityResourceService, NaturaDTO, NaturaResourceService } from 'aig-standard';
-import { AigCityNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/city-new-update-modal/city-new-update-modal.component';
+import {IlFeNaturaDTO, IlFeNaturaResourceService } from 'aig-standard';
 import { AigNaturaNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/natura-new-update-dialog/natura-new-update-dialog.component';
 
 @Component({
@@ -14,7 +12,7 @@ import { AigNaturaNewUpdateDialogComponent } from 'app/main/api-gest-console/mod
 })
 export class AigNaturaListTableComponent implements OnInit {
     constructor(
-        private naturaResourceService: NaturaResourceService,
+        private naturaResourceService: IlFeNaturaResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -34,7 +32,7 @@ export class AigNaturaListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.naturaResourceService.deleteNaturaUsingDELETE(id).toPromise();
+            await this.naturaResourceService.deleteIlFeNaturaUsingDELETE(id).toPromise();
             this._snackBar.open(`Natura: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -44,7 +42,7 @@ export class AigNaturaListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editNatura(naturaDTO: NaturaDTO) {
+    editNatura(naturaDTO: IlFeNaturaDTO) {
         this.dialog.open(AigNaturaNewUpdateDialogComponent, { data: { natura: naturaDTO } });
     }
 }

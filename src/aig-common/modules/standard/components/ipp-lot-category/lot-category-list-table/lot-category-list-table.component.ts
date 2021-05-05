@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCategoryResourceService } from 'aig-standard';
+import { IlPpProcurementLotCategoryDTO, IlPpProcurementLotCategoryResourceService } from 'aig-standard';
 import { AigLotCategoryNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/ipp-lot-category-new-update-modal/lot-category-new-update-modal.component';
 import { AigLotCategoryNewUpdateFormComponent } from '../lot-category-new-update-form/lot-category-new-update-form.component';
 
@@ -13,14 +13,14 @@ import { AigLotCategoryNewUpdateFormComponent } from '../lot-category-new-update
 })
 export class AigLotCategoryListTableComponent implements OnInit {
     constructor(
-        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private dialog: MatDialog,
     ) { }
 
-    ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO; 
+    ippLotCategoryDTO: IlPpProcurementLotCategoryDTO; 
 
     @Input() 
     error: any;
@@ -35,7 +35,7 @@ export class AigLotCategoryListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.ippLotCategoryResourceService.deleteItalianPublicProcurementLotCategoryUsingDELETE(id).toPromise();
+            await this.ippLotCategoryResourceService.deleteIlPpProcurementLotCategoryUsingDELETE(id).toPromise();
             this._snackBar.open(`Ipp lot category: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -45,7 +45,7 @@ export class AigLotCategoryListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editIppLotCategory(IppLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO) {
+    editIppLotCategory(IppLotCategoryDTO: IlPpProcurementLotCategoryDTO) {
         this.dialog.open(AigLotCategoryNewUpdateModalComponent, { data: { ippLotCategory: this.ippLotCategoryDTO } });
     }
 }

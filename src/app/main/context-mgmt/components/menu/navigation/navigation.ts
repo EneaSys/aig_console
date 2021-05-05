@@ -270,6 +270,24 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/s6d/cpv',
 						permission: ['e4y.account.get'],
 					},
+
+					{
+						id       : '',
+						title    : 'Award Criterion',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/award-criterion',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : '',
+						title    : 'Partecipation Type',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/partecipation-type',
+						permission: ['e4y.account.get'],
+					},
 					{
 						id       : '',
 						title    : 'Ipp Modality',

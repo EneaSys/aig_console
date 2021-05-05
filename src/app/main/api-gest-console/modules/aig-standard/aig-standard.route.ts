@@ -58,6 +58,12 @@ import { EsigibilitaIvaResolver } from 'aig-common/modules/standard/resolver/esi
 import { AigModalitaPagamentoListPageComponent } from './components/modalita-pagamento-list-page/modalita-pagamento-list-page.component';
 import { AigModalitaPagamentoDetailPageComponent } from './components/modalita-pagamento-detail-page/modalita-pagamento-detail-page.component';
 import { ModalitaPagamentoResolver } from 'aig-common/modules/standard/resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
+import { AigAwardCriterionListPageComponent } from './components/award-criterion-list-page/award-criterion-list-page.component';
+import { AigAwardCriterionDetailPageComponent } from './components/award-criterion-detail-page/award-criterion-detail-page.component';
+import { AwardCriterionResolver } from 'aig-common/modules/standard/resolver/award-criterion.resolver';
+import { AigPartecipationTypeListPageComponent } from './components/partecipation-type-list-page/partecipation-type-list-page.component';
+import { PartecipationTypeResolver } from 'aig-common/modules/standard/resolver/partecipation-type.resolver';
+import { AigPartecipationTypeDetailPageComponent } from './components/partecipation-type-detail-page/partecipation-type-detail-page.component';
 
 export const aigStandardRoute: Routes = [
     {
@@ -180,6 +186,54 @@ export const aigStandardRoute: Routes = [
                         canActivate: [AuthGuardService],
                         resolve: {
                             cpv: CpvResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'award-criterion',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigAwardCriterionListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigAwardCriterionDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            awardCriterion: AwardCriterionResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'partecipation-type',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPartecipationTypeListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigPartecipationTypeDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            partecipationType: PartecipationTypeResolver,
                         },
                     },
                 ]

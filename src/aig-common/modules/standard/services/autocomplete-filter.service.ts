@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { CityResourceService, CpvResourceService, ItalianPublicProcurementLotCategoryResourceService, ItalianPublicProcurementLotTypeResourceService, ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementProcedureResourceService, ItalianPublicProcurementSectorResourceService } from 'aig-standard';
+import { CityResourceService, CpvResourceService, IlPpProcurementLotCategoryResourceService, IlPpProcurementLotTypeResourceService, IlPpProcurementModalityResourceService, IlPpProcurementProcedureResourceService, IlPpProcurementSectorResourceService } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
 
     constructor(
         private cityResourceService: CityResourceService,
-        private ippProcedureResourceService: ItalianPublicProcurementProcedureResourceService,
-        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
-        private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
-        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
-        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private ippProcedureResourceService: IlPpProcurementProcedureResourceService,
+        private ippSectorResourceService: IlPpProcurementSectorResourceService,
+        private ippModalityResourceService: IlPpProcurementModalityResourceService,
+        private ippLotTypeResourceService: IlPpProcurementLotTypeResourceService,
+        private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
         private cpvResourceService: CpvResourceService,
     ) {}
 
@@ -41,7 +41,7 @@ export class AigStandardAutocompleteFilterService {
 						nameContains: value
 					};
 				}
-				return this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(filter);
+				return this.ippLotTypeResourceService.getAllIlPpProcurementLotTypesUsingGET(filter);
 			})
 		);
 	}
@@ -56,7 +56,7 @@ export class AigStandardAutocompleteFilterService {
 						nameContains: value
 					};
 				}
-				return this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET(filter);
+				return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filter);
 			})
 		);
 	}
@@ -71,7 +71,7 @@ export class AigStandardAutocompleteFilterService {
 						nameContains: value
 					};
 				}
-				return this.ippSectorResourceService.getAllItalianPublicProcurementSectorsUsingGET(filter);
+				return this.ippSectorResourceService.getAllIlPpProcurementSectorsUsingGET(filter);
 			})
 		);
 	}
@@ -86,7 +86,7 @@ export class AigStandardAutocompleteFilterService {
 						nameContains: value
 					};
 				}
-				return this.ippModalityResourceService.getAllItalianPublicProcurementModalitiesUsingGET(filter);
+				return this.ippModalityResourceService.getAllIlPpProcurementModalitiesUsingGET(filter);
 			})
 		);
 	}
@@ -101,7 +101,7 @@ export class AigStandardAutocompleteFilterService {
 						nameContains: value
 					};
 				}
-				return this.ippProcedureResourceService.getAllItalianPublicProcurementProceduresUsingGET(filter);
+				return this.ippProcedureResourceService.getAllIlPpProcurementProceduresUsingGET(filter);
 			})
 		);
 	}

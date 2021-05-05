@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
+import { IlFeCassaTipoDTO, IlFeCassaTipoResourceService } from 'aig-standard';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { AigTipoCassaNewUpdateDialogComponent } from '../tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
@@ -20,20 +19,20 @@ export class AigTipoCassaDetailPageComponent extends GenericComponent {
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private tipoCassaResourceService: TipoCassaResourceService,
+        private tipoCassaResourceService: IlFeCassaTipoResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
 
-        tipoCassa: TipoCassaDTO;
+        tipoCassa: IlFeCassaTipoDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.tipoCassa = this.route.snapshot.data.tipoCassa;
         } else {
-            this.tipoCassa = await this.tipoCassaResourceService.getTipoCassaUsingGET(this.tipoCassa.id).toPromise();
+            this.tipoCassa = await this.tipoCassaResourceService.getIlFeCassaTipoUsingGET(this.tipoCassa.id).toPromise();
         }
     }
 
@@ -41,7 +40,7 @@ export class AigTipoCassaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.tipoCassaResourceService.deleteTipoCassaUsingDELETE(id).toPromise();
+            await this.tipoCassaResourceService.deleteIlFeCassaTipoUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Tipo Cassa: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -52,7 +51,7 @@ export class AigTipoCassaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
     
-    editTipoCassa(tipoCassa: TipoCassaDTO) {
+    editTipoCassa(tipoCassa: IlFeCassaTipoDTO) {
         this.dialog.open(AigTipoCassaNewUpdateDialogComponent, { data: { tipoCassa: tipoCassa } });
     }
 

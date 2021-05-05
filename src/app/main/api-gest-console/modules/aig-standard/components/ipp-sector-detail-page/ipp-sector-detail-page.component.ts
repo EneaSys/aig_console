@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ItalianPublicProcurementSectorResourceService, ItalianPublicProcurementSectorDTO } from 'aig-standard';
+import { IlPpProcurementSectorDTO, IlPpProcurementSectorResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -20,19 +20,19 @@ export class AigIppSectorDetailPageComponent extends GenericComponent {
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
 
-        private ippSectorResourceService: ItalianPublicProcurementSectorResourceService,
+        private ippSectorResourceService: IlPpProcurementSectorResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippSector: ItalianPublicProcurementSectorDTO;
+    ippSector: IlPpProcurementSectorDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.ippSector = this.route.snapshot.data.ippSector;
         } else {
-            this.ippSector = await this.ippSectorResourceService.getItalianPublicProcurementSectorUsingGET(this.ippSector.id).toPromise();
+            this.ippSector = await this.ippSectorResourceService.getIlPpProcurementSectorUsingGET(this.ippSector.id).toPromise();
         }
     }
 
@@ -40,7 +40,7 @@ export class AigIppSectorDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.ippSectorResourceService.deleteItalianPublicProcurementSectorUsingDELETE(id).toPromise();
+            await this.ippSectorResourceService.deleteIlPpProcurementSectorUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Ipp Sector: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -51,7 +51,7 @@ export class AigIppSectorDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
 
-    editIppSector(ippSector: ItalianPublicProcurementSectorDTO) {
+    editIppSector(ippSector: IlPpProcurementSectorDTO) {
         this.dialog.open(AigIppSectorNewUpdateModalComponent, { data: { ippSector: ippSector } });
     }
 

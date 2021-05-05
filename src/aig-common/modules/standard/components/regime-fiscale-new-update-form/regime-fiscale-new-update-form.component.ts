@@ -3,8 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
-import { RegimeFiscaleDTO, RegimeFiscaleResourceService } from 'aig-standard';
+import { IlFeRegimeFiscaleDTO, IlFeRegimeFiscaleResourceService } from 'aig-standard';
 
 @Component({
     selector: 'aig-regime-fiscale-new-update-form',
@@ -22,12 +21,12 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private regimeFiscaleResourceService: RegimeFiscaleResourceService,
+        private regimeFiscaleResourceService: IlFeRegimeFiscaleResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    regimeFiscale: RegimeFiscaleDTO;
+    regimeFiscale: IlFeRegimeFiscaleDTO;
 
     regimeFiscaleNewUpdateForm: FormGroup;
 
@@ -51,16 +50,16 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let regimeFiscale: RegimeFiscaleDTO = this.regimeFiscaleNewUpdateForm.value;
+        let regimeFiscale: IlFeRegimeFiscaleDTO = this.regimeFiscaleNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (regimeFiscale.id != 0) {
-                await this.regimeFiscaleResourceService.updateRegimeFiscaleUsingPUT(regimeFiscale).toPromise();
+                await this.regimeFiscaleResourceService.updateIlFeRegimeFiscaleUsingPUT(regimeFiscale).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.regimeFiscaleResourceService.createRegimeFiscaleUsingPOST(regimeFiscale).toPromise();
+                await this.regimeFiscaleResourceService.createIlFeRegimeFiscaleUsingPOST(regimeFiscale).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

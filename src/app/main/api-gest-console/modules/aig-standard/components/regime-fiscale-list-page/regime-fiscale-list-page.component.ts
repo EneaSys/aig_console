@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
-import { AigRegimeFiscaleNewUpdateFormComponent } from 'aig-common/modules/standard/components/regime-fiscale-new-update-form/regime-fiscale-new-update-form.component';
-import { RegimeFiscaleDTO, RegimeFiscaleResourceService } from 'aig-standard';
+import { IlFeRegimeFiscaleDTO, IlFeRegimeFiscaleResourceService } from 'aig-standard';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigRegimeFiscaleNewUpdateDialogComponent } from '../regime-fiscale-new-update-dialog/regime-fiscale-new-update-dialog.component';
@@ -16,7 +14,7 @@ import { AigRegimeFiscaleNewUpdateDialogComponent } from '../regime-fiscale-new-
 })
 export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 	constructor(
-		private regimeFiscaleResourceService: RegimeFiscaleResourceService,
+		private regimeFiscaleResourceService: IlFeRegimeFiscaleResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
@@ -43,7 +41,7 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 	regimeFiscaleFilters: any;
 
 	regimeFiscaleLength: number;
-	regimeFiscaleDTOs: RegimeFiscaleDTO[];
+	regimeFiscaleDTOs: IlFeRegimeFiscaleDTO[];
 	regimeFiscaleError: any;
 
 	regimeFiscaleDC: string[];
@@ -77,7 +75,7 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 		this.regimeFiscaleFilters.size = this.regimeFiscalePaginationSize;
 
 		try {                                                                       
-			this.regimeFiscaleLength = await this.regimeFiscaleResourceService.countRegimeFiscalesUsingGET(this.regimeFiscaleFilters).toPromise();  
+			this.regimeFiscaleLength = await this.regimeFiscaleResourceService.countIlFeRegimeFiscalesUsingGET(this.regimeFiscaleFilters).toPromise();  
 			
 			if(this.regimeFiscaleLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -85,7 +83,7 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.regimeFiscaleDTOs = await this.regimeFiscaleResourceService.getAllRegimeFiscalesUsingGET(this.regimeFiscaleFilters).toPromise();
+			this.regimeFiscaleDTOs = await this.regimeFiscaleResourceService.getAllIlFeRegimeFiscalesUsingGET(this.regimeFiscaleFilters).toPromise();
 		} catch (e) {
 			this.regimeFiscaleError = e;
 		}

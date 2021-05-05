@@ -2,10 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { CityDTO } from 'aig-generic';
-import { CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoCessionePrestazioneDTO, TipoCessionePrestazioneResourceService } from 'aig-standard';
-import { AigCityNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-standard/components/city-new-update-modal/city-new-update-modal.component';
-import { AigTipoCassaNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
+import {IlFeCessionePrestazioneTipoDTO, IlFeCessionePrestazioneTipoResourceService } from 'aig-standard';
 import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
 
 @Component({
@@ -15,7 +12,7 @@ import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from 'app/main/api
 })
 export class AigTipoCessionePrestazioneListTableComponent implements OnInit {
     constructor(
-        private tipoCessionePrestazioneResourceService: TipoCessionePrestazioneResourceService,
+        private tipoCessionePrestazioneResourceService: IlFeCessionePrestazioneTipoResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -35,7 +32,7 @@ export class AigTipoCessionePrestazioneListTableComponent implements OnInit {
         this._fuseProgressBarService.show();
 
         try {
-            await this.tipoCessionePrestazioneResourceService.deleteTipoCessionePrestazioneUsingDELETE(id).toPromise();
+            await this.tipoCessionePrestazioneResourceService.deleteIlFeCessionePrestazioneTipoUsingDELETE(id).toPromise();
             this._snackBar.open(`Tipo Cessione Prestazione: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
@@ -45,7 +42,7 @@ export class AigTipoCessionePrestazioneListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editTipoCessionePrestazione(tipoCessionePrestazioneDTO: TipoCessionePrestazioneDTO) {
+    editTipoCessionePrestazione(tipoCessionePrestazioneDTO: IlFeCessionePrestazioneTipoDTO) {
         this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: { tipoCessionePrestazione: tipoCessionePrestazioneDTO } });
     }
 }

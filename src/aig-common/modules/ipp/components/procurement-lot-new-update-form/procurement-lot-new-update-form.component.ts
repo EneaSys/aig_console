@@ -8,7 +8,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
-import { CpvDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
+import { CpvDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
@@ -46,8 +46,8 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
     procurementLotNewUpdateForm: FormGroup;
 
     filteredProcurement: Observable<ProcurementDTO[]>;
-    filteredIppLotType: Observable<ItalianPublicProcurementLotTypeDTO[]>;
-    filteredIppLotCategory: Observable<ItalianPublicProcurementLotCategoryDTO[]>;
+    filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
+    filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
     filteredCpv: Observable<CpvDTO[]>;
 
 
