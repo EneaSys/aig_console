@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { CityResourceService, CpvResourceService, IlPpProcurementLotCategoryResourceService, IlPpProcurementLotTypeResourceService, IlPpProcurementModalityResourceService, IlPpProcurementProcedureResourceService, IlPpProcurementSectorResourceService } from 'aig-standard';
+import { CityResourceService, CpvResourceService, IlPpPartecipationTypeResourceService, IlPpProcurementLotAwardCriterionResourceService, IlPpProcurementLotCategoryResourceService, IlPpProcurementLotStatusResourceService, IlPpProcurementLotTypeResourceService, IlPpProcurementModalityResourceService, IlPpProcurementProcedureResourceService, IlPpProcurementSectorResourceService, IlPpProcurementStatusResourceService } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
 
     constructor(
         private cityResourceService: CityResourceService,
-        private ippProcedureResourceService: IlPpProcurementProcedureResourceService,
+        
+		private cpvResourceService: CpvResourceService,
+		
+		
+		private ilPpProcurementStatusResourceService: IlPpProcurementStatusResourceService,
+		private ilPpProcurementLotAwardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
+		private ilPpProcurementLotStatusResourceService: IlPpProcurementLotStatusResourceService,
+		private ilPpPartecipationTypeResourceService: IlPpPartecipationTypeResourceService,
+        
+		
+		private ippProcedureResourceService: IlPpProcurementProcedureResourceService,
         private ippSectorResourceService: IlPpProcurementSectorResourceService,
         private ippModalityResourceService: IlPpProcurementModalityResourceService,
         private ippLotTypeResourceService: IlPpProcurementLotTypeResourceService,
         private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
-        private cpvResourceService: CpvResourceService,
     ) {}
 
     filterCity(observable: Observable<any>) {
@@ -30,6 +39,104 @@ export class AigStandardAutocompleteFilterService {
 			})
 		);
 	}
+
+
+
+
+
+
+
+
+
+	filterCpv(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+				let filter = {};
+                if (value && value.length > 0) {
+					filter = {
+						nameContains: value
+					};
+				}
+				return this.cpvResourceService.getAllCpvsUsingGET(filter);
+			})
+		);
+	}
+
+
+
+
+
+
+
+
+
+
+	filterIlPpProcurementStatus(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+				let filter = {};
+                if (value && value.length > 0) {
+					filter = {
+						nameContains: value
+					};
+				}
+				return this.ilPpProcurementStatusResourceService.getAllIlPpProcurementStatusesUsingGET(filter);
+			})
+		);
+	}
+
+
+	filterIlPpProcurementLotAwardCriterion(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+				let filter = {};
+                if (value && value.length > 0) {
+					filter = {
+						nameContains: value
+					};
+				}
+				return this.ilPpProcurementLotAwardCriterionResourceService.getAllIlPpProcurementLotAwardCriteriaUsingGET(filter);
+			})
+		);
+	}
+	filterIlPpProcurementLotStatus(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+				let filter = {};
+                if (value && value.length > 0) {
+					filter = {
+						nameContains: value
+					};
+				}
+				return this.ilPpProcurementLotStatusResourceService.getAllIlPpProcurementLotStatusesUsingGET(filter);
+			})
+		);
+	}
+	filterIlPpPartecipationType(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+				let filter = {};
+                if (value && value.length > 0) {
+					filter = {
+						nameContains: value
+					};
+				}
+				return this.ilPpPartecipationTypeResourceService.getAllIlPpPartecipationTypesUsingGET(filter);
+			})
+		);
+	}
+
+
+
+
+
+
+	
 
     filterIppLotType(observable: Observable<any>) {
         return observable.pipe(
@@ -105,18 +212,6 @@ export class AigStandardAutocompleteFilterService {
 			})
 		);
 	}
-	filterCpv(observable: Observable<any>) {
-        return observable.pipe(
-            startWith(''),
-            switchMap((value: string) => {
-				let filter = {};
-                if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
-				}
-				return this.cpvResourceService.getAllCpvsUsingGET(filter);
-			})
-		);
-	}
+	
+
 }

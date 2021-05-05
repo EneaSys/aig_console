@@ -1,6 +1,5 @@
 <form *ngIf="step.form" [formGroup]="procurementNewUpdateForm" (ngSubmit)="submit()">
 
-
     <div fxLayout="row" fxLayoutAlign="start start">
         
         <mat-form-field appearance="outline" fxFlex="30">
@@ -37,25 +36,38 @@
     </div>
        
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex="33">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Status</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="procurementStatusAutocomplete">
+            <mat-autocomplete #procurementStatusAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ilPpProcurementStatusDisplayFn">
+                <mat-option *ngFor="let procurementStatus of filteredProcurementStatus | async" [value]="procurementStatus">{{ procurementStatus.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>Procedure</mat-label>
-            <input formControlName="ippProcedure" matInput [matAutocomplete]="ippProcedureAutocomplete">
+            <input formControlName="procedure" matInput [matAutocomplete]="ippProcedureAutocomplete">
             <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
                 <mat-option *ngFor="let ippProcedure of filteredIppProcedure | async" [value]="ippProcedure">{{ ippProcedure.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
         
-        <mat-form-field appearance="outline" fxFlex="33" class="pl-4">
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
             <mat-label>Sector</mat-label>
-            <input formControlName="ippSector" matInput [matAutocomplete]="ippSectorAutocomplete">
+            <input formControlName="sector" matInput [matAutocomplete]="ippSectorAutocomplete">
             <mat-autocomplete #ippSectorAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
                 <mat-option *ngFor="let ippSector of filteredIppSector | async" [value]="ippSector">{{ ippSector.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex="34" class="pl-4">
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>Modality</mat-label>
-            <input formControlName="ippModality" matInput [matAutocomplete]="ippModalityAutocomplete">
+            <input formControlName="modality" matInput [matAutocomplete]="ippModalityAutocomplete">
             <mat-autocomplete #ippModalityAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
                 <mat-option *ngFor="let ippModality of filteredIppModality | async" [value]="ippModality">{{ ippModality.name }}</mat-option>
             </mat-autocomplete>

@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CityDTO, CpvDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
+import { CityDTO, CpvDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, IlPpProcurementStatusDTO } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteDisplayService {
     cityDisplayFn(city?: CityDTO): string | undefined {
         return city ? city.name : undefined;
+    }
+
+
+    ilPpProcurementStatusDisplayFn(procurementStatus?: IlPpProcurementStatusDTO): string | undefined {
+        return procurementStatus ? procurementStatus.name : undefined;
+    }
+    ilPpPartecipationTypeDisplayFn(partecipationType?: IlPpPartecipationTypeDTO): string | undefined {
+        return partecipationType ? partecipationType.name : undefined;
     }
 
     ippProcedureDisplayFn(ippProcedure?: IlPpProcurementProcedureDTO): string | undefined {

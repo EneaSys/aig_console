@@ -27,14 +27,17 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="50">
             <mat-label>Tipo di partecipazione</mat-label>
-            <input formControlName="partecipationType" matInput required>
+            <input formControlName="partecipationType" matInput [matAutocomplete]="partecipationTypeAutocomplete">
+            <mat-autocomplete #partecipationTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
+                <mat-option *ngFor="let partecipationType of filteredPartecipationType | async" [value]="partecipationType">{{ partecipationType.name }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>Proponente</mat-label>
             <input formControlName="proposerEopoo" matInput [matAutocomplete]="proposerEopooAutocomplete">
             <mat-autocomplete #proposerEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName}}</mat-option>
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
