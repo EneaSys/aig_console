@@ -1,9 +1,13 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, RequiredValidator, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
+import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
+import { AigGenericAutocompleteDisplayService } from "aig-common/modules/generic/services/form/autocomplete-function.service";
+import { EopooDTO } from "aig-generic";
 import { DesignatedCompanyDTO, DesignatedCompanyResourceService, DossierDTO, DossierResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { Observable } from "rxjs";
 import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
 
 @Component({
@@ -17,6 +21,8 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
 		private designatedCompanyResourceService: DesignatedCompanyResourceService,
+		private genericAutocompleteService: AigGenericAutocompleteFilterService,
+		public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -33,22 +39,20 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 
 	//			---- TABLE AND SEARCH SECTION ----
 
-	designatedCompanySearchFormGroup: FormGroup;
-	designatedCompanyPaginationSize: number;
-	designatedCompanyFilters: any;
-
-	designatedCompanyLength: number;
 	designatedCompanyDTOs: DesignatedCompanyDTO[];
+	designatedCompanyDC: string[];
 	designatedCompanyError: any;
 
-	designatedCompanyDC: string[];
+	designatedCompanySearchFormGroup: FormGroup;
+	designatedCompanyFilters: any;
 
+	designatedCompanyPaginationSize: number;
+	designatedCompanyLength: number;
+
+	filteredEopoo: Observable<EopooDTO[]>;
 
 	private initDesignatedCompanySearch() {
-		this.designatedCompanyDC = ["id","companyEopoo","partecipation","note", "buttons"];
-
 		this.designatedCompanyPaginationSize = 10;
-
 
 		this.designatedCompanySearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -57,12 +61,16 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 			partecipationId:[''],
 			companyEopoo: [''],
 		});
+
+		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.designatedCompanySearchFormGroup.controls['companyEopoo'].valueChanges);
+
+		this.designatedCompanyDC = ["id","companyEopoo","partecipation","note", "buttons"];
 	}
 
 	private clearFiltersDesignatedCompany() {
 		this.designatedCompanyFilters = {
 			idEquals: null,
-			designatedCompanyCodeContains: null,
+			/*companyEopooTaxNumberEquals: null,*/
 		}
 	}
 
@@ -72,8 +80,10 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 		this.designatedCompanyFilters.page = page;
 		this.designatedCompanyFilters.size = this.designatedCompanyPaginationSize;
 
+		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.designatedCompanySearchFormGroup.controls['companyEopoo'].valueChanges);
+
 		try {
-			this.designatedCompanyLength = await this.designatedCompanyResourceService.countDesignatedCompaniesUsingGET({}).toPromise();
+			this.designatedCompanyLength = await this.designatedCompanyResourceService.countDesignatedCompaniesUsingGET(this.designatedCompanyFilters).toPromise();
 
 			if (this.designatedCompanyLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
@@ -81,18 +91,15 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.designatedCompanyDTOs = await this.designatedCompanyResourceService.getAllDesignatedCompaniesUsingGET({}).toPromise();
+			this.designatedCompanyDTOs = await this.designatedCompanyResourceService.getAllDesignatedCompaniesUsingGET(this.designatedCompanyFilters).toPromise();
 		} catch (e) {
 			console.log(e);
 			this.designatedCompanyError = e;
 		}
 	}
 
-
-
 	showAllDesignatedCompany() {
 		this.resetFiltersDesignatedCompany();
-
 	}
 
 	resetFiltersDesignatedCompany() {
@@ -108,6 +115,7 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 
 	designatedCompanySearchWithFilter() {
 		let searchedId = this.designatedCompanySearchFormGroup.controls.id.value;
+
 		if (searchedId != null) {
 			this.clearFiltersDesignatedCompany();
 			this.designatedCompanySearchFormGroup.reset();
@@ -115,7 +123,12 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 			this.searchDesignatedCompany(0);
 			return;
 		}
+
 		this.designatedCompanyFilters.idEquals = null;
+
+		/*if (this.designatedCompanySearchFormGroup.controls.companyEopoo.value) {
+			this.designatedCompanyFilters.companyEopooTaxNumberEquals = this.designatedCompanySearchFormGroup.controls.companyEopoo.value.taxNumber;
+		}*/
 
 		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
 

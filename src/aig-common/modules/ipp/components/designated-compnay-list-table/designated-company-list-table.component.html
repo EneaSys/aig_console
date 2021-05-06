@@ -22,7 +22,7 @@
         
         <ng-container matColumnDef="companyEopoo">
             <mat-header-cell *matHeaderCellDef> Company Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.companyEopoo}} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.companyEopoo.genericEopoo ? e.companyEopoo.genericEopoo.name : e.companyEopoo.person.firstname + " " + e.companyEopoo.person.lastname }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="note">
@@ -32,7 +32,7 @@
 
         <ng-container matColumnDef="partecipation">
             <mat-header-cell *matHeaderCellDef> Partecipation </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipation.id}} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipation.id }} </mat-cell>
         </ng-container>
 
 
