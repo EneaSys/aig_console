@@ -19,14 +19,14 @@
             <mat-cell *matCellDef="let e"> {{ e.id}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="code">
             <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="ref">
@@ -34,29 +34,29 @@
             <mat-cell *matCellDef="let e"> {{ e.ref }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="totalAmount">
-            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR' }} </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="contractorEopoo">
             <mat-header-cell *matHeaderCellDef> contractorEopooCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.contractorEopoo }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ippSector">
-            <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippSector }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ippProcedure">
-            <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippProcedure }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.contractorEopooCode }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="ippModality">
             <mat-header-cell *matHeaderCellDef> Modality </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.ippModality }} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="ippProcedure">
+            <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.ippProcedure }} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="ippSector">
+            <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.ippSector }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR' }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurementStatus">
