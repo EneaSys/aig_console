@@ -1,0 +1,31 @@
+<div id="form">
+    <div *ngIf="value === 'allegati'">
+        <aig-allegati-new-update-form></aig-allegati-new-update-form>
+    </div>
+
+    <div *ngIf="value === 'datiPagamento'">
+        <aig-dati-pagamento-new-update-form></aig-dati-pagamento-new-update-form>
+    </div>
+
+    <div *ngIf="value === 'datiVeicoli'">
+        <aig-dati-veicoli-new-update-form></aig-dati-veicoli-new-update-form>
+    </div>
+
+    <div *ngIf="value === 'dettaglioPagamento'">
+        <aig-dettaglio-pagamento-new-update-form></aig-dettaglio-pagamento-new-update-form>
+    </div>
+
+    <div *ngIf="value === 'fatturaElettronicaBody'">
+        <aig-fattura-elettronica-body-new-update-form></aig-fattura-elettronica-body-new-update-form>
+    </div>
+
+</div>
+<div id="checkbox">
+
+    <input type="radio" name="allegati" value="allegati" [(ngModel)]="value"> Allegati
+    <input type="radio" name="datiPagamento" value="datiPagamento" [(ngModel)]="value"> Dati Pagamento
+    <input type="radio" name="datiVeicoli" value="datiVeicoli" [(ngModel)]="value"> Dati Veicoli
+    <input type="radio" name="dettaglioPagamento" value="dettaglioPagamento" [(ngModel)]="value"> Dettaglio Pagamento
+    <input type="radio" name="fatturaElettronicaBody" value="fatturaElettronicaBody" [(ngModel)]="value"> Fattura Elettronica
+
+</div>

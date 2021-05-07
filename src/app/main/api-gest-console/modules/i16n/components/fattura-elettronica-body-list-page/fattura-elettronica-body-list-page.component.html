@@ -60,7 +60,10 @@
                 [pageSizeOptions]="[10, 20, 50]" (page)="fatturaElettronicaBodyPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-fattura-elettronica-button" (click)="newFatturaElettronicaBody()" aria-label="add fattura elettronica">
+            <button mat-fab class="accent" id="add-fattura-elettronica-button" (click)="newFatturaElettronicaBody()" aria-label="add fattura elettronica body">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-fab class="accent" id="add-fattura-elettronica" (click)="newFatturaElettronica()" aria-label="add fattura elettronica">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

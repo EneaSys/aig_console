@@ -43,6 +43,7 @@ import { AigDatiVeicoliNewUpdateFormComponent } from './components/dati-veicoli-
 import { AigAllegatiListTableComponent } from './components/allegati-list-table/allegati-list-table.component';
 import { AigAllegatiNewUpdateFormComponent } from './components/allegati-new-update-form/allegati-new-update-form.component';
 import { AigAllegatiDetailComponent } from './components/allegati-detail/allegati-detail.component';
+import { AigFatturaElettronicaFormComponent } from './components/fattura-elettronica-complex-form/fattura-elettronica-complex-form.component';
 
 
 
@@ -101,6 +102,7 @@ import { AigAllegatiDetailComponent } from './components/allegati-detail/allegat
         AigDatiPagamentoNewUpdateFormComponent,
         AigDatiVeicoliNewUpdateFormComponent,
         AigAllegatiNewUpdateFormComponent,
+        AigFatturaElettronicaFormComponent,
 
 
         AigDettaglioPagamentoDetailComponent,
@@ -124,7 +126,7 @@ import { AigAllegatiDetailComponent } from './components/allegati-detail/allegat
         AigDatiPagamentoNewUpdateFormComponent,
         AigDatiVeicoliNewUpdateFormComponent,
         AigAllegatiNewUpdateFormComponent,
-
+        AigFatturaElettronicaFormComponent,
 
         AigDettaglioPagamentoDetailComponent,
         AigFatturaElettronicaBodyDetailComponent,

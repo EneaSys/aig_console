@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { FatturaElettronicaBodyDTO, FatturaElettronicaBodyResourceService } from 'aig-italianlegislation';
 import { AigFatturaElettronicaNewUpdateDialogComponent } from '../fattura-elettronica-new-update-dialog/fattura-elettronica-new-update-dialog.component';
+import { AigFatturaElettronicaComplexDialogComponent } from '../fattura-elettronica-complex-dialog/fattura-elettronica-complex-dialog.component';
 
 
 @Component({
@@ -121,5 +122,8 @@ export class AigFatturaElettronicaBodyListPageComponent extends GenericComponent
     newFatturaElettronicaBody(){
         this.dialog.open(AigFatturaElettronicaNewUpdateDialogComponent, { data: { fatturaElettronica: {} } });
     }
+	newFatturaElettronica(){
+		this.dialog.open(AigFatturaElettronicaComplexDialogComponent, { data: { fatturaElettronica: {} } });
+	}
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

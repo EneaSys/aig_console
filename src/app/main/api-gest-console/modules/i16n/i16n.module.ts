@@ -40,6 +40,7 @@ import { AigAllegatiNewUpdateDialogComponent } from './components/allegati-new-u
 import { AigDatiVeicoliDetailPageComponent } from './components/dati-veicoli-detail-page/dati-veicoli-detail-page.component';
 import { AigAllegatiListPageComponent } from './components/allegati-list-page/allegati-list-page.component';
 import { AigAllegatiDetailPageComponent } from './components/allegati-detail-page/allegati-detail-page.component';
+import { AigFatturaElettronicaComplexDialogComponent } from './components/fattura-elettronica-complex-dialog/fattura-elettronica-complex-dialog.component';
 
 
 
@@ -112,6 +113,7 @@ import { AigAllegatiDetailPageComponent } from './components/allegati-detail-pag
         AigDatiPagamentoNewUpdateDialogComponent,
         AigDatiVeicoliNewUpdateDialogComponent,
         AigAllegatiNewUpdateDialogComponent,
+        AigFatturaElettronicaComplexDialogComponent,
 
         
     ],
@@ -126,6 +128,7 @@ import { AigAllegatiDetailPageComponent } from './components/allegati-detail-pag
         AigDatiPagamentoNewUpdateDialogComponent,
         AigDatiVeicoliNewUpdateDialogComponent,
         AigAllegatiNewUpdateDialogComponent,
+        AigFatturaElettronicaComplexDialogComponent,
 
     ],
 })
