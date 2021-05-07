@@ -45,15 +45,17 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 
     
     private initTipoRitenutaSearch() {
-		this.tipoRitenutaDC = ["id", "value","description", "buttons"];
+		this.tipoRitenutaDC = ["id", "name","code","description","wikiCode","buttons"];
 
 		this.tipoRitenutaPaginationSize = 10;
 		
 
 		this.tipoRitenutaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
-			
+			name: [''],
+			code: [''],
+			description: [''],
+			wikiCode: [''],
 		});
 	}
 

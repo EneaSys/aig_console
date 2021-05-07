@@ -48,14 +48,17 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 
 	
 	private initRegimeFiscaleSearch() {
-		this.regimeFiscaleDC = ["id", "value","description", "buttons"];
+		this.regimeFiscaleDC = ["id", "name","code","description","wikiCode","buttons"];
 
 		this.regimeFiscalePaginationSize = 10;
 		
 
 		this.regimeFiscaleSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
+			name: [''],
+			code: [''],
+			description: [''],
+			wikiCode: [''],
 			
 		});
 	}
@@ -63,7 +66,6 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 	private clearFiltersRegimeFiscale() {
 		this.regimeFiscaleFilters = {
 			idEquals: null,
-			valueContains: null,
 			page: 0,
 		}
 	}

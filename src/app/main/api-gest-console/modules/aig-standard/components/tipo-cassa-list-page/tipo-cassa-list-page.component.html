@@ -23,8 +23,8 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Value</mat-label>
-                                        <input matInput type="text" formControlName="value">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput type="text" formControlName="name">
                                     </mat-form-field>
                                 </div>
                                 
@@ -61,7 +61,7 @@
                 [pageSizeOptions]="[10, 20, 50]" (page)="tipoCassaPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-tipoCassa-button" (click)="newTipoCassa()" aria-label="add tipoCassa">
+            <button mat-fab class="accent" id="add-tipo-cassa-button" (click)="newTipoCassa()" aria-label="add tipoCassa">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

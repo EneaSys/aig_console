@@ -36,6 +36,8 @@ export class AigAwardCriterionDetailPageComponent extends GenericComponent {
         }
     }
 
+
+
     async deleteAwardCriterion(id: number) {
         this._fuseProgressBarService.show();
     
@@ -49,7 +51,9 @@ export class AigAwardCriterionDetailPageComponent extends GenericComponent {
             this._snackBar.open(`Error during deleting Award Criterion: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
-      }
+    }
+    
+   
     
     editAwardCriterion(awardCriterionDTO: IlPpProcurementLotAwardCriterionDTO) {
         this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, { data: { awardCriterion: awardCriterionDTO } });

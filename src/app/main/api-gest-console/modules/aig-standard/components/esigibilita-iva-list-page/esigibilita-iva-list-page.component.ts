@@ -46,14 +46,17 @@ export class AigEsigibilitaIvaListPageComponent extends GenericComponent {
 
     
 	private initEsigibilitaIvaSearch() {
-		this.esigibilitaIvaDC = ["id", "value","description", "buttons"];
+		this.esigibilitaIvaDC = ["id", "name","code","description","wikiCode","buttons"];
 
 		this.esigibilitaIvaPaginationSize = 10;
 		
 
 		this.esigibilitaIvaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
+			name: [''],
+			code: [''],
+			description: [''],
+			wikiCode: [''],
 			
 		});
 	}

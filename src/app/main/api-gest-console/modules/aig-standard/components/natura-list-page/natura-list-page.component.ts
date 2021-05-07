@@ -47,14 +47,17 @@ export class AigNaturaListPageComponent extends GenericComponent {
 
     
     private initNaturaSearch() {
-		this.naturaDC = ["id", "value","description", "buttons"];
+		this.naturaDC = ["id", "name","code","description","wikiCode","buttons"];
 
 		this.naturaPaginationSize = 10;
 		
 
 		this.naturaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
+			name: [''],
+			code: [''],
+			description: [''],
+			wikiCode: [''],
 			
 		});
 	}

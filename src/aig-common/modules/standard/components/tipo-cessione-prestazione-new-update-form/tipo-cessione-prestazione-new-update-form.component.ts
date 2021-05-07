@@ -35,8 +35,10 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     ngOnInit(): void {
         this.tipoCessionePrestazioneNewUpdateForm = this._formBuilder.group({
             id:[''],
-            value: ['', Validators.required],
+            name: ['', Validators.required],
             description: [''],
+            code: [''],
+            wikiCode: [''],
 
         })
         if (this.tipoCessionePrestazione!= null) {
