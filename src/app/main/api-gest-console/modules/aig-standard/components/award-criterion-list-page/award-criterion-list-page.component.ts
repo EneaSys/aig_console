@@ -49,11 +49,13 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 
 		this.awardCriterionSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			code: [''],
 			description: [''],
-			value: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.awardCriterionDC = ['id', 'description', 'value', 'buttons'];
+		this.awardCriterionDC = ['id', 'description','code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersAwardCriterion() {

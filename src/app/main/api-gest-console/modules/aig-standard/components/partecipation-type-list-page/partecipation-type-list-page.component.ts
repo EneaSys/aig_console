@@ -50,10 +50,12 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 		this.partecipationTypeSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			description: [''],
-			value: [''],
+			name: [''],
+			code: [''],
+			wikiCode: [''],
 		});
 
-		this.partecipationTypeDC = ['id', 'description', 'value', 'buttons'];
+		this.partecipationTypeDC = ['id', 'description', 'name','code','wikiCode', 'buttons'];
     }
     
     private clearFiltersPartecipationType() {
