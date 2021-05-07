@@ -26,7 +26,7 @@ export class AigTipoRitenutaDetailPageComponent extends GenericComponent {
         ) { super(aigGenericComponentService) }
 
 
-        tipoRitenuta: IlFeRitenutaTipoDTO;
+    tipoRitenuta: IlFeRitenutaTipoDTO;
     
     async loadComponent() {
         if(this.firstLoad) {

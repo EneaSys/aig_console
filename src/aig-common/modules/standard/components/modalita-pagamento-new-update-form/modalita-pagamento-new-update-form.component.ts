@@ -39,9 +39,10 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.modalitaPagamentoNewUpdateForm = this._formBuilder.group({
             id:[''],
-            value: ['', Validators.required],
+            name: ['', Validators.required],
             description: [''],
-
+            code: [''],
+            wikiCode: [''],
         })
         if (this.modalitaPagamento!= null) {
             this.modalitaPagamentoNewUpdateForm.patchValue(this.modalitaPagamento);

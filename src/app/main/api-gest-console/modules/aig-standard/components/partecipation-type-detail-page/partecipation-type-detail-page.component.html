@@ -5,8 +5,8 @@
             <div class="fuse-card auto-width p-16">
 
                 <pre>{{partecipationTypeDTO | json}}</pre>
-                <button mat-stroked-button color="primary" (click)="editPartecipationType(partecipationType)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deletePartecipationType(partecipationType.id)">Delete</button>
+                <button mat-stroked-button color="primary" (click)="editPartecipationType(partecipationTypeDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deletePartecipationType(partecipationTypeDTO.id)">Delete</button>
             </div>
         </div>
     </div>

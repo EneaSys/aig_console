@@ -64,6 +64,9 @@ import { AwardCriterionResolver } from 'aig-common/modules/standard/resolver/awa
 import { AigPartecipationTypeListPageComponent } from './components/partecipation-type-list-page/partecipation-type-list-page.component';
 import { PartecipationTypeResolver } from 'aig-common/modules/standard/resolver/partecipation-type.resolver';
 import { AigPartecipationTypeDetailPageComponent } from './components/partecipation-type-detail-page/partecipation-type-detail-page.component';
+import { AigProcurementStatusListPageComponent } from './components/procurement-status-list-page/procurement-status-list-page.component';
+import { AigProcurementStatusDetailPageComponent } from './components/procurement-status-detail-page/procurement-status-detail-page.component';
+import { ProcurementStatusResolver } from 'aig-common/modules/standard/resolver/procurement-status.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -210,6 +213,30 @@ export const aigStandardRoute: Routes = [
                         canActivate: [AuthGuardService],
                         resolve: {
                             awardCriterion: AwardCriterionResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'procurement-status',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigProcurementStatusListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigProcurementStatusDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            procurementStatus: ProcurementStatusResolver,
                         },
                     },
                 ]

@@ -1,8 +1,7 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.partecipationType.id" class="title dialog-title">Update Partecipation Type</span>
-            <span *ngIf="!data.partecipationType.id" class="title dialog-title">Create New Partecipation Type</span>
+            <span class="title dialog-title">Form Partecipation Type</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>

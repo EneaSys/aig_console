@@ -45,15 +45,17 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 
     
     private initTipoCassaSearch() {
-		this.tipoCassaDC = ["id", "value","description", "buttons"];
+		this.tipoCassaDC = ["id", "name","code","description","wikiCode","buttons"];
 
 		this.tipoCassaPaginationSize = 10;
 		
 
 		this.tipoCassaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
-			
+			name: [''],
+			code: [''],
+			description: [''],
+			wikiCode: [''],
 		});
 	}
 	private clearFiltersTipoCassa() {

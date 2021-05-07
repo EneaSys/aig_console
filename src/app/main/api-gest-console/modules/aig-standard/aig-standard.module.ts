@@ -82,6 +82,12 @@ import { AigAwardCriterionDetailPageComponent } from './components/award-criteri
 import { AigPartecipationTypeNewUpdateDialogComponent } from './components/partecipation-type-new-update-dialog/partecipation-type-new-update-dialog.component';
 import { AigPartecipationTypeListPageComponent } from './components/partecipation-type-list-page/partecipation-type-list-page.component';
 import { AigPartecipationTypeDetailPageComponent } from './components/partecipation-type-detail-page/partecipation-type-detail-page.component';
+import { AigProcurementStatusListPageComponent } from './components/procurement-status-list-page/procurement-status-list-page.component';
+import { AigProcurementStatusNewUpdateDialogComponent } from './components/procurement-status-new-update-dialog/procurement-status-new-update-dialog.component';
+import { AigProcurementStatusDetailPageComponent } from './components/procurement-status-detail-page/procurement-status-detail-page.component';
+import { AigProcurementLotStatusListPageComponent } from './components/procurement-lot-status-list-page/procurement-lot-status-list-page.component';
+import { AigProcurementLotStatusNewUpdateDialogComponent } from './components/procurement-lot-status-new-update-dialog/procurement-lot-status-new-update-dialog.component';
+import { AigProcurementLotStatusDetailPageComponent } from './components/procurement-lot-status-detail-page/procurement-lot-status-detail-page.component';
 
 
 
@@ -90,6 +96,14 @@ import { AigPartecipationTypeDetailPageComponent } from './components/partecipat
         AigStandardHeaderComponent,
 
         AigStandardCustomListPageComponent,
+
+        AigProcurementLotStatusListPageComponent,
+        AigProcurementLotStatusNewUpdateDialogComponent,
+        AigProcurementLotStatusDetailPageComponent,
+
+        AigProcurementStatusListPageComponent,
+        AigProcurementStatusNewUpdateDialogComponent,
+        AigProcurementStatusDetailPageComponent,
 
         AigAwardCriterionListPageComponent,
         AigAwardCriterionNewUpdateDialogComponent,
@@ -204,6 +218,7 @@ import { AigPartecipationTypeDetailPageComponent } from './components/partecipat
         AigEsigibilitaIvaNewUpdateDialogComponent,
         AigModalitaPagamentoNewUpdateDialogComponent,
         AigAwardCriterionNewUpdateDialogComponent,
+        AigProcurementStatusNewUpdateDialogComponent,
         AigPartecipationTypeNewUpdateDialogComponent,
       
     

@@ -5,8 +5,8 @@
             <div class="fuse-card auto-width p-16">
 
                 <pre>{{awardCriterionDTO | json}}</pre>
-                <button mat-stroked-button color="primary" (click)="editAwardCriterion(awardCriterion)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteAwardCriterion(awardCriterion.id)">Delete</button>
+                <button mat-stroked-button color="primary" (click)="editAwardCriterion(awardCriterionDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteAwardCriterion(awardCriterionDTO.id)">Delete</button>
             </div>
         </div>
     </div>

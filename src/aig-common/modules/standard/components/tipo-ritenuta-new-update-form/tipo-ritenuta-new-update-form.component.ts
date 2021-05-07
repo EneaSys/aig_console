@@ -39,8 +39,10 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.tipoRitenutaNewUpdateForm = this._formBuilder.group({
             id:[''],
-            value: ['', Validators.required],
+            name: ['', Validators.required],
             description: [''],
+            code: [''],
+            wikiCode: [''],
 
         })
         if (this.tipoRitenuta!= null) {

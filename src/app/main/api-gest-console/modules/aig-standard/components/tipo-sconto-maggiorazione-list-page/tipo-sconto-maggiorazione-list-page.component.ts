@@ -46,14 +46,17 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
 
     
     private initTipoScontoMaggiorazioneSearch() {
-		this.tipoScontoMaggiorazioneDC = ["id", "value","description", "buttons"];
+		this.tipoScontoMaggiorazioneDC = ["id", "name","code","description","wikiCode","buttons"];
 
 		this.tipoScontoMaggiorazionePaginationSize = 10;
 		
 
 		this.tipoScontoMaggiorazioneSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
+			name: [''],
+			code: [''],
+			description: [''],
+			wikiCode: [''],
 			
 		});
 	}
