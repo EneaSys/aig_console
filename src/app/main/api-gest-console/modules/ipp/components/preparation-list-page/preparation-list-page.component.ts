@@ -35,22 +35,18 @@ export class AigPreparationListPageComponent extends GenericComponent {
 
 //			---- TABLE AND SEARCH SECTION ----
 
-preparationSearchFormGroup: FormGroup;
-preparationPaginationSize: number;
-preparationFilters: any;
-
-preparationLength: number;
 preparationDTOs: PreparationDTO[];
+preparationDC: string[];
 preparationError: any;
 
-preparationDC: string[];
+preparationSearchFormGroup: FormGroup;
+preparationFilters: any;
 
+preparationPaginationSize: number;
+preparationLength: number;
 	
 private initPreparationSearch() {
-	this.preparationDC = ["id","companyPreparatorEopooCode","note","partecipationId","partecipationProposerEopooCode","statusDescription","statusId","buttons"];
-
-	this.preparationPaginationSize = 10;
-		
+	this.preparationPaginationSize = 10;	
 
 	this.preparationSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -61,6 +57,8 @@ private initPreparationSearch() {
 			statusDescription: [''],
 			statusId: [''],
 		});
+
+		this.preparationDC = ["id","companyPreparatorEopoo","note","partecipationId","partecipationProposerEopoo","statusDescription","buttons"];
 	}
 
 private clearFiltersPreparation() {
@@ -76,7 +74,7 @@ private async searchPreparation(page: number) {
 	this.preparationFilters.size = this.preparationPaginationSize;
 
 	try {
-		this.preparationLength = await this.preparationResourceService.countPreparationsUsingGET({}).toPromise();  
+		this.preparationLength = await this.preparationResourceService.countPreparationsUsingGET(this.preparationFilters).toPromise();  
 
 		if(this.preparationLength == 0) {
 			this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -84,25 +82,21 @@ private async searchPreparation(page: number) {
 			return;
 		}
 
-		this.preparationDTOs =  await this.preparationResourceService.getAllPreparationsUsingGET({}).toPromise();
+		this.preparationDTOs =  await this.preparationResourceService.getAllPreparationsUsingGET(this.preparationFilters).toPromise();
 	} catch (e) {
 		console.log(e);
 		this.preparationError = e;
 	}
 }
 
-	
-
 showAllPreparation() {
-	this.resetFiltersPreparation();
-		
+	this.resetFiltersPreparation();	
 }
 
 resetFiltersPreparation() {
 	this.preparationSearchFormGroup.reset();
 	this.clearFiltersPreparation();
 	this.searchPreparation(0);
-
 }
 
 preparationPaginationEvent(pageEvent: PageEvent) {
@@ -120,9 +114,8 @@ preparationSearchWithFilter() {
 		this.searchPreparation(0);
 		return;
 	}
-	this.preparationFilters.idEquals = null;
 
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+	this.preparationFilters.idEquals = null;
 
 	this.searchPreparation(0);
 }
@@ -133,6 +126,4 @@ newPreparation(): void {
     this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { preparation: {} } });
     }
 
-	
 }
-

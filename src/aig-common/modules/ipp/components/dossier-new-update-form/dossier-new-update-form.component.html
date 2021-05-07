@@ -63,7 +63,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ dossierNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato un nuovo dossier!</h1>
+        <p>Description: {{ dossierNewUpdateForm.controls.description.value }}</p>
+        <p>Dossier code: {{ dossierNewUpdateForm.controls.dossierCode.value }}</p>
+    </span>
+
     <button *ngIf="!dossierNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newDossier()">Create New</button>
+
+    <button [routerLink]="'/ipp/dossier/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

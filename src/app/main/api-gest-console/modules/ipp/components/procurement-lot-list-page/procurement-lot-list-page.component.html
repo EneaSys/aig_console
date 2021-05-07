@@ -5,14 +5,12 @@
         <div class="content">
             <div>
                 <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="center start">
-                    <button mat-raised-button (click)="cleanFiltersAndLoadProcurementLot()">Pulisci filtri</button>
+                    <button mat-raised-button (click)="cleanFiltersAndLoadProcurementLot()">Resetta filtri</button>
                 </div>
-            </div>
-            <div>
-                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start start">
-                    <span class="h5">Cerca</span>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
                 </div>
-                <div class="content py-16" fusePerfectScrollbar>
+                <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
                         <form [formGroup]="procurementLotSearchForm" (ngSubmit)="procurementLotSearch()" class="p-8">
                             <div fxLayout="row">
@@ -47,7 +45,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="procurementLotFilters.amountMin">{{ procurementLotFilters.amountMin | currency:'EUR' }}</span>
+                                <span *ngIf="procurementLotFilters.amountMin">{{ procurementLotFilters.amountMin |
+                                    currency:'EUR' }}</span>
                                 <span *ngIf="!procurementLotFilters.amountMin">non definito</span>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center start">
@@ -59,7 +58,8 @@
                                 </div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="end start">
-                                <span *ngIf="procurementLotFilters.amountMax">{{ procurementLotFilters.amountMax | currency:'EUR' }}</span>
+                                <span *ngIf="procurementLotFilters.amountMax">{{ procurementLotFilters.amountMax |
+                                    currency:'EUR' }}</span>
                                 <span *ngIf="!procurementLotFilters.amountMax">illimitato</span>
                             </div>
                             <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
@@ -76,19 +76,23 @@
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <a class="nav-link" matRipple (click)="setFilterprocurementLot('procurementLotTypeCode', null)"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterprocurementLot('procurementLotTypeCode', null)"
                                 [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == null}">
                                 <span class="title">Tutto</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'FORNITURE')"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterProcurementLot('procurementLotTypeCode', 'FORNITURE')"
                                 [ngClass]="{'accent': procurementLotFilters.ippProcurementTypeCode == 'FORNITURE'}">
                                 <span class="title">Forniture</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'LAVORI')"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterProcurementLot('procurementLotTypeCode', 'LAVORI')"
                                 [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == 'LAVORI'}">
                                 <span class="title">Lavori</span>
                             </a>
-                            <a class="nav-link" matRipple (click)="setFilterProcurementLot('procurementLotTypeCode', 'SERVIZI')"
+                            <a class="nav-link" matRipple
+                                (click)="setFilterProcurementLot('procurementLotTypeCode', 'SERVIZI')"
                                 [ngClass]="{'accent': procurementLotFilters.procurementLotTypeCode == 'SERVIZI'}">
                                 <span class="title">Servizi</span>
                             </a>
@@ -125,13 +129,14 @@
                 Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
             </mat-card>
             -->
-            <aig-procurement-lot-list-table [displayColumns]="procurementLotDisplayColumns" [dataSource]="procurementLotDTOs">
+            <aig-procurement-lot-list-table [displayColumns]="procurementLotDisplayColumns"
+                [dataSource]="procurementLotDTOs">
             </aig-procurement-lot-list-table>
 
             <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="procurementLotIndex"
                 [pageSize]="procurementLotPageable.size" [pageSizeOptions]="[30, 100, 200]"
                 (page)="procurementLotPaginatorEvent($event)"></mat-paginator>
-    
+
 
             <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"
                 aria-label="add procurement lot">

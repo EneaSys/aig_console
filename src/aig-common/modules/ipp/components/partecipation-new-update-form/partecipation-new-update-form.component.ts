@@ -47,13 +47,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
     partecipationNewUpdateForm: FormGroup;
     
     filteredPartecipationType: Observable<IlPpPartecipationTypeDTO[]>;
-
     filteredEopoo: Observable<EopooDTO[]>;
-
     filteredProcurementLot: Observable<ProcurementLotDTO[]>;
     filteredPartecipationStatus: Observable<PartecipationStatusDTO[]>;
     
-
     ngOnInit(): void {
         this.partecipationNewUpdateForm = this._formBuilder.group({
             id: [''],
@@ -73,10 +70,8 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         
         this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationNewUpdateForm.controls['partecipationType'].valueChanges);
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationNewUpdateForm.controls['proposerEopoo'].valueChanges);
-
         this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLot'].valueChanges);
         this.filteredPartecipationStatus = this.ippAutocompleteService.filterPartecipationStatus(this.partecipationNewUpdateForm.controls['status'].valueChanges);
-
     }
 
     async submit() {
@@ -121,7 +116,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
+
 }

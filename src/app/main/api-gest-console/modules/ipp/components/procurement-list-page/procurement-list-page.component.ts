@@ -113,14 +113,12 @@ export class AigProcurementListPageComponent extends GenericComponent {
 
 	showAllProcurement() {
 		this.resetFiltersProcurement();
-
 	}
 
 	resetFiltersProcurement() {
 		this.procurementSearchFormGroup.reset();
 		this.clearFiltersProcurement();
 		this.searchProcurement(0);
-
 	}
 
 	procurementPaginationEvent(pageEvent: PageEvent) {

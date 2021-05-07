@@ -52,12 +52,12 @@
 
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippLotTypeCode }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.type.name }} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="category">
             <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippLotCategoryCode }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.category.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="cpvCode">

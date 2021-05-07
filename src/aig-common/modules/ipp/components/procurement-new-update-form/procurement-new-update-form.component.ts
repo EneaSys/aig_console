@@ -81,6 +81,7 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         }
 
         this._fuseProgressBarService.show();
+        
         this.setStep("loading");
 
         let procurement: any = this.procurementNewUpdateForm.value;
@@ -104,10 +105,12 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -119,7 +122,7 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
+
 }

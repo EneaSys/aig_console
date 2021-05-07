@@ -22,9 +22,8 @@
 
         <ng-container matColumnDef="companyPreparatorEopoo">
             <mat-header-cell *matHeaderCellDef>Company Preparator Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopoo }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopoo.genericEopoo ? e.companyPreparatorEopoo.genericEopoo.name : e.companyPreparatorEopoo.person.firstname + " " + e.companyPreparatorEopoo.person.lastname }} </mat-cell>
         </ng-container>
-
         
         <ng-container matColumnDef="note">
             <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
@@ -34,7 +33,7 @@
 
         <ng-container matColumnDef="partecipationProposerEopoo">
             <mat-header-cell *matHeaderCellDef>Partecipation Proposer Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. partecipationProposerEopoo }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.partecipation.proposerEopoo.genericEopoo ? e.partecipation.proposerEopoo.genericEopoo.name : e.partecipation.proposerEopoo.person.firstname + " " + e.partecipation.proposerEopoo.person.lastname }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="status">
@@ -45,7 +44,7 @@
 
         <ng-container matColumnDef="totalAmount">
             <mat-header-cell *matHeaderCellDef>Total Amount</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. totalAmount | currency:'EUR'}} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR'}} </mat-cell>
         </ng-container>
 
 

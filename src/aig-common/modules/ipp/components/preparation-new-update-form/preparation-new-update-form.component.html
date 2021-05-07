@@ -47,7 +47,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ preparationNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato una nuova preparation!</h1>
+        <p>Company Preparator Eopoo: {{ preparationNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo ? preparationNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo.name : preparationNewUpdateForm.controls.companyPreparatorEopoo.value.person.firstname + " " + preparationNewUpdateForm.controls.companyPreparatorEopoo.value.person.lastname }}</p>
+        <p>Note: {{ preparationNewUpdateForm.controls.note.value }}</p>
+        <p>Status: {{ preparationNewUpdateForm.controls.status.value.description }}</p>
+    </span>
+    
     <button *ngIf="!preparationNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newPreparation()">Create New</button>
+
+    <button [routerLink]="'/ipp/preparation/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

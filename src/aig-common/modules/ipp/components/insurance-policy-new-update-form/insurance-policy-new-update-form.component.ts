@@ -45,24 +45,20 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
     filteredInsurancePolicyStatus: Observable<InsurancePolicyStatusDTO[]>;
     filteredPartecipation: Observable<PartecipationDTO[]>;
 
-
     ngOnInit(): void {
         this.insurancePolicyNewUpdateForm = this._formBuilder.group({
             id:[''],
-
-            status:['',[Validators.required, AigValidator.haveId] ],
-            partecipation:['',[Validators.required, AigValidator.haveId] ],
-
-            companyPreparatorEopoo:['',[Validators.required, AigValidator.haveId] ],
-
+            companyPreparatorEopoo:['', [Validators.required, AigValidator.haveId] ],
             note:[''],
+            status:['', [Validators.required, AigValidator.haveId] ],
+            partecipation:['', [Validators.required, AigValidator.haveId] ],
             totalAmount:[''],
-            
         })
         
         if (this.insurancePolicy != null) {
             this.insurancePolicyNewUpdateForm.patchValue(this.insurancePolicy);
         }
+
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.insurancePolicyNewUpdateForm.controls['companyPreparatorEopoo'].valueChanges);
         this.filteredInsurancePolicyStatus = this.ippAutocompleteService.filterInsurancePolicyStatus(this.insurancePolicyNewUpdateForm.controls['status'].valueChanges);
         this.filteredPartecipation = this.ippAutocompleteService.filterPartecipation(this.insurancePolicyNewUpdateForm.controls['partecipation'].valueChanges);
@@ -81,7 +77,6 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
         insurancePolicy.statusId = this.insurancePolicyNewUpdateForm.value.status.id;
         insurancePolicy.companyPreparatorEopooCode = this.insurancePolicyNewUpdateForm.value.companyPreparatorEopoo.id;
 
-        console.log(this.insurancePolicy);
         try {
             let postOrPut: string;
 
@@ -109,8 +104,8 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
+    
 }

@@ -101,7 +101,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ procurementNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato un nuovo procurement!</h1>
+        <p>Code: {{ procurementNewUpdateForm.controls.code.value }}</p>
+        <p>Description: {{ procurementNewUpdateForm.controls.description.value }}</p>
+        <p>Ref: {{ procurementNewUpdateForm.controls.ref.value }}</p>
+        <p>Contractor Eopoo code: {{ procurementNewUpdateForm.controls.contractorEopoo.value.id }}</p>
+    </span>
+
     <button *ngIf="!procurementNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newProcurement()">Create New</button>
+
+    <button [routerLink]="'/ipp/procurement/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

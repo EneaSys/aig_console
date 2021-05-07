@@ -47,13 +47,9 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.designatedCompanyNewUpdateForm = this._formBuilder.group({
             id: [''],
-
             partecipation: ['', [Validators.required, AigValidator.haveId]],
-            
             companyEopoo: ['', [Validators.required, AigValidator.haveId]],
-            
             note: [''],
-        
         })
         
         if (this.designatedCompany != null) {

@@ -22,7 +22,7 @@
 
         <ng-container matColumnDef="contractorEopoo">
             <mat-header-cell *matHeaderCellDef> Ente </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.procurementLot.procurement.contractorEopooCode }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.procurement.contractorEopoo.genericEopoo ? e.procurementLot.procurement.contractorEopoo.genericEopoo.name : e.procurementLot.procurement.contractorEopoo.person.firstname + " " + e.procurementLot.procurement.contractorEopoo.person.lastname }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurementLotDescription">
@@ -37,9 +37,8 @@
 
          <ng-container matColumnDef="proposerEopooCode">
             <mat-header-cell *matHeaderCellDef> Proposer Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.proposerEopooCode }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.proposerEopoo.genericEopoo ? e.proposerEopoo.genericEopoo.name : e.proposerEopoo.person.firstname + " " + e.proposerEopoo.person.lastname }} </mat-cell>
         </ng-container>
-
 
         <ng-container matColumnDef="expiryDate">
             <mat-header-cell *matHeaderCellDef> Data di scadenza </mat-header-cell>
@@ -53,7 +52,7 @@
 
         <ng-container matColumnDef="ippLotCategoryCode">
             <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.procurementLot.ippLotCategoryCode }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procurementLot.category.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

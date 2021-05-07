@@ -44,26 +44,24 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.dossierNewUpdateForm = this._formBuilder.group({
             id:[''],
-
             
+            dossierCode: ['', Validators.required],
+            description: ['', Validators.required],
+
             partecipation: ['', [Validators.required, AigValidator.haveId] ],
+            procurement: ['',[Validators.required, AigValidator.haveId] ],
             preparation : ['', [Validators.required, AigValidator.haveId] ],
             procurementLot: ['',[Validators.required, AigValidator.haveId] ],
-            procurement: ['',[Validators.required, AigValidator.haveId] ],
-
-            description: ['', Validators.required],
-            dossierCode: ['', Validators.required],
-        
         })
         
         if (this.dossier != null) {
             this.dossierNewUpdateForm.patchValue(this.dossier);
         }
+
         this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.dossierNewUpdateForm.controls['procurementLot'].valueChanges);
         this.filteredProcurement = this.ippAutocompleteService.filterProcurement(this.dossierNewUpdateForm.controls['procurement'].valueChanges);
         this.filteredPartecipation = this.ippAutocompleteService.filterPartecipation(this.dossierNewUpdateForm.controls['partecipation'].valueChanges);
         this.filteredPreparation = this.ippAutocompleteService.filterPreparation(this.dossierNewUpdateForm.controls['preparation'].valueChanges);
-
     }
 
     async submit() {
@@ -80,7 +78,6 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
         dossier.partecipationId = this.dossierNewUpdateForm.value.partecipation.id;
         dossier.preparationId = this.dossierNewUpdateForm.value.preparation.id;
         
-        console.log(this.dossier);
         try {
             let postOrPut: string;
 
@@ -108,8 +105,7 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
 }

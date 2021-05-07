@@ -45,22 +45,19 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
     filteredPartecipation: Observable<PartecipationDTO[]>;
     filteredPreparationStatus: Observable<PreparationStatusDTO[]>;
 
-
     ngOnInit(): void {
         this.preparationNewUpdateForm = this._formBuilder.group({
             id: [''],
-
-            partecipation: ['',[Validators.required, AigValidator.haveId] ],
-            status: ['',[Validators.required, AigValidator.haveId] ],
-
             companyPreparatorEopoo: ['',[Validators.required, AigValidator.haveId] ],
-           
+            partecipation: ['',[Validators.required, AigValidator.haveId] ],
             note: [''],
+            status: ['',[Validators.required, AigValidator.haveId] ],
         })
         
         if (this.preparation != null) {
             this.preparationNewUpdateForm.patchValue(this.preparation);
         }
+        
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.preparationNewUpdateForm.controls['companyPreparatorEopoo'].valueChanges);
         this.filteredPartecipation = this.ippAutocompleteFilterService.filterPartecipation(this.preparationNewUpdateForm.controls['partecipation'].valueChanges);
         this.filteredPreparationStatus = this.ippAutocompleteFilterService.filterPreparationStatus(this.preparationNewUpdateForm.controls['status'].valueChanges);
@@ -107,7 +104,7 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
+
 }

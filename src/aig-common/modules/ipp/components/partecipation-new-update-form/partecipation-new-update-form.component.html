@@ -52,7 +52,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ partecipationNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato una nuova partecipation!</h1>
+        <p>Procurement Lot: {{ partecipationNewUpdateForm.controls.procurementLot.value.description }}</p>
+        <p>Status: {{ partecipationNewUpdateForm.controls.status.value.description }}</p>
+        <p>Tipo di partecipazione: {{ partecipationNewUpdateForm.controls.partecipationType.value.name }}</p>
+        <p>Proponente: {{ partecipationNewUpdateForm.controls.proposerEopoo.value.genericEopoo ? partecipationNewUpdateForm.controls.proposerEopoo.value.genericEopoo.name : partecipationNewUpdateForm.controls.proposerEopoo.value.person.firstname + " " + partecipationNewUpdateForm.controls.proposerEopoo.value.person.lastname }}</p>
+    </span>
+    
     <button *ngIf="!partecipationNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newPartecipation()">Create New</button>
+
+    <button [routerLink]="'/ipp/partecipation/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

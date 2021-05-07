@@ -46,19 +46,18 @@ partecipationDC: string[];
 
 	
 private initPartecipationSearch() {
-	this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"]
-
 	this.partecipationPaginationSize = 10;
-		
 
 	this.partecipationSearchFormGroup = this._formBuilder.group({
-		id: ['',Validators.required],
+		id: [''],
 		partecipationTypeCode: [''],
 		procurementLotCig: ['',Validators.required],
 		proposerEopooCode: [''],
 		siteInspection: [''],
 		status: ['',Validators.required],
 	});
+
+	this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"]	
 }
 
 private clearFiltersPartecipation() {
@@ -74,7 +73,7 @@ private async searchPartecipation(page: number) {
 	this.partecipationFilters.size = this.partecipationPaginationSize;
 
 	try {
-		this.partecipationLength = await this.partecipationResourceService.countPartecipationsUsingGET({}).toPromise();  
+		this.partecipationLength = await this.partecipationResourceService.countPartecipationsUsingGET(this.partecipationFilters).toPromise();  
 
 			if(this.partecipationLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -82,24 +81,20 @@ private async searchPartecipation(page: number) {
 				return;
 			}
 
-		    this.partecipationDTOs =  await this.partecipationResourceService.getAllPartecipationsUsingGET({}).toPromise();
+		    this.partecipationDTOs =  await this.partecipationResourceService.getAllPartecipationsUsingGET(this.partecipationFilters).toPromise();
 		} catch (e) {
 			this.partecipationError = e;
 		}
-	}
-
-	
+	}	
 
 showAllPartecipation() {
 	this.resetFiltersPartecipation();
-		
 }
 
 resetFiltersPartecipation() {
 	this.partecipationSearchFormGroup.reset();
 		this.clearFiltersPartecipation();
 		this.searchPartecipation(0);
-
 }
 
 partecipationPaginationEvent(pageEvent: PageEvent) {
@@ -117,11 +112,11 @@ partecipationSearchWithFilter() {
 		this.searchPartecipation(0);
 		return;
 	}
+
 	this.partecipationFilters.idEquals = null;
 
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
-
 	this.searchPartecipation(0);
+
 	}
 
 	//			---- !TABLE AND SEARCH SECTION ----
@@ -130,6 +125,4 @@ partecipationSearchWithFilter() {
         this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {} } });
     }
 
-	
 }
-
