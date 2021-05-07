@@ -52,7 +52,7 @@ export class AigAllegatiListPageComponent extends GenericComponent {
             id: [''],
         });
 
-        this.allegatiDC = ['id','fatturaElettronicaBody', 'descrizione', 'buttons'];
+        this.allegatiDC = ['id', 'fatturaElettronicaBody', 'descrizione', 'buttons'];
     }
 
     private clearFiltersAllegati() {
@@ -63,6 +63,7 @@ export class AigAllegatiListPageComponent extends GenericComponent {
     }
 
     private async searchAllegati(page: number) {
+        
         this.allegatiDTOs = null;
 
         this.allegatiFilters.page = page;
@@ -70,15 +71,14 @@ export class AigAllegatiListPageComponent extends GenericComponent {
 
         try {
             this.allegatiLength = await this.allegatiResourceService.countAllegatisUsingGET(this.allegatiFilters).toPromise();
-
+            console.log(this.allegatiLength);
+            
             if (this.allegatiLength == 0) {
                 this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
                 this.allegatiDTOs = [];
                 return;
             }
-
             this.allegatiDTOs = await this.allegatiResourceService.getAllAllegatisUsingGET(this.allegatiFilters).toPromise();
-            console.log(this.allegatiDTOs);
         } catch (e) {
             this.allegatiError = e;
         }

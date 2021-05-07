@@ -65,6 +65,7 @@ export class AigDatiPagamentoNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let datiPagamento: DatiPagamentoDTO = this.datiPagamentoNewUpdateForm.value;
+        datiPagamento.fatturaElettronicaBodyId = this.datiPagamentoNewUpdateForm.value.fatturaElettronicaBody.id;
 
         if(this.returnToParent) {
 			this.datiPagamentoOutput.emit(datiPagamento);

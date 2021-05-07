@@ -64,6 +64,7 @@ export class AigAllegatiNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let allegati: AllegatiDTO = this.allegatiNewUpdateForm.value;
+        allegati.fatturaElettronicaBodyId = this.allegatiNewUpdateForm.value.fatturaElettronicaBody.id;
 
         if(this.returnToParent) {
 			this.allegatiOutput.emit(allegati);

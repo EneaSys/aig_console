@@ -17,7 +17,7 @@
         
         <ng-container matColumnDef="fatturaElettronicaBody">
             <mat-header-cell *matHeaderCellDef> Numero Fattura </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.fatturaElettronicaBody | json}} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.fatturaElettronicaBody.numero }} </mat-cell>
         </ng-container>
       
         <ng-container matColumnDef="descrizione">

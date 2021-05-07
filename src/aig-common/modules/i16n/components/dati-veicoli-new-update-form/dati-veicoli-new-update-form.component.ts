@@ -64,6 +64,7 @@ export class AigDatiVeicoliNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let datiVeicoli: DatiVeicoliDTO = this.datiVeicoliNewUpdateForm.value;
+        datiVeicoli.fatturaElettronicaBodyId = this.datiVeicoliNewUpdateForm.value.fatturaElettronicaBody.id;
 
         if(this.returnToParent) {
 			this.datiVeicoliOutput.emit(datiVeicoli);
