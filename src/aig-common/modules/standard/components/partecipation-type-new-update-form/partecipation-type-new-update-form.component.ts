@@ -35,7 +35,9 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
         this.partecipationTypeNewUpdateForm = this._formBuilder.group({
             id: [''],
             description: ['', Validators.required],
-            value: [''],
+            name: [''],
+            code: [''],
+            wikiCode: [''],
         })
 
         if (this.partecipationType != null) {
