@@ -4,7 +4,8 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ procurementStatusDTO | json}}</pre>
+                <procurement-status-detail-box [procurementStatus]="procurementStatusDTO"></procurement-status-detail-box>
+
                 <button mat-stroked-button color="primary" (click)="editProcurementStatus(procurementStatusDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteProcurementStatus(procurementStatusDTO.id)">Delete</button>
             </div>

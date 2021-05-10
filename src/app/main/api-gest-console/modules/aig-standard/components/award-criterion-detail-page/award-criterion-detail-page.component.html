@@ -4,7 +4,8 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{awardCriterionDTO | json}}</pre>
+                <award-criterion-detail-box [awardCriterion]="awardCriterionDTO"></award-criterion-detail-box>
+
                 <button mat-stroked-button color="primary" (click)="editAwardCriterion(awardCriterionDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteAwardCriterion(awardCriterionDTO.id)">Delete</button>
             </div>

@@ -108,6 +108,10 @@ import { ProcurementStatusResolver } from './resolver/procurement-status.resolve
 import { AigProcurementLotStatusNewUpdateFormComponent } from './components/procurement-lot-status-new-update-form/procurement-lot-status-new-update-form.component';
 import { AigProcurementLotStatusListTableComponent } from './components/procurement-lot-status-list-table/procurement-lot-status-list-table.component';
 import { ProcurementLotStatusResolver } from './resolver/procurement-lot-status.resolver';
+import { AigAwardCriterionDetailBoxComponent } from './components/award-criterion-detail-box/award-criterion-detail-box.component';
+import { AigPartecipationTypeDetailBoxComponent } from './components/partecipation-type-detail-box/partecipation-type-detail-box.component';
+import { AigProcurementStatusDetailBoxComponent } from './components/procurement-status-detail-box /procurement-status-detail-box.component';
+import { AigProcurementLotStatusDetailBoxComponent } from './components/procurement-lot-status-detail-box/procurement-lot-status-detail-box.component';
 
 
 @NgModule({
@@ -188,7 +192,10 @@ import { ProcurementLotStatusResolver } from './resolver/procurement-lot-status.
         AigEntityDetailModalitaPagamentoComponent,
 
         AigIlPpProcurementStatusNewUpdateFormComponent,
-
+        AigAwardCriterionDetailBoxComponent,
+        AigPartecipationTypeDetailBoxComponent,
+        AigProcurementStatusDetailBoxComponent,
+        AigProcurementLotStatusDetailBoxComponent 
 
     ],
     imports: [ 
@@ -290,7 +297,10 @@ import { ProcurementLotStatusResolver } from './resolver/procurement-lot-status.
         AigEntityDetailModalitaPagamentoComponent,
 
         AigIlPpProcurementStatusNewUpdateFormComponent,
-   
+        AigAwardCriterionDetailBoxComponent,
+        AigPartecipationTypeDetailBoxComponent,
+        AigProcurementStatusDetailBoxComponent,
+        AigProcurementLotStatusDetailBoxComponent
 
     ],
     entryComponents: [
