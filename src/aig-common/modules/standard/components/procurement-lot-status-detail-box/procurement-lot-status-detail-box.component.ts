@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
-import { PartecipationStatusDTO } from 'aig-italianlegislation';
-import { IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotStatusDTO, IlPpProcurementStatusDTO } from 'aig-standard';
+import {IlPpProcurementLotStatusDTO} from 'aig-standard';
 
 
 

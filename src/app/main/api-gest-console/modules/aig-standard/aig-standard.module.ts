@@ -220,6 +220,9 @@ import { AigProcurementLotStatusDetailPageComponent } from './components/procure
         AigAwardCriterionNewUpdateDialogComponent,
         AigProcurementStatusNewUpdateDialogComponent,
         AigPartecipationTypeNewUpdateDialogComponent,
+        AigProcurementStatusNewUpdateDialogComponent,
+        AigProcurementLotStatusNewUpdateDialogComponent,
+
       
     
     ],

@@ -67,6 +67,9 @@ import { AigPartecipationTypeDetailPageComponent } from './components/partecipat
 import { AigProcurementStatusListPageComponent } from './components/procurement-status-list-page/procurement-status-list-page.component';
 import { AigProcurementStatusDetailPageComponent } from './components/procurement-status-detail-page/procurement-status-detail-page.component';
 import { ProcurementStatusResolver } from 'aig-common/modules/standard/resolver/procurement-status.resolver';
+import { AigProcurementLotStatusListPageComponent } from './components/procurement-lot-status-list-page/procurement-lot-status-list-page.component';
+import { AigProcurementLotStatusDetailPageComponent } from './components/procurement-lot-status-detail-page/procurement-lot-status-detail-page.component';
+import { ProcurementLotStatusResolver } from 'aig-common/modules/standard/resolver/procurement-lot-status.resolver';
 
 export const aigStandardRoute: Routes = [
     {
@@ -237,6 +240,30 @@ export const aigStandardRoute: Routes = [
                         canActivate: [AuthGuardService],
                         resolve: {
                             procurementStatus: ProcurementStatusResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'procurement-lot-status',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigProcurementLotStatusListPageComponent,
+                        canActivate: [AuthGuardService],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigProcurementLotStatusDetailPageComponent,
+                        canActivate: [AuthGuardService],
+                        resolve: {
+                            procurementLotStatus: ProcurementLotStatusResolver,
                         },
                     },
                 ]

@@ -34,7 +34,7 @@ export class AigProcurementLotStatusListTableComponent implements OnInit {
 
         try {
             await this.procurementLotStatusResourceService.deleteIlPpProcurementLotStatusUsingDELETE(id).toPromise();
-            this._snackBar.open(`Procurement Status: '${id}' deleted.`, null, { duration: 2000, });
+            this._snackBar.open(`Procurement Lot Status: '${id}' deleted.`, null, { duration: 2000, });
 
             this.eventService.reloadCurrentPage();
         } catch (e) {

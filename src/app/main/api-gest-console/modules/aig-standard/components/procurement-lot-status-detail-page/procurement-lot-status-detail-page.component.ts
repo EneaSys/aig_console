@@ -8,7 +8,6 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AigProcurementStatusNewUpdateDialogComponent } from '../procurement-status-new-update-dialog/procurement-status-new-update-dialog.component';
 import { AigProcurementLotStatusNewUpdateDialogComponent } from '../procurement-lot-status-new-update-dialog/procurement-lot-status-new-update-dialog.component';
 
 
@@ -28,13 +27,13 @@ export class AigProcurementLotStatusDetailPageComponent extends GenericComponent
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    procurementLotStatusDTO: IlPpProcurementLotStatusDTO;
+    procurementLotStatus: IlPpProcurementLotStatusDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
-            this.procurementLotStatusDTO = this.route.snapshot.data.procurementLotStatus;
+            this.procurementLotStatus = this.route.snapshot.data.procurementLotStatus;
         } else {
-            this.procurementLotStatusDTO = await this.procurementLotStatusResourceService.getIlPpProcurementLotStatusUsingGET(this.procurementLotStatusDTO.id).toPromise();
+            this.procurementLotStatus = await this.procurementLotStatusResourceService.getIlPpProcurementLotStatusUsingGET(this.procurementLotStatus.id).toPromise();
         }
     }
 

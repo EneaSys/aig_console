@@ -299,6 +299,16 @@ export const contextNavigation: FuseNavigation[] = [
 					},
 					{
 						id       : '',
+						title    : 'Procurement Lot Status',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/procurement-lot-status',
+						permission: ['e4y.account.get'],
+					},
+
+					
+					{
+						id       : '',
 						title    : 'Ipp Modality',
 						type     : 'item',
 						icon     : 'arrow_right',

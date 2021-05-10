@@ -4,10 +4,10 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <procurement-lot-status-detail-box [procurementLotStatus]="procurementLotStatusDTO"></procurement-lot-status-detail-box>
+                <procurement-lot-status-detail-box [procurementLotStatus]="procurementLotStatus"></procurement-lot-status-detail-box>
 
-                <button mat-stroked-button color="primary" (click)="editProcurementLotStatus(procurementLotStatusDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteProcurementLotStatus(procurementLotStatusDTO.id)">Delete</button>
+                <button mat-stroked-button color="primary" (click)="editProcurementLotStatus(procurementLotStatus)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteProcurementLotStatus(procurementLotStatus.id)">Delete</button>
             </div>
         </div>
     </div>
