@@ -49,11 +49,13 @@ export class AigCpvListPageComponent extends GenericComponent {
 
 		this.cpvSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.cpvDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.cpvDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersCpv() {

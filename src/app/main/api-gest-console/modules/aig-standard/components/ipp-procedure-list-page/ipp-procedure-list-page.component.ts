@@ -49,11 +49,13 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 
 		this.ippProcedureSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.ippProcedureDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.ippProcedureDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppProcedure() {

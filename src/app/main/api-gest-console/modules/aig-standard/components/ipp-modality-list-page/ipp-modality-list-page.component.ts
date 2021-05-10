@@ -49,11 +49,13 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 
 		this.ippModalitySearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.ippModalityDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.ippModalityDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppModality() {

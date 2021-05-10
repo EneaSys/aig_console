@@ -49,11 +49,13 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 
 		this.ippLotCategorySearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.ippLotCategoryDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.ippLotCategoryDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppLotCategory() {

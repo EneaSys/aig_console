@@ -49,11 +49,13 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 
 		this.ippSectorSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.ippSectorDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.ippSectorDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppSector() {

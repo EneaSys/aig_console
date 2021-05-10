@@ -39,6 +39,7 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.cityNewUpdateForm = this._formBuilder.group({
             id: [''],
+            description: [''],
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['']

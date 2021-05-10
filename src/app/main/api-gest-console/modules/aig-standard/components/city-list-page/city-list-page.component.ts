@@ -51,9 +51,11 @@ export class AigCityListPageComponent extends GenericComponent {
 			id: [''],
 			name: [''],
 			code: [''],
+			wikiCode: [''],
+			description: [''],
 		});
 
-		this.cityDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.cityDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersCity() {

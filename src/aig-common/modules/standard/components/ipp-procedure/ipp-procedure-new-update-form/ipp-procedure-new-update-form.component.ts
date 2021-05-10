@@ -33,6 +33,7 @@ export class AigIppProcedureNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.ippProcedureNewUpdateForm = this._formBuilder.group({
             id:[''],
+            description:[''],
             name: ['', Validators.required],
             code: ['', Validators.required],
             wikiCode:['']

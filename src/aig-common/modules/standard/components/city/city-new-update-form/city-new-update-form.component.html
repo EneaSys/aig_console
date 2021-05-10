@@ -10,6 +10,13 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Descrizione</mat-label>
+            <input name="name" formControlName="description" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
             <mat-label>Code</mat-label>
             <input name="code" formControlName="code" matInput required>
         </mat-form-field>
@@ -19,7 +26,6 @@
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Wiki Code</mat-label>
             <input name="wikiCode" formControlName="wikiCode" matInput>
-            <mat-error>Indicare il nome del tipo anagrafica!</mat-error>
         </mat-form-field>
     </div>
 

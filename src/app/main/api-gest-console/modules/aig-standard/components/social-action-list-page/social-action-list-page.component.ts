@@ -49,11 +49,13 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 
 		this.socialActionSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.socialActionDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.socialActionDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
     }
     
     private clearFiltersSocialAction() {

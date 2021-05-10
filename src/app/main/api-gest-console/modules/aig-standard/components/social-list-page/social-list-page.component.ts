@@ -49,11 +49,13 @@ export class AigSocialListPageComponent extends GenericComponent {
 
 		this.socialSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			description: [''],
 			name: [''],
 			code: [''],
+			wikiCode: [''],
 		});
 
-		this.socialDC = ['id', 'code', 'name', 'wikiCode', 'buttons'];
+		this.socialDC = ['id','description', 'code', 'name', 'wikiCode', 'buttons'];
     }
     
     private clearFiltersSocial() {
