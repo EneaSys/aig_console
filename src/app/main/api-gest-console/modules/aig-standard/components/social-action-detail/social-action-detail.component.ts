@@ -31,7 +31,7 @@ export class AigSocialActionDetailPageComponent extends GenericComponent {
     async loadComponent() {
         if (this.firstLoad) {
             this.socialAction = this.route.snapshot.data.socialAction;
-            console.log(this.socialAction);
+        
         } else {
             this.socialAction = await this.socialActionResourceService.getSocialActionUsingGET(this.socialAction.id).toPromise();
         }

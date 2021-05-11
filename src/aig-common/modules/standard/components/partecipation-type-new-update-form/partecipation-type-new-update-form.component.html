@@ -2,25 +2,28 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Code</mat-label>
+            <input name="code" formControlName="code" matInput required>
+        </mat-form-field>
+    </div>
+   
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nome</mat-label>
+            <input name="name" formControlName="name" matInput >
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
             <mat-label>Descrizione</mat-label>
             <input name="description" formControlName="description" matInput required>
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Name</mat-label>
-            <input name="name" formControlName="name" matInput >
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Code</mat-label>
-            <input name="code" formControlName="code" matInput >
-        </mat-form-field>
-    </div>
-
+    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>WikiCode</mat-label>

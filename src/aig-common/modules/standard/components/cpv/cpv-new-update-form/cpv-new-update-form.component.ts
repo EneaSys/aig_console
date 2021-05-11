@@ -33,10 +33,10 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.cpvNewUpdateForm = this._formBuilder.group({
             id: [''],
-            description: [''],
-            name: ['', Validators.required],
             code: ['', Validators.required],
-            wikiCode: [''],
+            name: ['', Validators.required],
+            description: [''],
+            wikiCode:['']
         })
 
         if (this.cpv != null) {

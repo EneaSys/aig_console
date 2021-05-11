@@ -44,16 +44,16 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 	tipoCessionePrestazioneLength: number;
 
 	private initTipoCessionePrestazioneSearch() {
-		this.tipoCessionePrestazioneDC = ["id", "name","code","description","wikiCode","buttons"];
+		this.tipoCessionePrestazioneDC = ['id','code', 'name','description','wikiCode', 'buttons'];
 
 		this.tipoCessionePrestazionePaginationSize = 10;
 		
 
 		this.tipoCessionePrestazioneSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
 			description: [''],
+			name: [''],
 			wikiCode: [''],
 		});
 	}

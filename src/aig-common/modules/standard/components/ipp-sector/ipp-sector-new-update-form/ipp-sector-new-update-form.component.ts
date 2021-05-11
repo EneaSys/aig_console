@@ -31,10 +31,10 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.ippSectorNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            description:[''],
-            name: ['', Validators.required],
+            id: [''],
             code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
             wikiCode:['']
         })
 

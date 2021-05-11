@@ -49,13 +49,13 @@ export class AigProcurementStatusListPageComponent extends GenericComponent {
 
 		this.procurementStatusSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			code: [''],
 			description: [''],
 			name: [''],
-			code: [''],
 			wikiCode: [''],
 		});
 
-		this.procurementStatusDC = ['id', 'description', 'name','code','wikiCode', 'buttons'];
+		this.procurementStatusDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersProcurementStatus() {

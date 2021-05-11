@@ -34,8 +34,9 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.ippLotTypeNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', Validators.required],
             code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
             wikiCode:['']
         })
 

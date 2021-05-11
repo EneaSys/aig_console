@@ -32,11 +32,11 @@ export class AigProcurementStatusNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.procurementStatusNewUpdateForm = this._formBuilder.group({
-            id:[''],
+            id: [''],
+            code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            code: [''],
-            wikiCode: [''],
+            wikiCode:['']
         })
         
         if (this.procurementStatus != null) {

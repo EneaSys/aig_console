@@ -55,7 +55,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippLotTypeDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
+		this.ippLotTypeDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppLotType() {

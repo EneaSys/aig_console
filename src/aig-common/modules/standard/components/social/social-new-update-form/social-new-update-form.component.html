@@ -2,10 +2,19 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Social Name</mat-label>
-            <input name="name" formControlName="name" matInput required>
+            <mat-label>Code</mat-label>
+            <input name="code" formControlName="code" matInput required>
         </mat-form-field>
     </div>
+   
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Nome</mat-label>
+            <input name="name" formControlName="name" matInput >
+        </mat-form-field>
+    </div>
+
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -14,19 +23,14 @@
         </mat-form-field>
     </div>
 
+    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Code</mat-label>
-            <input name="code" formControlName="code" matInput required>
+            <mat-label>WikiCode</mat-label>
+            <input name="wikiCode" formControlName="wikiCode" matInput >
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Wiki Code</mat-label>
-            <input name="wikicode" formControlName="wikiCode" matInput>
-        </mat-form-field>
-    </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
         <button type="submit" mat-raised-button color="accent">Crea</button>

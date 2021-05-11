@@ -49,13 +49,13 @@ export class AigCityListPageComponent extends GenericComponent {
 
 		this.citySearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
-			wikiCode: [''],
 			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.cityDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
+		this.cityDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersCity() {

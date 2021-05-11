@@ -34,10 +34,10 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.awardCriterionNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: [''],
-            description: ['', Validators.required],
-            name: [''],
-            wikiCode: [''],
+            code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
+            wikiCode:['']
         })
 
         if (this.awardCriterion != null) {

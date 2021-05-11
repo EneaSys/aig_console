@@ -55,7 +55,7 @@ export class AigCpvListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.cpvDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
+		this.cpvDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersCpv() {

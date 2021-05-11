@@ -38,11 +38,11 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
 
     ngOnInit(): void {
         this.tipoScontoMaggiorazioneNewUpdateForm = this._formBuilder.group({
-            id:[''],
+            id: [''],
+            code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            code: [''],
-            wikiCode: [''],
+            wikiCode:['']
         })
         if (this.tipoScontoMaggiorazione!= null) {
             this.tipoScontoMaggiorazioneNewUpdateForm.patchValue(this.tipoScontoMaggiorazione);

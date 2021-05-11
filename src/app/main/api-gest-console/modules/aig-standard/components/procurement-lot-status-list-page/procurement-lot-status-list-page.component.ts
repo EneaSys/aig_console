@@ -50,13 +50,13 @@ export class AigProcurementLotStatusListPageComponent extends GenericComponent {
 
 		this.procurementLotStatusSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			code: [''],
 			description: [''],
 			name: [''],
-			code: [''],
 			wikiCode: [''],
 		});
 
-		this.procurementLotStatusDC = ['id', 'description', 'name','code','wikiCode', 'buttons'];
+		this.procurementLotStatusDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersProcurementLotStatus() {

@@ -111,6 +111,7 @@ import { AigAwardCriterionDetailBoxComponent } from './components/award-criterio
 import { AigPartecipationTypeDetailBoxComponent } from './components/partecipation-type-detail-box/partecipation-type-detail-box.component';
 import { AigProcurementStatusDetailBoxComponent } from './components/procurement-status-detail-box /procurement-status-detail-box.component';
 import { AigProcurementLotStatusDetailBoxComponent } from './components/procurement-lot-status-detail-box/procurement-lot-status-detail-box.component';
+import { AigSocialActionDetailBoxComponent } from './components/social-action-detail-box/social-action-detail-box.component';
 
 
 @NgModule({
@@ -194,7 +195,8 @@ import { AigProcurementLotStatusDetailBoxComponent } from './components/procurem
         AigAwardCriterionDetailBoxComponent,
         AigPartecipationTypeDetailBoxComponent,
         AigProcurementStatusDetailBoxComponent,
-        AigProcurementLotStatusDetailBoxComponent 
+        AigProcurementLotStatusDetailBoxComponent,
+        AigSocialActionDetailBoxComponent,
 
     ],
     imports: [ 
@@ -299,7 +301,9 @@ import { AigProcurementLotStatusDetailBoxComponent } from './components/procurem
         AigAwardCriterionDetailBoxComponent,
         AigPartecipationTypeDetailBoxComponent,
         AigProcurementStatusDetailBoxComponent,
-        AigProcurementLotStatusDetailBoxComponent
+        AigProcurementLotStatusDetailBoxComponent,
+        AigSocialActionDetailBoxComponent,
+        AigEntityDetailRegimeFiscaleComponent,
 
     ],
     entryComponents: [

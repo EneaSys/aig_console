@@ -97,6 +97,7 @@ import { AigProcurementLotStatusDetailPageComponent } from './components/procure
 
         AigStandardCustomListPageComponent,
 
+
         AigProcurementLotStatusListPageComponent,
         AigProcurementLotStatusNewUpdateDialogComponent,
         AigProcurementLotStatusDetailPageComponent,

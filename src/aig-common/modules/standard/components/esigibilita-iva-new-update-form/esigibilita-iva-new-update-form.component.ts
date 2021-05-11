@@ -38,11 +38,11 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.esigibilitaIvaNewUpdateForm = this._formBuilder.group({
-            id:[''],
+            id: [''],
+            code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            code: [''],
-            wikiCode: [''],
+            wikiCode:['']
 
         })
         if (this.esigibilitaIva!= null) {

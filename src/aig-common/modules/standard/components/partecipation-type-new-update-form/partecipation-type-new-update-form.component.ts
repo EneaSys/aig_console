@@ -34,10 +34,10 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.partecipationTypeNewUpdateForm = this._formBuilder.group({
             id: [''],
-            description: ['', Validators.required],
-            name: [''],
-            code: [''],
-            wikiCode: [''],
+            code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
+            wikiCode:['']
         })
 
         if (this.partecipationType != null) {

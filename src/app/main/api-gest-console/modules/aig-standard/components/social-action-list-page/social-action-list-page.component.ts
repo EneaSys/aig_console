@@ -55,7 +55,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.socialActionDC = ['id','description', 'code', 'name','wikiCode', 'buttons'];
+		this.socialActionDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersSocialAction() {

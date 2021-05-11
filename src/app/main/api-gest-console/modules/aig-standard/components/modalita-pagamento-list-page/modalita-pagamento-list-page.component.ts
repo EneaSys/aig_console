@@ -47,16 +47,16 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
 
     
     private initModalitaPagamentoSearch() {
-		this.modalitaPagamentoDC = ["id", "name","code","description","wikiCode","buttons"];
+		this.modalitaPagamentoDC = ['id','code', 'name','description','wikiCode', 'buttons'];
 
 		this.modalitaPagamentoPaginationSize = 10;
 		
 
 		this.modalitaPagamentoSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
 			description: [''],
+			name: [''],
 			wikiCode: [''],
 			
 		});

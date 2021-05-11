@@ -38,11 +38,11 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.naturaNewUpdateForm = this._formBuilder.group({
-            id:[''],
+            id: [''],
+            code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            code: [''],
-            wikiCode: [''],
+            wikiCode:[''],
 
         })
         if (this.natura!= null) {

@@ -34,9 +34,9 @@ export class AigIppModalityNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.ippModalityNewUpdateForm = this._formBuilder.group({
             id: [''],
-            description: [''],
-            name: ['', Validators.required],
             code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
             wikiCode:['']
         })
 
