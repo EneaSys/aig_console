@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ProducerDTO, WarehouseDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -17,13 +17,13 @@ import { AigWarehouseNewUpdateModalComponent } from '../warehouse-new-update-mod
 })
 export class AigWarehouseHandlingItemListPageComponent extends GenericComponent {
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
 		private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
     ) { super(aigGenericComponentService) }
 
 	@Input()
@@ -81,8 +81,8 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 
 	private clearFiltersWarehouseHandlingItem() {
 		this.warehouseHandlingItemFilters = {
-			idEquals: null,
-			nameContains: null,
+			warehouseHandlingItemIDEquals: null,
+			warehouseHandlingItemNameContains: null,
 			page: 0,
 		}
 	}
@@ -132,7 +132,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 		if(searchedId != null) {
 			this.clearFiltersWarehouseHandlingItem();
 			this.warehouseHandlingItemSearchFormGroup.reset();
-			this.warehouseHandlingItemFilters.idEquals = searchedId;
+			this.warehouseHandlingItemFilters.warehouseHandlingItemIDEquals = searchedId;
 			this.searchWarehouseHandlingItem(0);
 			return;
 		}
@@ -152,7 +152,7 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 		if(this.warehouseHandlingItemSearchFormGroup.controls.warehouseToUnload.value){
 			this.warehouseHandlingItemFilters.warehouseToUnloadIdEquals = this.warehouseHandlingItemSearchFormGroup.controls.warehouseToUnload.value.id;
 		}*/
-		this.warehouseHandlingItemFilters.idEquals = null;
+		this.warehouseHandlingItemFilters.warehouseHandlingItemIDEquals = null;
 
 		
 

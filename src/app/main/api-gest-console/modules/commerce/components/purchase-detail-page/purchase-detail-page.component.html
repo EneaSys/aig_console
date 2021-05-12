@@ -38,6 +38,13 @@
         <div class="widget p-16" fxFlex.gt-sm="60">
             <div class="fuse-card auto-width p-16">
                 <aig-purchase-item-list-table [dataSource]="purchaseItemDTOs" [displayColumns]="purchaseItemDC" [error]="purchaseItemError"></aig-purchase-item-list-table>
+
+                <div style="height: 35px;"></div>
+
+                <button mat-fab class="accent" id="add-purchase-item-button"
+                    (click)="addPurchaseItem(purchaseItemDTO)" aria-label="add purchase item">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
         </div>
 

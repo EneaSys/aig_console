@@ -55,8 +55,8 @@ export class AigProducerListPageComponent extends GenericComponent {
 
 	private clearFiltersProducer() {
 		this.producerFilters = {
-			idEquals: null,
-			nameContains: null,
+			producerIDEquals: null,
+			producerNameContains: null,
 			page: 0,
 		}
 	}
@@ -102,13 +102,13 @@ export class AigProducerListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersProducer();
 			this.producerSearchFormGroup.reset();
-			this.producerFilters.idEquals = searchedId;
+			this.producerFilters.producerIDEquals = searchedId;
 			this.searchProducer(0);
 			return;
 		}
-		this.producerFilters.idEquals = null;
+		this.producerFilters.producerIDEquals = null;
 
-		this.producerFilters.nameContains = this.producerSearchFormGroup.controls.name.value;
+		this.producerFilters.producerNameContains = this.producerSearchFormGroup.controls.name.value;
 
 		this.searchProducer(0);
 	}

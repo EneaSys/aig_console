@@ -1,6 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSnackBarModule, MatTableModule, MatToolbarModule } from "@angular/material";
+import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatToolbarModule } from "@angular/material";
 import { RouterModule } from "@angular/router";
 import { FuseSidebarModule } from "@fuse/components";
 import { FuseSharedModule } from "@fuse/shared.module";
@@ -21,6 +21,7 @@ import { AigContextUserNewUpdateModalComponent } from "./components/context-user
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
 import { AigEntityReferenceNewUpdateModalComponent } from "./components/entity-reference-new-update-modal/entity-reference-new-update-modal.component";
+import { AigManagementCustomListPageComponent } from "./components/management-custom-list-page/management-custom-list-page.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigPermissionNewUpdateModalComponent } from "./components/permission-new-update-modal/permission-new-update-modal.component";
@@ -61,6 +62,7 @@ import { managementRoute } from "./management.route";
         MatToolbarModule,
 		MatProgressSpinnerModule,
 		MatPaginatorModule,
+        MatTabsModule,
     ],
     declarations: [
     
@@ -97,6 +99,8 @@ import { managementRoute } from "./management.route";
         AigTenantContextNewUpdateModalComponent,       
 
         AigAssociateRoleToPermissionDialogComponent,
+
+        AigManagementCustomListPageComponent,
     ],
     exports: [ ],
     providers: [ ],

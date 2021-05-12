@@ -61,8 +61,8 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
 
 	private clearFiltersFiscalTransaction() {
 		this.fiscalTransactionFilters = {
-			idEquals: null,
-			nameContains: null,
+			fiscalTransactionIDEquals: null,
+			fiscalTransactionNameContains: null,
 			page: 0,
 		}
 	}
@@ -112,13 +112,13 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersFiscalTransaction();
 			this.fiscalTransactionSearchFormGroup.reset();
-			this.fiscalTransactionFilters.idEquals = searchedId;
+			this.fiscalTransactionFilters.fiscalTransactionIDEquals = searchedId;
 			this.searchFiscalTransaction(0);
 			return;
 		}
-		this.fiscalTransactionFilters.idEquals = null;
+		this.fiscalTransactionFilters.fiscalTransactionIDEquals = null;
 
-		this.fiscalTransactionFilters.nameContains = this.fiscalTransactionSearchFormGroup.controls.name.value;
+		this.fiscalTransactionFilters.fiscalTransactionNameContains = this.fiscalTransactionSearchFormGroup.controls.name.value;
 
 		this.searchFiscalTransaction(0);
 	}

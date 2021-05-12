@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { BuyerDTO, BuyerResourceService, EopooDTO, SellerDTO, SellerResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer
 export class AigBuyerListPageComponent extends GenericComponent {
 
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private buyerResourceService: BuyerResourceService,
 		private sellerResourceService: SellerResourceService,
 		private _formBuilder: FormBuilder,
@@ -66,6 +66,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 
 
+
 	private initBuyerSearch() {
 		this.buyerDC = ["id", "buyer", "statusNote" ,"buttons"];
 
@@ -84,8 +85,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 	private clearFiltersBuyer() {
 		this.buyerFilters = {
-			idEquals: null,
-			sellerIdEquals: this.staticSeller ? this.staticSeller.id : null,
+			buyerIDEquals: null,
+			sellerIDEquals: this.staticSeller ? this.staticSeller.id : null,
 			statusNoteContains: null,
 			page: 0,
 		}
@@ -96,7 +97,7 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 		this.buyerFilters.page = page;
 		this.buyerFilters.size = this.buyerPaginationSize;
-		this.buyerFilters.idEquals = null;
+		this.buyerFilters.buyerIdEquals = null;
 
 		
 		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.buyerSearchFormGroup.controls['seller'].valueChanges);
@@ -141,12 +142,12 @@ export class AigBuyerListPageComponent extends GenericComponent {
 		if (searchedId != null) {
 			this.clearFiltersBuyer();
 			this.buyerSearchFormGroup.reset();
-			this.buyerFilters.idEquals = searchedId;
+			this.buyerFilters.buyerIDEquals = searchedId;
 			this.searchBuyer(0);
 			return;
 		} else {
 			if(this.buyerSearchFormGroup.controls.seller.value){
-				this.buyerFilters.sellerIdEquals = this.buyerSearchFormGroup.controls.seller.value.id;
+				this.buyerFilters.sellerIDEquals = this.buyerSearchFormGroup.controls.seller.value.id;
 			}
 
 			if(this.buyerSearchFormGroup.controls.statusNote.value){
@@ -160,8 +161,8 @@ export class AigBuyerListPageComponent extends GenericComponent {
 
 	//			---- !BUYER TABLE AND SEARCH SECTION ----
 
-	newBuyer(): void {
-		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: {} } });
+	newBuyer(sellerDTO: SellerDTO ): void {
+		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { seller: sellerDTO } });
 	}
 
 }

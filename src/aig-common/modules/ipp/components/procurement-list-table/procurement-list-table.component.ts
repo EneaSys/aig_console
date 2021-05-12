@@ -3,7 +3,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ProcurementDTO, ProcurementResourceService } from 'aig-italian-public-procurement';
+import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
 import { AigProcurementNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-new-update-dialog/procurement-new-update-dialog.component';
 import { AigProcurementNewUpdateFormComponent } from '../procurement-new-update-form/procurement-new-update-form.component';
 
@@ -24,7 +24,7 @@ export class AigProcurementListTableComponent implements OnInit {
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
 

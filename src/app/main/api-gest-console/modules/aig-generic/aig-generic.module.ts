@@ -18,7 +18,18 @@ import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopo
 import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
+import { AigGenericEopooNewUpdateDialogComponent } from './components/generic-eopoo-new-update-dialog/generic-eopoo-new-update-dialog.component';
+import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
+import { AigAddressDetailPageComponent } from './components/address-detail-page/address-detail-page.component';
+import { GenericEopooDetailPageComponent } from './components/generic-eopoo-detail-page/generic-eopoo-detail-page.component';
+import { AigReferentListPageComponent } from './components/referent-list-page/referent-list-page.component';
+import { AigReferentNewUpdateDialogComponent } from './components/referent-new-update-dialog/referent-new-update-dialog.component';
+import { AigReferentDetailPageComponent } from './components/referent-detail-page/referent-detail-page.component';
+import { AigContactListPageComponent } from './components/contact-list-page/contact-list-page.component';
+import { AigContactNewUpdateDialogComponent } from './components/contact-new-update-dialog/contact-new-update-dialog.component';
+import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
 
 @NgModule({
     imports: [
@@ -40,6 +51,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
         MatPaginatorModule,
         MatFormFieldModule,
         MatInputModule,
+        MatAutocompleteModule,
     ],
     declarations: [
         AigGenericHeaderComponent,
@@ -51,14 +63,30 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
         AigEopooTypeListPageComponent,
         AigEopooTypeDetailPageComponent,
         AigEopooTypeNewUpdateModalComponent,
-        AigEopooDetailPageComponent,
+
+        AigGenericEopooListPageComponent,
+        GenericEopooDetailPageComponent,
+        AigGenericEopooNewUpdateDialogComponent,
+
+        AigAddressListPageComponent,
+        AigAddressDetailPageComponent,
         AigAddressNewUpdateModalComponent,
+
+        AigReferentListPageComponent,
+        AigReferentDetailPageComponent,
+        AigReferentNewUpdateDialogComponent,
+
+        AigContactListPageComponent,
+        AigContactDetailPageComponent,
+        AigContactNewUpdateDialogComponent,
     ],
     entryComponents: [
         AigEopooNewModalComponent,
         AigEopooTypeNewUpdateModalComponent,
-        AigEopooDetailPageComponent,
+        AigGenericEopooNewUpdateDialogComponent,
         AigAddressNewUpdateModalComponent,
+        AigReferentNewUpdateDialogComponent,
+        AigContactNewUpdateDialogComponent,
     ],
     exports: [
 

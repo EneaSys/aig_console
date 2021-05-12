@@ -1,0 +1,63 @@
+<form *ngIf="step.form" [formGroup]="preparationNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Company Preparator Eopoo</mat-label>
+            <input formControlName="companyPreparatorEopoo" matInput [matAutocomplete]="companyPreparatorEopooAutocomplete">
+            <mat-autocomplete #companyPreparatorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Partecipation</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
+            <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Note</mat-label>
+            <input formControlName="note" matInput>
+        </mat-form-field>
+    </div>
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete">
+                <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationStatusDisplayFn">
+                    <mat-option *ngFor="let preparationStatus of filteredPreparationStatus | async" [value]="preparationStatus">{{ preparationStatus.description }}</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>  
+        
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+
+    <span>
+        <h1>Hai creato una nuova preparation!</h1>
+        <p>Company Preparator Eopoo: {{ preparationNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo ? preparationNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo.name : preparationNewUpdateForm.controls.companyPreparatorEopoo.value.person.firstname + " " + preparationNewUpdateForm.controls.companyPreparatorEopoo.value.person.lastname }}</p>
+        <p>Note: {{ preparationNewUpdateForm.controls.note.value }}</p>
+        <p>Status: {{ preparationNewUpdateForm.controls.status.value.description }}</p>
+    </span>
+    
+    <button *ngIf="!preparationNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newPreparation()">Create New</button>
+
+    <button [routerLink]="'/ipp/preparation/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
+</div>

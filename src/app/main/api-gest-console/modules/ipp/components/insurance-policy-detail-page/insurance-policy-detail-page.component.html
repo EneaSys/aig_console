@@ -1,0 +1,17 @@
+<div id="aig-insurance-policy-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Insurance Policy</div>
+                <div class="h1 m-16">ID:{{ insurancePolicyDTO.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Note:{{insurancePolicyDTO.note}}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Importo:{{insurancePolicyDTO.totalAmount | currency:'EUR'}}</div>
+
+                <button mat-stroked-button color="primary" (click)="editInsurancePolicy(insurancePolicyDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteInsurancePolicy(insurancePolicyDTO.id)">Delete</button>
+
+            </div>
+        </div>
+    </div>
+</div>

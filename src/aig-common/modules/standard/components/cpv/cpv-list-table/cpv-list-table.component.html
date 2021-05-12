@@ -15,14 +15,19 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="code">
-            <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Descrizione </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="wikiCode">

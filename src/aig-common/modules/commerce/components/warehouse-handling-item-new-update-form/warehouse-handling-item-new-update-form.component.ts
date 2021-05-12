@@ -4,8 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { InventoryItemCombinationDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -22,13 +22,13 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
 
 
     constructor(
-        public autocompleteDisplayService: AigAutocompleteDisplayService,
+        public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
         private eventService: EventService,
-        private commerceAutocompleteService: AigCommerceAutocompleteService,
+        private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
     ) { }
 
     @Input()
@@ -130,6 +130,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
 			}
 		}
 
+        this.eventService.reloadCurrentPage();
         this._fuseProgressBarService.hide();
     }
 

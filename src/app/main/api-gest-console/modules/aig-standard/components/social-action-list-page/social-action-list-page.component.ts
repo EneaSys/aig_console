@@ -49,11 +49,13 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 
 		this.socialActionSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.socialActionDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.socialActionDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersSocialAction() {
@@ -72,7 +74,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 		this.socialActionFilters.size = this.socialActionPaginationSize;
 
 		try {
-			this.socialActionLength = await this.socialActionResourceService.countSocialActionsUsingGET(null, null, this.socialActionFilters.codeEquals, null, null, null, this.socialActionFilters.idEquals, null, null, null, null, null, null, null, this.socialActionFilters.nameContains, null, null, null, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.socialActionLength = await this.socialActionResourceService.countSocialActionsUsingGET(this.socialActionFilters).toPromise();
 
 			if(this.socialActionLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +82,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.socialActionDTOs = await this.socialActionResourceService.getAllSocialActionsUsingGET(null, null, this.socialActionFilters.codeEquals, null, null, null, this.socialActionFilters.idEquals, null, null, null, null, null, null, null, this.socialActionFilters.nameContains, null, null, null, null, null, this.socialActionFilters.page, null, null, null, null, null, null, null, null, null, null).toPromise();
+			this.socialActionDTOs = await this.socialActionResourceService.getAllSocialActionsUsingGET(this.socialActionFilters).toPromise();
 		} catch (e) {
 			this.socialActionError = e;
 		}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ItalianPublicProcurementModalityResourceService, ItalianPublicProcurementModalityDTO  } from 'aig-standard';
+import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -20,19 +20,19 @@ export class AigIppModalityDetailPageComponent extends GenericComponent {
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
       
-        private ippModalityResourceService: ItalianPublicProcurementModalityResourceService,
+        private ippModalityResourceService: IlPpProcurementModalityResourceService,
         private route: ActivatedRoute,
         private dialog : MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippModalityDTO: ItalianPublicProcurementModalityDTO;
+    ippModalityDTO: IlPpProcurementModalityDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.ippModalityDTO = this.route.snapshot.data.ippModality;
         } else {
-            this.ippModalityDTO = await this.ippModalityResourceService.getItalianPublicProcurementModalityUsingGET(this.ippModalityDTO.id).toPromise();
+            this.ippModalityDTO = await this.ippModalityResourceService.getIlPpProcurementModalityUsingGET(this.ippModalityDTO.id).toPromise();
         }
     }
 
@@ -40,7 +40,7 @@ export class AigIppModalityDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.ippModalityResourceService.deleteItalianPublicProcurementModalityUsingDELETE(id).toPromise();
+            await this.ippModalityResourceService.deleteIlPpProcurementModalityUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Ipp Modality: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -51,7 +51,7 @@ export class AigIppModalityDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
     
-    editIppModality(ippModalityDTO: ItalianPublicProcurementModalityDTO) {
+    editIppModality(ippModalityDTO: IlPpProcurementModalityDTO) {
         this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: { ippModality: ippModalityDTO } });
     }
 

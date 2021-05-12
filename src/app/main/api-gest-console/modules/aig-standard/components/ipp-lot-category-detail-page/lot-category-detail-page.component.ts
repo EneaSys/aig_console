@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCategoryResourceService } from 'aig-standard';
+import { IlPpProcurementLotCategoryDTO, IlPpProcurementLotCategoryResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -20,19 +20,19 @@ export class AigLotCategoryDetailPageComponent extends GenericComponent {
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
 
-        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO;
+    ippLotCategoryDTO: IlPpProcurementLotCategoryDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.ippLotCategoryDTO = this.route.snapshot.data.ippCategory;
         } else {
-            this.ippLotCategoryDTO = await this.ippLotCategoryResourceService.getItalianPublicProcurementLotCategoryUsingGET(this.ippLotCategoryDTO.id).toPromise();
+            this.ippLotCategoryDTO = await this.ippLotCategoryResourceService.getIlPpProcurementLotCategoryUsingGET(this.ippLotCategoryDTO.id).toPromise();
         }
     }
 
@@ -40,7 +40,7 @@ export class AigLotCategoryDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.ippLotCategoryResourceService.deleteItalianPublicProcurementLotCategoryUsingDELETE(id).toPromise();
+            await this.ippLotCategoryResourceService.deleteIlPpProcurementLotCategoryUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Ipp Lot Category: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -51,7 +51,7 @@ export class AigLotCategoryDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
 
-    editIppLotCategory(ippLotCategoryDTO: ItalianPublicProcurementLotCategoryDTO) {
+    editIppLotCategory(ippLotCategoryDTO: IlPpProcurementLotCategoryDTO) {
         this.dialog.open(AigLotCategoryNewUpdateModalComponent, { data: { ippLotCategory: ippLotCategoryDTO } });
     }
 

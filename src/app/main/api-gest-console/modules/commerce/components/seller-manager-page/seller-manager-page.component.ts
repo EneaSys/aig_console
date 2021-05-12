@@ -8,6 +8,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     templateUrl: './seller-manager-page.component.html',
@@ -17,6 +18,7 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     constructor(
         private sellerResourceService: SellerResourceService,
         private _formBuilder: FormBuilder,
+        private _snackBar: MatSnackBar,
         private _fuseSidebarService: FuseSidebarService,
         private dialog: MatDialog,
         private eventService :EventService,
@@ -32,8 +34,8 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     errorInLoading: any;
 
     sellerFilters = {
-        idEquals: null,
-        nameContains: null,
+        sellerIDEquals: null,
+        sellerNameContains: null,
         page: 0,
     }
 
@@ -42,6 +44,9 @@ export class AigSellerManagerPageComponent extends GenericComponent {
     async loadPage() {
         try {
             this.sellerDTOs = await this.sellerResourceService.getAllSellersUsingGET(this.sellerFilters).toPromise();
+            if(this.sellerDTOs.length == 0){
+                this._snackBar.open("Nessun Venditore trovato!", null, {duration: 5000,});
+            }
             if (this.sellerDTOs.length > 0) {
                 this.setSeller(this.sellerDTOs[0]);
             } else {

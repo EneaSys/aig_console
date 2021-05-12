@@ -14,9 +14,9 @@
 
     <mat-table #table [dataSource]="dataSource">
         
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="code">
@@ -24,34 +24,44 @@
             <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="ref">
             <mat-header-cell *matHeaderCellDef> Ref </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.ref }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="amount">
+        <ng-container matColumnDef="contractorEopoo">
+            <mat-header-cell *matHeaderCellDef> Stazione appaltante </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.contractorEopoo | eopooName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ippModality">
+            <mat-header-cell *matHeaderCellDef> Modality </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.modality.name }} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="ippProcedure">
+            <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procedure.name }} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="ippSector">
+            <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.sector.name }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
             <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR' }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="SA">
-            <mat-header-cell *matHeaderCellDef> SA </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.contractorEopooCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="sector">
-            <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippSectorCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="procedure">
-            <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippProcedureCode }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="modality">
-            <mat-header-cell *matHeaderCellDef> Modality </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippModalityCode }} </mat-cell>
+        <ng-container matColumnDef="procurementStatus">
+            <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.status.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
@@ -77,8 +87,8 @@
             </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
 
     </mat-table>
 

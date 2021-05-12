@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { CatalogDTO, CatalogItemDTO, InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemDTO, PriceListDTO, ProducerDTO, SellerDTO, WarehouseDTO } from 'aig-commerce';
 import { BuyerDTO, PurchaseDTO, WarehouseHandlingItemDTO } from 'aig-commerce';
 
-
 @Injectable({
 	providedIn: 'root'
 })
-export class AigAutocompleteDisplayService {
+export class AigCommerceAutocompleteDisplayService {
 	producerDisplayFn(producer?: ProducerDTO): string | undefined {
         return producer ? producer.name : undefined;
     }

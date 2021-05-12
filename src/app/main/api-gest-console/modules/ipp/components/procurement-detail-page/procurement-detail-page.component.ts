@@ -2,11 +2,10 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-
-import { AigProcurementNewUpdateFormComponent } from "aig-common/modules/ipp/components/procurement-new-update-form/procurement-new-update-form.component";
-import { ProcurementDTO, ProcurementResourceService } from "aig-italian-public-procurement";
+import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService, ProcurementResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
 import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
 
@@ -18,6 +17,7 @@ import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-updat
 export class AigProcurementDetailPageComponent extends GenericComponent {
   constructor(
     private procurementResourceService: ProcurementResourceService,
+    private procurementLotResourceService: ProcurementLotResourceService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private _fuseProgressBarService: FuseProgressBarService,
@@ -28,19 +28,18 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
 
   procurementDTO: ProcurementDTO;
 
-    procurementConfig = {
-    details: true,
-    removeProcurement: null,
-  }
-
   loadPage() {
     this.procurementDTO = this.route.snapshot.data.procurement;
-
-    this.procurementConfig.removeProcurement = this.procurementDTO;
+    this.loadOther();
   }
 
   async reloadPage() {
     this.procurementDTO = await this.procurementResourceService.getProcurementUsingGET(this.procurementDTO.id).toPromise();
+    this.loadOther();
+  }
+
+  async loadOther() {
+    this.loadProcurementLot();
   }
 
   editProcurement(procurementDTO: ProcurementDTO) {
@@ -61,4 +60,23 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
     }
     this._fuseProgressBarService.hide();
   }
+
+  procurementLotDC: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate', 'buttons'];
+  procurementLotDTOs: ProcurementLotDTO[];
+  procurementLotError: any;
+  async loadProcurementLot() {
+    let filters = {
+      procurementIdEquals: this.procurementDTO.id
+    };
+    try {
+      this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(filters).toPromise();
+    } catch (e) {
+      this.procurementLotError = e;
+    }
+  }
+
+  newProcurementLot(): void {
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
+  }
+
 }

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { CatalogDTO, CatalogItemDTO, PriceListDTO, PriceListItemDTO, PriceListItemResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -20,8 +20,8 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 
     constructor(
 		private priceListItemResourceService: PriceListItemResourceService,
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -69,10 +69,10 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 
 	private clearFiltersPriceListItem() {
 		this.priceListItemFilters = {
-			idEquals: null,
+			priceListItemIDEquals: null,
 			amountEquals: null,
-			catalogItemIdEquals: null,
-			priceListIdEquals: this.staticCatalog ? this.staticCatalog.id : null,
+			catalogItemIDEquals: null,
+			priceListIDEquals: this.staticCatalog ? this.staticCatalog.id : null,
 			page: 0,
 		}
 	}
@@ -122,18 +122,18 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersPriceListItem();
 			this.priceListItemSearchFormGroup.reset();
-			this.priceListItemFilters.idEquals = searchedId;
+			this.priceListItemFilters.priceListItemIDEquals = searchedId;
 			this.searchPriceListItem(0);
 			return;
 		}
-		this.priceListItemFilters.idEquals = null;
+		this.priceListItemFilters.priceListItemIDEquals = null;
 		
 		if (this.priceListItemSearchFormGroup.controls.catalogItem.value) {
-			this.priceListItemFilters.catalogItemIdEquals = this.priceListItemSearchFormGroup.controls.catalogItem.value.id;
+			this.priceListItemFilters.catalogItemIDEquals = this.priceListItemSearchFormGroup.controls.catalogItem.value.id;
 		}
 
 		if (this.priceListItemSearchFormGroup.controls.priceList.value) {
-			this.priceListItemFilters.priceListIdEquals = this.priceListItemSearchFormGroup.controls.priceList.value.id;
+			this.priceListItemFilters.priceListIDEquals = this.priceListItemSearchFormGroup.controls.priceList.value.id;
 		}
 
 		this.searchPriceListItem(0);

@@ -63,6 +63,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
 		this.permissionFilters = {
 			idEquals: null,
 			nameContains: null,
+			permissionCodeContains: null,
 			page: 0,
 		}
 	}
@@ -115,7 +116,13 @@ export class AigPermissionListPageComponent extends GenericComponent {
 		}
 		this.permissionFilters.idEquals = null;
 
-		this.permissionFilters.nameContains = this.permissionSearchFormGroup.controls.name.value;
+		if(this.permissionSearchFormGroup.controls.name.value){
+			this.permissionFilters.nameContains = this.permissionSearchFormGroup.controls.name.value;
+		}
+
+		if(this.permissionSearchFormGroup.controls.permissionCode.value){
+			this.permissionFilters.permissionCodeContains = this.permissionSearchFormGroup.controls.permissionCode.value;
+		}
 
 		this.searchPermission(0);
 	}
@@ -125,4 +132,3 @@ export class AigPermissionListPageComponent extends GenericComponent {
    }
 
 }
-

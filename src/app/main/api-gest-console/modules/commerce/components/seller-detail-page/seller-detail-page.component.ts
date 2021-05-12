@@ -66,7 +66,7 @@ export class AigSellerDetailPageComponent extends GenericComponent {
 	catalogError: any;
 	async loadCatalog() {
 		let filters = {
-			sellerIdEquals: this.sellerDTO.id
+			sellerIDEquals: this.sellerDTO.id
 		};
 		try {
 			this.catalogDTOs = await this.catalogResourceService.getAllCatalogsUsingGET(filters).toPromise();
@@ -80,7 +80,7 @@ export class AigSellerDetailPageComponent extends GenericComponent {
     buyerError: any;
     async loadBuyer() {
         let filters = {
-            sellerIdEquals: this.sellerDTO.id
+            sellerIDEquals: this.sellerDTO.id
         };
         try {
             this.buyerDTOs = await this.buyerResourceService.getAllBuyersUsingGET(filters).toPromise();

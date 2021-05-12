@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService } from 'aig-standard';
+import { IlPpProcurementLotTypeDTO, IlPpProcurementLotTypeResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -22,20 +22,21 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotTypeResourceService: IlPpProcurementLotTypeResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    ippLotType: ItalianPublicProcurementLotTypeDTO;
+    ippLotType: IlPpProcurementLotTypeDTO;
 
     ippLotTypeNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.ippLotTypeNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', Validators.required],
             code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
             wikiCode:['']
         })
 
@@ -51,15 +52,15 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let ippLotType: ItalianPublicProcurementLotTypeDTO = this.ippLotTypeNewUpdateForm.value;
+        let ippLotType: IlPpProcurementLotTypeDTO = this.ippLotTypeNewUpdateForm.value;
 
         try {
             let postOrPut;
             if (ippLotType.id != 0) {
-                await this.ippLotTypeResourceService.updateItalianPublicProcurementLotTypeUsingPUT(ippLotType).toPromise();
+                await this.ippLotTypeResourceService.updateIlPpProcurementLotTypeUsingPUT(ippLotType).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.ippLotTypeResourceService.createItalianPublicProcurementLotTypeUsingPOST(ippLotType).toPromise();
+                await this.ippLotTypeResourceService.createIlPpProcurementLotTypeUsingPOST(ippLotType).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

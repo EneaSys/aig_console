@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italian-public-procurement';
+import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italianlegislation';
 import { AigProcurementLotNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 
 @Component({
-    selector: 'ipp-lot-list-table',
+    selector: 'aig-procurement-lot-list-table',
     templateUrl: './procurement-lot-list-table.component.html',
     styleUrls: ['./procurement-lot-list-table.component.scss']
 })
@@ -22,7 +22,7 @@ export class AigProcurementLotListTableComponent implements OnInit {
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
 

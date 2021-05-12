@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { CatalogDTO, CatalogResourceService, SellerDTO } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ import { AigCatalogNewUpdateDialogComponent } from '../catalog-new-update-dialog
 export class AigCatalogListPageComponent extends GenericComponent {
 	constructor(
 		private catalogResourceService: CatalogResourceService,
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -65,9 +65,9 @@ export class AigCatalogListPageComponent extends GenericComponent {
 
 	private clearFiltersCatalog() {
 		this.catalogFilters = {
-			idEquals: null,
-			nameContains: null,
-			sellerIdEquals: null,
+			catalogIDEquals: null,
+			catalogNameContains: null,
+			sellerIDEquals: null,
 			page: 0,
 			
 		}
@@ -117,16 +117,16 @@ export class AigCatalogListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersCatalog();
 			this.catalogSearchFormGroup.reset();
-			this.catalogFilters.idEquals = searchedId;
+			this.catalogFilters.catalogIDEquals = searchedId;
 			this.searchCatalog(0);
 			return;
 		}
-		this.catalogFilters.idEquals = null;
+		this.catalogFilters.catalogIDEquals = null;
 
-		this.catalogFilters.nameContains = this.catalogSearchFormGroup.controls.name.value;
+		this.catalogFilters.catalogNameContains = this.catalogSearchFormGroup.controls.name.value;
 
 		if (this.catalogSearchFormGroup.controls.seller.value) {
-			this.catalogFilters.sellerIdEquals = this.catalogSearchFormGroup.controls.seller.value.id;
+			this.catalogFilters.sellerIDEquals = this.catalogSearchFormGroup.controls.seller.value.id;
 		}
 
 		this.searchCatalog(0);

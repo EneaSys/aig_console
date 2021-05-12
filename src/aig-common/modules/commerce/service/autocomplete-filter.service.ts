@@ -3,11 +3,12 @@ import { CatalogItemResourceService, CatalogResourceService, InventoryCategoryRe
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { combineAll, concatAll, map, mergeMap, startWith, switchMap } from 'rxjs/operators';
 import { BuyerResourceService, ProducerResourceService, PurchaseItemResourceService, PurchaseResourceService, InventoryItemCombinationResourceService, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
+import { EopooResourceService } from 'aig-generic';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class AigCommerceAutocompleteService {
+export class AigCommerceAutocompleteFilterService {
 	constructor(
 		private producerResourceService: ProducerResourceService,
 		private inventoryCategoryResourceService: InventoryCategoryResourceService,
@@ -22,7 +23,8 @@ export class AigCommerceAutocompleteService {
         private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,  
         private purchaseResourceService: PurchaseResourceService,  
         private purchaseItemResourceService: PurchaseItemResourceService,       
-        private warehouseHandlingResourceService: WarehouseHandlingResourceService,        
+        private warehouseHandlingResourceService: WarehouseHandlingResourceService,
+		private eopooResourceService: EopooResourceService,    
 	) {}
 
 	filterProducer(observable: Observable<any>) {
@@ -31,7 +33,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 2) {
 					let filter = {
-						nameContains: value
+						producerNameContains: value
 					};
 					return this.producerResourceService.getAllProducersUsingGET(filter);
 				} else {
@@ -47,7 +49,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						inventoryCategoryNameContains: value
 					};
 					return this.inventoryCategoryResourceService.getAllInventoryCategoriesUsingGET(filter);
 				} else {
@@ -63,7 +65,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						inventoryItemNameContains: value
 					};
 					return this.inventoryItemResourceService.getAllInventoryItemsUsingGET(filter);
 				} else {
@@ -79,7 +81,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 0) {
 					let filter = {
-						nameContains: value
+						inventoryItemCombinationNameContains: value
 					};
 					return this.inventoryItemCombinationResourceService.getAllInventoryItemCombinationsUsingGET(filter);
 				} else {
@@ -95,7 +97,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						sellerNameContains: value
 					};
 					return this.sellerResourceService.getAllSellersUsingGET(filter);
 				} else {
@@ -111,7 +113,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						catalogNameContains: value
 					};
 					return this.catalogResourceService.getAllCatalogsUsingGET(filter);
 				} else {
@@ -127,7 +129,7 @@ export class AigCommerceAutocompleteService {
             switchMap((value: string) => {
                 if (value && value.length > 1) {
 					let filter = {
-						idEquals: value
+						buyerIdEquals: value
 					};
                     return this.buyerResourceService.getAllBuyersUsingGET(filter);
 				} else {
@@ -143,7 +145,7 @@ export class AigCommerceAutocompleteService {
             switchMap((value: string) => {
                 if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						warehouseNameContains: value
 					};
 					return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
 				} else {
@@ -192,7 +194,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						warehouseNameContains: value
 					};
 					return this.warehouseResourceService.getAllWarehousesUsingGET(filter);
 				} else {
@@ -208,7 +210,7 @@ export class AigCommerceAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 0) {
 					let filter = {
-						nameContains: value
+						priceListNameContains: value
 					};
 					return this.priceListResourceService.getAllPriceListsUsingGET(filter);
 				} else {
@@ -222,10 +224,9 @@ export class AigCommerceAutocompleteService {
         return observable.pipe(
             startWith(''),
             switchMap((value: any) => {
-                console.log("banana")
                 if (value && value != null) {
 					let filter = {
-						dateEquals: value
+						warehouseHandlingItemDateEquals: value
 					};
                     return this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(filter);
                 } else {
@@ -241,7 +242,7 @@ export class AigCommerceAutocompleteService {
             switchMap((value: string) => {
                 if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						purchaseNameContains: value
 					};
                     return this.purchaseResourceService.getAllPurchasesUsingGET(filter);
                 } else {
@@ -257,9 +258,23 @@ export class AigCommerceAutocompleteService {
             switchMap((value: string) => {
                 if (value && value.length > 1) {
 					let filter = {
-						nameContains: value
+						purchaseItemNameContains: value
 					};
                     return this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filter);
+                }
+            })
+        )
+    }
+
+	filterEopoo(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value && value.length > 1) {
+					let filter = {
+						eopooNameContains: value
+					};
+                    return this.eopooResourceService.getAllEopoosUsingGET(filter);
                 }
             })
         )
@@ -271,7 +286,7 @@ export class AigCommerceAutocompleteService {
             switchMap((value: any) => {
                 if (value && value != null) {
 					let filter = {
-						dateEquals: value
+						warehouseHandlingDateEquals: value
 					};
                     return this.warehouseHandlingResourceService.getAllWarehouseHandlingsUsingGET(filter);
                 } else {

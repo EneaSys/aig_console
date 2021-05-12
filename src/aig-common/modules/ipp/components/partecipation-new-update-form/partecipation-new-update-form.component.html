@@ -1,0 +1,69 @@
+<form *ngIf="step.form" [formGroup]="partecipationNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Procurement Lot</mat-label>
+            <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete">
+            <mat-autocomplete #procurementLotAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
+                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.description }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>Status</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete">
+            <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationStatusDisplayFn">
+                <mat-option *ngFor="let partecipationStatus of filteredPartecipationStatus | async" [value]="partecipationStatus">{{ partecipationStatus.description }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <div fxFlex="50">
+            <mat-slide-toggle formControlName="siteInspection">Site Inspection</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Tipo di partecipazione</mat-label>
+            <input formControlName="partecipationType" matInput [matAutocomplete]="partecipationTypeAutocomplete">
+            <mat-autocomplete #partecipationTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
+                <mat-option *ngFor="let partecipationType of filteredPartecipationType | async" [value]="partecipationType">{{ partecipationType.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>Proponente</mat-label>
+            <input formControlName="proposerEopoo" matInput [matAutocomplete]="proposerEopooAutocomplete">
+            <mat-autocomplete #proposerEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+
+    <span>
+        <h1>Hai creato una nuova partecipation!</h1>
+        <p>Procurement Lot: {{ partecipationNewUpdateForm.controls.procurementLot.value.description }}</p>
+        <p>Status: {{ partecipationNewUpdateForm.controls.status.value.description }}</p>
+        <p>Tipo di partecipazione: {{ partecipationNewUpdateForm.controls.partecipationType.value.name }}</p>
+        <p>Proponente: {{ partecipationNewUpdateForm.controls.proposerEopoo.value.genericEopoo ? partecipationNewUpdateForm.controls.proposerEopoo.value.genericEopoo.name : partecipationNewUpdateForm.controls.proposerEopoo.value.person.firstname + " " + partecipationNewUpdateForm.controls.proposerEopoo.value.person.lastname }}</p>
+    </span>
+    
+    <button *ngIf="!partecipationNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newPartecipation()">Create New</button>
+
+    <button [routerLink]="'/ipp/partecipation/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
+</div>

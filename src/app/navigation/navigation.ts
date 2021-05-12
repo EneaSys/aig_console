@@ -24,6 +24,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo',
                 permission: ['g5c.eopoo.get'],
             },
+            /*{
+                id       : 'generic-eopoo-list-page',
+                title    : 'Generic Eopoo',
+                type     : 'item',
+                icon     : 'how_to_reg',
+                url      : '/g5c/generic-eopoo',
+                permission: ['g5c.eopoo.get'],
+            },*/
         ]
     },
     {
@@ -55,20 +63,60 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
+                id       : 'dossier-list-page',
+                title    : 'Dossier',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/dossier',
+                permission: ['ipp.p9t.get'],
+            },
+            {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
                 type     : 'item',
                 icon     : 'build',
                 url      : '/ipp/procurement',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
-                id       : 'ipp-lot-list-page',
+                id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/procurement-lot',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
+            },
+            {
+                id       : 'partecipation-list-page',
+                title    : 'Partecipation',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/partecipation',
+                permission: ['ipp.p9t.get'],
+            },
+            {
+                id       : 'designated-company-list-page',
+                title    : 'Designated Company',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/designated-company',
+                permission: ['ipp.p9t.get'],
+            },
+            {
+                id       : 'preparation-list-page',
+                title    : 'Preparation',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/preparation',
+                permission: ['ipp.p9t.get'],
+            },
+            {
+                id       : 'insurance-policy-list-page',
+                title    : 'Insurance Policy',
+                type     : 'item',
+                icon     : 'child_care',
+                url      : '/ipp/insurance-policy',
+                permission: ['ipp.p9t.get'],
             },
         ]
     },
@@ -117,6 +165,14 @@ export const navigation: FuseNavigation[] = [
         title    : 'Public database',
         type     : 'group',
         children : [
+            {
+                id       : 'management-custom',
+                title    : 'Management custom page',
+                type     : 'item',
+                icon     : 'view_carousel',
+                url      : '/m8t/management-custom',
+                permission: ['c6e.admin'],
+            },
             {
                 id       : 'standard-custom',
                 title    : 'Standard custom page',

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, InventoryItemCombinationDTO } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ import { AigCatalogItemNewUpdateDialogComponent } from '../catalog-item-new-upda
 export class AigCatalogItemListPageComponent extends GenericComponent {
 	constructor(
 		private catalogItemResourceService: CatalogItemResourceService,
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -67,9 +67,9 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
 
 	private clearFiltersCatalogItem() {
 		this.catalogItemFilters = {
-			idEquals: null,
+			catalogItemIDEquals: null,
 			inventoryItemCombinationIdEquals: null,
-			catalogIdEquals: null,
+			catalogIDEquals: null,
 			page: 0,
 			
 		}
@@ -120,18 +120,18 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersCatalogItem();
 			this.catalogItemSearchFormGroup.reset();
-			this.catalogItemFilters.idEquals = searchedId;
+			this.catalogItemFilters.catalogItemIDEquals = searchedId;
 			this.searchCatalogItem(0);
 			return;
 		}
-		this.catalogItemFilters.idEquals = null;
+		this.catalogItemFilters.catalogItemIDEquals = null;
 
 		if (this.catalogItemSearchFormGroup.controls.inventoryItemCombination.value) {
-			this.catalogItemFilters.inventoryItemCombinationIdEquals = this.catalogItemSearchFormGroup.controls.inventoryItemCombination.value.id;
+			this.catalogItemFilters.inventoryItemCombinationIDEquals = this.catalogItemSearchFormGroup.controls.inventoryItemCombination.value.id;
 		}
 
 		if (this.catalogItemSearchFormGroup.controls.catalog.value) {
-			this.catalogItemFilters.catalogIdEquals = this.catalogItemSearchFormGroup.controls.catalog.value.id;
+			this.catalogItemFilters.catalogIDEquals = this.catalogItemSearchFormGroup.controls.catalog.value.id;
 		}
 
 		this.searchCatalogItem(0);

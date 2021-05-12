@@ -68,7 +68,7 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
     warehouseHandlingItemError: any;
     async warehouseHandlingItem() {
         let filters = {
-            inventoryItemCombinationIdEquals: this.inventoryItemCombinationDTO.id
+            inventoryItemCombinationIDEquals: this.inventoryItemCombinationDTO.id
         };
         try {
             this.warehouseHandlingItemDTOs = await this.warehouseHandlingItemResourceService.getAllWarehouseHandlingItemsUsingGET(filters).toPromise();
@@ -82,7 +82,7 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
     catalogItemError: any;
     async loadCatalogItem() {
         let filters = {
-            inventoryItemCombinationIdEquals: this.inventoryItemCombinationDTO.id
+            inventoryItemCombinationIDEquals: this.inventoryItemCombinationDTO.id
         };
         try {
             this.catalogItemDTOs = await this.catalogItemResourceService.getAllCatalogItemsUsingGET(filters).toPromise();
@@ -96,7 +96,7 @@ export class AigInventoryItemCombinationDetailPageComponent extends GenericCompo
     purchaseItemError: any;
     async loadPurchaseItem() {
         let filters = {
-            inventoryItemCombinationIdEquals: this.inventoryItemCombinationDTO.id
+            inventoryItemCombinationIDEquals: this.inventoryItemCombinationDTO.id
         };
         try {
             this.purchaseItemDTOs = await this.purchaseItemResourceService.getAllPurchaseItemsUsingGET(filters).toPromise();

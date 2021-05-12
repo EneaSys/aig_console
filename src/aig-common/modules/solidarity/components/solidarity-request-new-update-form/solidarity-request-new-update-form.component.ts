@@ -4,7 +4,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
-import { AigStandardAutocompleteFunctionService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { CityDTO } from 'aig-standard';
 import { ComplexApiControllerService } from 'aig-solidarety';
@@ -27,7 +27,7 @@ export class AigSolidarityRequestNewUpdateFormComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private aigStandardAutocompleteFilterService: AigStandardAutocompleteFilterService,
         private complexApiControllerService: ComplexApiControllerService,
-        public aigStandardAutocompleteFunctionService: AigStandardAutocompleteFunctionService,
+        public aigStandardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private eventService: EventService,
     ) { }
 

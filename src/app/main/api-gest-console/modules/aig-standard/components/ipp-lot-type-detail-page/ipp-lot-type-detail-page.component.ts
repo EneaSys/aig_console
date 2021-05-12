@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService } from 'aig-standard';
+import { IlPpProcurementLotTypeDTO, IlPpProcurementLotTypeResourceService } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -19,20 +19,20 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotTypeResourceService: IlPpProcurementLotTypeResourceService,
         private route: ActivatedRoute,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    ippLotType: ItalianPublicProcurementLotTypeDTO;
+    ippLotType: IlPpProcurementLotTypeDTO;
     
     
     async loadComponent() {
         if(this.firstLoad) {
             this.ippLotType = this.route.snapshot.data.ippLotType;
         } else {
-            this.ippLotType = await this.ippLotTypeResourceService.getItalianPublicProcurementLotTypeUsingGET(this.ippLotType.id).toPromise();
+            this.ippLotType = await this.ippLotTypeResourceService.getIlPpProcurementLotTypeUsingGET(this.ippLotType.id).toPromise();
         }
     }
 
@@ -40,11 +40,11 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.ippLotTypeResourceService.deleteItalianPublicProcurementLotTypeUsingDELETE(id).toPromise();
+            await this.ippLotTypeResourceService.deleteIlPpProcurementLotTypeUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Ipp Lot Type: '${id}' deleted.`, null, { duration: 2000, });
             
-            this.router.navigate(['/s6d', 'ipp lot type']);
+            this.router.navigate(['/s6d', 'ipp-lot-type']);
         } catch (e) {
             this._snackBar.open(`Error during deleting ipp lot type: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
@@ -52,7 +52,7 @@ export class AigIppLotTypeDetailPageComponent extends GenericComponent {
       }
     
 
-    editIppLotType(ippLotType: ItalianPublicProcurementLotTypeDTO) {
+    editIppLotType(ippLotType: IlPpProcurementLotTypeDTO) {
         this.dialog.open(AigIppLotTypeNewUpdateModalComponent, { data: { ippLotType: ippLotType } });
     }
 

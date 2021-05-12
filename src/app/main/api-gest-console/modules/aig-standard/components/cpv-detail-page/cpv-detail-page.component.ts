@@ -33,7 +33,7 @@ export class AigCpvDetailPageComponent extends GenericComponent {
         }
     }
 
-    async deleteCity(id: number) {
+    async deleteCpv(id: number) {
         this._fuseProgressBarService.show();
     
         try {
@@ -41,9 +41,9 @@ export class AigCpvDetailPageComponent extends GenericComponent {
     
             this._snackBar.open(`Cpv: '${id}' deleted.`, null, { duration: 2000, });
             
-            this.router.navigate(['/s6d', 'city']);
+            this.router.navigate(['/s6d', 'cpv']);
         } catch (e) {
-            this._snackBar.open(`Error during deleting city: '${id}'. (${e.message})`, null, { duration: 5000, });
+            this._snackBar.open(`Error during deleting cpv: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
       }

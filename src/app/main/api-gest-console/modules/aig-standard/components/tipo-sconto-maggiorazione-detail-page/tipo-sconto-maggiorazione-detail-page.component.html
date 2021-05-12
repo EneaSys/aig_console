@@ -1,0 +1,16 @@
+<div id="aig-tipo-sconto-maggiorazione-detail-page" class="page-layout blank">
+    
+    <aig-standard-header [sectionName]="tipoScontoMaggiorazione.value" [search]="false"></aig-standard-header>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+               
+
+               <entity-detail-tipo-sconto-maggiorazione [tipoScontoMaggiorazione]="tipoScontoMaggiorazione"></entity-detail-tipo-sconto-maggiorazione>
+
+                <button mat-stroked-button color="primary" (click)="editTipoScontoMaggiorazione(tipoScontoMaggiorazione)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteTipoScontoMaggiorazione(tipoScontoMaggiorazione.id)">Delete </button>
+            </div>
+        </div>
+    </div>
+</div>

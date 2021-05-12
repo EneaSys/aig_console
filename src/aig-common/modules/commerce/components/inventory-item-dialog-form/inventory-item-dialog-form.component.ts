@@ -5,8 +5,8 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 
 @Component({
 	selector: 'aig-inventory-item-dialog-form',
@@ -20,8 +20,8 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		complete: false
 	};
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _fuseProgressBarService: FuseProgressBarService,
 		private inventoryItemResourceService: InventoryItemResourceService,
 		private _formBuilder: FormBuilder,
@@ -36,7 +36,7 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 	filteredProducers: Observable<ProducerDTO[]>;
 	filteredInventoryCategories: Observable<InventoryCategoryDTO[]>;
-	
+
 	inventoryItemNewUpdateForm: FormGroup;
 
 	ngOnInit(): void {
@@ -67,13 +67,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		this._fuseProgressBarService.show();
 		this.setStep("loading");
 
-		let inventoryItem: InventoryItemDTO = {
-			id: this.inventoryItemNewUpdateForm.controls.id.value,
-			name: this.inventoryItemNewUpdateForm.controls.name.value,
-			inventoryCategoryId: this.inventoryItemNewUpdateForm.controls.inventoryCategory.value.id,
-			producerId: this.inventoryItemNewUpdateForm.controls.producer.value.id,
-		}
- 
+		let inventoryItem: InventoryItemDTO = this.inventoryItemNewUpdateForm.value;
+		inventoryItem.producerId = this.inventoryItemNewUpdateForm.value.producer.id;
+		inventoryItem.inventoryCategoryId = this.inventoryItemNewUpdateForm.value.inventoryCategory.id;
 
 		try {
 			let postOrPut;

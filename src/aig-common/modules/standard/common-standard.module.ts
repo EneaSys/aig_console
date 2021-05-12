@@ -41,7 +41,6 @@ import { AigLotCategoryListTableComponent } from './components/ipp-lot-category/
 import { SocialResolver } from "./resolver/social.resolver";
 import { CityResolver } from './resolver/city.resolver';
 import { CpvResolver } from './resolver/cpv.resolver';
-import { ActionResolver } from "./resolver/social-action.resolver";
 import { SectorResolver } from "./resolver/sector.resolver";
 import { IppProcedureResolver } from "./resolver/procedure.resolver";
 import { IppModalityResolver } from "./resolver/ipp-modality.resolver";
@@ -49,7 +48,6 @@ import { LotResolver } from "./resolver/lot.resolver";
 import { CategoryResolver } from "./resolver/category.resolver";
 
 import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
-import { AigStandardAutocompleteFunctionService } from './services/autocomplete-function.service';
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
 import { ContextModuleResolver } from './resolver/context-module.resolver';
 import { MatMenuModule } from '@angular/material';
@@ -61,13 +59,79 @@ import { AigEntityDetailIppLotCategoryComponent } from './components/entity-deta
 import { AigEntityDetailIppModalityComponent } from './components/entity-detail-ipp-modality/entity-detail-ipp-modality.component';
 import { AigEntityDetailIppProcedureComponent } from './components/entity-detail-ipp-procedure/entity-detail-ipp-procedure.component';
 import { AigEntityDetailIppSectorComponent } from './components/entity-detail-ipp-sector/entity-detail-ipp-sector.component';
+import { AigRegimeFiscaleListTableComponent } from './components/regime-fiscale-list-table/regime-fiscale-list-table.component';
+import { AigRegimeFiscaleNewUpdateFormComponent } from './components/regime-fiscale-new-update-form/regime-fiscale-new-update-form.component';
+import { RegimeFiscaleResolver } from './resolver/regime-fiscale.resolver.ts/regime-fiscale.resolver';
+import { AigEntityDetailRegimeFiscaleComponent } from './components/entity-detail-regime-fiscale/entity-detail-regime-fiscale.component';
+import { AigTipoCassaListTableComponent } from './components/tipo-cassa-list-table/tipo-cassa-list-table.component';
+import { AigTipoCassaDetailPageComponent } from 'app/main/api-gest-console/modules/aig-standard/components/tipo-cassa-detail-page/tipo-cassa-detail-page.component';
+import { AigTipoCassaNewUpdateFormComponent } from './components/tipo-cassa-new-update-form/tipo-cassa-new-update-form.component';
+
+import { TipoCassaResolver } from './resolver/tipo-cassa.resolver.ts/tipo-cassa.resolver';
+import { AigEntityDetailTipoCassaComponent } from './components/entity-detail-tipo-cassa/entity-detail-tipo-cassa.component';
+import { NaturaResolver } from './resolver/natura.resolver.ts/natura.resolver';
+import { AigNaturaListTableComponent } from './components/natura-list-table/natura-list-table.component';
+import { AigEntityDetailNaturaComponent } from './components/entity-detail-natura/entity-detail-natura.component';
+import { AigNaturaNewUpdateFormComponent } from './components/natura-new-update-form/natura-new-update-form.component';
+import { AigTipoRitenutaListTableComponent } from './components/tipo-ritenuta-list-table/tipo-ritenuta-list-table.component';
+import { AigTipoRitenutaNewUpdateFormComponent } from './components/tipo-ritenuta-new-update-form/tipo-ritenuta-new-update-form.component';
+import { TipoRitenutaResolver } from './resolver/tipo-ritenuta.resolver.ts/tipo-ritenuta.resolver';
+import { AigEntityDetailTipoRitenutaComponent } from './components/entity-detail-tipo-ritenuta/entity-detail-tipo-ritenuta.component';
+import { AigTipoCessionePrestazioneListTableComponent } from './components/tipo-cessione-prestazione-list-table/tipo-cessione-prestazione-list-table.component';
+import { AigTipoCessionePrestazioneNewUpdateFormComponent } from './components/tipo-cessione-prestazione-new-update-form/tipo-cessione-prestazione-new-update-form.component';
+import { AigEntityDetailTipoCessionePrestazioneComponent } from './components/entity-detail-tipo-cessione-prestazione/entity-detail-tipo-cessione-prestazione.component';
+import { TipoCessionePestazioneResolver } from './resolver/tipo-cessione-prestazione.resolver.ts/tipo-cessione-prestazione.resolver';
+import {  AigTipoScontoMaggiorazioneListTableComponent } from './components/tipo-sconto-maggiorazione-list-table/tipo-sconto-maggiorazione-list-table.component';
+import {  AigTipoScontoMaggiorazioneNewUpdateFormComponent } from './components/tipo-sconto-maggiorazione-new-update-form/tipo-sconto-maggiorazione-new-update-form.component';
+import {  AigEntityDetailTipoScontoMaggiorazioneComponent } from './components/entity-detail-tipo-sconto-maggiorazione/entity-detail-tipo-sconto-maggiorazione.component';
+import {  TipoScontoMaggiorazioneResolver } from './resolver/tipo-sconto-maggiorazione.resolver.ts/tipo-sconto-maggiorazione.resolver';
+import { AigEsigibilitaIvaListTableComponent } from './components/esigibilita-iva-list-table/esigibilita-iva-list-table.component';
+import { AigEsigibilitaIvaNewUpdateFormComponent } from './components/esigibilita-iva-new-update-form/esigibilita-iva-new-update-form.component';
+import { AigEntityDetailEsigibilitaIvaComponent } from './components/entity-detail-esigibilita-iva/entity-detail-esigibilita-iva.component';
+import { EsigibilitaIvaResolver } from './resolver/esigibilita-iva.resolver.ts/esigibilita-iva.resolver';
+import { AigModalitaPagamentoNewUpdateFormComponent } from './components/modalita-pagamento-new-update-form/modalita-pagamento-new-update-form.component';
+import { AigModalitaPagamentoListTableComponent } from './components/modalita-pagamento-list-table/modalita-pagamento-list-table.component';
+import { AigEntityDetailModalitaPagamentoComponent } from './components/entity-detail-modalita-pagamento/entity-detail-modalita-pagamento.component';
+import { ModalitaPagamentoResolver } from './resolver/modalita-pagamento.resolver.ts/modalita-pagamento.resolver';
+import { AigStandardAutocompleteDisplayService } from './services/autocomplete-function.service';
+import { SocialActionResolver } from './resolver/social-action.resolver';
+import { AigAwardCriterionListTableComponent } from './components/award-criterion-list-table/award-criterion-list-table.component';
+import { AigAwardCriterionNewUpdateFormComponent } from './components/award-criterion-new-update-form/award-criterion-new-update-form.component';
+import { AwardCriterionResolver } from './resolver/award-criterion.resolver';
+import { AigPartecipationTypeNewUpdateFormComponent } from './components/partecipation-type-new-update-form/partecipation-type-new-update-form.component';
+import { AigPartecipationTypeListTableComponent } from './components/partecipation-type-list-table/partecipation-type-list-table.component';
+import { PartecipationTypeResolver } from './resolver/partecipation-type.resolver';
+import { AigProcurementStatusListTableComponent } from './components/procurement-status-list-table/procurement-status-list-table.component';
+import { AigProcurementStatusNewUpdateFormComponent } from './components/procurement-status-new-update-form/procurement-status-new-update-form.component';
+import { ProcurementStatusResolver } from './resolver/procurement-status.resolver';
+import { AigProcurementLotStatusNewUpdateFormComponent } from './components/procurement-lot-status-new-update-form/procurement-lot-status-new-update-form.component';
+import { AigProcurementLotStatusListTableComponent } from './components/procurement-lot-status-list-table/procurement-lot-status-list-table.component';
+import { ProcurementLotStatusResolver } from './resolver/procurement-lot-status.resolver';
+import { AigAwardCriterionDetailBoxComponent } from './components/award-criterion-detail-box/award-criterion-detail-box.component';
+import { AigPartecipationTypeDetailBoxComponent } from './components/partecipation-type-detail-box/partecipation-type-detail-box.component';
+import { AigProcurementStatusDetailBoxComponent } from './components/procurement-status-detail-box /procurement-status-detail-box.component';
+import { AigProcurementLotStatusDetailBoxComponent } from './components/procurement-lot-status-detail-box/procurement-lot-status-detail-box.component';
+import { AigSocialActionDetailBoxComponent } from './components/social-action-detail-box/social-action-detail-box.component';
 
 
 @NgModule({
     declarations: [
 
+
+        AigProcurementStatusListTableComponent,
+        AigProcurementStatusNewUpdateFormComponent,
+
+        AigProcurementLotStatusNewUpdateFormComponent,
+        AigProcurementLotStatusListTableComponent,
+
         AigSocialListTableComponent,
         AigSocialNewUpdateFormComponent,
+
+        AigPartecipationTypeNewUpdateFormComponent,
+        AigPartecipationTypeListTableComponent,
+
+        AigAwardCriterionListTableComponent,
+        AigAwardCriterionNewUpdateFormComponent,
 
         AigSocialActionListTableComponent,
         AigSocialActionNewUpdateFormComponent,
@@ -100,8 +164,39 @@ import { AigEntityDetailIppSectorComponent } from './components/entity-detail-ip
         AigEntityDetailIppLotCategoryComponent,
         AigEntityDetailIppModalityComponent,
         AigEntityDetailIppProcedureComponent,
-        AigEntityDetailIppSectorComponent
+        AigEntityDetailIppSectorComponent,
+        AigRegimeFiscaleListTableComponent,
+        AigRegimeFiscaleNewUpdateFormComponent,
+        AigEntityDetailRegimeFiscaleComponent,
+        AigTipoCassaListTableComponent,
+        AigTipoCassaNewUpdateFormComponent,
+        AigEntityDetailTipoCassaComponent,
+        AigNaturaListTableComponent,
+        AigEntityDetailNaturaComponent,
+        AigNaturaNewUpdateFormComponent,
+        AigTipoRitenutaListTableComponent,
+        AigTipoRitenutaNewUpdateFormComponent,
+        AigEntityDetailTipoRitenutaComponent,
+        AigTipoCessionePrestazioneListTableComponent,
+        AigTipoCessionePrestazioneNewUpdateFormComponent,
+        AigEntityDetailTipoCessionePrestazioneComponent,
+        AigTipoScontoMaggiorazioneListTableComponent,
+        
+        AigEntityDetailTipoScontoMaggiorazioneComponent,
+        AigEsigibilitaIvaListTableComponent,
+        AigEsigibilitaIvaNewUpdateFormComponent,
+        AigEntityDetailEsigibilitaIvaComponent,
+        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
+        AigModalitaPagamentoNewUpdateFormComponent,
+        AigModalitaPagamentoListTableComponent,
+        AigEntityDetailModalitaPagamentoComponent,
 
+    
+        AigAwardCriterionDetailBoxComponent,
+        AigPartecipationTypeDetailBoxComponent,
+        AigProcurementStatusDetailBoxComponent,
+        AigProcurementLotStatusDetailBoxComponent,
+        AigSocialActionDetailBoxComponent,
 
     ],
     imports: [ 
@@ -127,11 +222,24 @@ import { AigEntityDetailIppSectorComponent } from './components/entity-detail-ip
         MatAutocompleteModule,
         MatSelectModule,
         MatMenuModule,
+        
     ],
     exports: [
 
         AigSocialListTableComponent,
         AigSocialNewUpdateFormComponent,
+
+        AigProcurementLotStatusNewUpdateFormComponent,
+        AigProcurementLotStatusListTableComponent,
+
+        AigProcurementStatusListTableComponent,
+        AigProcurementStatusNewUpdateFormComponent,
+
+        AigPartecipationTypeNewUpdateFormComponent,
+        AigPartecipationTypeListTableComponent,
+
+        AigAwardCriterionListTableComponent,
+        AigAwardCriterionNewUpdateFormComponent,
 
         AigSocialActionListTableComponent,
         AigSocialActionNewUpdateFormComponent,
@@ -163,7 +271,39 @@ import { AigEntityDetailIppSectorComponent } from './components/entity-detail-ip
         AigEntityDetailIppLotCategoryComponent,
         AigEntityDetailIppModalityComponent,
         AigEntityDetailIppProcedureComponent,
-        AigEntityDetailIppSectorComponent 
+        AigEntityDetailIppSectorComponent,
+        AigRegimeFiscaleListTableComponent,
+        AigRegimeFiscaleNewUpdateFormComponent,
+        AigTipoCassaListTableComponent,
+        AigTipoCassaNewUpdateFormComponent,
+        AigEntityDetailTipoCassaComponent,
+        AigNaturaListTableComponent,
+        AigEntityDetailNaturaComponent,
+        AigNaturaNewUpdateFormComponent,
+        AigTipoRitenutaListTableComponent,
+        AigTipoRitenutaNewUpdateFormComponent,
+        AigEntityDetailTipoRitenutaComponent,
+        AigTipoCessionePrestazioneListTableComponent,
+        AigTipoCessionePrestazioneNewUpdateFormComponent,
+        AigEntityDetailTipoCessionePrestazioneComponent,
+        AigTipoScontoMaggiorazioneListTableComponent,
+        
+        AigEntityDetailTipoScontoMaggiorazioneComponent,
+        AigEsigibilitaIvaListTableComponent,
+        AigEsigibilitaIvaNewUpdateFormComponent,
+        AigEntityDetailEsigibilitaIvaComponent,
+        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
+        AigModalitaPagamentoNewUpdateFormComponent,
+        AigModalitaPagamentoListTableComponent,
+        AigEntityDetailModalitaPagamentoComponent,
+
+
+        AigAwardCriterionDetailBoxComponent,
+        AigPartecipationTypeDetailBoxComponent,
+        AigProcurementStatusDetailBoxComponent,
+        AigProcurementLotStatusDetailBoxComponent,
+        AigSocialActionDetailBoxComponent,
+        AigEntityDetailRegimeFiscaleComponent,
 
     ],
     entryComponents: [
@@ -173,18 +313,30 @@ import { AigEntityDetailIppSectorComponent } from './components/entity-detail-ip
         SocialResolver,
         CityResolver,
         CpvResolver,
-        ActionResolver,
+        SocialActionResolver,
         SectorResolver,
         IppProcedureResolver,
         IppModalityResolver,
         LotResolver,
         CategoryResolver,
+        AwardCriterionResolver,
+        PartecipationTypeResolver,
+        ProcurementStatusResolver,
+        ProcurementLotStatusResolver,
 
         ItFiscalCodeService,
         
         AigStandardAutocompleteFilterService,
-        AigStandardAutocompleteFunctionService,
+        AigStandardAutocompleteDisplayService,
         ContextModuleResolver,
+        RegimeFiscaleResolver,
+        TipoCassaResolver,
+        NaturaResolver,
+        TipoRitenutaResolver,
+        TipoCessionePestazioneResolver,
+        TipoScontoMaggiorazioneResolver,
+        EsigibilitaIvaResolver,
+        ModalitaPagamentoResolver
     ],
 })
 export class AigCommonStandardModule {}

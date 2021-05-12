@@ -1,0 +1,14 @@
+<div id="aig-referent-detail-page" class="page-layout blank">
+    <aig-generic-header [sectionName]="referentDTO.firstname" [search]="false"></aig-generic-header>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+               
+               <aig-referent-entity-detail [referentDTO]="referentDTO"></aig-referent-entity-detail>
+
+                <button mat-stroked-button color="primary" (click)="editReferent(referentDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteReferent(referentDTO.id)">Delete </button>
+            </div>
+        </div>
+    </div>
+</div>

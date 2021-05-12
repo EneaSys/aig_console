@@ -1,78 +1,149 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { EopooResourceService, EopooDTO } from 'aig-generic';
+import { EopooResourceService, EopooDTO, EopooTypeDTO } from 'aig-generic';
 import { MatDialog } from '@angular/material/dialog';
 import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 import { PageEvent } from '@angular/material/paginator';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 
 @Component({
-    templateUrl: './eopoo-list-page.component.html',
-    styleUrls: ['./eopoo-list-page.component.scss']
+	templateUrl: './eopoo-list-page.component.html',
+	styleUrls: ['./eopoo-list-page.component.scss']
 })
 export class AigEopooListPageComponent extends GenericComponent {
-    constructor(
-        private eopooResourceService: EopooResourceService,
-        private _formBuilder: FormBuilder,
-        private dialog: MatDialog,
-        aigGenericComponentService: AigGenericComponentService,
-    ) { super(aigGenericComponentService) }
+	constructor(
+		private eopooResourceService: EopooResourceService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private genericAutocompleteService: AigGenericAutocompleteFilterService,
+		public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
+		private _formBuilder: FormBuilder,
+		private dialog: MatDialog,
+		private _snackBar: MatSnackBar,
+		aigGenericComponentService: AigGenericComponentService,
+	) { super(aigGenericComponentService) }
 
-    searchForm: FormGroup;
-    
-    displayColumns: string[] = ['id', 'type', 'name', 'taxid', 'buttons'];
-    eopooDTOs: EopooDTO[];
-    error: any;
+	loadPage() {
+		this.initEopooSearch();
 
-    filters = {
-        taxId: null,
+		this.showAllEopoo();
+	}
+
+	reloadPage() {
+		this.showAllEopoo();
+	}
+
+	//			---- EOPOO TABLE AND SEARCH SECTION ----
+
+	eopooDTOs: EopooDTO[];
+	eopooDC: string[];
+	eopooError: any;
+
+	searchForm: FormGroup;
+	eopooFilters: any;
+
+	eopooPaginationSize: number;
+	eopooLength: number;
+
+	filteredEopooType: Observable<EopooTypeDTO[]>;
+	filteredEopoo: Observable<EopooDTO[]>;
+
+	private initEopooSearch() {
+		this.eopooPaginationSize = 30;
+
+		this.searchForm = this._formBuilder.group({
+			id: [''],
+			eopooType:[''],
+			taxId: [''],
+		});
+
+		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
+
+		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.searchForm.controls['taxId'].valueChanges);
+
+		this.eopooDC = ['id', 'eopooType', 'name', 'taxId', 'buttons'];
+	}
+
+	private clearFiltersEopoo() {
+		this.eopooFilters = {
+			idEquals: null,
+			eopooTypeIdEquals: null,
+			taxNumberContains: null,
+			page: 0,
+		}
+	}
+
+	private async searchEopoo(page: number) {
+		this.eopooDTOs = null;
+
+		this.eopooFilters.page = page;
+		this.eopooFilters.size = this.eopooPaginationSize;
+
+		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
+
+		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.searchForm.controls['taxId'].valueChanges);
+
+		try {
+			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
+
+			if (this.eopooLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
+				this.eopooDTOs = [];
+				return;
+			}
+
+			this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(this.eopooFilters).toPromise();
+		} catch (e) {
+			this.eopooError = e;
+		}
     }
 
-    pageable = {
-        page: 0,
-        size: 30,
-    }
-    length: number = 500;
-    index: number;
+	showAllEopoo() {
+		this.resetFiltersEopoo()
+	}
 
-    loadPage() {
-        this.searchForm = this._formBuilder.group({
-            id: [''],
-            taxId: [''],
-        });
+	resetFiltersEopoo() {
+		this.searchForm.reset();
+		this.clearFiltersEopoo();
+		this.searchEopoo(0);
+	}
 
-        this.loadEopoo(0);
-    }
+	eopooPaginationEvent(pageEvent: PageEvent) {
+		this.eopooPaginationSize = pageEvent.pageSize;
+		this.searchEopoo(pageEvent.pageIndex);
+	}
 
-    reloadPage() {
-        this.loadEopoo(this.pageable.page);
-    }
+	eopooSearchWithFilter() {
+		let searchedId = this.searchForm.controls.id.value;
 
-    pageEvent(event: PageEvent) {
-        this.pageable.size = event.pageSize;
-        this.loadEopoo(event.pageIndex);
-    }
+		if (searchedId != null) {
+			this.clearFiltersEopoo();
+			this.searchForm.reset();
+			this.eopooFilters.idEquals = searchedId;
+			this.searchEopoo(0);
+			return;
+		}
 
-    private async loadEopoo(page: number) {
-        this.eopooDTOs = null;
+		this.eopooFilters.idEquals = null;
 
-        this.index = page
-        this.pageable.page = page;
+		if (this.searchForm.controls.eopooType.value) {
+			this.eopooFilters.eopooTypeIdEquals = this.searchForm.controls.eopooType.value.id;
+		}
 
-        try {
-            this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,this.pageable.page,null,null,null,null,null,null,null,null,this.pageable.size,null,null,null,this.filters.taxId,null,null,null).toPromise();
-        } catch(error) {
-            this.error = error;
-        }
-    }
+		if (this.searchForm.controls.taxId.value) {
+			this.eopooFilters.taxNumberContains = this.searchForm.controls.taxId.value.taxNumber;
+		}
 
-    newEopoo() {
-        this.dialog.open(AigEopooNewModalComponent, { data: { } });
-    }
+		this.searchEopoo(0);
+	}
 
-    customSearch() {
-        this.filters.taxId = this.searchForm.value.taxId;
-        this.loadEopoo(0);
-    }
+	newEopoo() {
+		this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: {} } });
+	}
+	//			---- !EOPOO TABLE AND SEARCH SECTION ----
 }

@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { BuyerDTO, PurchaseDTO, PurchaseResourceService, SellerDTO, SellerResourceService } from 'aig-commerce';
 import { AigPurchaseNewUpdateFormComponent } from 'aig-common/modules/commerce/components/purchase-new-update-form/purchase-new-update-form.component';
-import { AigAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
@@ -18,13 +18,13 @@ import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dial
 })
 export class AigPurchaseListPageComponent extends GenericComponent {
   constructor(
-    public autocompleteDisplayService: AigAutocompleteDisplayService,
+    public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
     private purchaseResourceService : PurchaseResourceService,
     private sellerResourceService : SellerResourceService,
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private commerceAutocompleteService: AigCommerceAutocompleteService,
+    private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
     aigGenericComponentService: AigGenericComponentService,
   ) { super(aigGenericComponentService) }
 
@@ -91,7 +91,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     
   private clearFiltersPurchase() {
     this.purchaseFilters = {
-      idEquals: null,
+      purchaseIDEquals: null,
       insertedDateTimeEquals : null,
       statusNoteContains : null,
       sellerIdEquals: null,
@@ -141,7 +141,7 @@ export class AigPurchaseListPageComponent extends GenericComponent {
     if(searchedId != null) {
       this.clearFiltersPurchase();
       this.purchaseSearchFormGroup.reset();
-      this.purchaseFilters.idEquals= searchedId;
+      this.purchaseFilters.purchaseIDEquals= searchedId;
       this.searchPurchase(0);
       return;
     } else {
@@ -156,11 +156,11 @@ export class AigPurchaseListPageComponent extends GenericComponent {
       }
       
       if(this.purchaseSearchFormGroup.controls.seller.value){
-        this.purchaseFilters.sellerIdEquals = this.purchaseSearchFormGroup.controls.seller.value.id;
+        this.purchaseFilters.sellerIDEquals = this.purchaseSearchFormGroup.controls.seller.value.id;
       }
 
       if(this.purchaseSearchFormGroup.controls.buyer.value){
-        this.purchaseFilters.buyerIdEquals = this.purchaseSearchFormGroup.controls.buyer.value;
+        this.purchaseFilters.buyerIDEquals = this.purchaseSearchFormGroup.controls.buyer.value;
       }
 
       this.searchPurchase(0);
