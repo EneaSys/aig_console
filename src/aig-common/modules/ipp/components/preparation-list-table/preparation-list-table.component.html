@@ -39,9 +39,14 @@
             <mat-cell *matCellDef="let e">{{ e.partecipation.proposerEopoo.genericEopoo ? e.partecipation.proposerEopoo.genericEopoo.name : e.partecipation.proposerEopoo.person.firstname + " " + e.partecipation.proposerEopoo.person.lastname }}</mat-cell>
         </ng-container>
         
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Stato</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="statusDescription">
-            <mat-header-cell *matHeaderCellDef>Status Description</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.status.description }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>Stato</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

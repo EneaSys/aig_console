@@ -55,6 +55,11 @@
             <mat-cell *matCellDef="let e"> {{ e.procurementLot.category.name }} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Stato</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status.description }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
