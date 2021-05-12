@@ -1,31 +1,58 @@
 <div id="form">
-    <div *ngIf="value === 'allegati'">
-        <aig-allegati-new-update-form></aig-allegati-new-update-form>
+
+
+    <div id="allegati">
+        <input type="checkbox" name="allegati">
+        <label for="allegati"> Allegati</label><br>
+        <div id="allegati">
+            <aig-allegati-new-update-form></aig-allegati-new-update-form>
+        </div>
     </div>
 
-    <div *ngIf="value === 'datiPagamento'">
-        <aig-dati-pagamento-new-update-form></aig-dati-pagamento-new-update-form>
+    <div id="datiPagamento">
+        <input type="checkbox" name="datiPagamento">
+        <label for="datiPagamento"> Dati Pagamento</label><br>
+        <div id="datiPagamento">
+            <aig-dati-pagamento-new-update-form></aig-dati-pagamento-new-update-form>
+        </div>
+
     </div>
 
-    <div *ngIf="value === 'datiVeicoli'">
+    <div *ngIf="datiVeicoli.checked">
         <aig-dati-veicoli-new-update-form></aig-dati-veicoli-new-update-form>
     </div>
 
-    <div *ngIf="value === 'dettaglioPagamento'">
+    <div *ngIf="dettaglioPagamento.checked">
         <aig-dettaglio-pagamento-new-update-form></aig-dettaglio-pagamento-new-update-form>
     </div>
 
-    <div *ngIf="value === 'fatturaElettronicaBody'">
+    <div *ngIf="fatturaElettronicaBody.checked">
         <aig-fattura-elettronica-body-new-update-form></aig-fattura-elettronica-body-new-update-form>
     </div>
 
 </div>
 <div id="checkbox">
 
+
+
+    <input type="checkbox" name="datiPagamento">
+    <label for="datiPagamento"> Dati Pagamento</label><br>
+
+    <input type="checkbox" name="datiVeicoli">
+    <label for="datiVeicoli"> Dati Veicoli</label><br>
+
+    <input type="checkbox" name="dettaglioPagamento">
+    <label for="dettaglioPagamento"> Dettaglio Pagamento</label><br>
+
+    <input type="checkbox" name="fatturaElettronicaBody">
+    <label for="fatturaElettronicaBody"> Fattura Elettronica</label><br>
+
+
     <input type="radio" name="allegati" value="allegati" [(ngModel)]="value"> Allegati
     <input type="radio" name="datiPagamento" value="datiPagamento" [(ngModel)]="value"> Dati Pagamento
     <input type="radio" name="datiVeicoli" value="datiVeicoli" [(ngModel)]="value"> Dati Veicoli
     <input type="radio" name="dettaglioPagamento" value="dettaglioPagamento" [(ngModel)]="value"> Dettaglio Pagamento
-    <input type="radio" name="fatturaElettronicaBody" value="fatturaElettronicaBody" [(ngModel)]="value"> Fattura Elettronica
+    <input type="radio" name="fatturaElettronicaBody" value="fatturaElettronicaBody" [(ngModel)]="value"> Fattura
+    Elettronica
 
 </div>

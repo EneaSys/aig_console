@@ -1,0 +1,10 @@
+input#allegati {
+    display:none;
+}
+
+input#datiPagamento {
+    display:none;
+}
+input#allegati:checked ~ div {
+    visibility: visible;
+  }
