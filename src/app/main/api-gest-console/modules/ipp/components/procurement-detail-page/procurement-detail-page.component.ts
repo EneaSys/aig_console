@@ -5,6 +5,7 @@ import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-b
 import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService, ProcurementResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
 import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
 
@@ -60,7 +61,7 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
     this._fuseProgressBarService.hide();
   }
 
-  procurementLotDC: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate','buttons'];
+  procurementLotDC: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate', 'buttons'];
   procurementLotDTOs: ProcurementLotDTO[];
   procurementLotError: any;
   async loadProcurementLot() {
@@ -72,6 +73,10 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
     } catch (e) {
       this.procurementLotError = e;
     }
+  }
+
+  newProcurementLot(): void {
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
   }
 
 }

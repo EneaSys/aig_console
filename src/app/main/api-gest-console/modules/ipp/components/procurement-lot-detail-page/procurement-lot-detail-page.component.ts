@@ -8,6 +8,7 @@ import { AigProcurementLotNewUpdateFormComponent } from "aig-common/modules/ipp/
 import {  PartecipationDTO, PartecipationResourceService, ProcurementLotDTO, ProcurementLotResourceService,  } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
 
 
@@ -76,5 +77,9 @@ export class AigProcurementLotDetailPageComponent extends GenericComponent {
       this.partecipationError = e;
     }
   }
+
+  newPartecipation(): void {
+    this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {} } });
+}
 
 }

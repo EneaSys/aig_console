@@ -5,7 +5,10 @@ import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-b
 import {  DesignatedCompanyDTO, DesignatedCompanyResourceService, InsurancePolicyDTO, InsurancePolicyResourceService, PartecipationDTO, PartecipationResourceService, PreparationDTO, PreparationResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
+import { AigInsurancePolicyNewUpdateDialogComponent } from "../insurance-policy-new-update-dialog/insurance-policy-new-update-dialog.component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
+import { AigPreparationNewUpdateDialogComponent } from "../preparation-new-update-dialog/preparation-new-update-dialog.component";
 
 
 @Component({
@@ -78,6 +81,10 @@ export class AigPartecipationDetailPageComponent extends GenericComponent {
     }
   }
 
+  newDesignatedCompany(): void {
+		this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { designatedCompany: {} } });
+	}
+
   insurancePolicyDC: string[] = ["id","companyPreparatorEopoo","note","partecipationProposerEopoo","status","totalAmount","buttons"];
   insurancePolicyDTOs: InsurancePolicyDTO[];
   insurancePolicyError: any;
@@ -92,6 +99,10 @@ export class AigPartecipationDetailPageComponent extends GenericComponent {
     }
   }
 
+  newInsurancePolicy(): void {
+    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { insurancePolicy: {} } });
+    }
+
   preparationDC: string[] = ["id","companyPreparatorEopoo","note","partecipationId","partecipationProposerEopoo","statusDescription","buttons"];
   preparationDTOs: PreparationDTO[];
   preparationError: any;
@@ -105,5 +116,9 @@ export class AigPartecipationDetailPageComponent extends GenericComponent {
       this.preparationError = e;
     }
   }
+
+  newPreparation(): void {
+    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { preparation: {} } });
+    }
 
 }

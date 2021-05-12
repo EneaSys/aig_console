@@ -25,6 +25,11 @@
                 <aig-designated-company-list-table [dataSource]="designatedCompanyDTOs" [displayColumns]="designatedCompanyDC"
                 [error]="designatedCompanyError"></aig-designated-company-list-table>
 
+                <button mat-fab class="accent" id="add-designated-company-button" (click)="newDesignatedCompany()"
+                aria-label="add designated company">
+                <mat-icon>add</mat-icon>
+                </button>
+
             </div>
 
             <br>
@@ -35,6 +40,11 @@
                 <aig-insurance-policy-list-table [dataSource]="insurancePolicyDTOs" [displayColumns]="insurancePolicyDC"
                 [error]="insurancePolicyError"></aig-insurance-policy-list-table>
 
+                <button mat-fab class="accent" id="add-insurance-policy-button" (click)="newInsurancePolicy()"
+                aria-label="add insurance policy">
+                <mat-icon>add</mat-icon>
+                </button>
+
             </div>
 
             <br>
@@ -44,6 +54,11 @@
                 <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Preparation</b></div>
                 <aig-preparation-list-table [dataSource]="preparationDTOs" [displayColumns]="preparationDC"
                 [error]="preparationError"></aig-preparation-list-table>
+
+                <button mat-fab class="accent" id="add-preparation-button" (click)="newPreparation()"
+                aria-label="add preparation">
+                <mat-icon>add</mat-icon>
+                </button>
 
             </div>
 
