@@ -28,7 +28,7 @@
                 <aig-partecipation-list-table [dataSource]="partecipationDTOs" [displayColumns]="partecipationDC"
                     [error]="partecipationError"></aig-partecipation-list-table>
 
-                <button mat-fab class="accent" id="add-partecipation-button" (click)="newPartecipation()"
+                <button mat-fab class="accent" id="add-partecipation-button" (click)="newPartecipation(procurementLotDTO)"
                     aria-label="add partecipation">
                     <mat-icon>add</mat-icon>
                 </button>

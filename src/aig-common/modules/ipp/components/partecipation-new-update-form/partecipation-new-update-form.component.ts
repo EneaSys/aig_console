@@ -44,6 +44,9 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
     @Input()
     partecipation: PartecipationDTO;
 
+    @Input()
+    procurementLot: ProcurementLotDTO;
+
     partecipationNewUpdateForm: FormGroup;
     
     filteredPartecipationType: Observable<IlPpPartecipationTypeDTO[]>;
@@ -56,7 +59,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             id: [''],
 
             status: ['', [Validators.required, AigValidator.haveId]],
-            procurementLot: ['', [Validators.required, AigValidator.haveId]],
+            procurementLot: [this.procurementLot, [Validators.required, AigValidator.haveId]],
 
             partecipationType: ['', [Validators.required, AigValidator.haveId]],
             proposerEopoo: ['', [Validators.required, AigValidator.haveId]],

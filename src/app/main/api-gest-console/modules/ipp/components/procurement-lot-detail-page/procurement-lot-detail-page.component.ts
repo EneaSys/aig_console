@@ -2,10 +2,7 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-import { AigProcurementLotNewUpdateFormComponent } from "aig-common/modules/ipp/components/procurement-lot-new-update-form/procurement-lot-new-update-form.component";
-
-
-import {  PartecipationDTO, PartecipationResourceService, ProcurementLotDTO, ProcurementLotResourceService,  } from "aig-italianlegislation";
+import { PartecipationDTO, PartecipationResourceService, ProcurementLotDTO, ProcurementLotResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
@@ -67,19 +64,16 @@ export class AigProcurementLotDetailPageComponent extends GenericComponent {
   partecipationDC: string[] = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"];
   partecipationDTOs: PartecipationDTO[];
   partecipationError: any;
+  
   async loadPartecipation() {
     let filters = {
       procurementLotIdEquals: this.procurementLotDTO.id
     };
-    try {
-      this.partecipationDTOs = await this.partecipationResourceService.getAllPartecipationsUsingGET(filters).toPromise();
-    } catch (e) {
-      this.partecipationError = e;
-    }
+    this.partecipationDTOs = await this.partecipationResourceService.getAllPartecipationsUsingGET(filters).toPromise(); 
   }
 
-  newPartecipation(): void {
-    this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {} } });
+  newPartecipation(procurementLotDTO: ProcurementLotDTO): void {
+    this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {}, procurementLot: procurementLotDTO } });
 }
 
 }

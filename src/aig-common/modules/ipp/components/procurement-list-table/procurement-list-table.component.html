@@ -46,7 +46,7 @@
         
         <ng-container matColumnDef="ippProcedure">
             <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.procedure.name }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.procedure ? e.procedure.name : "" }} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="ippSector">
@@ -61,7 +61,7 @@
 
         <ng-container matColumnDef="procurementStatus">
             <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.status.name }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.status }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

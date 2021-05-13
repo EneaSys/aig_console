@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="procurementLotNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!procurement" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="100">
             <mat-label>Procurement</mat-label>
             <input formControlName="procurement" matInput [matAutocomplete]="procurementAutocomplete" required>

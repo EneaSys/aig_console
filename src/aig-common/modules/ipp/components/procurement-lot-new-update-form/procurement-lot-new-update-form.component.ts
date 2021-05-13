@@ -43,6 +43,9 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
     @Input()
     procurementLot: ProcurementLotDTO;
 
+    @Input()
+    procurement: ProcurementDTO;
+
     procurementLotNewUpdateForm: FormGroup;
 
     filteredProcurement: Observable<ProcurementDTO[]>;
@@ -59,7 +62,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
             id: [''],
             
-            procurement: ['', [Validators.required, AigValidator.haveId] ],
+            procurement: [this.procurement, [Validators.required, AigValidator.haveId] ],
 
             cig: ['', Validators.required],
             description: ['', Validators.required],
