@@ -12,6 +12,9 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationItalian } from 'app/navigation/i18n/it';
 
+import { locale as mainEnglish } from 'app/i18n/en';
+import { locale as mainItalian } from 'app/i18n/it';
+
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { AigContextRepositoryService } from 'aig-common/context-browser-repository/context-browser-repository.service';
 import { EventService, EsEvent } from 'aig-common/event-manager/event.service';
@@ -56,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this._translateService.addLangs(['en', 'it']);
 
         // Set the navigation translations
-        this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationItalian);
+        this._fuseTranslationLoaderService.loadTranslations(mainEnglish, mainItalian, navigationEnglish, navigationItalian);
 
         // Set the default language
         this._translateService.setDefaultLang('it');
