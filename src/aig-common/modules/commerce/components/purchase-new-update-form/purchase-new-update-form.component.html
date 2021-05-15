@@ -6,7 +6,7 @@
                 <mat-label>Cliente</mat-label>
                 <input matInput required formControlName="buyer" required [matAutocomplete]="buyerAutocomplete">
                 <mat-autocomplete #buyerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.buyerDisplayFn">
-                    <mat-option *ngFor="let buyer of filteredBuyer | async" [value]="buyer">{{ buyer.id }}</mat-option>
+                    <mat-option *ngFor="let buyer of filteredBuyer | async" [value]="buyer">{{ buyer.eopoo | eopooName }}</mat-option>
                 </mat-autocomplete>
             </mat-form-field>
         </div>

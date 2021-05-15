@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="procurementLotNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!procurement" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="100">
             <mat-label>Procurement</mat-label>
             <input formControlName="procurement" matInput [matAutocomplete]="procurementAutocomplete" required>
@@ -88,7 +88,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Criterio Aggiudicazione</mat-label>
+            <mat-label>{{ 'IPP.AWARD_CRITERION' | translate }}</mat-label>
             <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete" required>
             <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
                 <mat-option *ngFor="let ippLotCategory of filteredProcurementLotAwardCriterion | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>

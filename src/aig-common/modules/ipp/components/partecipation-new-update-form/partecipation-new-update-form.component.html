@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="partecipationNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!procurementLot" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="100">
             <mat-label>Procurement Lot</mat-label>
             <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete">

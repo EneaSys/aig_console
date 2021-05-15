@@ -12,6 +12,11 @@ export const locale = {
             'PRODUCER_LIST_PAGE' : 'Produttori',
             'WAREHOUSE_HANDLING_LIST_PAGE' : 'Movimentazione di Magazzino',
             'WAREHOUSE_HANDLING_ITEM_LIST_PAGE' : 'Movimentazione di Magazzino di un prodotto',
+            'IPP' : {
+                'PROCUREMENT' : "Gare d'appalto",
+                'PROCUREMENT-LOT' : "Lotti di gara",
+                'PARTECIPATION' : "Partecipazioni",
+            }
         },
     }
 };

@@ -73,6 +73,7 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
+                translate: 'NAV.IPP.PROCUREMENT',
                 type     : 'item',
                 icon     : 'build',
                 url      : '/ipp/procurement',
@@ -81,6 +82,7 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',
+                translate: 'NAV.IPP.PROCUREMENT-LOT',
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/procurement-lot',
@@ -89,6 +91,7 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'partecipation-list-page',
                 title    : 'Partecipation',
+                translate: 'NAV.IPP.PARTECIPATION',
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/partecipation',

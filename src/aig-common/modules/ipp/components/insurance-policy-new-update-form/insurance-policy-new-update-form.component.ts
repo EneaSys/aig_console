@@ -39,6 +39,9 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
     @Input()
     insurancePolicy: InsurancePolicyDTO;
 
+    @Input()
+    partecipation: PartecipationDTO;
+
     insurancePolicyNewUpdateForm: FormGroup;
 
     filteredEopoo: Observable<EopooDTO[]>;
@@ -51,7 +54,7 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
             companyPreparatorEopoo:['', [Validators.required, AigValidator.haveId] ],
             note:[''],
             status:['', [Validators.required, AigValidator.haveId] ],
-            partecipation:['', [Validators.required, AigValidator.haveId] ],
+            partecipation:[this.partecipation, [Validators.required, AigValidator.haveId] ],
             totalAmount:[''],
         })
         
