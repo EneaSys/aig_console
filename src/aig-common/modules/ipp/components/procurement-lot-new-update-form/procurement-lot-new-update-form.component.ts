@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
@@ -12,6 +13,9 @@ import { CpvDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategory
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
+
+import { locale as italian } from '../../i18n/it';
+import { locale as english } from '../../i18n/en';
 
 @Component({
     selector: 'aig-procurement-lot-new-update-form',
@@ -37,8 +41,11 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         private ippAutocompleteFilterService : AigIppAutocompleteService,
         public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
         
+        private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private eventService: EventService,
-    ) { }
+    ) {
+        this._fuseTranslationLoaderService.loadTranslations(italian, english);
+    }
 
     @Input()
     procurementLot: ProcurementLotDTO;
