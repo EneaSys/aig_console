@@ -39,6 +39,9 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
     @Input()
     designatedCompany: DesignatedCompanyDTO;
 
+    @Input()
+    partecipation: PartecipationDTO;
+
     designatedCompanyNewUpdateForm: FormGroup;
 
     filteredEopoo: Observable<EopooDTO[]>;
@@ -47,7 +50,7 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.designatedCompanyNewUpdateForm = this._formBuilder.group({
             id: [''],
-            partecipation: ['', [Validators.required, AigValidator.haveId]],
+            partecipation: [this.partecipation, [Validators.required, AigValidator.haveId]],
             companyEopoo: ['', [Validators.required, AigValidator.haveId]],
             note: [''],
         })

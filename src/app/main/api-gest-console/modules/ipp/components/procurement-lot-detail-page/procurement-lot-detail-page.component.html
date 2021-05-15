@@ -6,7 +6,7 @@
 
             <div class="fuse-card auto-width p-16">
 
-                <div class="h1 m-8 ml-16 mb-0 secondary-text"><b>Details</b></div>
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"><b>{{ 'MAIN.DETAILS' | translate }}</b></div>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Descrizione: {{procurementLotDTO.description}}</div>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Cig: {{procurementLotDTO.cig}}</div>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">Data scadenza: {{procurementLotDTO.offerExpiryDate}}</div>
@@ -16,7 +16,7 @@
 
                 <button mat-stroked-button color="primary" (click)="editProcurementLot(procurementLotDTO)">Edit</button>
                 <button mat-stroked-button color="primary"
-                    (click)="deleteProcurementLot(procurementLotDTO.id)">Delete</button>
+                    (click)="deleteProcurementLot(procurementLotDTO.id)">{{ 'MAIN.DELETE' | translate }}</button>
 
             </div>
 
@@ -28,7 +28,7 @@
                 <aig-partecipation-list-table [dataSource]="partecipationDTOs" [displayColumns]="partecipationDC"
                     [error]="partecipationError"></aig-partecipation-list-table>
 
-                <button mat-fab class="accent" id="add-partecipation-button" (click)="newPartecipation()"
+                <button mat-fab class="accent" id="add-partecipation-button" (click)="newPartecipation(procurementLotDTO)"
                     aria-label="add partecipation">
                     <mat-icon>add</mat-icon>
                 </button>

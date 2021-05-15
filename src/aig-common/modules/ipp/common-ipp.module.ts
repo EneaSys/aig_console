@@ -51,6 +51,7 @@ import { InsurancePolicyResolver } from './resolver/insurance-policy.resolver';
 import { InsurancePolicyStatusResolver } from './resolver/insurance-policy-status.resolver';
 import { AigInsurancePolicyStatusListTableComponent } from './components/insurance-policy-status-list-table/insurance-policy-status-list-table.component';
 import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/insurance-policy-status-new-update-form/insurance-policy-status-new-update-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -64,6 +65,8 @@ import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/ins
         FormsModule,
         ReactiveFormsModule,
         FlexLayoutModule,
+
+        TranslateModule,
 
         AigIppClientModule,
         AigItalianLegislationApiModule,

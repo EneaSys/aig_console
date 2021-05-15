@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-import {  DesignatedCompanyDTO, DesignatedCompanyResourceService, InsurancePolicyDTO, InsurancePolicyResourceService, PartecipationDTO, PartecipationResourceService, PreparationDTO, PreparationResourceService } from "aig-italianlegislation";
+import { DesignatedCompanyDTO, DesignatedCompanyResourceService, InsurancePolicyDTO, InsurancePolicyResourceService, PartecipationDTO, PartecipationResourceService, PreparationDTO, PreparationResourceService } from "aig-italianlegislation";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
@@ -67,58 +67,49 @@ export class AigPartecipationDetailPageComponent extends GenericComponent {
     this._fuseProgressBarService.hide();
   }
 
-  designatedCompanyDC: string[] = ["id","companyEopoo","partecipation","note", "buttons"];
+  designatedCompanyDC: string[] = ["id", "companyEopoo", "partecipation", "note", "buttons"];
   designatedCompanyDTOs: DesignatedCompanyDTO[];
   designatedCompanyError: any;
+
   async loadDesignatedCompany() {
     let filters = {
       partecipationIdEquals: this.partecipationDTO.id
     };
-    try {
-      this.designatedCompanyDTOs = await this.designatedCompanyResourceService.getAllDesignatedCompaniesUsingGET(filters).toPromise();
-    } catch (e) {
-      this.designatedCompanyError = e;
-    }
+    this.designatedCompanyDTOs = await this.designatedCompanyResourceService.getAllDesignatedCompaniesUsingGET(filters).toPromise();
   }
 
-  newDesignatedCompany(): void {
-		this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { designatedCompany: {} } });
-	}
+  newDesignatedCompany(partecipationDTO: PartecipationDTO): void {
+    this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { designatedCompany: {}, partecipation: partecipationDTO } });
+  }
 
-  insurancePolicyDC: string[] = ["id","companyPreparatorEopoo","note","partecipationProposerEopoo","status","totalAmount","buttons"];
+  insurancePolicyDC: string[] = ["id", "companyPreparatorEopoo", "note", "partecipationProposerEopoo", "status", "totalAmount", "buttons"];
   insurancePolicyDTOs: InsurancePolicyDTO[];
   insurancePolicyError: any;
+
   async loadInsurancePolicy() {
     let filters = {
       partecipationIdEquals: this.partecipationDTO.id
     };
-    try {
-      this.insurancePolicyDTOs = await this.insurancePolicyResourceService.getAllInsurancePoliciesUsingGET(filters).toPromise();
-    } catch (e) {
-      this.insurancePolicyError = e;
-    }
+    this.insurancePolicyDTOs = await this.insurancePolicyResourceService.getAllInsurancePoliciesUsingGET(filters).toPromise();
   }
 
-  newInsurancePolicy(): void {
-    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { insurancePolicy: {} } });
-    }
+  newInsurancePolicy(partecipationDTO: PartecipationDTO): void {
+    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { insurancePolicy: {}, partecipation: partecipationDTO } });
+  }
 
-  preparationDC: string[] = ["id","companyPreparatorEopoo","note","partecipationId","partecipationProposerEopoo","statusDescription","buttons"];
+  preparationDC: string[] = ["id", "companyPreparatorEopoo", "note", "partecipationId", "partecipationProposerEopoo", "statusDescription", "buttons"];
   preparationDTOs: PreparationDTO[];
   preparationError: any;
+
   async loadPreparation() {
     let filters = {
       partecipationIdEquals: this.partecipationDTO.id
     };
-    try {
-      this.preparationDTOs = await this.preparationResourceService.getAllPreparationsUsingGET(filters).toPromise();
-    } catch (e) {
-      this.preparationError = e;
-    }
+    this.preparationDTOs = await this.preparationResourceService.getAllPreparationsUsingGET(filters).toPromise();
   }
 
-  newPreparation(): void {
-    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { preparation: {} } });
-    }
+  newPreparation(partecipationDTO: PartecipationDTO): void {
+    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { preparation: {}, partecipation: partecipationDTO } });
+  }
 
 }

@@ -109,6 +109,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		} catch (e) {
 			this.procurementError = e;
 		}
+		console.log(this.procurementDTOs)
 	}
 
 	showAllProcurement() {

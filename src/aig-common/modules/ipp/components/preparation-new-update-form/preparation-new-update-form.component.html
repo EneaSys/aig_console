@@ -10,7 +10,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!partecipation" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline">
             <mat-label>Partecipation</mat-label>
             <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">

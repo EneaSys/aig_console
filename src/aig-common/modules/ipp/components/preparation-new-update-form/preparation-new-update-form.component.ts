@@ -39,6 +39,9 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
     @Input()
     preparation: PreparationDTO;
 
+    @Input()
+    partecipation: PartecipationDTO;
+
     preparationNewUpdateForm: FormGroup;
 
     filteredEopoo: Observable<EopooDTO[]>;
@@ -49,7 +52,7 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         this.preparationNewUpdateForm = this._formBuilder.group({
             id: [''],
             companyPreparatorEopoo: ['',[Validators.required, AigValidator.haveId] ],
-            partecipation: ['',[Validators.required, AigValidator.haveId] ],
+            partecipation: [this.partecipation,[Validators.required, AigValidator.haveId] ],
             note: [''],
             status: ['',[Validators.required, AigValidator.haveId] ],
         })
