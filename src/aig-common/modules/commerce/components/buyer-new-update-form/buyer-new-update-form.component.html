@@ -45,8 +45,19 @@
     <mat-spinner></mat-spinner>
 </div>
 
+
 <div *ngIf="step.complete">
-    <pre>{{ buyerNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!buyerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newBuyer()">Create
-        New</button>
+
+    <span>
+        <h1>Hai creato un nuovo Buyer!</h1>
+        <p>Eopoo: {{ buyerNewUpdateForm.value.eopoo.id }}</p>
+        <p>Confirmation: {{ buyerNewUpdateForm.controls.confirmation.value }}</p>
+        <p>Note: {{ buyerNewUpdateForm.controls.statusNote.value }}</p>
+    </span>
+
+    <button *ngIf="!buyerNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newBuyer()">Create New</button>
+
+    <button [routerLink]="'/commerce/buyer/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

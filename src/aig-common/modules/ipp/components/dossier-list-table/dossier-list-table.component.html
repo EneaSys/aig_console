@@ -14,6 +14,13 @@
 
     <mat-table #table [dataSource]="dataSource">
         
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+        </ng-container>
+
+        
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
@@ -26,29 +33,26 @@
 
         <ng-container matColumnDef="partecipation">
             <mat-header-cell *matHeaderCellDef> Partecipazione </mat-header-cell>
-            <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.partecipation.id}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="preparation">
             <mat-header-cell *matHeaderCellDef> Preparation </mat-header-cell>
-            <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.preparation.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurement">
             <mat-header-cell *matHeaderCellDef> Procurement </mat-header-cell>
-            <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurement.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurementLot">
             <mat-header-cell *matHeaderCellDef> Procurement lot</mat-header-cell>
-            <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.id }}</mat-cell>
         </ng-container>
 
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
-        </ng-container>
+       
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>

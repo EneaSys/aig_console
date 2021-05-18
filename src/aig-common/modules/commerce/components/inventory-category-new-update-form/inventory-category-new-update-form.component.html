@@ -28,6 +28,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ inventoryCategoryNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!inventoryCategoryNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryCategory()">Crea nuova</button>
+
+    <span>
+        <h1>Hai creato una nuova categoria inventario!</h1>
+        <p>Nome: {{ inventoryCategoryNewUpdateForm.value.name }}</p>
+        <p>Parent: {{ inventoryCategoryNewUpdateForm.value.parent.name }}</p>
+    </span>
+
+    <button *ngIf="!inventoryCategoryNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newInventoryCategory()">Create New</button>
+
+    <button [routerLink]="'/commerce/inventory-category/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

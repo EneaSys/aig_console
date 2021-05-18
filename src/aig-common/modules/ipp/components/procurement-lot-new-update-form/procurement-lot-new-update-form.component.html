@@ -115,7 +115,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ procurementLotNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato un nuovo lotto di gara!</h1>
+        <p>Code: {{ procurementLotNewUpdateForm.controls.cig.value }}</p>
+        <p>Description: {{ procurementLotNewUpdateForm.controls.description.value }}</p>
+        <p>Ref: {{ procurementLotNewUpdateForm.controls.baseAmount.value }}</p>
+        <p>Offer expiry date: {{ procurementLotNewUpdateForm.controls.offerExpiryDate.value }}</p>
+    </span>
+
     <button *ngIf="!procurementLotNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newProcurementLot()">Create New</button>
+
+    <button [routerLink]="'/ipp/procurement-lot/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

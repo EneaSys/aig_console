@@ -17,7 +17,15 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ partecipationStatusNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato una nuovo stato di partecipazione!</h1>
+        <p>Description: {{ partecipationStatusNewUpdateForm.controls.description.value }}</p>
+    </span>
+
     <button *ngIf="!partecipationStatusNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newPartecipationStatus()">Create New</button>
+
+    <button [routerLink]="'/ipp/partecipation-status/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

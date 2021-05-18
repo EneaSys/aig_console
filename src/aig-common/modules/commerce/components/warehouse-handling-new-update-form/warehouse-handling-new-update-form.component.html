@@ -51,11 +51,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseHandlingFormGroup.value | json }}</pre>
-    
+
+    <span>
+        <h1>Hai creato una nuova movimentazione di magazzino!</h1>
+        <p>Tipo di movimentazione: {{ warehouseHandlingFormGroup.controls.warehouseHandlingType.value }}</p>
+        <p>Magazzino di carico: {{ warehouseHandlingFormGroup.controls.warehouseToLoad.value }}</p>
+        <p>Magazzino di scarico: {{ warehouseHandlingFormGroup.controls.warehouseToUnload.value }}</p>
+        <p>Data: {{ warehouseHandlingFormGroup.controls.date.value }}</p>
+    </span>
+
     <button *ngIf="!warehouseHandlingFormGroup.value.id" mat-stroked-button color="primary"
-        (click)="newWarehouseHandling()">
-		<span *ngIf="!returnToParent">Create New</span>
-		<span *ngIf="returnToParent">Edit</span>
-	</button>
+        (click)="newWarehouseHandling()">Create New</button>
+
+    <button [routerLink]="'/commerce/warehouse-handling/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

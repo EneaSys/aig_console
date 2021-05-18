@@ -45,6 +45,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ inventoryItemNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">Create New</button>
+
+    <span>
+        <h1>Hai creato un nuovo inventory Item!</h1>
+        <p>Name: {{ inventoryItemNewUpdateForm.controls.name.value }}</p>
+        <p>ItemCode: {{ inventoryItemNewUpdateForm.controls.itemCode.value }}</p>
+        <p>Producer: {{ inventoryItemNewUpdateForm.value.producer.name }}</p>
+        <p>Categoria: {{ inventoryItemNewUpdateForm.value.inventoryCategory.name }}</p>
+    </span>
+
+    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newInventoryItem()">Create New</button>
+
+    <button [routerLink]="'/commerce/inventory-item/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

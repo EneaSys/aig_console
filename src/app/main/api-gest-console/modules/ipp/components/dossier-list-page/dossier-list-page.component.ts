@@ -118,6 +118,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 		this.dossierFilters.idEquals = null;
 		this.dossierFilters.dossierCodeContains = this.dossierSearchFormGroup.controls.dossierCode.value;
 		this.dossierFilters.descriptionContains = this.dossierSearchFormGroup.controls.description.value;
+	
 
 		this.searchDossier(0);
 	}

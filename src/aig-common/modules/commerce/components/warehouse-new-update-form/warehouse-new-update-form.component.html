@@ -17,6 +17,15 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!warehouseNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newWarehouse()">Create New</button>
+
+    <span>
+        <h1>Hai creato un nuovo magazzino!</h1>
+        <p>Nome: {{ warehouseNewUpdateForm.controls.name.value }}</p>
+    </span>
+
+    <button *ngIf="!warehouseNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newWarehouse()">Create New</button>
+
+    <button [routerLink]="'/commerce/warehouse/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

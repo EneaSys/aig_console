@@ -17,6 +17,15 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ producerNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!producerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newProducer()">Create New</button>
+
+    <span>
+        <h1>Hai creato un nuovo produttore!</h1>
+        <p>Nome: {{ producerNewUpdateForm.value.name }}</p>
+    </span>
+
+    <button *ngIf="!producerNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newProducer()">Create New</button>
+
+    <button [routerLink]="'/commerce/producer/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

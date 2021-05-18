@@ -15,7 +15,15 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ insurancePolicyStatusNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato una nuovo stato di polizza di assicurazione!</h1>
+        <p>Description: {{ insurancePolicyStatusNewUpdateForm.controls.description.value }}</p>
+    </span>
+
     <button *ngIf="!insurancePolicyStatusNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newInsurancePolicyStatus()">Create New</button>
+
+    <button [routerLink]="'/ipp/insurance-policy-status/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

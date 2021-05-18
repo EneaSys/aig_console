@@ -28,6 +28,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ catalogNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!catalogNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newCatalog()">Crea nuova</button>
+
+    <span>
+        <h1>Hai creato un nuovo catalogo!</h1>
+        <p>Nome: {{ catalogNewUpdateForm.controls.name.value }}</p>
+        <p>Seller: {{ catalogNewUpdateForm.value.seller.name }}</p>
+    </span>
+
+    <button *ngIf="!catalogNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newCatalog()">Create New</button>
+
+    <button [routerLink]="'/commerce/catalog/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

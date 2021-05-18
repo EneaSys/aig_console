@@ -28,6 +28,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ priceListNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!priceListNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPriceList()">Crea nuova</button>
+
+    <span>
+        <h1>Hai creato un nuovo Listino prezzi!</h1>
+        <p>Nome: {{ priceListNewUpdateForm.controls.name.value }}</p>
+        <p>Catalogo: {{ priceListNewUpdateForm.value.catalog.name }}</p>
+    </span>
+
+    <button *ngIf="!priceListNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newPriceList()">Create New</button>
+
+    <button [routerLink]="'/commerce/price-list/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>

@@ -17,7 +17,15 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ preparationStatusNewUpdateForm.value | json }}</pre>
+
+    <span>
+        <h1>Hai creato una nuovo stato di preparazione!</h1>
+        <p>Description: {{ preparationStatusNewUpdateForm.controls.description.value }}</p>
+    </span>
+
     <button *ngIf="!preparationStatusNewUpdateForm.value.id" mat-stroked-button color="primary"
         (click)="newPreparationStatus()">Create New</button>
+
+    <button [routerLink]="'/ipp/preparation-status/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
 </div>
