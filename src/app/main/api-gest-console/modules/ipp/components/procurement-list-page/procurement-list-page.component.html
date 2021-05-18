@@ -5,7 +5,7 @@
         <div class="content">
             <div>
                 <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-                    <button mat-raised-button (click)="showAllProcurement()">{{ 'MAIN.RESET_FILTERS' | translate }}</button>
+                    <button mat-raised-button (click)="showAllProcurement()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
                     <span class="h3">{{ 'MAIN.FILTERS' | translate }}</span>
@@ -64,7 +64,7 @@
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
-                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                    <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                                 </div>
                             </form>
                         </div>
@@ -85,7 +85,7 @@
                 (click)="toggleSidebar('procurement-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>{{ 'IPP.PROCUREMENTS' | translate }}</h2>
+            <h2>{{ 'IPP.PROCUREMENTS' | translate | titlecase }}</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

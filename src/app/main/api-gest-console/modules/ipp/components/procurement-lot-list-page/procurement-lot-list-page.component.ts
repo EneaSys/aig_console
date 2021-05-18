@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italianlegislation';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { MatDialog, PageEvent } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AigProcurementLotNewUpdateDialogComponent } from '../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
-import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
-import { locale as italian } from '../../i18n/it';
-import { locale as english } from '../../i18n/en';
+import { AigIppGenericComponent } from '../ipp-generic-component';
 
 declare const google: any;
 
@@ -15,16 +12,14 @@ declare const google: any;
     templateUrl: './procurement-lot-list-page.component.html',
     styleUrls: ['./procurement-lot-list-page.component.scss']
 })
-export class AigProcurementLotListPageComponent extends GenericComponent {
+export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     constructor(
         private procurementLotResourceService: ProcurementLotResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
-        private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         aigGenericComponentService: AigGenericComponentService,
     ) {
         super(aigGenericComponentService)
-        this._fuseTranslationLoaderService.loadTranslations(italian, english);
     }
 
 

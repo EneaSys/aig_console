@@ -5,13 +5,14 @@ import { DossierDTO, DossierResourceService, PartecipationDTO, PartecipationReso
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigDossierNewUpdateDialogComponent } from "../dossier-new-update-dialog/dossier-new-update-dialog.component";
+import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 
 @Component({
     templateUrl: './partecipation-list-page.component.html',
     styleUrls: ['./partecipation-list-page.component.scss']
 })
-export class AigPartecipationListPageComponent extends GenericComponent {
+export class AigPartecipationListPageComponent extends AigIppGenericComponent {
     constructor(
        
 		private _formBuilder: FormBuilder,

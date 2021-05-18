@@ -5,10 +5,10 @@
         <div class="content">
             <div>
                 <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="center start">
-                    <button mat-raised-button (click)="cleanFiltersAndLoadProcurementLot()">Resetta filtri</button>
+                    <button mat-raised-button (click)="cleanFiltersAndLoadProcurementLot()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="h3">Filtri</span>
+                    <span class="h3">{{ 'MAIN.FILTERS' | translate }}</span>
                 </div>
                 <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
@@ -63,7 +63,7 @@
                                 <span *ngIf="!procurementLotFilters.amountMax">illimitato</span>
                             </div>
                             <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
-                                <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                             </div>
                         </form>
                     </div>
@@ -112,7 +112,7 @@
                 (click)="toggleSidebar('procurement-lot-filter-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>{{ 'IPP.PROCUREMENT_LOT' | translate }}</h2>
+            <h2>{{ 'IPP.PROCUREMENT_LOTS' | translate | titlecase }}</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

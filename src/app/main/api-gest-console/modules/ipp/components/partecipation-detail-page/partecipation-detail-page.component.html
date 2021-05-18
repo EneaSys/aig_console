@@ -4,99 +4,62 @@
 
         <div class="widget" fxFlex.gt-sm="34">
             <div class="fuse-card auto-width p-16 m-8">
-                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate }} partecipazione</div>
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PARTECIPATION' | translate }}</div>
                 <hr>
-                <div>
-                    <div class="h4 m-8 ml-16 mb-0 secondary-text">
-                        ID: {{ partecipationDTO.id }}
-                    </div>
-                    <div class="h4 ml-16">Tipo partecipazione: <b>{{ partecipationDTO.type | json }}</b></div>
-                    <div class="h4 ml-16">Stato: <b>{{ partecipationDTO.status.description }}</b></div>
-                    <div class="h4 ml-16">Sopralluogo: <b>{{ partecipationDTO.siteInspection | json }}</b></div>
-
-                    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate }} proponente</div>
-                    <aig-eopoo-entity-detail [eopooDTO]="partecipationDTO.proposerEopoo"></aig-eopoo-entity-detail>
-                </div>
+                <aig-preparation-detail-box [preparation]="partecipationDTO"></aig-preparation-detail-box>
                 <br>
                 <div fxLayoutAlign="end">
-                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate }}</button>
-                    <button class="ml-8" mat-stroked-button color="warn" (click)="deletePartecipation(partecipationDTO.id)">{{ 'MAIN.DELETE' | translate }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deletePartecipation(partecipationDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
                 </div>
             </div>
         </div>
 
-        <div class="widget" fxFlex.gt-sm="34">
+        <div class="widget" fxFlex.gt-sm="33">
             <div class="fuse-card auto-width p-16 m-8">
-                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate }} lotto di gara</div>
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT_LOT' | translate }}</div>
                 <hr>
-                <!-- <aig-procurement-lot-detail-box [procurementLot]="partecipationDTO.procurementLot"></aig-procurement-lot-detail-box>-->
-                <div>
-                    <div class="h4 m-8 ml-16 mb-0 secondary-text">
-                        ID: {{ partecipationDTO.procurementLot.id }}
-                        -
-                        CIG: {{ partecipationDTO.procurementLot.cig }}
-                    </div>
-                    <div class="h1 m-8 ml-16">{{ partecipationDTO.procurementLot.description }}</div>
-                    <div class="h4 ml-16">
-                        Importo (Sicurezza):
-                        <b>{{ partecipationDTO.procurementLot.baseAmount | currency: "EUR" }}</b>
-                        <b *ngIf="partecipationDTO.procurementLot.securityAmount != ''">({{ partecipationDTO.procurementLot.securityAmount | currency: "EUR" }})</b>
-                    </div>
-                    <div class="h4 ml-16">
-                        Data scadenza offerte: <b>{{ partecipationDTO.procurementLot.offerExpiryDate | date: 'dd/MM/yyyy' }}</b>
-                    </div>
-                    <div class="h4 ml-16">Tipo: <b>{{ partecipationDTO.procurementLot.type | json }}</b></div>
-                    <div class="h4 ml-16">Categoria: <b>{{ partecipationDTO.procurementLot.category | json }}</b></div>
-                    <div class="h4 ml-16">Criterio aggiudicazione: <b>{{ partecipationDTO.procurementLot.awardCriterion | json }}</b></div>
-                    <div class="h4 ml-16">Stato: <b>{{ partecipationDTO.procurementLot.status | json }}</b></div>
-                </div>
+                <aig-procurement-lot-detail-box [procurementLot]="partecipationDTO.procurementLot"></aig-procurement-lot-detail-box>
                 <br>
                 <div fxLayoutAlign="end">
-                    <button class="ml-8" mat-stroked-button color="accent" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.DETAILS' | translate }}</button>
-                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate }}</button>
+                    <button class="ml-8" mat-stroked-button color="accent" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
                 </div>
             </div>
         </div>
 
-        <div class="widget" fxFlex.gt-sm="34">
+        <div class="widget" fxFlex.gt-sm="33">
             <div class="fuse-card auto-width p-16 m-8">
-                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate }} gara d'appalto</div>
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT' | translate }}</div>
                 <hr>
-                <!-- <aig-procurement-detail-box [procurement]="partecipationDTO.procurementLot.procurement"></aig-procurement-detail-box>-->
-                <div>
-                    <div class="h4 m-8 ml-16 mb-0 secondary-text">
-                        ID: {{ partecipationDTO.procurementLot.procurement.id }}
-                        -
-                        ANAC: {{ partecipationDTO.procurementLot.procurement.code }}
-                    </div>
-                    <div class="h1 m-8 ml-16">{{ partecipationDTO.procurementLot.procurement.description }}</div>
-                    <div class="h4 ml-16">
-                        Importo totale: <b>{{ partecipationDTO.procurementLot.procurement.totalAmount | currency: "EUR" }}</b>
-                    </div>
-                    <div class="h4 ml-16">Settore: <b>{{ partecipationDTO.procurementLot.procurement.sector | json }}</b></div>
-                    <div class="h4 ml-16">Procedura: <b>{{ partecipationDTO.procurementLot.procurement.procedure | json }}</b></div>
-                    <div class="h4 ml-16">Modalità: <b>{{ partecipationDTO.procurementLot.procurement.modality | json }}</b></div>
-                    <div class="h4 ml-16">Stato: <b>{{ partecipationDTO.procurementLot.procurement.status | json }}</b></div>
-                    <div class="h4 ml-16">Riferimento: <b>{{ partecipationDTO.procurementLot.procurement.ref | json }}</b></div>
-
-                    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate }} stazione appaltante</div>
-                    <aig-eopoo-entity-detail [eopooDTO]="partecipationDTO.procurementLot.procurement.contractorEopoo"></aig-eopoo-entity-detail>
-                </div>
+                <aig-procurement-detail-box [procurement]="partecipationDTO.procurementLot.procurement"></aig-procurement-detail-box>
                 <br>
                 <div fxLayoutAlign="end">
-                    <button class="ml-8" mat-stroked-button color="accent" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.DETAILS' | translate }}</button>
-                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate }}</button>
+                    <button class="ml-8" mat-stroked-button color="accent" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
                 </div>
             </div>
         </div>
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+    
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         
         <div class="widget" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16 m-8" id="designed-company-list">
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Designated Company</b></div>
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DESIGNED_COMPANIES' | translate | titlecase }}</b></div>
                 
                 <aig-designated-company-list-table 
                     [dataSource]="designatedCompanyDTOs" 
@@ -110,8 +73,8 @@
             </div>
         </div>
         <div class="widget" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16 m-8" id="dossier-list">
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Dossier</b></div>
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DOSSIERS' | translate | titlecase }}</b></div>
 
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDesignatedCompany(partecipationDTO)" aria-label="add designated company">
                     <mat-icon>add</mat-icon>
@@ -124,8 +87,9 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
         <div class="widget" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16 m-8" id="insurance-policy-list">
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Insurance Policy</b></div>
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.INSURANCE_POLICIES' | translate | titlecase }}</b></div>
+
                 <aig-insurance-policy-list-table [dataSource]="insurancePolicyDTOs" [displayColumns]="insurancePolicyDC"[error]="insurancePolicyError"></aig-insurance-policy-list-table>
 
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="newInsurancePolicy(partecipationDTO)" aria-label="add insurance policy">
@@ -135,8 +99,8 @@
         </div>
 
         <div class="widget" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16 m-8" id="preparation-list">
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Preparation</b></div>
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.PREPARATIONS' | translate | titlecase }}</b></div>
                 
                 <aig-preparation-list-table [dataSource]="preparationDTOs" [displayColumns]="preparationDC" [error]="preparationError"></aig-preparation-list-table>
 

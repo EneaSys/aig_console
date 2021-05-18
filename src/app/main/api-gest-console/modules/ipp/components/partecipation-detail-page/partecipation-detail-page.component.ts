@@ -7,6 +7,7 @@ import { GenericComponent } from "app/main/api-gest-console/generic-component/ge
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
 import { AigInsurancePolicyNewUpdateDialogComponent } from "../insurance-policy-new-update-dialog/insurance-policy-new-update-dialog.component";
+import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 import { AigPreparationNewUpdateDialogComponent } from "../preparation-new-update-dialog/preparation-new-update-dialog.component";
 
@@ -16,7 +17,7 @@ import { AigPreparationNewUpdateDialogComponent } from "../preparation-new-updat
   templateUrl: './partecipation-detail-page.component.html',
   styleUrls: ['./partecipation-detail-page.component.scss']
 })
-export class AigPartecipationDetailPageComponent extends GenericComponent {
+export class AigPartecipationDetailPageComponent extends AigIppGenericComponent {
   constructor(
     private partecipationResourceService: PartecipationResourceService,
     private designatedCompanyResourceService: DesignatedCompanyResourceService,
