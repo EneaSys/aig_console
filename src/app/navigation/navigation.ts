@@ -63,14 +63,6 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'dossier-list-page',
-                title    : 'Dossier',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/dossier',
-                permission: ['ipp.p9t.get'],
-            },
-            {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
                 translate: 'NAV.IPP.PROCUREMENT',
@@ -96,31 +88,7 @@ export const navigation: FuseNavigation[] = [
                 icon     : 'child_care',
                 url      : '/ipp/partecipation',
                 permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'designated-company-list-page',
-                title    : 'Designated Company',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/designated-company',
-                permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'preparation-list-page',
-                title    : 'Preparation',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/preparation',
-                permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'insurance-policy-list-page',
-                title    : 'Insurance Policy',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/insurance-policy',
-                permission: ['ipp.p9t.get'],
-            },
+            }
         ]
     },
 

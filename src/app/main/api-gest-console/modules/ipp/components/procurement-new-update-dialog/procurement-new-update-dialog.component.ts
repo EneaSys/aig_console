@@ -11,9 +11,5 @@ export class AigProcurementNewUpdateDialogComponent implements OnInit {
         @Inject (MAT_DIALOG_DATA) public data: any,
     ) { }
 
-    
-   
-    ngOnInit(): void {
-
-     }
+    ngOnInit(): void { }
 }

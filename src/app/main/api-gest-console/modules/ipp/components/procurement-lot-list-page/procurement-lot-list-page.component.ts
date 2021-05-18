@@ -271,6 +271,6 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
     }
 
     newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { } });
     }
 }

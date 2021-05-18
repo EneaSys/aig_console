@@ -151,7 +151,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newProcurement(): void {
-		this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: {} } });
+		this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: {  } });
 	}
 
 }

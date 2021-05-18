@@ -55,6 +55,10 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     procurementLotNewUpdateForm: FormGroup;
 
+    isUpdate: boolean = false;
+
+    procurementLotResult: any;
+
     filteredProcurement: Observable<ProcurementDTO[]>;
     filteredCpv: Observable<CpvDTO[]>;
     filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
@@ -88,6 +92,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         
         if (this.procurementLot != null) {
             this.procurementLotNewUpdateForm.patchValue(this.procurementLot);
+            this.isUpdate = true;
         }
 
         this.filteredProcurement = this.ippAutocompleteFilterService.filterProcurement(this.procurementLotNewUpdateForm.controls['procurement'].valueChanges);
@@ -119,13 +124,16 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.procurementLot.id > 0) {
+            if (this.isUpdate) {
                 await this.procurementLotResourceService.updateProcurementLotUsingPUT(procurementLot).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.procurementLotResourceService.createProcurementLotUsingPOST(procurementLot).toPromise();
                 postOrPut = "created";
             }
+
+            this.procurementLotResult = procurementLot;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
@@ -136,7 +144,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newProcurement() {
+    newProcurementLot() {
         this.setStep("form");
     }
 

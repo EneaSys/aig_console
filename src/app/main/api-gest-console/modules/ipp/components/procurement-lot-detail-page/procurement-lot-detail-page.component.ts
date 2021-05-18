@@ -42,24 +42,27 @@ export class AigProcurementLotDetailPageComponent extends GenericComponent {
     this.loadPartecipation();
   }
 
-  editProcurementLot(procurementLotDTO: ProcurementLotDTO) {
-    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: procurementLotDTO } });
+  editProcurementLot(procurementLot: ProcurementLotDTO) {
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: procurementLot } });
   }
 
-  async deleteProcurementLot(id: number) {
+  async deleteProcurementLot(procurementLotDTO: ProcurementLotDTO) {
     this._fuseProgressBarService.show();
 
     try {
-      await this.procurementLotResourceService.deleteProcurementLotUsingDELETE(id).toPromise();
+      await this.procurementLotResourceService.deleteProcurementLotUsingDELETE(procurementLotDTO.id).toPromise();
 
-      this._snackBar.open(`Procurement lot: '${id}' deleted.`, null, { duration: 2000, });
+      this._snackBar.open(`Procurement lot: '${procurementLotDTO.id}' deleted.`, null, { duration: 2000, });
 
       this.router.navigate(['/ipp', 'procurement-lot']);
     } catch (e) {
-      this._snackBar.open(`Error during deleting procurement lot: '${id}'. (${e.message})`, null, { duration: 5000, });
+      this._snackBar.open(`Error during deleting procurement lot: '${procurementLotDTO.id}'. (${e.message})`, null, { duration: 5000, });
     }
     this._fuseProgressBarService.hide();
   }
+
+
+
 
   partecipationDC: string[] = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"];
   partecipationDTOs: PartecipationDTO[];
@@ -72,8 +75,8 @@ export class AigProcurementLotDetailPageComponent extends GenericComponent {
     this.partecipationDTOs = await this.partecipationResourceService.getAllPartecipationsUsingGET(filters).toPromise(); 
   }
 
-  newPartecipation(procurementLotDTO: ProcurementLotDTO): void {
-    this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {}, procurementLot: procurementLotDTO } });
-}
+  newPartecipation(procurementLot: ProcurementLotDTO): void {
+    this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { procurementLot: procurementLot } });
+  }
 
 }

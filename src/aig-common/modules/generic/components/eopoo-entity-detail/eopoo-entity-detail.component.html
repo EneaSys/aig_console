@@ -1,16 +1,12 @@
-<div>
-    <div class="h3 m-16 mt-0 mb-0">Detail</div>
-    <hr size=”1″ width=”300″ color="black" noshade>
-
-    <p>Id: {{ eopooDTO.id }}</p>
-    <p>Type: {{ eopooDTO.eopooType.name }}</p>
-    <p>Name: {{ eopooDTO | eopooName }}</p>
-    <p>Tax Number: {{ eopooDTO.taxNumber }}</p>
-    <div *ngIf="eopooDTO.person">
-        <hr />
-        <p>Sesso: {{ eopooDTO.person.sex }}</p>
-        <p>Data nascita: {{ eopooDTO.person.bornDate }}</p>
-        <p>Città nascita: {{ eopooDTO.person.city.name }}</p>
-    </div>
-
+<div class="h4 m-8 ml-16 mb-0 secondary-text">
+    ID: {{ eopooDTO.id }}
+    -
+    TIPO: {{ eopooDTO.eopooType.name }}
+</div>
+<div class="h1 m-8 ml-16">{{ eopooDTO | eopooName }}</div>
+<div class="h4 ml-16">Codice fiscale: <b>{{ eopooDTO.taxNumber }}</b></div>
+<div *ngIf="eopooDTO.person">
+    <div class="h4 ml-16">Sesso: <b>{{ eopooDTO.person.sex }}</b></div>
+    <div class="h4 ml-16">Data nascita: <b>{{ eopooDTO.person.bornDate }}</b></div>
+    <div class="h4 ml-16">Città nascita: <b>{{ eopooDTO.person.city.name }}</b></div>
 </div>

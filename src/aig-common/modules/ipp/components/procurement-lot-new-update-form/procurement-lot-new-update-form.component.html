@@ -106,7 +106,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -115,7 +116,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ procurementLotNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!procurementLotNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newProcurementLot()">Create New</button>
+    <h1 *ngIf="!isUpdate">Lotto di gara creato con successo</h1>
+    <h1 *ngIf="isUpdate">Lotto di gara aggiornato correttamente</h1>
+    
+    <hr>
+
+    <aig-procurement-lot-detail-box [procurementLot]="procurementLotResult"></aig-procurement-lot-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurementLot()">Crea nuovo</button>
+    </div>
 </div>
