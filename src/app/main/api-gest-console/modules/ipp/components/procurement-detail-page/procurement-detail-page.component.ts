@@ -82,7 +82,7 @@ export class AigProcurementDetailPageComponent extends AigIppGenericComponent {
   }
 
   newProcurementLot(procurementDTO: ProcurementDTO): void {
-    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {}, procurement: procurementDTO } });
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurement: procurementDTO } });
   }
 
 }

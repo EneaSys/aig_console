@@ -55,6 +55,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AigProcurementDetailBoxComponent } from './components/procurement-detail-box/procurement-detail-box.component';
 import { AigProcurementLotDetailBoxComponent } from './components/procurement-lot-detail-box/procurement-lot-detail-box.component';
 import { AigPreparationDetailBoxComponent } from './components/preparation-detail-box/preparation-detail-box.component';
+import { AigPartecipationDetailBoxComponent } from './components/partecipation-detail-box/partecipation-detail-box.component';
 
 
 @NgModule({
@@ -128,6 +129,7 @@ import { AigPreparationDetailBoxComponent } from './components/preparation-detai
     
         AigProcurementDetailBoxComponent,
         AigProcurementLotDetailBoxComponent,
+        AigPartecipationDetailBoxComponent,
         AigPreparationDetailBoxComponent,
     ],
     exports: [
@@ -156,6 +158,7 @@ import { AigPreparationDetailBoxComponent } from './components/preparation-detai
 
         AigProcurementDetailBoxComponent,
         AigProcurementLotDetailBoxComponent,
+        AigPartecipationDetailBoxComponent,
         AigPreparationDetailBoxComponent,
     ]
         

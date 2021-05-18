@@ -3,7 +3,6 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { DesignatedCompanyDTO, DesignatedCompanyResourceService, InsurancePolicyDTO, InsurancePolicyResourceService, PartecipationDTO, PartecipationResourceService, PreparationDTO, PreparationResourceService } from "aig-italianlegislation";
-import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
 import { AigInsurancePolicyNewUpdateDialogComponent } from "../insurance-policy-new-update-dialog/insurance-policy-new-update-dialog.component";
@@ -110,7 +109,7 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
   }
 
   newPreparation(partecipationDTO: PartecipationDTO): void {
-    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { preparation: {}, partecipation: partecipationDTO } });
+    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { partecipation: partecipationDTO } });
   }
 
 }
