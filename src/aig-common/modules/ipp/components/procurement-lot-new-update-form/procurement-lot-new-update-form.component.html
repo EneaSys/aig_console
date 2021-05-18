@@ -88,7 +88,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Criterio Aggiudicazione</mat-label>
+            <mat-label>{{ 'IPP.AWARD_CRITERION' | translate }}</mat-label>
             <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete" required>
             <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
                 <mat-option *ngFor="let ippLotCategory of filteredProcurementLotAwardCriterion | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
@@ -106,7 +106,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -129,4 +130,16 @@
 
     <button [routerLink]="'/ipp/procurement-lot/detail/'" mat-stroked-button color="primary">Dettagli</button>
 
+    <h1 *ngIf="!isUpdate">Lotto di gara creato con successo</h1>
+    <h1 *ngIf="isUpdate">Lotto di gara aggiornato correttamente</h1>
+    
+    <hr>
+
+    <aig-procurement-lot-detail-box [procurementLot]="procurementLotResult"></aig-procurement-lot-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurementLot()">Crea nuovo</button>
+    </div>
 </div>

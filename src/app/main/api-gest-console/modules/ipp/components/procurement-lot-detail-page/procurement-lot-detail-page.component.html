@@ -2,38 +2,43 @@
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-        <div class="widget p-16" fxFlex.gt-sm="70">
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h1 m-8 ml-16 mb-0 secondary-text"><b>Details</b></div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Descrizione: {{procurementLotDTO.description}}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Cig: {{procurementLotDTO.cig}}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Data scadenza: {{procurementLotDTO.offerExpiryDate}}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Importo: {{procurementLotDTO.baseAmount | currency :'EUR'}}</div>
-
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate }} lotto di gara</div>
+                <hr>
+                <aig-procurement-lot-detail-box [procurementLot]="procurementLotDTO"></aig-procurement-lot-detail-box>
                 <br>
-
-                <button mat-stroked-button color="primary" (click)="editProcurementLot(procurementLotDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteProcurementLot(procurementLotDTO.id)">Delete</button>
-
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurementLot(procurementLotDTO)">{{ 'MAIN.EDIT' | translate }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteProcurementLot(procurementLotDTO)">{{ 'MAIN.DELETE' | translate }}</button>
+                </div>
             </div>
+        </div>
 
-            <br>
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8" id="dossier-list">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Dossier</b></div>
 
-            <div class="fuse-card auto-width p-14">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDossier(procurementDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
 
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8" id="partecipation-list">
                 <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Partecipation</b></div>
                 <aig-partecipation-list-table [dataSource]="partecipationDTOs" [displayColumns]="partecipationDC"
                     [error]="partecipationError"></aig-partecipation-list-table>
 
-                <button mat-fab class="accent" id="add-partecipation-button" (click)="newPartecipation(procurementLotDTO)"
-                    aria-label="add partecipation">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newPartecipation(procurementLotDTO)">
                     <mat-icon>add</mat-icon>
                 </button>
-
             </div>
-
         </div>
 
     </div>

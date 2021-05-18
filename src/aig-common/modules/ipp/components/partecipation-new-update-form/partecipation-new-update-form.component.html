@@ -27,8 +27,8 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="50">
             <mat-label>Tipo di partecipazione</mat-label>
-            <input formControlName="partecipationType" matInput [matAutocomplete]="partecipationTypeAutocomplete">
-            <mat-autocomplete #partecipationTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
+            <input formControlName="type" matInput [matAutocomplete]="typeAutocomplete">
+            <mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
                 <mat-option *ngFor="let partecipationType of filteredPartecipationType | async" [value]="partecipationType">{{ partecipationType.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>

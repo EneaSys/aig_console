@@ -46,21 +46,26 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
     this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: procurementDTO } });
   }
 
-  async deleteProcurement(id: number) {
+  async deleteProcurement(procurementDTO: ProcurementDTO) {
     this._fuseProgressBarService.show();
 
     try {
-      await this.procurementResourceService.deleteProcurementUsingDELETE(id).toPromise();
+      await this.procurementResourceService.deleteProcurementUsingDELETE(procurementDTO.id).toPromise();
 
-      this._snackBar.open(`Procurement: '${id}' deleted.`, null, { duration: 2000, });
+      this._snackBar.open(`Procurement: '${procurementDTO.id}' deleted.`, null, { duration: 2000, });
 
       this.router.navigate(['/ipp', 'procurement']);
     } catch (e) {
-      this._snackBar.open(`Error during deleting procurement: '${id}'. (${e.message})`, null, { duration: 5000, });
+      this._snackBar.open(`Error during deleting procurement: '${procurementDTO.id}'. (${e.message})`, null, { duration: 5000, });
     }
     this._fuseProgressBarService.hide();
   }
 
+
+
+
+
+  
   procurementLotDC: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate', 'buttons'];
   procurementLotDTOs: ProcurementLotDTO[];
   procurementLotError: any;

@@ -1,16 +1,16 @@
-#add-designated-company-button{
-        position: fixed;
-        bottom: 12px;
-        right: 24px;
-        padding: 0;
-        z-index: 99;
-    
-}
+#aig-partecipation-detail-page {
+    #designed-company-list {
+        position: relative;
+        padding-bottom: 64px !important;
+    }
 
-#add-insurance-policy-button{
-    position: relative;
-}
+    #insurance-policy-list {
+        position: relative;
+        padding-bottom: 64px !important;
+    }
 
-#add-preparation-button{
-    position: relative;
+    #preparation-list {
+        position: relative;
+        padding-bottom: 64px !important;
+    }
 }

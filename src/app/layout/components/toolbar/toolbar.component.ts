@@ -55,7 +55,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService,
+        public _translateService: TranslateService,
         private authService: AuthService,
         private aigContextRepositoryService: AigContextRepositoryService,
         private userPermissionMemoryResourceService: UserPermissionMemoryResourceService,
@@ -64,7 +64,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.languages = [
             {
                 id: 'it',
-                title: 'Italian',
+                title: 'Italiano',
                 flag: 'it'
             },
             {

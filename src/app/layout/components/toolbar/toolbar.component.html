@@ -21,6 +21,7 @@
 
 		</div>
 
+
 		<div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
 
 			<div class="toolbar-separator"></div>
@@ -42,6 +43,13 @@
 					<button mat-menu-item class="" (click)="reloadPermissions()">
 						<mat-icon>autorenew</mat-icon>
 						<span>Reload permissions</span>
+					</button>
+
+					<button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
+						<span fxLayout="row" fxLayoutAlign="start center">
+							<img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+							<span class="iso">{{lang.title}}</span>
+						</span>
 					</button>
 
 					<button mat-menu-item class="" (click)="logout()">

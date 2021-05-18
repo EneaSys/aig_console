@@ -5,6 +5,10 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { MatDialog, PageEvent } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AigProcurementLotNewUpdateDialogComponent } from '../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
+import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
+import { locale as italian } from '../../i18n/it';
+import { locale as english } from '../../i18n/en';
+
 declare const google: any;
 
 @Component({
@@ -15,9 +19,13 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
     constructor(
         private procurementLotResourceService: ProcurementLotResourceService,
         private _formBuilder: FormBuilder,
-        aigGenericComponentService: AigGenericComponentService,
         private dialog: MatDialog,
-    ) { super(aigGenericComponentService) }
+        private _fuseTranslationLoaderService: FuseTranslationLoaderService,
+        aigGenericComponentService: AigGenericComponentService,
+    ) {
+        super(aigGenericComponentService)
+        this._fuseTranslationLoaderService.loadTranslations(italian, english);
+    }
 
 
     loadComponent() {
@@ -263,6 +271,6 @@ export class AigProcurementLotListPageComponent extends GenericComponent {
     }
 
     newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { } });
     }
 }

@@ -55,6 +55,8 @@ import { AigDesignatedCompanyDetailPageComponent } from './components/designated
 import { AigInsurancePolicyStatusNewUpdateDialogComponent } from './components/insurance-policy-status-new-update-dialog/insurance-policy-status-new-update-dialog.component';
 import { AigInsurancePolicyStatusListPageComponent } from './components/insurance-policy-status-list-page/insurance-policy-status-list-page.component';
 import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 
 @NgModule({
@@ -65,12 +67,15 @@ import { AigInsurancePolicyStatusDetailPageComponent } from './components/insura
         AigCommonIppModule,
         AigIppClientModule,
         AigItalianLegislationApiModule,
+        CommonGenericModule,
        
         FormsModule,
         ReactiveFormsModule,
         
         FuseSharedModule,
         FuseSidebarModule,
+
+        TranslateModule,
         
         MatIconModule,
         MatInputModule,

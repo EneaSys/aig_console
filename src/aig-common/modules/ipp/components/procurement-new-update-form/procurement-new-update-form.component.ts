@@ -42,6 +42,10 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
 
     procurementNewUpdateForm: FormGroup;
 
+    isUpdate: boolean = false;
+
+    procurementResult: any;
+
     filteredEopoo: Observable<EopooDTO[]>;
     filteredProcurementStatus: Observable<IlPpProcurementStatusDTO[]>;
     filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
@@ -64,8 +68,9 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
             modality: ['', [Validators.required, AigValidator.haveId]],
         })
         
-        if (this.procurement != null) {
+        if (this.procurement != null && this.procurement.id != null) {
             this.procurementNewUpdateForm.patchValue(this.procurement);
+            this.isUpdate = true;
         }
         
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementNewUpdateForm.controls['contractorEopoo'].valueChanges);
@@ -95,13 +100,16 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.procurement.id > 0) {
+            if (this.isUpdate) {
                 await this.procurementResourceService.updateProcurementUsingPUT(procurement).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.procurementResourceService.createProcurementUsingPOST(procurement).toPromise();
                 postOrPut = "created";
             }
+
+            this.procurementResult = procurement;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");

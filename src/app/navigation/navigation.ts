@@ -63,16 +63,9 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'dossier-list-page',
-                title    : 'Dossier',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/dossier',
-                permission: ['ipp.p9t.get'],
-            },
-            {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
+                translate: 'NAV.IPP.PROCUREMENT',
                 type     : 'item',
                 icon     : 'build',
                 url      : '/ipp/procurement',
@@ -81,6 +74,7 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',
+                translate: 'NAV.IPP.PROCUREMENT-LOT',
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/procurement-lot',
@@ -89,35 +83,12 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'partecipation-list-page',
                 title    : 'Partecipation',
+                translate: 'NAV.IPP.PARTECIPATION',
                 type     : 'item',
                 icon     : 'child_care',
                 url      : '/ipp/partecipation',
                 permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'designated-company-list-page',
-                title    : 'Designated Company',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/designated-company',
-                permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'preparation-list-page',
-                title    : 'Preparation',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/preparation',
-                permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'insurance-policy-list-page',
-                title    : 'Insurance Policy',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/insurance-policy',
-                permission: ['ipp.p9t.get'],
-            },
+            }
         ]
     },
 
