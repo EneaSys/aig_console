@@ -61,7 +61,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             status: ['', [Validators.required, AigValidator.haveId]],
             procurementLot: [this.procurementLot, [Validators.required, AigValidator.haveId]],
 
-            partecipationType: ['', [Validators.required, AigValidator.haveId]],
+            type: ['', [Validators.required, AigValidator.haveId]],
             proposerEopoo: ['', [Validators.required, AigValidator.haveId]],
 
             siteInspection: [true],
@@ -71,7 +71,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             this.partecipationNewUpdateForm.patchValue(this.partecipation);
         }
         
-        this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationNewUpdateForm.controls['partecipationType'].valueChanges);
+        this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationNewUpdateForm.controls['type'].valueChanges);
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationNewUpdateForm.controls['proposerEopoo'].valueChanges);
         this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.partecipationNewUpdateForm.controls['procurementLot'].valueChanges);
         this.filteredPartecipationStatus = this.ippAutocompleteService.filterPartecipationStatus(this.partecipationNewUpdateForm.controls['status'].valueChanges);
@@ -86,7 +86,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let partecipation: PartecipationDTO = this.partecipationNewUpdateForm.value;
-        partecipation.partecipationTypeCode = this.partecipationNewUpdateForm.value.partecipationType.code;
+        partecipation.partecipationTypeCode = this.partecipationNewUpdateForm.value.type.code;
         partecipation.proposerEopooCode = this.partecipationNewUpdateForm.value.proposerEopoo.id;
         partecipation.statusId = this.partecipationNewUpdateForm.value.status.id;
         partecipation.procurementLotId = this.partecipationNewUpdateForm.value.procurementLot.id;

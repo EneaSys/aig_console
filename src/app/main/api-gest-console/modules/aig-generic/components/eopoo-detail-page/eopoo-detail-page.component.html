@@ -1,13 +1,11 @@
 <div id="aig-eopoo-detail-page" class="page-layout blank">
 
-    <aig-generic-header [sectionName]="(eopooDTO | eopooName)" [search]="false">
-    </aig-generic-header>
+    <aig-generic-header [sectionName]="(eopooDTO | eopooName)" [search]="false"></aig-generic-header>
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
         <div class="widget" fxFlex.gt-sm="34">
             <div class="fuse-card auto-width p-16 m-16">
-
                 <aig-eopoo-entity-detail [eopooDTO]="eopooDTO"></aig-eopoo-entity-detail>
 
                 <button mat-stroked-button color="primary" (click)="editEopoo(eopooDTO)">Edit</button>
