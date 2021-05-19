@@ -16,7 +16,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-table.component';
-import { AigCustomSmlcNewPurchaseFormComponent } from './components/custom-smlc-new-purchase-form/custom-smlc-new-purchase-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AigSellerListTableComponent } from './components/seller-list-table/seller-list-table.component';
@@ -118,7 +117,6 @@ import { TranslateModule } from '@ngx-translate/core';
     declarations: [
 
         AigBuyListTableComponent,
-        AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
         AigSellerNewUpdateFormComponent,
         AigFiscalTransactionListTableComponent,
@@ -189,7 +187,6 @@ import { TranslateModule } from '@ngx-translate/core';
     exports: [
         
         AigBuyListTableComponent,
-        AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
         AigSellerNewUpdateFormComponent,
         AigFiscalTransactionListTableComponent,

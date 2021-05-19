@@ -16,7 +16,6 @@ import { AigCommonCommerceModule } from 'aig-common/modules/commerce/common-comm
 import { commerceRoute } from './commerce.route';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AigNewCustomBuyDialogComponent } from './components/new-custom-buy-dialog/new-custom-buy-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigCommerceApiModule } from 'aig-commerce';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -128,7 +127,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
     ],
     declarations: [
-        AigNewCustomBuyDialogComponent,
         AigSellerListPageComponent,
         AigSellerNewUpdateDialogComponent,
         AigPurchaseDetailPageComponent,
@@ -196,7 +194,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ],
     
     entryComponents: [
-        AigNewCustomBuyDialogComponent,
         AigWarehouseNewUpdateModalComponent,
         AigBuyerNewUpdateModalComponent,
         AigFiscalTransactionNewUpdateModalComponent,
