@@ -37,27 +37,27 @@
             </mat-form-field>
         </div>  
         
-    <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
-    </div>
-</form>
-
-<div *ngIf="step.loading" fxLayoutAlign="center">
-    <mat-spinner></mat-spinner>
-</div>
-
-<div *ngIf="step.complete">
-
-    <span>
-        <h1>Hai creato una nuova preparation!</h1>
-        <p>Company Preparator Eopoo: {{ preparationNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo ? preparationNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo.name : preparationNewUpdateForm.controls.companyPreparatorEopoo.value.person.firstname + " " + preparationNewUpdateForm.controls.companyPreparatorEopoo.value.person.lastname }}</p>
-        <p>Note: {{ preparationNewUpdateForm.controls.note.value }}</p>
-        <p>Status: {{ preparationNewUpdateForm.controls.status.value.description }}</p>
-    </span>
+        <div fxLayout="row" fxLayoutAlign="end top">
+            <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+            <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        </div>
+    </form>
     
-    <button *ngIf="!preparationNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newPreparation()">Create New</button>
-
-    <button [routerLink]="'/ipp/preparation/detail/'" mat-stroked-button color="primary">Dettagli</button>
-
-</div>
+    <div *ngIf="step.loading" fxLayoutAlign="center">
+        <mat-spinner></mat-spinner>
+    </div>
+    
+    <div *ngIf="step.complete">
+        <h1 *ngIf="!isUpdate">Preparazione creata con successo</h1>
+        <h1 *ngIf="isUpdate">Preparazione aggiornata correttamente</h1>
+        
+        <hr>
+    
+        <aig-preparation-detail-box [preparation]="preparationResult"></aig-preparation-detail-box>
+    
+        <div *ngIf="!isUpdate">
+            <br>
+            <hr>
+            <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPreparation()">Crea nuovo</button>
+        </div>
+    </div>

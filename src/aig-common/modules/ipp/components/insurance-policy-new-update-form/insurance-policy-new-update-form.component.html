@@ -43,7 +43,8 @@
 
     
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -52,18 +53,16 @@
 </div>
 
 <div *ngIf="step.complete">
-
-    <span>
-        <h1>Hai creato una nuova insurance policy!</h1>
-        <p>Company preparator Eopoo: {{ insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo ? insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo.name : insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.person.firstname + " " + insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.person.lastname }}</p>
-        <p>Note: {{ insurancePolicyNewUpdateForm.controls.note.value }}</p>
-        <p>Status: {{ insurancePolicyNewUpdateForm.controls.status.value.description }}</p>
-        <p>Total amount: {{ insurancePolicyNewUpdateForm.controls.totalAmount.value | currency:'EUR' }}</p>
-    </span>
+    <h1 *ngIf="!isUpdate">Polizza creata con successo</h1>
+    <h1 *ngIf="isUpdate">Polizza aggiornata correttamente</h1>
     
-    <button *ngIf="!insurancePolicyNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newInsurancePolicy()">Create New</button>
+    <hr>
 
-    <button [routerLink]="'/ipp/insurance-policy/detail/'" mat-stroked-button color="primary">Dettagli</button>
+    <aig-insurance-policy-detail-box [insurancePolicy]="insurancePolicyResult"></aig-insurance-policy-detail-box>
 
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newInsurancePolicy()">Crea nuovo</button>
+    </div>
 </div>
