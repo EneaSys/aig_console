@@ -90,8 +90,11 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-           <aig-procurement-list-table [displayColumns]="procurementDC" [dataSource]="procurementDTOs"
+            <aig-procurement-list-table 
+                [displayColumns]="procurementDC" 
+                [dataSource]="procurementDTOs"
                 [error]="procurementError"></aig-procurement-list-table>
+           
 
             <mat-paginator #paginator [length]="procurementLength" [pageIndex]="this.procurementFilters.page"
                 [pageSize]="this.procurementPaginationSize" [pageSizeOptions]="[10, 20, 50]"

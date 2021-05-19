@@ -10,6 +10,11 @@ export const locale = {
             'FILTERS': 'filtri',
             'RESET_FILTERS': 'resetta filtri',
             'SEARCH': 'cerca',
+            'STATUS': 'stato',
+            'GROUP': 'gruppo',
+            'GROUPS': 'gruppi',
+            'DESCRIPTION': 'descrizione',
+            'DESCRIPTIONS': 'descrizioni',
         },
     }
 };
