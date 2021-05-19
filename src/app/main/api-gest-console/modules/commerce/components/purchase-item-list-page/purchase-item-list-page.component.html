@@ -5,13 +5,13 @@
         <div class="content">
             <div>
                 <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="h5">Cerca</span>
+                    <span class="h5">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
                 </div>
                 <div class="content py-16" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
                             <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllPurchaseItem()">Resetta filtri</button>
+                                <button mat-raised-button (click)="showAllPurchaseItem()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                             </div>
                             <form [formGroup]="purchaseItemSearchFormGroup" (ngSubmit)="purchaseItemSearchWithFilter()"class="p-8">
                                 <div fxLayout="row">
