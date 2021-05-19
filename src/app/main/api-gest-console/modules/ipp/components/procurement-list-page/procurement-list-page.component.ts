@@ -57,7 +57,7 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 	procurementDC: string[];
 
 	private initProcurementSearch() {
-		this.procurementDC = ["id", "code", "description", "ref", "contractorEopoo", "ippModality", "ippProcedure", "ippSector", "totalAmount", "procurementStatus", "buttons"];
+		this.procurementDC = ["id", "description", "contractorEopoo", "ippModality", "ippProcedure", "totalAmount", "buttons"];
 
 		this.procurementPaginationSize = 10;
 
