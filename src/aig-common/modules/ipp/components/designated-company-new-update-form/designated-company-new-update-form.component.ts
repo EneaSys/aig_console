@@ -44,6 +44,10 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
 
     designatedCompanyNewUpdateForm: FormGroup;
 
+    isUpdate: boolean = false;
+
+    designedCompanyResult: any;
+
     filteredEopoo: Observable<EopooDTO[]>;
     filteredPartecipation: Observable<PartecipationDTO[]>;
 
@@ -57,6 +61,7 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
         
         if (this.designatedCompany != null) {
             this.designatedCompanyNewUpdateForm.patchValue(this.designatedCompany);
+            this.isUpdate = true;
         }
 
         this.filteredPartecipation = this.ippAutocompleteService.filterPartecipation(this.designatedCompanyNewUpdateForm.controls['partecipation'].valueChanges);
@@ -78,13 +83,16 @@ export class AigDesignatedCompanyNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.designatedCompany.id > 0) {
+            if (this.isUpdate) {
                 await this.designatedCompanyResourceService.updateDesignatedCompanyUsingPUT(designatedCompany).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.designatedCompanyResourceService.createDesignatedCompanyUsingPOST(designatedCompany).toPromise();
                 postOrPut = "created";
             }
+
+            this.designedCompanyResult = designatedCompany;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");

@@ -4,15 +4,15 @@
         <!-- SIDEBAR CONTENT -->
         <div class="content">
             <div>
-                <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="start center">
-
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="showAllSeller()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
-                <div class="content py-16" fusePerfectScrollbar>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
                         <div class="nav-item" aria-label="inbox">
-                            <div fxLayout="row" fxLayoutAlign="center top">
-                                <button mat-raised-button (click)="showAllSeller()">Resetta filtri</button>
-                            </div>
                             <form [formGroup]="sellerSearchFormGroup" (ngSubmit)="sellerSearchWithFilter()" class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
@@ -26,16 +26,14 @@
                                         <input matInput type="text" formControlName="name">
                                     </mat-form-field>
                                 </div>
-
                                 <div fxLayout="row" fxLayoutAlign="end top">
-                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                    <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- / SIDEBAR CONTENT -->
     </fuse-sidebar>
@@ -45,17 +43,21 @@
     <div class="center">
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
-				<mat-icon>menu</mat-icon>
-			</button>
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
+                (click)="toggleSidebar('purchase-sidebar')">
+                <mat-icon>menu</mat-icon>
+            </button>
             <h2>Negozi</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <aig-seller-list-table [displayColumns]="sellerDC" [dataSource]="sellerDTOs" [error]="sellerError"></aig-seller-list-table>
+            <aig-seller-list-table [displayColumns]="sellerDC" [dataSource]="sellerDTOs" [error]="sellerError">
+            </aig-seller-list-table>
 
-            <mat-paginator #paginator [length]="sellerLength" [pageIndex]="this.sellerFilters.page" [pageSize]="this.sellerPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="sellerPaginationEvent($event)">
+            <mat-paginator #paginator [length]="sellerLength" [pageIndex]="this.sellerFilters.page"
+                [pageSize]="this.sellerPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                (page)="sellerPaginationEvent($event)">
             </mat-paginator>
 
             <button mat-fab class="accent" id="add-seller-button" (click)="newSeller()" aria-label="add seller">

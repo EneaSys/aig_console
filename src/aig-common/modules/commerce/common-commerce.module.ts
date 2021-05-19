@@ -78,26 +78,27 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
 import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
 import { AigCatalogPriceManagerListTableComponent } from './components/catalog-price-manager-list-table/catalog-price-manager-list-table.component';
 import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-combination.resolver';
-import { AigEntityDetailInventoryItemComponent } from './components/entity-detail-inventory-item/entity-detail-inventory-item.component';
-import { AigEntityDetailCatalogComponent } from './components/entity-detail-catalog/entity-detail-catalog.component';
-import { AigEntityDetailWarehouseComponent } from './components/entity-detail-warehouse/entity-detail-warehouse.component';
-import { AigEntityDetailProducerComponent } from './components/entity-detail-producer/entity-detail-producer.component';
-import { AigEntityDetailSellerComponent } from './components/entity-detail-seller/entity-detail-seller.component';
+import { AigEntityDetailInventoryItemComponent } from './components/inventory-item-box-detail/entity-detail-inventory-item.component';
+import { AigEntityDetailCatalogComponent } from './components/catalog-box-detail/entity-detail-catalog.component';
+import { AigEntityDetailWarehouseComponent } from './components/warehouse-box-detail/entity-detail-warehouse.component';
+import { AigEntityDetailProducerComponent } from './components/producer-box-detail/entity-detail-producer.component';
+import { AigEntityDetailSellerComponent } from './components/seller-box-detail/entity-detail-seller.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
 
         AigCommonModule,
         CommonModule,
-
         CommonGenericModule,
         
         RouterModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        
         FlexLayoutModule,
+
+        TranslateModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -113,10 +114,9 @@ import { AigEntityDetailSellerComponent } from './components/entity-detail-selle
         MatSlideToggleModule,
         MatRadioModule,
         MatMenuModule,
-    
-
     ],
     declarations: [
+
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
@@ -164,10 +164,9 @@ import { AigEntityDetailSellerComponent } from './components/entity-detail-selle
         AigEntityDetailWarehouseComponent,
         AigEntityDetailProducerComponent,
         AigEntityDetailSellerComponent
-        
-        
     ],
     providers: [
+
         PurchaseResolver,
         PurchaseItemResolver,
         FiscalTransactionResolver,
@@ -188,6 +187,7 @@ import { AigEntityDetailSellerComponent } from './components/entity-detail-selle
         AigWarehouseHandlingItemResolver,
     ],
     exports: [
+        
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,

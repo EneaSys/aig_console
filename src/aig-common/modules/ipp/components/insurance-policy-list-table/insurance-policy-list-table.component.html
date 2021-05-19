@@ -16,35 +16,28 @@
         
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="companyPreparatorEopoo">
-            <mat-header-cell *matHeaderCellDef>Company Preparator Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopoo.genericEopoo ? e.companyPreparatorEopoo.genericEopoo.name : e.companyPreparatorEopoo.person.firstname + " " + e.companyPreparatorEopoo.person.lastname }} </mat-cell>
+        <ng-container matColumnDef="insurancerCompany">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.INSURANCER_COMPANY' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.companyPreparatorEopoo | eopooName }}</mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="note">
-            <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.note }} </mat-cell>
-        </ng-container>
-
-
-        <ng-container matColumnDef="partecipationProposerEopoo">
-            <mat-header-cell *matHeaderCellDef>Partecipation Proposer Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipation.proposerEopoo.genericEopoo ? e.partecipation.proposerEopoo.genericEopoo.name : e.partecipation.proposerEopoo.person.firstname + " " + e.partecipation.proposerEopoo.person.lastname }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.NOTE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.note }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.status.description}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.STATUS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status.description}}</mat-cell>
         </ng-container>
 
-
         <ng-container matColumnDef="totalAmount">
-            <mat-header-cell *matHeaderCellDef>Total Amount</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR'}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.INSURANCE_AMOUNT' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.totalAmount | currency:'EUR'}}</mat-cell>
         </ng-container>
 
 
@@ -57,15 +50,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/insurance-policy/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>{{ 'MAIN.DETAILS' | translate }}</span>
                     </button>
                     <button mat-menu-item (click)="editInsurancePolicy(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate }}</span>
                       </button>
                     <button mat-menu-item (click)="deleteInsurancePolicy(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate }}</span>
                       </button>
                   </mat-menu>
             </mat-cell>

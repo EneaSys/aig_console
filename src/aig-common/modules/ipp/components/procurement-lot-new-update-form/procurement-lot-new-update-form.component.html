@@ -2,7 +2,7 @@
 
     <div *ngIf="!procurement" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex="100">
-            <mat-label>Procurement</mat-label>
+            <mat-label>{{ 'IPP.PROCUREMENT' | translate }}</mat-label>
             <input formControlName="procurement" matInput [matAutocomplete]="procurementAutocomplete" required>
             <mat-autocomplete #procurementAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementDisplayFn">
                 <mat-option *ngFor="let procurement of filteredProcurement | async" [value]="procurement">{{ procurement.description }}</mat-option>
@@ -14,25 +14,25 @@
     <div fxLayout="row" fxLayoutAlign="start start">
         
         <mat-form-field appearance="outline" fxFlex="25">
-            <mat-label>Cig</mat-label>
+            <mat-label>{{ 'IPP.CIG' | translate }}</mat-label>
             <input formControlName="cig" matInput required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Offer Expiry Date</mat-label>
+            <mat-label>{{ 'IPP.OFFER_EXPIRY_DATE' | translate }}</mat-label>
             <input formControlName="offerExpiryDate" matInput [matDatepicker]="picker" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Base Amount</mat-label>
+            <mat-label>{{ 'IPP.LOT_AMOUNT' | translate }}</mat-label>
             <input type="number" matInput formControlName="baseAmount" required>
         </mat-form-field>
        
    
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Security Amount</mat-label>
+            <mat-label>{{ 'IPP.LOT_SECURITY_AMOUNT' | translate }}</mat-label>
             <input type="number" matInput formControlName="securityAmount">
         </mat-form-field>
     
@@ -40,13 +40,50 @@
     
     <div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex="100" class="pl-4">
-            <mat-label>Description</mat-label>
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.DESCRIPTION' | translate }} {{ 'IPP.PROCUREMENT_LOT' | translate }}</mat-label>
             <input formControlName="description" matInput required>
         </mat-form-field>
 
     </div>
+    
+     <div fxLayout="row" fxLayoutAlign="start start">
 
+        <mat-form-field appearance="outline" fxFlex="25">
+            <mat-label>{{ 'IPP.LOT_TYPE' | translate }}</mat-label>
+            <input formControlName="type" matInput [matAutocomplete]="ippLotTypeAutocomplete" required>
+            <mat-autocomplete #ippLotTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+                <mat-option *ngFor="let ippLotType of filteredIppLotType | async" [value]="ippLotType">{{ ippLotType.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
+            <mat-label>{{ 'IPP.LOT_CATEGORIES' | translate }}</mat-label>
+            <input formControlName="category" matInput [matAutocomplete]="ippLotCategoryAutocomplete" required>
+            <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
+            <mat-label>{{ 'IPP.AWARD_CRITERION' | translate }}</mat-label>
+            <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete" required>
+            <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotAwardCriterion | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
+            <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="procurementLotStatusAutocomplete" required>
+            <mat-autocomplete #procurementLotStatusAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotStatus | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+    
     <div fxLayout="row" fxLayoutAlign="start start">
 
         <mat-form-field appearance="outline" fxFlex="25">
@@ -68,47 +105,12 @@
         </mat-form-field>
 
     </div>
-    
-     <div fxLayout="row" fxLayoutAlign="start start">
-
-        <mat-form-field appearance="outline" fxFlex="25">
-            <mat-label>Type</mat-label>
-            <input formControlName="type" matInput [matAutocomplete]="ippLotTypeAutocomplete" required>
-            <mat-autocomplete #ippLotTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
-                <mat-option *ngFor="let ippLotType of filteredIppLotType | async" [value]="ippLotType">{{ ippLotType.name }}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    
-        <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Category</mat-label>
-            <input formControlName="category" matInput [matAutocomplete]="ippLotCategoryAutocomplete" required>
-            <mat-autocomplete #ippLotCategoryAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredIppLotCategory | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>{{ 'IPP.AWARD_CRITERION' | translate }}</mat-label>
-            <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete" required>
-            <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotAwardCriterion | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Stato</mat-label>
-            <input formControlName="status" matInput [matAutocomplete]="procurementLotStatusAutocomplete" required>
-            <mat-autocomplete #procurementLotStatusAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotStatus | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
-    </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -116,8 +118,8 @@
 </div>
 
 <div *ngIf="step.complete">
-    <h1 *ngIf="!isUpdate">Lotto di gara creato con successo</h1>
-    <h1 *ngIf="isUpdate">Lotto di gara aggiornato correttamente</h1>
+    <h1 *ngIf="!isUpdate">{{ 'IPP.PROCUREMENT_LOT' | translate }} {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.PROCUREMENT_LOT' | translate }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
     
     <hr>
 
@@ -126,6 +128,6 @@
     <div *ngIf="!isUpdate">
         <br>
         <hr>
-        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurementLot()">Crea nuovo</button>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurementLot()">{{ 'MAIN.CREATE_NEW' | translate }}</button>
     </div>
 </div>

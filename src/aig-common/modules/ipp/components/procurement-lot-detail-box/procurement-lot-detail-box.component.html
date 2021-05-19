@@ -1,18 +1,18 @@
 <div class="h4 m-8 ml-16 mb-0 secondary-text">
     ID: {{ procurementLot.id }}
     -
-    CIG: {{ procurementLot.cig }}
+    {{ 'IPP.CIG' | translate }}: {{ procurementLot.cig }}
 </div>
 <div class="h1 m-8 ml-16">{{ procurementLot.description }}</div>
 <div class="h4 ml-16">
-    Importo (Sicurezza):
+    {{ 'IPP.LOT_AMOUNT' | translate }} ({{ 'IPP.LOT_SECURITY_AMOUNT' | translate }}):
     <b>{{ procurementLot.baseAmount | currency: "EUR" }}</b>
     <b *ngIf="procurementLot.securityAmount != ''">({{ procurementLot.securityAmount | currency: "EUR" }})</b>
 </div>
 <div class="h4 ml-16">
-    Data scadenza offerte: <b>{{ procurementLot.offerExpiryDate | date: 'dd/MM/yyyy' }}</b>
+    {{ 'IPP.OFFER_EXPIRY_DATE' | translate }}: <b>{{ procurementLot.offerExpiryDate | date: 'dd/MM/yyyy' }}</b>
 </div>
-<div class="h4 ml-16">Tipo: <b>{{ procurementLot.type.name }}</b></div>
-<div class="h4 ml-16">Categoria: <b>{{ procurementLot.category.name }}</b></div>
-<div class="h4 ml-16">Criterio aggiudicazione: <b>{{ procurementLot.awardCriterion.name }}</b></div>
-<div class="h4 ml-16">Stato: <b>{{ procurementLot.status.name }}</b></div>
+<div class="h4 ml-16">{{ 'IPP.LOT_TYPE' | translate }}: <b>{{ procurementLot.type.name }}</b></div>
+<div class="h4 ml-16">{{ 'IPP.LOT_CATEGORY' | translate }}: <b>{{ procurementLot.category.name }}</b></div>
+<div class="h4 ml-16">{{ 'IPP.AWARD_CRITERION' | translate }}: <b>{{ procurementLot.awardCriterion.name }}</b></div>
+<div class="h4 ml-16">{{ 'MAIN.STATUS' | translate }}: <b>{{ procurementLot.status.name }}</b></div>

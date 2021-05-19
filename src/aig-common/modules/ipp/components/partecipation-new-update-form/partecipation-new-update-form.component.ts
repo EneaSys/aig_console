@@ -68,7 +68,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             type: ['', [Validators.required, AigValidator.haveId]],
             proposerEopoo: ['', [Validators.required, AigValidator.haveId]],
 
-            siteInspection: [true],
+            siteInspection: [false],
         })
         
         if (this.partecipation != null && this.partecipation.id != null) {
