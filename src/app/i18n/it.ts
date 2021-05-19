@@ -6,6 +6,10 @@ export const locale = {
 			'DETAILS': 'dettagli',
 			'CREATE': 'crea',
             'UPDATE': 'aggiorna',
+            'CREATED': 'creato',
+            'UPDATED': 'aggiornato',
+            'CREATEDA': 'creata',
+            'UPDATEDA': 'aggiornata',
             'EDIT': 'modifica',
             'DELETE': 'cancella',
             'FILTERS': 'filtri',
@@ -23,6 +27,7 @@ export const locale = {
             'UPDATE_OK': 'aggiornato con successo',
             'CREATION_OKA': 'creata con successo',
             'UPDATE_OKA': 'aggiornata con successo',
+            'SUCCESSFUL': 'con successo',
         },
     }
 };

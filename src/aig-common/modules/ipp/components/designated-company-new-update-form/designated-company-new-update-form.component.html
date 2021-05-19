@@ -1,42 +1,51 @@
 <form *ngIf="step.form" [formGroup]="designatedCompanyNewUpdateForm" (ngSubmit)="submit()">
 
     <div *ngIf="!partecipation" fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Partecipation</mat-label>
-            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.PARTECIPATION' | translate }}</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete" required>
             <mat-autocomplete #partecipationAutocomplete="matAutocomplete"
                 [displayWith]="ippAutoCompleteDisplayService.partecipationDisplayFn">
-                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{
-                    partecipation.procurementLot.cig }} > {{ partecipation.proposerEopooCode }}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Company Eopoo </mat-label>
-            <input formControlName="companyEopoo" matInput [matAutocomplete]="companyEopooAutocomplete">
-            <mat-autocomplete #companyEopooAutocomplete="matAutocomplete"
-                [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">
+                    {{ partecipation.procurementLot.cig }} > {{ partecipation.proposerEopoo | eopooName }}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
+
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Note</mat-label>
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.DESIGNED_COMPANY' | translate }}</mat-label>
+            <input formControlName="companyEopoo" matInput [matAutocomplete]="companyEopooAutocomplete" required>
+            <mat-autocomplete #companyEopooAutocomplete="matAutocomplete"
+                [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+                    {{ eopoo | eopooName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'MAIN.NOTE' | translate }}</mat-label>
             <input formControlName="note" matInput>
         </mat-form-field>
+
     </div>
 
 
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -44,8 +53,8 @@
 </div>
 
 <div *ngIf="step.complete">
-    <h1 *ngIf="!isUpdate">Azienda designata creato con successo</h1>
-    <h1 *ngIf="isUpdate">Designazione aggiornata correttamente</h1>
+    <h1 *ngIf="!isUpdate">{{ 'IPP.DESIGNED_COMPANY' | translate }} {{ 'MAIN.SUCCESSFUL' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.DESIGNED_COMPANY' | translate }} {{ 'MAIN.UPDATEDA' | translate }}</h1>
     
     <hr>
 
@@ -54,6 +63,6 @@
     <div *ngIf="!isUpdate">
         <br>
         <hr>
-        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newDesignatedCompany()">Crea nuovo</button>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newDesignatedCompany()">{{ 'MAIN.CREATE_NEWA' | translate }}</button>
     </div>
 </div>

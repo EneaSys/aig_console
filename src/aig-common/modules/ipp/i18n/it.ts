@@ -43,7 +43,8 @@ export const locale = {
             "PARTECIPATION_TYPE": "tipo partecipazione",
             "INSURANCER_COMPANY": "compagnia polizza",
             "INSURANCE_AMOUNT": "importo polizza",
-            "PREPARATOR_COMPANY": "preparatore"
+            "PREPARATOR_COMPANY": "preparatore",
+            "SITE_INSPECTION": "sopralluogo"
         }
     }
 };
