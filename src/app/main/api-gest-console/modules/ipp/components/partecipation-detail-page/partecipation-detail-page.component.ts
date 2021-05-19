@@ -2,13 +2,15 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-import { DesignatedCompanyDTO, DesignatedCompanyResourceService, InsurancePolicyDTO, InsurancePolicyResourceService, PartecipationDTO, PartecipationResourceService, PreparationDTO, PreparationResourceService } from "aig-italianlegislation";
+import { DesignatedCompanyDTO, DesignatedCompanyResourceService, InsurancePolicyDTO, InsurancePolicyResourceService, PartecipationDTO, PartecipationResourceService, PreparationDTO, PreparationResourceService, ProcurementDTO, ProcurementLotDTO } from "aig-italianlegislation";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigDesignatedCompanyNewUpdateDialogComponent } from "../designated-company-new-update-dialog/designated-company-new-update-dialog.component";
 import { AigInsurancePolicyNewUpdateDialogComponent } from "../insurance-policy-new-update-dialog/insurance-policy-new-update-dialog.component";
 import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 import { AigPreparationNewUpdateDialogComponent } from "../preparation-new-update-dialog/preparation-new-update-dialog.component";
+import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
+import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
 
 @Component({
@@ -67,7 +69,27 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
     this._fuseProgressBarService.hide();
   }
 
-  designatedCompanyDC: string[] = ["id", "companyEopoo", "partecipation", "note", "buttons"];
+
+
+
+
+  editProcurementLot(procurementLot: ProcurementLotDTO) {
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: procurementLot } });
+  }
+  editProcurement(procurement: ProcurementDTO) {
+    this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: procurement } });
+  }
+
+
+
+
+
+
+
+
+
+
+  designatedCompanyDC: string[] = ["id", "companyEopoo", "note", "buttons"];
   designatedCompanyDTOs: DesignatedCompanyDTO[];
   designatedCompanyError: any;
 
@@ -78,11 +100,21 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
     this.designatedCompanyDTOs = await this.designatedCompanyResourceService.getAllDesignatedCompaniesUsingGET(filters).toPromise();
   }
 
-  newDesignatedCompany(partecipationDTO: PartecipationDTO): void {
-    this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { designatedCompany: {}, partecipation: partecipationDTO } });
+  newDesignatedCompany(partecipation: PartecipationDTO): void {
+    this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { partecipation: partecipation } });
   }
 
-  insurancePolicyDC: string[] = ["id", "companyPreparatorEopoo", "note", "partecipationProposerEopoo", "status", "totalAmount", "buttons"];
+
+
+
+
+
+
+
+
+
+
+  insurancePolicyDC: string[] = ["id", "company", "totalAmount", "note", "status", "buttons"];
   insurancePolicyDTOs: InsurancePolicyDTO[];
   insurancePolicyError: any;
 
@@ -93,11 +125,21 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
     this.insurancePolicyDTOs = await this.insurancePolicyResourceService.getAllInsurancePoliciesUsingGET(filters).toPromise();
   }
 
-  newInsurancePolicy(partecipationDTO: PartecipationDTO): void {
-    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { insurancePolicy: {}, partecipation: partecipationDTO } });
+  newInsurancePolicy(partecipation: PartecipationDTO): void {
+    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { partecipation: partecipation } });
   }
 
-  preparationDC: string[] = ["id", "companyPreparatorEopoo", "note", "partecipationId", "partecipationProposerEopoo", "statusDescription", "buttons"];
+
+
+
+
+
+
+
+
+
+
+  preparationDC: string[] = ["id", "company", "note", "status", "buttons"];
   preparationDTOs: PreparationDTO[];
   preparationError: any;
 
@@ -108,8 +150,22 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
     this.preparationDTOs = await this.preparationResourceService.getAllPreparationsUsingGET(filters).toPromise();
   }
 
-  newPreparation(partecipationDTO: PartecipationDTO): void {
-    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { partecipation: partecipationDTO } });
+  newPreparation(partecipation: PartecipationDTO): void {
+    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { partecipation: partecipation } });
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

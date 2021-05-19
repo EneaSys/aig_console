@@ -58,7 +58,7 @@ private initPartecipationSearch() {
 		status: ['',Validators.required],
 	});
 
-	this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","status","buttons"]	
+	this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopoo","expiryDate","baseAmount","ippLotCategory","status","buttons"];
 }
 
 private clearFiltersPartecipation() {
