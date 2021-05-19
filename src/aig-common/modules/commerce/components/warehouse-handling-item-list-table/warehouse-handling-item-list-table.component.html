@@ -64,15 +64,15 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/commerce/warehouse-handling-item/detail/' + e.id">
                         <mat-icon>details</mat-icon>
-                        <span>Details</span>
+                        <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="editWarehouseHandlingItem(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="deleteWarehouseHandlingItem(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
                     </button>
                 </mat-menu>
             </mat-cell>

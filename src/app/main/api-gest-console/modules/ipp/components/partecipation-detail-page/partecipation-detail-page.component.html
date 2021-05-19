@@ -23,7 +23,7 @@
                 <br>
                 <div fxLayoutAlign="end">
                     <button class="ml-8" mat-stroked-button color="accent" [routerLink]="'/ipp/procurement-lot/detail/' + partecipationDTO.procurementLot.id">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
-                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurementLot(partecipationDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurementLot(partecipationDTO.procurementLot)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <br>
                 <div fxLayoutAlign="end">
                     <button class="ml-8" mat-stroked-button color="accent" [routerLink]="'/ipp/procurement/detail/' + partecipationDTO.procurementLot.procurement.id">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
-                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurement(partecipationDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurement(partecipationDTO.procurementLot.procurement)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
     <h3>Error!</h3>
     <span *ngIf="error.status == 401">No access to this info</span>
-    
+
     <button (click)="showError = true">.</button>
     <pre *ngIf="showError">{{error | json}}</pre>
 </div>
@@ -19,11 +19,11 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
-       <ng-container matColumnDef="inventoryCategoryId">
+        <ng-container matColumnDef="inventoryCategoryId">
             <mat-header-cell *matHeaderCellDef> Id Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.inventoryCategoryId }} </mat-cell>
         </ng-container>
-        
+
         <ng-container matColumnDef="inventoryCategoryName">
             <mat-header-cell *matHeaderCellDef> Nome Categoria </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.inventoryCategory.name }}</mat-cell>
@@ -43,28 +43,28 @@
             <mat-header-cell *matHeaderCellDef> Nome Produttore </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.producer.name }} </mat-cell>
         </ng-container>
-        
+
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                     <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu">
+                </button>
+                <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/commerce/inventory-item/detail/' + e.id">
-                      <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                        <mat-icon>details</mat-icon>
+                        <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="editInventoryItem(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
-                      </button>
-                    <button mat-menu-item (click)="deleteInventoryItem(e.id)">
-                      <mat-icon>delete</mat-icon>
-                      <span>Delete</span>
+                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
                     </button>
-                  </mat-menu>
+                    <button mat-menu-item (click)="deleteInventoryItem(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
+                    </button>
+                </mat-menu>
             </mat-cell>
         </ng-container>
 

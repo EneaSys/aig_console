@@ -2,17 +2,13 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex="50">
-            <mat-label>Procurement Code</mat-label>
-            <input formControlName="code" matInput required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-            <mat-label>Eopoo</mat-label>
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.CONTRACTOR' | translate }}</mat-label>
             <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
             <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
                 [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+                    {{ eopoo | eopooName }}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
@@ -21,22 +17,8 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex="auto">
-            <mat-label>Procurement total Amount</mat-label>
-            <input type="number" matInput formControlName="totalAmount" placeholder="Quantità" required>
-        </mat-form-field>
-
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-
-        <mat-form-field appearance="outline" fxFlex="20">
-            <mat-label>Ref</mat-label>
-            <input formControlName="ref" matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="80" class="pl-4">
-            <mat-label>Procurement Description</mat-label>
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.DESCRIPTION' | translate }} {{ 'IPP.PROCUREMENT' | translate }}</mat-label>
             <input formControlName="description" matInput required>
         </mat-form-field>
 
@@ -44,8 +26,27 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
 
+        <mat-form-field appearance="outline" fxFlex="40">
+            <mat-label>{{ 'IPP.ANAC_CODE' | translate }}</mat-label>
+            <input formControlName="code" matInput required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+            <mat-label>{{ 'IPP.REFERENCE' | translate }}</mat-label>
+            <input formControlName="ref" matInput>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+            <mat-label>{{ 'IPP.TOTAL_AMOUNT' | translate }}</mat-label>
+            <input type="number" matInput formControlName="totalAmount" required>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
         <mat-form-field appearance="outline" fxFlex="50">
-            <mat-label>Status</mat-label>
+            <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
             <input formControlName="status" matInput [matAutocomplete]="procurementStatusAutocomplete">
             <mat-autocomplete #procurementStatusAutocomplete="matAutocomplete"
                 [displayWith]="standardAutocompleteDisplayService.ilPpProcurementStatusDisplayFn">
@@ -55,7 +56,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-            <mat-label>Procedure</mat-label>
+            <mat-label>{{ 'IPP.PROCEDURE' | translate }}</mat-label>
             <input formControlName="procedure" matInput [matAutocomplete]="ippProcedureAutocomplete">
             <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete"
                 [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
@@ -70,7 +71,7 @@
     <div fxLayout="row" fxLayoutAlign="start start">
 
         <mat-form-field appearance="outline" fxFlex="50">
-            <mat-label>Sector</mat-label>
+            <mat-label>{{ 'IPP.SECTOR' | translate }}</mat-label>
             <input formControlName="sector" matInput [matAutocomplete]="ippSectorAutocomplete">
             <mat-autocomplete #ippSectorAutocomplete="matAutocomplete"
                 [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
@@ -81,7 +82,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
-            <mat-label>Modality</mat-label>
+            <mat-label>{{ 'IPP.MODALITY' | translate }}</mat-label>
             <input formControlName="modality" matInput [matAutocomplete]="ippModalityAutocomplete">
             <mat-autocomplete #ippModalityAutocomplete="matAutocomplete"
                 [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
@@ -95,8 +96,8 @@
 
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
     </div>
 
 </form>
@@ -106,8 +107,8 @@
 </div>
 
 <div *ngIf="step.complete">
-    <h1 *ngIf="!isUpdate">Gara d'apalto creata con successo</h1>
-    <h1 *ngIf="isUpdate">Gara d'apalto aggiornata correttamente</h1>
+    <h1 *ngIf="!isUpdate">{{ 'IPP.PROCUREMENT' | translate }} {{ 'MAIN.CREATION_OKA' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.PROCUREMENT' | translate }} {{ 'MAIN.UPDATE_OKA' | translate }}</h1>
     
     <hr>
 
@@ -116,6 +117,6 @@
     <div *ngIf="!isUpdate">
         <br>
         <hr>
-        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurement()">Crea nuova</button>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurement()">{{ 'MAIN.CREATE_NEWA' | translate }}</button>
     </div>
 </div>

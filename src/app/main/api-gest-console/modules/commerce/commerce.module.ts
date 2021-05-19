@@ -81,6 +81,7 @@ import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-d
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 import { AigPurchaseComplexDialogComponent } from './components/purchase-complex-dialog/purchase-complex-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -101,6 +102,8 @@ import { AigPurchaseComplexDialogComponent } from './components/purchase-complex
         FuseSharedModule,
         FuseSidebarModule,
         FuseWidgetModule,
+
+        TranslateModule,
 
         MatIconModule,
         MatSnackBarModule,

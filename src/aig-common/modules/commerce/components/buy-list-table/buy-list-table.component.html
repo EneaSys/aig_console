@@ -38,7 +38,23 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">
-                <button class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/purchase/detail/' + e.id">Details</button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/commerce/purchase/detail/' + e.id">
+                        <mat-icon>details</mat-icon>
+                        <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
+                    </button>
+                    <button mat-menu-item (click)="editBuy(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteBuy(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
+                    </button>
+                </mat-menu>
             </mat-cell>
         </ng-container>
 

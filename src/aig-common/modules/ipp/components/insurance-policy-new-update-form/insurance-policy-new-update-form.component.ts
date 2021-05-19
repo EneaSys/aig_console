@@ -44,6 +44,10 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
 
     insurancePolicyNewUpdateForm: FormGroup;
 
+    isUpdate: boolean = false;
+
+    insurancePolicyResult: any;
+
     filteredEopoo: Observable<EopooDTO[]>;
     filteredInsurancePolicyStatus: Observable<InsurancePolicyStatusDTO[]>;
     filteredPartecipation: Observable<PartecipationDTO[]>;
@@ -60,6 +64,7 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
         
         if (this.insurancePolicy != null) {
             this.insurancePolicyNewUpdateForm.patchValue(this.insurancePolicy);
+            this.isUpdate = true;
         }
 
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.insurancePolicyNewUpdateForm.controls['companyPreparatorEopoo'].valueChanges);
@@ -83,13 +88,16 @@ export class AigInsurancePolicyNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.insurancePolicy.id > 0) {
+            if (this.isUpdate) {
                 await this.insurancePolicyResourceService.updateInsurancePolicyUsingPUT(insurancePolicy).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.insurancePolicyResourceService.createInsurancePolicyUsingPOST(insurancePolicy).toPromise();
                 postOrPut = "created";
             }
+
+            this.insurancePolicyResult = insurancePolicy;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");

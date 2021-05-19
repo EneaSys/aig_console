@@ -1,50 +1,62 @@
 <form *ngIf="step.form" [formGroup]="insurancePolicyNewUpdateForm" (ngSubmit)="submit()">
     
+    <div *ngIf="!partecipation" fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.PARTECIPATION' | translate }}</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete" required>
+            <mat-autocomplete #partecipationAutocomplete="matAutocomplete"
+                [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">
+                    {{ partecipation.procurementLot.cig }} > {{ partecipation.proposerEopoo | eopooName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" >
-            <mat-label>Company Preparator Eopoo </mat-label>
-            <input formControlName="companyPreparatorEopoo" matInput [matAutocomplete]="companyPreparatorEopooAutocomplete">
-            <mat-autocomplete #companyPreparatorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.INSURANCER_COMPANY' | translate }}</mat-label>
+            <input formControlName="companyPreparatorEopoo" matInput [matAutocomplete]="companyPreparatorEopooAutocomplete" required>
+            <mat-autocomplete #companyPreparatorEopooAutocomplete="matAutocomplete" 
+                [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
                 <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
+
     </div>
+
+
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Note</mat-label>
-            <input formControlName="note" matInput >
+        
+        <mat-form-field appearance="outline" fxFlex="30">
+            <mat-label>{{ 'IPP.INSURANCE_AMOUNT' | translate }}</mat-label>
+            <input type="number" formControlName="totalAmount" matInput required>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" >
-            <mat-label>Status</mat-label>
-            <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete">
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+            <mat-label>{{ 'MAIN.NOTE' | translate }}</mat-label>
+            <input formControlName="note" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+            <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete" required>
             <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.insurancePolicyStatusDisplayFn">
                 <mat-option *ngFor="let insurancePolicyStatus of filteredInsurancePolicyStatus | async" [value]="insurancePolicyStatus">{{ insurancePolicyStatus.description }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
 
     </div>
-    <div fxLayout="row" fxLayoutAlign="start start">
-
-        <mat-form-field *ngIf="!partecipation" appearance="outline" >
-            <mat-label>Partecipation</mat-label>
-            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
-            <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
-                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id }}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
-
-        <mat-form-field appearance="outline">
-            <mat-label> Total Amount</mat-label>
-            <input type="number" formControlName="totalAmount" matInput required>
-        </mat-form-field>
-    </div>
 
     
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -52,18 +64,16 @@
 </div>
 
 <div *ngIf="step.complete">
-
-    <span>
-        <h1>Hai creato una nuova insurance policy!</h1>
-        <p>Company preparator Eopoo: {{ insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo ? insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.genericEopoo.name : insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.person.firstname + " " + insurancePolicyNewUpdateForm.controls.companyPreparatorEopoo.value.person.lastname }}</p>
-        <p>Note: {{ insurancePolicyNewUpdateForm.controls.note.value }}</p>
-        <p>Status: {{ insurancePolicyNewUpdateForm.controls.status.value.description }}</p>
-        <p>Total amount: {{ insurancePolicyNewUpdateForm.controls.totalAmount.value | currency:'EUR' }}</p>
-    </span>
+    <h1 *ngIf="!isUpdate">{{ 'IPP.INSURANCE_POLICY' | translate }} {{ 'MAIN.CREATEDA' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.INSURANCE_POLICY' | translate }} {{ 'MAIN.UPDATEDA' | translate }}</h1>
     
-    <button *ngIf="!insurancePolicyNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newInsurancePolicy()">Create New</button>
+    <hr>
 
-    <button [routerLink]="'/ipp/insurance-policy/detail/'" mat-stroked-button color="primary">Dettagli</button>
+    <aig-insurance-policy-detail-box [insurancePolicy]="insurancePolicyResult"></aig-insurance-policy-detail-box>
 
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newInsurancePolicy()">{{ 'MAIN.CREATE_NEWA' | translate }}</button>
+    </div>
 </div>
