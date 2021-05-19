@@ -41,6 +41,9 @@ export const locale = {
             "PROPOSER": "proponente",
             "LOCALITY": "località",
             "PARTECIPATION_TYPE": "tipo partecipazione",
+            "INSURANCER_COMPANY": "compagnia polizza",
+            "INSURANCE_AMOUNT": "importo polizza",
+            "PREPARATOR_COMPANY": "preparatore"
         }
     }
 };

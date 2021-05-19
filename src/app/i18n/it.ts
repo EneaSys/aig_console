@@ -5,6 +5,7 @@ export const locale = {
             'DETAIL': 'dettaglio',
 			'DETAILS': 'dettagli',
 			'CREATE': 'crea',
+            'UPDATE': 'aggiorna',
             'EDIT': 'modifica',
             'DELETE': 'cancella',
             'FILTERS': 'filtri',
@@ -15,6 +16,7 @@ export const locale = {
             'GROUPS': 'gruppi',
             'DESCRIPTION': 'descrizione',
             'DESCRIPTIONS': 'descrizioni',
+            'NOTE': 'note',
         },
     }
 };

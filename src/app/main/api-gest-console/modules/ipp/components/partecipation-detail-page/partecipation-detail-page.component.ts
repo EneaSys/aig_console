@@ -40,6 +40,7 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
   }
 
   async reloadPage() {
+    this.putLoading();
     this.partecipationDTO = await this.partecipationResourceService.getPartecipationUsingGET(this.partecipationDTO.id).toPromise();
     this.loadOther();
   }
@@ -84,12 +85,20 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
 
 
 
+  putLoading() {
+    this.designatedCompanyDTOs = null;
+    this.insurancePolicyDTOs = null;
+    this.preparationDTOs = null;
+  }
 
 
 
 
 
-  designatedCompanyDC: string[] = ["id", "companyEopoo", "note", "buttons"];
+
+
+
+  designatedCompanyDC: string[] = ["id", "designedCompany", "note", "buttons"];
   designatedCompanyDTOs: DesignatedCompanyDTO[];
   designatedCompanyError: any;
 
@@ -114,7 +123,7 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
 
 
 
-  insurancePolicyDC: string[] = ["id", "company", "totalAmount", "note", "status", "buttons"];
+  insurancePolicyDC: string[] = ["id", "insurancerCompany", "totalAmount", "note", "status", "buttons"];
   insurancePolicyDTOs: InsurancePolicyDTO[];
   insurancePolicyError: any;
 
@@ -139,7 +148,7 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
 
 
 
-  preparationDC: string[] = ["id", "company", "note", "status", "buttons"];
+  preparationDC: string[] = ["id", "preparatorCompany", "note", "status", "buttons"];
   preparationDTOs: PreparationDTO[];
   preparationError: any;
 

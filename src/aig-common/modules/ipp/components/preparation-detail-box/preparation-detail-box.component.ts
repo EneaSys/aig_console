@@ -7,9 +7,9 @@ import { PreparationDTO } from 'aig-italianlegislation';
     styleUrls: ['./preparation-detail-box.component.scss']
 })
 export class AigPreparationDetailBoxComponent implements OnInit {
-    constructor() { }
-    ngOnInit(): void {}
-
     @Input()
     preparation: PreparationDTO;
+    
+    constructor() { }
+    ngOnInit(): void {}
 }
