@@ -1,63 +1,75 @@
 <form *ngIf="step.form" [formGroup]="preparationNewUpdateForm" (ngSubmit)="submit()">
 
+    <div *ngIf="!partecipation" fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.PARTECIPATION' | translate }}</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete" required>
+            <mat-autocomplete #partecipationAutocomplete="matAutocomplete"
+                [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">
+                    {{ partecipation.procurementLot.cig }} > {{ partecipation.proposerEopoo | eopooName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Company Preparator Eopoo</mat-label>
-            <input formControlName="companyPreparatorEopoo" matInput [matAutocomplete]="companyPreparatorEopooAutocomplete">
-            <mat-autocomplete #companyPreparatorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.PREPARATOR_COMPANY' | translate }}</mat-label>
+            <input formControlName="companyPreparatorEopoo" matInput [matAutocomplete]="companyPreparatorEopooAutocomplete" required>
+            <mat-autocomplete #companyPreparatorEopooAutocomplete="matAutocomplete" 
+                [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
                 <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
+
     </div>
 
-    <div *ngIf="!partecipation" fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Partecipation</mat-label>
-            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
-            <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
-                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id }}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline">
-            <mat-label>Note</mat-label>
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>{{ 'MAIN.NOTE' | translate }}</mat-label>
             <input formControlName="note" matInput>
         </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete" required>
+            <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationStatusDisplayFn">
+                <mat-option *ngFor="let preparationStatus of filteredPreparationStatus | async" [value]="preparationStatus">
+                    {{ preparationStatus.description }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
     </div>
 
-        <div fxLayout="row" fxLayoutAlign="start start">
-            <mat-form-field appearance="outline">
-                <mat-label>Status</mat-label>
-                <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete">
-                <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationStatusDisplayFn">
-                    <mat-option *ngFor="let preparationStatus of filteredPreparationStatus | async" [value]="preparationStatus">{{ preparationStatus.description }}</mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-        </div>  
-        
-        <div fxLayout="row" fxLayoutAlign="end top">
-            <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-            <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
-        </div>
-    </form>
     
-    <div *ngIf="step.loading" fxLayoutAlign="center">
-        <mat-spinner></mat-spinner>
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
     </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <h1 *ngIf="!isUpdate">{{ 'IPP.PREPARATION' | translate }} {{ 'MAIN.CREATEDA' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.PREPARATION' | translate }} {{ 'MAIN.UPDATEDA' | translate }}</h1>
     
-    <div *ngIf="step.complete">
-        <h1 *ngIf="!isUpdate">Preparazione creata con successo</h1>
-        <h1 *ngIf="isUpdate">Preparazione aggiornata correttamente</h1>
-        
+    <hr>
+    
+    <aig-preparation-detail-box [preparation]="preparationResult"></aig-preparation-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
         <hr>
-    
-        <aig-preparation-detail-box [preparation]="preparationResult"></aig-preparation-detail-box>
-    
-        <div *ngIf="!isUpdate">
-            <br>
-            <hr>
-            <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPreparation()">Crea nuovo</button>
-        </div>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPreparation()">{{ 'MAIN.CREATE_NEWA' | translate }}</button>
     </div>
+</div>

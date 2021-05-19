@@ -7,7 +7,8 @@
             <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
             <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
                 [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+                    {{ eopoo | eopooName }}
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
