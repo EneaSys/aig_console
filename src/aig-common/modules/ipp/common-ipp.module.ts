@@ -39,7 +39,7 @@ import { AigIppAutocompleteDisplayService } from './service/autocomplete-display
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { ProcurementResolver } from './resolver/procurement.resolver';
 import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
-import { AigDesignatedCompanyListTableComponent } from './components/designated-compnay-list-table/designated-company-list-table.component';
+import { AigDesignatedCompanyListTableComponent } from './components/designated-company-list-table/designated-company-list-table.component';
 import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designated-company-new-update-form/designated-company-new-update-form.component';
 import { DesignatedCompanyResolver } from './resolver/designated-company.resolver';
 import { AigCommerceAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
@@ -56,6 +56,8 @@ import { AigProcurementDetailBoxComponent } from './components/procurement-detai
 import { AigProcurementLotDetailBoxComponent } from './components/procurement-lot-detail-box/procurement-lot-detail-box.component';
 import { AigPreparationDetailBoxComponent } from './components/preparation-detail-box/preparation-detail-box.component';
 import { AigPartecipationDetailBoxComponent } from './components/partecipation-detail-box/partecipation-detail-box.component';
+import { AigDesignatedCompanyDetailBoxComponent } from './components/designated-company-detail-box/designated-company-detail-box.component';
+import { AigInsurancePolicyDetailBoxComponent } from './components/insurance-policy-detail-box/insurance-policy-detail-box.component';
 
 
 @NgModule({
@@ -131,6 +133,8 @@ import { AigPartecipationDetailBoxComponent } from './components/partecipation-d
         AigProcurementLotDetailBoxComponent,
         AigPartecipationDetailBoxComponent,
         AigPreparationDetailBoxComponent,
+        AigDesignatedCompanyDetailBoxComponent,
+        AigInsurancePolicyDetailBoxComponent,
     ],
     exports: [
         AigProcurementListTableComponent,
@@ -160,6 +164,8 @@ import { AigPartecipationDetailBoxComponent } from './components/partecipation-d
         AigProcurementLotDetailBoxComponent,
         AigPartecipationDetailBoxComponent,
         AigPreparationDetailBoxComponent,
+        AigDesignatedCompanyDetailBoxComponent,
+        AigInsurancePolicyDetailBoxComponent,
     ]
         
     

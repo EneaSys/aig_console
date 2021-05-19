@@ -5,10 +5,10 @@
 		<div class="content">
 			<div>
 				<div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-					<button mat-raised-button (click)="resetFiltersInventoryCategory()">Resetta filtri</button>
+					<button mat-raised-button (click)="resetFiltersInventoryCategory()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
 				</div>
 				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
-					<span class="h3">Filtri</span>
+					<span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
 				</div>
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
@@ -28,7 +28,7 @@
 									</mat-form-field>
 								</div>
 								<div fxLayout="row" fxLayoutAlign="end top">
-									<button type="submit" mat-raised-button color="accent">Cerca</button>
+									<button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
 								</div>
 							</form>
 						</div>

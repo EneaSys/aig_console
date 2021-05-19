@@ -2,11 +2,12 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-import { PartecipationDTO, PartecipationResourceService, ProcurementLotDTO, ProcurementLotResourceService } from "aig-italianlegislation";
+import { PartecipationDTO, PartecipationResourceService, ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService } from "aig-italianlegislation";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
+import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
 @Component({
   selector: 'aig-procurement-lot-detail-page',
@@ -62,8 +63,14 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
 
 
+  editProcurement(procurementDTO: ProcurementDTO) {
+    this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: procurementDTO } });
+  }
 
-  partecipationDC: string[] = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"];
+
+
+
+  partecipationDC: string[] = ["id", "proposer", "type", "status", "buttons"];
   partecipationDTOs: PartecipationDTO[];
   partecipationError: any;
   

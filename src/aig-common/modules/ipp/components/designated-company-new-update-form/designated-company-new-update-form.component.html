@@ -34,7 +34,8 @@
 
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -43,17 +44,16 @@
 </div>
 
 <div *ngIf="step.complete">
+    <h1 *ngIf="!isUpdate">Azienda designata creato con successo</h1>
+    <h1 *ngIf="isUpdate">Designazione aggiornata correttamente</h1>
+    
+    <hr>
 
-    <span>
-        <h1>Hai creato una nuova designated company!</h1>
-        <p>Partecipation: {{ designatedCompanyNewUpdateForm.controls.partecipation.value }}</p>
-        <p>Company Eopoo: {{ designatedCompanyNewUpdateForm.controls.companyEopoo.value.genericEopoo ? designatedCompanyNewUpdateForm.controls.companyEopoo.value.genericEopoo.name : designatedCompanyNewUpdateForm.controls.companyEopoo.value.person.firstname + " " + designatedCompanyNewUpdateForm.controls.companyEopoo.value.person.lastname }}</p>
-        <p>Note: {{ designatedCompanyNewUpdateForm.controls.note.value }}</p>
-    </span>
+    <aig-designated-company-detail-box [designatedCompany]="designedCompanyResult"></aig-designated-company-detail-box>
 
-    <button *ngIf="!designatedCompanyNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newDesignatedCompany()">Create New</button>
-
-    <button [routerLink]="'/ipp/designated-company/detail/'" mat-stroked-button color="primary">Dettagli</button>
-
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newDesignatedCompany()">Crea nuovo</button>
+    </div>
 </div>

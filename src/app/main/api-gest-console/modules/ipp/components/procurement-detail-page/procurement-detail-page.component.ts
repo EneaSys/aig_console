@@ -3,7 +3,6 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService, ProcurementResourceService } from "aig-italianlegislation";
-import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
@@ -67,7 +66,7 @@ export class AigProcurementDetailPageComponent extends AigIppGenericComponent {
 
 
   
-  procurementLotDC: string[] = ['cig', 'securityAmount', 'description', 'amount', 'type', 'category', 'locality', 'offerExpiryDate', 'buttons'];
+  procurementLotDC: string[] = ['id', 'cig', 'description', 'amount', 'type', 'category', 'awardCriterion', 'offerExpiryDate', 'buttons'];
   procurementLotDTOs: ProcurementLotDTO[];
   procurementLotError: any;
   async loadProcurementLot() {

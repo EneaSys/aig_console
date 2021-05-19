@@ -1,24 +1,6 @@
-.mat-column-cig {
-    flex: 0 0 150px;
-}
-.mat-column-security-amount {
-    flex: 0 0 120px;
-}
-.mat-column-type {
-    flex: 0 0 100px;
-}
-.mat-column-category {
-    flex: 0 0 15%;
-}
-.mat-column-amount {
-    flex: 0 0 150px;
-}
-.mat-column-offerExpiryDate {
-    flex: 0 0 150px;
-}
-.mat-column-locality {
-    flex: 0 0 100px;
-}
-.mat-column-buttons {
-    flex: 0 0 100px;
+.mat-footer-row,
+.mat-header-row,
+.mat-row {
+    display: inline-flex;
+    min-width: 100%;
 }

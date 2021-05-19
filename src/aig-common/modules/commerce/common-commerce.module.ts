@@ -83,21 +83,22 @@ import { AigEntityDetailCatalogComponent } from './components/catalog-box-detail
 import { AigEntityDetailWarehouseComponent } from './components/warehouse-box-detail/entity-detail-warehouse.component';
 import { AigEntityDetailProducerComponent } from './components/producer-box-detail/entity-detail-producer.component';
 import { AigEntityDetailSellerComponent } from './components/seller-box-detail/entity-detail-seller.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
 
         AigCommonModule,
         CommonModule,
-
         CommonGenericModule,
         
         RouterModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        
         FlexLayoutModule,
+
+        TranslateModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -113,10 +114,9 @@ import { AigEntityDetailSellerComponent } from './components/seller-box-detail/e
         MatSlideToggleModule,
         MatRadioModule,
         MatMenuModule,
-    
-
     ],
     declarations: [
+
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
@@ -164,10 +164,9 @@ import { AigEntityDetailSellerComponent } from './components/seller-box-detail/e
         AigEntityDetailWarehouseComponent,
         AigEntityDetailProducerComponent,
         AigEntityDetailSellerComponent
-        
-        
     ],
     providers: [
+
         PurchaseResolver,
         PurchaseItemResolver,
         FiscalTransactionResolver,
@@ -188,6 +187,7 @@ import { AigEntityDetailSellerComponent } from './components/seller-box-detail/e
         AigWarehouseHandlingItemResolver,
     ],
     exports: [
+        
         AigBuyListTableComponent,
         AigCustomSmlcNewPurchaseFormComponent,
         AigSellerListTableComponent,
