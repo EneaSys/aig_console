@@ -40,8 +40,8 @@
     </mat-form-field>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -55,7 +55,7 @@
     
     <button *ngIf="!warehouseHandlingFormGroup.value.id" mat-stroked-button color="primary"
         (click)="newWarehouseHandling()">
-		<span *ngIf="!returnToParent">Create New</span>
-		<span *ngIf="returnToParent">Edit</span>
+		<span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEWA' | translate | titlecase }}</span>
+		<span *ngIf="returnToParent">{{ 'MAIN.EDIT' | translate | titlecase }}</span>
 	</button>
 </div>

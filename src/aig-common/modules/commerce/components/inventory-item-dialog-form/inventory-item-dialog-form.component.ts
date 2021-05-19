@@ -73,6 +73,7 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 		try {
 			let postOrPut;
+			
 			if (inventoryItem.id != 0) {
 				await this.inventoryItemResourceService.updateInventoryItemUsingPUT(inventoryItem).toPromise();
 				postOrPut = "updated";

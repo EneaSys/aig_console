@@ -35,8 +35,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="inventoryItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
-        <button *ngIf="!inventoryItem.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!inventoryItem.id" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="inventoryItem.id" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -46,5 +46,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ inventoryItemNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">Create New</button>
+    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
 </div>
