@@ -20,8 +20,8 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="companyPreparatorEopoo">
-            <mat-header-cell *matHeaderCellDef>Company Preparator Eopoo </mat-header-cell>
+        <ng-container matColumnDef="company">
+            <mat-header-cell *matHeaderCellDef>Company</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopoo.genericEopoo ? e.companyPreparatorEopoo.genericEopoo.name : e.companyPreparatorEopoo.person.firstname + " " + e.companyPreparatorEopoo.person.lastname }} </mat-cell>
         </ng-container>
         
