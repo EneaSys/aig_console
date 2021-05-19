@@ -2,12 +2,14 @@ export const locale = {
     lang: 'it',
     data: {
         'MAIN': {
-			'DETAILS': 'Dettagli',
-			'CREATE': 'Crea',
-            'EDIT': 'Modifica',
-            'DELETE': 'Cancella',
-            'FILTERS': 'Filtri',
-            'RESET_FILTERS': 'Resetta filtri',
+            'DETAIL': 'dettaglio',
+			'DETAILS': 'dettagli',
+			'CREATE': 'crea',
+            'EDIT': 'modifica',
+            'DELETE': 'cancella',
+            'FILTERS': 'filtri',
+            'RESET_FILTERS': 'resetta filtri',
+            'SEARCH': 'cerca',
         },
     }
 };

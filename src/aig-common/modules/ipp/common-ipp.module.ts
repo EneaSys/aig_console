@@ -54,6 +54,8 @@ import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/ins
 import { TranslateModule } from '@ngx-translate/core';
 import { AigProcurementDetailBoxComponent } from './components/procurement-detail-box/procurement-detail-box.component';
 import { AigProcurementLotDetailBoxComponent } from './components/procurement-lot-detail-box/procurement-lot-detail-box.component';
+import { AigPreparationDetailBoxComponent } from './components/preparation-detail-box/preparation-detail-box.component';
+import { AigPartecipationDetailBoxComponent } from './components/partecipation-detail-box/partecipation-detail-box.component';
 
 
 @NgModule({
@@ -127,6 +129,8 @@ import { AigProcurementLotDetailBoxComponent } from './components/procurement-lo
     
         AigProcurementDetailBoxComponent,
         AigProcurementLotDetailBoxComponent,
+        AigPartecipationDetailBoxComponent,
+        AigPreparationDetailBoxComponent,
     ],
     exports: [
         AigProcurementListTableComponent,
@@ -154,6 +158,8 @@ import { AigProcurementLotDetailBoxComponent } from './components/procurement-lo
 
         AigProcurementDetailBoxComponent,
         AigProcurementLotDetailBoxComponent,
+        AigPartecipationDetailBoxComponent,
+        AigPreparationDetailBoxComponent,
     ]
         
     

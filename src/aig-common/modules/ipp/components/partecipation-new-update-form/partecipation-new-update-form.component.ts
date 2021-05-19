@@ -48,6 +48,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
     procurementLot: ProcurementLotDTO;
 
     partecipationNewUpdateForm: FormGroup;
+
+    isUpdate: boolean = false;
+
+    partecipationResult: any;
     
     filteredPartecipationType: Observable<IlPpPartecipationTypeDTO[]>;
     filteredEopoo: Observable<EopooDTO[]>;
@@ -67,8 +71,9 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             siteInspection: [true],
         })
         
-        if (this.partecipation != null) {
+        if (this.partecipation != null && this.partecipation.id != null) {
             this.partecipationNewUpdateForm.patchValue(this.partecipation);
+            this.isUpdate = true;
         }
         
         this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationNewUpdateForm.controls['type'].valueChanges);
@@ -94,13 +99,16 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.partecipation.id > 0) {
+            if (this.isUpdate) {
                 await this.partecipationResourceService.updatePartecipationUsingPUT(partecipation).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.partecipationResourceService.createPartecipationUsingPOST(partecipation).toPromise();
                 postOrPut = "created";
             }
+
+            this.partecipationResult = partecipation;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");

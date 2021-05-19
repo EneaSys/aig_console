@@ -43,7 +43,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
 </form>
 
@@ -52,18 +53,16 @@
 </div>
 
 <div *ngIf="step.complete">
-
-    <span>
-        <h1>Hai creato una nuova partecipation!</h1>
-        <p>Procurement Lot: {{ partecipationNewUpdateForm.controls.procurementLot.value.description }}</p>
-        <p>Status: {{ partecipationNewUpdateForm.controls.status.value.description }}</p>
-        <p>Tipo di partecipazione: {{ partecipationNewUpdateForm.controls.partecipationType.value.name }}</p>
-        <p>Proponente: {{ partecipationNewUpdateForm.controls.proposerEopoo.value.genericEopoo ? partecipationNewUpdateForm.controls.proposerEopoo.value.genericEopoo.name : partecipationNewUpdateForm.controls.proposerEopoo.value.person.firstname + " " + partecipationNewUpdateForm.controls.proposerEopoo.value.person.lastname }}</p>
-    </span>
+    <h1 *ngIf="!isUpdate">Partecipazione creata con successo</h1>
+    <h1 *ngIf="isUpdate">Partecipazione aggiornata correttamente</h1>
     
-    <button *ngIf="!partecipationNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newPartecipation()">Create New</button>
+    <hr>
 
-    <button [routerLink]="'/ipp/partecipation/detail/'" mat-stroked-button color="primary">Dettagli</button>
+    <aig-partecipation-detail-box [partecipation]="partecipationResult"></aig-partecipation-detail-box>
 
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPartecipation()">Crea nuova</button>
+    </div>
 </div>

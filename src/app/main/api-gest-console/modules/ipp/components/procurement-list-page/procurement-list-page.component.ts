@@ -9,11 +9,13 @@ import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService } fr
 import { Observable } from 'rxjs';
 
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigIppGenericComponent } from '../ipp-generic-component';
+
 @Component({
 	templateUrl: './procurement-list-page.component.html',
 	styleUrls: ['./procurement-list-page.component.scss']
 })
-export class AigProcurementListPageComponent extends GenericComponent {
+export class AigProcurementListPageComponent extends AigIppGenericComponent {
 	constructor(
 
 		private _formBuilder: FormBuilder,
@@ -21,7 +23,7 @@ export class AigProcurementListPageComponent extends GenericComponent {
 		private dialog: MatDialog,
 		private procurementResourceService: ProcurementResourceService,
 		private italianPublicProcurementModalityResourceService: IlPpProcurementModalityResourceService,
-		private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+		public standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
