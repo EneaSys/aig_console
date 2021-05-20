@@ -85,7 +85,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (buyer.id != 0) {
+            if (this.isUpdate) {
                 await this.buyerResourceService.updateBuyerUsingPUT(buyer).toPromise();
                 postOrPut = "updated";
             } else {
@@ -93,7 +93,9 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
+
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
@@ -105,11 +107,10 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

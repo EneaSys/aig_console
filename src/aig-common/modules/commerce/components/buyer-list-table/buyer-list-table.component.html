@@ -15,50 +15,18 @@
     <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="seller">
-            <mat-header-cell *matHeaderCellDef> Venditore </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.seller.name }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="eopooCode">
-            <mat-header-cell *matHeaderCellDef> Codice Cliente </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.eopooCode }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buyer">
-            <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.BUYER' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.eopoo | eopooName }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="bornDate">
-            <mat-header-cell *matHeaderCellDef> Data nascita </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.eopoo.person.bornDate | date:'dd/MM/yyyy' }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="taxid">
-            <mat-header-cell *matHeaderCellDef> Codice Fiscale </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.eopoo.taxNumber }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="confirmation">
-            <mat-header-cell *matHeaderCellDef> Conferma </mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.confirmation }}</mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="statusNote">
-            <mat-header-cell *matHeaderCellDef> Stato </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.statusNote}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="validateButton">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let e">
-                <button *ngIf="e.statusNote != '1'" class="mr-8" mat-stroked-button color="accent" [routerLink]="'/commerce/buyer/detail/' + e.id + '/validate'">Validazione</button>
-            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

@@ -4,17 +4,17 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { BuyerDTO, BuyerResourceService, EopooDTO, SellerDTO, SellerResourceService } from 'aig-commerce';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
 import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 
 @Component({
 	selector: 'aig-buyer-list-page',
 	templateUrl: './buyer-list-page.component.html',
 	styleUrls: ['./buyer-list-page.component.scss']
 })
-export class AigBuyerListPageComponent extends GenericComponent {
+export class AigBuyerListPageComponent extends AigCommerceGenericComponent {
 
 	constructor(
 		private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,

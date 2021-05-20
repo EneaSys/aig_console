@@ -2,35 +2,31 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Eopoo Code</mat-label>
+            <mat-label>{{ 'COMMERCE.BUYER' | translate | titlecase }}</mat-label>
             <input formControlName="eopoo" matInput required [matAutocomplete]="eopooAutocomplete">
-            <mat-autocomplete #eopooAutocomplete="matAutocomplete"
-                [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo"> {{  eopoo | eopooName }}</mat-option>
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{  eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-slide-toggle required formControlName="confirmation">Confirmation</mat-slide-toggle>
+        <mat-slide-toggle required formControlName="confirmation">{{ 'COMMERCE.CONFIRMATION' | translate | titlecase }}</mat-slide-toggle>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Status Note</mat-label>
+            <mat-label>{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}</mat-label>
             <input formControlName="statusNote" matInput>
         </mat-form-field>
     </div>
 
     <div *ngIf="!seller" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Seller</mat-label>
+            <mat-label>{{ 'COMMERCE.SELLER' | translate | titlecase }}</mat-label>
             <input formControlName="seller" matInput required [matAutocomplete]="sellerAutocomplete">
-            <mat-autocomplete #sellerAutocomplete="matAutocomplete"
-                [displayWith]="autocompleteDisplayService.sellerDisplayFn">
-                <mat-option *ngFor="let seller of filteredSellers | async" [value]="seller">
-                    {{ seller.name }}
-                </mat-option>
+            <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="commerceAutocompleteDisplayService.sellerDisplayFn">
+                <mat-option *ngFor="let seller of filteredSellers | async" [value]="seller">{{ seller.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
