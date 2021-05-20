@@ -22,13 +22,13 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Name</mat-label>
+                                        <mat-label>{{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }}</mat-label>
                                         <input matInput type="text" formControlName="name">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Categorie</mat-label>
+                                        <mat-label>{{ 'COMMERCE.CATEGORY' | translate | titlecase }}</mat-label>
                                         <input formControlName="inventoryCategory" matInput
                                             [matAutocomplete]="inventoryCategoryAutocomplete">
                                         <mat-autocomplete #inventoryCategoryAutocomplete="matAutocomplete"
@@ -41,7 +41,7 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Produttore</mat-label>
+                                        <mat-label>{{ 'COMMERCE.PRODUCTOR' | translate | titlecase }}</mat-label>
                                         <input formControlName="producer" matInput
                                             [matAutocomplete]="producerAutocomplete">
                                         <mat-autocomplete #producerAutocomplete="matAutocomplete"
@@ -72,7 +72,7 @@
                 (click)="toggleSidebar('purchase-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Elenco inventario</h2>
+            <h2>{{ 'COMMERCE.INVENTORY' | translate | titlecase }}</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

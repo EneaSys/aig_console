@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
 import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/inventory-item-dialog.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/invent
   templateUrl: './inventory-item-list-page.component.html',
   styleUrls: ['./inventory-item-list-page.component.scss']
 })
-export class AigInventoryItemListPageComponent extends GenericComponent {
+export class AigInventoryItemListPageComponent extends AigCommerceGenericComponent {
   constructor(
     public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
     private inventoryItemResourceService: InventoryItemResourceService,
@@ -62,7 +62,7 @@ export class AigInventoryItemListPageComponent extends GenericComponent {
       producer: ['']
     });
 
-    this.inventoryItemDC = ["id", "inventoryCategoryName", "name", "producerName", "buttons",];
+    this.inventoryItemDC = ["id", "name", "producerName", "inventoryCategoryName", "buttons",];
 
     this.filteredInventoryCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemSearchFormGroup.controls['inventoryCategory'].valueChanges);
     this.filteredProducer = this.commerceAutocompleteService.filterProducer(this.inventoryItemSearchFormGroup.controls['producer'].valueChanges);
