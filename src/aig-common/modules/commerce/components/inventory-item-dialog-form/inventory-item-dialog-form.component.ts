@@ -34,10 +34,12 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 	isUpdate: boolean = false;
 
-	filteredProducers: Observable<ProducerDTO[]>;
-	filteredInventoryCategories: Observable<InventoryCategoryDTO[]>;
+	inventoryItemResult: any;
 
 	inventoryItemNewUpdateForm: FormGroup;
+
+	filteredProducers: Observable<ProducerDTO[]>;
+	filteredInventoryCategories: Observable<InventoryCategoryDTO[]>;
 
 	ngOnInit(): void {
 		this.inventoryItemNewUpdateForm = this._formBuilder.group({
@@ -49,9 +51,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		});
 
 
-		if (this.inventoryItem != null) {
-			this.isUpdate = true;
+		if (this.inventoryItem != null && this.inventoryItem.id != null) {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
+			this.isUpdate = true;
 		}
 
 
@@ -72,35 +74,38 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		inventoryItem.inventoryCategoryId = this.inventoryItemNewUpdateForm.value.inventoryCategory.id;
 
 		try {
-			let postOrPut;
-			if (inventoryItem.id != 0) {
+			let postOrPut: string;
+			
+			if (this.isUpdate) {
 				await this.inventoryItemResourceService.updateInventoryItemUsingPUT(inventoryItem).toPromise();
 				postOrPut = "updated";
 			} else {
 				await this.inventoryItemResourceService.createInventoryItemUsingPOST(inventoryItem).toPromise();
 				postOrPut = "created";
 			}
+
+			this.inventoryItemResult = inventoryItem;
+
 			this.eventService.reloadCurrentPage();
 
-			this._snackBar.open(`Ipp Social: '${inventoryItem.name}' ${postOrPut}.`, null, { duration: 2000, });
 			this.setStep("complete");
-		} catch (error) {
-			this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+			
+		} catch (e) {
+			this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
 			this.setStep("form");
 		}
+
 		this._fuseProgressBarService.hide();
 	}
-
-
 
 	newInventoryItem() {
 		this.setStep("form");
 	}
 
-	private setStep(step: string) {
+	private setStep(stepToShow: string) {
 		this.step.form = false;
 		this.step.loading = false;
 		this.step.complete = false;
-		this.step[step] = true;
+		this.step[stepToShow] = true;
 	}
 }

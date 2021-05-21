@@ -2,21 +2,21 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Item Name</mat-label>
+            <mat-label>{{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }}</mat-label>
             <input formControlName="name" matInput required>
         </mat-form-field>
     </div>
 
 	<div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Item Code</mat-label>
+            <mat-label>{{ 'COMMERCE.INVENTORY_ITEM_CODE' | translate | titlecase }}</mat-label>
             <input formControlName="itemCode" matInput>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Produttore</mat-label>
+            <mat-label>{{ 'COMMERCE.PRODUCTOR' | translate | titlecase }}</mat-label>
             <input type="text" matInput formControlName="producer" required [matAutocomplete]="producerAutocomplete">
             <mat-autocomplete #producerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.producerDisplayFn">
                 <mat-option *ngFor="let producer of filteredProducers | async" [value]="producer">{{ producer.name }}</mat-option>
@@ -26,7 +26,7 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Categoria</mat-label>
+            <mat-label>{{ 'COMMERCE.CATEGORY' | translate | titlecase }}</mat-label>
             <input type="text" matInput formControlName="inventoryCategory" required [matAutocomplete]="inventoryCategoryAutocomplete">
             <mat-autocomplete #inventoryCategoryAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryCategoryDisplayFn">
                 <mat-option *ngFor="let inventoryCategory of filteredInventoryCategories | async" [value]="inventoryCategory">{{ inventoryCategory.name }}</mat-option>
@@ -35,9 +35,10 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="inventoryItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
-        <button *ngIf="!inventoryItem.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -45,6 +46,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ inventoryItemNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!inventoryItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItem()">Create New</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }}</div>
+    <entity-detail-inventory-item [inventoryItemDTO]="inventoryItemResult"></entity-detail-inventory-item>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newInventoryItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
 </div>

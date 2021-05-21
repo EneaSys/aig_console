@@ -44,7 +44,7 @@ export class AigWarehouseListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editWarehouseHandling(warehouseDTO: WarehouseDTO) {
+    editWarehouse(warehouseDTO: WarehouseDTO) {
         this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { warehouse: warehouseDTO } });
     }
 }

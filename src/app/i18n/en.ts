@@ -19,10 +19,10 @@ export const locale = {
             'NOTE': 'note',
             'CREATE_NEW': 'create new',
             'CREATE_NEWA': 'create new',
-            'CREATION_OK': 'create with success',
-            'CREATION_OKA': 'create with success',
-            'UPDATE_OK': 'update with success',
-            'UPDATE_OKA': 'update with success',
+            'CREATION_OK': 'created with success',
+            'CREATION_OKA': 'created with success',
+            'UPDATE_OK': 'updated with success',
+            'UPDATE_OKA': 'updated with success',
         },
     }
 };

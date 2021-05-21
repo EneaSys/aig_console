@@ -40,7 +40,7 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -50,5 +50,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ fiscalTransactionNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!fiscalTransactionNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newFiscalTransaction()">Create New</button>
+    <button *ngIf="!fiscalTransactionNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newFiscalTransaction()">{{ 'MAIN.CREATE_NEWA' | translate | titlecase }}</button>
 </div>

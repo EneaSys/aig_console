@@ -6,6 +6,7 @@ import { InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemCombina
 import { EventService } from 'aig-common/event-manager/event.service';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigInventoryItemCombinationNewUpdateDialogComponent } from '../inventory-item-combination-new-update-dialog/inventory-item-combination-new-update-dialog.component';
 import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/inventory-item-dialog.component';
 
@@ -14,7 +15,7 @@ import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/invent
     templateUrl: './inventory-item-detail-page.component.html',
     styleUrls: ['./inventory-item-detail-page.component.scss']
 })
-export class AigInventoryItemDetailPageComponent extends GenericComponent {
+export class AigInventoryItemDetailPageComponent extends AigCommerceGenericComponent {
    
     constructor(
         private _snackBar: MatSnackBar,

@@ -46,7 +46,8 @@
 
 
         <div fxLayout="row" fxLayoutAlign="end top">
-            <button type="submit" mat-raised-button color="accent">Crea</button>
+            <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+            <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
         </div>
     </form>
 </div>
@@ -58,8 +59,8 @@
     <pre>{{ purchaseNewUpdateForm.value | json }}</pre>
     <div *ngIf="!isUpdate">
         <button mat-stroked-button color="primary" (click)="newPurchase()">
-            <span *ngIf="!returnToParent">Create New</span>
-            <span *ngIf="returnToParent">Edit</span>
+            <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</span>
+            <span *ngIf="returnToParent">{{ 'MAIN.EDIT' | translate | titlecase }}</span>
         </button>
     </div>
 </div>

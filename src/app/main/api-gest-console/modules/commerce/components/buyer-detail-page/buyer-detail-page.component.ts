@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO } from 'aig-commerce';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { AigBuyerNewUpdateFormComponent } from 'aig-common/modules/commerce/components/buyer-new-update-form/buyer-new-update-form.component';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
+import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
 
 @Component({
     selector: 'aig-buyer-detail-page',
     templateUrl: './buyer-detail-page.component.html',
     styleUrls: ['./buyer-detail-page.component.scss']
 })
-export class AigBuyerDetailPageComponent extends GenericComponent {
+export class AigBuyerDetailPageComponent extends AigCommerceGenericComponent {
     constructor(
         private buyerResourceService: BuyerResourceService,
         private purchaseResourceService: PurchaseResourceService,
@@ -37,7 +37,7 @@ export class AigBuyerDetailPageComponent extends GenericComponent {
     }
 
     editBuyer(buyerDTO: BuyerDTO) {
-		this.dialog.open(AigBuyerNewUpdateFormComponent, { data: { buyer: buyerDTO } });
+		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: buyerDTO } });
     }
 
     async deleteBuyer(id: number) {

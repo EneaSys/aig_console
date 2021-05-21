@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AigNewCustomBuyDialogComponent } from '../new-custom-buy-dialog/new-custom-buy-dialog.component';
 import { PurchaseResourceService, SellerResourceService, PurchaseDTO, SellerDTO, FiscalTransactionDTO, FiscalTransactionResourceService, BuyerDTO, BuyerResourceService, PurchaseItemDTO } from 'aig-commerce';
 import { PageEvent } from '@angular/material/paginator';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';

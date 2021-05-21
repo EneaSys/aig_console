@@ -1,0 +1,7 @@
+<div class="h1 m-8 ml-16">{{ buyerDTO.eopoo | eopooName }}</div>
+<div class="h4 ml-16">{{ 'COMMERCE.CONFIRMATION' | translate | titlecase }}: 
+    <span *ngIf="buyerDTO.confirmation"><b>{{ 'COMMERCE.YES' | translate }}</b></span>
+    <span *ngIf="!buyerDTO.confirmation"><b>{{ 'COMMERCE.NO' | translate }}</b></span>
+</div>
+<div class="h4 ml-16">{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}: <b>{{ buyerDTO.statusNote }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.SELLER' | translate | titlecase }}: <b>{{ buyerDTO.seller.name }}</b></div>
