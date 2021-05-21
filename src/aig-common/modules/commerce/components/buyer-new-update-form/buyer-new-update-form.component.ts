@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { BuyerDTO, BuyerResourceService, SellerDTO } from "aig-commerce";
+import { AigValidator } from "aig-common/AigValidator";
 import { EventService } from "aig-common/event-manager/event.service";
 import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
 import { AigGenericAutocompleteDisplayService } from "aig-common/modules/generic/services/form/autocomplete-function.service";
@@ -52,11 +53,11 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         this.buyerNewUpdateForm = this._formBuilder.group({
             id:[''],
             
-            seller: [this.seller, Validators.required],
+            seller: [this.seller, Validators.required, AigValidator.haveId],
             
-            eopoo: ['', Validators.required],
+            eopoo: ['', [Validators.required, AigValidator.haveId]],
             
-            confirmation: [true, Validators.required],
+            confirmation: [true, Validators.required, AigValidator.haveId ],
             statusNote: [''],
         })
         

@@ -4,6 +4,7 @@ import { EopooResourceService, EopooDTO, EopooTypeDTO, EopooTypeResourceService 
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-generic-eopoo-new-update-form',
@@ -39,8 +40,8 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
             eopooType: [this.eopooType],
-            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
-            name: ['', Validators.required],
+            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11), AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
         });
 
         this.loadTypes();

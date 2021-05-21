@@ -53,8 +53,8 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
             eopoo: [this.eopoo, [Validators.required, AigValidator.haveId]],
-            name: ['', Validators.required],
-            address: ['', Validators.required],
+            name: ['', [Validators.required, AigValidator.haveId]],
+            address: ['', [Validators.required, AigValidator.haveId]],
             city: ['', [Validators.required, AigValidator.haveId]],
         })
 

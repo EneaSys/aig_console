@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CatalogItemDTO, PriceListDTO, PriceListItemDTO, PriceListItemResourceService } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -52,9 +53,9 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.priceListItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            amount:['', Validators.required],
-            catalogItem:['', Validators.required],
-            priceList: ['', Validators.required],
+            amount:['', [Validators.required, AigValidator.haveId]],
+            catalogItem: ['', [Validators.required, AigValidator.haveId]],
+            priceList: ['', [Validators.required, AigValidator.haveId]],
         })
         
         if (this.priceListItem != null) {

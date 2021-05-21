@@ -8,6 +8,7 @@ import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { EopooDTO } from 'aig-generic';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'seller-new-update-form',
@@ -43,8 +44,8 @@ export class AigSellerNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.sellerNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', Validators.required],
-            eopoo: ['', Validators.required],
+            name: ['', [Validators.required, AigValidator.haveId]],
+            eopoo: ['', [Validators.required, AigValidator.haveId]],
         })
 
         if (this.seller != null) {
