@@ -55,7 +55,7 @@ import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse
 import { AigWarehouseHandlingItemListTableComponent } from './components/warehouse-handling-item-list-table/warehouse-handling-item-list-table.component';
 import { AigWarehouseHandlingItemNewUpdateFormComponent } from './components/warehouse-handling-item-new-update-form/warehouse-handling-item-new-update-form.component';
 import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
-import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
+import { AigFiscalTransactionNewUpdateFormComponent } from './components/fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigInventoryItemPurchaseListTableComponent } from './components/inventory-item-purchase-list-table/inventory-item-purchase-list-table.component';
