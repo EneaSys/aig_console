@@ -69,11 +69,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
         setTimeout(() => {
             this._translateService.setDefaultLang('en');
-            this._translateService.setDefaultLang('it');
-
             this._translateService.use('en');
-            this._translateService.use('it');
         }, 1000);
+
+        setTimeout(() => {
+            this._translateService.setDefaultLang('it');
+            this._translateService.use('it');
+        }, 2000);
 
         // Add is-mobile class to the body if the platform is mobile
         if (this._platform.ANDROID || this._platform.IOS) {
