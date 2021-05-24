@@ -68,8 +68,10 @@
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
             <mat-label>{{ 'IPP.AWARD_CRITERION' | translate }}</mat-label>
             <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete" required>
-            <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let ippLotCategory of filteredProcurementLotAwardCriterion | async" [value]="ippLotCategory">{{ ippLotCategory.name}}</mat-option>
+            <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
+                <mat-option *ngFor="let awardCriterion of filteredProcurementLotAwardCriterion | async" [value]="awardCriterion">
+                    {{ awardCriterion.name}}
+                </mat-option>
             </mat-autocomplete>
         </mat-form-field>
 

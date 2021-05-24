@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italianlegislation';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AigProcurementLotNewUpdateDialogComponent } from '../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 import { AigIppGenericComponent } from '../ipp-generic-component';
-
-declare const google: any;
+import { Observable } from 'rxjs';
+import { EopooDTO } from 'aig-generic';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
+import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
 
 @Component({
     templateUrl: './procurement-lot-list-page.component.html',
@@ -14,258 +19,200 @@ declare const google: any;
 })
 export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     constructor(
+        public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
+        public genericAutocompleteFilterService:  AigGenericAutocompleteFilterService,
+        public standardAutocompleteFilterService:  AigStandardAutocompleteFilterService,
+        public standardAutocompleteDisplayService:  AigStandardAutocompleteDisplayService,
+
         private procurementLotResourceService: ProcurementLotResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
+        private _snackBar: MatSnackBar,
         aigGenericComponentService: AigGenericComponentService,
     ) {
         super(aigGenericComponentService)
     }
 
 
-    loadComponent() {
-        this.loadForm();
-        this.cleanFiltersAndLoadProcurementLot();
+    filteredEopoo: Observable<EopooDTO[]>;
+    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
+    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
+    filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
+
+
+    loadPage() {
+        this.initProcurementLotSearch();
+
+        this.showAllProcurementLot();
     }
 
+    reloadPage() {
+        this.showAllProcurementLot();
+      }
 
 
 
 
-    lat = 40.928621;
-    lng = 14.264173;
-    pointList: { lat: number; lng: number }[] = [];
-    drawingManager: any;
-    selectedShape: any;
-    selectedArea = 0;
+    
+     //			---- PROCUREMENT LOT TABLE AND SEARCH SECTION ----
 
+    procurementLotSearchFormGroup: FormGroup;
+    procurementLotPaginationSize: number;
+    procurementLotFilters: any;
+    
 
-    onMapReady(map) {
-        this.setCurrentPosition();
-        this.initDrawingManager(map);
-    }
-
-    initDrawingManager = (map: any) => {
-        const self = this;
-        const options = {
-            drawingControl: true,
-            drawingControlOptions: {
-                drawingModes: ['polygon'],
-            },
-            polygonOptions: {
-                draggable: true,
-                editable: true,
-            },
-            drawingMode: google.maps.drawing.OverlayType.POLYGON,
-        };
-        this.drawingManager = new google.maps.drawing.DrawingManager(options);
-        this.drawingManager.setMap(map);
-
-        google.maps.event.addListener(
-            this.drawingManager,
-            'overlaycomplete',
-            (event) => {
-                if (event.type === google.maps.drawing.OverlayType.POLYGON) {
-                    const paths = event.overlay.getPaths();
-                    for (let p = 0; p < paths.getLength(); p++) {
-                        google.maps.event.addListener(
-                            paths.getAt(p),
-                            'set_at',
-                            () => {
-                                if (!event.overlay.drag) {
-                                    self.updatePointList(event.overlay.getPath());
-                                }
-                            }
-                        );
-                        google.maps.event.addListener(
-                            paths.getAt(p),
-                            'insert_at',
-                            () => {
-                                self.updatePointList(event.overlay.getPath());
-                            }
-                        );
-                        google.maps.event.addListener(
-                            paths.getAt(p),
-                            'remove_at',
-                            () => {
-                                self.updatePointList(event.overlay.getPath());
-                            }
-                        );
-                    }
-                    self.updatePointList(event.overlay.getPath());
-                }
-                if (event.type !== google.maps.drawing.OverlayType.MARKER) {
-                    console.log("asd", event);
-                    this.selectedShape = event.overlay;
-                    // Switch back to non-drawing mode after drawing a shape.
-                    self.drawingManager.setDrawingMode(null);
-                    // To hide:
-                    self.drawingManager.setOptions({
-                        drawingControl: false,
-                    });
-                }
-            }
-        );
-    }
-    private setCurrentPosition() {
-        if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                this.lat = position.coords.latitude;
-                this.lng = position.coords.longitude;
-            });
-        }
-    }
-
-    deleteSelectedShape() {
-        if (this.selectedShape) {
-            this.selectedShape.setMap(null);
-            this.selectedArea = 0;
-            this.pointList = [];
-            // To show:
-            this.drawingManager.setOptions({
-                drawingControl: true,
-            });
-        }
-    }
-
-    updatePointList(path) {
-        this.pointList = [];
-        const len = path.getLength();
-        for (let i = 0; i < len; i++) {
-            this.pointList.push(
-                path.getAt(i).toJSON()
-            );
-        }
-        this.selectedArea = google.maps.geometry.spherical.computeArea(
-            path
-        );
-        }
-
-
-
-    formatFilterAmountMin(event: any) {
-        this.procurementLotFilters.amountMin = event.value;
-    }
-
-    formatFilterAmountMax(event: any) {
-        if (event.value < 1000001) {
-            this.procurementLotFilters.amountMax = event.value;
-        } else {
-            this.procurementLotFilters.amountMax = null;
-        }
-    }
-
-    formatFilterSlider(value: number) {
-        if (value >= 1000 && value < 1000000) {
-            return Math.round(value / 1000) + 'k';
-        }
-        if (value == 1000001) {
-            return 'max';
-        }
-        if (value >= 1000000) {
-            return Math.round(value / 1000000) + 'm';
-        }
-        return value;
-    }
-
-
-
-    // Filters
-    procurementLotSearchForm: FormGroup;
-
-
-    loadForm() {
-        this.procurementLotSearchForm = this._formBuilder.group({
-            cig: [''],
-            description: [''],
-            date: [''],
-        });
-    }
-
-
-
-    procurementLotSearch() {
-        if (this.procurementLotSearchForm.value.cig) {
-            let cig = this.procurementLotSearchForm.value.cig;
-            this.cleanFiltersProcurementLot();
-            this.setFilterProcurementLot('cig', cig);
-            this.cleanFiltersProcurementLot();
-        } else {
-            if (this.procurementLotSearchForm.value.description != "") {
-                this.procurementLotFilters.description = this.procurementLotSearchForm.value.description;
-            }
-            if (this.procurementLotSearchForm.value.date != "") {
-                this.procurementLotFilters.date = this.procurementLotSearchForm.value.date;
-            }
-            this.reloadFilter();
-        }
-    }
-
-
-    // IPP LOT
-    procurementLotDisplayColumns: string[] = ['id', 'cig', 'description', 'type', 'category', 'amount', 'offerExpiryDate', 'buttons'];
+    procurementLotLength: number;
     procurementLotDTOs: ProcurementLotDTO[];
+    @Input()
+    procurementLotDC: string[] = ['id', 'cig', 'description', 'type', 'category', 'amount', 'offerExpiryDate', 'buttons'];
     procurementLotError: any;
 
-    procurementLotPageable = {
-        page: 0,
-        size: 30,
+   
+
+
+    private initProcurementLotSearch() {
+        this.procurementLotPaginationSize = 10
+    
+        this.procurementLotSearchFormGroup = this._formBuilder.group({
+            id: [''],
+            cig: [''],
+            description: [''],
+            offerExpiryDate: [''],
+            contractorEopoo: [''],
+            ippModality: [''],
+            ippProcedure: [''],
+            ippSector: [''],
+            awardCriterion: [''],
+        });
+    
+
+  
+
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
+        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ippModality'].valueChanges);
+        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotSearchFormGroup.controls['ippProcedure'].valueChanges);
+        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
+        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
     }
-    procurementLotIndex: number;
-    procurementLotLength: number;
 
-    procurementLotFilters: any;
 
-    cleanFiltersAndLoadProcurementLot() {
-        this.cleanFiltersProcurementLot();
-        this.reloadFilter();
-    }
-
-    private cleanFiltersProcurementLot() {
-        this.procurementLotSearchForm.reset();
-
-        this.procurementLotIndex = 0;
-
+    private clearFiltersProcurementLot() {
         this.procurementLotFilters = {
-            cig: null,
-            description: null,
-            amountMin: null,
-            amountMax: null,
-            ippLotType: null,
-            ippLotCategory: null,
+            procurementLotIDEqual: null,
+            cigEquals: null,
+            descriptionContains: null,
+            offerExpiryDateEquals: null,
+            contractorEopooCodeEquals: null,
+            ippModalityCodeEquals: null,
+            ippProcedureCodeEquals: null,
+            ippSectorCodeEquals: null,
+            awardCriterionCodeEquals: null,
+
+            page: 0,
         }
     }
 
-    setFilterProcurementLot(filterKey: string, value: any) {
-        this.procurementLotFilters[filterKey] = value;
-        this.reloadFilter();
-    }
+    private async searchProcurementLot(page: number) {
+        this.procurementLotFilters.page = page;
+        this.procurementLotFilters.size = this.procurementLotPaginationSize;
+        this.procurementLotDTOs = null;
+    
+        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
+        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ippModality'].valueChanges);
+        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotSearchFormGroup.controls['ippProcedure'].valueChanges);
+        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
+        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
 
-    private async reloadFilter() {
-        this.loadProcurementLots(0);
+
         try {
             this.procurementLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(this.procurementLotFilters).toPromise();
-        } catch (e) { }
-    }
-
-    procurementLotPaginatorEvent(event: PageEvent) {
-        this.procurementLotPageable.size = event.pageSize;
-        this.loadProcurementLots(event.pageIndex);
-    }
-
-    private async loadProcurementLots(page) {
-        this.procurementLotDTOs = null;
-
-        this.procurementLotIndex = page
-        this.procurementLotPageable.page = page;
-        try {
+            if (this.procurementLotLength == 0) {
+                this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
+                this.procurementLotDTOs = [];
+                return;
+            }
             this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(this.procurementLotFilters).toPromise();
-        } catch (e) {
+        } catch (e) { 
             this.procurementLotError = e;
         }
     }
 
-    newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { } });
+    showAllProcurementLot() {
+        this.resetFiltersProcurementLot();
+    }
+        
+        
+    resetFiltersProcurementLot() {
+        this.procurementLotSearchFormGroup.reset();
+        this.clearFiltersProcurementLot();
+        this.searchProcurementLot(0);
+    }
+
+    procurementLotPaginationEvent(pageEvent: PageEvent) {
+        this.procurementLotPaginationSize = pageEvent.pageSize;
+        this.searchProcurementLot(pageEvent.pageIndex);
+       
+    }
+
+    procurementLotSearchWithFilter() {
+    let searchedId = this.procurementLotSearchFormGroup.controls.id.value;
+
+    if (searchedId != null) {
+      this.clearFiltersProcurementLot();
+      this.procurementLotSearchFormGroup.reset();
+      this.procurementLotFilters.procurementLotIDEquals = searchedId;
+      this.searchProcurementLot(0);
+      return;
+    } else {
+
+        if (this.procurementLotSearchFormGroup.controls.cig.value) {
+            this.procurementLotFilters.cigEquals = this.procurementLotSearchFormGroup.controls.cig.value;
+        }
+        if (this.procurementLotSearchFormGroup.controls.description.value) {
+            this.procurementLotFilters.descriptionContains = this.procurementLotSearchFormGroup.controls.description.value;
+        }
+        if (this.procurementLotSearchFormGroup.controls.offerExpiryDate.value ) {
+            this.procurementLotFilters.offerExpiryDateEquals = this.procurementLotSearchFormGroup.controls.offerExpiryDate.value;
+        }
+
+        if (this.procurementLotSearchFormGroup.controls.contractorEopoo.value ) {
+            this.procurementLotFilters.procurementContractorEopooCodeEquals = this.procurementLotSearchFormGroup.controls.contractorEopoo.value.id;
+        }
+
+        if (this.procurementLotSearchFormGroup.controls.ippModality.value ) {
+            this.procurementLotFilters.ippModalityCodeEquals = this.procurementLotSearchFormGroup.controls.ippModality.value;
+        }
+
+        if (this.procurementLotSearchFormGroup.controls.ippProcedure.value) {
+            this.procurementLotFilters.ippProcedureCodeEquals = this.procurementLotSearchFormGroup.controls.ippProcedure.value;
+        }
+
+        if (this.procurementLotSearchFormGroup.controls.ippSector.value ) {
+            this.procurementLotFilters.ippSectorCodeEquals = this.procurementLotSearchFormGroup.controls.ippSector.value;
+        }
+        if (this.procurementLotSearchFormGroup.controls.awardCriterion.value ) {
+            this.procurementLotFilters.awardCriterionCodeEquals = this.procurementLotSearchFormGroup.controls.awardCriterion.value;
+        }
+        this.searchProcurementLot(0);
     }
 }
+
+    newProcurementLot(): void {
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: {} } });
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
