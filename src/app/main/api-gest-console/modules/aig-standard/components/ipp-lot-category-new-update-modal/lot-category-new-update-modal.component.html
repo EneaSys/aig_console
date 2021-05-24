@@ -1,8 +1,7 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.ippLotCategory.id" class="title dialog-title">Update Ipp Lot Category </span>
-            <span *ngIf="!data.ippLotCategory.id" class="title dialog-title">Create New Ipp Lot Category </span>
+            <span *ngIf="data.ippLotCategory" class="title dialog-title">Ipp Lot Category Form</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
