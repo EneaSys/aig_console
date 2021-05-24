@@ -12,6 +12,8 @@ export const locale = {
             'INVENTORY_ITEM' : "inventory item",
             'INVENTORY_ITEM_NAME' : "inventory item name",
             'INVENTORY_ITEM_COMBINATION' : "inventory item combination",
+            'INVENTORY_ITEM_COMBINATIONS' : "inventory item combinations",
+            'COMBINATION_CODE' : "combination code",
             'CATEGORY' : 'category',
             'PRODUCTOR' : 'productor',
             'INVENTORY' : "inventory",

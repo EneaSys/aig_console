@@ -14,7 +14,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!staticCatalog && !catalog">
+    <div *ngIf="staticCatalog && catalog" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>{{ 'COMMERCE.CATALOG' | translate | titlecase }}</mat-label>
             <input formControlName="catalog" matInput required [matAutocomplete]="catalogAutocomplete">
