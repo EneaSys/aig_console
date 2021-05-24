@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AigCommonModule } from 'aig-common/common.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AigIppClientModule } from 'aig-italian-public-procurement';
 import { AigProcurementListTableComponent } from './components/procurement-list-table/procurement-list-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -74,7 +73,6 @@ import { AigInsurancePolicyDetailBoxComponent } from './components/insurance-pol
 
         TranslateModule,
 
-        AigIppClientModule,
         AigItalianLegislationApiModule,
 
         MatTableModule,

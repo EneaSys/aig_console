@@ -19,7 +19,6 @@ import { AigIppModule } from './modules/ipp/ipp.module';
 import { AIG_PATH } from 'api-gest';
 import { AIG_STANDARD_PATH } from 'aig-standard';
 import { AIG_GENERIC_PATH } from 'aig-generic';
-import { AIG_IPP_BASE_PATH } from 'aig-italian-public-procurement';
 import { AigSolidarityModule } from './modules/solidarity/solidarity.module';
 import { AIG_SOLIDARETY_BASE_PATH } from 'aig-solidarety';
 import { AigCommerceModule } from './modules/commerce/commerce.module';
@@ -103,10 +102,6 @@ import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
         {
             provide: AIG_GENERIC_PATH,
             useValue: API_URL + "/g5c"
-        },
-        {
-            provide: AIG_IPP_BASE_PATH,
-            useValue: API_URL + "/ipp"
         },
         {
             provide: AIG_SOLIDARETY_BASE_PATH,
