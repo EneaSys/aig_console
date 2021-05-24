@@ -64,6 +64,20 @@
                                 </mat-form-field>
                             </div>
 
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Categoria</mat-label>
+                                    <input formControlName="category" matInput
+                                        [matAutocomplete]="categoryAutocomplete">
+                                    <mat-autocomplete #categoryAutocomplete="matAutocomplete"
+                                        [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+                                        <mat-option
+                                            *ngFor="let category of filteredIppLotCategory | async"
+                                            [value]="category">{{ category.name }}</mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+
 
                             <div fxLayout="row">
                                 <mat-form-field appearance="outline" fxFlex="100">
