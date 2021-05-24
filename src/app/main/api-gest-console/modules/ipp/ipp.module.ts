@@ -17,7 +17,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FuseSidebarModule } from '@fuse/components';
-import { AigIppClientModule } from 'aig-italian-public-procurement';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
@@ -65,7 +64,6 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
 
         CommonModule,
         AigCommonIppModule,
-        AigIppClientModule,
         AigItalianLegislationApiModule,
         CommonGenericModule,
        
