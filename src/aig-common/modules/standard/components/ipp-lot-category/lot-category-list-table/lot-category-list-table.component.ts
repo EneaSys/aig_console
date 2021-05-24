@@ -45,7 +45,7 @@ export class AigLotCategoryListTableComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    editIppLotCategory(IppLotCategoryDTO: IlPpProcurementLotCategoryDTO) {
-        this.dialog.open(AigLotCategoryNewUpdateModalComponent, { data: { ippLotCategory: this.ippLotCategoryDTO } });
+    editIppLotCategory(ippLotCategory: IlPpProcurementLotCategoryDTO) {
+        this.dialog.open(AigLotCategoryNewUpdateModalComponent, { data: { ippLotCategory: ippLotCategory } });
     }
 }
