@@ -11,6 +11,7 @@ export const locale = {
             'SELLER' : 'seller',
             'INVENTORY_ITEM' : "inventory item",
             'INVENTORY_ITEM_NAME' : "inventory item name",
+            'INVENTORY_ITEM_COMBINATION' : "inventory item combination",
             'CATEGORY' : 'category',
             'PRODUCTOR' : 'productor',
             'INVENTORY' : "inventory",
@@ -18,6 +19,12 @@ export const locale = {
             'CATALOG_NAME' : 'catalog name',
             'CATALOGS' : 'catalogs',
             'CATALOG' : 'catalog',
+            'CATALOG_ITEM' : 'catalog item',
+            'CATALOG_ITEMS' : 'catalog items',
+            'ACTIVE' : 'active',
+            'PRICE_LIST' : 'price list',
+            'PRICE_LISTS' : 'price lists',
+            'NAME' : 'name',
         }
     }
 };

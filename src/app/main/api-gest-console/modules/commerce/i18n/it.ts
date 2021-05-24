@@ -11,6 +11,7 @@ export const locale = {
             'SELLER' : 'venditore',
             'INVENTORY_ITEM' : "prodotto inventario",
             'INVENTORY_ITEM_NAME' : "nome prodotto inventario",
+            'INVENTORY_ITEM_COMBINATION' : "combinazione prodotto inventario",
             'CATEGORY' : 'categoria',
             'PRODUCTOR' : 'produttore',
             'INVENTORY' : "inventario",
@@ -18,6 +19,12 @@ export const locale = {
             'CATALOG_NAME' : 'nome catalogo',
             'CATALOGS' : 'cataloghi',
             'CATALOG' : 'catalogo',
+            'CATALOG_ITEM' : 'prodotto catalogo',
+            'CATALOG_ITEMS' : 'prodotti catalogo',
+            'ACTIVE' : 'attivo',
+            'PRICE_LIST' : 'listino prezzi',
+            'PRICE_LISTS' : 'listini prezzi',
+            'NAME' : 'nome',
         }
     }
 };

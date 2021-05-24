@@ -21,11 +21,11 @@
 
     <div class="widget" fxFlex.gt-sm="auto">
         <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
-            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Catalog items</b></div>
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.CATALOG_ITEMS' | translate | titlecase }}</b></div>
             <aig-catalog-item-list-table [displayColumns]="catalogItemDC" [dataSource]="catalogItemDTOs"
                 [error]="catalogItemError"></aig-catalog-item-list-table>
 
-            <button mat-fab class="accent" class="add-button-in-list-table">
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addCatalogItem(catalogDTO)">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -33,11 +33,11 @@
 
     <div class="widget" fxFlex.gt-sm="auto">
         <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
-            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Price lists</b></div>
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.PRICE_LISTS' | translate | titlecase }}</b></div>
             <aig-price-list-table [displayColumns]="priceListDC" [dataSource]="priceListDTOs" [error]="priceListError">
             </aig-price-list-table>
 
-            <button mat-fab class="accent" class="add-button-in-list-table">
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPriceList(catalogDTO)">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
