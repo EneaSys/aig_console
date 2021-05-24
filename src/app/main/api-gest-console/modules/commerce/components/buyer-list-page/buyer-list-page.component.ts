@@ -28,7 +28,7 @@ export class AigBuyerListPageComponent extends AigCommerceGenericComponent {
 	) { super(aigGenericComponentService) }
 
 	@Input()
-    staticSeller: SellerDTO = null;
+	staticSeller: SellerDTO = null;
 
 	sellerDTO: SellerDTO;
 
@@ -71,7 +71,7 @@ export class AigBuyerListPageComponent extends AigCommerceGenericComponent {
 
 		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.buyerSearchFormGroup.controls['eopoo'].valueChanges);
 
-		this.buyerDC = ["id", "buyer", "statusNote" ,"buttons"];
+		this.buyerDC = ["id", "buyer", "statusNote", "buttons"];
 	}
 
 	private clearFiltersBuyer() {
@@ -140,15 +140,15 @@ export class AigBuyerListPageComponent extends AigCommerceGenericComponent {
 
 		if (this.buyerSearchFormGroup.controls.eopoo.value) {
 			this.buyerFilters.buyerGenericIDEquals = this.buyerSearchFormGroup.controls.eopoo.value.genericEopoo ? this.buyerSearchFormGroup.controls.eopoo.value.genericEopoo.id : null;
-            this.buyerFilters.buyerPersonIDEquals = this.buyerSearchFormGroup.controls.eopoo.value.person ? this.buyerSearchFormGroup.controls.eopoo.value.person.id : null;
-        }
+			this.buyerFilters.buyerPersonIDEquals = this.buyerSearchFormGroup.controls.eopoo.value.person ? this.buyerSearchFormGroup.controls.eopoo.value.person.id : null;
+		}
 
 		this.searchBuyer(0);
 	}
 
 	//			---- !BUYER TABLE AND SEARCH SECTION ----
 
-	newBuyer(sellerDTO: SellerDTO ): void {
+	newBuyer(sellerDTO: SellerDTO): void {
 		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { seller: sellerDTO } });
 	}
 

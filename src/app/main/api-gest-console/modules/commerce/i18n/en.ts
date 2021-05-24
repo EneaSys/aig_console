@@ -10,10 +10,14 @@ export const locale = {
             'NO' : 'no',
             'SELLER' : 'seller',
             'INVENTORY_ITEM' : "inventory item",
+            'INVENTORY_ITEM_NAME' : "inventory item name",
             'CATEGORY' : 'category',
             'PRODUCTOR' : 'productor',
             'INVENTORY' : "inventory",
             'INVENTORY_ITEM_CODE' : "inventory item code",
+            'CATALOG_NAME' : 'catalog name',
+            'CATALOGS' : 'catalogs',
+            'CATALOG' : 'catalog',
         }
     }
 };

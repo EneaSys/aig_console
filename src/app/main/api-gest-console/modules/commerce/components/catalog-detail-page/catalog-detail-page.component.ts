@@ -3,16 +3,16 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, CatalogResourceService, PriceListDTO, PriceListResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigCatalogNewUpdateDialogComponent } from '../catalog-new-update-dialog/catalog-new-update-dialog.component';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 
 @Component({
     selector: 'aig-catalog-detail-page.component',
     templateUrl: './catalog-detail-page.component.html',
     styleUrls: ['./catalog-detail-page.component.scss']
 })
-export class AigCatalogDetailPageComponent extends GenericComponent {
+export class AigCatalogDetailPageComponent extends AigCommerceGenericComponent {
     constructor(
         private _snackBar: MatSnackBar,
         private router: Router,

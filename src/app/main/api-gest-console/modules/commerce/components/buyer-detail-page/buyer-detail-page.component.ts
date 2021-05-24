@@ -6,6 +6,7 @@ import { BuyerDTO, BuyerResourceService, PurchaseResourceService, PurchaseDTO } 
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer-new-update-modal.component';
+import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 
 @Component({
     selector: 'aig-buyer-detail-page',
@@ -13,6 +14,7 @@ import { AigBuyerNewUpdateModalComponent } from '../buyer-new-update-modal/buyer
     styleUrls: ['./buyer-detail-page.component.scss']
 })
 export class AigBuyerDetailPageComponent extends AigCommerceGenericComponent {
+
     constructor(
         private buyerResourceService: BuyerResourceService,
         private purchaseResourceService: PurchaseResourceService,
@@ -36,8 +38,12 @@ export class AigBuyerDetailPageComponent extends AigCommerceGenericComponent {
         this.loadOther();
     }
 
+    async loadOther() {
+        this.loadPurchases();
+    }
+
     editBuyer(buyerDTO: BuyerDTO) {
-		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: buyerDTO } });
+        this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: buyerDTO } });
     }
 
     async deleteBuyer(id: number) {
@@ -55,24 +61,24 @@ export class AigBuyerDetailPageComponent extends AigCommerceGenericComponent {
         this._fuseProgressBarService.hide();
     }
 
-    loadOther() {
-        this.loadPurchases();
-    }
-
-    purchasedisplayColumns: string[] = ['id', 'date', 'statusNote', 'buttons'];
     purchaseDTOs: PurchaseDTO[];
+    purchasedisplayColumns: string[] = ["id","amount","closed","insertedDataTime","statusNote", "buttons"];
     purchaseError: any;
-    
-    async loadPurchases() {
-        this.purchaseDTOs = null;
 
-		let filter = {
-			buyerIdEqual: this.buyerDTO.id
-		};
+    async loadPurchases() {
+        let filters = {
+            buyerGenericIDEquals: this.buyerDTO.eopoo.genericEopooId,
+			buyerPersonIDEquals: this.buyerDTO.eopoo.personId
+        };
         try {
-            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(filter).toPromise();
-        } catch(e) {
+            this.purchaseDTOs = await this.purchaseResourceService.getAllPurchasesUsingGET(filters).toPromise();
+        } catch (e) {
             this.purchaseError = e;
         }
     }
+
+    addPurchase(buyerDTO: BuyerDTO) {
+        this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: { }, buyer: buyerDTO } });
+    }
+
 }

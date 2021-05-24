@@ -2,14 +2,14 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Nome</mat-label>
+            <mat-label>{{ 'COMMERCE.CATALOG_NAME' | translate | titlecase }}</mat-label>
             <input formControlName="name" matInput required>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Seller</mat-label>
+            <mat-label>{{ 'COMMERCE.SELLER' | translate | titlecase }}</mat-label>
             <input formControlName="seller" matInput [matAutocomplete]="sellerAutocomplete" required>
             <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
                 <mat-option *ngFor="let seller of filteredSeller | async" [value]="seller">{{ seller.name }}</mat-option>
