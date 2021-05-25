@@ -206,12 +206,12 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
         }
 
         if (this.procurementLotSearchFormGroup.controls.category.value ) {
-            this.procurementLotFilters.categoryCodeEquals = this.procurementLotSearchFormGroup.controls.category.value;
+            this.procurementLotFilters.categoryCodeEquals = this.procurementLotSearchFormGroup.controls.category.value.code;
         }
 
 
         if (this.procurementLotSearchFormGroup.controls.type.value ) {
-            this.procurementLotFilters.typeCodeEquals = this.procurementLotSearchFormGroup.controls.type.value;
+            this.procurementLotFilters.typeCodeEquals = this.procurementLotSearchFormGroup.controls.type.value.code;
         }
         this.searchProcurementLot(0);
     }
