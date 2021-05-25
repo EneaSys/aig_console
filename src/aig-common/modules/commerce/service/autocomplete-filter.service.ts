@@ -95,7 +95,7 @@ export class AigCommerceAutocompleteFilterService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value && value.length > 1) {
+				if (value && value.length > 0) {
 					let filter = {
 						sellerNameContains: value
 					};
@@ -111,7 +111,7 @@ export class AigCommerceAutocompleteFilterService {
 		return observable.pipe(
 			startWith(''),
 			switchMap((value: string) => {
-				if (value && value.length > 1) {
+				if (value && value.length > 0) {
 					let filter = {
 						catalogNameContains: value
 					};

@@ -20,11 +20,16 @@
     </div>
 
     <div class="widget" fxFlex.gt-sm="auto">
-        <div class="fuse-card auto-width p-16 m-8">
-            Acquisti:
-            <aig-buy-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns"
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Acquisti</b></div>
+            <aig-purchase-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns"
                 [error]="purchaseError">
-            </aig-buy-list-table>
+            </aig-purchase-list-table>
+
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPurchase(buyerDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
     </div>
+
 </div>

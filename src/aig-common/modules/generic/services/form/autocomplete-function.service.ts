@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AddressDTO, EopooDTO, ReferentDTO } from 'aig-generic';
+import { Observable } from 'rxjs';
 import { EopooNamePipe } from '../../pipe/eopoo-name.pipe';
 
 @Injectable()

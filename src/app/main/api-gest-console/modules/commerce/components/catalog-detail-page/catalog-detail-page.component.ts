@@ -3,16 +3,18 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, CatalogResourceService, PriceListDTO, PriceListResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCatalogItemNewUpdateDialogComponent } from '../catalog-item-new-update-dialog/catalog-item-new-update-dialog.component';
 import { AigCatalogNewUpdateDialogComponent } from '../catalog-new-update-dialog/catalog-new-update-dialog.component';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
+import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-dialog/price-list-new-update-dialog.component';
 
 @Component({
     selector: 'aig-catalog-detail-page.component',
     templateUrl: './catalog-detail-page.component.html',
     styleUrls: ['./catalog-detail-page.component.scss']
 })
-export class AigCatalogDetailPageComponent extends GenericComponent {
+export class AigCatalogDetailPageComponent extends AigCommerceGenericComponent {
     constructor(
         private _snackBar: MatSnackBar,
         private router: Router,
@@ -30,6 +32,7 @@ export class AigCatalogDetailPageComponent extends GenericComponent {
     loadPage() {
         this.catalogDTO = this.route.snapshot.data.catalog;
         this.loadOther();
+        console.log(this.catalogDTO)
     }
 
     async reloadPage() {
@@ -61,7 +64,7 @@ export class AigCatalogDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
     }
 
-    catalogItemDC: string[] = ["id", "active", "inventoryItemProducer", "inventoryItemCombination", "buttons"];
+    catalogItemDC: string[] = ["id", "inventoryItemCombination", "inventoryItemProducer", "active", "buttons"];
     catalogItemDTOs: CatalogItemDTO[];
     catalogItemError: any;
     async loadCatalogItem() {
@@ -75,7 +78,11 @@ export class AigCatalogDetailPageComponent extends GenericComponent {
         }
     }
 
-    priceListDC: string[] = ["id", "name", "seller", "buttons"];
+    addCatalogItem(catalogDTO: CatalogDTO) {
+        this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { catalogItem: { }, catalog: catalogDTO } });
+    }
+
+    priceListDC: string[] = ["id", "name", "buttons"];
     priceListDTOs: PriceListDTO[];
     priceListError: any;
     async loadPriceList() {
@@ -87,5 +94,9 @@ export class AigCatalogDetailPageComponent extends GenericComponent {
         } catch (e) {
             this.priceListError = e;
         }
+    }
+
+    addPriceList(catalogDTO: CatalogDTO) {
+        this.dialog.open(AigPriceListNewUpdateDialogComponent, { data: { catalogItem: { }, catalog: catalogDTO } });
     }
 }

@@ -36,6 +36,11 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
     @Input()
     staticCatalog: CatalogDTO;
 
+    @Input()
+    catalog: CatalogDTO;
+
+    isUpdate: boolean = false;
+
     catalogItemNewUpdateForm: FormGroup;
 
     filteredInventoryItemCombination: Observable<InventoryItemCombinationDTO[]>;
@@ -52,10 +57,17 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
         
         if (this.catalogItem != null) {
             this.catalogItemNewUpdateForm.patchValue(this.catalogItem);
+            this.isUpdate = true
         }
 
         if (this.staticCatalog != null) {
             this.catalogItemNewUpdateForm.controls['catalog'].patchValue(this.staticCatalog);
+            this.isUpdate = false
+        }
+
+        if (this.catalog && this.catalogItem.inventoryItemCombination == null) {
+            this.catalogItemNewUpdateForm.controls['catalog'].patchValue(this.catalog);
+            this.isUpdate = false
         }
 
         this.filteredInventoryItemCombination = this.commerceAutocompleteService.filterInventoryItemCombination(this.catalogItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);
@@ -79,7 +91,7 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
 
         try {
             let postOrPut;
-            if (catalogItem.id != 0) {
+            if (this.isUpdate) {
                 await this.catalogItemResourceService.updateCatalogItemUsingPUT(catalogItem).toPromise();
                 postOrPut = "updated";
             } else {

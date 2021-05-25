@@ -4,8 +4,7 @@
 
         <div class="widget" fxFlex.gt-sm="auto">
             <div class="fuse-card auto-width p-16 m-8">
-                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{
-                    'COMMERCE.INVENTORY_ITEM' | translate }}</div>
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'COMMERCE.INVENTORY_ITEM' | translate }}</div>
                 <hr>
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">
                     ID: {{ inventoryItemDTO.id }}
@@ -16,21 +15,20 @@
                     <button class="ml-8" mat-stroked-button color="primary"
                         (click)="editInventoryItem(inventoryItemDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
                     <button class="ml-8" mat-stroked-button color="warn"
-                        (click)="deleteInventoryItem(inventoryItemDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase
-                        }}</button>
+                        (click)="deleteInventoryItem(inventoryItemDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="widget" fxFlex.gt-sm="auto">
-        <div class="fuse-card auto-width p-16 m-8" id="item-combination-list">
-            Lista combinazioni
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.INVENTORY_ITEM_COMBINATIONS' | translate | titlecase }}</b></div>
             <aig-inventory-item-combination-list-table [displayColumns]="inventoryItemCombinationDC"
                 [dataSource]="inventoryItemCombinationDTOs" [error]="inventoryItemCombinationError">
             </aig-inventory-item-combination-list-table>
 
-            <button mat-fab class="accent" (click)="addInventoryItemCombination(inventoryItemDTO)">
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addInventoryItemCombination(inventoryItemDTO)">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

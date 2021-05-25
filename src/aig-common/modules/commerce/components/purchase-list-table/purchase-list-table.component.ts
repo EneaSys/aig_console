@@ -4,7 +4,6 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigPurchaseNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/commerce/components/purchase-new-update-dialog/purchase-new-update-dialog.component';
-import { AigPurchaseNewUpdateFormComponent } from '../purchase-new-update-form/purchase-new-update-form.component';
 
 
 @Component({

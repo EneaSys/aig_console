@@ -4,17 +4,17 @@ import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { CatalogDTO, CatalogResourceService, SellerDTO } from 'aig-commerce';
 import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
 import { AigCatalogNewUpdateDialogComponent } from '../catalog-new-update-dialog/catalog-new-update-dialog.component';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 
 @Component({
 	selector: 'catalog-list-page',
 	templateUrl: './catalog-list-page.component.html',
 	styleUrls: ['./catalog-list-page.component.scss']
 })
-export class AigCatalogListPageComponent extends GenericComponent {
+export class AigCatalogListPageComponent extends AigCommerceGenericComponent {
 	constructor(
 		private catalogResourceService: CatalogResourceService,
 		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,

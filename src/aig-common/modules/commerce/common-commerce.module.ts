@@ -15,7 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-table.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AigSellerListTableComponent } from './components/seller-list-table/seller-list-table.component';
@@ -116,8 +115,6 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
     ],
     declarations: [
 
-        AigBuyListTableComponent,
-
         AigBuyerListTableComponent,
         AigBuyerNewUpdateFormComponent,
         AigBuyerBoxDetailComponent,
@@ -205,8 +202,6 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 	    AigCommerceAutocompleteDisplayService,
     ],
     exports: [
-        
-        AigBuyListTableComponent,
 
         AigBuyerListTableComponent,
         AigBuyerNewUpdateFormComponent,
