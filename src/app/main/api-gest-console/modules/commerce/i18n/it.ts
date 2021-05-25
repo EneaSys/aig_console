@@ -3,12 +3,13 @@ export const locale = {
     data: {
         'COMMERCE' : {
             'BUYER' : 'cliente',
-            'STATUS_NOTE' : 'stato',
+            'STATUS_NOTE' : 'note',
             'BUYERS' : 'clienti',
             'CONFIRMATION' : 'conferma',
             'YES' : 'si',
             'NO' : 'no',
             'SELLER' : 'venditore',
+            'SELLERS' : 'venditori',
             'INVENTORY_ITEM' : "prodotto inventario",
             'INVENTORY_ITEM_NAME' : "nome prodotto inventario",
             'INVENTORY_ITEM_COMBINATION' : "combinazione prodotto inventario",
@@ -27,6 +28,7 @@ export const locale = {
             'PRICE_LIST' : 'listino prezzi',
             'PRICE_LISTS' : 'listini prezzi',
             'NAME' : 'nome',
+            'NAME_REQUIRED' : 'indicare il nome!',
         }
     }
 };

@@ -114,7 +114,6 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
         } catch (e) {
             this.purchaseError = e;
         }
-        console.log(this.purchaseDTOs)
     }
 
     showAllPurchase() {

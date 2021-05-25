@@ -50,12 +50,10 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 			inventoryCategory: ['', Validators.required],
 		});
 
-
 		if (this.inventoryItem != null && this.inventoryItem.id != null) {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
 			this.isUpdate = true;
 		}
-
 
 		this.filteredProducers = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producer'].valueChanges);
 		this.filteredInventoryCategories = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemNewUpdateForm.controls['inventoryCategory'].valueChanges);

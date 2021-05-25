@@ -33,6 +33,13 @@ export class AigCatalogNewUpdateFormComponent implements OnInit {
     @Input()
     catalog: CatalogDTO;
 
+    @Input()
+    seller: SellerDTO;
+
+    isUpdate: boolean = false;
+
+    catalogResult: any;
+
     catalogNewUpdateForm: FormGroup;
 
     filteredSeller: Observable<SellerDTO[]>;
@@ -41,11 +48,12 @@ export class AigCatalogNewUpdateFormComponent implements OnInit {
         this.catalogNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            seller: ['', Validators.required],
+            seller: [this.seller, Validators.required],
         })
         
-        if (this.catalog != null) {
+        if (this.catalog != null && this.catalog.id != null) {
             this.catalogNewUpdateForm.patchValue(this.catalog);
+            this.isUpdate = true;
         }
 
         this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.catalogNewUpdateForm.controls['seller'].valueChanges);
@@ -55,6 +63,7 @@ export class AigCatalogNewUpdateFormComponent implements OnInit {
         if (!this.catalogNewUpdateForm.valid) {
             return;
         }
+
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
@@ -65,22 +74,27 @@ export class AigCatalogNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
-            if (catalog.id != 0) {
+            let postOrPut: string;
+
+            if (this.isUpdate) {
                 await this.catalogResourceService.updateCatalogUsingPUT(catalog).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.catalogResourceService.createCatalogUsingPOST(catalog).toPromise();
                 postOrPut = "created";
             }
+
+            this.catalogResult = catalog;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Catalog: '${catalog.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
-        } catch (error) {
-            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
-            this.setStep("form");
-        }
+
+        } catch (e) {
+			this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
+			this.setStep("form");
+		}
+        
         this._fuseProgressBarService.hide();
      }
 
@@ -88,10 +102,10 @@ export class AigCatalogNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }
