@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { IlPpProcurementLotStatusDTO, IlPpProcurementLotStatusResourceService, IlPpProcurementStatusDTO, IlPpProcurementStatusResourceService } from 'aig-standard';
 
@@ -33,8 +34,8 @@ export class AigProcurementLotStatusNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.procurementLotStatusNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: ['', Validators.required],
-            name: ['', Validators.required],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
             wikiCode:['']
         })

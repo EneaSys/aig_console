@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -44,10 +45,10 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	ngOnInit(): void {
 		this.inventoryItemNewUpdateForm = this._formBuilder.group({
 			id: [''],
-			name: ['', Validators.required],
+			name: ['', [Validators.required, AigValidator.haveId]],
 			itemCode: [''],
-			producer: ['', Validators.required],
-			inventoryCategory: ['', Validators.required],
+			producer: ['', [Validators.required, AigValidator.haveId]],
+			inventoryCategory: ['', [Validators.required, AigValidator.haveId]],
 		});
 
 		if (this.inventoryItem != null && this.inventoryItem.id != null) {

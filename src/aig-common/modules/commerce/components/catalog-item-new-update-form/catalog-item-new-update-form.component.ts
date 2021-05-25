@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, InventoryItemCombinationDTO } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -50,9 +51,9 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.catalogItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            active:[false, Validators.required],
-            inventoryItemCombination: ['', Validators.required],
-            catalog: ['', Validators.required],
+            active:[false, Validators.required, AigValidator.haveId],
+            inventoryItemCombination: ['', [Validators.required, AigValidator.haveId]],
+            catalog: ['', [Validators.required, AigValidator.haveId]],
         })
         
         if (this.catalogItem != null) {

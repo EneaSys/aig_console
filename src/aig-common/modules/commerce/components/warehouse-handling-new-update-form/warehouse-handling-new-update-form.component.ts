@@ -8,6 +8,7 @@ import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplet
 import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
 import { ContextModuleResolver } from 'aig-common/modules/standard/resolver/context-module.resolver';
+import { AigValidator } from 'aig-common/AigValidator';
 
 
 @Component({
@@ -65,10 +66,10 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
         this.warehouseHandlingFormGroup = this._formBuilder.group({
             id: [""],
-            warehouseHandlingType: ['', Validators.required],
+            warehouseHandlingType: ['', [Validators.required, AigValidator.haveId]],
             warehouseToLoad: [''],
             warehouseToUnload: [''],
-            date: ['', Validators.required]
+            date: ['', [Validators.required, AigValidator.haveId]],
         });
 
 

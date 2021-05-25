@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import {IlFeCessionePrestazioneTipoDTO, IlFeCessionePrestazioneTipoResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-tipo-cessione-prestazione-new-update-form',
@@ -35,8 +36,8 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     ngOnInit(): void {
         this.tipoCessionePrestazioneNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: ['', Validators.required],
-            name: ['', Validators.required],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
             wikiCode:['']
 

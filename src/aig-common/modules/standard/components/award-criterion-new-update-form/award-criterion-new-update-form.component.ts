@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotAwardCriterionResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-award-criterion-new-update-form',
@@ -34,8 +35,8 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.awardCriterionNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: ['', Validators.required],
-            name: ['', Validators.required],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
             wikiCode:['']
         })
