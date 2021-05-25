@@ -44,6 +44,8 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
 
     isUpdate: boolean = false;
 
+    buyerResult: any;
+
     buyerNewUpdateForm: FormGroup;
 
     filteredSellers: Observable<SellerDTO[]>;
@@ -61,7 +63,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
             statusNote: [''],
         })
         
-        if (this.buyer != null) {
+        if (this.buyer != null && this.buyer.id != null) {
             this.buyerNewUpdateForm.patchValue(this.buyer);
             this.isUpdate = true
         }
@@ -93,6 +95,9 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
                 await this.buyerResourceService.createBuyerUsingPOST(buyer).toPromise();
                 postOrPut = "created";
             }
+
+            this.buyerResult = buyer;
+
             this.eventService.reloadCurrentPage();
 
             this.setStep("complete");
@@ -101,6 +106,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 

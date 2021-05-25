@@ -75,6 +75,7 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 		let purchase: PurchaseDTO = {
 			id: this.purchaseNewUpdateForm.value.id,
+			amount: this.purchaseNewUpdateForm.value.amount,
             buyerId: this.purchaseNewUpdateForm.value.buyer.id,
             statusNote:this.purchaseNewUpdateForm.value.statusNote,
             closed: this.purchaseNewUpdateForm.value.closed,

@@ -35,10 +35,10 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
     @Input()
     priceList: PriceListDTO;
 
-    isUpdate: boolean = false;
-
     @Input()
     catalog: CatalogDTO;
+    
+    isUpdate: boolean = false;
 
     priceListNewUpdateForm: FormGroup;
 

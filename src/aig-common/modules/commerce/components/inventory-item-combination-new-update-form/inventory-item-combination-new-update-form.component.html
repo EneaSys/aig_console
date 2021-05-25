@@ -2,7 +2,7 @@
 
 	<div *ngIf="!inventoryItemCombination.inventoryItem && !inventoryItem" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Inventory item</mat-label>
+            <mat-label>{{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }}</mat-label>
             <input formControlName="inventoryItem" matInput required [matAutocomplete]="inventoryItemAutocomplete">
             <mat-autocomplete #inventoryItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemDisplayFn">
                 <mat-option *ngFor="let inventoryItem of filteredInventoryItems | async" [value]="inventoryItem">{{ inventoryItem.name }}</mat-option>
@@ -12,14 +12,14 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Name</mat-label>
+            <mat-label>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-label>
             <input formControlName="name" matInput required>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Combination Code</mat-label>
+            <mat-label>{{ 'COMMERCE.COMBINATION_CODE' | translate | titlecase }}</mat-label>
             <input formControlName="combinationCode" matInput>
         </mat-form-field>
     </div>

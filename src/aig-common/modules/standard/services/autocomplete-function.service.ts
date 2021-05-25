@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CityDTO, CpvDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, IlPpProcurementStatusDTO } from 'aig-standard';
+import { CityDTO, CpvDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, IlPpProcurementStatusDTO } from 'aig-standard';
 
 @Injectable()
 export class AigStandardAutocompleteDisplayService {
@@ -37,6 +37,11 @@ export class AigStandardAutocompleteDisplayService {
     cpvDisplayFn (cpv?: CpvDTO): string | undefined {
         return cpv ? cpv.name : undefined;
     }
+    ippLotAwardCriterionDisplayFn (awardCriterion?: IlPpProcurementLotAwardCriterionDTO): string | undefined {
+        return awardCriterion ? awardCriterion.name : undefined;
+    }
+    
+    
 
 
 
