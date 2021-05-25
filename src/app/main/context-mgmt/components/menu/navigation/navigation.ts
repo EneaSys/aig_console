@@ -178,7 +178,7 @@ export const contextNavigation: FuseNavigation[] = [
 					},
 					{
 						id       : 'seller',
-						title    : 'Negozi',
+						title    : 'Venditori',
 						type     : 'item',
 						icon     : 'shopping_basket',
 						url      : '/commerce/seller',

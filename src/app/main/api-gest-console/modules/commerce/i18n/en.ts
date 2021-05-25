@@ -9,6 +9,7 @@ export const locale = {
             'YES' : 'yes',
             'NO' : 'no',
             'SELLER' : 'seller',
+            'SELLERS' : 'sellers',
             'INVENTORY_ITEM' : "inventory item",
             'INVENTORY_ITEM_NAME' : "inventory item name",
             'INVENTORY_ITEM_COMBINATION' : "inventory item combination",
@@ -27,6 +28,7 @@ export const locale = {
             'PRICE_LIST' : 'price list',
             'PRICE_LISTS' : 'price lists',
             'NAME' : 'name',
+            'NAME_REQUIRED' : 'name is required!',
         }
     }
 };

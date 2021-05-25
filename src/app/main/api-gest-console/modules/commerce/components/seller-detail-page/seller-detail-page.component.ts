@@ -3,8 +3,10 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { BuyerDTO, BuyerResourceService, CatalogDTO, CatalogResourceService, SellerDTO, SellerResourceService } from "aig-commerce";
-import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigBuyerNewUpdateModalComponent } from "../buyer-new-update-modal/buyer-new-update-modal.component";
+import { AigCatalogNewUpdateDialogComponent } from "../catalog-new-update-dialog/catalog-new-update-dialog.component";
+import { AigCommerceGenericComponent } from "../commerce-generic-component";
 import { AigSellerNewUpdateDialogComponent } from "../seller-new-update-dialog/seller-new-update-dialog.component";
 
 @Component({
@@ -12,7 +14,7 @@ import { AigSellerNewUpdateDialogComponent } from "../seller-new-update-dialog/s
 	templateUrl: './seller-detail-page.component.html',
 	styleUrls: ['./seller-detail-page.component.scss']
 })
-export class AigSellerDetailPageComponent extends GenericComponent {
+export class AigSellerDetailPageComponent extends AigCommerceGenericComponent {
 	constructor(
 		private _snackBar: MatSnackBar,
 		private router: Router,
@@ -75,6 +77,10 @@ export class AigSellerDetailPageComponent extends GenericComponent {
 		}
 	}
 
+	addCatalog(sellerDTO: SellerDTO) {
+        this.dialog.open(AigCatalogNewUpdateDialogComponent, { data: { catalog: { }, seller: sellerDTO } });
+    }
+
 	buyerDC: string[] = ["id", "buyer", "statusNote" ,"buttons"];
     buyerDTOs: BuyerDTO[];
     buyerError: any;
@@ -87,5 +93,9 @@ export class AigSellerDetailPageComponent extends GenericComponent {
         } catch (e) {
             this.buyerError = e;
         }
+    }
+
+	addBuyer(sellerDTO: SellerDTO) {
+        this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { buyer: { }, seller: sellerDTO } });
     }
 }

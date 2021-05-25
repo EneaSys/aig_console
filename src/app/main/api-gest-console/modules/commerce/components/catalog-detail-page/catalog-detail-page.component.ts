@@ -32,7 +32,6 @@ export class AigCatalogDetailPageComponent extends AigCommerceGenericComponent {
     loadPage() {
         this.catalogDTO = this.route.snapshot.data.catalog;
         this.loadOther();
-        console.log(this.catalogDTO)
     }
 
     async reloadPage() {
