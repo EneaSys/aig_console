@@ -5,7 +5,7 @@
         <div class="content">
             <div>
                 <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="center start">
-                    <button mat-raised-button (click)="clearFiltersProcurementLot()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
+                    <button mat-raised-button (click)=" resetFiltersProcurementLot()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
                     <span class="h3">{{ 'MAIN.FILTERS' | translate }}</span>
@@ -74,6 +74,20 @@
                                         <mat-option
                                             *ngFor="let category of filteredIppLotCategory | async"
                                             [value]="category">{{ category.name }}</mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Tipo</mat-label>
+                                    <input formControlName="type" matInput
+                                        [matAutocomplete]="typeAutocomplete">
+                                    <mat-autocomplete #typeAutocomplete="matAutocomplete"
+                                        [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+                                        <mat-option
+                                            *ngFor="let type of filteredIppLotType | async"
+                                            [value]="type">{{ type.name }}</mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
                             </div>

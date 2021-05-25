@@ -11,7 +11,7 @@ import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
-import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
 
 @Component({
     templateUrl: './procurement-lot-list-page.component.html',
@@ -40,6 +40,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
     filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
     filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
+    filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
 
 
     loadPage() {
@@ -86,6 +87,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
             ippSector: [''],
             awardCriterion: [''],
             category: [''],
+            type: [''],
         });
     
 
@@ -97,6 +99,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
         this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
         this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
         this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotSearchFormGroup.controls['category'].valueChanges);
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotSearchFormGroup.controls['type'].valueChanges);
     }
 
 
@@ -112,6 +115,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
             ippSectorCodeEquals: null,
             awardCriterionCodeEquals: null,
             categoryCodeEquals: null,
+            typeCodeEquals: null,
 
             page: 0,
         }
@@ -128,6 +132,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
         this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
         this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
         this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotSearchFormGroup.controls['category'].valueChanges);
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotSearchFormGroup.controls['type'].valueChanges);
 
 
         try {
@@ -202,6 +207,11 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
         if (this.procurementLotSearchFormGroup.controls.category.value ) {
             this.procurementLotFilters.categoryCodeEquals = this.procurementLotSearchFormGroup.controls.category.value;
+        }
+
+
+        if (this.procurementLotSearchFormGroup.controls.type.value ) {
+            this.procurementLotFilters.typeCodeEquals = this.procurementLotSearchFormGroup.controls.type.value;
         }
         this.searchProcurementLot(0);
     }
