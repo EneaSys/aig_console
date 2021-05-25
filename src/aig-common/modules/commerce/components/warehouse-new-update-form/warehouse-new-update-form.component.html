@@ -2,14 +2,15 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Warehouse Name</mat-label>
+            <mat-label>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-label>
             <input name="name" formControlName="name" matInput required>
+            <mat-error>{{ 'COMMERCE.NAME_REQUIRED' | translate }}</mat-error>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!warehouse.id" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
-		<button *ngIf="warehouse.id" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -18,6 +19,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!warehouseNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newWarehouse()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.WAREHOUSE' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}
+    </h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.WAREHOUSE' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+
+    <hr>
+
+    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.WAREHOUSE' | translate | titlecase }}</div>
+    <div class="h1 m-8 ml-16">{{ warehouseResult.name }}</div>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newWarehouse()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
 </div>

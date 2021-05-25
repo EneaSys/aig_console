@@ -83,6 +83,7 @@ import { AigEntityDetailProducerComponent } from './components/producer-box-deta
 import { AigEntityDetailSellerComponent } from './components/seller-box-detail/entity-detail-seller.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-box-detail.component';
+import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-handling-box-detail/warehouse-handling-box-detail.component';
 
 @NgModule({
     imports: [
@@ -170,9 +171,11 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
         AigWarehouseNewUpdateFormComponent,
         AigEntityDetailWarehouseComponent,
 
-        AigWarehouseHandlingFormComplexComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingBoxDetailComponent,
+
+        AigWarehouseHandlingFormComplexComponent,
 
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,
@@ -258,9 +261,11 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
         AigWarehouseNewUpdateFormComponent,
         AigEntityDetailWarehouseComponent,
 
-        AigWarehouseHandlingFormComplexComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingBoxDetailComponent,
+
+        AigWarehouseHandlingFormComplexComponent,
 
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,

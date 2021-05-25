@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigWarehouseNewUpdateModalComponent } from '../warehouse-new-update-modal/warehouse-new-update-modal.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { AigWarehouseNewUpdateModalComponent } from '../warehouse-new-update-mod
 	templateUrl: './warehouse-list-page.component.html',
 	styleUrls: ['./warehouse-list-page.component.scss']
 })
-export class AigWarehouseListPageComponent extends GenericComponent {
+export class AigWarehouseListPageComponent extends AigCommerceGenericComponent {
 	constructor(
 		private warehouseResourceService: WarehouseResourceService,
 		private _formBuilder: FormBuilder,
