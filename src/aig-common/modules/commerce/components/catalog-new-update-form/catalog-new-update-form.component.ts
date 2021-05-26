@@ -49,7 +49,7 @@ export class AigCatalogNewUpdateFormComponent implements OnInit {
         this.catalogNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', [Validators.required, AigValidator.haveId]],
-            seller: ['', [Validators.required, AigValidator.haveId]],
+            seller: [this.seller, [Validators.required, AigValidator.haveId]],
         })
         
         if (this.catalog != null && this.catalog.id != null) {

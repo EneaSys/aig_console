@@ -40,6 +40,9 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     buyer: BuyerDTO;
 
     @Input()
+    staticSeller: SellerDTO;
+
+    @Input()
     seller: SellerDTO;
 
     isUpdate: boolean = false;
@@ -54,18 +57,25 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.buyerNewUpdateForm = this._formBuilder.group({
             id:[''],
-            
-            seller: [this.seller, Validators.required, AigValidator.haveId],
-            
+            seller: [this.seller, [Validators.required, AigValidator.haveId]],
             eopoo: ['', [Validators.required, AigValidator.haveId]],
-            
-            confirmation: [true, Validators.required, AigValidator.haveId ],
+            confirmation: [true, [Validators.required, AigValidator.haveId]],
             statusNote: [''],
         })
         
-        if (this.buyer != null && this.buyer.id != null) {
+        if (this.buyer != null) {
             this.buyerNewUpdateForm.patchValue(this.buyer);
             this.isUpdate = true
+        }
+
+        if (this.staticSeller != null) {
+            this.buyerNewUpdateForm.controls['seller'].patchValue(this.staticSeller);
+            this.isUpdate = false
+        }
+
+        if (this.seller && this.buyer.seller == null) {
+            this.buyerNewUpdateForm.controls['seller'].patchValue(this.seller);
+            this.isUpdate = false
         }
 
         this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.buyerNewUpdateForm.controls['eopoo'].valueChanges);

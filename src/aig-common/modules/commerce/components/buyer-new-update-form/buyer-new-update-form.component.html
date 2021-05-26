@@ -21,7 +21,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="staticSeller && seller" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>{{ 'COMMERCE.SELLER' | translate | titlecase }}</mat-label>
             <input formControlName="seller" matInput required [matAutocomplete]="sellerAutocomplete">
