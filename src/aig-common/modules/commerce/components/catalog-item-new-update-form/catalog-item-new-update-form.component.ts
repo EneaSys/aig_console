@@ -42,6 +42,8 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
 
     isUpdate: boolean = false;
 
+    catalogItemResult: any;
+
     catalogItemNewUpdateForm: FormGroup;
 
     filteredInventoryItemCombination: Observable<InventoryItemCombinationDTO[]>;
@@ -91,7 +93,7 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
+            let postOrPut: string;
             if (this.isUpdate) {
                 await this.catalogItemResourceService.updateCatalogItemUsingPUT(catalogItem).toPromise();
                 postOrPut = "updated";
@@ -99,14 +101,18 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
                 await this.catalogItemResourceService.createCatalogItemUsingPOST(catalogItem).toPromise();
                 postOrPut = "created";
             }
+
+            this.catalogItemResult = catalogItem;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`CatalogItem: '${catalogItem.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 
@@ -114,10 +120,10 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

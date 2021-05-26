@@ -84,6 +84,7 @@ import { AigEntityDetailSellerComponent } from './components/seller-box-detail/e
 import { TranslateModule } from '@ngx-translate/core';
 import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-box-detail.component';
 import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-handling-box-detail/warehouse-handling-box-detail.component';
+import { AigCatalogItemBoxDetailComponent } from './components/catalog-item-box-detail/catalog-item-box-detail.component';
 
 @NgModule({
     imports: [
@@ -126,6 +127,7 @@ import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-h
 
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogItemBoxDetailComponent,
 
         AigCatalogPriceManagerListTableComponent,
 
@@ -216,6 +218,7 @@ import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-h
 
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogItemBoxDetailComponent,
 
         AigCatalogPriceManagerListTableComponent,
 
