@@ -73,7 +73,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
             this.isUpdate = false
         }
 
-        if (this.seller && this.buyer.seller == null) {
+        if (this.seller) {
             this.buyerNewUpdateForm.controls['seller'].patchValue(this.seller);
             this.isUpdate = false
         }
