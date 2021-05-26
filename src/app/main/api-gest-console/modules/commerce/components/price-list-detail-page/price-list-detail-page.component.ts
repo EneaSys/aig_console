@@ -3,8 +3,9 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { PriceListDTO, PriceListItemDTO, PriceListItemResourceService, PriceListResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
+import { AigPriceListItemNewUpdateDialogComponent } from '../price-list-item-new-update-dialog/price-list-item-new-update-dialog.component';
 import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-dialog/price-list-new-update-dialog.component';
 
 @Component({
@@ -12,7 +13,7 @@ import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-d
     templateUrl: './price-list-detail-page.component.html',
     styleUrls: ['./price-list-detail-page.component.scss']
 })
-export class AigPriceListDetailPageComponent extends GenericComponent {
+export class AigPriceListDetailPageComponent extends AigCommerceGenericComponent {
     constructor(
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -72,4 +73,8 @@ export class AigPriceListDetailPageComponent extends GenericComponent {
               this.priceListItemError = e;
           }
       }
+
+      addPriceListItem(priceListDTO: PriceListDTO) {
+        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { priceListItem: { }, priceList: priceListDTO } });
+    }
 }

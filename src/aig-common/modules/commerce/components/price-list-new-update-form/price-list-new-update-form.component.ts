@@ -40,6 +40,8 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
     
     isUpdate: boolean = false;
 
+    priceListResult: any;
+
     priceListNewUpdateForm: FormGroup;
 
     filteredCatalog: Observable<CatalogDTO[]>;
@@ -78,7 +80,7 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
+            let postOrPut: string;
             if (priceList.id != 0) {
                 await this.priceListResourceService.updatePriceListUsingPUT(priceList).toPromise();
                 postOrPut = "updated";
@@ -86,14 +88,18 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
                 await this.priceListResourceService.createPriceListUsingPOST(priceList).toPromise();
                 postOrPut = "created";
             }
+
+            this.priceListResult = priceList;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Catalog: '${priceList.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 
@@ -101,10 +107,10 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

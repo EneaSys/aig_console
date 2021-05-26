@@ -50,6 +50,7 @@ export const locale = {
             'SELECT_UNLOAD_WAREHOUSE' : 'select unload warehouse',
             'DATE' : 'date',
             'QUANTITY' : 'quantity',
+            'AMOUNT' : 'amount',
         }
     }
 };

@@ -50,6 +50,7 @@ export const locale = {
             'SELECT_UNLOAD_WAREHOUSE' : 'seleziona magazzino di scarico',
             'DATE' : 'data',
             'QUANTITY' : 'quantità',
+            'AMOUNT' : 'importo',
         }
     }
 };

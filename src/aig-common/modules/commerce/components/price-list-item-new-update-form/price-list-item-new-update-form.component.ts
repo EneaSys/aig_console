@@ -50,6 +50,8 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
 
     isUpdate: boolean = false;
 
+    priceListItemResult: any;
+
     ngOnInit(): void {
         this.priceListItemNewUpdateForm = this._formBuilder.group({
             id:[''],
@@ -98,7 +100,7 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
+            let postOrPut: string;
             if (priceListItem.id != 0) {
                 await this.priceListItemResourceService.updatePriceListItemUsingPUT(priceListItem).toPromise();
                 postOrPut = "updated";
@@ -106,14 +108,18 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
                 await this.priceListItemResourceService.createPriceListItemUsingPOST(priceListItem).toPromise();
                 postOrPut = "created";
             }
+
+            this.priceListItemResult = priceListItem;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`PriceListItem: '${priceListItem.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 
@@ -121,10 +127,10 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }
