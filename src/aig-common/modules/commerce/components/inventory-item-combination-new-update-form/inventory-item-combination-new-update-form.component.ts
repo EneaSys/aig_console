@@ -44,7 +44,7 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
     ngOnInit(): void { 
         this.inventoryItemCombinationNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required]],
             combinationCode: [''],
             inventoryItem: ['', [Validators.required, AigValidator.haveId]],
         })

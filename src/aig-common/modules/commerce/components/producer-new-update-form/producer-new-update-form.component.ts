@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { ProducerDTO, ProducerResourceService } from 'aig-commerce';
-import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-producer-new-update-form',
@@ -34,7 +33,7 @@ export class AigProducerNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.producerNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required]],
         })
         
         if (this.producer != null) {

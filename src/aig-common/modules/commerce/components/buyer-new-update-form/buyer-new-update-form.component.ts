@@ -59,7 +59,7 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
             id:[''],
             seller: [this.seller, [Validators.required, AigValidator.haveId]],
             eopoo: ['', [Validators.required, AigValidator.haveId]],
-            confirmation: [true, [Validators.required, AigValidator.haveId]],
+            confirmation: [true, [Validators.required]],
             statusNote: [''],
         })
         

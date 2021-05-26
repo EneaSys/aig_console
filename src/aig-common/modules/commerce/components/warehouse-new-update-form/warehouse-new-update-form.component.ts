@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
-import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-warehouse-new-update-form',
@@ -38,7 +37,7 @@ export class AigWarehouseNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.warehouseNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required]],
         })
         
         if (this.warehouse != null && this.warehouse.id != null) {

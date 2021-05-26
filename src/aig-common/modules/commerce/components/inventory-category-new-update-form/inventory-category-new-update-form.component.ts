@@ -41,8 +41,8 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
     ngOnInit(): void { 
         this.inventoryCategoryNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', [Validators.required, AigValidator.haveId]],
-            parent: [''],
+            name: ['', [Validators.required]],
+            parent: ['', [AigValidator.haveId]],
         })
         
         if (this.inventoryCategory != null) {

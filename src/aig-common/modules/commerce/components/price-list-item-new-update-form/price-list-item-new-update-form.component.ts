@@ -53,7 +53,7 @@ export class AigPriceListItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.priceListItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            amount:['', [Validators.required, AigValidator.haveId]],
+            amount:['', [Validators.required]],
             catalogItem: ['', [Validators.required, AigValidator.haveId]],
             priceList: ['', [Validators.required, AigValidator.haveId]],
         })

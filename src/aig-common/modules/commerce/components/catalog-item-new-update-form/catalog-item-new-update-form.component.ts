@@ -53,7 +53,7 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.catalogItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            active:[false, [Validators.required, AigValidator.haveId]],
+            active:[false, [Validators.required]],
             inventoryItemCombination: ['', [Validators.required, AigValidator.haveId]],
             catalog: ['', [Validators.required, AigValidator.haveId]],
         })

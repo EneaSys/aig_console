@@ -59,7 +59,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
 		this.warehouseHandlingItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            quantity: ['', [Validators.required, AigValidator.haveId]],
+            quantity: ['', [Validators.required]],
             inventoryItemCombination: ['', [Validators.required, AigValidator.haveId]],
             warehouseHandlingDate: [''],
             warehouseHandling: ['', [Validators.required, AigValidator.haveId]],

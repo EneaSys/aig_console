@@ -45,7 +45,7 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	ngOnInit(): void {
 		this.inventoryItemNewUpdateForm = this._formBuilder.group({
 			id: [''],
-			name: ['', [Validators.required, AigValidator.haveId]],
+			name: ['', [Validators.required]],
 			itemCode: [''],
 			producer: ['', [Validators.required, AigValidator.haveId]],
 			inventoryCategory: ['', [Validators.required, AigValidator.haveId]],

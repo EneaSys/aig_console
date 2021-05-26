@@ -48,7 +48,7 @@ export class AigSellerNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.sellerNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required]],
             eopoo: ['', [Validators.required, AigValidator.haveId]],
         })
 

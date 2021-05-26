@@ -53,7 +53,7 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
             amount: [''],
 			buyer: ['', [Validators.required, AigValidator.haveId]],
 			closed: [true],
-			insertedDateTime: ['', [Validators.required, AigValidator.haveId]],
+			insertedDateTime: ['', [Validators.required]],
             statusNote: [''],
 		});
 
