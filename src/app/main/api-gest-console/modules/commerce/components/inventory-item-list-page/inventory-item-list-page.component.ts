@@ -80,20 +80,23 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
   }
 
   private async searchInventoryItem(page: number) {
+    this.inventoryItemDTOs = null;
+
     this.inventoryItemFilters.page = page;
     this.inventoryItemFilters.size = this.inventoryItemPaginationSize;
-    this.inventoryItemDTOs = null;
 
     this.filteredInventoryCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemSearchFormGroup.controls['inventoryCategory'].valueChanges);
     this.filteredProducer = this.commerceAutocompleteService.filterProducer(this.inventoryItemSearchFormGroup.controls['producer'].valueChanges);
-    
+
     try {
       this.inventoryItemLength = await this.inventoryItemResourceService.countInventoryItemsUsingGET(this.inventoryItemFilters).toPromise();
+
       if (this.inventoryItemLength == 0) {
         this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
         this.inventoryItemDTOs = [];
         return;
       }
+
       this.inventoryItemDTOs = await this.inventoryItemResourceService.getAllInventoryItemsUsingGET(this.inventoryItemFilters).toPromise();
     } catch (e) {
       this.inventoryItemError = e;
