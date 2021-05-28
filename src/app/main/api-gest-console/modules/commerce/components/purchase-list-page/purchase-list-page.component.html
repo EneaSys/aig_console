@@ -27,7 +27,7 @@
                                         <mat-label>{{ 'COMMERCE.BUYER' | translate | titlecase }}</mat-label>
                                         <input matInput type="text" formControlName="eopoo" [matAutocomplete]="eopooAutocomplete">
                                         <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
-                                            <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
+                                            <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
