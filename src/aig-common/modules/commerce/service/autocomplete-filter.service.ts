@@ -240,9 +240,9 @@ export class AigCommerceAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value && value.length > 1) {
+                if (value && value.length > 0) {
 					let filter = {
-						purchaseNameContains: value
+						amountEquals: value
 					};
                     return this.purchaseResourceService.getAllPurchasesUsingGET(filter);
                 } else {

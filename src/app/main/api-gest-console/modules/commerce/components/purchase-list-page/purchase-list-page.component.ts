@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { PurchaseDTO, PurchaseResourceService, SellerDTO, SellerResourceService } from 'aig-commerce';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
@@ -20,6 +21,7 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
     constructor(
         private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
+        private commerceAutocompleteFilterService: AigCommerceAutocompleteFilterService,
         private purchaseResourceService: PurchaseResourceService,
         private sellerResourceService: SellerResourceService,
         private _formBuilder: FormBuilder,
@@ -60,6 +62,7 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
     purchaseLength: number;
 
     filteredEopoo: Observable<EopooDTO[]>;
+    filteredPurchase: Observable<PurchaseDTO[]>;
 
     private initPurchaseSearch() {
         this.purchasePaginationSize = 10;
@@ -75,6 +78,7 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
         });
 
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.purchaseSearchFormGroup.controls['eopoo'].valueChanges);
+        this.filteredPurchase = this.commerceAutocompleteFilterService.filterPurchase(this.purchaseSearchFormGroup.controls['amount'].valueChanges);
 
         this.purchaseDC = ["id", "buyer", "insertedDataTime", "amount", "statusNote", "closed", "buttons"];
     }
@@ -89,6 +93,7 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
             buyerPersonIDEquals: null,
             purchaseClosedNotEquals: null,
             purchaseClosedEquals: null,
+            purchaseAmountEquals: null,
             page: 0,
         }
     }
@@ -100,6 +105,7 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
         this.purchaseFilters.size = this.purchasePaginationSize;
 
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.purchaseSearchFormGroup.controls['eopoo'].valueChanges);
+        this.filteredPurchase = this.commerceAutocompleteFilterService.filterPurchase(this.purchaseSearchFormGroup.controls['amount'].valueChanges);
 
         try {
             this.purchaseLength = await this.purchaseResourceService.countPurchasesUsingGET(this.purchaseFilters).toPromise();
@@ -151,6 +157,10 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
         if (this.purchaseSearchFormGroup.controls.eopoo.value) {
 			this.purchaseFilters.buyerGenericIDEquals = this.purchaseSearchFormGroup.controls.eopoo.value.genericEopoo ? this.purchaseSearchFormGroup.controls.eopoo.value.genericEopoo.id : null;
 			this.purchaseFilters.buyerPersonIDEquals = this.purchaseSearchFormGroup.controls.eopoo.value.person ? this.purchaseSearchFormGroup.controls.eopoo.value.person.id : null;
+		}
+
+        if (this.purchaseSearchFormGroup.controls.amount.value) {
+			this.purchaseFilters.purchaseAmountEquals = this.purchaseSearchFormGroup.controls.amount.value;
 		}
 
         if (this.purchaseSearchFormGroup.controls.notClosed.value) {
