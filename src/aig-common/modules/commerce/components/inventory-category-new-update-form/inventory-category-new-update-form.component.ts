@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
-import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -34,6 +33,10 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
     @Input()
     inventoryCategory: InventoryCategoryDTO;
 
+    isUpdate: boolean = false;
+
+    inventoryCategoryResult: any;
+
     inventoryCategoryNewUpdateForm: FormGroup;
 
     filteredParentCategory: Observable<InventoryCategoryDTO[]>;
@@ -42,11 +45,13 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         this.inventoryCategoryNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', [Validators.required]],
-            parent: ['', [AigValidator.haveId]],
+            parent: [''],
         })
         
-        if (this.inventoryCategory != null) {
+        if (this.inventoryCategory != null && this.inventoryCategory.id != null) {
             this.inventoryCategoryNewUpdateForm.patchValue(this.inventoryCategory);
+            this.inventoryCategoryNewUpdateForm.controls.parent.setValue(this.inventoryCategory.inventoryCategory);
+            this.isUpdate = true
         }
 
         this.filteredParentCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryCategoryNewUpdateForm.controls['parent'].valueChanges);
@@ -66,22 +71,27 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
-            if (inventoryCategory.id != 0) {
+            let postOrPut: string;
+
+            if (this.isUpdate) {
                 await this.inventoryCategoryResourceService.updateInventoryCategoryUsingPUT(inventoryCategory).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.inventoryCategoryResourceService.createInventoryCategoryUsingPOST(inventoryCategory).toPromise();
                 postOrPut = "created";
             }
+
+            this.inventoryCategoryResult = inventoryCategory;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Inventory Category: '${inventoryCategory.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -89,10 +99,10 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

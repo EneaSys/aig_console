@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { InventoryCategoryDTO, InventoryCategoryResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigInventoryCategoryNewUpdateModalComponent } from '../inventory-category-new-update-modal/inventory-category-new-update-modal.component';
 
 @Component({
@@ -11,9 +14,11 @@ import { AigInventoryCategoryNewUpdateModalComponent } from '../inventory-catego
 	templateUrl: './inventory-category-list-page.component.html',
 	styleUrls: ['./inventory-category-list-page.component.scss']
 })
-export class AigInventoryCategoryListPageComponent extends GenericComponent {
+export class AigInventoryCategoryListPageComponent extends AigCommerceGenericComponent {
 	constructor(
 		private inventoryCategoryResourceService: InventoryCategoryResourceService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -32,15 +37,18 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 
 	//			---- INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
-	inventoryCategorySearchFormGroup: FormGroup;
-	inventoryCategoryPaginationSize: number;
-	inventoryCategoryFilters: any;
-
-	inventoryCategoryLength: number;
 	inventoryCategoryDTOs: InventoryCategoryDTO[];
+	inventoryCategoryDC: string[];
 	inventoryCategoryError: any;
 
-	inventoryCategoryDC: string[];
+	inventoryCategorySearchFormGroup: FormGroup;
+	inventoryCategoryFilters: any;
+
+	inventoryCategoryPaginationSize: number;
+	inventoryCategoryLength: number;
+
+	filteredInventoryCategory: Observable<InventoryCategoryDTO[]>;
+	filteredParentInventoryCategory: Observable<InventoryCategoryDTO[]>;
 
 	private initInventoryCategorySearch() {
 		this.inventoryCategoryPaginationSize = 10;
@@ -48,17 +56,19 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		this.inventoryCategorySearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+			parentInventoryCategory: [''],
 		});
 
-		this.inventoryCategoryDC = ["id", "name", "inventoryCategoryName", "buttons"];
+		this.filteredInventoryCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryCategorySearchFormGroup.controls['name'].valueChanges);
+
+		this.inventoryCategoryDC = ["id", "name", "parentCategory", "buttons"];
 	}
 
 	private clearFiltersInventoryCategory() {
 		this.inventoryCategoryFilters = {
 			inventoryCategoryIDEquals: null,
-			inventoryCategoryNameContains: null,
+			inventoryCategoryNameEquals: null,
 			page: 0,
-			
 		}
 	}
 
@@ -67,6 +77,8 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 
 		this.inventoryCategoryFilters.page = page;
 		this.inventoryCategoryFilters.size = this.inventoryCategoryPaginationSize;
+
+		this.filteredInventoryCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryCategorySearchFormGroup.controls['name'].valueChanges);
 
 		try {
 			this.inventoryCategoryLength = await this.inventoryCategoryResourceService.countInventoryCategoriesUsingGET(this.inventoryCategoryFilters).toPromise();
@@ -110,7 +122,9 @@ export class AigInventoryCategoryListPageComponent extends GenericComponent {
 		}
 		this.inventoryCategoryFilters.inventoryCategoryIDEquals = null;
 
-		this.inventoryCategoryFilters.inventoryCategoryNameContains = this.inventoryCategorySearchFormGroup.controls.name.value;
+		if (this.inventoryCategorySearchFormGroup.controls.name.value) {
+			this.inventoryCategoryFilters.inventoryCategoryNameEquals = this.inventoryCategorySearchFormGroup.controls.name.value.name;
+		}
 
 		this.searchInventoryCategory(0);
 	}

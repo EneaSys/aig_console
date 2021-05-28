@@ -33,6 +33,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	@Input()
 	inventoryItem: InventoryItemDTO;
 
+	@Input()
+	inventoryCategory: InventoryCategoryDTO;
+
 	isUpdate: boolean = false;
 
 	inventoryItemResult: any;
@@ -48,11 +51,17 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 			name: ['', [Validators.required]],
 			itemCode: [''],
 			producer: ['', [Validators.required, AigValidator.haveId]],
-			inventoryCategory: ['', [Validators.required, AigValidator.haveId]],
+			inventoryCategory: [this.inventoryCategory, [Validators.required, AigValidator.haveId]],
 		});
 
 		if (this.inventoryItem != null && this.inventoryItem.id != null) {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
+			this.isUpdate = true;
+		}
+
+		if (this.inventoryItem != null && this.inventoryItem.id != null && this.inventoryCategory) {
+			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
+			this.inventoryItemNewUpdateForm.controls.inventoryCategory.setValue(this.inventoryCategory);
 			this.isUpdate = true;
 		}
 
