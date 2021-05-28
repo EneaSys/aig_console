@@ -80,15 +80,12 @@ import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-d
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 import { AigPurchaseComplexDialogComponent } from './components/purchase-complex-dialog/purchase-complex-dialog.component';
-<<<<<<< HEAD
 import { DashboardWarehouseManagerComponent } from './components/dashboard-warehouse-manager/dashboard-warehouse-manager.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
 import { AgmCoreModule } from '@agm/core';
 import { AnalyticsDashboardService } from './components/dashboard-warehouse-manager/dashboard-warehouse-manager.service';
-=======
 import { TranslateModule } from '@ngx-translate/core';
->>>>>>> develop
 
 
 
