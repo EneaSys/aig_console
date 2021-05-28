@@ -1,7 +1,7 @@
 <table id="table">
     <tr>
         <td>
-        Combinazioni di prodotti
+            {{ 'COMMERCE.ITEMS_COMBINATIONS' | translate | titlecase }}
         </td>
         <td *ngFor="let priceListDTO of priceListDTOs">
             {{ priceListDTO.name }}
@@ -18,11 +18,11 @@
                 <button (click)="deletePriceListItem(temp[catalogItemDTO.id][priceListDTO.id].id)">Delete</button>
             </span>
             <span *ngIf="!(temp[catalogItemDTO.id] && temp[catalogItemDTO.id][priceListDTO.id])">
-                <button (click)="newPriceListItem(priceListDTO, catalogItemDTO)">aggiungi</button>
+                <button (click)="newPriceListItem(priceListDTO, catalogItemDTO)">{{ 'COMMERCE.ADD' | translate | titlecase }}</button>
             </span>
         </td>
     </tr>
     <tr>
-        <button (click)=newCatalogItem(staticCatalog)>Aggiungi nuovo catalog item</button>
+        <button (click)=newCatalogItem(staticCatalog)>{{ 'COMMERCE.ADD_NEW_CATALOG_ITEM' | translate }}</button>
     </tr>
 </table>

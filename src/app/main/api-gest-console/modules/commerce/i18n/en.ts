@@ -2,6 +2,8 @@ export const locale = {
     lang: 'en',
     data: {
         'COMMERCE' : {
+            'ADD' : 'add',
+            'ADD_NEW_CATALOG_ITEM' : 'Add new catalog item',
             'BUYER' : 'buyer',
             'STATUS_NOTE' : 'status note',
             'BUYERS' : 'buyers',
@@ -23,6 +25,7 @@ export const locale = {
             'INVENTORY_CATEGORY' : "inventory category",
             'INVENTORY_CATEGORIES' : "inventory categories",
             'ITEM_COMBINATION' : "item combination",
+            'ITEMS_COMBINATIONS' : "items combinations",
             'COMBINATION_CODE' : "combination code",
             'CATEGORY' : 'category',
             'PARENT_CATEGORY' : 'parent category',
@@ -32,7 +35,9 @@ export const locale = {
             'INVENTORY_ITEM_CODE' : "inventory item code",
             'CATALOG_NAME' : 'catalog name',
             'CATALOGS' : 'catalogs',
+            'CATALOGS_MANAGER' : 'catalogs manager',
             'CATALOG' : 'catalog',
+            'CATALOG_PRICES_MANAGEMENT' : 'catalog prices management',
             'CATALOG_ITEM' : 'catalog item',
             'CATALOG_ITEMS' : 'catalog items',
             'ACTIVE' : 'active',
