@@ -22,6 +22,7 @@ export const locale = {
             'CATEGORY' : 'categoria',
             'PARENT_CATEGORY' : 'categoria genitore',
             'PRODUCTOR' : 'produttore',
+            'PRODUCTORS' : 'produttori',
             'INVENTORY' : "inventario",
             'INVENTORY_ITEM_CODE' : "codice prodotto inventario",
             'CATALOG_NAME' : 'nome catalogo',

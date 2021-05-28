@@ -28,6 +28,10 @@ export class AigProducerNewUpdateFormComponent implements OnInit {
     @Input()
     producer: ProducerDTO;
 
+    isUpdate: boolean = false;
+
+    producerResult: any;
+
     producerNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -36,8 +40,9 @@ export class AigProducerNewUpdateFormComponent implements OnInit {
             name: ['', [Validators.required]],
         })
         
-        if (this.producer != null) {
+        if (this.producer != null && this.producer.id != null) {
             this.producerNewUpdateForm.patchValue(this.producer);
+            this.isUpdate = true
         }
     }
 
@@ -59,14 +64,18 @@ export class AigProducerNewUpdateFormComponent implements OnInit {
                 await this.producerResourceService.createProducerUsingPOST(producer).toPromise();
                 postOrPut = "created";
             }
+
+            this.producerResult = producer;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Producer: '${producer.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -74,10 +83,10 @@ export class AigProducerNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

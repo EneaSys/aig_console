@@ -36,6 +36,9 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	@Input()
 	inventoryCategory: InventoryCategoryDTO;
 
+	@Input()
+	producer: ProducerDTO;
+
 	isUpdate: boolean = false;
 
 	inventoryItemResult: any;
@@ -50,7 +53,7 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 			id: [''],
 			name: ['', [Validators.required]],
 			itemCode: [''],
-			producer: ['', [Validators.required, AigValidator.haveId]],
+			producer: [this.producer, [Validators.required, AigValidator.haveId]],
 			inventoryCategory: [this.inventoryCategory, [Validators.required, AigValidator.haveId]],
 		});
 
@@ -63,6 +66,10 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
 			this.inventoryItemNewUpdateForm.controls.inventoryCategory.setValue(this.inventoryCategory);
 			this.isUpdate = true;
+		}
+
+		if (this.producer) {
+			this.inventoryItemNewUpdateForm.controls.producer.setValue(this.producer);
 		}
 
 		this.filteredProducers = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producer'].valueChanges);
