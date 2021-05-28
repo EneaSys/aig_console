@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCategoryResourceService } from 'aig-standard';
+import { IlPpProcurementLotCategoryDTO, IlPpProcurementLotCategoryResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { AigLotCategoryNewUpdateModalComponent } from '../ipp-lot-category-new-update-modal/lot-category-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -14,7 +14,7 @@ import { MatSnackBar, PageEvent } from '@angular/material';
 })
 export class AigIppLotCategoryListPageComponent extends GenericComponent {
     constructor(
-        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -33,7 +33,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 
     //			---- IPP LOT CATEGORY TABLE AND SEARCH SECTION ----
     
-	ippLotCategoryDTOs: ItalianPublicProcurementLotCategoryDTO[];
+	ippLotCategoryDTOs: IlPpProcurementLotCategoryDTO[];
     ippLotCategoryDC: string[];
 	ippLotCategoryError: any;
 
@@ -49,11 +49,13 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 
 		this.ippLotCategorySearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.ippLotCategoryDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.ippLotCategoryDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppLotCategory() {
@@ -72,7 +74,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 		this.ippLotCategoryFilters.size = this.ippLotCategoryPaginationSize;
 
 		try {
-			this.ippLotCategoryLength = await this.ippLotCategoryResourceService.countItalianPublicProcurementLotCategoriesUsingGET().toPromise();
+			this.ippLotCategoryLength = await this.ippLotCategoryResourceService.countIlPpProcurementLotCategoriesUsingGET(this.ippLotCategoryFilters).toPromise();
 
 			if(this.ippLotCategoryLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +82,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippLotCategoryDTOs = await this.ippLotCategoryResourceService.getAllItalianPublicProcurementLotCategoriesUsingGET().toPromise();
+			this.ippLotCategoryDTOs = await this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(this.ippLotCategoryFilters).toPromise();
 		} catch (e) {
 			this.ippLotCategoryError = e;
 		}

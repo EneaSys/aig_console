@@ -15,8 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { AigBuyListTableComponent } from './components/buy-list-table/buy-list-table.component';
-import { AigCustomSmlcNewPurchaseFormComponent } from './components/custom-smlc-new-purchase-form/custom-smlc-new-purchase-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AigSellerListTableComponent } from './components/seller-list-table/seller-list-table.component';
@@ -39,8 +37,8 @@ import { AigInventoryItemDialogFormComponent } from './components/inventory-item
 import { AigInventoryItemResolver } from './resolver/inventory-item-resolver';
 import { AigProducerNewUpdateFormComponent } from './components/producer-new-update-form/producer-new-update-form.component';
 import { AigProducerResolver } from './resolver/producer.resolver';
-import { AigCommerceAutocompleteService } from './service/autocomplete-filter.service';
-import { AigAutocompleteDisplayService } from './service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from './service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from './service/autocomplete-display.service';
 import { AigWarehouseResolver } from './resolver/warehouse.resolver';
 import { AigPurchaseListTableComponent } from './components/purchase-list-table/purchase-list-table.component';
 import { AigPurchaseComplexFormComponent } from './components/purchase-complex-form/purchase-complex-form.component';
@@ -56,7 +54,7 @@ import { AigWarehouseHandlingFormComplexComponent } from './components/warehouse
 import { AigWarehouseHandlingItemListTableComponent } from './components/warehouse-handling-item-list-table/warehouse-handling-item-list-table.component';
 import { AigWarehouseHandlingItemNewUpdateFormComponent } from './components/warehouse-handling-item-new-update-form/warehouse-handling-item-new-update-form.component';
 import { AigWarehouseHandlingResolver } from './resolver/warehouse-handling.resolver';
-import { AigFiscalTransactionNewUpdateFormComponent } from './fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
+import { AigFiscalTransactionNewUpdateFormComponent } from './components/fiscal-transaction-new-update-form/fiscal-transaction-new-update-form.component';
 import { AigInventoryItemCombinationListTableComponent } from './components/inventory-item-combination-list-table/inventory-item-combination-list-table.component';
 import { AigInventoryItemCombinationNewUpdateFormComponent } from './components/inventory-item-combination-new-update-form/inventory-item-combination-new-update-form.component';
 import { AigInventoryItemPurchaseListTableComponent } from './components/inventory-item-purchase-list-table/inventory-item-purchase-list-table.component';
@@ -78,26 +76,30 @@ import { AigWarehouseHandlingItemResolver } from './resolver/warehouse-handling-
 import { AigPriceListItemResolver } from './resolver/price-list-item.resolver';
 import { AigCatalogPriceManagerListTableComponent } from './components/catalog-price-manager-list-table/catalog-price-manager-list-table.component';
 import { AigInventoryItemCombinationResolver } from './resolver/inventory-item-combination.resolver';
-import { AigEntityDetailInventoryItemComponent } from './components/entity-detail-inventory-item/entity-detail-inventory-item.component';
-import { AigEntityDetailCatalogComponent } from './components/entity-detail-catalog/entity-detail-catalog.component';
-import { AigEntityDetailWarehouseComponent } from './components/entity-detail-warehouse/entity-detail-warehouse.component';
-import { AigEntityDetailProducerComponent } from './components/entity-detail-producer/entity-detail-producer.component';
-import { AigEntityDetailSellerComponent } from './components/entity-detail-seller/entity-detail-seller.component';
+import { AigEntityDetailInventoryItemComponent } from './components/inventory-item-box-detail/entity-detail-inventory-item.component';
+import { AigEntityDetailCatalogComponent } from './components/catalog-box-detail/entity-detail-catalog.component';
+import { AigEntityDetailWarehouseComponent } from './components/warehouse-box-detail/entity-detail-warehouse.component';
+import { AigEntityDetailProducerComponent } from './components/producer-box-detail/entity-detail-producer.component';
+import { AigEntityDetailSellerComponent } from './components/seller-box-detail/entity-detail-seller.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-box-detail.component';
+import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-handling-box-detail/warehouse-handling-box-detail.component';
+import { AigCatalogItemBoxDetailComponent } from './components/catalog-item-box-detail/catalog-item-box-detail.component';
+import { AigPriceListBoxDetailComponent } from './components/price-list-box-detail/price-list-box-detail.component';
 
 @NgModule({
     imports: [
 
         AigCommonModule,
         CommonModule,
-
         CommonGenericModule,
         
         RouterModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        
         FlexLayoutModule,
+        TranslateModule,
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -113,129 +115,168 @@ import { AigEntityDetailSellerComponent } from './components/entity-detail-selle
         MatSlideToggleModule,
         MatRadioModule,
         MatMenuModule,
-    
-
     ],
     declarations: [
-        AigBuyListTableComponent,
-        AigCustomSmlcNewPurchaseFormComponent,
-        AigSellerListTableComponent,
-        AigSellerNewUpdateFormComponent,
-        AigFiscalTransactionListTableComponent,
-        AigC6eGenericStatusPipe,
+
         AigBuyerListTableComponent,
         AigBuyerNewUpdateFormComponent,
-        AigInventoryCategoryListTableComponent,
-        AigInventoryCategoryNewUpdateFormComponent,
-        AigInventoryItemListTableComponent,
-        AigInventoryItemCombinationListTableComponent,
-        AigInventoryItemCombinationNewUpdateFormComponent,
-        AigProducerListTableComponent,
-        AigWarehouseListTableComponent,
-        AigWarehouseNewUpdateFormComponent,
-        AigInventoryItemDialogFormComponent,
-        AigProducerNewUpdateFormComponent,
+        AigBuyerBoxDetailComponent,
+
         AigCatalogListTableComponent,
         AigCatalogNewUpdateFormComponent,
+        AigEntityDetailCatalogComponent,
+
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogItemBoxDetailComponent,
+
         AigCatalogPriceManagerListTableComponent,
+
+        AigFiscalTransactionListTableComponent,
         AigFiscalTransactionNewUpdateFormComponent,
+
+        AigInventoryCategoryListTableComponent,
+        AigInventoryCategoryNewUpdateFormComponent,
+
+        AigInventoryItemListTableComponent,
+        AigInventoryItemDialogFormComponent,
+        AigEntityDetailInventoryItemComponent,
+
+        AigInventoryItemCombinationListTableComponent,
+        AigInventoryItemCombinationNewUpdateFormComponent,
+
+        AigInventoryItemPurchaseListTableComponent,
+
+        AigPaymentListTableComponent,
+
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
+        AigPriceListBoxDetailComponent,
+
         AigPriceListItemListTableComponent,
         AigPriceListItemNewUpdateFormComponent,
-        AigFiscalTransactionNewUpdateFormComponent,
-        AigInventoryItemPurchaseListTableComponent,
-        AigPurchaseListTableComponent,
+
+        AigProducerListTableComponent,
+        AigProducerNewUpdateFormComponent,
+        AigEntityDetailProducerComponent,
+
         AigPurchaseComplexFormComponent,
-        AigPaymentListTableComponent,
+        AigPurchaseListTableComponent,
         AigPurchaseNewUpdateFormComponent,
-        AigFiscalTransactionNewUpdateFormComponent,
+
         AigPurchaseItemListTableComponent,
         AigPurchaseItemNewUpdateFormComponent,
+
+        AigSellerListTableComponent,
+        AigSellerNewUpdateFormComponent,
+        AigEntityDetailSellerComponent,
+        
+        AigWarehouseListTableComponent,
+        AigWarehouseNewUpdateFormComponent,
+        AigEntityDetailWarehouseComponent,
+
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingBoxDetailComponent,
+
         AigWarehouseHandlingFormComplexComponent,
+
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,
-        AigEntityDetailInventoryItemComponent,
-        AigEntityDetailCatalogComponent,
-        AigEntityDetailWarehouseComponent,
-        AigEntityDetailProducerComponent,
-        AigEntityDetailSellerComponent
-        
-        
+
+        AigC6eGenericStatusPipe,
     ],
     providers: [
-        PurchaseResolver,
-        PurchaseItemResolver,
-        FiscalTransactionResolver,
+
         BuyerResolver,
+        AigCatalogResolver,
+        AigCatalogItemResolver,
+        FiscalTransactionResolver,
         AigInventoryCategoryResolver,
         AigInventoryItemResolver,
         AigInventoryItemCombinationResolver,
-        AigProducerResolver,
-	    AigCommerceAutocompleteService,
-	    AigAutocompleteDisplayService,
-        AigWarehouseResolver,
-        AigCatalogResolver,
-        AigCatalogItemResolver,
         AigPriceListResolver,
         AigPriceListItemResolver,
-        AigWarehouseHandlingResolver,
+        AigProducerResolver,
+        PurchaseResolver,
+        PurchaseItemResolver,
         AigSellerResolver,
+        AigWarehouseResolver,
+        AigWarehouseHandlingResolver,
         AigWarehouseHandlingItemResolver,
+
+	    AigCommerceAutocompleteFilterService,
+	    AigCommerceAutocompleteDisplayService,
     ],
     exports: [
-        AigBuyListTableComponent,
-        AigCustomSmlcNewPurchaseFormComponent,
-        AigSellerListTableComponent,
-        AigSellerNewUpdateFormComponent,
-        AigFiscalTransactionListTableComponent,
-        AigC6eGenericStatusPipe,
+
         AigBuyerListTableComponent,
         AigBuyerNewUpdateFormComponent,
-        AigInventoryCategoryListTableComponent,
-        AigInventoryCategoryNewUpdateFormComponent,
-        AigInventoryItemListTableComponent,
-        AigInventoryItemCombinationListTableComponent,
-        AigInventoryItemCombinationNewUpdateFormComponent,
-        AigProducerListTableComponent,
+        AigBuyerBoxDetailComponent,
+
         AigCatalogListTableComponent,
         AigCatalogNewUpdateFormComponent,
+        AigEntityDetailCatalogComponent,
+
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogItemBoxDetailComponent,
+
         AigCatalogPriceManagerListTableComponent,
+
+        AigFiscalTransactionListTableComponent,
+        AigFiscalTransactionNewUpdateFormComponent,
+
+        AigInventoryCategoryListTableComponent,
+        AigInventoryCategoryNewUpdateFormComponent,
+
+        AigInventoryItemListTableComponent,
+        AigInventoryItemDialogFormComponent,
+        AigEntityDetailInventoryItemComponent,
+
+        AigInventoryItemCombinationListTableComponent,
+        AigInventoryItemCombinationNewUpdateFormComponent,
+
+        AigInventoryItemPurchaseListTableComponent,
+
+        AigPaymentListTableComponent,
+
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
+        AigPriceListBoxDetailComponent,
+
         AigPriceListItemListTableComponent,
         AigPriceListItemNewUpdateFormComponent,
-        AigPurchaseListTableComponent,
-        AigPaymentListTableComponent,
-        AigPurchaseItemListTableComponent,
+        
+        AigProducerListTableComponent,
+        AigProducerNewUpdateFormComponent,
+        AigEntityDetailProducerComponent,
 
+        AigPurchaseComplexFormComponent,
+        AigPurchaseListTableComponent,
+        AigPurchaseNewUpdateFormComponent,
+
+        AigPurchaseItemListTableComponent,
+        AigPurchaseItemNewUpdateFormComponent,
+
+        AigSellerListTableComponent,
+        AigSellerNewUpdateFormComponent,
+        AigEntityDetailSellerComponent,
+        
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,
-        AigInventoryItemDialogFormComponent,
-        AigProducerNewUpdateFormComponent,
-        AigFiscalTransactionNewUpdateFormComponent,
-        AigInventoryItemPurchaseListTableComponent,
-        AigPurchaseNewUpdateFormComponent,
-        AigPurchaseItemNewUpdateFormComponent,
+        AigEntityDetailWarehouseComponent,
+
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingBoxDetailComponent,
+
         AigWarehouseHandlingFormComplexComponent,
+
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,
-        
-        AigPurchaseComplexFormComponent,
 
-        AigEntityDetailInventoryItemComponent,
-        AigEntityDetailCatalogComponent,
-        AigEntityDetailWarehouseComponent,
-        AigEntityDetailProducerComponent,
-        AigEntityDetailSellerComponent
+        AigC6eGenericStatusPipe,
     ],
 })
 export class AigCommonCommerceModule {}

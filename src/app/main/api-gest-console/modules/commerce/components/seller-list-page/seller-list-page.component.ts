@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { MatDialog } from '@angular/material/dialog';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { SellerResourceService, SellerDTO } from 'aig-commerce';
 import { AigSellerNewUpdateDialogComponent } from '../seller-new-update-dialog/seller-new-update-dialog.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
+import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
+import { Observable } from 'rxjs';
 
 @Component({
     templateUrl: './seller-list-page.component.html',
     styleUrls: ['./seller-list-page.component.scss']
 })
-export class AigSellerListPageComponent extends GenericComponent {
+export class AigSellerListPageComponent extends AigCommerceGenericComponent {
     constructor(
         private sellerResourceService: SellerResourceService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
         private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
@@ -32,33 +37,36 @@ export class AigSellerListPageComponent extends GenericComponent {
 
     //			---- SELLER TABLE AND SEARCH SECTION ----
 
-	sellerSearchFormGroup: FormGroup;
-	sellerPaginationSize: number;
-	sellerFilters: any;
-
-	sellerLength: number;
 	sellerDTOs: SellerDTO[];
+	sellerDC: string[];
 	sellerError: any;
 
-	sellerDC: string[];
+	sellerSearchFormGroup: FormGroup;
+	sellerFilters: any;
+
+	sellerPaginationSize: number;
+	sellerLength: number;
+
+	filteredSeller: Observable<SellerDTO[]>;
 
 	
 	private initSellerSearch() {
-		this.sellerDC = ["id", "name", "buttons"];
-
 		this.sellerPaginationSize = 10;
-		
 
 		this.sellerSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			seller: [''],
 		});
+
+		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.sellerSearchFormGroup.controls['seller'].valueChanges);
+
+		this.sellerDC = ["id", "name", "buttons"];
 	}
 
 	private clearFiltersSeller() {
 		this.sellerFilters = {
 			sellerIDEquals: null,
-			sellerNameContains: null,
+			sellerNameEquals: null,
 			page: 0,
 		}
 	}
@@ -68,6 +76,8 @@ export class AigSellerListPageComponent extends GenericComponent {
 
 		this.sellerFilters.page = page;
 		this.sellerFilters.size = this.sellerPaginationSize;
+
+		this.filteredSeller = this.commerceAutocompleteService.filterSeller(this.sellerSearchFormGroup.controls['seller'].valueChanges);
 
 		try {                                                                       
 			this.sellerLength = await this.sellerResourceService.countSellersUsingGET(this.sellerFilters).toPromise();  
@@ -83,18 +93,15 @@ export class AigSellerListPageComponent extends GenericComponent {
 			this.sellerError = e;
 		}
 	}
-	
 
 	showAllSeller() {
 		this.resetFiltersSeller();
-		
 	}
 
 	resetFiltersSeller() {
 		this.sellerSearchFormGroup.reset();
 		this.clearFiltersSeller();
 		this.searchSeller(0);
-
 	}
 
 	sellerPaginationEvent(pageEvent: PageEvent) {
@@ -114,7 +121,9 @@ export class AigSellerListPageComponent extends GenericComponent {
 		}
 		this.sellerFilters.sellerIDEquals = null;
 
-		this.sellerFilters.sellerNameContains = this.sellerSearchFormGroup.controls.name.value;
+		if (this.sellerSearchFormGroup.controls.seller.value) {
+			this.sellerFilters.sellerNameEquals = this.sellerSearchFormGroup.controls.seller.value.name;
+		}
 
 		this.searchSeller(0);
 	}

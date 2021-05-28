@@ -24,6 +24,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo',
                 permission: ['g5c.eopoo.get'],
             },
+            /*{
+                id       : 'generic-eopoo-list-page',
+                title    : 'Generic Eopoo',
+                type     : 'item',
+                icon     : 'how_to_reg',
+                url      : '/g5c/generic-eopoo',
+                permission: ['g5c.eopoo.get'],
+            },*/
         ]
     },
     {
@@ -57,19 +65,30 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
+                translate: 'NAV.IPP.PROCUREMENT',
                 type     : 'item',
-                icon     : 'build',
+                icon     : 'business_center',
                 url      : '/ipp/procurement',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
             {
-                id       : 'ipp-lot-list-page',
+                id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',
+                translate: 'NAV.IPP.PROCUREMENT-LOT',
                 type     : 'item',
-                icon     : 'child_care',
+                icon     : 'next_week',
                 url      : '/ipp/procurement-lot',
-                permission: ['c6e.admin'],
+                permission: ['ipp.p9t.get'],
             },
+            {
+                id       : 'partecipation-list-page',
+                title    : 'Partecipation',
+                translate: 'NAV.IPP.PARTECIPATION',
+                type     : 'item',
+                icon     : 'network_locked',
+                url      : '/ipp/partecipation',
+                permission: ['ipp.p9t.get'],
+            }
         ]
     },
 
@@ -81,6 +100,7 @@ export const navigation: FuseNavigation[] = [
 			{
                 id       : 'inventory-item-list-page',
                 title    : 'Inventario',
+                translate: 'NAV.COMMERCE.INVENTORY',
                 type     : 'item',
                 icon     : 'assignment',
                 url      : '/commerce/inventory-item',
@@ -89,6 +109,7 @@ export const navigation: FuseNavigation[] = [
 			{
                 id       : 'warehouse-manager',
                 title    : 'Manager Magazzino',
+                translate: 'NAV.COMMERCE.WAREHOUSE_MANAGER',
                 type     : 'item',
                 icon     : 'store',
                 url      : '/commerce/warehouse-manager',
@@ -97,6 +118,7 @@ export const navigation: FuseNavigation[] = [
 			{
                 id       : 'seller-manager',
                 title    : 'Manager Venditore',
+                translate: 'NAV.COMMERCE.SELLER_MANAGER',
                 type     : 'item',
                 icon     : 'person_pin_circle',
                 url      : '/commerce/seller-manager',
@@ -105,6 +127,7 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'catalog-manager',
                 title    : 'Manager Catalogo',
+                translate: 'NAV.COMMERCE.CATALOG_MANAGER',
                 type     : 'item',
                 icon     : 'euro_symbol',
                 url      : '/commerce/catalog-manager',
@@ -117,6 +140,14 @@ export const navigation: FuseNavigation[] = [
         title    : 'Public database',
         type     : 'group',
         children : [
+            {
+                id       : 'management-custom',
+                title    : 'Management custom page',
+                type     : 'item',
+                icon     : 'view_carousel',
+                url      : '/m8t/management-custom',
+                permission: ['c6e.admin'],
+            },
             {
                 id       : 'standard-custom',
                 title    : 'Standard custom page',

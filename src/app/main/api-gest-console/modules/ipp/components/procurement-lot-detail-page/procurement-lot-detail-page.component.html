@@ -1,14 +1,59 @@
-<div id="aig-social-detail-page" class="page-layout blank">
+<div id="aig-procurement-lot-detail-page" class="page-layout blank">
+
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
 
-                <pre>{{ procurementLotDTO | json }}</pre>
-
-                <button mat-stroked-button color="primary" (click)="editProcurementLot(procurementLotDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteProcurementLot(procurementLotDTO.id)">Delete</button>
-
+        <div class="widget" fxFlex.gt-sm="34">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT_LOT' | translate }}</div>
+                <hr>
+                <aig-procurement-lot-detail-box [procurementLot]="procurementLotDTO"></aig-procurement-lot-detail-box>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurementLot(procurementLotDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteProcurementLot(procurementLotDTO)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
         </div>
+
+        <div class="widget" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'IPP.PROCUREMENT' | translate }}</div>
+                <hr>
+                <aig-procurement-detail-box [procurement]="procurementLotDTO.procurement"></aig-procurement-detail-box>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="accent" [routerLink]="'/ipp/procurement/detail/' + procurementLotDTO.procurement.id">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurement(procurementLotDTO.procurement)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DOSSIERS' | translate | titlecase }}</b></div>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDossier(procurementDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
     </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.PARTECIPATIONS' | translate | titlecase }}</b></div>
+                <aig-partecipation-list-table [dataSource]="partecipationDTOs" [displayColumns]="partecipationDC"
+                    [error]="partecipationError"></aig-partecipation-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newPartecipation(procurementLotDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
 </div>

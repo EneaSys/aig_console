@@ -2,34 +2,38 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Eopoo Code</mat-label>
-            <input formControlName="eopooCode" matInput required>
+            <mat-label>{{ 'COMMERCE.BUYER' | translate | titlecase }}</mat-label>
+            <input formControlName="eopoo" matInput required [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{  eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-slide-toggle required formControlName="confirmation">Confirmation</mat-slide-toggle>
-    </div> 
+        <mat-slide-toggle required formControlName="confirmation">{{ 'COMMERCE.CONFIRMATION' | translate | titlecase }}</mat-slide-toggle>
+    </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Status Note</mat-label>
+            <mat-label>{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}</mat-label>
             <input formControlName="statusNote" matInput>
         </mat-form-field>
     </div>
 
-    <div *ngIf="!seller" fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="staticSeller && seller" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Seller</mat-label>
+            <mat-label>{{ 'COMMERCE.SELLER' | translate | titlecase }}</mat-label>
             <input formControlName="seller" matInput required [matAutocomplete]="sellerAutocomplete">
-            <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
+            <mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="commerceAutocompleteDisplayService.sellerDisplayFn">
                 <mat-option *ngFor="let seller of filteredSellers | async" [value]="seller">{{ seller.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 
 </form>
@@ -39,6 +43,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ buyerNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!buyerNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newBuyer()">Create New</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.BUYER' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.BUYER' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.BUYER' | translate | titlecase }}</div>
+    <aig-buyer-box-detail [buyerDTO]="buyerResult"></aig-buyer-box-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newBuyer()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
 </div>

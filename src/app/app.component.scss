@@ -49,6 +49,11 @@
   }
 }
 
+:host ::ng-deep .table-with-add-button {
+  position: relative;
+  padding-bottom: 64px !important;
+}
+
 :host ::ng-deep .add-button-in-list-table {
   position: absolute;
   bottom: 6px;

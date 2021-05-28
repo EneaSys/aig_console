@@ -6,8 +6,11 @@
 
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
-                <pre>{{ socialAction | json }}</pre>
+
+                <social-action-detail-box [socialAction]="socialAction"></social-action-detail-box>
+
                 <button mat-stroked-button color="primary" (click)="editSocialAction(socialAction)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteSocialAction(socialAction.id)">Delete</button>
             </div>
         </div>
     </div>

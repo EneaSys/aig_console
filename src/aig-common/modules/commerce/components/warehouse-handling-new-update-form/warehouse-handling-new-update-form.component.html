@@ -1,18 +1,18 @@
 <form *ngIf="step.form" [formGroup]="warehouseHandlingFormGroup" (ngSubmit)="submit()">
 
-    <ng-template matStepLabel>Seleziona il tipo di Movimentazione</ng-template>
+    <!-- <ng-template matStepLabel>Seleziona il tipo di Movimentazione</ng-template> -->
 
-    <mat-label>Movimentazione</mat-label>
+    <mat-label>{{ 'COMMERCE.HANDLING' | translate | titlecase }}</mat-label>
     <mat-radio-group formControlName="warehouseHandlingType" required aria-label="Select an option">
-        <mat-radio-button value="LOAD">Carico</mat-radio-button>
-        <mat-radio-button value="SHIFT">Scambio</mat-radio-button>
-        <mat-radio-button value="UNLOAD">Scarico</mat-radio-button>
+        <mat-radio-button value="LOAD">{{ 'COMMERCE.LOAD' | translate | titlecase }}</mat-radio-button>
+        <mat-radio-button value="SHIFT">{{ 'COMMERCE.SHIFT' | translate | titlecase }}</mat-radio-button>
+        <mat-radio-button value="UNLOAD">{{ 'COMMERCE.UNLOAD' | translate | titlecase }}</mat-radio-button>
     </mat-radio-group>
     
 	<br><br>
 
     <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'UNLOAD'">
-        <mat-label>Seleziona Magazzino di Carico</mat-label>
+        <mat-label>{{ 'COMMERCE.SELECT_LOAD_WAREHOUSE' | translate | titlecase }}</mat-label>
         <input formControlName="warehouseToLoad" matInput [matAutocomplete]="selectWarehouseLoadAutocomplete"
             placeholder="Magazzino di carico">
         <mat-autocomplete #selectWarehouseLoadAutocomplete="matAutocomplete"
@@ -22,7 +22,7 @@
         </mat-autocomplete>
     </mat-form-field>
     <mat-form-field *ngIf="warehouseHandlingFormGroup.controls.warehouseHandlingType.value != 'LOAD'">
-        <mat-label>Seleziona Magazzino di Scarico</mat-label>
+        <mat-label>{{ 'COMMERCE.SELECT_UNLOAD_WAREHOUSE' | translate | titlecase }}</mat-label>
         <input matInput formControlName="warehouseToUnload" [matAutocomplete]="selectWarehouseUnloadAutocomplete"
             placeholder="Magazzino di scarico">
         <mat-autocomplete #selectWarehouseUnloadAutocomplete="matAutocomplete"
@@ -33,15 +33,15 @@
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Data</mat-label>
+        <mat-label>{{ 'COMMERCE.DATE' | translate | titlecase }}</mat-label>
         <input formControlName="date" matInput [matDatepicker]="picker" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
-		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -51,11 +51,21 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ warehouseHandlingFormGroup.value | json }}</pre>
-    
-    <button *ngIf="!warehouseHandlingFormGroup.value.id" mat-stroked-button color="primary"
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.WAREHOUSE_HANDLING' | translate | titlecase }} {{ 'MAIN.CREATION_OKA' | translate }}
+    </h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.WAREHOUSE_HANDLING' | translate | titlecase }} {{ 'MAIN.UPDATE_OKA' | translate }}</h1>
+
+    <hr>
+
+    <aig-warehouse-handling-box-detail [warehouseHandlingDTO]="warehouseHandlingResult"></aig-warehouse-handling-box-detail>
+
+    <div *ngIf="!warehouseHandlingFormGroup.value.id">
+        <br>
+        <hr>
+        <button mat-stroked-button color="primary"
         (click)="newWarehouseHandling()">
-		<span *ngIf="!returnToParent">Create New</span>
-		<span *ngIf="returnToParent">Edit</span>
-	</button>
+        <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEWA' | translate | titlecase }}</span>
+		<span *ngIf="returnToParent">{{ 'MAIN.EDIT' | translate | titlecase }}</span>
+        </button>
+    </div>
 </div>

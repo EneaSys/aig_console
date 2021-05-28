@@ -33,7 +33,7 @@ export class AigProducerNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.producerNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
+            name: ['', [Validators.required]],
         })
         
         if (this.producer != null) {

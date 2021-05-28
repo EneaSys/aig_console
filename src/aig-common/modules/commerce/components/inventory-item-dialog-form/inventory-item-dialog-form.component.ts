@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 
 @Component({
 	selector: 'aig-inventory-item-dialog-form',
@@ -20,8 +21,8 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		complete: false
 	};
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _fuseProgressBarService: FuseProgressBarService,
 		private inventoryItemResourceService: InventoryItemResourceService,
 		private _formBuilder: FormBuilder,
@@ -34,26 +35,26 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 
 	isUpdate: boolean = false;
 
+	inventoryItemResult: any;
+
+	inventoryItemNewUpdateForm: FormGroup;
+
 	filteredProducers: Observable<ProducerDTO[]>;
 	filteredInventoryCategories: Observable<InventoryCategoryDTO[]>;
-	
-	inventoryItemNewUpdateForm: FormGroup;
 
 	ngOnInit(): void {
 		this.inventoryItemNewUpdateForm = this._formBuilder.group({
 			id: [''],
-			name: ['', Validators.required],
+			name: ['', [Validators.required]],
 			itemCode: [''],
-			producer: ['', Validators.required],
-			inventoryCategory: ['', Validators.required],
+			producer: ['', [Validators.required, AigValidator.haveId]],
+			inventoryCategory: ['', [Validators.required, AigValidator.haveId]],
 		});
 
-
-		if (this.inventoryItem != null) {
-			this.isUpdate = true;
+		if (this.inventoryItem != null && this.inventoryItem.id != null) {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
+			this.isUpdate = true;
 		}
-
 
 		this.filteredProducers = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producer'].valueChanges);
 		this.filteredInventoryCategories = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemNewUpdateForm.controls['inventoryCategory'].valueChanges);
@@ -67,44 +68,43 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 		this._fuseProgressBarService.show();
 		this.setStep("loading");
 
-		let inventoryItem: InventoryItemDTO = {
-			id: this.inventoryItemNewUpdateForm.controls.id.value,
-			name: this.inventoryItemNewUpdateForm.controls.name.value,
-			inventoryCategoryId: this.inventoryItemNewUpdateForm.controls.inventoryCategory.value.id,
-			producerId: this.inventoryItemNewUpdateForm.controls.producer.value.id,
-		}
- 
+		let inventoryItem: InventoryItemDTO = this.inventoryItemNewUpdateForm.value;
+		inventoryItem.producerId = this.inventoryItemNewUpdateForm.value.producer.id;
+		inventoryItem.inventoryCategoryId = this.inventoryItemNewUpdateForm.value.inventoryCategory.id;
 
 		try {
-			let postOrPut;
-			if (inventoryItem.id != 0) {
+			let postOrPut: string;
+			
+			if (this.isUpdate) {
 				await this.inventoryItemResourceService.updateInventoryItemUsingPUT(inventoryItem).toPromise();
 				postOrPut = "updated";
 			} else {
 				await this.inventoryItemResourceService.createInventoryItemUsingPOST(inventoryItem).toPromise();
 				postOrPut = "created";
 			}
+
+			this.inventoryItemResult = inventoryItem;
+
 			this.eventService.reloadCurrentPage();
 
-			this._snackBar.open(`Ipp Social: '${inventoryItem.name}' ${postOrPut}.`, null, { duration: 2000, });
 			this.setStep("complete");
-		} catch (error) {
-			this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
+			
+		} catch (e) {
+			this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
 			this.setStep("form");
 		}
+
 		this._fuseProgressBarService.hide();
 	}
-
-
 
 	newInventoryItem() {
 		this.setStep("form");
 	}
 
-	private setStep(step: string) {
+	private setStep(stepToShow: string) {
 		this.step.form = false;
 		this.step.loading = false;
 		this.step.complete = false;
-		this.step[step] = true;
+		this.step[stepToShow] = true;
 	}
 }

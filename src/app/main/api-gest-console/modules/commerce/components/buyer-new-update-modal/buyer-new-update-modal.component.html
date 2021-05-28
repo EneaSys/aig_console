@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title"> Buyer Form </span>
+            <span *ngIf="!data.buyer || data.buyer && data.seller" class="title dialog-title">{{ 'MAIN.CREATE_NEW' | translate | titlecase }} {{ 'COMMERCE.BUYER' | translate | titlecase }} </span>
+            <span *ngIf="data.buyer && !data.seller" class="title dialog-title">{{ 'MAIN.EDIT' | translate | titlecase }} {{ 'COMMERCE.BUYER' | translate | titlecase }} </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -9,6 +10,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-buyer-new-update-form [seller]="data.seller" [buyer]="data.buyer"></aig-buyer-new-update-form>
+        <aig-buyer-new-update-form [buyer]="data.buyer" [staticSeller]="data.staticSeller" [seller]="data.seller"></aig-buyer-new-update-form>
     </div>
 </div>

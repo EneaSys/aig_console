@@ -1,57 +1,105 @@
 <form *ngIf="step.form" [formGroup]="procurementNewUpdateForm" (ngSubmit)="submit()">
 
+    <div fxLayout="row" fxLayoutAlign="start start">
 
-    <mat-form-field>
-        <mat-label>Procurement Description</mat-label>
-        <input formControlName="description" matInput required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.CONTRACTOR' | translate }}</mat-label>
+            <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete" required>
+            <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
+                [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+                    {{ eopoo | eopooName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Procurement Code</mat-label>
-        <input formControlName="code" matInput required>
-    </mat-form-field>
-    <br><br>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Ref</mat-label>
-        <input formControlName="ref" matInput>
-    </mat-form-field>
-    <br><br>
+    <div fxLayout="row" fxLayoutAlign="start start">
 
-    <mat-form-field>
-        <mat-label>Procurement total Amount</mat-label>
-        <input type="number" matInput formControlName="totalAmount" placeholder="Quantità" required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.DESCRIPTION' | translate }} {{ 'IPP.PROCUREMENT' | translate }}</mat-label>
+            <input formControlName="description" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Procurement contractor Eopoo Code</mat-label>
-        <input formControlName="contractorEopooCode" matInput required>
-    </mat-form-field>
-    <br><br>
+    </div>
 
-    <mat-form-field>
-        <mat-label>Procurement ipp Sector Code</mat-label>
-        <input formControlName="ippSectorCode" matInput required>
-    </mat-form-field>
-    <br><br>
+    <div fxLayout="row" fxLayoutAlign="start start">
 
-    <mat-form-field>
-        <mat-label>Procurement ipp Procedure Code</mat-label>
-        <input formControlName="ippProcedureCode" matInput required>
-    </mat-form-field>
-    <br><br>
+        <mat-form-field appearance="outline" fxFlex="40">
+            <mat-label>{{ 'IPP.ANAC_CODE' | translate }}</mat-label>
+            <input formControlName="code" matInput required>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Procurement ipp Modality Code</mat-label>
-        <input formControlName="ippModalityCode" matInput required>
-    </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
+            <mat-label>{{ 'IPP.REFERENCE' | translate }}</mat-label>
+            <input formControlName="ref" matInput>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+            <mat-label>{{ 'IPP.TOTAL_AMOUNT' | translate }}</mat-label>
+            <input type="number" matInput formControlName="totalAmount" required>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="procurementStatusAutocomplete" required>
+            <mat-autocomplete #procurementStatusAutocomplete="matAutocomplete"
+                [displayWith]="standardAutocompleteDisplayService.ilPpProcurementStatusDisplayFn">
+                <mat-option *ngFor="let procurementStatus of filteredProcurementStatus | async"
+                    [value]="procurementStatus">{{ procurementStatus.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>{{ 'IPP.PROCEDURE' | translate }}</mat-label>
+            <input formControlName="procedure" matInput [matAutocomplete]="ippProcedureAutocomplete" required>
+            <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete"
+                [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
+                <mat-option *ngFor="let ippProcedure of filteredIppProcedure | async" [value]="ippProcedure">
+                    {{ ippProcedure.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>{{ 'IPP.SECTOR' | translate }}</mat-label>
+            <input formControlName="sector" matInput [matAutocomplete]="ippSectorAutocomplete" required>
+            <mat-autocomplete #ippSectorAutocomplete="matAutocomplete"
+                [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
+                <mat-option *ngFor="let ippSector of filteredIppSector | async" [value]="ippSector">
+                    {{ ippSector.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>{{ 'IPP.MODALITY' | translate }}</mat-label>
+            <input formControlName="modality" matInput [matAutocomplete]="ippModalityAutocomplete" required>
+            <mat-autocomplete #ippModalityAutocomplete="matAutocomplete"
+                [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
+                <mat-option *ngFor="let ippModality of filteredIppModality | async" [value]="ippModality">
+                    {{ ippModality.name }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
 
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -59,7 +107,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ procurementNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!procurementNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newProcurement()">Create New</button>
+    <h1 *ngIf="!isUpdate">{{ 'IPP.PROCUREMENT' | translate }} {{ 'MAIN.CREATION_OKA' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.PROCUREMENT' | translate }} {{ 'MAIN.UPDATE_OKA' | translate }}</h1>
+    
+    <hr>
+
+    <aig-procurement-detail-box [procurement]="procurementResult"></aig-procurement-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newProcurement()">{{ 'MAIN.CREATE_NEWA' | translate }}</button>
+    </div>
 </div>

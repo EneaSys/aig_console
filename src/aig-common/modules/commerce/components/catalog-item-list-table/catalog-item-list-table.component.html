@@ -19,12 +19,15 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="active">
-            <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
-            <mat-cell *matCellDef="let e"> 
-                <span *ngIf="e.active" class="material-icons" style="color: green">done</span>
-                <span *ngIf="!e.active" class="material-icons" style="color: red">clear</span>
-            </mat-cell>
+        <ng-container matColumnDef="inventoryItemCombination">
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.INVENTORY_ITEM_COMBINATION' | translate | titlecase }}</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.inventoryItem.name }} - {{
+                e.inventoryItemCombination.name }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="inventoryItemProducer">
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.PRODUCTOR' | translate | titlecase }}</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.inventoryItem.producer.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="catalog">
@@ -32,15 +35,12 @@
             <mat-cell *matCellDef="let e"> {{ e.catalog.name }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="inventoryItemProducer">
-            <mat-header-cell *matHeaderCellDef>Inventory item producer</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.inventoryItem.producer.name }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="inventoryItemCombination">
-            <mat-header-cell *matHeaderCellDef>Inventory item combination</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.inventoryItemCombination.inventoryItem.name }} - {{
-                e.inventoryItemCombination.name }} </mat-cell>
+        <ng-container matColumnDef="active">
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.ACTIVE' | translate | titlecase }}</mat-header-cell>
+            <mat-cell *matCellDef="let e"> 
+                <span *ngIf="e.active" class="material-icons" style="color: green">done</span>
+                <span *ngIf="!e.active" class="material-icons" style="color: red">clear</span>
+            </mat-cell>
         </ng-container>
 
             <ng-container matColumnDef="buttons">
@@ -52,15 +52,15 @@
                       <mat-menu #menu="matMenu">
                         <button mat-menu-item [routerLink]="'/commerce/catalog-item/detail/' + e.id">
                           <mat-icon>details</mat-icon>
-                          <span>Details</span>
+                          <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
                         </button>
                         <button mat-menu-item (click)="editCatalogItem(e)">
                             <mat-icon>edit</mat-icon>
-                            <span>Edit</span>
+                            <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
                           </button>
                         <button mat-menu-item (click)="deleteCatalogItem(e.id)">
                           <mat-icon>delete</mat-icon>
-                          <span>Delete</span>
+                          <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
                         </button>
                       </mat-menu>
                 </mat-cell>

@@ -1,0 +1,73 @@
+<form *ngIf="step.form" [formGroup]="partecipationNewUpdateForm" (ngSubmit)="submit()">
+
+    <div *ngIf="!procurementLot" fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'IPP.PROCUREMENT_LOT' | translate }}</mat-label>
+            <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete" required>
+            <mat-autocomplete #procurementLotAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
+                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.description }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>{{ 'IPP.PROPOSER' | translate }}</mat-label>
+            <input formControlName="proposerEopoo" matInput [matAutocomplete]="proposerEopooAutocomplete" required>
+            <mat-autocomplete #proposerEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>{{ 'IPP.PARTECIPATION_TYPE' | translate }}</mat-label>
+            <input formControlName="type" matInput [matAutocomplete]="typeAutocomplete" required>
+            <mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
+                <mat-option *ngFor="let partecipationType of filteredPartecipationType | async" [value]="partecipationType">{{ partecipationType.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="50" class="p-24">
+            <mat-slide-toggle formControlName="siteInspection">{{ 'IPP.SITE_INSPECTION' | translate }}</mat-slide-toggle>
+        </div>
+
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
+            <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete" required>
+            <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationStatusDisplayFn">
+                <mat-option *ngFor="let partecipationStatus of filteredPartecipationStatus | async" [value]="partecipationStatus">{{ partecipationStatus.description }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <h1 *ngIf="!isUpdate">{{ 'IPP.PARTECIPATION' | translate }} {{ 'MAIN.CREATION_OKA' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'IPP.PARTECIPATION' | translate }} {{ 'MAIN.UPDATE_OKA' | translate }}</h1>
+    
+    <hr>
+
+    <aig-partecipation-detail-box [partecipation]="partecipationResult"></aig-partecipation-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPartecipation()">{{ 'MAIN.CREATE_NEWA' | translate }}</button>
+    </div>
+</div>

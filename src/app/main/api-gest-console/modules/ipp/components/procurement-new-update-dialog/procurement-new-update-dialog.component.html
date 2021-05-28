@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span  class="title dialog-title">Procurement Form </span>
+            <span *ngIf="data.procurement == null" class="title dialog-title">Crea gara d'appalto</span>
+            <span *ngIf="data.procurement != null" class="title dialog-title">Modifica gara d'appalto</span>
             
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>

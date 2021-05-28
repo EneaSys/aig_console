@@ -1,0 +1,78 @@
+<form *ngIf="step.form" [formGroup]="dossierNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>Dossier Description</mat-label>
+            <input formControlName="description" matInput required>
+        </mat-form-field>
+        
+
+        <mat-form-field appearance="outline">
+            <mat-label>Dossier Code</mat-label>
+            <input formControlName="dossierCode" matInput >
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" >
+            <mat-label>Partecipation</mat-label>
+            <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
+            <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
+                <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Preparation</mat-label>
+            <input formControlName="preparation" matInput [matAutocomplete]="preparationAutocomplete">
+            <mat-autocomplete #preparationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationDisplayFn">
+                <mat-option *ngFor="let preparation of filteredPreparation | async" [value]="preparation">{{ preparation.id}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" >
+            <mat-label>Procurement</mat-label>
+            <input formControlName="procurement" matInput [matAutocomplete]="procurementAutocomplete">
+            <mat-autocomplete #procurementAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementDisplayFn">
+                <mat-option *ngFor="let procurement of filteredProcurement | async" [value]="procurement">{{ procurement.description}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+            <mat-label>Procurement Lot </mat-label>
+            <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete">
+            <mat-autocomplete #procurementLotAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
+                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.description}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+        
+        
+
+    
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+
+    <span>
+        <h1>Hai creato un nuovo dossier!</h1>
+        <p>Description: {{ dossierNewUpdateForm.controls.description.value }}</p>
+        <p>Dossier code: {{ dossierNewUpdateForm.controls.dossierCode.value }}</p>
+    </span>
+
+    <button *ngIf="!dossierNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newDossier()">Create New</button>
+
+    <button [routerLink]="'/ipp/dossier/detail/'" mat-stroked-button color="primary">Dettagli</button>
+
+</div>

@@ -1,0 +1,15 @@
+<div id="aig-preparation-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+                <div class="h1 m-16">Preparation</div>
+                <div class="h1 m-16">ID:{{ preparationDTO.id }}</div>
+
+                <button mat-stroked-button color="primary" (click)="editPreparation(preparationDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deletePreparation(preparationDTO.id)">Delete</button>
+
+            </div>
+        </div>
+    </div>
+</div>

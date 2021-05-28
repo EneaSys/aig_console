@@ -1,0 +1,54 @@
+<form *ngIf="step.form" [formGroup]="contactNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Referent</mat-label>
+            <input formControlName="referent" matInput [matAutocomplete]="referentAutocomplete">
+            <mat-autocomplete #referentAutocomplete="matAutocomplete"
+                [displayWith]="genericAutocompleteDisplayService.referentDisplayFn">
+                <mat-option *ngFor="let referent of filteredReferents | async" [value]="referent">{{ referent.firstname }} {{ referent.lastname }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!eopoo" appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>Eopoo</mat-label>
+            <input formControlName="eopoo" matInput [matAutocomplete]="eopooAutocomplete">
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete"
+                [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Contact Type</mat-label>
+            <input formControlName="contactType" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Value</mat-label>
+            <input formControlName="value" matInput required>
+        </mat-form-field>
+    </div>
+
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!contact.id" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="contact.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ contactNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!contactNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newContact()">
+        Crea nuovo
+    </button>
+</div>

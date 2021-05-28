@@ -1,12 +1,12 @@
 <form *ngIf="step.form" [formGroup]="catalogItemNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
-            <mat-slide-toggle formControlName="active" matInput >Active</mat-slide-toggle>
+            <mat-slide-toggle formControlName="active" matInput >{{ 'COMMERCE.ACTIVE' | translate | titlecase }}</mat-slide-toggle>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Inventory Item Combination</mat-label>
+            <mat-label>{{ 'COMMERCE.INVENTORY_ITEM_COMBINATION' | translate | titlecase }}</mat-label>
             <input formControlName="inventoryItemCombination" matInput required [matAutocomplete]="inventoryItemCombinationAutocomplete">
             <mat-autocomplete #inventoryItemCombinationAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryItemCombinationDisplayFn">
                 <mat-option *ngFor="let inventoryItemCombination of filteredInventoryItemCombination | async" [value]="inventoryItemCombination">{{ inventoryItemCombination.inventoryItem.name }} - {{inventoryItemCombination.name }}</mat-option>
@@ -14,9 +14,9 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!staticCatalog">
+    <div *ngIf="staticCatalog && catalog" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Catalog</mat-label>
+            <mat-label>{{ 'COMMERCE.CATALOG' | translate | titlecase }}</mat-label>
             <input formControlName="catalog" matInput required [matAutocomplete]="catalogAutocomplete">
             <mat-autocomplete #catalogAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.catalogDisplayFn">
                 <mat-option *ngFor="let catalog of filteredCatalog | async" [value]="catalog">{{ catalog.name }}</mat-option>
@@ -25,8 +25,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!catalogItem.id" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="catalogItem.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -35,6 +35,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ catalogItemNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!catalogItemNewUpdateForm.value.inventoryItemCombination.id" mat-stroked-button color="primary" (click)="newCatalogItem()">Crea nuova</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.CATALOG_ITEM' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.CATALOG_ITEM' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.CATALOG_ITEM' | translate | titlecase }}</div>
+    <aig-catalog-item-box-detail [catalogItemDTO]="catalogItemResult"></aig-catalog-item-box-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newCatalogItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
 </div>

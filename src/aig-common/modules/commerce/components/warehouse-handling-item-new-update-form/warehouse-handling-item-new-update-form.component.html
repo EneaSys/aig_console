@@ -35,10 +35,10 @@
 				<mat-label>Quantità</mat-label>
 				<input type="number" matInput formControlName="quantity" placeholder="Quantità" required>
 			</mat-form-field>
-			<button *ngIf="submitOnSameLineOfproduct" type="submit" mat-raised-button color="accent">Crea</button>
+			<button *ngIf="submitOnSameLineOfproduct" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
 		</div>
 		<div *ngIf="!submitOnSameLineOfproduct" fxLayout="row" fxLayoutAlign="end top">
-			<button type="submit" mat-raised-button color="accent">Crea</button>
+			<button type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
 		</div>
     </div>
 </form>
@@ -51,7 +51,7 @@
 	<div *ngIf="!returnToParent">
 		<span>Hai movimentato {{ warehouseHandlingItemNewUpdateForm.controls.quantity.value }} {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.name }} {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.name }} di {{ warehouseHandlingItemNewUpdateForm.controls.inventoryItemCombination.value.inventoryItem.producer.name }}</span>
 		<br>
-		<button mat-stroked-button color="primary" (click)="newWarehouseHandlingItem()">Create New</button>
+		<button mat-stroked-button color="primary" (click)="newWarehouseHandlingItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
 	</div>
 	<div *ngIf="returnToParent">
 		<div>
@@ -62,6 +62,6 @@
 		</div>
 		<br>
 		<button mat-stroked-button color="primary"
-			(click)="newWarehouseHandlingItem()">Modifica</button>
+			(click)="newWarehouseHandlingItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
 	</div>
 </div>

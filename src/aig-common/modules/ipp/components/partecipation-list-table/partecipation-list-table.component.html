@@ -1,0 +1,100 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <h3>Error!</h3>
+    <span *ngIf="error.status == 401">No access to this info</span>
+
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json}}</pre>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+        
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.PARTECIPATION_TYPE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.type.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="proposer">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.PROPOSER' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.proposerEopoo | eopooName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="contractorEopoo">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.CONTRACTOR' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.procurement.contractorEopoo | eopooName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotDescription">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_DESCRIPTION' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.description }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLotCig">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.CIG' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.cig }}</mat-cell>
+        </ng-container>
+
+         <ng-container matColumnDef="proposerEopoo">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.PROPOSER' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.proposerEopoo | eopooName }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expiryDate">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.OFFER_EXPIRY_DATE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.offerExpiryDate | date: 'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="baseAmount">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_AMOUNT' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.baseAmount | currency:'EUR' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ippLotCategory">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_CATEGORY' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.category.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.STATUS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status.description }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/ipp/partecipation/detail/' + e.id">
+                      <mat-icon>details</mat-icon>
+                      <span>{{ 'MAIN.DETAILS' | translate }}</span>
+                    </button>
+                    <button mat-menu-item (click)="editPartecipation(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>{{ 'MAIN.EDIT' | translate }}</span>
+                      </button>
+                    <button mat-menu-item (click)="deletePartecipation(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>{{ 'MAIN.DELETE' | translate }}</span>
+                      </button>
+                  </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+
+    </mat-table>
+
+</div>

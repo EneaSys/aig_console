@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CatalogDTO, CatalogItemDTO, InventoryCategoryDTO, InventoryItemCombinationDTO, InventoryItemDTO, PriceListDTO, ProducerDTO, SellerDTO, WarehouseDTO } from 'aig-commerce';
 import { BuyerDTO, PurchaseDTO, WarehouseHandlingItemDTO } from 'aig-commerce';
-
+import { EopooNamePipe } from 'aig-common/modules/generic/pipe/eopoo-name.pipe';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class AigAutocompleteDisplayService {
+export class AigCommerceAutocompleteDisplayService {
 	producerDisplayFn(producer?: ProducerDTO): string | undefined {
         return producer ? producer.name : undefined;
     }
@@ -15,8 +15,8 @@ export class AigAutocompleteDisplayService {
         return inventoryCategory ? inventoryCategory.name : undefined;
     }
 
-    buyerDisplayFn(buyer?: BuyerDTO): number | undefined {
-        return buyer ? buyer.id : undefined;
+    buyerDisplayFn(buyer: any): string | undefined {
+        return buyer ? new EopooNamePipe().transform(buyer.eopoo) : undefined;
     }
         
     warehouseDisplayFn(warehouse?: WarehouseDTO): string | undefined {

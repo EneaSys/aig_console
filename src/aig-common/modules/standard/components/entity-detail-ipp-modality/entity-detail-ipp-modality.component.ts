@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItalianPublicProcurementModalityDTO } from 'aig-standard';
+import { IlPpProcurementModalityDTO } from 'aig-standard';
 
 
 
@@ -16,6 +16,6 @@ export class AigEntityDetailIppModalityComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    ippModalityDTO: ItalianPublicProcurementModalityDTO;
+    ippModalityDTO: IlPpProcurementModalityDTO;
 
 }

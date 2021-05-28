@@ -15,13 +15,13 @@
     <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
@@ -33,15 +33,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/commerce/warehouse/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="editWarehouse(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
                       </button>
                     <button mat-menu-item (click)="deleteWarehouse(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
                       </button>
                   </mat-menu>
             </mat-cell>

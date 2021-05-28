@@ -1,14 +1,49 @@
-<div id="aig-social-detail-page" class="page-layout blank">
+<div id="aig-procurement-detail-page" class="page-layout blank">
+
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
 
-                <pre>{{ procurementDTO | json }}</pre>
-
-                <button mat-stroked-button color="primary" (click)="editProcurement(procurementDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteProcurement(procurementDTO.id)">Delete</button>
-
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT' | translate }}</div>
+                <hr>
+                <aig-procurement-detail-box [procurement]="procurementDTO"></aig-procurement-detail-box>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurement(procurementDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteProcurement(procurementDTO)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
         </div>
+
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DOSSIERS' | translate | titlecase }}</b></div>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDossier(procurementDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
     </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.PROCUREMENT_LOT' | translate | titlecase }}</b></div>
+                <aig-procurement-lot-list-table
+                    [dataSource]="procurementLotDTOs" 
+                    [displayColumns]="procurementLotDC"
+                    [error]="procurementLotError">
+                </aig-procurement-lot-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newProcurementLot(procurementDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
 </div>

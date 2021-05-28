@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { BuyerDTO, PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 
 
 @Component({
@@ -21,8 +22,8 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		complete: false
 	};
 	constructor(
-		public autocompleteDisplayService: AigAutocompleteDisplayService,
-		private commerceAutocompleteService: AigCommerceAutocompleteService,
+		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
+		private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
 		private _fuseProgressBarService: FuseProgressBarService,
 		private purchaseResourceService: PurchaseResourceService,
 		private _formBuilder: FormBuilder,
@@ -50,9 +51,9 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		this.purchaseNewUpdateForm = this._formBuilder.group({
 			id: [''],
             amount: [''],
-			buyer: ['', Validators.required],
+			buyer: ['', [Validators.required, AigValidator.haveId]],
 			closed: [true],
-			insertedDateTime: ['', Validators.required],
+			insertedDateTime: ['', [Validators.required]],
             statusNote: [''],
 		});
 
@@ -74,7 +75,8 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 		let purchase: PurchaseDTO = {
 			id: this.purchaseNewUpdateForm.value.id,
-            buyerId: 1, //this.purchaseNewUpdateForm.value.buyer.id,
+			amount: this.purchaseNewUpdateForm.value.amount,
+            buyerId: this.purchaseNewUpdateForm.value.buyer.id,
             statusNote:this.purchaseNewUpdateForm.value.statusNote,
             closed: this.purchaseNewUpdateForm.value.closed,
 			insertedDateTime: this.purchaseNewUpdateForm.value.insertedDateTime,

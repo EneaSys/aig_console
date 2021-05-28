@@ -1,0 +1,21 @@
+<form *ngIf="step.form" [formGroup]="insurancePolicyStatusNewUpdateForm" (ngSubmit)="submit()">
+   <mat-form-field>
+         <mat-label>Description</mat-label>
+            <input formControlName="description" matInput required>
+    </mat-form-field>
+ 
+  
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">Crea</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ insurancePolicyStatusNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!insurancePolicyStatusNewUpdateForm.value.id" mat-stroked-button color="primary"
+        (click)="newInsurancePolicyStatus()">Create New</button>
+</div>

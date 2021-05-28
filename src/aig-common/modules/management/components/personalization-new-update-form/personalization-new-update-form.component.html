@@ -7,7 +7,7 @@
         </mat-form-field>
     </div>
 
-    <div *ngIf="!personalization.applicationModule" fxLayout="row" fxLayoutAlign="start start">
+    <div *ngIf="!personalization.moduleId" fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Application Module</mat-label>
             <input formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">

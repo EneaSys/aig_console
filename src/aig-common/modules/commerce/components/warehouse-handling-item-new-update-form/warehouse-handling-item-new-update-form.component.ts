@@ -4,9 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { InventoryItemCombinationDTO, WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
-import { AigAutocompleteDisplayService } from '../../service/autocomplete-display.service';
-import { AigCommerceAutocompleteService } from '../../service/autocomplete-filter.service';
+import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
+import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-warehouse-handling-item-new-update-form',
@@ -22,13 +23,13 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
 
 
     constructor(
-        public autocompleteDisplayService: AigAutocompleteDisplayService,
+        public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,
         private eventService: EventService,
-        private commerceAutocompleteService: AigCommerceAutocompleteService,
+        private commerceAutocompleteService: AigCommerceAutocompleteFilterService,
     ) { }
 
     @Input()
@@ -58,10 +59,10 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
 		this.warehouseHandlingItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            quantity: ['', Validators.required],
-            inventoryItemCombination: ['', Validators.required],
+            quantity: ['', [Validators.required]],
+            inventoryItemCombination: ['', [Validators.required, AigValidator.haveId]],
             warehouseHandlingDate: [''],
-            warehouseHandling: ['', Validators.required],
+            warehouseHandling: ['', [Validators.required, AigValidator.haveId]],
         })
 
         this.filteredInventoryItemCombination = this.commerceAutocompleteService.filterInventoryItemCombination(this.warehouseHandlingItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);
@@ -130,6 +131,7 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
 			}
 		}
 
+        this.eventService.reloadCurrentPage();
         this._fuseProgressBarService.hide();
     }
 

@@ -1,30 +1,31 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { ProcurementDTO, ProcurementResourceService } from 'aig-italian-public-procurement';
+import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
 import { AigProcurementNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-new-update-dialog/procurement-new-update-dialog.component';
-import { AigProcurementNewUpdateFormComponent } from '../procurement-new-update-form/procurement-new-update-form.component';
+import { AigIppCommonGenericComponent } from '../ipp-common-generic-component';
 
 @Component({
     selector: 'aig-procurement-list-table',
     templateUrl: './procurement-list-table.component.html',
     styleUrls: ['./procurement-list-table.component.scss']
 })
-export class AigProcurementListTableComponent implements OnInit {
+export class AigProcurementListTableComponent extends AigIppCommonGenericComponent implements OnInit {
     constructor(
         private procurementResourceService: ProcurementResourceService,
         private eventService: EventService,
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
         private dialog: MatDialog,
-    ) { }
+        _fuseTranslationLoaderService: FuseTranslationLoaderService,
+    ) { super(_fuseTranslationLoaderService); }
 
     @Input()
     error: any;
     @Input()
-    displayedColumns: string[];
+    displayColumns: string[];
     @Input()
     dataSource: any[];
 

@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.inventoryItem.id" class="title dialog-title">Update Inventory Item </span>
-            <span *ngIf="!data.inventoryItem.id" class="title dialog-title">Create New Inventory Item </span>
+            <span *ngIf="!data.inventoryItem.id" class="title dialog-title">{{ 'MAIN.CREATE_NEW' | translate | titlecase }} {{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }} </span>
+            <span *ngIf="data.inventoryItem.id" class="title dialog-title">{{ 'MAIN.EDIT' | translate | titlecase }} {{ 'COMMERCE.INVENTORY_ITEM' | translate | titlecase }} </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>

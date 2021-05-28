@@ -1,32 +1,38 @@
-<div id="aig-social-detail-page" class="page-layout blank">
+<div class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
-
-            <div class="fuse-card auto-width p-16">
-
+        <div class="widget" fxFlex.gt-sm="auto">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'COMMERCE.WAREHOUSE' | translate }}</div>
+                <hr>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">
+                    ID: {{ warehouseDTO.id }}
+                </div>
                 <entity-detail-warehouse [warehouseDTO]="warehouseDTO"></entity-detail-warehouse>
-                 <!--<pre>{{ warehouseDTO | json }}</pre> !-->
-
-                <button mat-stroked-button color="primary" (click)="editWarehouse(warehouseDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteWarehouse(warehouseDTO.id)">Delete</button>
-
+                <br>
+                <div fxLayoutAlign="end">
+                <button mat-stroked-button color="primary" 
+                    (click)="editWarehouse(warehouseDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                <button mat-stroked-button color="warn" 
+                    (click)="deleteWarehouse(warehouseDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <br>
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Warehouse handlings</b></div>
-                <aig-warehouse-handling-list-table [displayColumns]="warehouseHandlingDC"
+    <div class="widget" fxFlex.gt-sm="auto">
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.WAREHOUSE_HANDLINGS' | translate | titlecase }}</b></div>
+            <aig-warehouse-handling-list-table [displayColumns]="warehouseHandlingDC"
                     [dataSource]="warehouseHandlingDTOs" [error]="warehouseHandlingError">
-                </aig-warehouse-handling-list-table>
+            </aig-warehouse-handling-list-table>
 
-            </div>
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addWarehouseHangling(warehouseDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
 
         </div>
-
     </div>
 
 </div>

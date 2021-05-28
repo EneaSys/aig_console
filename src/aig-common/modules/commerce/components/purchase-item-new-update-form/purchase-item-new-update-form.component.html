@@ -53,7 +53,8 @@
         </div>
 
         <div fxLayout="row" fxLayoutAlign="end top" *ngIf="!continueInsertion">
-            <button type="submit" mat-raised-button color="accent">Crea</button>
+            <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+            <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
         </div>
 
     </form>
@@ -66,8 +67,8 @@
     <pre>TODO METTERE DETTAGLI INSERIMENTO</pre>
     <div *ngIf="!isUpdate">
         <button mat-stroked-button color="primary" (click)="newPurchaseItem()">
-            <span *ngIf="!returnToParent">Create New</span>
-            <span *ngIf="returnToParent">Edit</span>
+            <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</span>
+            <span *ngIf="returnToParent">{{ 'MAIN.EDIT' | translate | titlecase }}</span>
         </button>
     </div>
 </div>
