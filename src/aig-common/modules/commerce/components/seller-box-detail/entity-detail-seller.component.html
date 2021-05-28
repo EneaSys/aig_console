@@ -1,3 +1,3 @@
 <div class="h1 m-8 ml-16">{{ sellerDTO.name }}</div>
-<div *ngIf="sellerDTO.eopoo.eopooType.eopooCategory == 'GENERIC'" class="h4 ml-16">Anagrafica: <b>{{ sellerDTO.eopoo.genericEopoo.name }}</b></div>
-<div *ngIf="sellerDTO.eopoo.eopooType.eopooCategory == 'PERSON'" class="h4 ml-16">Anagrafica: <b>{{ sellerDTO.eopoo.person.firstname }} {{ sellerDTO.eopoo.person.lastname }}</b></div>
+<div *ngIf="sellerDTO.eopoo.eopooType.eopooCategory == 'GENERIC'" class="h4 ml-16">{{ 'COMMERCE.IDENTITY' | translate | titlecase }}: <b>{{ sellerDTO.eopoo.genericEopoo.name }}</b></div>
+<div *ngIf="sellerDTO.eopoo.eopooType.eopooCategory == 'PERSON'" class="h4 ml-16">{{ 'COMMERCE.IDENTITY' | translate | titlecase }}: <b>{{ sellerDTO.eopoo.person.firstname }} {{ sellerDTO.eopoo.person.lastname }}</b></div>

@@ -10,6 +10,8 @@ export const locale = {
             'NO' : 'no',
             'SELLER' : 'seller',
             'SELLERS' : 'sellers',
+            'IDENTITY' : 'identity',
+            'IDENTITY_REQUIRED' : 'identity is required!',
             'INVENTORY_ITEM' : "inventory item",
             'INVENTORY_ITEMS' : "inventory items",
             'INVENTORY_ITEM_NAME' : "inventory item name",

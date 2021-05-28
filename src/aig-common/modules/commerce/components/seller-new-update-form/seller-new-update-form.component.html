@@ -10,14 +10,14 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Anagrafica</mat-label>
+            <mat-label>{{ 'COMMERCE.IDENTITY' | translate | titlecase }}</mat-label>
             <input type="text" matInput formControlName="eopoo" required [matAutocomplete]="eopooPersonAutocomplete">
             <mat-autocomplete #eopooPersonAutocomplete="matAutocomplete"
                 [displayWith]="AigGenericAutocompleteDisplayService.eopooDisplayFn">
                 <mat-option *ngFor="let filteredEopoo of filteredEopoos | async" [value]="filteredEopoo">
                     {{ filteredEopoo | eopooName }}</mat-option>
             </mat-autocomplete>
-            <mat-error>E' necessario selezionare un'anagrafica!</mat-error>
+            <mat-error>{{ 'COMMERCE.IDENTITY_REQUIRED' | translate }}</mat-error>
         </mat-form-field>
     </div>
 

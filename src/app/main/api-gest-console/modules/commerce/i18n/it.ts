@@ -10,6 +10,8 @@ export const locale = {
             'NO' : 'no',
             'SELLER' : 'venditore',
             'SELLERS' : 'venditori',
+            'IDENTITY' : 'anagrafica',
+            'IDENTITY_REQUIRED' : 'indicare un anagrafica!',
             'INVENTORY_ITEM' : "prodotto inventario",
             'INVENTORY_ITEMS' : "prodotti inventario",
             'INVENTORY_ITEM_NAME' : "nome prodotto inventario",
