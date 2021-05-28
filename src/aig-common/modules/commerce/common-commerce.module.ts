@@ -87,6 +87,7 @@ import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-h
 import { AigCatalogItemBoxDetailComponent } from './components/catalog-item-box-detail/catalog-item-box-detail.component';
 import { AigPriceListBoxDetailComponent } from './components/price-list-box-detail/price-list-box-detail.component';
 import { AigInventoryCategoryBoxDetailComponent } from './components/inventory-category-box-detail/inventory-category-box-detail.component';
+import { AigPriceListItemBoxDetailComponent } from './components/price-list-item-box-detail/price-list-item-box-detail.component';
 
 @NgModule({
     imports: [
@@ -157,6 +158,7 @@ import { AigInventoryCategoryBoxDetailComponent } from './components/inventory-c
 
         AigPriceListItemListTableComponent,
         AigPriceListItemNewUpdateFormComponent,
+        AigPriceListItemBoxDetailComponent,
 
         AigProducerListTableComponent,
         AigProducerNewUpdateFormComponent,
@@ -250,6 +252,7 @@ import { AigInventoryCategoryBoxDetailComponent } from './components/inventory-c
 
         AigPriceListItemListTableComponent,
         AigPriceListItemNewUpdateFormComponent,
+        AigPriceListItemBoxDetailComponent,
         
         AigProducerListTableComponent,
         AigProducerNewUpdateFormComponent,
