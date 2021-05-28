@@ -3,7 +3,7 @@
 
         <div fxLayout="row" fxLayoutAlign="start start">
             <mat-form-field appearance="outline" fxFlex>
-                <mat-label>Cliente</mat-label>
+                <mat-label>{{ 'COMMERCE.BUYER' | translate | titlecase }}</mat-label>
                 <input matInput required formControlName="buyer" required [matAutocomplete]="buyerAutocomplete">
                 <mat-autocomplete #buyerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.buyerDisplayFn">
                     <mat-option *ngFor="let buyer of filteredBuyer | async" [value]="buyer">{{ buyer.eopoo | eopooName }}</mat-option>
@@ -14,7 +14,7 @@
         
         <div fxLayout="row" fxLayoutAlign="start start">
             <mat-form-field>
-                <mat-label>Data</mat-label>
+                <mat-label>{{ 'COMMERCE.DATE' | translate | titlecase }}</mat-label>
                 <input formControlName="insertedDateTime" matInput [matDatepicker]="picker" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -25,7 +25,7 @@
         <div fxLayout="row" fxLayoutAlign="start start">
 
             <mat-form-field appearance="outline" fxFlex>
-                <mat-label>Note</mat-label>
+                <mat-label>{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}</mat-label>
                 <input matInput formControlName="statusNote">
             </mat-form-field>
 
@@ -34,14 +34,14 @@
         <div fxLayout="row" fxLayoutAlign="start start">
 
             <mat-form-field appearance="outline" fxFlex>
-                <mat-label>Amount</mat-label>
+                <mat-label>{{ 'COMMERCE.AMOUNT' | translate | titlecase }}</mat-label>
                 <input matInput formControlName="amount">
             </mat-form-field>
 
         </div>
 
         <div fxLayout="row" fxLayoutAlign="start start">
-            <mat-slide-toggle formControlName="closed">Closed</mat-slide-toggle>
+            <mat-slide-toggle formControlName="closed">{{ 'COMMERCE.CLOSED' | translate | titlecase }}</mat-slide-toggle>
         </div>    
 
 

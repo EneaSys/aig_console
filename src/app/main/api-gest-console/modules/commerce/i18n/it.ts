@@ -10,6 +10,9 @@ export const locale = {
             'NO' : 'no',
             'SELLER' : 'venditore',
             'SELLERS' : 'venditori',
+            'SALES' : 'vendite',
+            'SALES_MANAGER' : 'gestore di vendite',
+            'SALES_MANAGEMENT' : 'gestione vendite',
             'IDENTITY' : 'anagrafica',
             'IDENTITY_REQUIRED' : 'indicare un anagrafica!',
             'INVENTORY_ITEM' : "prodotto inventario",
@@ -39,6 +42,7 @@ export const locale = {
             'PRICE_LIST_ITEMS' : 'prezzi di listino',
             'PURCHASE' : 'acquisto',
             'PURCHASES' : 'acquisti',
+            'PURCHASE_ITEMS' : 'prodotti acquistati',
             'NAME' : 'nome',
             'NAME_REQUIRED' : 'indicare il nome!',
             'WAREHOUSE' : 'magazzino',
@@ -60,6 +64,11 @@ export const locale = {
             'DATE' : 'data',
             'QUANTITY' : 'quantità',
             'AMOUNT' : 'importo',
+            'CLOSED' : 'chiusa',
+            'CLOSED_YES' : 'chiuse',
+            'CLOSED_NO' : 'non chiuse',
+            'FISCAL_TRANSACTIONS' : 'scontrini',
+            'PAYMENTS' : 'pagamenti',
         }
     }
 };

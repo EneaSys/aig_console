@@ -25,22 +25,22 @@
         </ng-container>
 
         <ng-container matColumnDef="insertedDataTime">
-            <mat-header-cell *matHeaderCellDef>Data Inserimento</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.DATE' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.insertedDateTime| date: 'dd/MM/yyyy' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="amount">
-            <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.AMOUNT' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.amount | currency:'EUR' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="statusNote">
-            <mat-header-cell *matHeaderCellDef>Status Note</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.statusNote }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="closed">
-            <mat-header-cell *matHeaderCellDef>Closed</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.CLOSED' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span *ngIf="e.closed">
                     <mat-icon style="color: green;">done</mat-icon>

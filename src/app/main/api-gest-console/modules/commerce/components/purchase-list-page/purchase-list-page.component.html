@@ -34,7 +34,7 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Data Inserimento</mat-label>
+                                        <mat-label>{{ 'COMMERCE.DATE' | translate | titlecase }}</mat-label>
                                         <input formControlName="insertedDateTime" matInput [matDatepicker]="picker">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
@@ -43,23 +43,23 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Amount</mat-label>
+                                        <mat-label>{{ 'COMMERCE.AMOUNT' | translate | titlecase }}</mat-label>
                                         <input matInput type="number" formControlName="amount">
                                     </mat-form-field>
                                 </div>
                                 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Status Note</mat-label>
+                                        <mat-label>{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}</mat-label>
                                         <input matInput type="text" formControlName="statusNote">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-checkbox formControlName="closed">Closed</mat-checkbox>
+                                        <mat-checkbox formControlName="closed">{{ 'COMMERCE.CLOSED_YES' | translate | titlecase }}</mat-checkbox>
                                         <br>
-                                        <mat-checkbox formControlName="notClosed">Not Closed</mat-checkbox>
+                                        <mat-checkbox formControlName="notClosed">{{ 'COMMERCE.CLOSED_NO' | translate | titlecase }}</mat-checkbox>
                                         <textarea matInput hidden></textarea>
                                     </mat-form-field>
                                 </div>
@@ -84,7 +84,7 @@
                 (click)="toggleSidebar('purchase-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Elenco vendite</h2>
+            <h2>{{ 'COMMERCE.SALES' | translate | titlecase }}</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

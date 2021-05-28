@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO, PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
 import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 import { AigPurchaseItemNewUpdateDialogComponent } from '../purchase-item-new-update-dialog/purchase-item-new-update-dialog.component';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { AigPurchaseItemNewUpdateDialogComponent } from '../purchase-item-new-up
     templateUrl: './purchase-detail-page.component.html',
     styleUrls: ['./purchase-detail-page.component.scss']
 })
-export class AigPurchaseDetailPageComponent extends GenericComponent {
+export class AigPurchaseDetailPageComponent extends AigCommerceGenericComponent {
     constructor(
         private purchaseResourceService: PurchaseResourceService,
         private fiscalTransactionResourceService: FiscalTransactionResourceService,

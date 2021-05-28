@@ -10,6 +10,9 @@ export const locale = {
             'NO' : 'no',
             'SELLER' : 'seller',
             'SELLERS' : 'sellers',
+            'SALES' : 'sales',
+            'SALES_MANAGER' : 'sales manager',
+            'SALES_MANAGEMENT' : 'sales management',
             'IDENTITY' : 'identity',
             'IDENTITY_REQUIRED' : 'identity is required!',
             'INVENTORY_ITEM' : "inventory item",
@@ -39,6 +42,7 @@ export const locale = {
             'PRICE_LIST_ITEMS' : 'price list items',
             'PURCHASE' : 'purchase',
             'PURCHASES' : 'purchases',
+            'PURCHASE_ITEMS' : 'purchase item',
             'NAME' : 'name',
             'NAME_REQUIRED' : 'name is required!',
             'WAREHOUSE' : 'warehouse',
@@ -60,6 +64,11 @@ export const locale = {
             'DATE' : 'date',
             'QUANTITY' : 'quantity',
             'AMOUNT' : 'amount',
+            'CLOSED' : 'closed',
+            'CLOSED_YES' : 'closed',
+            'CLOSED_NO' : 'not closed',
+            'FISCAL_TRANSACTIONS' : 'fiscal transactions',
+            'PAYMENTS' : 'payments',
         }
     }
 };
