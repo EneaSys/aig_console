@@ -1,0 +1,8 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <procurement-lot-list-table-prime [ds]="ds"></procurement-lot-list-table-prime>
+    </p>
+</div>
