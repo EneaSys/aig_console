@@ -16,7 +16,6 @@ import { AigCommonCommerceModule } from 'aig-common/modules/commerce/common-comm
 import { commerceRoute } from './commerce.route';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AigNewCustomBuyDialogComponent } from './components/new-custom-buy-dialog/new-custom-buy-dialog.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AigCommerceApiModule } from 'aig-commerce';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -25,7 +24,7 @@ import { AigSellerNewUpdateDialogComponent } from './components/seller-new-updat
 import { AigPurchaseDetailPageComponent } from './components/purchase-detail-page/purchase-detail-page.component';
 import { AigFiscalTransactionDetailPageComponent } from './components/fiscal-transaction-detail-page/fiscal-transaction-detail-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule, MatAutocompleteModule, MatSlideToggle, MatSlideToggleModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule, MatAutocompleteModule, MatSlideToggle, MatSlideToggleModule, MatCheckboxModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { AigBuyerDetailPageComponent } from './components/buyer-detail-page/buyer-detail-page.component';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
@@ -81,6 +80,7 @@ import { AigPurchaseItemDetailPageComponent } from './components/purchase-item-d
 import { AigWarehouseHandlingItemDetailPageComponent } from './components/warehouse-handling-item-detail-page/warehouse-handling-item-detail-page.component';
 import { AigSellerManagerPageComponent } from './components/seller-manager-page/seller-manager-page.component';
 import { AigPurchaseComplexDialogComponent } from './components/purchase-complex-dialog/purchase-complex-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -102,6 +102,8 @@ import { AigPurchaseComplexDialogComponent } from './components/purchase-complex
         FuseSidebarModule,
         FuseWidgetModule,
 
+        TranslateModule,
+
         MatIconModule,
         MatSnackBarModule,
         MatFormFieldModule,
@@ -119,13 +121,13 @@ import { AigPurchaseComplexDialogComponent } from './components/purchase-complex
         MatSelectModule,
         MatAutocompleteModule,
         MatSlideToggleModule,
+        MatCheckboxModule,
 
     ],
     providers: [
 
     ],
     declarations: [
-        AigNewCustomBuyDialogComponent,
         AigSellerListPageComponent,
         AigSellerNewUpdateDialogComponent,
         AigPurchaseDetailPageComponent,
@@ -193,7 +195,6 @@ import { AigPurchaseComplexDialogComponent } from './components/purchase-complex
     ],
     
     entryComponents: [
-        AigNewCustomBuyDialogComponent,
         AigWarehouseNewUpdateModalComponent,
         AigBuyerNewUpdateModalComponent,
         AigFiscalTransactionNewUpdateModalComponent,

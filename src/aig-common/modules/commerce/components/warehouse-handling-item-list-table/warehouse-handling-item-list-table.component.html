@@ -16,17 +16,17 @@
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="warehouseDate">
             <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.warehouseHandling.date | date: 'dd/MM/yyyy' }} </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.warehouseHandling.date | date: 'dd/MM/yyyy' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="warehouseHandlingType">
             <mat-header-cell *matHeaderCellDef>Tipo di Movimentazione</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.warehouseHandling.warehouseHandlingType }} </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.warehouseHandling.warehouseHandlingType }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="warehouse">
@@ -40,18 +40,18 @@
         </ng-container>
 
         <ng-container matColumnDef="inventoryItemCombination">
-            <mat-header-cell *matHeaderCellDef>Combinazione</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.ITEM_COMBINATION' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.name }} {{
                 e.inventoryItemCombination.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="inventoryItemProducer">
-            <mat-header-cell *matHeaderCellDef>Produttore</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.PRODUCTOR' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.inventoryItemCombination.inventoryItem.producer.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="quantity">
-            <mat-header-cell *matHeaderCellDef>Quantità</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.QUANTITY' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.quantity }} </mat-cell>
         </ng-container>
 
@@ -64,15 +64,15 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/commerce/warehouse-handling-item/detail/' + e.id">
                         <mat-icon>details</mat-icon>
-                        <span>Details</span>
+                        <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="editWarehouseHandlingItem(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="deleteWarehouseHandlingItem(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
                     </button>
                 </mat-menu>
             </mat-cell>

@@ -24,7 +24,10 @@
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Company Eopoo</mat-label>
-                                        <input matInput type="text" formControlName="companyEopoo">
+                                        <input matInput formControlName="companyEopoo" [matAutocomplete]="companyEopooAutocomplete">
+										<mat-autocomplete #companyEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
+											<mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
+										</mat-autocomplete>
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">

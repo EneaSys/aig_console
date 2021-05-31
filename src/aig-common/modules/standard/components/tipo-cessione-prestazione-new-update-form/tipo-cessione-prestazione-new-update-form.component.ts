@@ -2,8 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoCessionePrestazioneDTO, TipoCessionePrestazioneResourceService } from 'aig-standard';
+import {IlFeCessionePrestazioneTipoDTO, IlFeCessionePrestazioneTipoResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-tipo-cessione-prestazione-new-update-form',
@@ -18,7 +19,7 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     };
 
     constructor(
-        private tipoCessionePrestazioneResourceService: TipoCessionePrestazioneResourceService,
+        private tipoCessionePrestazioneResourceService: IlFeCessionePrestazioneTipoResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,7 +27,7 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     ) { }
 
     @Input()
-    tipoCessionePrestazione: TipoCessionePrestazioneDTO;
+    tipoCessionePrestazione: IlFeCessionePrestazioneTipoDTO;
 
     tipoCessionePrestazioneNewUpdateForm: FormGroup;
 
@@ -34,9 +35,11 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
 
     ngOnInit(): void {
         this.tipoCessionePrestazioneNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            value: ['', Validators.required],
+            id: [''],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
+            wikiCode:['']
 
         })
         if (this.tipoCessionePrestazione!= null) {
@@ -52,16 +55,16 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let tipoCessionePrestazione: TipoCessionePrestazioneDTO = this.tipoCessionePrestazioneNewUpdateForm.value;
+        let tipoCessionePrestazione: IlFeCessionePrestazioneTipoDTO = this.tipoCessionePrestazioneNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (tipoCessionePrestazione.id != 0) {
-                await this.tipoCessionePrestazioneResourceService.updateTipoCessionePrestazioneUsingPUT(tipoCessionePrestazione).toPromise();
+                await this.tipoCessionePrestazioneResourceService.updateIlFeCessionePrestazioneTipoUsingPUT(tipoCessionePrestazione).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoCessionePrestazioneResourceService.createTipoCessionePrestazioneUsingPOST(tipoCessionePrestazione).toPromise();
+                await this.tipoCessionePrestazioneResourceService.createIlFeCessionePrestazioneTipoUsingPOST(tipoCessionePrestazione).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

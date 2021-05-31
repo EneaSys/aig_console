@@ -3,8 +3,8 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { WarehouseHandlingDTO, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService, WarehouseHandlingResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../../commerce-generic-component';
 import { AigWarehouseHandlingItemNewUpdateModalComponent } from '../../warehouse-handling-item-new-update-modal/warehouse-handling-item-new-update-modal.component';
 import { AigWarehouseHandlingNewUpdateModalComponent } from '../../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component';
 
@@ -14,7 +14,7 @@ import { AigWarehouseHandlingNewUpdateModalComponent } from '../../warehouse-han
   templateUrl: './warehouse-handling-detail-page.component.html',
   styleUrls: ['./warehouse-handling-detail-page.component.scss']
 })
-export class AigWarehouseHandlingDetailPageComponent extends GenericComponent {
+export class AigWarehouseHandlingDetailPageComponent extends AigCommerceGenericComponent {
   constructor(
     private warehouseHandlingResourceService: WarehouseHandlingResourceService,
     private warehouseHandlingItemResourceService: WarehouseHandlingItemResourceService,

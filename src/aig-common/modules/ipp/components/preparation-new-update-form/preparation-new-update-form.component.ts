@@ -39,28 +39,33 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
     @Input()
     preparation: PreparationDTO;
 
+    @Input()
+    partecipation: PartecipationDTO;
+
     preparationNewUpdateForm: FormGroup;
+
+    isUpdate: boolean = false;
+
+    preparationResult: any;
 
     filteredEopoo: Observable<EopooDTO[]>;
     filteredPartecipation: Observable<PartecipationDTO[]>;
     filteredPreparationStatus: Observable<PreparationStatusDTO[]>;
 
-
     ngOnInit(): void {
         this.preparationNewUpdateForm = this._formBuilder.group({
             id: [''],
-
-            partecipation: ['',[Validators.required, AigValidator.haveId] ],
-            status: ['',[Validators.required, AigValidator.haveId] ],
-
             companyPreparatorEopoo: ['',[Validators.required, AigValidator.haveId] ],
-           
+            partecipation: [this.partecipation,[Validators.required, AigValidator.haveId] ],
             note: [''],
+            status: ['',[Validators.required, AigValidator.haveId] ],
         })
         
         if (this.preparation != null) {
             this.preparationNewUpdateForm.patchValue(this.preparation);
+            this.isUpdate = true;
         }
+        
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.preparationNewUpdateForm.controls['companyPreparatorEopoo'].valueChanges);
         this.filteredPartecipation = this.ippAutocompleteFilterService.filterPartecipation(this.preparationNewUpdateForm.controls['partecipation'].valueChanges);
         this.filteredPreparationStatus = this.ippAutocompleteFilterService.filterPreparationStatus(this.preparationNewUpdateForm.controls['status'].valueChanges);
@@ -82,13 +87,16 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.preparation.id > 0) {
+            if (this.isUpdate) {
                 await this.preparationResourceService.updatePreparationUsingPUT(preparation).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.preparationResourceService.createPreparationUsingPOST(preparation).toPromise();
                 postOrPut = "created";
             }
+
+            this.preparationResult = preparation;
+            
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
@@ -107,7 +115,7 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
+
 }

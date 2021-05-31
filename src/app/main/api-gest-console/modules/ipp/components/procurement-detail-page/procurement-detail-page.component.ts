@@ -3,8 +3,9 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService, ProcurementResourceService } from "aig-italianlegislation";
-import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigIppGenericComponent } from "../ipp-generic-component";
+import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
 import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
 
@@ -13,7 +14,7 @@ import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-updat
   templateUrl: './procurement-detail-page.component.html',
   styleUrls: ['./procurement-detail-page.component.scss']
 })
-export class AigProcurementDetailPageComponent extends GenericComponent {
+export class AigProcurementDetailPageComponent extends AigIppGenericComponent {
   constructor(
     private procurementResourceService: ProcurementResourceService,
     private procurementLotResourceService: ProcurementLotResourceService,
@@ -25,54 +26,62 @@ export class AigProcurementDetailPageComponent extends GenericComponent {
     aigGenericComponentService: AigGenericComponentService,
   ) { super(aigGenericComponentService) }
 
-  procurement: ProcurementDTO;
-
-  procurementLotDC: string[];
-	procurementLotDTOs: ProcurementLotDTO[];
-	procurementLotError: any;
-
-  
+  procurementDTO: ProcurementDTO;
 
   loadPage() {
-    this.procurement = this.route.snapshot.data.procurement;
-    this.procurementLotDC = ["cig","description","buttons"];
-    this.loadProcurementLot();
-    console.log(this.procurement)
-}
-
-private async loadProcurementLot() {
-  let filter = {
-    procurementIdEquals: this.procurement.id
-  };
-  this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(filter).toPromise();
-}
-
-
-async reloadPage() {
-  this.procurement = await this.procurementResourceService.getProcurementUsingGET(this.procurement.id).toPromise();
-  this.loadProcurementLot()
-}
-
-
-
-  editProcurement(procurement: ProcurementDTO) {
-    this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: procurement } });
+    this.procurementDTO = this.route.snapshot.data.procurement;
+    this.loadOther();
   }
 
-  async deleteProcurement(procurement: ProcurementDTO) {
+  async reloadPage() {
+    this.procurementDTO = await this.procurementResourceService.getProcurementUsingGET(this.procurementDTO.id).toPromise();
+    this.loadOther();
+  }
+
+  async loadOther() {
+    this.loadProcurementLot();
+  }
+
+  editProcurement(procurementDTO: ProcurementDTO) {
+    this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: procurementDTO } });
+  }
+
+  async deleteProcurement(procurementDTO: ProcurementDTO) {
     this._fuseProgressBarService.show();
 
     try {
-      await this.procurementResourceService.deleteProcurementUsingDELETE(procurement.id).toPromise();
+      await this.procurementResourceService.deleteProcurementUsingDELETE(procurementDTO.id).toPromise();
 
-      this._snackBar.open(`Procurement: '${procurement.id}' deleted.`, null, { duration: 2000, });
+      this._snackBar.open(`Procurement: '${procurementDTO.id}' deleted.`, null, { duration: 2000, });
 
       this.router.navigate(['/ipp', 'procurement']);
     } catch (e) {
-      this._snackBar.open(`Error during deleting procurement: '${procurement.id}'. (${e.message})`, null, { duration: 5000, });
+      this._snackBar.open(`Error during deleting procurement: '${procurementDTO.id}'. (${e.message})`, null, { duration: 5000, });
     }
     this._fuseProgressBarService.hide();
   }
 
+
+
+
+
   
+  procurementLotDC: string[] = ['id', 'cig', 'description', 'amount', 'type', 'category', 'awardCriterion', 'offerExpiryDate', 'buttons'];
+  procurementLotDTOs: ProcurementLotDTO[];
+  procurementLotError: any;
+  async loadProcurementLot() {
+    let filters = {
+      procurementIdEquals: this.procurementDTO.id
+    };
+    try {
+      this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(filters).toPromise();
+    } catch (e) {
+      this.procurementLotError = e;
+    }
+  }
+
+  newProcurementLot(procurementDTO: ProcurementDTO): void {
+    this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurement: procurementDTO } });
+  }
+
 }

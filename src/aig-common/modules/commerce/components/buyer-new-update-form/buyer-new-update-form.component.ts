@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { BuyerDTO, BuyerResourceService, SellerDTO } from "aig-commerce";
+import { AigValidator } from "aig-common/AigValidator";
 import { EventService } from "aig-common/event-manager/event.service";
 import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
 import { AigGenericAutocompleteDisplayService } from "aig-common/modules/generic/services/form/autocomplete-function.service";
@@ -39,7 +40,14 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     buyer: BuyerDTO;
 
     @Input()
+    staticSeller: SellerDTO;
+
+    @Input()
     seller: SellerDTO;
+
+    isUpdate: boolean = false;
+
+    buyerResult: any;
 
     buyerNewUpdateForm: FormGroup;
 
@@ -49,17 +57,25 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.buyerNewUpdateForm = this._formBuilder.group({
             id:[''],
-            
-            seller: [this.seller, Validators.required],
-            
-            eopoo: ['', Validators.required],
-            
-            confirmation: [true, Validators.required],
+            seller: [this.seller, [Validators.required, AigValidator.haveId]],
+            eopoo: ['', [Validators.required, AigValidator.haveId]],
+            confirmation: [true, [Validators.required]],
             statusNote: [''],
         })
         
         if (this.buyer != null) {
             this.buyerNewUpdateForm.patchValue(this.buyer);
+            this.isUpdate = true
+        }
+
+        if (this.staticSeller != null) {
+            this.buyerNewUpdateForm.controls['seller'].patchValue(this.staticSeller);
+            this.isUpdate = false
+        }
+
+        if (this.seller) {
+            this.buyerNewUpdateForm.controls['seller'].patchValue(this.seller);
+            this.isUpdate = false
         }
 
         this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.buyerNewUpdateForm.controls['eopoo'].valueChanges);
@@ -82,19 +98,25 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (buyer.id != 0) {
+            if (this.isUpdate) {
                 await this.buyerResourceService.updateBuyerUsingPUT(buyer).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.buyerResourceService.createBuyerUsingPOST(buyer).toPromise();
                 postOrPut = "created";
             }
+
+            this.buyerResult = buyer;
+
             this.eventService.reloadCurrentPage();
+
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -102,11 +124,10 @@ export class AigBuyerNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

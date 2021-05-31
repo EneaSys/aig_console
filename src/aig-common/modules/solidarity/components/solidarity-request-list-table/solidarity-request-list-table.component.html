@@ -33,10 +33,40 @@
             <mat-cell *matCellDef="let e">{{ e.familyUnit.taxId }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="reddito">
+            <mat-header-cell *matHeaderCellDef> Reddito dichiatato </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <span *ngIf="e.familyUnit.city != ''" style="text-align: right; width: 100%;">{{ e.requestStatusBIncomeMar | currency: 'EUR' }}</span>
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="familyTotal">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Nucleo Familiare </mat-header-cell>
             <mat-cell *matCellDef="let e">
                 <span style="text-align: center; width: 100%;">{{ (e.familyUnit.adultNumber + e.familyUnit.childrenNumber) }}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cat3">
+            <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngIf="e.familyUnit.city == ''" style="text-align: center; width: 100%;">A</span>
+				<span *ngIf="e.familyUnit.city != ''" style="text-align: center; width: 100%;">B</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="reason">
+            <mat-header-cell *matHeaderCellDef>Motivazione</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngIf="e.familyUnit.city != ''" style="text-align: left; width: 100%;">{{e.familyUnit.city}}</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="comodato">
+            <mat-header-cell *matHeaderCellDef>Comodato</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngIf="e.requestStatusA" style="text-align: center; width: 100%;">{{ '0' | currency: 'EUR' }}</span>
+				<span *ngIf="e.requestStatusB" style="text-align: center; width: 100%;">{{ '50' | currency: 'EUR' }}</span>
             </mat-cell>
         </ng-container>
 
@@ -80,6 +110,11 @@
         <ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate(e) | currency: 'EUR' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount3">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ aigSolidarityRequestCalculatorService.calculate3(e) | currency: 'EUR' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

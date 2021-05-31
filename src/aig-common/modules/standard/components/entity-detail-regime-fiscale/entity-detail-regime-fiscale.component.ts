@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItalianPublicProcurementProcedureDTO, ItalianPublicProcurementSectorDTO, RegimeFiscaleDTO } from 'aig-standard';
+import { IlFeRegimeFiscaleDTO } from 'aig-standard';
 
 
 
@@ -17,6 +17,6 @@ export class AigEntityDetailRegimeFiscaleComponent implements OnInit {
 
     @Input()
     
-    regimeFiscale: RegimeFiscaleDTO;
+    regimeFiscale: IlFeRegimeFiscaleDTO;
 
 }

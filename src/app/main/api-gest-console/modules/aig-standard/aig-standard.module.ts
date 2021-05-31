@@ -76,12 +76,43 @@ import { AigEsigibilitaIvaNewUpdateDialogComponent } from './components/esigibil
 import { AigModalitaPagamentoListPageComponent } from './components/modalita-pagamento-list-page/modalita-pagamento-list-page.component';
 import { AigModalitaPagamentoDetailPageComponent } from './components/modalita-pagamento-detail-page/modalita-pagamento-detail-page.component';
 import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modalita-pagamento-new-update-dialog/modalita-pagamento-new-update-dialog.component';
+import { AigAwardCriterionNewUpdateDialogComponent } from './components/award-criterion-new-update-dialog/award-criterion-new-update-dialog.component';
+import { AigAwardCriterionListPageComponent } from './components/award-criterion-list-page/award-criterion-list-page.component';
+import { AigAwardCriterionDetailPageComponent } from './components/award-criterion-detail-page/award-criterion-detail-page.component';
+import { AigPartecipationTypeNewUpdateDialogComponent } from './components/partecipation-type-new-update-dialog/partecipation-type-new-update-dialog.component';
+import { AigPartecipationTypeListPageComponent } from './components/partecipation-type-list-page/partecipation-type-list-page.component';
+import { AigPartecipationTypeDetailPageComponent } from './components/partecipation-type-detail-page/partecipation-type-detail-page.component';
+import { AigProcurementStatusListPageComponent } from './components/procurement-status-list-page/procurement-status-list-page.component';
+import { AigProcurementStatusNewUpdateDialogComponent } from './components/procurement-status-new-update-dialog/procurement-status-new-update-dialog.component';
+import { AigProcurementStatusDetailPageComponent } from './components/procurement-status-detail-page/procurement-status-detail-page.component';
+import { AigProcurementLotStatusListPageComponent } from './components/procurement-lot-status-list-page/procurement-lot-status-list-page.component';
+import { AigProcurementLotStatusNewUpdateDialogComponent } from './components/procurement-lot-status-new-update-dialog/procurement-lot-status-new-update-dialog.component';
+import { AigProcurementLotStatusDetailPageComponent } from './components/procurement-lot-status-detail-page/procurement-lot-status-detail-page.component';
+
+
 
 @NgModule({
     declarations: [
         AigStandardHeaderComponent,
 
         AigStandardCustomListPageComponent,
+
+
+        AigProcurementLotStatusListPageComponent,
+        AigProcurementLotStatusNewUpdateDialogComponent,
+        AigProcurementLotStatusDetailPageComponent,
+
+        AigProcurementStatusListPageComponent,
+        AigProcurementStatusNewUpdateDialogComponent,
+        AigProcurementStatusDetailPageComponent,
+
+        AigAwardCriterionListPageComponent,
+        AigAwardCriterionNewUpdateDialogComponent,
+        AigAwardCriterionDetailPageComponent,
+
+        AigPartecipationTypeNewUpdateDialogComponent,
+        AigPartecipationTypeListPageComponent,
+        AigPartecipationTypeDetailPageComponent,
 
         AigCityListPageComponent,
         AigCityDetailPageComponent,
@@ -167,7 +198,8 @@ import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modal
         MatTabsModule,
     ],
     exports: [],
-    providers: [],
+    providers: [
+    ],
     entryComponents: [
         AigSocialNewUpdateModalComponent,
         AigSocialActionNewUpdateModalComponent,
@@ -185,7 +217,13 @@ import { AigModalitaPagamentoNewUpdateDialogComponent } from './components/modal
         AigTipoCessionePrestazioneNewUpdateDialogComponent,
         AigTipoScontoMaggiorazioneNewUpdateDialogComponent,
         AigEsigibilitaIvaNewUpdateDialogComponent,
-        AigModalitaPagamentoNewUpdateDialogComponent
+        AigModalitaPagamentoNewUpdateDialogComponent,
+        AigAwardCriterionNewUpdateDialogComponent,
+        AigProcurementStatusNewUpdateDialogComponent,
+        AigPartecipationTypeNewUpdateDialogComponent,
+        AigProcurementStatusNewUpdateDialogComponent,
+        AigProcurementLotStatusNewUpdateDialogComponent,
+
       
     
     ],

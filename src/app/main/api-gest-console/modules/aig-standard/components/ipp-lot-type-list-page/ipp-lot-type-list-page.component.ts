@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { ItalianPublicProcurementLotTypeDTO, ItalianPublicProcurementLotTypeResourceService } from 'aig-standard';
+import { IlPpProcurementLotTypeDTO, IlPpProcurementLotTypeResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
 import { AigIppLotTypeNewUpdateModalComponent } from '../ipp-lot-type-new-update-modal/ipp-lot-type-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -14,7 +14,7 @@ import { MatSnackBar, PageEvent } from '@angular/material';
 })
 export class AigIppLotTypeListPageComponent extends GenericComponent {
     constructor(
-        private ippLotTypeResourceService: ItalianPublicProcurementLotTypeResourceService,
+        private ippLotTypeResourceService: IlPpProcurementLotTypeResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -33,7 +33,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 
     //			---- IPP LOT TYPE TABLE AND SEARCH SECTION ----
     
-	ippLotTypeDTOs: ItalianPublicProcurementLotTypeDTO[];
+	ippLotTypeDTOs: IlPpProcurementLotTypeDTO[];
     ippLotTypeDC: string[];
 	ippLotTypeError: any;
 
@@ -49,11 +49,13 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 
 		this.ippLotTypeSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
 			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 
-		this.ippLotTypeDC = ['id', 'code', 'name','wikiCode', 'buttons'];
+		this.ippLotTypeDC = ['id','code', 'name','description','wikiCode', 'buttons'];
     }
     
     private clearFiltersIppLotType() {
@@ -72,7 +74,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 		this.ippLotTypeFilters.size = this.ippLotTypePaginationSize;
 
 		try {
-			this.ippLotTypeLength = await this.ippLotTypeResourceService.countItalianPublicProcurementLotTypesUsingGET(this.ippLotTypeFilters).toPromise();
+			this.ippLotTypeLength = await this.ippLotTypeResourceService.countIlPpProcurementLotTypesUsingGET(this.ippLotTypeFilters).toPromise();
 
 			if(this.ippLotTypeLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -80,7 +82,7 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.ippLotTypeDTOs = await this.ippLotTypeResourceService.getAllItalianPublicProcurementLotTypesUsingGET(this.ippLotTypeFilters).toPromise();
+			this.ippLotTypeDTOs = await this.ippLotTypeResourceService.getAllIlPpProcurementLotTypesUsingGET(this.ippLotTypeFilters).toPromise();
 		} catch (e) {
 			this.ippLotTypeError = e;
 		}

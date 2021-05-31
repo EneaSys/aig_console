@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { CityResourceService, CityDTO, NaturaResourceService, NaturaDTO } from 'aig-standard';
+import {  IlFeNaturaResourceService, IlFeNaturaDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { AigNaturaNewUpdateDialogComponent } from '../natura-new-update-dialog/natura-new-update-dialog.component';
@@ -15,7 +14,7 @@ import { AigNaturaNewUpdateDialogComponent } from '../natura-new-update-dialog/n
 })
 export class AigNaturaListPageComponent extends GenericComponent {
     constructor(
-        private naturaResourceService: NaturaResourceService,
+        private naturaResourceService: IlFeNaturaResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -36,7 +35,7 @@ export class AigNaturaListPageComponent extends GenericComponent {
 
     //			---- TABLE AND SEARCH SECTION ----
     
-	naturaDTOs: NaturaDTO[];
+	naturaDTOs: IlFeNaturaDTO[];
     naturaDC: string[];
 	naturaError: any;
 
@@ -48,14 +47,17 @@ export class AigNaturaListPageComponent extends GenericComponent {
 
     
     private initNaturaSearch() {
-		this.naturaDC = ["id", "value","description", "buttons"];
+		this.naturaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
 
 		this.naturaPaginationSize = 10;
 		
 
 		this.naturaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
+			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 			
 		});
 	}
@@ -80,7 +82,7 @@ export class AigNaturaListPageComponent extends GenericComponent {
 
     
             try {                                                                       
-                this.naturaLength = await this.naturaResourceService.countNaturasUsingGET(this.naturaFilters).toPromise();  
+                this.naturaLength = await this.naturaResourceService.countIlFeNaturasUsingGET(this.naturaFilters).toPromise();  
                 
                 if(this.naturaLength == 0) {
                     this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -88,7 +90,7 @@ export class AigNaturaListPageComponent extends GenericComponent {
                     return;
                 }
     
-                this.naturaDTOs = await this.naturaResourceService.getAllNaturasUsingGET(this.naturaFilters).toPromise();
+                this.naturaDTOs = await this.naturaResourceService.getAllIlFeNaturasUsingGET(this.naturaFilters).toPromise();
             } catch (e) {
                 this.naturaError = e;
             }

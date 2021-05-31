@@ -2,8 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService, TipoRitenutaDTO, TipoRitenutaResourceService, TipoScontoMaggiorazioneDTO, TipoScontoMaggiorazioneResourceService } from 'aig-standard';
+import { IlFeScontoMaggiorazioneTipoDTO, IlFeScontoMaggiorazioneTipoResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-tipo-sconto-maggiorazione-new-update-form',
@@ -18,7 +19,7 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
     };
 
     constructor(
-        private tipoScontoMaggiorazioneResourceService: TipoScontoMaggiorazioneResourceService,
+        private tipoScontoMaggiorazioneResourceService: IlFeScontoMaggiorazioneTipoResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,22 +27,23 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
     ) { }
 
     @Input()
-    tipoScontoMaggiorazione: TipoScontoMaggiorazioneDTO;
+    tipoScontoMaggiorazione: IlFeScontoMaggiorazioneTipoDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	tipoScontoMaggiorazioneOutput = new EventEmitter<TipoScontoMaggiorazioneDTO>();
+	tipoScontoMaggiorazioneOutput = new EventEmitter<IlFeScontoMaggiorazioneTipoDTO>();
 
     tipoScontoMaggiorazioneNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.tipoScontoMaggiorazioneNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            value: ['', Validators.required],
+            id: [''],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
-
+            wikiCode:['']
         })
         if (this.tipoScontoMaggiorazione!= null) {
             this.tipoScontoMaggiorazioneNewUpdateForm.patchValue(this.tipoScontoMaggiorazione);
@@ -56,16 +58,16 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let tipoScontoMaggiorazione: TipoScontoMaggiorazioneDTO = this.tipoScontoMaggiorazioneNewUpdateForm.value;
+        let tipoScontoMaggiorazione: IlFeScontoMaggiorazioneTipoDTO = this.tipoScontoMaggiorazioneNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (tipoScontoMaggiorazione.id != 0) {
-                await this.tipoScontoMaggiorazioneResourceService.updateTipoScontoMaggiorazioneUsingPUT(tipoScontoMaggiorazione).toPromise();
+                await this.tipoScontoMaggiorazioneResourceService.updateIlFeScontoMaggiorazioneTipoUsingPUT(tipoScontoMaggiorazione).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoScontoMaggiorazioneResourceService.createTipoScontoMaggiorazioneUsingPOST(tipoScontoMaggiorazione).toPromise();
+                await this.tipoScontoMaggiorazioneResourceService.createIlFeScontoMaggiorazioneTipoUsingPOST(tipoScontoMaggiorazione).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

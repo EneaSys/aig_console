@@ -1,33 +1,35 @@
-<div id="aig-social-detail-page" class="page-layout blank">
+<div class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Prezzi</div>
-                <div class="h1 m-16">{{ priceListDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ priceListDTO.id }}</div>
-                <div *ngIf="priceListDTO.catalog" class="h4 m-8 ml-16 mb-0 secondary-text">Catalog: {{ priceListDTO.catalog.name }}</div>
+        <div class="widget" fxFlex.gt-sm="auto">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'COMMERCE.PRICE_LIST' | translate }}</div>
+                <hr>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">
+                    ID: {{ priceListDTO.id }}
+                </div>
+                <aig-price-list-box-detail [priceListDTO]="priceListDTO"></aig-price-list-box-detail>
                 <br>
-                <button mat-stroked-button color="primary" (click)="editPriceList(priceListDTO)">Edit</button>
-                <button mat-stroked-button color="primary"(click)="deletePriceList(priceListDTO.id)">Delete</button>
-
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPriceList(priceListDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deletePriceList(priceListDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
-
-            <br>
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Price list items</b></div>
-                <aig-price-list-item-list-table [displayColumns]="priceListItemDC" [dataSource]="priceListItemDTOs"
-				    [error]="priceListItemError"></aig-price-list-item-list-table>
-
-            </div>
-
         </div>
+    </div>
 
+    <div class="widget" fxFlex.gt-sm="auto">
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.PRICE_LIST_ITEMS' | translate | titlecase }}</b></div>
+            <aig-price-list-item-list-table [displayColumns]="priceListItemDC" [dataSource]="priceListItemDTOs"
+				    [error]="priceListItemError">
+            </aig-price-list-item-list-table>
+
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPriceListItem(priceListDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </div>
 
 </div>

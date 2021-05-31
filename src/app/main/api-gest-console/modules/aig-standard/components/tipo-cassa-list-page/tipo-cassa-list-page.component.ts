@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { CityResourceService, CityDTO, TipoCassaResourceService, TipoCassaDTO } from 'aig-standard';
+import { IlFeCassaTipoDTO, IlFeCassaTipoResourceService } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { AigTipoCassaNewUpdateDialogComponent } from '../tipo-cassa-new-update-dialog/tipo-cassa-new-update-dialog.component';
@@ -15,7 +14,7 @@ import { AigTipoCassaNewUpdateDialogComponent } from '../tipo-cassa-new-update-d
 })
 export class AigTipoCassaListPageComponent extends GenericComponent {
     constructor(
-        private tipoCassaResourceService: TipoCassaResourceService,
+        private tipoCassaResourceService: IlFeCassaTipoResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -34,7 +33,7 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 
     //			---- TABLE AND SEARCH SECTION ----
     
-	tipoCassaDTOs: TipoCassaDTO[];
+	tipoCassaDTOs: IlFeCassaTipoDTO[];
     tipoCassaDC: string[];
 	tipoCassaError: any;
 
@@ -46,15 +45,17 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 
     
     private initTipoCassaSearch() {
-		this.tipoCassaDC = ["id", "value","description", "buttons"];
+		this.tipoCassaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
 
 		this.tipoCassaPaginationSize = 10;
 		
 
 		this.tipoCassaSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
-			
+			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 	}
 	private clearFiltersTipoCassa() {
@@ -71,7 +72,7 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 		this.tipoCassaFilters.size = this.tipoCassaPaginationSize;
 
 		try {                                                                       
-			this.tipoCassaLength = await this.tipoCassaResourceService.countTipoCassasUsingGET(this.tipoCassaFilters).toPromise();  
+			this.tipoCassaLength = await this.tipoCassaResourceService.countIlFeCassaTiposUsingGET(this.tipoCassaFilters).toPromise();  
 			
 			if(this.tipoCassaLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -79,7 +80,7 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.tipoCassaDTOs = await this.tipoCassaResourceService.getAllTipoCassasUsingGET(this.tipoCassaFilters).toPromise();
+			this.tipoCassaDTOs = await this.tipoCassaResourceService.getAllIlFeCassaTiposUsingGET(this.tipoCassaFilters).toPromise();
 		} catch (e) {
 			this.tipoCassaError = e;
 		}

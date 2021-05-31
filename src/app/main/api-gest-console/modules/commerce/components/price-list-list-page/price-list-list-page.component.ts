@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { CatalogDTO, CatalogResourceService, PriceListDTO, PriceListResourceService, WarehouseDTO } from 'aig-commerce';
+import { CatalogDTO, CatalogResourceService, PriceListDTO, PriceListResourceService } from 'aig-commerce';
 import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigCommerceAutocompleteFilterService } from 'aig-common/modules/commerce/service/autocomplete-filter.service';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { Observable } from 'rxjs';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-dialog/price-list-new-update-dialog.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { AigPriceListNewUpdateDialogComponent } from '../price-list-new-update-d
 	templateUrl: './price-list-list-page.component.html',
 	styleUrls: ['./price-list-list-page.component.scss']
 })
-export class AigPriceListListPageComponent extends GenericComponent {
+export class AigPriceListListPageComponent extends AigCommerceGenericComponent {
 	@Input()
 	staticCatalog: CatalogDTO = null;
 

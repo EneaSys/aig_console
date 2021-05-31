@@ -16,52 +16,52 @@
         
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="code">
-            <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.code }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.ANAC_CODE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.code }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.DESCRIPTION' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.description }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="ref">
-            <mat-header-cell *matHeaderCellDef> Ref </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ref }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="totalAmount">
-            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.totalAmount | currency:'EUR' }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.REFERENCE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.ref }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="contractorEopoo">
-            <mat-header-cell *matHeaderCellDef> contractorEopooCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.contractorEopoo }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ippSector">
-            <mat-header-cell *matHeaderCellDef> Sector </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippSector }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ippProcedure">
-            <mat-header-cell *matHeaderCellDef> Procedure </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippProcedure }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.CONTRACTOR' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.contractorEopoo | eopooName }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="ippModality">
-            <mat-header-cell *matHeaderCellDef> Modality </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippModality }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.MODALITY' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.modality.name }}</mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="ippProcedure">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.PROCEDURE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procedure.name }}</mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="ippSector">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.SECTOR' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.sector.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="totalAmount">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.TOTAL_AMOUNT' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.totalAmount | currency:'EUR' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurementStatus">
-            <mat-header-cell *matHeaderCellDef> procurementStatusCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. procurementStatus}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.STATUS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status.description }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
@@ -73,15 +73,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/procurement/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>{{ 'MAIN.DETAILS' | translate }}</span>
                     </button>
                     <button mat-menu-item (click)="editProcurement(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate }}</span>
                       </button>
                     <button mat-menu-item (click)="deleteProcurement(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate }}</span>
                       </button>
                   </mat-menu>
             </mat-cell>

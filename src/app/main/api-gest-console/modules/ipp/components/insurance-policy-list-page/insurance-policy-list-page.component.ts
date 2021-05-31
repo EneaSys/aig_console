@@ -36,22 +36,18 @@ export class AigInsurancePolicyListPageComponent extends GenericComponent {
 
 //			---- TABLE AND SEARCH SECTION ----
 
-insurancePolicySearchFormGroup: FormGroup;
-insurancePolicyPaginationSize: number;
-insurancePolicyFilters: any;
-
-insurancePolicyLength: number;
 insurancePolicyDTOs: PreparationDTO[];
+insurancePolicyDC: string[];
 insurancePolicyError: any;
 
-insurancePolicyDC: string[];
+insurancePolicySearchFormGroup: FormGroup;
+insurancePolicyFilters: any;
 
+insurancePolicyPaginationSize: number;
+insurancePolicyLength: number;
 	
 private initInsurancePolicySearch() {
-	this.insurancePolicyDC = ["id","companyPreparatorEopoo","note","partecipationProposerEopoo","status","totalAmount","buttons"];
-
 	this.insurancePolicyPaginationSize = 10;
-		
 
 	this.insurancePolicySearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -63,11 +59,14 @@ private initInsurancePolicySearch() {
 			statusId: [''],
 			totalAmount: [''],
 		});
+
+	this.insurancePolicyDC = ["id","companyPreparatorEopoo","note","partecipationProposerEopoo","status","totalAmount","buttons"];
 	}
 
 private clearFiltersInsurancePolicy() {
 	this.insurancePolicyFilters = {
 		idEquals: null,
+		noteContains: null,
 	}
 }
 
@@ -78,7 +77,7 @@ private async searchInsurancePolicy(page: number) {
 	this.insurancePolicyFilters.size = this.insurancePolicyPaginationSize;
 
 	try {
-		this.insurancePolicyLength = await this.insurancePolicyResourceService.countInsurancePoliciesUsingGET({}).toPromise();  
+		this.insurancePolicyLength = await this.insurancePolicyResourceService.countInsurancePoliciesUsingGET(this.insurancePolicyFilters).toPromise();  
 
 		if(this.insurancePolicyLength == 0) {
 			this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -86,25 +85,21 @@ private async searchInsurancePolicy(page: number) {
 			return;
 		}
 
-		this.insurancePolicyDTOs =  await this.insurancePolicyResourceService.getAllInsurancePoliciesUsingGET({}).toPromise();
+		this.insurancePolicyDTOs =  await this.insurancePolicyResourceService.getAllInsurancePoliciesUsingGET(this.insurancePolicyFilters).toPromise();
 	} catch (e) {
 		console.log(e);
 		this.insurancePolicyError = e;
 	}
-}
-
-	
+}	
 
 showAllInsurancePolicy() {
 	this.resetFiltersInsurancePolicy();
-		
 }
 
 resetFiltersInsurancePolicy() {
 	this.insurancePolicySearchFormGroup.reset();
 	this.clearFiltersInsurancePolicy();
 	this.searchInsurancePolicy(0);
-
 }
 
 insurancePolicyPaginationEvent(pageEvent: PageEvent) {
@@ -122,9 +117,9 @@ insurancePolicySearchWithFilter() {
 		this.searchInsurancePolicy(0);
 		return;
 	}
-	this.insurancePolicyFilters.idEquals = null;
 
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+	this.insurancePolicyFilters.idEquals = null;
+	this.insurancePolicyFilters.noteContains = this.insurancePolicySearchFormGroup.controls.note.value;
 
 	this.searchInsurancePolicy(0);
 }
@@ -135,6 +130,4 @@ newInsurancePolicy(): void {
     this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { insurancePolicy: {} } });
     }
 
-	
 }
-

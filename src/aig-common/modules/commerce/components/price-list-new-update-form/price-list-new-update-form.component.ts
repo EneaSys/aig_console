@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CatalogDTO, CatalogItemDTO, PriceListDTO, PriceListResourceService } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -34,10 +35,12 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
     @Input()
     priceList: PriceListDTO;
 
-    isUpdate: boolean = false;
-
     @Input()
     catalog: CatalogDTO;
+    
+    isUpdate: boolean = false;
+
+    priceListResult: any;
 
     priceListNewUpdateForm: FormGroup;
 
@@ -47,8 +50,8 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         
         this.priceListNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
-            catalog: [this.catalog, Validators.required],
+            name: ['', [Validators.required]],
+            catalog: [this.catalog, [Validators.required, AigValidator.haveId]],
         })
         
         if (this.priceList != null) {
@@ -77,7 +80,7 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
+            let postOrPut: string;
             if (priceList.id != 0) {
                 await this.priceListResourceService.updatePriceListUsingPUT(priceList).toPromise();
                 postOrPut = "updated";
@@ -85,14 +88,18 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
                 await this.priceListResourceService.createPriceListUsingPOST(priceList).toPromise();
                 postOrPut = "created";
             }
+
+            this.priceListResult = priceList;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Catalog: '${priceList.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 
@@ -100,10 +107,10 @@ export class AigPriceListNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

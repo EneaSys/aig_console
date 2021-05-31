@@ -3,16 +3,17 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryCategoryResourceService, InventoryItemDTO, InventoryItemResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigInventoryCategoryNewUpdateModalComponent } from '../inventory-category-new-update-modal/inventory-category-new-update-modal.component';
+import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/inventory-item-dialog.component';
 
 @Component({
     selector: 'aig-inventory-category-detail-page',
     templateUrl: './inventory-category-detail-page.component.html',
     styleUrls: ['./inventory-category-detail-page.component.scss']
 })
-export class AigInventoryCategoryDetailPageComponent extends GenericComponent {
+export class AigInventoryCategoryDetailPageComponent extends AigCommerceGenericComponent {
     constructor(
 
         private _snackBar: MatSnackBar,
@@ -72,5 +73,9 @@ export class AigInventoryCategoryDetailPageComponent extends GenericComponent {
         } catch (e) {
             this.inventoryItemError = e;
         }
+    }
+
+    addInventoryItem(inventoryCategoryDTO: InventoryCategoryDTO) {
+        this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: { }, inventoryCategory: inventoryCategoryDTO } });
     }
 }

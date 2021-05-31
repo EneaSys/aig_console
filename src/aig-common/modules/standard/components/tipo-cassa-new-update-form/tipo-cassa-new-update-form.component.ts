@@ -2,8 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
+import { IlFeCassaTipoDTO, IlFeCassaTipoResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-tipo-cassa-new-update-form',
@@ -18,7 +19,7 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        private tipoCassaResourceService: TipoCassaResourceService,
+        private tipoCassaResourceService: IlFeCassaTipoResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,21 +27,23 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    tipoCassa: TipoCassaDTO;
+    tipoCassa: IlFeCassaTipoDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	tipoCassaOutput = new EventEmitter<TipoCassaDTO>();
+	tipoCassaOutput = new EventEmitter<IlFeCassaTipoDTO>();
 
     tipoCassaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.tipoCassaNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            value: ['', Validators.required],
+            id: [''],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
+            wikiCode:['']
 
         })
         if (this.tipoCassa!= null) {
@@ -55,16 +58,16 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let tipoCassa: TipoCassaDTO = this.tipoCassaNewUpdateForm.value;
+        let tipoCassa: IlFeCassaTipoDTO = this.tipoCassaNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (tipoCassa.id != 0) {
-                await this.tipoCassaResourceService.updateTipoCassaUsingPUT(tipoCassa).toPromise();
+                await this.tipoCassaResourceService.updateIlFeCassaTipoUsingPUT(tipoCassa).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.tipoCassaResourceService.createTipoCassaUsingPOST(tipoCassa).toPromise();
+                await this.tipoCassaResourceService.createIlFeCassaTipoUsingPOST(tipoCassa).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

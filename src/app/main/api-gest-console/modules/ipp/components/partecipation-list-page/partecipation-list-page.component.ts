@@ -1,18 +1,30 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
-import { DossierDTO, DossierResourceService, PartecipationDTO, PartecipationResourceService } from "aig-italianlegislation";
-import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
+import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
+import { AigGenericAutocompleteDisplayService } from "aig-common/modules/generic/services/form/autocomplete-function.service";
+import { AigIppAutocompleteDisplayService } from "aig-common/modules/ipp/service/autocomplete-display.service";
+import { AigIppAutocompleteService } from "aig-common/modules/ipp/service/autocomplete-filter.service";
+import { AigStandardAutocompleteFilterService } from "aig-common/modules/standard/services/autocomplete-filter.service";
+import { AigStandardAutocompleteDisplayService } from "aig-common/modules/standard/services/autocomplete-function.service";
+import { EopooDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from "aig-italianlegislation";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
-import { AigDossierNewUpdateDialogComponent } from "../dossier-new-update-dialog/dossier-new-update-dialog.component";
+import { Observable } from "rxjs";
+import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 
 @Component({
     templateUrl: './partecipation-list-page.component.html',
     styleUrls: ['./partecipation-list-page.component.scss']
 })
-export class AigPartecipationListPageComponent extends GenericComponent {
+export class AigPartecipationListPageComponent extends AigIppGenericComponent {
     constructor(
+		public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
+        public genericAutocompleteFilterService:  AigGenericAutocompleteFilterService,
+        public standardAutocompleteFilterService:  AigStandardAutocompleteFilterService,
+        public standardAutocompleteDisplayService:  AigStandardAutocompleteDisplayService,
+		public ippAutocompleteDisplayService:  AigIppAutocompleteDisplayService,
+		public ippAutocompleteFilterService:  AigIppAutocompleteService,
        
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
@@ -20,6 +32,19 @@ export class AigPartecipationListPageComponent extends GenericComponent {
         private partecipationResourceService: PartecipationResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
+
+	filteredEopoo: Observable<EopooDTO[]>;
+	filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
+    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
+    filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
+    filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
+    filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
+	filteredPartecipationStatus: Observable<PartecipationStatusDTO[]>;
+	filteredPartecipationType: Observable<IlPpPartecipationTypeDTO[]>;
+
+	
+
 
     loadPage() {
 		this.initPartecipationSearch();
@@ -34,102 +59,192 @@ export class AigPartecipationListPageComponent extends GenericComponent {
 
 //			---- TABLE AND SEARCH SECTION ----
 
-partecipationSearchFormGroup: FormGroup;
-partecipationPaginationSize: number;
-partecipationFilters: any;
+	partecipationSearchFormGroup: FormGroup;
+	partecipationPaginationSize: number;
+	partecipationFilters: any;
 
-partecipationLength: number;
-partecipationDTOs: PartecipationDTO[];
-partecipationError: any;
+	partecipationLength: number;
+	partecipationDTOs: PartecipationDTO[];
+	partecipationError: any;
 
-partecipationDC: string[];
+	partecipationDC: string[];
 
-	
-private initPartecipationSearch() {
-	this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopooCode","expiryDate","baseAmount","ippLotCategoryCode","buttons"]
+		
+	private initPartecipationSearch() {
+		this.partecipationPaginationSize = 10;
 
-	this.partecipationPaginationSize = 10;
+		this.partecipationSearchFormGroup = this._formBuilder.group({
+			id: [''],
+			partecipationType: [''],
+			procurementLotCig: [''],
+			procurementLotDescription: [''],
+			procurementLotOfferExpiryDate: [''],
+			proposerEopoo: [''],
+			ippModality: [''],
+            ippProcedure: [''],
+            ippSector: [''],
+            awardCriterion: [''],
+            category: [''],
+            type: [''],
+			siteInspection: [false],
+			partecipationStatus: [''],
+			contractorEopoo:[''],
+
+		});
+
+
+		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['contractorEopoo'].valueChanges);
+		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['proposerEopoo'].valueChanges);
+		this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.partecipationSearchFormGroup.controls['ippModality'].valueChanges);
+        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.partecipationSearchFormGroup.controls['ippProcedure'].valueChanges);
+        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.partecipationSearchFormGroup.controls['ippSector'].valueChanges);
+        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.partecipationSearchFormGroup.controls['awardCriterion'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['category'].valueChanges);
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.partecipationSearchFormGroup.controls['type'].valueChanges);
+		this.filteredPartecipationStatus = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationStatus'].valueChanges);
+		this.filteredPartecipationType = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
 		
 
-	this.partecipationSearchFormGroup = this._formBuilder.group({
-		id: ['',Validators.required],
-		partecipationTypeCode: [''],
-		procurementLotCig: ['',Validators.required],
-		proposerEopooCode: [''],
-		siteInspection: [''],
-		status: ['',Validators.required],
-	});
-}
-
-private clearFiltersPartecipation() {
-	this.partecipationFilters = {
-	idEquals: null,
+		this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopoo","expiryDate","baseAmount","ippLotCategory","status","buttons"];
 	}
-}
 
-private async searchPartecipation(page: number) {
-	this.partecipationDTOs = null;
-
-	this.partecipationFilters.page = page;
-	this.partecipationFilters.size = this.partecipationPaginationSize;
-
-	try {
-		this.partecipationLength = await this.partecipationResourceService.countPartecipationsUsingGET({}).toPromise();  
-
-			if(this.partecipationLength == 0) {
-				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-				this.partecipationDTOs = [];
-				return;
-			}
-
-		    this.partecipationDTOs =  await this.partecipationResourceService.getAllPartecipationsUsingGET({}).toPromise();
-		} catch (e) {
-			this.partecipationError = e;
+	private clearFiltersPartecipation() {
+		this.partecipationFilters = {
+			idEquals: null,
+			contractorEopooCodeContains: null,
+			procurementLotCigCodeContains: null,
+			procurementLotOfferExpiryDateCodeEquals: null,
+			siteInspectionIDEquals: null,
+			ippModalityCodeEquals: null,
+            ippProcedureCodeEquals: null,
+            ippSectorCodeEquals: null,
+            awardCriterionCodeEquals: null,
+            categoryCodeEquals: null,
+            typeCodeEquals: null,
+			partecipationStatusCodeEquals: null,
+			partecipationTypeCodeEquals: null,
 		}
 	}
 
+	private async searchPartecipation(page: number) {
+		this.partecipationDTOs = null;
+
+		this.partecipationFilters.page = page;
+		this.partecipationFilters.size = this.partecipationPaginationSize;
+
+		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['contractorEopoo'].valueChanges);
+		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['proposerEopoo'].valueChanges);
+		this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.partecipationSearchFormGroup.controls['ippModality'].valueChanges);
+        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.partecipationSearchFormGroup.controls['ippProcedure'].valueChanges);
+        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.partecipationSearchFormGroup.controls['ippSector'].valueChanges);
+        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.partecipationSearchFormGroup.controls['awardCriterion'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['category'].valueChanges);
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.partecipationSearchFormGroup.controls['type'].valueChanges);
+		this.filteredPartecipationStatus = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationStatus'].valueChanges);
+		this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
+		
+
+		
+		try {
+			this.partecipationLength = await this.partecipationResourceService.countPartecipationsUsingGET(this.partecipationFilters).toPromise();  
+
+				if(this.partecipationLength == 0) {
+					this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+					this.partecipationDTOs = [];
+					return;
+				}
+
+				this.partecipationDTOs =  await this.partecipationResourceService.getAllPartecipationsUsingGET(this.partecipationFilters).toPromise();
+			} catch (e) {
+				this.partecipationError = e;
+			}
+		}	
+
+	showAllPartecipation() {
+		this.resetFiltersPartecipation();
+	}
+
+	resetFiltersPartecipation() {
+		this.partecipationSearchFormGroup.reset();
+			this.clearFiltersPartecipation();
+			this.searchPartecipation(0);
+	}
+
+	partecipationPaginationEvent(pageEvent: PageEvent) {
+		this.partecipationPaginationSize = pageEvent.pageSize;
+		this.searchPartecipation(pageEvent.pageIndex);
+	}
+
+	partecipationSearchWithFilter() {
+		let searchedId = this.partecipationSearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersPartecipation();
+			this.partecipationSearchFormGroup.reset();
+			this.partecipationFilters.idEquals = searchedId;
+			this.searchPartecipation(0);
+			return;
+		} else {
+
+			if (this.partecipationSearchFormGroup.controls.contractorEopoo.value ) {
+				this.partecipationFilters.procurementContractorEopooCodeEquals = this.partecipationSearchFormGroup.controls.contractorEopoo.value.id;
+			}
+
+			if (this.partecipationSearchFormGroup.controls.proposerEopoo.value ) {
+				this.partecipationFilters.proposerEopooCodeEquals = this.partecipationSearchFormGroup.controls.proposerEopoo.value.id;
+			}
+			if (this.partecipationSearchFormGroup.controls.procurementLotCig.value ) {
+				this.partecipationFilters.procurementLotCigCodeContains = this.partecipationSearchFormGroup.controls.procurementLotCig.value;
+			}
+			if (this.partecipationSearchFormGroup.controls.procurementLotDescription.value ) {
+				this.partecipationFilters.procurementLotDescriptionCodeContains = this.partecipationSearchFormGroup.controls.procurementLotDescription.value;
+			}
+
+			if (this.partecipationSearchFormGroup.controls.procurementLotOfferExpiryDate.value ) {
+				this.partecipationFilters.procurementLotOfferExpiryDateCodeEquals = this.partecipationSearchFormGroup.controls.procurementLotOfferExpiryDate.value;
+			}
+			if (this.partecipationSearchFormGroup.controls.siteInspection.value ) {
+				this.partecipationFilters.siteInspectionIDEquals = this.partecipationSearchFormGroup.controls.siteInspection.value;
+			}
+
+			if (this.partecipationSearchFormGroup.controls.ippModality.value ) {
+				this.partecipationFilters.ippModalityCodeEquals = this.partecipationSearchFormGroup.controls.ippModality.value.code;
+			}
+	
+			if (this.partecipationSearchFormGroup.controls.ippProcedure.value) {
+				this.partecipationFilters.ippProcedureCodeEquals = this.partecipationSearchFormGroup.controls.ippProcedure.value.code;
+			}
+	
+			if (this.partecipationSearchFormGroup.controls.ippSector.value ) {
+				this.partecipationFilters.ippSectorCodeEquals = this.partecipationSearchFormGroup.controls.ippSector.value.code;
+			}
+			if (this.partecipationSearchFormGroup.controls.awardCriterion.value ) {
+				this.partecipationFilters.awardCriterionCodeEquals = this.partecipationSearchFormGroup.controls.awardCriterion.value.code;
+			}
+	
+			if (this.partecipationSearchFormGroup.controls.category.value ) {
+				this.partecipationFilters.categoryCodeEquals = this.partecipationSearchFormGroup.controls.category.value.code;
+			}
+
+			if (this.partecipationSearchFormGroup.controls.partecipationStatus.value ) {
+				this.partecipationFilters.partecipationStatusCodeEquals = this.partecipationSearchFormGroup.controls.partecipationStatus.value.code;
+			}
+
+			if (this.partecipationSearchFormGroup.controls.partecipationType.value ) {
+				this.partecipationFilters.partecipationTypeCodeEquals = this.partecipationSearchFormGroup.controls.partecipationType.value.code;
+			}
 	
 
-showAllPartecipation() {
-	this.resetFiltersPartecipation();
+			this.partecipationFilters.idEquals = null;
+
+			this.searchPartecipation(0);
+		}
+	}
+
 		
-}
-
-resetFiltersPartecipation() {
-	this.partecipationSearchFormGroup.reset();
-		this.clearFiltersPartecipation();
-		this.searchPartecipation(0);
-
-}
-
-partecipationPaginationEvent(pageEvent: PageEvent) {
-	this.partecipationPaginationSize = pageEvent.pageSize;
-	this.searchPartecipation(pageEvent.pageIndex);
-}
-
-partecipationSearchWithFilter() {
-	let searchedId = this.partecipationSearchFormGroup.controls.id.value;
-
-	if(searchedId != null) {
-		this.clearFiltersPartecipation();
-		this.partecipationSearchFormGroup.reset();
-		this.partecipationFilters.idEquals = searchedId;
-		this.searchPartecipation(0);
-		return;
-	}
-	this.partecipationFilters.idEquals = null;
-
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
-
-	this.searchPartecipation(0);
-	}
-
-	//			---- !TABLE AND SEARCH SECTION ----
 
 	newPartecipation(): void {
         this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {} } });
     }
 
-	
 }
-

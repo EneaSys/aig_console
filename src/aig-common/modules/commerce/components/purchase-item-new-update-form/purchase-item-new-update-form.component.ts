@@ -58,8 +58,8 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 	ngOnInit(): void {
 		this.purchaseItemNewUpdateForm = this._formBuilder.group({
 			id: [''],
-            quantity: ['', Validators.required],
-            price: ['', Validators.required],
+            quantity: ['', [Validators.required]],
+            price: ['', [Validators.required]],
             tax: [''],
             purchase: [this.purchase],
             warehouseHandlingItem: [''],

@@ -3,8 +3,9 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryItemDTO, InventoryItemResourceService, ProducerDTO, ProducerResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
+import { AigInventoryItemDialogComponent } from '../inventory-item-dialog/inventory-item-dialog.component';
 import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal-component/producer-new-update-modal.component';
 
 @Component({
@@ -12,7 +13,7 @@ import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal
 	templateUrl: './producer-detail-page.component.html',
 	styleUrls: ['./producer-detail-page.component.scss']
 })
-export class AigProducerDetailPageComponent extends GenericComponent {
+export class AigProducerDetailPageComponent extends AigCommerceGenericComponent {
 	constructor(
 		private _snackBar: MatSnackBar,
 		private router: Router,
@@ -72,5 +73,9 @@ export class AigProducerDetailPageComponent extends GenericComponent {
 			this.inventoryItemError = e;
 		}
 	}
+
+	addInventoryItem(producerDTO: ProducerDTO) {
+        this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: { }, producer: producerDTO } });
+    }
 
 }

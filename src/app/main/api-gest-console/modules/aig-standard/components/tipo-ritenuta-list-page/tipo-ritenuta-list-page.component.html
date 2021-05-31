@@ -23,8 +23,8 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Value</mat-label>
-                                        <input matInput type="text" formControlName="value">
+                                        <mat-label>Name</mat-label>
+                                        <input matInput type="text" formControlName="name">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -60,7 +60,7 @@
                 [pageSizeOptions]="[10, 20, 50]" (page)="tipoRitenutaPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-tipoRitenuta-button" (click)="newTipoRitenuta()" aria-label="add tipoRitenuta">
+            <button mat-fab class="accent" id="add-tipo-ritenuta-button" (click)="newTipoRitenuta()" aria-label="add tipoRitenuta">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

@@ -1,7 +1,6 @@
 import { OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AigGenericComponentService } from './generic-component.service';
-import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 export class GenericComponent implements OnInit, OnDestroy {
     constructor(

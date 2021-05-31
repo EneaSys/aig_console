@@ -1,31 +1,35 @@
-<div id="aig-social-detail-page" class="page-layout blank">
+<div class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
-
-            <div class="fuse-card auto-width p-16">
-
-                
+        <div class="widget" fxFlex.gt-sm="auto">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'COMMERCE.PRODUCTOR' | translate }}</div>
+                <hr>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">
+                    ID: {{ producerDTO.id }}
+                </div>
                 <entity-detail-producer [producerDTO]="producerDTO"></entity-detail-producer>
-
-                <button mat-stroked-button color="primary" (click)="editProducer(producerDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteProducer(producerDTO.id)">Delete</button>
-
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProducer(producerDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteProducer(producerDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
-
-            <br>
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Inventory items</b></div>
-                <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC"
-                    [error]="inventoryItemError"></aig-inventory-item-list-table>
-
-            </div>
-
         </div>
+    </div>
 
+    <div class="widget" fxFlex.gt-sm="auto">
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.INVENTORY_ITEMS' | translate | titlecase }}</b></div>
+            <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC"
+                    [error]="inventoryItemError">
+            </aig-inventory-item-list-table>
+
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addInventoryItem(producerDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </div>
 
 </div>

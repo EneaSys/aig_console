@@ -13,44 +13,26 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
-        
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="companyPreparatorEopooCode">
-            <mat-header-cell *matHeaderCellDef> companyPreparatorEopooCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.companyPreparatorEopooCode }} </mat-cell>
+        <ng-container matColumnDef="preparatorCompany">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.PREPARATOR_COMPANY' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.companyPreparatorEopoo | eopooName }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="note">
-            <mat-header-cell *matHeaderCellDef> note </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. note }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.NOTE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.note }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="partecipationId">
-            <mat-header-cell *matHeaderCellDef> partecipationId </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipationId}} </mat-cell>
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.STATUS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status.description}}</mat-cell>
         </ng-container>
-
-        <ng-container matColumnDef="partecipationProposerEopooCode">
-            <mat-header-cell *matHeaderCellDef> partecipationProposerEopooCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.partecipationProposerEopooCode}} </mat-cell>
-        </ng-container>
-
-        
-        <ng-container matColumnDef="statusDescription">
-            <mat-header-cell *matHeaderCellDef> statusDescription </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. statusDescription}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="statusId">
-            <mat-header-cell *matHeaderCellDef> statusId </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. statusId}} </mat-cell>
-        </ng-container>
-
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -61,15 +43,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/preparation/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>{{ 'MAIN.DETAILS' | translate }}</span>
                     </button>
                     <button mat-menu-item (click)="editPreparation(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate }}</span>
                       </button>
                     <button mat-menu-item (click)="deletePreparation(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate }}</span>
                       </button>
                   </mat-menu>
             </mat-cell>

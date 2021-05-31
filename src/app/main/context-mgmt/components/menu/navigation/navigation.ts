@@ -178,7 +178,7 @@ export const contextNavigation: FuseNavigation[] = [
 					},
 					{
 						id       : 'seller',
-						title    : 'Negozi',
+						title    : 'Venditori',
 						type     : 'item',
 						icon     : 'shopping_basket',
 						url      : '/commerce/seller',
@@ -270,6 +270,43 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/s6d/cpv',
 						permission: ['e4y.account.get'],
 					},
+
+					{
+						id       : '',
+						title    : 'Award Criterion',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/award-criterion',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : '',
+						title    : 'Partecipation Type',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/partecipation-type',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : '',
+						title    : 'Procurement Status',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/procurement-status',
+						permission: ['e4y.account.get'],
+					},
+					{
+						id       : '',
+						title    : 'Procurement Lot Status',
+						type     : 'item',
+						icon     : 'arrow_right',
+						url      : '/s6d/procurement-lot-status',
+						permission: ['e4y.account.get'],
+					},
+
+					
 					{
 						id       : '',
 						title    : 'Ipp Modality',

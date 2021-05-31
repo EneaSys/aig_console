@@ -3,7 +3,7 @@
         <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
-                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di vendite</span>
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">{{ 'COMMERCE.SALES_MANAGER' | translate | titlecase }}</span>
             </div>
 
             <div fxLayout="row" >
@@ -29,13 +29,13 @@
 
 
 
-               <mat-tab label="Gestione vendite">
-                    <aig-purchase-list-page ></aig-purchase-list-page>
+               <mat-tab label="{{ 'COMMERCE.SALES_MANAGEMENT' | translate | titlecase }}">
+                    <aig-purchase-list-page [staticSeller]= "selectedSeller"></aig-purchase-list-page>
                 </mat-tab>
 
 
 
-                <mat-tab label="Clienti">
+                <mat-tab label="{{ 'COMMERCE.BUYERS' | translate | titlecase }}">
                     <aig-buyer-list-page [staticSeller]= "selectedSeller"></aig-buyer-list-page>
                 </mat-tab>
 

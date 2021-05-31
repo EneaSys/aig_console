@@ -5,10 +5,10 @@
 		<div class="content">
 			<div>
 				<div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-					<button mat-raised-button (click)="resetFiltersWarehouseHandling()">Resetta filtri</button>
+					<button mat-raised-button (click)="resetFiltersWarehouseHandling()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
 				</div>
 				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
-					<span class="h3">Filtri</span>
+					<span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
 				</div>
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
@@ -25,7 +25,7 @@
 
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Data</mat-label>
+										<mat-label>{{ 'COMMERCE.DATE' | translate | titlecase }}</mat-label>
 										<input formControlName="date" matInput [matDatepicker]="picker">
 										<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 										<mat-datepicker #picker></mat-datepicker>
@@ -34,7 +34,7 @@
 
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Tipo di Movimentazione</mat-label>
+										<mat-label>{{ 'COMMERCE.HANDLING_TYPE' | translate | titlecase }}</mat-label>
 										<mat-select formControlName="warehouseHandlingType">
 											<mat-option [value]="'LOAD'">LOAD</mat-option>
 											<mat-option [value]="'SHIFT'">SHIFT</mat-option>
@@ -45,7 +45,7 @@
 
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Magazzino di Carico</mat-label>
+										<mat-label>{{ 'COMMERCE.LOAD_WAREHOUSE' | translate | titlecase }}</mat-label>
 										<input formControlName="warehouseToLoad" matInput
 											[matAutocomplete]="warehouseToLoadAutocomplete">
 										<mat-autocomplete #warehouseToLoadAutocomplete="matAutocomplete"
@@ -58,7 +58,7 @@
 
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Magazzino di Scarico</mat-label>
+										<mat-label>{{ 'COMMERCE.UNLOAD_WAREHOUSE' | translate | titlecase }}</mat-label>
 										<input formControlName="warehouseToUnload" matInput
 											[matAutocomplete]="warehouseToUnloadAutocomplete">
 										<mat-autocomplete #warehouseToUnloadAutocomplete="matAutocomplete"
@@ -70,7 +70,7 @@
 								</div>
 
 								<div fxLayout="row" fxLayoutAlign="end top">
-									<button type="submit" mat-raised-button color="accent">Cerca</button>
+									<button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
 								</div>
 							</form>
 						</div>
@@ -89,7 +89,7 @@
 				(click)="toggleSidebar('warehouse-handling-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
-			<h2>Elenco Movimentazioni di Magazzino</h2>
+			<h2>{{ 'COMMERCE.WAREHOUSE_HANDLINGS' | translate | titlecase }}</h2>
 		</div>
 		<!-- / HEADER -->
 		<!-- CONTENT -->

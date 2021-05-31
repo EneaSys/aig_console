@@ -11,68 +11,68 @@
     <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef (click)="test()"> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="cig">
-            <mat-header-cell *matHeaderCellDef (click)="test()"> CIG </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.cig }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.CIG' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.cig }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_DESCRIPTION' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.description }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="offerExpiryDate">
-            <mat-header-cell *matHeaderCellDef> Offer Expiry Date </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.offerExpiryDate | date }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.OFFER_EXPIRY_DATE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.offerExpiryDate | date: 'dd/MM/yyyy' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="amount">
-            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.baseAmount | currency:'EUR' }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_AMOUNT' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.baseAmount | currency:'EUR' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="securityAmount">
-            <mat-header-cell *matHeaderCellDef> Security Amount </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.securityAmount }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_SECURITY_AMOUNT' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.securityAmount }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="locality">
-            <mat-header-cell *matHeaderCellDef> Località </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.istatCode }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOCALITY' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.istatCode }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="nustCode">
-            <mat-header-cell *matHeaderCellDef> nustCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.nustCode }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.NUTIS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.nustCode }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippLotTypeCode }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_TYPE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.type.name }}</mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="category">
-            <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.ippLotCategoryCode }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_CATEGORIES' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.category.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="cpvCode">
-            <mat-header-cell *matHeaderCellDef> cpvCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.cpvCode }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.CPV_CODE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.cpvCode }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="awardCriterionCode ">
-            <mat-header-cell *matHeaderCellDef> award Criterion Code </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.awardCriterionCode }} </mat-cell>
+        <ng-container matColumnDef="awardCriterion">
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.AWARD_CRITERION' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.awardCriterion.name }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="procurementLotStatusCode">
-            <mat-header-cell *matHeaderCellDef>  procurementLotStatusCode </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e. procurementLotStatusCode}} </mat-cell>
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>{{ 'MAIN.STATUS' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.status.description }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">
@@ -84,15 +84,15 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/procurement-lot/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>{{ 'MAIN.DETAILS' | translate }}</span>
                     </button>
                     <button mat-menu-item (click)="editProcurementLot(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate }}</span>
                       </button>
                     <button mat-menu-item (click)="deleteProcurementLot(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>{{ 'MAIN.DELETE' | translate }}</span>
                       </button>
                 </mat-menu>
             </mat-cell>

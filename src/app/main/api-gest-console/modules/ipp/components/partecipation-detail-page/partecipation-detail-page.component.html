@@ -1,17 +1,115 @@
 <div id="aig-partecipation-detail-page" class="page-layout blank">
+
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
 
-
-                <div class="h1 m-16">Partecipazione</div>
-                <div class="h1 m-16">ID:{{ partecipationDTO.id }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Cig:{{partecipationDTO.procurementLot.cig}}</div>
-
-                <button mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deletePartecipation(partecipationDTO.id)">Delete</button>
-
+        <div class="widget" fxFlex.gt-sm="34">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PARTECIPATION' | translate }}</div>
+                <hr>
+                <aig-partecipation-detail-box [partecipation]="partecipationDTO"></aig-partecipation-detail-box>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editPartecipation(partecipationDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deletePartecipation(partecipationDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
         </div>
+
+        <div class="widget" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT_LOT' | translate }}</div>
+                <hr>
+                <aig-procurement-lot-detail-box [procurementLot]="partecipationDTO.procurementLot"></aig-procurement-lot-detail-box>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="accent" [routerLink]="'/ipp/procurement-lot/detail/' + partecipationDTO.procurementLot.id">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurementLot(partecipationDTO.procurementLot)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT' | translate }}</div>
+                <hr>
+                <aig-procurement-detail-box [procurement]="partecipationDTO.procurementLot.procurement"></aig-procurement-detail-box>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="accent" [routerLink]="'/ipp/procurement/detail/' + partecipationDTO.procurementLot.procurement.id">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editProcurement(partecipationDTO.procurementLot.procurement)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DESIGNED_COMPANIES' | translate | titlecase }}</b></div>
+                
+                <aig-designated-company-list-table 
+                    [dataSource]="designatedCompanyDTOs" 
+                    [displayColumns]="designatedCompanyDC"
+                    [error]="designatedCompanyError">
+                </aig-designated-company-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDesignatedCompany(partecipationDTO)" aria-label="add designated company">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DOSSIERS' | translate | titlecase }}</b></div>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDesignatedCompany(partecipationDTO)" aria-label="add designated company">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.INSURANCE_POLICIES' | translate | titlecase }}</b></div>
+
+                <aig-insurance-policy-list-table [dataSource]="insurancePolicyDTOs" [displayColumns]="insurancePolicyDC"[error]="insurancePolicyError"></aig-insurance-policy-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newInsurancePolicy(partecipationDTO)" aria-label="add insurance policy">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.PREPARATIONS' | translate | titlecase }}</b></div>
+                
+                <aig-preparation-list-table [dataSource]="preparationDTOs" [displayColumns]="preparationDC" [error]="preparationError"></aig-preparation-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newPreparation(partecipationDTO)"aria-label="add preparation">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
 </div>

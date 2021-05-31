@@ -2,16 +2,20 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
-import { CpvDTO, ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
+import { CpvDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotStatusDTO, IlPpProcurementLotTypeDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
+
+import { locale as italian } from '../../i18n/it';
+import { locale as english } from '../../i18n/en';
 
 @Component({
     selector: 'aig-procurement-lot-new-update-form',
@@ -37,18 +41,30 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         private ippAutocompleteFilterService : AigIppAutocompleteService,
         public ippAutocompleteDisplayService : AigIppAutocompleteDisplayService,
         
+        private _fuseTranslationLoaderService: FuseTranslationLoaderService,
         private eventService: EventService,
-    ) { }
+    ) {
+        this._fuseTranslationLoaderService.loadTranslations(italian, english);
+    }
 
     @Input()
     procurementLot: ProcurementLotDTO;
 
+    @Input()
+    procurement: ProcurementDTO;
+
     procurementLotNewUpdateForm: FormGroup;
 
+    isUpdate: boolean = false;
+
+    procurementLotResult: any;
+
     filteredProcurement: Observable<ProcurementDTO[]>;
-    filteredIppLotType: Observable<ItalianPublicProcurementLotTypeDTO[]>;
-    filteredIppLotCategory: Observable<ItalianPublicProcurementLotCategoryDTO[]>;
     filteredCpv: Observable<CpvDTO[]>;
+    filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
+    filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
+    filteredProcurementLotAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
+    filteredProcurementLotStatus: Observable<IlPpProcurementLotStatusDTO[]>;
 
 
 
@@ -56,7 +72,9 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
             id: [''],
-            procurement: ['', [Validators.required, AigValidator.haveId] ],
+            
+            procurement: [this.procurement, [Validators.required, AigValidator.haveId] ],
+
             cig: ['', Validators.required],
             description: ['', Validators.required],
             offerExpiryDate: ['', Validators.required],
@@ -64,23 +82,26 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
             securityAmount: [''],
             istatCode: [''],
             nustCode: [''],
-            ippLotType: ['', [Validators.required, AigValidator.haveId] ],
-            ippLotCategory: ['', [Validators.required, AigValidator.haveId] ],
+            
             cpv: ['', [Validators.required, AigValidator.haveId]],
-            awardCriterion: [''],
-            procurementLotStatus: [''],
+            type: ['', [Validators.required, AigValidator.haveId] ],
+            category: ['', [Validators.required, AigValidator.haveId] ],
+            awardCriterion: ['', [Validators.required, AigValidator.haveId] ],
+            status: ['', [Validators.required, AigValidator.haveId] ],
         })
         
         if (this.procurementLot != null) {
             this.procurementLotNewUpdateForm.patchValue(this.procurementLot);
+            this.isUpdate = true;
         }
 
         this.filteredProcurement = this.ippAutocompleteFilterService.filterProcurement(this.procurementLotNewUpdateForm.controls['procurement'].valueChanges);
-        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['ippLotType'].valueChanges);
-        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotNewUpdateForm.controls['ippLotCategory'].valueChanges);
+        
         this.filteredCpv = this.standardAutocompleteFilterService.filterCpv(this.procurementLotNewUpdateForm.controls['cpv'].valueChanges);
-
-
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['type'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotNewUpdateForm.controls['category'].valueChanges);
+        this.filteredProcurementLotAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotNewUpdateForm.controls['awardCriterion'].valueChanges);
+        this.filteredProcurementLotStatus = this.standardAutocompleteFilterService.filterIlPpProcurementLotStatus(this.procurementLotNewUpdateForm.controls['status'].valueChanges);
     }
 
     async submit() {
@@ -91,27 +112,28 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurementLot: ProcurementLotDTO = this.procurementLotNewUpdateForm.value;
+        let procurementLot: any = this.procurementLotNewUpdateForm.value;
         procurementLot.procurementId = this.procurementLotNewUpdateForm.value.procurement.id;
-        procurementLot.ippLotCategoryCode = this.procurementLotNewUpdateForm.value.ippLotCategory.id;
-        procurementLot.ippLotTypeCode = this.procurementLotNewUpdateForm.value.ippLotType.id;
-        procurementLot.cpvCode = this.procurementLotNewUpdateForm.value.cpv.id;
-        procurementLot.awardCriterionCode = "1";
-        procurementLot.procurementLotStatusCode = "1";
-
-
         
+        procurementLot.cpvCode = this.procurementLotNewUpdateForm.value.cpv.code;
+        procurementLot.categoryCode = this.procurementLotNewUpdateForm.value.category.code;
+        procurementLot.typeCode = this.procurementLotNewUpdateForm.value.type.code;
+        procurementLot.awardCriterionCode = this.procurementLotNewUpdateForm.value.awardCriterion.code;
+        procurementLot.statusCode = this.procurementLotNewUpdateForm.value.status.code;
 
         try {
             let postOrPut: string;
 
-            if (this.procurementLot.id > 0) {
+            if (this.isUpdate) {
                 await this.procurementLotResourceService.updateProcurementLotUsingPUT(procurementLot).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.procurementLotResourceService.createProcurementLotUsingPOST(procurementLot).toPromise();
                 postOrPut = "created";
             }
+
+            this.procurementLotResult = procurementLot;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
@@ -122,7 +144,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newProcurement() {
+    newProcurementLot() {
         this.setStep("form");
     }
 

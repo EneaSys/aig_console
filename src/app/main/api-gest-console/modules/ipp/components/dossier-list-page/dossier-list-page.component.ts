@@ -33,22 +33,18 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 	//			---- TABLE AND SEARCH SECTION ----
 
-	dossierSearchFormGroup: FormGroup;
-	dossierPaginationSize: number;
-	dossierFilters: any;
-
-	dossierLength: number;
 	dossierDTOs: DossierDTO[];
+	dossierDC: string[];
 	dossierError: any;
 
-	dossierDC: string[];
+	dossierSearchFormGroup: FormGroup;
+	dossierFilters: any;
 
+	dossierPaginationSize: number;
+	dossierLength: number;
 
 	private initDossierSearch() {
-		this.dossierDC = ["id", "description", "dossierCode", "partecipation", "preparation", "procurement", "procurementLot", "buttons"];
-
 		this.dossierPaginationSize = 10;
-
 
 		this.dossierSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -58,14 +54,16 @@ export class AigDossierListPageComponent extends GenericComponent {
 			preparation: [''],
 			procurement: [''],
 			procurementLot: ['']
-
 		});
+
+		this.dossierDC = ["id", "description", "dossierCode", "partecipation", "preparation", "procurement", "procurementLot", "buttons"];
 	}
 
 	private clearFiltersDossier() {
 		this.dossierFilters = {
 			idEquals: null,
 			dossierCodeContains: null,
+			descriptionContains: null,
 		}
 	}
 
@@ -76,7 +74,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 		this.dossierFilters.size = this.dossierPaginationSize;
 
 		try {
-			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET({}).toPromise();
+			this.dossierLength = await this.dossierResourceService.countDossiersUsingGET(this.dossierFilters).toPromise();
 
 			if (this.dossierLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
@@ -84,14 +82,12 @@ export class AigDossierListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.dossierDTOs = await this.dossierResourceService.getAllDossiersUsingGET({}).toPromise();
+			this.dossierDTOs = await this.dossierResourceService.getAllDossiersUsingGET(this.dossierFilters).toPromise();
 		} catch (e) {
 			console.log(e);
 			this.dossierError = e;
 		}
 	}
-
-
 
 	showAllDossier() {
 		this.resetFiltersDossier();
@@ -118,9 +114,10 @@ export class AigDossierListPageComponent extends GenericComponent {
 			this.searchDossier(0);
 			return;
 		}
-		this.dossierFilters.idEquals = null;
 
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+		this.dossierFilters.idEquals = null;
+		this.dossierFilters.dossierCodeContains = this.dossierSearchFormGroup.controls.dossierCode.value;
+		this.dossierFilters.descriptionContains = this.dossierSearchFormGroup.controls.description.value;
 
 		this.searchDossier(0);
 	}

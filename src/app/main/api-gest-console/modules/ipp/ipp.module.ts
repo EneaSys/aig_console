@@ -17,7 +17,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FuseSidebarModule } from '@fuse/components';
-import { AigIppClientModule } from 'aig-italian-public-procurement';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
@@ -55,6 +54,8 @@ import { AigDesignatedCompanyDetailPageComponent } from './components/designated
 import { AigInsurancePolicyStatusNewUpdateDialogComponent } from './components/insurance-policy-status-new-update-dialog/insurance-policy-status-new-update-dialog.component';
 import { AigInsurancePolicyStatusListPageComponent } from './components/insurance-policy-status-list-page/insurance-policy-status-list-page.component';
 import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 
 @NgModule({
@@ -63,14 +64,16 @@ import { AigInsurancePolicyStatusDetailPageComponent } from './components/insura
 
         CommonModule,
         AigCommonIppModule,
-        AigIppClientModule,
         AigItalianLegislationApiModule,
+        CommonGenericModule,
        
         FormsModule,
         ReactiveFormsModule,
         
         FuseSharedModule,
         FuseSidebarModule,
+
+        TranslateModule,
         
         MatIconModule,
         MatInputModule,

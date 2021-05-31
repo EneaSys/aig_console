@@ -3,11 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
-import { SocialActionResourceService, SocialActionDTO, NaturaResourceService, NaturaDTO } from 'aig-standard';
+import { IlFeNaturaResourceService, IlFeNaturaDTO } from 'aig-standard';
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigSocialActionNewUpdateModalComponent } from '../social-action-new-update-modal/social-action-new-update-modal.component';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { AigNaturaNewUpdateDialogComponent } from '../natura-new-update-dialog/natura-new-update-dialog.component';
@@ -22,18 +21,18 @@ export class AigNaturaDetailPageComponent extends GenericComponent {
         private _snackBar: MatSnackBar,
         private router: Router,
         private _fuseProgressBarService: FuseProgressBarService,
-        private naturaResourceService: NaturaResourceService,
+        private naturaResourceService: IlFeNaturaResourceService,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
         ) { super(aigGenericComponentService) }
 
-    natura: NaturaDTO;
+    natura: IlFeNaturaDTO;
     
     async loadComponent() {
         if(this.firstLoad) {
             this.natura = this.route.snapshot.data.natura;
         } else {
-            this.natura = await this.naturaResourceService.getNaturaUsingGET(this.natura.id).toPromise();
+            this.natura = await this.naturaResourceService.getIlFeNaturaUsingGET(this.natura.id).toPromise();
         }
     }
 
@@ -41,7 +40,7 @@ export class AigNaturaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.show();
     
         try {
-            await this.naturaResourceService.deleteNaturaUsingDELETE(id).toPromise();
+            await this.naturaResourceService.deleteIlFeNaturaUsingDELETE(id).toPromise();
     
             this._snackBar.open(`Natura: '${id}' deleted.`, null, { duration: 2000, });
             
@@ -52,7 +51,7 @@ export class AigNaturaDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
       }
 
-    editNatura(natura: NaturaDTO) {
+    editNatura(natura: IlFeNaturaDTO) {
         this.dialog.open(AigNaturaNewUpdateDialogComponent, { data: { natura: natura } });
     }
 

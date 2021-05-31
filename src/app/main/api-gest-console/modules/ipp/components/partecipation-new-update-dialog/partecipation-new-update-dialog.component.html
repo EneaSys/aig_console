@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span  class="title dialog-title">Partecipation Form </span>
+            <span *ngIf="data.partecipation == null" class="title dialog-title">Crea partecipazione</span>
+            <span *ngIf="data.partecipation != null" class="title dialog-title">Modifica partecipazione</span>
             
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
@@ -10,6 +11,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <aig-partecipation-new-update-form [partecipation]="data.partecipation"></aig-partecipation-new-update-form>
+        <aig-partecipation-new-update-form [procurementLot]="data.procurementLot" [partecipation]="data.partecipation"></aig-partecipation-new-update-form>
     </div>
 </div>

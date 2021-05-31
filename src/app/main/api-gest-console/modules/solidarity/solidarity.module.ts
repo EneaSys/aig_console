@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {NgxPrintModule} from 'ngx-print';
 import { AigSolidarityDashboardComponent } from './components/solidarity-dashboard-page/solidarity-dashboard-page.component';
 import { AigSolidarityRequestModulePageComponent } from './components/solidarity-request-module-page/solidarity-request-module-page.component';
+import { AigSolidarityDashboard2Component } from './components/solidarity-dashboard2-component/solidarity-dashboard2-component.component';
 
 @NgModule({
     imports: [ 
@@ -63,6 +64,7 @@ import { AigSolidarityRequestModulePageComponent } from './components/solidarity
         AigSolidarityRequestDetailPageComponent,
         AigSolidarityDashboardComponent,
         AigSolidarityRequestModulePageComponent,
+        AigSolidarityDashboard2Component,
     ],
     providers: [],
     exports: [],

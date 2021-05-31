@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CityDTO, CityResourceService, NaturaDTO, NaturaResourceService, RegimeFiscaleDTO, RegimeFiscaleResourceService } from 'aig-standard';
+import {IlFeNaturaDTO, IlFeNaturaResourceService} from 'aig-standard';
 
 @Injectable()
-export class NaturaResolver implements Resolve<Observable<NaturaDTO>> {
+export class NaturaResolver implements Resolve<Observable<IlFeNaturaDTO>> {
     constructor(
-        private naturaResourceService: NaturaResourceService
+        private naturaResourceService: IlFeNaturaResourceService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot) {
         var id: number = +route.paramMap.get('id');
-        return this.naturaResourceService.getNaturaUsingGET(id);
+        return this.naturaResourceService.getIlFeNaturaUsingGET(id);
     }
 }

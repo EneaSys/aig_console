@@ -20,23 +20,23 @@
         </ng-container>
 	
         <ng-container matColumnDef="date">
-            <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.DATE' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.date | date: 'dd/MM/yyyy' }} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="warehouseHandlingType">
-            <mat-header-cell *matHeaderCellDef>Tipo di Movimentazione</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.HANDLING_TYPE' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.warehouseHandlingType }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="warehouse">
-            <mat-header-cell *matHeaderCellDef>Magazzino</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.LOAD_WAREHOUSE' | translate | titlecase }} / {{ 'COMMERCE.UNLOAD_WAREHOUSE' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> 
-                <span *ngIf="e.warehouseToLoad">Carico: {{ e.warehouseToLoad.name }}</span> <br>
-                <span *ngIf="e.warehouseToUnload">Scarico: {{ e.warehouseToUnload.name }}</span>
+                <span *ngIf="e.warehouseToLoad">{{ 'COMMERCE.LOAD' | translate | titlecase }}: {{ e.warehouseToLoad.name }}</span>
+                /
+                <span *ngIf="e.warehouseToUnload">{{ 'COMMERCE.UNLOAD' | translate | titlecase }}: {{ e.warehouseToUnload.name }}</span>
             </mat-cell>
         </ng-container>
-
 
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -47,15 +47,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/commerce/warehouse-handling/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
                     </button>
                     <button mat-menu-item (click)="editWarehouseHandling(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
                       </button>
                     <button mat-menu-item (click)="deleteWarehouseHandling(e.id)">
                       <mat-icon>delete</mat-icon>
-                      <span>Delete</span>
+                      <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
                     </button>
                   </mat-menu>
             </mat-cell>

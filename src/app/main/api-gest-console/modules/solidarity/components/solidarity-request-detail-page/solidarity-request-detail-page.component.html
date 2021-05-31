@@ -54,8 +54,16 @@
 
 
 
-        <div *ngIf="foodProductRequestDTO.requestTypeId == 1" class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+
+
+
+
+
+
+
+
+            <div *ngIf="foodProductRequestDTO.requestTypeId == 1" class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ foodProductRequestDTO.id }}</div>
                 <div class="h4 m-8 ml-16">Data inserimento: {{ foodProductRequestDTO.reportingDate }}</div>
                 <div class="h1 m-16">
@@ -85,28 +93,6 @@
                 </div>
             </div>
 
-            <div class="fuse-card auto-width mt-8 p-16">
-                <table style="width: 100%;">
-                    <tr>
-                        <th>Richiedente</th>
-                        <th>Nome</th>
-                        <th>Cognome</th>
-                        <th>CF</th>
-                        <th>Data nascita</th>
-                        <th>Domande</th>
-                    </tr>
-                    <tr *ngFor="let familyMember of this.family">
-                        <td><span *ngIf="isSameOfPerson(familyMember, foodProductRequestDTO)">X</span></td>
-                        <td>{{ familyMember.nome }}</td>
-                        <td>{{ familyMember.cognome }}</td>
-                        <td>{{ familyMember.codice_fiscale_non_validato }}</td>
-                        <td>{{ familyMember.data_nascita }}</td>
-                        <td [ngClass]="{'domanda-duplicata': moreRequests(familyMember, foodProductRequestDTO)}">
-                            {{ familyMember.numero_domande }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
 
 
 
@@ -118,8 +104,9 @@
 
 
 
-        <div *ngIf="foodProductRequestDTO.requestTypeId == 2" class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
+
+
+            <div *ngIf="foodProductRequestDTO.requestTypeId == 2" class="fuse-card auto-width p-16">
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ foodProductRequestDTO.id }}</div>
                 <div class="h4 m-8 ml-16">Data inserimento: {{ foodProductRequestDTO.reportingDate }}</div>
                 <div class="h1 m-16">
@@ -154,6 +141,40 @@
 				</div>
             </div>
 
+
+
+
+            <div *ngIf="foodProductRequestDTO.requestTypeId == 3" class="fuse-card auto-width p-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ foodProductRequestDTO.id }}</div>
+                <div class="h4 m-8 ml-16">Data inserimento: {{ foodProductRequestDTO.reportingDate }}</div>
+                <div class="h1 m-16">
+                    <span>Categoria: </span>
+                    <span *ngIf="foodProductRequestDTO.familyUnit.city == ''">A</span>
+                    <span *ngIf="foodProductRequestDTO.familyUnit.city != ''">B</span>
+                </div>
+                <div class="h4 m-8 ml-16"><b>Conto:</b>
+                    <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> Meno di € 2.000,00</span>
+                    <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> Tra € 2.000,01 a € 5.000,00</span>
+                    <span style="color: red;" *ngIf="foodProductRequestDTO.familyUnit.telephone == 'C'"> Superiore di €
+                        5.000,01</span>
+				</div>
+				<div *ngIf="foodProductRequestDTO.familyUnit.city != ''">
+					<div class="h4 m-8 ml-16">
+						<b>Reddito Novembre 2020:</b>
+						{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: 'EUR' }}
+					</div>
+					<div class="h4 m-8 ml-16">
+						<b>Motivo reddito:</b>
+						{{ foodProductRequestDTO.familyUnit.city }}
+					</div>
+				</div>
+            </div>
+
+
+
+
+
+
             <div class="fuse-card auto-width mt-8 p-16">
                 <table style="width: 100%;">
                     <tr>
@@ -177,6 +198,17 @@
             </div>
         </div>
 
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 

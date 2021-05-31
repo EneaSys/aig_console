@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { ItalianPublicProcurementLotCategoryDTO, ItalianPublicProcurementLotCategoryResourceService } from 'aig-standard';
+import { IlPpProcurementLotCategoryDTO, IlPpProcurementLotCategoryResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
@@ -22,20 +22,21 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private ippLotCategoryResourceService: ItalianPublicProcurementLotCategoryResourceService,
+        private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
         private eventService: EventService,
     ) { }
 
     @Input()
-    ippLotCategory: ItalianPublicProcurementLotCategoryDTO;
+    ippLotCategory: IlPpProcurementLotCategoryDTO;
 
     ippLotCategoryNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.ippLotCategoryNewUpdateForm = this._formBuilder.group({
             id: [''],
-            name: ['', Validators.required],
             code: ['', Validators.required],
+            name: ['', Validators.required],
+            description: [''],
             wikiCode:['']
         })
 
@@ -50,15 +51,15 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         }
         this._fuseProgressBarService.show();
         this.setStep("loading");
-        let ippLotCategory: ItalianPublicProcurementLotCategoryDTO = this.ippLotCategoryNewUpdateForm.value;
+        let ippLotCategory: IlPpProcurementLotCategoryDTO = this.ippLotCategoryNewUpdateForm.value;
 
         try {
             let postOrPut;
             if (ippLotCategory.id != 0) {
-                await this.ippLotCategoryResourceService.updateItalianPublicProcurementLotCategoryUsingPUT(ippLotCategory).toPromise();
+                await this.ippLotCategoryResourceService.updateIlPpProcurementLotCategoryUsingPUT(ippLotCategory).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.ippLotCategoryResourceService.createItalianPublicProcurementLotCategoryUsingPOST(ippLotCategory).toPromise();
+                await this.ippLotCategoryResourceService.createIlPpProcurementLotCategoryUsingPOST(ippLotCategory).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

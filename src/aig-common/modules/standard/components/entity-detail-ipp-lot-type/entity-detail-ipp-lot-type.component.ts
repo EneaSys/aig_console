@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ItalianPublicProcurementLotTypeDTO } from 'aig-standard';
+import { IlPpProcurementLotTypeDTO } from 'aig-standard';
 
 
 @Component({
@@ -14,6 +14,6 @@ export class AigEntityDetailIppLotTypeComponent implements OnInit {
 
     @Input()
     
-    ippLotType: ItalianPublicProcurementLotTypeDTO;
+    ippLotType: IlPpProcurementLotTypeDTO;
 
 }

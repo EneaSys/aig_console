@@ -8,7 +8,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di cataloghi</span>
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">{{ 'COMMERCE.CATALOGS_MANAGER' | translate | titlecase }}</span>
 
             </div>
 
@@ -39,13 +39,13 @@
 
             <mat-tab-group dynamicHeight>
 
-                <mat-tab label="Gestione prezzi catalogo">
+                <mat-tab label="{{ 'COMMERCE.CATALOG_PRICES_MANAGEMENT' | translate | titlecase }}">
 
                     <aig-catalog-price-manager-list-table [staticCatalog]="selectedCatalog"></aig-catalog-price-manager-list-table>
 
                 </mat-tab>
 
-                <mat-tab label="Price list">
+                <mat-tab label="{{ 'COMMERCE.PRICE_LISTS' | translate | titlecase }}">
 
                     <aig-price-list-list-page [priceListDC]="priceListDC" [staticCatalog]="selectedCatalog">
                     </aig-price-list-list-page>

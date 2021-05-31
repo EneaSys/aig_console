@@ -1,42 +1,35 @@
-<div id="aig-buyer-detail-page" class="page-layout blank">
+<div class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
-        <div class="widget p-16" fxFlex.gt-sm="40">
 
-            <div class="fuse-card auto-width p-16">
-
-                <pre>{{ buyerDTO | json }}</pre>
-
-                <button mat-stroked-button color="primary" (click)="editBuyer(buyerDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteBuyer(buyerDTO.id)">Delete</button>
-
-            </div>
-
-            <!-- 
-                <div class="fuse-card auto-width p-16">
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Cliente</div>
-                <div class="h1 m-16">{{ buyer.eopoo | eopooName }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ buyer.id }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Codice Anagrafica: {{ buyer.eopooCode }}</div>
-                <div class="h4 m-8 ml-16">Stato: {{ buyer.statusNote }}</div>
-            </div>
-            <div class="fuse-card auto-width p-16 mt-16">
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Venditore</div>
-                <div class="h2 m-16">{{ buyer.seller.name }}</div>
-            </div>
-            <div *ngIf="loadingBuyerValidationImage" fxLayout="row" fxLayoutAlign="center center" fxFlex>
-                <mat-spinner></mat-spinner>
-                Caricamento file in corso
-            </div>
-        -->
-
-        </div>
-        <div class="widget p-16" fxFlex.gt-sm="60">
-            <div class="fuse-card auto-width p-16">
-                Acquisti:
-                <aig-buy-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns" [error]="purchaseError">
-                </aig-buy-list-table>
+        <div class="widget" fxFlex.gt-sm="auto">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'COMMERCE.BUYER' | translate }}</div>
+                <hr>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">
+                    ID: {{ buyerDTO.id }}
+                </div>
+                <aig-buyer-box-detail [buyerDTO]="buyerDTO"></aig-buyer-box-detail>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editBuyer(buyerDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteBuyer(buyerDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="widget" fxFlex.gt-sm="auto">
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.PURCHASES' | translate | titlecase }}</b></div>
+            <aig-purchase-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns"
+                [error]="purchaseError">
+            </aig-purchase-list-table>
+
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPurchase(buyerDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+
 </div>

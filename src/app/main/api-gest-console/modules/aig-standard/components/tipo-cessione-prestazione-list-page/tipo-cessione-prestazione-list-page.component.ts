@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { CityResourceService, CityDTO, TipoRitenutaResourceService, TipoRitenutaDTO, TipoCessionePrestazioneResourceService, TipoCessionePrestazioneDTO } from 'aig-standard';
+import {IlFeCessionePrestazioneTipoResourceService, IlFeCessionePrestazioneTipoDTO } from 'aig-standard';
 import { MatDialog } from '@angular/material/dialog';
-import { AigCityNewUpdateModalComponent } from '../city-new-update-modal/city-new-update-modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
-import { AigTipoRitenutaNewUpdateDialogComponent } from '../tipo-ritenuta-new-update-dialog/tipo-ritenuta-new-update-dialog.component';
 import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from '../tipo-cessione-prestazione-new-update-dialog/tipo-cessione-prestazione-new-update-dialog.component';
 
 @Component({
@@ -16,7 +14,7 @@ import { AigTipoCessionePrestazioneNewUpdateDialogComponent } from '../tipo-cess
 })
 export class AigTipoCessionePrestazioneListPageComponent extends GenericComponent {
     constructor(
-        private tipoCessionePrestazioneResourceService: TipoCessionePrestazioneResourceService,
+        private tipoCessionePrestazioneResourceService: IlFeCessionePrestazioneTipoResourceService,
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -35,7 +33,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 
     //			---- TABLE AND SEARCH SECTION ----
     
-	tipoCessionePrestazioneDTOs: TipoCessionePrestazioneDTO[];
+	tipoCessionePrestazioneDTOs:IlFeCessionePrestazioneTipoDTO[];
     tipoCessionePrestazioneDC: string[];
 	tipoCessionePrestazioneError: any;
 
@@ -46,15 +44,17 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 	tipoCessionePrestazioneLength: number;
 
 	private initTipoCessionePrestazioneSearch() {
-		this.tipoCessionePrestazioneDC = ["id", "value","description", "buttons"];
+		this.tipoCessionePrestazioneDC = ['id','code', 'name','description','wikiCode', 'buttons'];
 
 		this.tipoCessionePrestazionePaginationSize = 10;
 		
 
 		this.tipoCessionePrestazioneSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			value: [''],
-			
+			code: [''],
+			description: [''],
+			name: [''],
+			wikiCode: [''],
 		});
 	}
     
@@ -73,7 +73,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 		this.tipoCessionePrestazioneFilters.size = this.tipoCessionePrestazionePaginationSize;
 
 		try {
-			this.tipoCessionePrestazioneLength = await this.tipoCessionePrestazioneResourceService.countTipoCessionePrestazionesUsingGET(this.tipoCessionePrestazioneFilters).toPromise();
+			this.tipoCessionePrestazioneLength = await this.tipoCessionePrestazioneResourceService.countIlFeCessionePrestazioneTiposUsingGET(this.tipoCessionePrestazioneFilters).toPromise();
 
 			if(this.tipoCessionePrestazioneLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -81,7 +81,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 				return;
 			}
 
-			this.tipoCessionePrestazioneDTOs = await this.tipoCessionePrestazioneResourceService.getAllTipoCessionePrestazionesUsingGET(this.tipoCessionePrestazioneFilters).toPromise();
+			this.tipoCessionePrestazioneDTOs = await this.tipoCessionePrestazioneResourceService.getAllIlFeCessionePrestazioneTiposUsingGET(this.tipoCessionePrestazioneFilters).toPromise();
 		} catch (e) {
 			this.tipoCessionePrestazioneError = e;
 		}

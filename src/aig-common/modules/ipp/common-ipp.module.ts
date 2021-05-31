@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AigCommonModule } from 'aig-common/common.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AigIppClientModule } from 'aig-italian-public-procurement';
 import { AigProcurementListTableComponent } from './components/procurement-list-table/procurement-list-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -38,7 +37,7 @@ import { AigIppAutocompleteDisplayService } from './service/autocomplete-display
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { ProcurementResolver } from './resolver/procurement.resolver';
 import { ProcurementLotResolver } from './resolver/procurement-lot.resolver';
-import { AigDesignatedCompanyListTableComponent } from './components/designated-compnay-list-table/designated-company-list-table.component';
+import { AigDesignatedCompanyListTableComponent } from './components/designated-company-list-table/designated-company-list-table.component';
 import { AigDesignatedCompanyNewUpdateFormComponent } from './components/designated-company-new-update-form/designated-company-new-update-form.component';
 import { DesignatedCompanyResolver } from './resolver/designated-company.resolver';
 import { AigCommerceAutocompleteDisplayService } from '../commerce/service/autocomplete-display.service';
@@ -51,6 +50,13 @@ import { InsurancePolicyStatusResolver } from './resolver/insurance-policy-statu
 import { AigInsurancePolicyStatusListTableComponent } from './components/insurance-policy-status-list-table/insurance-policy-status-list-table.component';
 import { AigInsurancePolicyStatusNewUpdateFormComponent } from './components/insurance-policy-status-new-update-form/insurance-policy-status-new-update-form.component';
 import { AigProcurementLotListTableNgComponent } from './components/procurement-lot-list-table-ng/procurement-lot-list-table-ng.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { AigProcurementDetailBoxComponent } from './components/procurement-detail-box/procurement-detail-box.component';
+import { AigProcurementLotDetailBoxComponent } from './components/procurement-lot-detail-box/procurement-lot-detail-box.component';
+import { AigPreparationDetailBoxComponent } from './components/preparation-detail-box/preparation-detail-box.component';
+import { AigPartecipationDetailBoxComponent } from './components/partecipation-detail-box/partecipation-detail-box.component';
+import { AigDesignatedCompanyDetailBoxComponent } from './components/designated-company-detail-box/designated-company-detail-box.component';
+import { AigInsurancePolicyDetailBoxComponent } from './components/insurance-policy-detail-box/insurance-policy-detail-box.component';
 
 import { TableModule } from 'primeng/table';
 
@@ -66,7 +72,8 @@ import { TableModule } from 'primeng/table';
         ReactiveFormsModule,
         FlexLayoutModule,
 
-        AigIppClientModule,
+        TranslateModule,
+
         AigItalianLegislationApiModule,
 
         MatTableModule,
@@ -124,6 +131,12 @@ import { TableModule } from 'primeng/table';
         AigInsurancePolicyStatusNewUpdateFormComponent,
     
         AigProcurementLotListTableNgComponent,
+        AigProcurementDetailBoxComponent,
+        AigProcurementLotDetailBoxComponent,
+        AigPartecipationDetailBoxComponent,
+        AigPreparationDetailBoxComponent,
+        AigDesignatedCompanyDetailBoxComponent,
+        AigInsurancePolicyDetailBoxComponent,
     ],
     exports: [
         AigProcurementListTableComponent,
@@ -150,6 +163,12 @@ import { TableModule } from 'primeng/table';
         AigInsurancePolicyStatusNewUpdateFormComponent,
 
         AigProcurementLotListTableNgComponent,
+        AigProcurementDetailBoxComponent,
+        AigProcurementLotDetailBoxComponent,
+        AigPartecipationDetailBoxComponent,
+        AigPreparationDetailBoxComponent,
+        AigDesignatedCompanyDetailBoxComponent,
+        AigInsurancePolicyDetailBoxComponent,
     ]
         
     

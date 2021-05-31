@@ -48,6 +48,14 @@ export const navigation: FuseNavigation[] = [
                 permission: ['s8y.request.get'],
             },
             {
+                id       : 'solidarity-dashboard2',
+                title    : 'Dashboard2',
+                type     : 'item',
+                icon     : 'dashboard',
+                url      : '/solidarity/dashboard2',
+                permission: ['s8y.request.get'],
+            },
+            {
                 id       : 'solidarity-request-list-page',
                 title    : 'Requests',
                 type     : 'item',
@@ -63,61 +71,32 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
             {
-                id       : 'dossier-list-page',
-                title    : 'Dossier',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/dossier',
-                permission: ['ipp.p9t.get'],
-            },
-            {
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
+                translate: 'NAV.IPP.PROCUREMENT',
                 type     : 'item',
-                icon     : 'build',
+                icon     : 'business_center',
                 url      : '/ipp/procurement',
                 permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',
+                translate: 'NAV.IPP.PROCUREMENT-LOT',
                 type     : 'item',
-                icon     : 'child_care',
+                icon     : 'next_week',
                 url      : '/ipp/procurement-lot',
                 permission: ['ipp.p9t.get'],
             },
             {
                 id       : 'partecipation-list-page',
                 title    : 'Partecipation',
+                translate: 'NAV.IPP.PARTECIPATION',
                 type     : 'item',
-                icon     : 'child_care',
+                icon     : 'network_locked',
                 url      : '/ipp/partecipation',
                 permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'designated-company-list-page',
-                title    : 'Designated Company',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/designated-company',
-                permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'preparation-list-page',
-                title    : 'Preparation',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/preparation',
-                permission: ['ipp.p9t.get'],
-            },
-            {
-                id       : 'insurance-policy-list-page',
-                title    : 'Insurance Policy',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/ipp/insurance-policy',
-                permission: ['ipp.p9t.get'],
-            },
+            }
         ]
     },
 
@@ -129,6 +108,7 @@ export const navigation: FuseNavigation[] = [
 			{
                 id       : 'inventory-item-list-page',
                 title    : 'Inventario',
+                translate: 'NAV.COMMERCE.INVENTORY',
                 type     : 'item',
                 icon     : 'assignment',
                 url      : '/commerce/inventory-item',
@@ -137,6 +117,7 @@ export const navigation: FuseNavigation[] = [
 			{
                 id       : 'warehouse-manager',
                 title    : 'Manager Magazzino',
+                translate: 'NAV.COMMERCE.WAREHOUSE_MANAGER',
                 type     : 'item',
                 icon     : 'store',
                 url      : '/commerce/warehouse-manager',
@@ -145,6 +126,7 @@ export const navigation: FuseNavigation[] = [
 			{
                 id       : 'seller-manager',
                 title    : 'Manager Venditore',
+                translate: 'NAV.COMMERCE.SELLER_MANAGER',
                 type     : 'item',
                 icon     : 'person_pin_circle',
                 url      : '/commerce/seller-manager',
@@ -153,6 +135,7 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'catalog-manager',
                 title    : 'Manager Catalogo',
+                translate: 'NAV.COMMERCE.CATALOG_MANAGER',
                 type     : 'item',
                 icon     : 'euro_symbol',
                 url      : '/commerce/catalog-manager',

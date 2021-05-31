@@ -2,8 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { CityDTO, CityResourceService, EsigibilitaIvaDTO, EsigibilitaIvaResourceService, NaturaDTO, NaturaResourceService, TipoCassaDTO, TipoCassaResourceService } from 'aig-standard';
+import { IlFeEsigibilitaIvaDTO, IlFeEsigibilitaIvaResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-esigibilita-iva-new-update-form',
@@ -18,7 +19,7 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-        private esigibilitaIvaResourceService: EsigibilitaIvaResourceService,
+        private esigibilitaIvaResourceService: IlFeEsigibilitaIvaResourceService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -26,21 +27,23 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    esigibilitaIva: EsigibilitaIvaDTO;
+    esigibilitaIva: IlFeEsigibilitaIvaDTO;
 
     @Input()
 	returnToParent: boolean = false; 
 
     @Output()
-	esigibilitaIvaOutput = new EventEmitter<EsigibilitaIvaDTO>();
+	esigibilitaIvaOutput = new EventEmitter<IlFeEsigibilitaIvaDTO>();
 
     esigibilitaIvaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.esigibilitaIvaNewUpdateForm = this._formBuilder.group({
-            id:[''],
-            value: ['', Validators.required],
+            id: [''],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
+            wikiCode:['']
 
         })
         if (this.esigibilitaIva!= null) {
@@ -57,16 +60,16 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let esigibilitaIva: EsigibilitaIvaDTO = this.esigibilitaIvaNewUpdateForm.value;
+        let esigibilitaIva: IlFeEsigibilitaIvaDTO = this.esigibilitaIvaNewUpdateForm.value;
 
         try {
             let postOrPut: string;
 
             if (esigibilitaIva.id != 0) {
-                await this.esigibilitaIvaResourceService.updateEsigibilitaIvaUsingPUT(esigibilitaIva).toPromise();
+                await this.esigibilitaIvaResourceService.updateIlFeEsigibilitaIvaUsingPUT(esigibilitaIva).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.esigibilitaIvaResourceService.createEsigibilitaIvaUsingPOST(esigibilitaIva).toPromise();
+                await this.esigibilitaIvaResourceService.createIlFeEsigibilitaIvaUsingPOST(esigibilitaIva).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();

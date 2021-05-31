@@ -5,10 +5,10 @@
 		<div class="content">
 			<div>
 				<div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-					<button mat-raised-button (click)="resetFiltersCatalog()">Resetta filtri</button>
+					<button mat-raised-button (click)="resetFiltersCatalog()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
 				</div>
 				<div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
-					<span class="h3">Filtri</span>
+					<span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
 				</div>
 				<div class="content" fusePerfectScrollbar>
 					<div class="nav material2">
@@ -23,13 +23,13 @@
 								</div>
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Name</mat-label>
+										<mat-label>{{ 'COMMERCE.CATALOG_NAME' | translate | titlecase }}</mat-label>
 										<input matInput type="text" formControlName="name">
 									</mat-form-field>
 								</div>
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Seller</mat-label>
+										<mat-label>{{ 'COMMERCE.SELLER' | translate | titlecase }}</mat-label>
 										<input matInput formControlName="seller" [matAutocomplete]="sellerAutocomplete">
 										<mat-autocomplete #sellerAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.sellerDisplayFn">
 											<mat-option *ngFor="let seller of filteredSeller | async" [value]="seller">{{ seller.name }}</mat-option>
@@ -37,7 +37,7 @@
 									</mat-form-field>
 								</div>
 								<div fxLayout="row" fxLayoutAlign="end top">
-									<button type="submit" mat-raised-button color="accent">Cerca</button>
+									<button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
 								</div>
 							</form>
 						</div>
@@ -55,7 +55,7 @@
         <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
             <mat-icon>menu</mat-icon>
         </button>
-        <h2>Elenco cataloghi</h2>
+        <h2>{{ 'COMMERCE.CATALOGS' | translate | titlecase }}</h2>
     </div>
     <!-- / HEADER -->
     <!-- CONTENT -->
