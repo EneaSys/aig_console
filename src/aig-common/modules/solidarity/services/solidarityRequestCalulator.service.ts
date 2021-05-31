@@ -73,4 +73,36 @@ export class AigSolidarityRequestCalculatorService {
 
         return amount;
     }
+
+    calculate3(foodProductRequestDTO: FoodProductRequestDTO) {
+        let amount: number;
+        {
+            let familyComponents: number = foodProductRequestDTO.familyUnit.adultNumber + foodProductRequestDTO.familyUnit.childrenNumber;
+
+            if(foodProductRequestDTO.familyUnit.city == "") {   // FASCIA A
+                if(familyComponents < 3) {
+                    amount = 200;
+                } else if(familyComponents == 3 ) {
+                    amount = 250;
+                } else if(familyComponents > 3 ) {
+                    amount = 300;
+                }
+            } else {                                            // FASCIA B
+                if(familyComponents < 3) {
+                    amount = 100;
+                } else if(familyComponents == 3 ) {
+                    amount = 150;
+                } else if(familyComponents > 3 ) {
+                    amount = 200;
+                }
+            }
+        }
+        
+        //Affitto
+        if (foodProductRequestDTO.requestStatusA) {
+            //amount = amount + 50;
+        }
+
+        return amount;
+    }
 }

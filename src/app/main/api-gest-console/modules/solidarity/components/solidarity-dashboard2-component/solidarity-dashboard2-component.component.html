@@ -1,0 +1,131 @@
+<div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
+    <div class="center">
+        <div class="content">
+            <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100">
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="30" fxFlex.gt-md="30">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div>Riepilogo</div>
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ total | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ totalCount }} / {{ numberOfRequests }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Totale pervenute: <b>{{ numberOfRequests }}</b><br>
+                            Approvate: <b>{{ totalCount }}</b><br>
+                            Non approvate: <b>{{ totalNotCount }}</b><br>
+                            Approvate con comodato: <b>{{ totalCountComodato }}</b><br>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="35" fxFlex.gt-md="35">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div>Approvate A</div>
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ fA | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate fascia A:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ fAcount }} / {{ totalCount }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: {{ fA2 | currency: 'EUR' }} - <b>{{ fA2count }}/{{ fAcount }}</b><br>
+                            Approvate con 3 componenti: {{ fA3 | currency: 'EUR' }} - <b>{{ fA3count }}/{{ fAcount }}</b><br>
+                            Approvate più di 3 componenti: {{ fA4 | currency: 'EUR' }} - <b>{{ fA4count }}/{{ fAcount }}</b><br>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="35" fxFlex.gt-md="35">
+                    <div class="fuse-widget-front">
+                        <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                            <div>Approvate B</div>
+                            <button mat-icon-button fuseWidgetToggle aria-label="more">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                            <div class="light-blue-fg font-size-72 line-height-72">
+                                {{ fB | currency: 'EUR' }}
+                            </div>
+                            <div class="h3 secondary-text font-weight-500">euro</div>
+                        </div>
+                        <div class="p-16 border-top" fxLayout="row" fxLayoutAlign="start center">
+                            <span class="h4 secondary-text text-truncate">
+                                Numero domande approvate fascia B:
+                            </span>
+                            <span class="h4 ml-8">
+                                {{ fBcount }} / {{ totalCount }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fuse-widget-back p-16 pt-32 mat-elevation-z2">
+                        <button mat-icon-button fuseWidgetToggle class="fuse-widget-flip-button"
+                            aria-label="Flip widget">
+                            <mat-icon class="s-16">close</mat-icon>
+                        </button>
+                        <div>
+                            Approvate meno di 3 componenti: {{ fB2 | currency: 'EUR' }} - <b>{{ fB2count }}/{{ fAcount }}</b><br>
+                            Approvate con 3 componenti: {{ fB3 | currency: 'EUR' }} - <b>{{ fB3count }}/{{ fAcount }}</b><br>
+                            Approvate più di 3 componenti: {{ fB4 | currency: 'EUR' }} - <b>{{ fB4count }}/{{ fAcount }}</b><br>
+                        </div>
+                    </div>
+                </fuse-widget>
+
+
+                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-md="100">
+                    <aig-solidarity-request-list-table [displayedColumns]="['id', 'surname', 'name', 'cf', 'familyTotal', 'cat3', 'reason', 'reddito', 'comodato', 'amount3']" [dataSource]="list"></aig-solidarity-request-list-table>
+                </fuse-widget>
+
+
+            </div>
+        </div>
+    </div>
+</div>
