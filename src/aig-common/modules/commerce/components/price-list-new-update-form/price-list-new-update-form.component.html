@@ -28,6 +28,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ priceListNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!priceListNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPriceList()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.PRICE_LIST' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.PRICE_LIST' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.PRICE_LIST' | translate | titlecase }}</div>
+    <aig-price-list-box-detail [priceListDTO]="priceListResult"></aig-price-list-box-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPriceList()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
 </div>

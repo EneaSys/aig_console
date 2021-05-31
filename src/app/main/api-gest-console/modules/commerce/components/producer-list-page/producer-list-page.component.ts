@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { ProducerDTO, ProducerResourceService } from 'aig-commerce';
-import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { AigCommerceGenericComponent } from '../commerce-generic-component';
 import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal-component/producer-new-update-modal.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { AigProducerNewUpdateModalComponent } from '../producer-new-update-modal
     templateUrl: './producer-list-page.component.html',
     styleUrls: ['./producer-list-page.component.scss']
 })
-export class AigProducerListPageComponent extends GenericComponent {
+export class AigProducerListPageComponent extends AigCommerceGenericComponent {
 	constructor(
 		private producerResourceService: ProducerResourceService,
 		private _formBuilder: FormBuilder,

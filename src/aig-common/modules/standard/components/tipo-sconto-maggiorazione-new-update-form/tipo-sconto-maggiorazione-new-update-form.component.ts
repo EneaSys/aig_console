@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { IlFeScontoMaggiorazioneTipoDTO, IlFeScontoMaggiorazioneTipoResourceService } from 'aig-standard';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-tipo-sconto-maggiorazione-new-update-form',
@@ -39,8 +40,8 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
     ngOnInit(): void {
         this.tipoScontoMaggiorazioneNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: ['', Validators.required],
-            name: ['', Validators.required],
+            code: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required, AigValidator.haveId]],
             description: [''],
             wikiCode:['']
         })

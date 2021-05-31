@@ -33,6 +33,10 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
     @Input()
     inventoryCategory: InventoryCategoryDTO;
 
+    isUpdate: boolean = false;
+
+    inventoryCategoryResult: any;
+
     inventoryCategoryNewUpdateForm: FormGroup;
 
     filteredParentCategory: Observable<InventoryCategoryDTO[]>;
@@ -40,12 +44,14 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
     ngOnInit(): void { 
         this.inventoryCategoryNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
+            name: ['', [Validators.required]],
             parent: [''],
         })
         
-        if (this.inventoryCategory != null) {
+        if (this.inventoryCategory != null && this.inventoryCategory.id != null) {
             this.inventoryCategoryNewUpdateForm.patchValue(this.inventoryCategory);
+            this.inventoryCategoryNewUpdateForm.controls.parent.setValue(this.inventoryCategory.inventoryCategory);
+            this.isUpdate = true
         }
 
         this.filteredParentCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryCategoryNewUpdateForm.controls['parent'].valueChanges);
@@ -65,22 +71,27 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
-            if (inventoryCategory.id != 0) {
+            let postOrPut: string;
+
+            if (this.isUpdate) {
                 await this.inventoryCategoryResourceService.updateInventoryCategoryUsingPUT(inventoryCategory).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.inventoryCategoryResourceService.createInventoryCategoryUsingPOST(inventoryCategory).toPromise();
                 postOrPut = "created";
             }
+
+            this.inventoryCategoryResult = inventoryCategory;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Inventory Category: '${inventoryCategory.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -88,10 +99,10 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

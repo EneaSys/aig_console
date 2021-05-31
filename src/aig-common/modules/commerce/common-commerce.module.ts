@@ -83,6 +83,11 @@ import { AigEntityDetailProducerComponent } from './components/producer-box-deta
 import { AigEntityDetailSellerComponent } from './components/seller-box-detail/entity-detail-seller.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-box-detail.component';
+import { AigWarehouseHandlingBoxDetailComponent } from './components/warehouse-handling-box-detail/warehouse-handling-box-detail.component';
+import { AigCatalogItemBoxDetailComponent } from './components/catalog-item-box-detail/catalog-item-box-detail.component';
+import { AigPriceListBoxDetailComponent } from './components/price-list-box-detail/price-list-box-detail.component';
+import { AigInventoryCategoryBoxDetailComponent } from './components/inventory-category-box-detail/inventory-category-box-detail.component';
+import { AigPriceListItemBoxDetailComponent } from './components/price-list-item-box-detail/price-list-item-box-detail.component';
 
 @NgModule({
     imports: [
@@ -125,6 +130,7 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogItemBoxDetailComponent,
 
         AigCatalogPriceManagerListTableComponent,
 
@@ -133,6 +139,7 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
+        AigInventoryCategoryBoxDetailComponent,
 
         AigInventoryItemListTableComponent,
         AigInventoryItemDialogFormComponent,
@@ -147,9 +154,11 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
+        AigPriceListBoxDetailComponent,
 
         AigPriceListItemListTableComponent,
         AigPriceListItemNewUpdateFormComponent,
+        AigPriceListItemBoxDetailComponent,
 
         AigProducerListTableComponent,
         AigProducerNewUpdateFormComponent,
@@ -170,9 +179,11 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
         AigWarehouseNewUpdateFormComponent,
         AigEntityDetailWarehouseComponent,
 
-        AigWarehouseHandlingFormComplexComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingBoxDetailComponent,
+
+        AigWarehouseHandlingFormComplexComponent,
 
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,
@@ -213,6 +224,7 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 
         AigCatalogItemListTableComponent,
         AigCatalogItemNewUpdateFormComponent,
+        AigCatalogItemBoxDetailComponent,
 
         AigCatalogPriceManagerListTableComponent,
 
@@ -221,6 +233,7 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 
         AigInventoryCategoryListTableComponent,
         AigInventoryCategoryNewUpdateFormComponent,
+        AigInventoryCategoryBoxDetailComponent,
 
         AigInventoryItemListTableComponent,
         AigInventoryItemDialogFormComponent,
@@ -235,9 +248,11 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
 
         AigPriceListTableComponent,
         AigPriceListNewUpdateFormComponent,
+        AigPriceListBoxDetailComponent,
 
         AigPriceListItemListTableComponent,
         AigPriceListItemNewUpdateFormComponent,
+        AigPriceListItemBoxDetailComponent,
         
         AigProducerListTableComponent,
         AigProducerNewUpdateFormComponent,
@@ -258,9 +273,11 @@ import { AigBuyerBoxDetailComponent } from './components/buyer-box-detail/buyer-
         AigWarehouseNewUpdateFormComponent,
         AigEntityDetailWarehouseComponent,
 
-        AigWarehouseHandlingFormComplexComponent,
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
+        AigWarehouseHandlingBoxDetailComponent,
+
+        AigWarehouseHandlingFormComplexComponent,
 
         AigWarehouseHandlingItemListTableComponent,
         AigWarehouseHandlingItemNewUpdateFormComponent,

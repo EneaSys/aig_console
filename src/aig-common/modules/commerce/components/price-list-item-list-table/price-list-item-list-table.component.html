@@ -20,22 +20,22 @@
         </ng-container>
 
         <ng-container matColumnDef="catalog">
-            <mat-header-cell *matHeaderCellDef>Catalog</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.CATALOG' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.catalogItem.catalog.name }} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="priceList">
-            <mat-header-cell *matHeaderCellDef>Price list</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.PRICE_LIST' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.priceList.name }} </mat-cell>
 		</ng-container>
         
         <ng-container matColumnDef="catalogItem">
-            <mat-header-cell *matHeaderCellDef>Catalog item</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.CATALOG_ITEM' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ e.catalogItem.inventoryItemCombination.name }}</mat-cell>
 		</ng-container>
 
         <ng-container matColumnDef="amount">
-            <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.AMOUNT' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.amount | currency:'EUR':true }} </mat-cell>
         </ng-container>
 

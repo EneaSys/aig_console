@@ -2,7 +2,7 @@
     
     <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!priceList">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Price list</mat-label>
+            <mat-label>{{ 'COMMERCE.PRICE_LIST' | translate | titlecase }}</mat-label>
             <input formControlName="priceList" matInput required [matAutocomplete]="priceListAutocomplete">
             <mat-autocomplete #priceListAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.priceListDisplayFn">
                 <mat-option *ngFor="let priceList of filteredPriceList | async" [value]="priceList">{{ priceList.name }}</mat-option>
@@ -12,7 +12,7 @@
 
     <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id && !priceList">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Catalog item</mat-label>
+            <mat-label>{{ 'COMMERCE.CATALOG_ITEM' | translate | titlecase }}</mat-label>
             <input formControlName="catalogItem" matInput required [matAutocomplete]="catalogItemAutocomplete">
             <mat-autocomplete #catalogItemAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.catalogItemDisplayFn">
                 <mat-option *ngFor="let catalogItem of filteredCatalogItem | async" [value]="catalogItem">{{ catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ catalogItem.inventoryItemCombination.name }}</mat-option>
@@ -22,14 +22,14 @@
 
     <div fxLayout="row" fxLayoutAlign="start start" *ngIf="priceListItemNewUpdateForm.value.priceList.id">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Amount</mat-label>
+            <mat-label>{{ 'COMMERCE.AMOUNT' | translate | titlecase }}</mat-label>
             <input formControlName="amount" matInput type="number" required>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="isUpdate == false" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
-        <button *ngIf="isUpdate == true" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -38,6 +38,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ priceListItemNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!priceListItemNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPriceListItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.PRICE_LIST_ITEM' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.PRICE_LIST_ITEM' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.PRICE_LIST_ITEM' | translate | titlecase }}</div>
+    <aig-price-list-item-box-detail [priceListItemDTO]="priceListItemResult"></aig-price-list-item-box-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPriceListItem()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
 </div>

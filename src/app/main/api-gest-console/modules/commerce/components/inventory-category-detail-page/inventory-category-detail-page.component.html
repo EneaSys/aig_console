@@ -1,37 +1,34 @@
-<div id="aig-social-detail-page" class="page-layout blank">
+<div class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Categorie inventario</div>
-                <div class="h1 m-16">{{ inventoryCategoryDTO.name }}</div>
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">ID: {{ inventoryCategoryDTO.id }}</div>
-                <div *ngIf="inventoryCategoryDTO.inventoryCategoryName" class="h4 m-8 ml-16 mb-0 secondary-text">Parent: {{ inventoryCategoryDTO.inventoryCategoryName }}</div>
-
+        <div class="widget" fxFlex.gt-sm="auto">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'COMMERCE.INVENTORY_CATEGORY' | translate }}</div>
+                <hr>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">
+                    ID: {{ inventoryCategoryDTO.id }}
+                </div>
+                <aig-inventory-category-box-detail [inventoryCategory]="inventoryCategoryDTO"></aig-inventory-category-box-detail>
                 <br>
-
-                <button mat-stroked-button color="primary" (click)="editInventoryCategory(inventoryCategoryDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteInventoryCategory(inventoryCategoryDTO.id)">Delete</button>
-
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editInventoryCategory(inventoryCategoryDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteInventoryCategory(inventoryCategoryDTO.id)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <br>
-
-            <div class="fuse-card auto-width p-16">
-
-                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Inventory items</b></div>
-                <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC"
+    <div class="widget" fxFlex.gt-sm="auto">
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.INVENTORY_ITEMS' | translate | titlecase }}</b></div>
+            <aig-inventory-item-list-table [dataSource]="inventoryItemDTOs" [displayColumns]="inventoryItemDC"
                 [error]="inventoryItemError"></aig-inventory-item-list-table>
 
-            </div>
-            
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addInventoryItem(inventoryCategoryDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
-
     </div>
-    
+
 </div>
-
-

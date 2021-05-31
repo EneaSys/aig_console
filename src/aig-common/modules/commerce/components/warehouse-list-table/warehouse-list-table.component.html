@@ -15,13 +15,13 @@
     <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

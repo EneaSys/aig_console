@@ -1,0 +1,6 @@
+<div *ngIf="warehouseHandlingDTO.warehouseHandlingType == 'LOAD'" class="h1 m-8 ml-16">{{ 'COMMERCE.LOAD' | translate | titlecase }}</div>
+<div *ngIf="warehouseHandlingDTO.warehouseHandlingType == 'UNLOAD'" class="h1 m-8 ml-16">{{ 'COMMERCE.UNLOAD' | translate | titlecase }}</div>
+<div *ngIf="warehouseHandlingDTO.warehouseHandlingType == 'SHIFT'" class="h1 m-8 ml-16">{{ 'COMMERCE.SHIFT' | translate | titlecase }}</div>
+<div *ngIf="warehouseHandlingDTO.warehouseToLoad" class="h4 ml-16">{{ 'COMMERCE.LOAD_WAREHOUSE' | translate | titlecase }}: <b>{{ warehouseHandlingDTO.warehouseToLoad.name }}</b></div>
+<div *ngIf="warehouseHandlingDTO.warehouseToUnload" class="h4 ml-16">{{ 'COMMERCE.UNLOAD_WAREHOUSE' | translate | titlecase }}: <b>{{ warehouseHandlingDTO.warehouseToUnload.name }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.DATE' | translate | titlecase }}: <b>{{ warehouseHandlingDTO.date | date: 'dd/MM/yyyy' }}</b></div>

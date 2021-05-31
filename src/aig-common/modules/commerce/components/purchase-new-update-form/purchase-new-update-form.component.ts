@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { BuyerDTO, PurchaseDTO, PurchaseResourceService } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -50,9 +51,9 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		this.purchaseNewUpdateForm = this._formBuilder.group({
 			id: [''],
             amount: [''],
-			buyer: ['', Validators.required],
+			buyer: ['', [Validators.required, AigValidator.haveId]],
 			closed: [true],
-			insertedDateTime: ['', Validators.required],
+			insertedDateTime: ['', [Validators.required]],
             statusNote: [''],
 		});
 

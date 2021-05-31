@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { InventoryCategoryDTO, InventoryItemDTO, InventoryItemResourceService, ProducerDTO } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -32,6 +33,12 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	@Input()
 	inventoryItem: InventoryItemDTO;
 
+	@Input()
+	inventoryCategory: InventoryCategoryDTO;
+
+	@Input()
+	producer: ProducerDTO;
+
 	isUpdate: boolean = false;
 
 	inventoryItemResult: any;
@@ -44,18 +51,26 @@ export class AigInventoryItemDialogFormComponent implements OnInit {
 	ngOnInit(): void {
 		this.inventoryItemNewUpdateForm = this._formBuilder.group({
 			id: [''],
-			name: ['', Validators.required],
+			name: ['', [Validators.required]],
 			itemCode: [''],
-			producer: ['', Validators.required],
-			inventoryCategory: ['', Validators.required],
+			producer: [this.producer, [Validators.required, AigValidator.haveId]],
+			inventoryCategory: [this.inventoryCategory, [Validators.required, AigValidator.haveId]],
 		});
-
 
 		if (this.inventoryItem != null && this.inventoryItem.id != null) {
 			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
 			this.isUpdate = true;
 		}
 
+		if (this.inventoryItem != null && this.inventoryItem.id != null && this.inventoryCategory) {
+			this.inventoryItemNewUpdateForm.patchValue(this.inventoryItem);
+			this.inventoryItemNewUpdateForm.controls.inventoryCategory.setValue(this.inventoryCategory);
+			this.isUpdate = true;
+		}
+
+		if (this.producer) {
+			this.inventoryItemNewUpdateForm.controls.producer.setValue(this.producer);
+		}
 
 		this.filteredProducers = this.commerceAutocompleteService.filterProducer(this.inventoryItemNewUpdateForm.controls['producer'].valueChanges);
 		this.filteredInventoryCategories = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemNewUpdateForm.controls['inventoryCategory'].valueChanges);

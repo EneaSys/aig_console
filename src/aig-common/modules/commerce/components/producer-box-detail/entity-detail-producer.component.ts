@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CatalogDTO, InventoryItemDTO, ProducerDTO, WarehouseDTO } from 'aig-commerce';
+import { ProducerDTO } from 'aig-commerce';
 
 
 @Component({

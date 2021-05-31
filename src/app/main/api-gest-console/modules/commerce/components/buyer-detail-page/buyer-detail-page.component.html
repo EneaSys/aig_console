@@ -1,4 +1,4 @@
-<div id="aig-buyer-detail-page" class="page-layout blank">
+<div class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
@@ -21,7 +21,7 @@
 
     <div class="widget" fxFlex.gt-sm="auto">
         <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
-            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Acquisti</b></div>
+            <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'COMMERCE.PURCHASES' | translate | titlecase }}</b></div>
             <aig-purchase-list-table [dataSource]="purchaseDTOs" [displayColumns]="purchasedisplayColumns"
                 [error]="purchaseError">
             </aig-purchase-list-table>

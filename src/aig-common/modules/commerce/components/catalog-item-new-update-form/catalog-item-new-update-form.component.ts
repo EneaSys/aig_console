@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CatalogDTO, CatalogItemDTO, CatalogItemResourceService, InventoryItemCombinationDTO } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { Observable } from 'rxjs';
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
@@ -41,6 +42,8 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
 
     isUpdate: boolean = false;
 
+    catalogItemResult: any;
+
     catalogItemNewUpdateForm: FormGroup;
 
     filteredInventoryItemCombination: Observable<InventoryItemCombinationDTO[]>;
@@ -50,9 +53,9 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.catalogItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            active:[false, Validators.required],
-            inventoryItemCombination: ['', Validators.required],
-            catalog: ['', Validators.required],
+            active:[false, [Validators.required]],
+            inventoryItemCombination: ['', [Validators.required, AigValidator.haveId]],
+            catalog: ['', [Validators.required, AigValidator.haveId]],
         })
         
         if (this.catalogItem != null) {
@@ -90,7 +93,7 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
         }
 
         try {
-            let postOrPut;
+            let postOrPut: string;
             if (this.isUpdate) {
                 await this.catalogItemResourceService.updateCatalogItemUsingPUT(catalogItem).toPromise();
                 postOrPut = "updated";
@@ -98,14 +101,18 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
                 await this.catalogItemResourceService.createCatalogItemUsingPOST(catalogItem).toPromise();
                 postOrPut = "created";
             }
+
+            this.catalogItemResult = catalogItem;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`CatalogItem: '${catalogItem.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 
@@ -113,10 +120,10 @@ export class AigCatalogItemNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

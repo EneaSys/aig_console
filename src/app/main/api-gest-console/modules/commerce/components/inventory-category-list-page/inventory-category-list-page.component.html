@@ -23,8 +23,11 @@
 								</div>
 								<div fxLayout="row">
 									<mat-form-field appearance="outline" fxFlex="100">
-										<mat-label>Name</mat-label>
-										<input matInput type="text" formControlName="name">
+										<mat-label>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-label>
+										<input matInput type="text" formControlName="name" [matAutocomplete]="nameAutocomplete">
+										<mat-autocomplete #nameAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.inventoryCategoryDisplayFn">
+											<mat-option *ngFor="let inventoryCategory of filteredInventoryCategory | async" [value]="inventoryCategory">{{ inventoryCategory.name }}</mat-option>
+										</mat-autocomplete>
 									</mat-form-field>
 								</div>
 								<div fxLayout="row" fxLayoutAlign="end top">
@@ -47,7 +50,7 @@
 				(click)="toggleSidebar('purchase-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
-			<h2>Categorie Inventario</h2>
+			<h2>{{ 'COMMERCE.INVENTORY_CATEGORIES' | translate | titlecase }}</h2>
 		</div>
 		<!-- / HEADER -->
 		<!-- CONTENT -->

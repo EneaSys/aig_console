@@ -7,6 +7,7 @@ import { InventoryItemCombinationDTO, WarehouseHandlingDTO, WarehouseHandlingIte
 import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-warehouse-handling-item-new-update-form',
@@ -58,10 +59,10 @@ export class AigWarehouseHandlingItemNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
 		this.warehouseHandlingItemNewUpdateForm = this._formBuilder.group({
             id:[''],
-            quantity: ['', Validators.required],
-            inventoryItemCombination: ['', Validators.required],
+            quantity: ['', [Validators.required]],
+            inventoryItemCombination: ['', [Validators.required, AigValidator.haveId]],
             warehouseHandlingDate: [''],
-            warehouseHandling: ['', Validators.required],
+            warehouseHandling: ['', [Validators.required, AigValidator.haveId]],
         })
 
         this.filteredInventoryItemCombination = this.commerceAutocompleteService.filterInventoryItemCombination(this.warehouseHandlingItemNewUpdateForm.controls['inventoryItemCombination'].valueChanges);

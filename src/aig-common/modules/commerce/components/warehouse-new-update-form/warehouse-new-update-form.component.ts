@@ -28,16 +28,21 @@ export class AigWarehouseNewUpdateFormComponent implements OnInit {
     @Input()
     warehouse: WarehouseDTO;
 
+    isUpdate: boolean = false;
+
+    warehouseResult: any;
+
     warehouseNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.warehouseNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', Validators.required],
+            name: ['', [Validators.required]],
         })
         
-        if (this.warehouse != null) {
+        if (this.warehouse != null && this.warehouse.id != null) {
             this.warehouseNewUpdateForm.patchValue(this.warehouse);
+            this.isUpdate = true;
         }
     }
 
@@ -54,20 +59,25 @@ export class AigWarehouseNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (warehouse.id != 0) {
+            if (this.isUpdate) {
                 await this.warehouseResourceService.updateWarehouseUsingPUT(warehouse).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.warehouseResourceService.createWarehouseUsingPOST(warehouse).toPromise();
                 postOrPut = "created";
             }
+
+            this.warehouseResult = warehouse;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -79,7 +89,6 @@ export class AigWarehouseNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
 }

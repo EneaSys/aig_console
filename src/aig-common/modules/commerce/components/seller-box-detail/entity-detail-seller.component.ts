@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CatalogDTO, InventoryItemDTO, SellerDTO, WarehouseDTO } from 'aig-commerce';
+import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
+import { SellerDTO } from 'aig-commerce';
+import { AigCommerceCommonGenericComponent } from '../commerce-common-generic-component';
 
 
 @Component({
@@ -7,9 +9,8 @@ import { CatalogDTO, InventoryItemDTO, SellerDTO, WarehouseDTO } from 'aig-comme
     templateUrl: './entity-detail-seller.component.html',
     styleUrls: ['./entity-detail-seller.component.scss']
 })
-export class AigEntityDetailSellerComponent implements OnInit {
-    constructor(
-    ) { }
+export class AigEntityDetailSellerComponent extends AigCommerceCommonGenericComponent implements OnInit {
+    constructor(_fuseTranslationLoaderService: FuseTranslationLoaderService) { super(_fuseTranslationLoaderService); }
     ngOnInit(): void {}
 
     @Input()

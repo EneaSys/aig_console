@@ -7,7 +7,7 @@
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
 
-                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Gestore di magazzini</span>
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">{{ 'COMMERCE.WAREHOUSES_MANAGER' | translate | titlecase }}</span>
 
             </div>
 
@@ -43,7 +43,7 @@
                     a breve i dati
                 </mat-tab>
 
-                <mat-tab label="Movimentazioni">
+                <mat-tab label="{{ 'COMMERCE.HANDLINGS' | translate | titlecase }}">
                     <aig-warehouse-handling-list-page [staticWarehouseToLoad]= "selectedWarehouse"></aig-warehouse-handling-list-page>
                 </mat-tab>
             </mat-tab-group>

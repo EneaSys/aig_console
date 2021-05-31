@@ -25,12 +25,12 @@
 		</ng-container>
 
         <ng-container matColumnDef="catalog">
-            <mat-header-cell *matHeaderCellDef>Catalogo</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.CATALOG' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.catalog.name }} </mat-cell>
 		</ng-container>
 
         <ng-container matColumnDef="seller">
-            <mat-header-cell *matHeaderCellDef>Seller</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.SELLER' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.catalog.seller.name }} </mat-cell>
 		</ng-container>
 

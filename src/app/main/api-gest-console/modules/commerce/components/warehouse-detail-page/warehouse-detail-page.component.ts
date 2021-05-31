@@ -3,8 +3,9 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService, WarehouseResourceService } from "aig-commerce";
-import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { AigCommerceGenericComponent } from "../commerce-generic-component";
+import { AigWarehouseHandlingNewUpdateModalComponent } from "../warehouse-handling-new-update-modal/warehouse-handling-new-update-modal.component";
 import { AigWarehouseNewUpdateModalComponent } from "../warehouse-new-update-modal/warehouse-new-update-modal.component";
 
 @Component({
@@ -12,7 +13,7 @@ import { AigWarehouseNewUpdateModalComponent } from "../warehouse-new-update-mod
   templateUrl: './warehouse-detail-page.component.html',
   styleUrls: ['./warehouse-detail-page.component.scss']
 })
-export class AigWarehouseDetailPageComponent extends GenericComponent {
+export class AigWarehouseDetailPageComponent extends AigCommerceGenericComponent {
   constructor(
     private warehouseResourceService: WarehouseResourceService,
     private warehouseHandlingResourceService: WarehouseHandlingResourceService,
@@ -65,12 +66,12 @@ export class AigWarehouseDetailPageComponent extends GenericComponent {
     this._fuseProgressBarService.hide();
   }
 
-  warehouseHandlingDC: string[] = ["id", "date", "warehouseHandlingType", "warehouse"];
+  warehouseHandlingDC: string[] = ["id", "date", "warehouseHandlingType", "warehouse", "buttons"];
   warehouseHandlingDTOs: WarehouseHandlingDTO[];
   warehouseHandlingError: any;
   async loadWarehouseHandling() {
     let warehouseToLoadFilters = {
-      warehouseToLoadIDEquals: this.warehouseDTO.id || null, 
+      warehouseToLoadIDEquals: this.warehouseDTO.id || null,
     };
     let warehouseToUnloadFilters = {
       warehouseToUnloadIDEquals: this.warehouseDTO.id || null,
@@ -80,5 +81,9 @@ export class AigWarehouseDetailPageComponent extends GenericComponent {
     } catch (e) {
       this.warehouseHandlingError = e;
     }
+  }
+
+  addWarehouseHangling(warehouseDTO: WarehouseDTO) {
+    this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouseHandling: {}, warehouse: warehouseDTO } });
   }
 }

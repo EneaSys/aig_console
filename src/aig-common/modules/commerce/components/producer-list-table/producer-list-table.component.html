@@ -20,7 +20,7 @@
         </ng-container>
 
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
 		</ng-container>
 	

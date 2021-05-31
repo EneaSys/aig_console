@@ -8,6 +8,7 @@ import { AigCommerceAutocompleteDisplayService } from '../../service/autocomplet
 import { AigCommerceAutocompleteFilterService } from '../../service/autocomplete-filter.service';
 import { Observable } from 'rxjs';
 import { ContextModuleResolver } from 'aig-common/modules/standard/resolver/context-module.resolver';
+import { AigValidator } from 'aig-common/AigValidator';
 
 
 @Component({
@@ -48,9 +49,10 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 	wareHouseHandlingOutput = new EventEmitter<WarehouseHandlingDTO>();
 
 	isUpdate: boolean = false;
-    submitOnSameLineOfproduct: boolean = false;
 
-	
+    warehouseHandlingResult: any;
+
+    submitOnSameLineOfproduct: boolean = false;
 
     filteredWarehouseToLoad: Observable<WarehouseDTO[]>;
     filteredWarehouseToUnload: Observable<WarehouseDTO[]>;
@@ -63,15 +65,15 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
 
         this.warehouseHandlingFormGroup = this._formBuilder.group({
-            id: [""],
-            warehouseHandlingType: ['', Validators.required],
+            id: [''],
+            warehouseHandlingType: ['', [Validators.required, AigValidator.haveId]],
             warehouseToLoad: [''],
             warehouseToUnload: [''],
-            date: ['', Validators.required]
+            date: ['', [Validators.required]],
         });
 
 
-        if (this.warehouseHandling != null) {
+        if (this.warehouseHandling != null && this.warehouseHandling.id != null) {
             this.isUpdate = true;
             this.warehouseHandlingFormGroup.patchValue(this.warehouseHandling);
         }
@@ -134,6 +136,9 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 					await this.warehouseHandlingResourceService.createWarehouseHandlingUsingPOST(warehouseHandling).toPromise();
 					postOrPut = "created";
 				}
+
+                this.warehouseHandlingResult = warehouseHandling;
+
 				this.eventService.reloadCurrentPage();
 	
 				this._snackBar.open(`Ipp Warehouse Handling: '${warehouseHandling.id}' ${postOrPut}.`, null, { duration: 2000, });
