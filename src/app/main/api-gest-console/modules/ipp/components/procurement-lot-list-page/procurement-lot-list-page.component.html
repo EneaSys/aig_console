@@ -174,10 +174,6 @@
             -->
             <gle-ipp-procurement-lot-list-loader></gle-ipp-procurement-lot-list-loader>
             
-            <aig-procurement-lot-list-table-ng [displayColumns]="procurementLotDC"
-                [dataSource]="procurementLotDTOs">
-            </aig-procurement-lot-list-table-ng>
-
             <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="this.procurementLotFilters.page"
                 [pageSize]="this.inventoryItemPaginationSize" [pageSizeOptions]="[30, 100, 200]"
                 (page)="procurementLotPaginationEvent($event)"></mat-paginator>

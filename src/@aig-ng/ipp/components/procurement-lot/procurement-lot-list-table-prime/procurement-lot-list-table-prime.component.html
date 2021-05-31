@@ -2,10 +2,13 @@
     styleClass="p-datatable-sm"
     [value]="ds" [loading]="loading"
     [lazy]="true" (onLazyLoad)="loadData($event)"
-    [paginator]="true" [rows]="10" [totalRecords]="totalRecords" 
+    
+    [paginator]="true" [totalRecords]="totalRecords"
+    [showCurrentPageReport]="true" currentPageReportTemplate="{{ first + 1 }} - {{ first + size }} of {{ totalRecords }}"
+    [rows]="size" [rowsPerPageOptions]="[10,20,50]"
+    
     [resizableColumns]="true"
-    [(selection)]="selectedElements"
-    >
+    [(selection)]="selectedElements" >
 
     <ng-template pTemplate="header">
         <tr>

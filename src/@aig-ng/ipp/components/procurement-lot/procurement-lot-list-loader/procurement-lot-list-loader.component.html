@@ -3,6 +3,37 @@
         card
     </p>
     <p *ngSwitchDefault>
-        <procurement-lot-list-table-prime [ds]="ds"></procurement-lot-list-table-prime>
+        <!-- <procurement-lot-list-table-prime [ds]="ds"></procurement-lot-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-sm"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [paginator]="true" [rowsPerPageOptions]="[10,20,50]"
+            [rows]="pageable.size" [totalRecords]="pagination.totalRecords"
+            [showCurrentPageReport]="true" currentPageReportTemplate="{{ pagination.first }} - {{ pagination.last }} of {{ pagination.totalRecords }}"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pResizableColumn></th>
+                    <th pResizableColumn pSortableColumn="cig">CIG</th>
+                    <th pResizableColumn pSortableColumn="description">Descrizione</th>
+                    <th pResizableColumn pSortableColumn="sa">Stazione Appaltante</th>
+                    <th pResizableColumn pSortableColumn="amount">Amount</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+                    <td>{{ e.cig }}</td>
+                    <td>{{ e.description }}</td>
+                    <td>{{ e.procurement.contractorEopoo | eopooName }}</td>
+                    <td>{{ e.amount }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
     </p>
 </div>
