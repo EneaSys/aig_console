@@ -56,7 +56,14 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ purchaseNewUpdateForm.value | json }}</pre>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.SELLER' | translate | titlecase }} {{ 'MAIN.CREATION_OK' | translate }}
+    </h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.SELLER' | translate | titlecase }} {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+
+    <hr>
+
+    <aig-purchase-box-detail [purchase]="purchaseResult"></aig-purchase-box-detail>
+
     <div *ngIf="!isUpdate">
         <button mat-stroked-button color="primary" (click)="newPurchase()">
             <span *ngIf="!returnToParent">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</span>

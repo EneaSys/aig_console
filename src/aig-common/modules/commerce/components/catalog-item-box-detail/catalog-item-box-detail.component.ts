@@ -13,5 +13,5 @@ export class AigCatalogItemBoxDetailComponent extends AigCommerceCommonGenericCo
     ngOnInit(): void {}
 
     @Input()
-    catalogItemDTO: CatalogItemDTO;
+    catalogItem: CatalogItemDTO;
 }

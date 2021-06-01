@@ -9,7 +9,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">
                     ID: {{ producerDTO.id }}
                 </div>
-                <entity-detail-producer [producerDTO]="producerDTO"></entity-detail-producer>
+                <entity-detail-producer [producer]="producerDTO"></entity-detail-producer>
                 <br>
                 <div fxLayoutAlign="end">
                     <button class="ml-8" mat-stroked-button color="primary" (click)="editProducer(producerDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>

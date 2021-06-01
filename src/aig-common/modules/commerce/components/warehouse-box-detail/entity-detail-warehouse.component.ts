@@ -14,5 +14,5 @@ export class AigEntityDetailWarehouseComponent extends AigCommerceCommonGenericC
     ngOnInit(): void {}
 
     @Input()
-    warehouseDTO: WarehouseDTO;
+    warehouse: WarehouseDTO;
 }

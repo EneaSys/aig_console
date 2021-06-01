@@ -69,6 +69,7 @@ export const locale = {
             'DATE' : 'data',
             'QUANTITY' : 'quantità',
             'AMOUNT' : 'importo',
+            'CLOSED_' : 'chiuso',
             'CLOSED' : 'chiusa',
             'CLOSED_YES' : 'chiuse',
             'CLOSED_NO' : 'non chiuse',

@@ -3,7 +3,6 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { SellerDTO } from 'aig-commerce';
 import { AigCommerceCommonGenericComponent } from '../commerce-common-generic-component';
 
-
 @Component({
     selector: 'entity-detail-seller',
     templateUrl: './entity-detail-seller.component.html',
@@ -14,6 +13,6 @@ export class AigEntityDetailSellerComponent extends AigCommerceCommonGenericComp
     ngOnInit(): void {}
 
     @Input()
-    sellerDTO: SellerDTO;
+    seller: SellerDTO;
 
 }

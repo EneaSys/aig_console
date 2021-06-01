@@ -14,5 +14,5 @@ export class AigWarehouseHandlingBoxDetailComponent extends AigCommerceCommonGen
     ngOnInit(): void {}
 
     @Input()
-    warehouseHandlingDTO: WarehouseHandlingDTO;
+    warehouseHandling: WarehouseHandlingDTO;
 }

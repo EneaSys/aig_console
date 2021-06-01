@@ -33,19 +33,20 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 	@Input()
 	purchase: PurchaseDTO;
+
 	@Input()
 	returnToParent: boolean = false; 
 
 	@Output()
 	purchaseOutput = new EventEmitter<PurchaseDTO>();
 
+	isUpdate: boolean = false;
+
+	purchaseResult: any;
+
 	purchaseNewUpdateForm: FormGroup;
 
 	filteredBuyer: Observable<BuyerDTO[]>;
-
-	isUpdate: boolean = false;
-
-
 
 	ngOnInit(): void {
 		this.purchaseNewUpdateForm = this._formBuilder.group({
@@ -89,7 +90,7 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 
 		if(!this.returnToParent) {
 			try {
-				let postOrPut;
+				let postOrPut: string;
 				if (purchase.id != 0) {
 					await this.purchaseResourceService.updatePurchaseUsingPUT(purchase).toPromise();
 					postOrPut = "updated";
@@ -97,10 +98,13 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 					await this.purchaseResourceService.createPurchaseUsingPOST(purchase).toPromise();
 					postOrPut = "created";
 				}
+
+				this.purchaseResult = purchase;
+
 				this.eventService.reloadCurrentPage();
 
-				this._snackBar.open(`Purchase: '${purchase.id}' ${postOrPut}.`, null, { duration: 2000, });
 				this.setStep("complete");
+
 			} catch (error) {
 				this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
 				this.setStep("form");
@@ -118,10 +122,10 @@ export class AigPurchaseNewUpdateFormComponent implements OnInit {
 		this.setStep("form");
 	}
 
-	private setStep(step: string) {
+	private setStep(stepToShow: string) {
 		this.step.form = false;
 		this.step.loading = false;
 		this.step.complete = false;
-		this.step[step] = true;
+		this.step[stepToShow] = true;
 	}
 }

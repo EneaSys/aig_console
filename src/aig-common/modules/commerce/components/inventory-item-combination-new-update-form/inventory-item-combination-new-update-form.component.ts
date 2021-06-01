@@ -37,6 +37,10 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
     @Input()
     inventoryItem: InventoryItemDTO;
 
+    isUpdate: boolean = false;
+
+    inventoryItemCombinationResult: any;
+
     inventoryItemCombinationNewUpdateForm: FormGroup;
 
     filteredInventoryItems: Observable<InventoryItemDTO[]>;
@@ -49,8 +53,9 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
             inventoryItem: ['', [Validators.required, AigValidator.haveId]],
         })
 
-        if (this.inventoryItemCombination != null) {
+        if (this.inventoryItemCombination != null && this.inventoryItemCombination.id != null) {
             this.inventoryItemCombinationNewUpdateForm.patchValue(this.inventoryItemCombination);
+            this.isUpdate = true;
         }
 
         if(this.inventoryItem != null){
@@ -76,22 +81,26 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
         }
 
         try {
-            let postOrPut;
-            if (inventoryItemCombination.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.inventoryItemCombinationResourceService.updateInventoryItemCombinationUsingPUT(inventoryItemCombination).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.inventoryItemCombinationResourceService.createInventoryItemCombinationUsingPOST(inventoryItemCombination).toPromise();
                 postOrPut = "created";
             }
+
+            this.inventoryItemCombinationResult = inventoryItemCombination;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Inventory Item Combination: '${inventoryItemCombination.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -99,10 +108,10 @@ export class AigInventoryItemCombinationNewUpdateFormComponent implements OnInit
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

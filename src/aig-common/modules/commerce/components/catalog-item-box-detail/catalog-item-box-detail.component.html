@@ -1,8 +1,8 @@
-<div class="h1 m-8 ml-16">{{ catalogItemDTO.inventoryItemCombination.inventoryItem.name }} - {{ catalogItemDTO.inventoryItemCombination.name }}</div>
-<div class="h4 ml-16">{{ 'COMMERCE.PRODUCTOR' | translate | titlecase }}: <b>{{ catalogItemDTO.inventoryItemCombination.inventoryItem.producer.name }}</b></div>
-<div class="h4 ml-16">{{ 'COMMERCE.CATALOG' | translate | titlecase }}: <b>{{ catalogItemDTO.catalog.name }}</b></div>
-<div class="h4 ml-16">{{ 'COMMERCE.SELLER' | translate | titlecase }}: <b>{{ catalogItemDTO.catalog.seller.name }}</b></div>
+<div class="h1 m-8 ml-16">{{ catalogItem.inventoryItemCombination.inventoryItem.name }} - {{ catalogItem.inventoryItemCombination.name }}</div>
+<div class="h4 ml-16">{{ 'COMMERCE.PRODUCTOR' | translate | titlecase }}: <b>{{ catalogItem.inventoryItemCombination.inventoryItem.producer.name }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.CATALOG' | translate | titlecase }}: <b>{{ catalogItem.catalog.name }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.SELLER' | translate | titlecase }}: <b>{{ catalogItem.catalog.seller.name }}</b></div>
 <div class="h4 ml-16">{{ 'COMMERCE.ACTIVE' | translate | titlecase }}: 
-    <span *ngIf="catalogItemDTO.active"><b>{{ 'COMMERCE.YES' | translate }}</b></span>
-    <span *ngIf="!catalogItemDTO.active"><b>{{ 'COMMERCE.NO' | translate }}</b></span>
+    <span *ngIf="catalogItem.active"><b>{{ 'COMMERCE.YES' | translate }}</b></span>
+    <span *ngIf="!catalogItem.active"><b>{{ 'COMMERCE.NO' | translate }}</b></span>
 </div>

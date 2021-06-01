@@ -13,6 +13,6 @@ export class AigEntityDetailProducerComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    producerDTO: ProducerDTO;
+    producer: ProducerDTO;
 
 }

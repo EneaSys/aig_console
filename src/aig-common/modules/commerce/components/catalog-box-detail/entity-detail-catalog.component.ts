@@ -13,5 +13,5 @@ export class AigEntityDetailCatalogComponent extends AigCommerceCommonGenericCom
     ngOnInit(): void {}
 
     @Input()
-    catalogDTO: CatalogDTO;
+    catalog: CatalogDTO;
 }

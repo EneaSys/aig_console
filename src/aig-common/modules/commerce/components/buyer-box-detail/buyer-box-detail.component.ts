@@ -13,5 +13,5 @@ export class AigBuyerBoxDetailComponent extends AigCommerceCommonGenericComponen
     ngOnInit(): void {}
 
     @Input()
-    buyerDTO: BuyerDTO;
+    buyer: BuyerDTO;
 }
