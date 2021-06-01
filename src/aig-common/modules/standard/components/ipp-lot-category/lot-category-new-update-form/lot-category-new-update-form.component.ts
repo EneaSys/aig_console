@@ -29,6 +29,10 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
     @Input()
     ippLotCategory: IlPpProcurementLotCategoryDTO;
 
+    isUpdate: boolean = false;
+
+    ippLotCategoryResult: any;
+
     ippLotCategoryNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -40,8 +44,9 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.ippLotCategory != null) {
+        if (this.ippLotCategory != null && this.ippLotCategory.id != null) {
             this.ippLotCategoryNewUpdateForm.patchValue(this.ippLotCategory);
+            this.isUpdate = true;
         }
     }
 
@@ -54,22 +59,26 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         let ippLotCategory: IlPpProcurementLotCategoryDTO = this.ippLotCategoryNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (ippLotCategory.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.ippLotCategoryResourceService.updateIlPpProcurementLotCategoryUsingPUT(ippLotCategory).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.ippLotCategoryResourceService.createIlPpProcurementLotCategoryUsingPOST(ippLotCategory).toPromise();
                 postOrPut = "created";
             }
+
+            this.ippLotCategoryResult = ippLotCategory;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Lot Category: '${ippLotCategory.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -77,11 +86,10 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

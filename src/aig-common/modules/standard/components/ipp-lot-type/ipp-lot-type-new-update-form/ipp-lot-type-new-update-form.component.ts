@@ -29,6 +29,10 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
     @Input()
     ippLotType: IlPpProcurementLotTypeDTO;
 
+    isUpdate: boolean = false;
+
+    ippLotTypeResult: any;
+
     ippLotTypeNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -40,8 +44,9 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.ippLotType != null) {
+        if (this.ippLotType != null && this.ippLotType.id != null) {
             this.ippLotTypeNewUpdateForm.patchValue(this.ippLotType);
+            this.isUpdate = true;
         }
     }
 
@@ -55,22 +60,26 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         let ippLotType: IlPpProcurementLotTypeDTO = this.ippLotTypeNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (ippLotType.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.ippLotTypeResourceService.updateIlPpProcurementLotTypeUsingPUT(ippLotType).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.ippLotTypeResourceService.createIlPpProcurementLotTypeUsingPOST(ippLotType).toPromise();
                 postOrPut = "created";
             }
+
+            this.ippLotTypeResult = ippLotType;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp LotType: '${ippLotType.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -78,11 +87,10 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

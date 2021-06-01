@@ -34,6 +34,10 @@ export class AigCityNewUpdateFormComponent implements OnInit {
     @Output()
 	cityOutput = new EventEmitter<CityDTO>();
 
+    isUpdate: boolean = false;
+
+    cityResult: any;
+
     cityNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -44,8 +48,9 @@ export class AigCityNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:['']
         })
-        if (this.city != null) {
+        if (this.city != null && this.city.id != null) {
             this.cityNewUpdateForm.patchValue(this.city);
+            this.isUpdate = true;
         }
     }
 
@@ -65,18 +70,21 @@ export class AigCityNewUpdateFormComponent implements OnInit {
 
         if(!this.returnToParent){
             try {
-                let postOrPut;
-                if (city.id != 0) {
+                let postOrPut: string;
+                if (this.isUpdate) {
                     await this.cityResourceService.updateCityUsingPUT(city).toPromise();
                     postOrPut = "updated";
                 } else {
                     await this.cityResourceService.createCityUsingPOST(city).toPromise();
                     postOrPut = "created";
                 }
+
+                this.cityResult = city;
+
                 this.eventService.reloadCurrentPage();
     
-                this._snackBar.open(`City: '${city.name}' ${postOrPut}.`, null, { duration: 2000, });
                 this.setStep("complete");
+
             } catch (error) {
                 this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
                 this.setStep("form");
@@ -92,11 +100,10 @@ export class AigCityNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

@@ -30,6 +30,10 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
     @Input()
     awardCriterion: IlPpProcurementLotAwardCriterionDTO;
 
+    isUpdate: boolean = false;
+
+    awardCriterionResult: any;
+
     awardCriterionNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -41,8 +45,9 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.awardCriterion != null) {
+        if (this.awardCriterion != null && this.awardCriterion.id != null) {
             this.awardCriterionNewUpdateForm.patchValue(this.awardCriterion);
+            this.isUpdate = true;
         }
     }
 
@@ -56,22 +61,26 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
         let awardCriterion: IlPpProcurementLotAwardCriterionDTO = this.awardCriterionNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (awardCriterion.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.awardCriterionResourceService.updateIlPpProcurementLotAwardCriterionUsingPUT(awardCriterion).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.awardCriterionResourceService.createIlPpProcurementLotAwardCriterionUsingPOST(awardCriterion).toPromise();
                 postOrPut = "created";
             }
+
+            this.awardCriterionResult = awardCriterion;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Award Criterion: '${awardCriterion.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -79,11 +88,10 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

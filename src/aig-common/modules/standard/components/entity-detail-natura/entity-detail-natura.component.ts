@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IlFeNaturaDTO } from 'aig-standard';
 
-
-
 @Component({
     selector: 'entity-detail-natura',
     templateUrl: './entity-detail-natura.component.html',

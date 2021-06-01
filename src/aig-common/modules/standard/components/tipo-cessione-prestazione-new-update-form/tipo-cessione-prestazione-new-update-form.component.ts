@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -29,9 +29,11 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
     @Input()
     tipoCessionePrestazione: IlFeCessionePrestazioneTipoDTO;
 
-    tipoCessionePrestazioneNewUpdateForm: FormGroup;
+    isUpdate: boolean = false;
 
-  
+    tipoCessionePrestazioneResult: any;
+
+    tipoCessionePrestazioneNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
         this.tipoCessionePrestazioneNewUpdateForm = this._formBuilder.group({
@@ -42,8 +44,9 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
             wikiCode:['']
 
         })
-        if (this.tipoCessionePrestazione!= null) {
+        if (this.tipoCessionePrestazione!= null && this.tipoCessionePrestazione.id != null) {
             this.tipoCessionePrestazioneNewUpdateForm.patchValue(this.tipoCessionePrestazione);
+            this.isUpdate = true;
         }
     }
 
@@ -60,32 +63,36 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
         try {
             let postOrPut: string;
 
-            if (tipoCessionePrestazione.id != 0) {
+            if (this.isUpdate) {
                 await this.tipoCessionePrestazioneResourceService.updateIlFeCessionePrestazioneTipoUsingPUT(tipoCessionePrestazione).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.tipoCessionePrestazioneResourceService.createIlFeCessionePrestazioneTipoUsingPOST(tipoCessionePrestazione).toPromise();
                 postOrPut = "created";
             }
+
+            this.tipoCessionePrestazioneResult = tipoCessionePrestazione;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
     newTipoCessionePrestazione() {
-            this.setStep("form");
+        this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

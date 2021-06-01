@@ -6,7 +6,6 @@
             <input name="code" formControlName="code" matInput required>
         </mat-form-field>
     </div>
-   
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
@@ -15,7 +14,6 @@
         </mat-form-field>
     </div>
 
-
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Descrizione</mat-label>
@@ -23,7 +21,6 @@
         </mat-form-field>
     </div>
 
-    
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>WikiCode</mat-label>
@@ -32,8 +29,10 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -41,6 +40,16 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ partecipationTypeNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!partecipationTypeNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPartecipationType()">Create New</button>
+    <h1 *ngIf="!isUpdate">Creazione avvenuta con successo</h1>
+    <h1 *ngIf="isUpdate">Aggiornamento avvenuto con successo</h1>
+
+    <hr>
+
+    <partecipation-type-detail-box [partecipationType]="partecipationTypeResult"></partecipation-type-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPartecipationType()">Crea nuovo</button>
+    </div>
 </div>

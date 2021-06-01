@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {IlPpProcurementLotStatusDTO} from 'aig-standard';
 
-
-
 @Component({
     selector: 'procurement-lot-status-detail-box',
     templateUrl: './procurement-lot-status-detail-box.component.html',

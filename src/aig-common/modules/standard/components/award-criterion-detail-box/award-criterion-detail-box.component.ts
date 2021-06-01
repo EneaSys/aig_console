@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
 import { IlPpProcurementLotAwardCriterionDTO } from 'aig-standard';
-
-
 
 @Component({
     selector: 'award-criterion-detail-box',

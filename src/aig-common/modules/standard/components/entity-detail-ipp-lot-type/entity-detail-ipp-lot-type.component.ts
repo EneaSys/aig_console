@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IlPpProcurementLotTypeDTO } from 'aig-standard';
 
-
 @Component({
     selector: 'entity-detail-ipp-lot-type',
     templateUrl: './entity-detail-ipp-lot-type.component.html',
@@ -13,7 +12,6 @@ export class AigEntityDetailIppLotTypeComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     ippLotType: IlPpProcurementLotTypeDTO;
 
 }

@@ -35,6 +35,10 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
     @Output()
 	tipoRitenutaOutput = new EventEmitter<IlFeRitenutaTipoDTO>();
 
+    isUpdate: boolean = false;
+
+    tipoRitenutaResult: any;
+
     tipoRitenutaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -46,8 +50,9 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
             wikiCode:['']
 
         })
-        if (this.tipoRitenuta!= null) {
+        if (this.tipoRitenuta!= null && this.tipoRitenuta.id != null) {
             this.tipoRitenutaNewUpdateForm.patchValue(this.tipoRitenuta);
+            this.isUpdate = true;
         }
     }
 
@@ -64,20 +69,25 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (tipoRitenuta.id != 0) {
+            if (this.isUpdate) {
                 await this.tipoRitenutaResourceService.updateIlFeRitenutaTipoUsingPUT(tipoRitenuta).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.tipoRitenutaResourceService.createIlFeRitenutaTipoUsingPOST(tipoRitenuta).toPromise();
                 postOrPut = "created";
             }
+
+            this.tipoRitenutaResult = tipoRitenuta;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -87,11 +97,10 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

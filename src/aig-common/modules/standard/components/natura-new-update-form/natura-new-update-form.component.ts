@@ -34,6 +34,10 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
     @Output()
 	naturaOutput = new EventEmitter<IlFeNaturaDTO>();
 
+    isUpdate: boolean = false;
+
+    naturaResult: any;
+
     naturaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -45,8 +49,9 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
             wikiCode:[''],
 
         })
-        if (this.natura!= null) {
+        if (this.natura!= null && this.natura.id != null) {
             this.naturaNewUpdateForm.patchValue(this.natura);
+            this.isUpdate = true;
         }
     }
     async submit() {
@@ -62,20 +67,25 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (natura.id != 0) {
+            if (this.isUpdate) {
                 await this.naturaResourceService.updateIlFeNaturaUsingPUT(natura).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.naturaResourceService.createIlFeNaturaUsingPOST(natura).toPromise();
                 postOrPut = "created";
             }
+
+            this.naturaResult = natura;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -85,11 +95,10 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
-import { IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO } from 'aig-standard';
-
-
+import { IlPpPartecipationTypeDTO } from 'aig-standard';
 
 @Component({
     selector: 'partecipation-type-detail-box',

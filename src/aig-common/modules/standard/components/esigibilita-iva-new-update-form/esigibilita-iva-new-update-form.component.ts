@@ -35,6 +35,10 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
     @Output()
 	esigibilitaIvaOutput = new EventEmitter<IlFeEsigibilitaIvaDTO>();
 
+    isUpdate: boolean = false;
+
+    esigibilitaIvaResult: any;
+
     esigibilitaIvaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -46,13 +50,13 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
             wikiCode:['']
 
         })
-        if (this.esigibilitaIva!= null) {
+        if (this.esigibilitaIva!= null && this.esigibilitaIva.id != null) {
             this.esigibilitaIvaNewUpdateForm.patchValue(this.esigibilitaIva);
+            this.isUpdate = true;
         }
     }
     
     async submit() {
-        
         if (!this.esigibilitaIvaNewUpdateForm.valid) {
             return;
         }
@@ -65,20 +69,25 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (esigibilitaIva.id != 0) {
+            if (this.isUpdate) {
                 await this.esigibilitaIvaResourceService.updateIlFeEsigibilitaIvaUsingPUT(esigibilitaIva).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.esigibilitaIvaResourceService.createIlFeEsigibilitaIvaUsingPOST(esigibilitaIva).toPromise();
                 postOrPut = "created";
             }
+
+            this.esigibilitaIvaResult = esigibilitaIva;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -88,11 +97,10 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

@@ -12,7 +12,6 @@ export class AigEntityDetailTipoCassaComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     tipoCassa: IlFeCassaTipoDTO;
 
 }

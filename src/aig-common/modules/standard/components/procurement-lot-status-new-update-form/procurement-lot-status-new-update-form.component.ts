@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { IlPpProcurementLotStatusDTO, IlPpProcurementLotStatusResourceService, IlPpProcurementStatusDTO, IlPpProcurementStatusResourceService } from 'aig-standard';
+import { IlPpProcurementLotStatusDTO, IlPpProcurementLotStatusResourceService } from 'aig-standard';
 
 @Component({
     selector: 'aig-procurement-lot-status-new-update-form',
@@ -29,6 +29,10 @@ export class AigProcurementLotStatusNewUpdateFormComponent implements OnInit {
     @Input()
     procurementLotStatus: IlPpProcurementLotStatusDTO;
 
+    isUpdate: boolean = false;
+
+    procurementLotStatusResult: any;
+
     procurementLotStatusNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -40,8 +44,9 @@ export class AigProcurementLotStatusNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
         
-        if (this.procurementLotStatus != null) {
+        if (this.procurementLotStatus != null && this.procurementLotStatus.id != null) {
             this.procurementLotStatusNewUpdateForm.patchValue(this.procurementLotStatus);
+            this.isUpdate = true;
         }
     }
 
@@ -58,20 +63,25 @@ export class AigProcurementLotStatusNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (procurementLotStatus.id != 0) {
+            if (this.isUpdate) {
                 await this.procurementLotStatusResourceService.updateIlPpProcurementLotStatusUsingPUT(procurementLotStatus).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.procurementLotStatusResourceService.createIlPpProcurementLotStatusUsingPOST(procurementLotStatus).toPromise();
                 postOrPut = "created";
             }
+
+            this.procurementLotStatusResult = procurementLotStatus;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -82,8 +92,7 @@ export class AigProcurementLotStatusNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
 }

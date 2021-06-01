@@ -12,7 +12,6 @@ export class AigEntityDetailTipoScontoMaggiorazioneComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     tipoScontoMaggiorazione: IlFeScontoMaggiorazioneTipoDTO;
 
 }

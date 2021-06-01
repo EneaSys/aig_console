@@ -29,6 +29,10 @@ export class AigIppModalityNewUpdateFormComponent implements OnInit {
     @Input()
     ippModality: IlPpProcurementModalityDTO;
 
+    isUpdate: boolean = false;
+
+    ippModalityResult: any;
+
     ippModalityNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -40,8 +44,9 @@ export class AigIppModalityNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.ippModality != null) {
+        if (this.ippModality != null && this.ippModality.id != null) {
             this.ippModalityNewUpdateForm.patchValue(this.ippModality);
+            this.isUpdate = true;
         }
     }
 
@@ -55,22 +60,26 @@ export class AigIppModalityNewUpdateFormComponent implements OnInit {
         let ippModality: IlPpProcurementModalityDTO = this.ippModalityNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (ippModality.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.ippModalityResourceService.updateIlPpProcurementModalityUsingPUT(ippModality).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.ippModalityResourceService.createIlPpProcurementModalityUsingPOST(ippModality).toPromise();
                 postOrPut = "created";
             }
+
+            this.ippModalityResult = ippModality;
+            
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Modality: '${ippModality.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -78,11 +87,10 @@ export class AigIppModalityNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }
