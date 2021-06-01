@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 import { GleButtonFunctions } from '@aig-ng/tools/enum/button-functions';
 import { GleListDisplayModality } from '@aig-ng/tools/enum/list-display-modality';
@@ -16,7 +16,7 @@ import { LazyLoadEvent } from 'primeng/api';
 })
 export class GleIppProcurementLotListLoaderComponent extends IppGenericComponent implements OnInit {
     @Input()
-    filters: any;
+    filters: any = {};
     
     @Input()
     view: GleListDisplayModality;
@@ -33,49 +33,65 @@ export class GleIppProcurementLotListLoaderComponent extends IppGenericComponent
         gcs: GleCommonService
     ) { super(gcs); }
 
-    loading: boolean;
-    ds: any[];
-    
-    pageable: any = {
-        page: 0,
-        size: 10
-    }
+    isLoaded: boolean = false;
 
-    pagination: any = {
-        totalRecords: 0,
-        first: 0,
-        last: 0    
-    }
+    loading: boolean = true;
+    ds: any[];
+    totalRecords: number = 0;
 
     selectedElements: any[] = [];
+
+    private pageable: any = {};
+
+    private sort: string[] = [];
 
     ngOnInit(): void {
         
     }
 
-    async loadData() {
-        this.filters = {
-            page: this.pageable.page,
-            size: this.pageable.size
-        };
-        
-        this.ds = await this.resourceService.getAllProcurementLotsUsingGET(this.filters).toPromise();
-        this.pagination.totalRecords = this.ds.length + 45;
-    }
-
-    async lazyLoad(event: LazyLoadEvent) {
-        this.loading = true;
-
-        this.pageable.page = event.first / event.rows;
-        this.pageable.size = event.rows;
+    async changePagination(event: any) {
+        this.pageable = event;
         
         await this.loadData();
+        this.isLoaded = true;
+    }
 
-        this.pagination.first = event.first + 1;
-        this.pagination.last = event.first + event.rows;
-        if(this.pagination.last > this.pagination.totalRecords) {
-            this.pagination.last = this.pagination.totalRecords;
+    ngOnChanges(changes: SimpleChanges) {
+        if(!this.isLoaded) {
+            return;
         }
+        this.loadData();
+    }
+
+    lazyLoad(event: LazyLoadEvent) {
+        if(!this.isLoaded) {
+            return;
+        }
+
+        this.sort = [];
+        if(event.sortField !== undefined) {
+            let sortable: string = event.sortField + ',';
+            sortable += (event.sortOrder > 0) ? 'asc' : 'desc';
+            this.sort.push(sortable);
+        }
+
+        if(this.sort.length > 0) {
+            this.loadData();
+        }
+    }
+
+
+    async loadData() {
+        this.loading = true;
+
+        let filters = this.filters;
+        filters.page = this.pageable.page;
+        filters.size = this.pageable.size;
+        filters.sort = this.sort;
+        
+        this.ds = await this.resourceService.getAllProcurementLotsUsingGET(filters).toPromise();
+        
+        this.totalRecords = await this.resourceService.countProcurementLotsUsingGET(filters).toPromise();
 
         this.loading = false;
     }

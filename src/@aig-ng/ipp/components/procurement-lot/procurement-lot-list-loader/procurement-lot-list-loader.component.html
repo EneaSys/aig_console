@@ -9,20 +9,16 @@
             [value]="ds" [loading]="loading"
             [lazy]="true" (onLazyLoad)="lazyLoad($event)"
             
-            [paginator]="true" [rowsPerPageOptions]="[10,20,50]"
-            [rows]="pageable.size" [totalRecords]="pagination.totalRecords"
-            [showCurrentPageReport]="true" currentPageReportTemplate="{{ pagination.first }} - {{ pagination.last }} of {{ pagination.totalRecords }}"
-            
             [resizableColumns]="true"
             [(selection)]="selectedElements" >
 
             <ng-template pTemplate="header">
                 <tr>
-                    <th pResizableColumn></th>
-                    <th pResizableColumn pSortableColumn="cig">CIG</th>
-                    <th pResizableColumn pSortableColumn="description">Descrizione</th>
-                    <th pResizableColumn pSortableColumn="sa">Stazione Appaltante</th>
-                    <th pResizableColumn pSortableColumn="amount">Amount</th>
+                    <th style="width:50px" pResizableColumn ></th>
+                    <th style="width:120px" pResizableColumn pSortableColumn="cig">CIG</th>
+                    <th style="width:50%"pResizableColumn pSortableColumn="description">Descrizione</th>
+                    <th pResizableColumn >Stazione Appaltante</th>
+                    <th pResizableColumn >Amount</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-e>
@@ -37,3 +33,10 @@
         </p-table>
     </p>
 </div>
+
+<gle-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></gle-paginator>

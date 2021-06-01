@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 
 import { GleToolsModule } from '@aig-ng/tools/gle-tools.module';
-
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 import { GleIppProcurementLotListLoaderComponent } from './components/procurement-lot/procurement-lot-list-loader/procurement-lot-list-loader.component';
@@ -13,10 +12,10 @@ import { GleIppProcurementLotListTablePrimeComponent } from './components/procur
 @NgModule({
     imports: [
         CommonModule,
-        GleToolsModule,
 
+        GleToolsModule,
         CommonGenericModule,
-        
+
         TableModule,
     ],
     providers: [

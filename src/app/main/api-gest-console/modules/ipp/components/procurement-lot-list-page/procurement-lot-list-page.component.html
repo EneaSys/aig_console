@@ -5,14 +5,14 @@
         <div class="content">
             <div>
                 <div class="header p-16 border-bottom" fxLayout="row" fxLayoutAlign="center start">
-                    <button mat-raised-button (click)=" resetFiltersProcurementLot()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
+                    <button mat-raised-button (click)="showAll()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
                     <span class="h3">{{ 'MAIN.FILTERS' | translate }}</span>
                 </div>
                 <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
-                        <form [formGroup]="procurementLotSearchFormGroup" (ngSubmit)="procurementLotSearchWithFilter()" class="p-8">
+                        <form [formGroup]="procurementLotSearchFormGroup" (ngSubmit)="search()" class="p-8">
                             <div fxLayout="row">
                                 <mat-form-field appearance="outline" fxFlex="100">
                                     <mat-label>Cig</mat-label>
@@ -160,24 +160,10 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <!--
-            <agm-map [zoom]="5" [latitude]="lat" [longitude]="lng" (mapReady)="onMapReady($event)"></agm-map>
-            <mat-list role="list">
-                <mat-list-item role="listitem" *ngFor="let point of pointList">
-                    {{ point.lat.toPrecision(5) }},
-                    {{ point.lng.toPrecision(5) }}</mat-list-item>
-            </mat-list>
-            <mat-card *ngIf="selectedArea > 0">
-                <button (click)="deleteSelectedShape()">cancella</button>
-                Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
-            </mat-card>
-            -->
-            <gle-ipp-procurement-lot-list-loader></gle-ipp-procurement-lot-list-loader>
+            <gle-ipp-procurement-lot-list-loader
+                [filters]="searchFilters"
+                ></gle-ipp-procurement-lot-list-loader>
             
-            <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="this.procurementLotFilters.page"
-                [pageSize]="this.inventoryItemPaginationSize" [pageSizeOptions]="[30, 100, 200]"
-                (page)="procurementLotPaginationEvent($event)"></mat-paginator>
-
 
             <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"
                 aria-label="add procurement lot">
