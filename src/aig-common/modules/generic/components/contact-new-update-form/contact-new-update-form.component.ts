@@ -40,6 +40,8 @@ export class AigContactNewUpdateFormComponent implements OnInit {
 
     isUpdate: boolean = false;
 
+    contactResult: any;
+
     contactNewUpdateForm: FormGroup;
 
     filteredEopoos: Observable<EopooDTO[]>;
@@ -57,10 +59,10 @@ export class AigContactNewUpdateFormComponent implements OnInit {
             value: ['', [Validators.required, AigValidator.haveId]],
         })
         
-        if (this.contact != null) {
+        if (this.contact != null && this.contact.id != null) {
             this.contactNewUpdateForm.patchValue(this.contact);
+            this.isUpdate = true;
         }
-
 
         this.filteredReferents = this.genericAutocompleteFilterService.filterReferent(this.contactNewUpdateForm.controls['referent'].valueChanges);
 
@@ -85,22 +87,26 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         contact.contactTypeCode = this.contactNewUpdateForm.value.contactType;
 
         try {
-            let postOrPut;
-            if (contact.id != 0) {
+            let postOrPut : string;
+            if (this.isUpdate) {
                 await this.contactResourceService.updateContactUsingPUT(contact).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.contactResourceService.createContactUsingPOST(contact).toPromise();
                 postOrPut = "created";
             }
+
+            this.contactResult = contact;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Contact: '${contact.value}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
      }
 
@@ -108,10 +114,10 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

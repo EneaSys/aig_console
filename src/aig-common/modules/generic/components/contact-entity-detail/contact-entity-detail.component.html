@@ -1,11 +1,5 @@
-<div>
-    <div class="h3 m-16 mt-0 mb-0">Detail</div>
-    <hr size=”1″ width=”300″ color="black" noshade>
-
-    <p>Id: {{ contactDTO.id }}</p>
-    <p>Contact Type Code: {{ contactDTO.contactTypeCode }}</p>
-    <p>Eopoo Tax Number: {{ contactDTO.eopooTaxNumber }}</p>
-    <p>Referent Last Name: {{ contactDTO.referentLastname }}</p>
-    <p>Value: {{ contactDTO.value }}</p>
-    
-</div>
+<div class="h1 m-8 ml-16">{{ contact.value }}</div>
+<div class="h4 ml-16">Id: <b>{{ contact.id }}</b></div>
+<div class="h4 ml-16">Contact Type Code: <b>{{ contact.contactTypeCode }}</b></div>
+<div class="h4 ml-16">Referent Last Name: <b>{{ contactDTO.referentLastname }}</b></div>
+<div class="h4 ml-16">Codice fiscale: <b>{{ contact.eopooTaxNumber }}</b></div>

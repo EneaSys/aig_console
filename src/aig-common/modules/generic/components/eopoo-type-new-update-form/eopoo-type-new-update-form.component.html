@@ -28,8 +28,10 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -37,6 +39,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ eopooTypeNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!eopooTypeNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEopooType()">Create New</button>
+
+    <h1 *ngIf="!isUpdate">Eopoo Type creato con successo</h1>
+    <h1 *ngIf="isUpdate">Eopoo Type con successo</h1>
+    
+    <hr>
+
+    <aig-eopoo-type-entity-detail [eopooType]="eopooTypeResult"></aig-eopoo-type-entity-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newEopooType()">Crea nuovo</button>
+    </div>
+
 </div>

@@ -44,6 +44,8 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
 
     isUpdate: boolean = false;
 
+    addressResult: any;
+
     addressNewUpdateForm: FormGroup;
 
     filteredCitys: Observable<CityDTO[]>;
@@ -58,7 +60,7 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
             city: ['', [Validators.required, AigValidator.haveId]],
         })
 
-        if (this.address != null) {
+        if (this.address != null && this.address.id != null) {
             this.addressNewUpdateForm.patchValue(this.address);
             this.isUpdate = true;
         }
@@ -81,34 +83,37 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
 
 
         try {
-            let postOrPut;
-            if (address.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.addressResourceService.updateAddressUsingPUT(address).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.addressResourceService.createAddressUsingPOST(address).toPromise();
                 postOrPut = "created";
             }
+
+            this.addressResult = address;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Address: '${address.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
-        this._fuseProgressBarService.hide();
 
+        this._fuseProgressBarService.hide();
     }
 
     newAddress() {
         this.setStep("form");
     }
 
-    private setStep(step: string) {
+    private setStep(stepToShow: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

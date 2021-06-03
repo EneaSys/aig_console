@@ -1,11 +1,4 @@
-<div>
-    <div class="h3 m-16 mt-0 mb-0">Detail</div>
-    <hr size=”1″ width=”300″ color="black" noshade>
-
-    <p>Id: {{ referentDTO.id }}</p>
-    <p>First name: {{ referentDTO.firstname }}</p>
-    <p>Last name: {{ referentDTO.lastname }}</p>
-    <p>Eopoo tax number: {{ referentDTO.eopooTaxNumber }}</p>
-    <p>Position: {{ referentDTO.position }}</p>
-    
-</div>
+<div class="h1 m-8 ml-16">{{ referent.firstname }} {{ referent.lastname }}</div>
+<div class="h4 ml-16">Id: <b>{{ referent.id }}</b></div>
+<div class="h4 ml-16">Codice fiscale: <b>{{ referent.eopooTaxNumber }}</b></div>
+<div class="h4 ml-16">Position: <b>{{ referent.position }}</b></div>
