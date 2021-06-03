@@ -1,13 +1,15 @@
 <form *ngIf="step.form" [formGroup]="insurancePolicyStatusNewUpdateForm" (ngSubmit)="submit()">
-   <mat-form-field>
+
+    <mat-form-field>
          <mat-label>Description</mat-label>
             <input formControlName="description" matInput required>
     </mat-form-field>
  
-  
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -15,7 +17,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ insurancePolicyStatusNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!insurancePolicyStatusNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newInsurancePolicyStatus()">Create New</button>
+
+    <h1 *ngIf="!isUpdate">Insurance Policy Status creato con successo</h1>
+    <h1 *ngIf="isUpdate">Insurance Policy Status aggiornato con successo</h1>
+    
+    <hr>
+
+    <aig-insurance-policy-status-detail-box [insurancePolicyStatus]="insurancePolicyStatusResult"></aig-insurance-policy-status-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newInsurancePolicyStatus()">Crea nuovo</button>
+    </div>
+
 </div>

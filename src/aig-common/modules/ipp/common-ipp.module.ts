@@ -57,6 +57,10 @@ import { AigPreparationDetailBoxComponent } from './components/preparation-detai
 import { AigPartecipationDetailBoxComponent } from './components/partecipation-detail-box/partecipation-detail-box.component';
 import { AigDesignatedCompanyDetailBoxComponent } from './components/designated-company-detail-box/designated-company-detail-box.component';
 import { AigInsurancePolicyDetailBoxComponent } from './components/insurance-policy-detail-box/insurance-policy-detail-box.component';
+import { AigDossierDetailBoxComponent } from './components/dossier-detail-box/dossier-detail-box.component';
+import { AigPartecipationStatusDetailBoxComponent } from './components/partecipation-status-detail-box/partecipation-status-detail-box.component';
+import { AigPreparationStatusDetailBoxComponent } from './components/preparation-status-detail-box/preparation-status-detail-box.component';
+import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
 
 
 @NgModule({
@@ -105,65 +109,90 @@ import { AigInsurancePolicyDetailBoxComponent } from './components/insurance-pol
 
     ],
     declarations: [
-        AigProcurementListTableComponent,
-        AigProcurementLotListTableComponent,
-        AigDossierListTableComponent,
-        AigPartecipationListTableComponent,
-        AigPartecipationStatusListTableComponent,
-        AigPreparationListTableComponent,
-        AigPreparationStatusListTableComponent,
-        AigInsurancePolicyListTableComponent,
-        AigDesignatedCompanyListTableComponent,
-        AigInsurancePolicyStatusListTableComponent,
 
+        AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,
-        AigProcurementLotNewUpdateFormComponent,
-        AigDossierNewUpdateFormComponent,
-        AigPartecipationNewUpdateFormComponent,
-        AigPartecipationStatusNewUpdateFormComponent,
-        AigPreparationNewUpdateFormComponent,
-        AigPreparationStatusNewUpdateFormComponent,
-        AigInsurancePolicyNewUpdateFormComponent,
-        AigDesignatedCompanyNewUpdateFormComponent,
-        AigInsurancePolicyStatusNewUpdateFormComponent,
-    
         AigProcurementDetailBoxComponent,
+
+        AigProcurementLotListTableComponent,
+        AigProcurementLotNewUpdateFormComponent,
         AigProcurementLotDetailBoxComponent,
-        AigPartecipationDetailBoxComponent,
-        AigPreparationDetailBoxComponent,
+
+        AigDesignatedCompanyListTableComponent,
+        AigDesignatedCompanyNewUpdateFormComponent,
         AigDesignatedCompanyDetailBoxComponent,
+
+        AigDossierListTableComponent,
+        AigDossierNewUpdateFormComponent,
+        AigDossierDetailBoxComponent,
+
+        AigPartecipationListTableComponent,
+        AigPartecipationNewUpdateFormComponent,
+        AigPartecipationDetailBoxComponent,
+
+        AigPartecipationStatusListTableComponent,
+        AigPartecipationStatusNewUpdateFormComponent,
+        AigPartecipationStatusDetailBoxComponent,
+        
+        AigPreparationListTableComponent,
+        AigPreparationNewUpdateFormComponent,
+        AigPreparationDetailBoxComponent,
+
+        AigPreparationStatusListTableComponent,
+        AigPreparationStatusNewUpdateFormComponent,
+        AigPreparationStatusDetailBoxComponent,
+
+        AigInsurancePolicyListTableComponent,
+        AigInsurancePolicyNewUpdateFormComponent,
         AigInsurancePolicyDetailBoxComponent,
+
+        AigInsurancePolicyStatusListTableComponent,
+        AigInsurancePolicyStatusNewUpdateFormComponent,
+        AigInsurancePolicyStatusDetailBoxComponent,
+    
     ],
     exports: [
+
         AigProcurementListTableComponent,
-        AigProcurementLotListTableComponent,
-        AigDossierListTableComponent,
-        AigPartecipationListTableComponent,
-        AigPartecipationStatusListTableComponent,
-        AigPreparationListTableComponent,
-        AigPreparationStatusListTableComponent,
-        AigInsurancePolicyListTableComponent,
-        AigDesignatedCompanyListTableComponent,
-        AigInsurancePolicyStatusListTableComponent,
-
-        
-        AigDossierNewUpdateFormComponent,
         AigProcurementNewUpdateFormComponent,
-        AigProcurementLotNewUpdateFormComponent,
-        AigPartecipationNewUpdateFormComponent,
-        AigPartecipationStatusNewUpdateFormComponent,
-        AigPreparationNewUpdateFormComponent,
-        AigPreparationStatusNewUpdateFormComponent,
-        AigInsurancePolicyNewUpdateFormComponent,
-        AigDesignatedCompanyNewUpdateFormComponent,
-        AigInsurancePolicyStatusNewUpdateFormComponent,
-
         AigProcurementDetailBoxComponent,
+
+        AigProcurementLotListTableComponent,
+        AigProcurementLotNewUpdateFormComponent,
         AigProcurementLotDetailBoxComponent,
-        AigPartecipationDetailBoxComponent,
-        AigPreparationDetailBoxComponent,
+
+        AigDesignatedCompanyListTableComponent,
+        AigDesignatedCompanyNewUpdateFormComponent,
         AigDesignatedCompanyDetailBoxComponent,
+
+        AigDossierListTableComponent,
+        AigDossierNewUpdateFormComponent,
+        AigDossierDetailBoxComponent,
+
+        AigPartecipationListTableComponent,
+        AigPartecipationNewUpdateFormComponent,
+        AigPartecipationDetailBoxComponent,
+
+        AigPartecipationStatusListTableComponent,
+        AigPartecipationStatusNewUpdateFormComponent,
+        AigPartecipationStatusDetailBoxComponent,
+
+        AigPreparationListTableComponent,
+        AigPreparationNewUpdateFormComponent,
+        AigPreparationDetailBoxComponent,
+
+        AigPreparationStatusListTableComponent,
+        AigPreparationStatusNewUpdateFormComponent,
+        AigPreparationStatusDetailBoxComponent,
+
+        AigInsurancePolicyListTableComponent,
+        AigInsurancePolicyNewUpdateFormComponent,
         AigInsurancePolicyDetailBoxComponent,
+
+        AigInsurancePolicyStatusListTableComponent,
+        AigInsurancePolicyStatusNewUpdateFormComponent,
+        AigInsurancePolicyStatusDetailBoxComponent,
+
     ]
         
     

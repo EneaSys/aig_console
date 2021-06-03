@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
@@ -28,6 +28,10 @@ export class AigInsurancePolicyStatusNewUpdateFormComponent implements OnInit {
     @Input()
     insurancePolicyStatus: InsurancePolicyStatusDTO;
 
+    isUpdate: boolean = false;
+
+    insurancePolicyStatusResult: any;
+
     insurancePolicyStatusNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -36,8 +40,9 @@ export class AigInsurancePolicyStatusNewUpdateFormComponent implements OnInit {
             description:[''],
         })
         
-        if (this.insurancePolicyStatus != null) {
+        if (this.insurancePolicyStatus != null && this.insurancePolicyStatus.id != null) {
             this.insurancePolicyStatusNewUpdateForm.patchValue(this.insurancePolicyStatus);
+            this.isUpdate = true;
         }
     }
 
@@ -50,21 +55,24 @@ export class AigInsurancePolicyStatusNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let insurancePolicyStatus: InsurancePolicyStatusDTO = this.insurancePolicyStatusNewUpdateForm.value;
-        console.log(this.insurancePolicyStatus);
 
         try {
             let postOrPut: string;
 
-            if (this.insurancePolicyStatus.id > 0) {
+            if (this.isUpdate) {
                 await this.insurancePolicyStatusResourceService.updateInsurancePolicyStatusUsingPUT(insurancePolicyStatus).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.insurancePolicyStatusResourceService.createInsurancePolicyStatusUsingPOST(insurancePolicyStatus).toPromise();
                 postOrPut = "created";
             }
+
+            this.insurancePolicyStatusResult = insurancePolicyStatus;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
@@ -80,7 +88,6 @@ export class AigInsurancePolicyStatusNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
 }

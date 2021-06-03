@@ -1,15 +1,15 @@
 <form *ngIf="step.form" [formGroup]="partecipationStatusNewUpdateForm" (ngSubmit)="submit()">
-
     
     <mat-form-field>
         <mat-label>Description</mat-label>
         <input formControlName="description" matInput required>
     </mat-form-field>
 
-    
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -17,7 +17,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ partecipationStatusNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!partecipationStatusNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newPartecipationStatus()">Create New</button>
+
+    <h1 *ngIf="!isUpdate">Partecipation status creato con successo</h1>
+    <h1 *ngIf="isUpdate">Partecipation status aggiornato con successo</h1>
+    
+    <hr>
+
+    <aig-partecipation-status-detail-box [partecipationStatus]="partecipationStatusResult"></aig-partecipation-status-detail-box>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newPartecipationStatus()">Crea nuovo</button>
+    </div>
+
 </div>

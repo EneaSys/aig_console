@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { PreparationDTO, PreparationResourceService, PreparationStatusDTO, PreparationStatusResourceService } from 'aig-italianlegislation';
+import { PreparationStatusDTO, PreparationStatusResourceService } from 'aig-italianlegislation';
 
 @Component({
     selector: 'aig-preparation-status-new-update-form',
@@ -28,6 +28,10 @@ export class AigPreparationStatusNewUpdateFormComponent implements OnInit {
     @Input()
     preparationStatus: PreparationStatusDTO;
 
+    isUpdate: boolean = false;
+
+    preparationStatusResult: any;
+
     preparationStatusNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -37,8 +41,9 @@ export class AigPreparationStatusNewUpdateFormComponent implements OnInit {
             
         })
         
-        if (this.preparationStatus != null) {
+        if (this.preparationStatus != null && this.preparationStatus.id != null) {
             this.preparationStatusNewUpdateForm.patchValue(this.preparationStatus);
+            this.isUpdate = true;
         }
     }
 
@@ -52,24 +57,28 @@ export class AigPreparationStatusNewUpdateFormComponent implements OnInit {
 
         let preparationStatus: PreparationStatusDTO = this.preparationStatusNewUpdateForm.value;
 
-        console.log(this.preparationStatus);
         try {
             let postOrPut: string;
 
-            if (this.preparationStatus.id > 0) {
+            if (this.isUpdate) {
                 await this.preparationStatusResourceService.updatePreparationStatusUsingPUT(preparationStatus).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.preparationStatusResourceService.createPreparationStatusUsingPOST(preparationStatus).toPromise();
                 postOrPut = "created";
             }
+
+            this.preparationStatusResult = preparationStatus;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -80,8 +89,7 @@ export class AigPreparationStatusNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
 }

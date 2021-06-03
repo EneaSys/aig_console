@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
@@ -28,6 +28,10 @@ export class AigPartecipationStatusNewUpdateFormComponent implements OnInit {
     @Input()
     partecipationStatus: PartecipationStatusDTO;
 
+    isUpdate: boolean = false;
+
+    partecipationStatusResult: any;
+
     partecipationStatusNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -37,8 +41,9 @@ export class AigPartecipationStatusNewUpdateFormComponent implements OnInit {
             
         })
         
-        if (this.partecipationStatus != null) {
+        if (this.partecipationStatus != null && this.partecipationStatus.id != null) {
             this.partecipationStatusNewUpdateForm.patchValue(this.partecipationStatus);
+            this.isUpdate = true;
         }
     }
 
@@ -52,24 +57,28 @@ export class AigPartecipationStatusNewUpdateFormComponent implements OnInit {
 
         let partecipationStatus: PartecipationStatusDTO = this.partecipationStatusNewUpdateForm.value;
 
-        console.log(this.partecipationStatus);
         try {
             let postOrPut: string;
 
-            if (this.partecipationStatus.id > 0) {
+            if (this.isUpdate) {
                 await this.partecipationStatusResourceService.updatePartecipationStatusUsingPUT(partecipationStatus).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.partecipationStatusResourceService.createPartecipationStatusUsingPOST(partecipationStatus).toPromise();
                 postOrPut = "created";
             }
+
+            this.partecipationStatusResult = partecipationStatus;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -80,8 +89,7 @@ export class AigPartecipationStatusNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
 }
