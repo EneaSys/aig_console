@@ -121,7 +121,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
             awardCriterionCodeEquals: null,
             categoryCodeEquals: null,
             typeCodeEquals: null,
-			partecipationStatusCodeEquals: null,
+			statusIdEquals: null,
 			partecipationTypeCodeEquals: null,
 		}
 	}
@@ -203,8 +203,8 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			if (this.partecipationSearchFormGroup.controls.procurementLotOfferExpiryDate.value ) {
 				this.partecipationFilters.procurementLotOfferExpiryDateCodeEquals = this.partecipationSearchFormGroup.controls.procurementLotOfferExpiryDate.value;
 			}
-			if (this.partecipationSearchFormGroup.controls.siteInspection.value ) {
-				this.partecipationFilters.siteInspectionIDEquals = this.partecipationSearchFormGroup.controls.siteInspection.value;
+			if (this.partecipationSearchFormGroup.controls.siteInspection.value != null ) {
+				this.partecipationFilters.siteInspectionEquals = this.partecipationSearchFormGroup.controls.siteInspection.value;
 			}
 
 			if (this.partecipationSearchFormGroup.controls.ippModality.value ) {
@@ -227,7 +227,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			}
 
 			if (this.partecipationSearchFormGroup.controls.partecipationStatus.value ) {
-				this.partecipationFilters.partecipationStatusCodeEquals = this.partecipationSearchFormGroup.controls.partecipationStatus.value.code;
+				this.partecipationFilters.statusIdEquals = this.partecipationSearchFormGroup.controls.partecipationStatus.value.id;
 			}
 
 			if (this.partecipationSearchFormGroup.controls.partecipationType.value ) {
