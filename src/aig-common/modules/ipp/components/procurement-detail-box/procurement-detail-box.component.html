@@ -10,8 +10,8 @@
 <div class="h4 ml-16">{{ 'IPP.SECTOR' | translate }}: <b>{{ procurement.sector.name }}</b></div>
 <div class="h4 ml-16">{{ 'IPP.PROCEDURE' | translate }}: <b>{{ procurement.procedure.name }}</b></div>
 <div class="h4 ml-16">{{ 'IPP.MODALITY' | translate }}: <b>{{ procurement.modality.name }}</b></div>
-<div class="h4 ml-16">{{ 'MAIN.STATUS' | translate }}: <b>{{ procurement.status.name }}</b></div>
-<div class="h4 ml-16">{{ 'IPP.REFERENCE' | translate }}: <b>{{ procurement.ref }}</b></div>
+<div class="h4 ml-16" *ngIf="procurement.status != null">{{ 'MAIN.STATUS' | translate }}: <b>{{ procurement.status.name }}</b></div>
+<div class="h4 ml-16" *ngIf="procurement.ref != null && procurement.ref != ''">{{ 'IPP.REFERENCE' | translate }}: <b>{{ procurement.ref }}</b></div>
 
 <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate }} {{ 'IPP.CONTRACTOR' | translate }}</div>
 <aig-eopoo-entity-detail [eopoo]="procurement.contractorEopoo"></aig-eopoo-entity-detail>
