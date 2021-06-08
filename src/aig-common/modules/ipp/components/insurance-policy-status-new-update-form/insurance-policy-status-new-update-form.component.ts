@@ -80,7 +80,7 @@ export class AigInsurancePolicyStatusNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newInsurancePolicy() {
+    newInsurancePolicyStatus() {
         this.setStep("form");
     }
 
