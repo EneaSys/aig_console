@@ -1,11 +1,11 @@
 <div id="aig-purchase-item-new-update-form" *ngIf="step.form">
     <form [formGroup]="purchaseItemNewUpdateForm" (ngSubmit)="submit()">
 
-        <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!purchase">
+        <div fxLayout="row" fxLayoutAlign="start start" *ngIf="purchase">
             <div class="form-group col-md-6">
                 <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Vendita</mat-label>
-                    <input type="text" matInput formControlName="purchase" required [matAutocomplete]="purchaseAutocomplete">
+                    <input matInput formControlName="purchase" required [matAutocomplete]="purchaseAutocomplete">
                     <mat-autocomplete #purchaseAutocomplete="matAutocomplete" [displayWith]="autocompleteDisplayService.purchaseDisplayFn">
                         <mat-option *ngFor="let purchase of filteredPurchase | async" [value]="purchase">{{ purchase.insertedDateTime }}</mat-option>
                     </mat-autocomplete>

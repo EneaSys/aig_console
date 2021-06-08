@@ -36,7 +36,8 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 	purchase: PurchaseDTO;
 
 	@Input()
-	returnToParent: boolean = false; 	
+	returnToParent: boolean = false;
+
 	@Output()
 	purchaseItemOutput = new EventEmitter<PurchaseItemDTO>();
 
@@ -51,10 +52,6 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 	filteredPurchase: Observable<PurchaseDTO[]>;
 	filteredWarehouseHandligItem: Observable<WarehouseHandlingItemDTO[]>;
 
-
-
-
-
 	ngOnInit(): void {
 		this.purchaseItemNewUpdateForm = this._formBuilder.group({
 			id: [''],
@@ -65,7 +62,6 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
             warehouseHandlingItem: [''],
             inventoryItemCombination: [''],
 		});
-
 
 		if(this.purchaseItem != null) {
 			this.purchaseItemNewUpdateForm.patchValue(this.purchaseItem);
@@ -98,7 +94,7 @@ export class AigPurchaseItemNewUpdateFormComponent implements OnInit {
 
 		if(!this.returnToParent) {
 			try {
-				let postOrPut;
+				let postOrPut: string;
 				if (purchaseItem.id != 0) {
 					await this.purchaseItemResourceService.updatePurchaseItemUsingPUT(purchaseItem).toPromise();
 					postOrPut = "updated";
