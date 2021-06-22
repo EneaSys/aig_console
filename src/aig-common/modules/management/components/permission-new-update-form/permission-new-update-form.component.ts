@@ -33,6 +33,8 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
     @Input()
     permission: PermissionDTO;
 
+    isUpdate: boolean = false;
+
     permissionNewUpdateForm: FormGroup;
 
 	filteredApplicationModules: Observable<ApplicationModuleDTO[]>;

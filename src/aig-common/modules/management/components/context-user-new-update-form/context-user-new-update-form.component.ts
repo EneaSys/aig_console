@@ -32,6 +32,8 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
     @Input()
     contextUser: ContextUserDTO;
 
+    isUpdate: boolean = false;
+
     contextUserNewUpdateForm: FormGroup;
 
 	filteredTenantContexts: Observable<TenantContextDTO[]>;
