@@ -95,14 +95,7 @@
                         e/o un saldo derivante da libretti di risparmio bancari/postali, 
                         complessivamente per l'intero nucleo familiare non superiore a € 5.000,00 e precisamente: minore di € 2.000,00;
                     </li>
-                    <li>
-                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da: 
-                        2 adulti complessivi presenti nel nucleo familiare;<b>
-                        <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> minore di
-                            &euro; 2.000,00;</span>
-                        <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> da &euro;
-                            2.000,01 a &euro;5.000,00;</span></b>
-                    </li>
+
                     <li>
                         che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
                         {{ foodProductRequestDTO.familyUnit.adultNumber }} adulti
@@ -111,6 +104,7 @@
                         </span>
                         complessivi presenti nel nucleo familiare;
                     </li>
+                   
                     <li>
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
