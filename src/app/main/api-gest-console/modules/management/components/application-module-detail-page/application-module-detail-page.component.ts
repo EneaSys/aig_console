@@ -6,10 +6,11 @@ import { AigContextModuleNewUpdateFormComponent } from "aig-common/modules/manag
 import { AigEntityReferenceNewUpdateFormComponent } from "aig-common/modules/management/components/entity-reference-new-update-form/entity-reference-new-update-form.component";
 import { AigPermissionNewUpdateFormComponent } from "aig-common/modules/management/components/permission-new-update-form/permission-new-update-form.component";
 import { AigPersonalizationNewUpdateFormComponent } from "aig-common/modules/management/components/personalization-new-update-form/personalization-new-update-form.component";
-import { ApplicationModuleDTO, ApplicationModuleResourceService, ContextModuleResourceService, ContextUserResourceService, EntityReferenceDTO, EntityReferenceResourceService, PermissionResourceService, PersonalizationDTO, PersonalizationResourceService } from "aig-management";
+import { ApplicationModuleDTO, ApplicationModuleResourceService, ContextModuleResourceService, ContextUserResourceService, EntityReferenceDTO, EntityReferenceResourceService, PermissionResourceService, PersonalizationDTO, PersonalizationResourceService, RoleResourceService } from "aig-management";
 import { ContextModuleDTO } from "aig-management";
 import { PermissionDTO } from "aig-management";
 import { ContextUserDTO } from "aig-management";
+import { RoleDTO } from "aig-management";
 
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
@@ -18,6 +19,7 @@ import { AigContextModuleNewUpdateModalComponent } from "../context-module-new-u
 import { AigContextUserNewUpdateModalComponent } from "../context-user-new-update-modal/context-user-new-update-modal.component";
 import { AigEntityReferenceNewUpdateModalComponent } from "../entity-reference-new-update-modal/entity-reference-new-update-modal.component";
 import { AigPermissionNewUpdateModalComponent } from "../permission-new-update-modal/permission-new-update-modal.component";
+import { AigRoleNewUpdateModalComponent } from "../role-new-update-modal/role-new-update-modal.component";
 
 @Component({
 	selector: 'aig-application-module-detail-page',
@@ -28,6 +30,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     constructor(
         private applicationModuleResourceService: ApplicationModuleResourceService,
         private contextUserResourceService: ContextUserResourceService,
+        private roleResourceService: RoleResourceService,
         private contextModuleResourceService: ContextModuleResourceService,
         private permissionResourceService: PermissionResourceService,
         private personalizationResourceService: PersonalizationResourceService,
@@ -56,6 +59,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
         this.loadContextModule();
         this.loadPermission();
         this.loadContextUser();
+        this.loadRole();
       }
 
 	async deleteApplicationModule(id: number) {
@@ -163,5 +167,27 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
 
     newContextUser(applicationModuleDTO: ApplicationModuleDTO): void {
         this.dialog.open(AigContextUserNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
+    }
+
+    roleDC: string[] = ['id', 'name','permission','roleCode','buttons'];
+    roleDTOs: RoleDTO[];
+    roleError: any;
+    
+    async loadRole() {
+       
+        let filters = {
+            applicationModuleIdEquals: this.applicationModuleDTO.id
+        };
+        
+        try {
+        this.roleDTOs = await this.roleResourceService.getAllRolesUsingGET(filters).toPromise();
+        
+        } catch (e) {
+        this.roleError = e;
+        }
+    }
+
+    newRole(applicationModuleDTO: ApplicationModuleDTO): void {
+        this.dialog.open(AigRoleNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
     }
 }

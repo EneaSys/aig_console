@@ -84,6 +84,24 @@
             </div>
             
         </div>
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Role
+
+                </div>
+                <aig-role-list-table
+                    [dataSource]="roleDTOs" 
+                    [displayColumns]="roleDC"
+                    [error]="roleError">
+                </aig-role-list-table>
+    
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newRole(applicationModuleDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
     </div>
 
     
