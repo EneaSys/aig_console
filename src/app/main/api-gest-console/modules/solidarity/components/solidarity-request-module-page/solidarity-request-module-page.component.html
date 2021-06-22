@@ -46,8 +46,7 @@
                     <br>Comune di Santa Maria La Carità
                 </p>
 
-                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> DOMANDA DI AMMISSIONE EROGAZIONE DELL'
-                    AUSILIO FINANZIARIO A CARATTERE STRORDINARIO
+                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> DOMANDA DI AMMISSIONE MISURA DI SOLIDARIETA’ ALIMENTARE
                 </p>
                 <p style="padding: 0 0 0 30px;">
                     <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">Il
@@ -68,20 +67,17 @@
                     cell {{ foodProductRequestDTO.familyUnit.mobile }},
                     <span *ngIf="(foodProductRequestDTO.familyUnit.email != '')">email
                         {{ foodProductRequestDTO.familyUnit.email }},</span>
-                        in riferimento all’Avviso Pubblico “Fondo Straordinario di Solidarietà- ausilio finanziario a
-                        carattere straordinario in favore di nuclei familiari in condizioni di disagio socio-economico –
-                        Emergenza epidemiologica da Covid-19”,
+                        in riferimento all’Avviso Pubblico  “Misura di Solidarietà alimentare in attuazione del D.L. 154/2020”
                 </p>
 
 
                 <h3>Consapevole</h3>
                 <ul>
-                    <li>che ai sensi dell’art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in
-                        atti, l’uso di atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell’art. 75 del
-                        DPR n. 445/2000, il dichiarante decade dai benefici eventualmente conseguiti da provvedimenti
-                        emanati sulla base di dichiarazioni non veritiere; che, ai sensi dell’art. 71 del DPR 445/2000,
-                        l’Ente ha l’obbligo di effettuare idonei controlli, anche a campione, sulla veridicità di quanto
-                        dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;</li>
+                    <li>che ai sensi dell’art. 76, comma 1 del DPR 445/2000, le dichiarazioni mendaci, le falsità in atti, 
+                        l’uso di atti falsi sono puniti ai sensi del codice penale; che, ai sensi dell’art. 75 del DPR n. 445/2000, 
+                        il dichiarante decade dai benefici eventualmente conseguiti da provvedimenti emanati sulla base di 
+                        dichiarazioni non veritiere; che, ai sensi dell’art. 71 del DPR 445/2000, l’Ente ha l’obbligo di effettuare idonei controlli, 
+                        anche a campione, sulla veridicità di quanto dichiarato, ai sensi degli artt. 46 e 47 del DPR 445/2000;</li>
                     <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
                         Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
                         veridicità delle stesse;</li>
@@ -89,27 +85,19 @@
 
                 <h3>Chiede</h3>
                 <p style="padding: 0 0 0 30px;">
-                    di essere ammesso all’erogazione dell’ausilio finanziario a carattere straordinario;
+                    di essere ammesso all'erogazione di buoni spesa alimentari;
                 </p>
 
                 <h3>Dichiara</h3>
                 <ul>
                     <li>
-                        di aver subìto un grave deterioramento della propria condizione economico-finanziaria
-                        determinatasi per effetto delle conseguenze dell’emergenza epidemiologica da Covid-19, disagio
-                        socio-economico che comporta difficoltà nel pagamento delle seguenti spese:
-                        <span [ngSwitch]="foodProductRequestDTO.familyUnit.cap">
-                            <b *ngSwitchCase="'A'">Pagamento dell’utenza domestica (bolletta acqua, luce o gas)</b>
-                            <b *ngSwitchCase="'B'">Pagamento del canone di locazione</b>
-                            <b *ngSwitchCase="'C'">Pagamento delle spese mediche/farmaceutiche</b>
-                            <b *ngSwitchCase="'D'">Acquisto di generi di prima necessità</b>
-                        </span>;
+                        di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale 
+                        e/o un saldo derivante da libretti di risparmio bancari/postali, 
+                        complessivamente per l'intero nucleo familiare non superiore a € 5.000,00 e precisamente: minore di € 2.000,00;
                     </li>
                     <li>
-                        di possedere al 30/11/2020 un saldo disponibile di conto corrente bancario/postale e/o un saldo
-                        derivante da libretti di risparmio bancari/postali, complessivamente per l'intero nucleo
-                        familiare
-                        non superiore a € 5.000,00 e precisamente:<b>
+                        che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da: 
+                        2 adulti complessivi presenti nel nucleo familiare;<b>
                         <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> minore di
                             &euro; 2.000,00;</span>
                         <span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> da &euro;
@@ -135,7 +123,7 @@
                         </span>
                         <span *ngIf="foodProductRequestDTO.requestStatusB">
                             <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
-                            non superiore ad € 800,00 mensili e precisamente pari a:
+                            non superiore ad € 900,00 mensili e precisamente pari a:
                             <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
                             derivante da: {{ foodProductRequestDTO.familyUnit.city }};
                         </span>
