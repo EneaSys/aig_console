@@ -88,7 +88,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     async loadEntityReference() {
         
         let filters = {
-            applicationModuleIdEquals: this.applicationModuleDTO.id
+            moduleIdEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -110,7 +110,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     async loadContextModule() {
        
         let filters = {
-            applicationModuleIdEquals: this.applicationModuleDTO.id
+            moduleIdEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -132,7 +132,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     async loadPermission() {
        
         let filters = {
-            applicationModuleIdEquals: this.applicationModuleDTO.id
+            moduleIdEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -152,9 +152,8 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     contextUserError: any;
     
     async loadContextUser() {
-       
         let filters = {
-            applicationModuleIdEquals: this.applicationModuleDTO.id
+            moduleIdEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -174,9 +173,8 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     roleError: any;
     
     async loadRole() {
-       
         let filters = {
-            applicationModuleIdEquals: this.applicationModuleDTO.id
+            moduleIdEquals: this.applicationModuleDTO.id
         };
         
         try {
