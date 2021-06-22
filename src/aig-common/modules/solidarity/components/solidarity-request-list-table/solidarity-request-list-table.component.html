@@ -33,6 +33,11 @@
             <mat-cell *matCellDef="let e">{{ e.familyUnit.taxId }}</mat-cell>
         </ng-container>
 
+		<ng-container matColumnDef="cell">
+            <mat-header-cell *matHeaderCellDef> Numero Cellulare </mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.familyUnit.mobile }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="reddito">
             <mat-header-cell *matHeaderCellDef> Reddito dichiatato </mat-header-cell>
             <mat-cell *matCellDef="let e">
