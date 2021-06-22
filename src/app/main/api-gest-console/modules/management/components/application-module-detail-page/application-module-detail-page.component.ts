@@ -60,7 +60,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
         this.loadPermission();
         this.loadContextUser();
         this.loadRole();
-      }
+    }
 
 	async deleteApplicationModule(id: number) {
         this._fuseProgressBarService.show();
