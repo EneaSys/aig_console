@@ -93,7 +93,9 @@
                     <li>
                         di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale 
                         e/o un saldo derivante da libretti di risparmio bancari/postali, 
-                        complessivamente per l'intero nucleo familiare non superiore a € 5.000,00 e precisamente: minore di € 2.000,00;
+                        complessivamente per l'intero nucleo familiare non superiore a € 5.000,00 e precisamente: 
+						<span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> Meno di € 2.000,00</span>
+                    	<span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> Tra € 2.000,01 a € 5.000,00</span>
                     </li>
 
                     <li>
@@ -109,13 +111,12 @@
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
                     <li>
-                        <span *ngIf="!foodProductRequestDTO.requestStatusB">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Novembre 2020, non
-                            beneficiare di
-                            alcuna
+                        <span *ngIf="foodProductRequestDTO.familyUnit.city == ''">
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non
+                            beneficiare di alcuna
                             misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
                         </span>
-                        <span *ngIf="foodProductRequestDTO.requestStatusB">
+                        <span *ngIf="foodProductRequestDTO.familyUnit.city != ''">
                             <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
                             non superiore ad € 900,00 mensili e precisamente pari a:
                             <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
@@ -127,11 +128,14 @@
                         30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
                         GDPR (Regolamento UE 679/2016);
                     </li>
+					<li>
+						di ricevere l'importo di: <b>{{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) | currency: 'EUR' }}</b> di buoni spesa
+					</li>
                 </ul>
 
-
+				<br>
                 <p>Si allega alla presente, valido documento di riconoscimento;</p>
-                <p>Santa Maria la Carità, 01/02/2021</p>
+                <p>Santa Maria la Carità, 26/06/2021</p>
 
                 <div style="text-align: right;">
                     <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
