@@ -5,7 +5,7 @@
     <p *ngSwitchDefault>
         <!-- <procurement-lot-list-table-prime [ds]="ds"></procurement-lot-list-table-prime> -->
         <p-table 
-            styleClass="p-datatable-sm"
+            styleClass="p-datatable-lg"
             [value]="ds" [loading]="loading"
             [lazy]="true" (onLazyLoad)="lazyLoad($event)"
             
@@ -14,11 +14,14 @@
 
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width:50px" pResizableColumn ></th>
-                    <th style="width:120px" pResizableColumn pSortableColumn="cig">CIG</th>
-                    <th style="width:50%"pResizableColumn pSortableColumn="description">Descrizione</th>
+                    <th style="width:50px" ></th>
+                    <th style="width:120px" pSortableColumn="cig">CIG</th>
+                    <th style="width:40%"pResizableColumn pSortableColumn="description">Descrizione</th>
                     <th pResizableColumn >Stazione Appaltante</th>
+					<th style="width:90px" >Tipo</th>
+					<th pResizableColumn >Categorie</th>
                     <th pResizableColumn >Amount</th>
+					<th pResizableColumn >Data scadenza</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-e>
@@ -27,7 +30,10 @@
                     <td>{{ e.cig }}</td>
                     <td>{{ e.description }}</td>
                     <td>{{ e.procurement.contractorEopoo | eopooName }}</td>
-                    <td>{{ e.amount }}</td>
+					<td>{{ e.type.name }}</td>
+					<td>{{ e.category.name }}</td>
+                    <td>{{ e.baseAmount | currency }}</td>
+					<td>{{ e.offerExpiryDate | date }}</td>
                 </tr>
             </ng-template>
         </p-table>

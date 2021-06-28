@@ -64,6 +64,10 @@ export class GleIppProcurementLotListLoaderComponent extends IppGenericComponent
     }
 
     lazyLoad(event: LazyLoadEvent) {
+
+		console.log(event);
+
+
         if(!this.isLoaded) {
             return;
         }
