@@ -443,6 +443,33 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/m8t/entity-reference',
 						permission: ['e4y.account.get'],
 					},
+
+					{
+						id       : 'type-category-reference-list-page',
+						title    : 'Type Category Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/type-category-reference',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'object-reference-list-page',
+						title    : 'Object Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/object-reference',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'field-reference-list-page',
+						title    : 'Field Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/field-reference',
+						permission: ['e4y.account.get'],
+					},
 					{
 						id       : 'permission-list-page',
 						title    : 'Permessi',
