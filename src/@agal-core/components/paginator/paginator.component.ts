@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'aig-gle-paginator',
+    selector: 'agal-paginator',
     templateUrl: './paginator.component.html',
     styleUrls: ['./paginator.component.scss']
 })
-export class AigGlePaginatorComponent implements OnInit {
+export class AgalPaginatorComponent implements OnInit {
     @Input()
     totalRecords: number;
 

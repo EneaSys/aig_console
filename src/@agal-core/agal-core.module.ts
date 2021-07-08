@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { TableModule } from 'primeng/table';
 
-import { AigGlePaginatorComponent } from './components/paginator/paginator.component';
-import { AigGleCommonService } from './services/common.service';
+import { AgalPaginatorComponent } from './components/paginator/paginator.component';
+import { AgalCommonService } from './services/common.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 
@@ -19,14 +19,14 @@ import { DropdownModule } from 'primeng/dropdown';
         DropdownModule,
 	],
 	declarations: [
-		AigGlePaginatorComponent,
+		AgalPaginatorComponent,
 	],
 	exports: [
-		AigGlePaginatorComponent,
+		AgalPaginatorComponent,
 		TableModule,
 	],
 	providers: [
-		AigGleCommonService,
+		AgalCommonService,
 	],
 })
-export class AigGleCoreModule {}
+export class AgalCoreModule {}
