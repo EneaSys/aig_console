@@ -1,0 +1,11 @@
+{{ pagination.first }} - {{ pagination.last }} of {{ totalRecords }}
+
+<form [formGroup]="selectPageForm" (ngSubmit)="selectPageFormSubmit()">
+    <input formControlName="page" required>    
+</form>
+
+of {{ pages | number: '1.0-0' }}
+
+<select [ngModel]="initialSize" (ngModelChange)="selectSize($event)">
+    <option *ngFor="let pageSizeOption of pageSizeOptions">{{ pageSizeOption }}</option>
+</select>
