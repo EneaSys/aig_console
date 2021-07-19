@@ -7,7 +7,6 @@ import { GleToolsModule } from '@aig-ng/tools/gle-tools.module';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 import { GleIppProcurementLotListLoaderComponent } from './components/procurement-lot/procurement-lot-list-loader/procurement-lot-list-loader.component';
-import { GleIppProcurementLotListTablePrimeComponent } from './components/procurement-lot/procurement-lot-list-table-prime/procurement-lot-list-table-prime.component';
 
 @NgModule({
     imports: [
@@ -23,7 +22,6 @@ import { GleIppProcurementLotListTablePrimeComponent } from './components/procur
     ],
     declarations: [
         GleIppProcurementLotListLoaderComponent,
-        GleIppProcurementLotListTablePrimeComponent,
     ],
     exports: [
         GleIppProcurementLotListLoaderComponent,

@@ -323,7 +323,6 @@ export class AigContextRepositoryService {
     private reloadWithDefaultContext() {
         let defaultContext = this.getDefaultContextInMemory();
         if (defaultContext == null) {
-			console.log("seleziona contesto");
 			if(!this.location.path().startsWith('/welcome-page')) {
                 this.router.navigate(['/welcome-page']);
             }
