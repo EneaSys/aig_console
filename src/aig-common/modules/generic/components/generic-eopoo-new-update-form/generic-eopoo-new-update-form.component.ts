@@ -45,8 +45,8 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
             eopooType: [this.eopooType],
-            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11), AigValidator.haveId]],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+            name: ['', [Validators.required]],
         });
 
         this.loadTypes();
