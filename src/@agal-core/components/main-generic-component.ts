@@ -1,4 +1,4 @@
-import { AgalCommonService } from "@agal-core/services/common.service";
+import { AgalCommonService } from "../services/common.service";
 
 export class AgalGenericComponent {
     constructor(
