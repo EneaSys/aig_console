@@ -67,8 +67,8 @@
         </div>
 
         <div fxLayout="row" fxLayoutAlign="end top">
-            <button *ngIf="!eopoo.id" type="submit" mat-raised-button color="accent">Crea</button>
-            <button *ngIf="eopoo.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+            <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+            <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
         </div>
 
     </form>
@@ -79,6 +79,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ eopooPersonNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!eopooPersonNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newEopoo()">Create New</button>
+
+    <h1 *ngIf="!isUpdate">Identità creata con successo</h1>
+    <h1 *ngIf="isUpdate">Identità aggiornata con successo</h1>
+    
+    <hr>
+
+    <aig-eopoo-entity-detail [eopoo]="eopooResult"></aig-eopoo-entity-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newEopoo()">Crea nuovo</button>
+    </div>
+
 </div>

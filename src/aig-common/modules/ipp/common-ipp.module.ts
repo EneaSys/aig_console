@@ -57,6 +57,10 @@ import { AigPreparationDetailBoxComponent } from './components/preparation-detai
 import { AigPartecipationDetailBoxComponent } from './components/partecipation-detail-box/partecipation-detail-box.component';
 import { AigDesignatedCompanyDetailBoxComponent } from './components/designated-company-detail-box/designated-company-detail-box.component';
 import { AigInsurancePolicyDetailBoxComponent } from './components/insurance-policy-detail-box/insurance-policy-detail-box.component';
+import { AigDossierDetailBoxComponent } from './components/dossier-detail-box/dossier-detail-box.component';
+import { AigPartecipationStatusDetailBoxComponent } from './components/partecipation-status-detail-box/partecipation-status-detail-box.component';
+import { AigPreparationStatusDetailBoxComponent } from './components/preparation-status-detail-box/preparation-status-detail-box.component';
+import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
 
 import { TableModule } from 'primeng/table';
 
@@ -108,27 +112,46 @@ import { TableModule } from 'primeng/table';
 
     ],
     declarations: [
-        AigProcurementListTableComponent,
-        AigProcurementLotListTableComponent,
-        AigDossierListTableComponent,
-        AigPartecipationListTableComponent,
-        AigPartecipationStatusListTableComponent,
-        AigPreparationListTableComponent,
-        AigPreparationStatusListTableComponent,
-        AigInsurancePolicyListTableComponent,
-        AigDesignatedCompanyListTableComponent,
-        AigInsurancePolicyStatusListTableComponent,
 
+        AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,
+        AigProcurementDetailBoxComponent,
+
+        AigProcurementLotListTableComponent,
         AigProcurementLotNewUpdateFormComponent,
-        AigDossierNewUpdateFormComponent,
-        AigPartecipationNewUpdateFormComponent,
-        AigPartecipationStatusNewUpdateFormComponent,
-        AigPreparationNewUpdateFormComponent,
-        AigPreparationStatusNewUpdateFormComponent,
-        AigInsurancePolicyNewUpdateFormComponent,
+        AigProcurementLotDetailBoxComponent,
+
+        AigDesignatedCompanyListTableComponent,
         AigDesignatedCompanyNewUpdateFormComponent,
+        AigDesignatedCompanyDetailBoxComponent,
+
+        AigDossierListTableComponent,
+        AigDossierNewUpdateFormComponent,
+        AigDossierDetailBoxComponent,
+
+        AigPartecipationListTableComponent,
+        AigPartecipationNewUpdateFormComponent,
+        AigPartecipationDetailBoxComponent,
+
+        AigPartecipationStatusListTableComponent,
+        AigPartecipationStatusNewUpdateFormComponent,
+        AigPartecipationStatusDetailBoxComponent,
+        
+        AigPreparationListTableComponent,
+        AigPreparationNewUpdateFormComponent,
+        AigPreparationDetailBoxComponent,
+
+        AigPreparationStatusListTableComponent,
+        AigPreparationStatusNewUpdateFormComponent,
+        AigPreparationStatusDetailBoxComponent,
+
+        AigInsurancePolicyListTableComponent,
+        AigInsurancePolicyNewUpdateFormComponent,
+        AigInsurancePolicyDetailBoxComponent,
+
+        AigInsurancePolicyStatusListTableComponent,
         AigInsurancePolicyStatusNewUpdateFormComponent,
+        AigInsurancePolicyStatusDetailBoxComponent,
     
         AigProcurementLotListTableNgComponent,
         AigProcurementDetailBoxComponent,
@@ -139,28 +162,46 @@ import { TableModule } from 'primeng/table';
         AigInsurancePolicyDetailBoxComponent,
     ],
     exports: [
-        AigProcurementListTableComponent,
-        AigProcurementLotListTableComponent,
-        AigDossierListTableComponent,
-        AigPartecipationListTableComponent,
-        AigPartecipationStatusListTableComponent,
-        AigPreparationListTableComponent,
-        AigPreparationStatusListTableComponent,
-        AigInsurancePolicyListTableComponent,
-        AigDesignatedCompanyListTableComponent,
-        AigInsurancePolicyStatusListTableComponent,
 
-        
-        AigDossierNewUpdateFormComponent,
+        AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,
+        AigProcurementDetailBoxComponent,
+
+        AigProcurementLotListTableComponent,
         AigProcurementLotNewUpdateFormComponent,
-        AigPartecipationNewUpdateFormComponent,
-        AigPartecipationStatusNewUpdateFormComponent,
-        AigPreparationNewUpdateFormComponent,
-        AigPreparationStatusNewUpdateFormComponent,
-        AigInsurancePolicyNewUpdateFormComponent,
+        AigProcurementLotDetailBoxComponent,
+
+        AigDesignatedCompanyListTableComponent,
         AigDesignatedCompanyNewUpdateFormComponent,
+        AigDesignatedCompanyDetailBoxComponent,
+
+        AigDossierListTableComponent,
+        AigDossierNewUpdateFormComponent,
+        AigDossierDetailBoxComponent,
+
+        AigPartecipationListTableComponent,
+        AigPartecipationNewUpdateFormComponent,
+        AigPartecipationDetailBoxComponent,
+
+        AigPartecipationStatusListTableComponent,
+        AigPartecipationStatusNewUpdateFormComponent,
+        AigPartecipationStatusDetailBoxComponent,
+
+        AigPreparationListTableComponent,
+        AigPreparationNewUpdateFormComponent,
+        AigPreparationDetailBoxComponent,
+
+        AigPreparationStatusListTableComponent,
+        AigPreparationStatusNewUpdateFormComponent,
+        AigPreparationStatusDetailBoxComponent,
+
+        AigInsurancePolicyListTableComponent,
+        AigInsurancePolicyNewUpdateFormComponent,
+        AigInsurancePolicyDetailBoxComponent,
+
+        AigInsurancePolicyStatusListTableComponent,
         AigInsurancePolicyStatusNewUpdateFormComponent,
+        AigInsurancePolicyStatusDetailBoxComponent,
 
         AigProcurementLotListTableNgComponent,
         AigProcurementDetailBoxComponent,

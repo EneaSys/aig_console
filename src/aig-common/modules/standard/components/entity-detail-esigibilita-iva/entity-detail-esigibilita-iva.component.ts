@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IlFeEsigibilitaIvaDTO, IlPpProcurementLotCategoryDTO } from 'aig-standard';
-
-
+import { IlFeEsigibilitaIvaDTO } from 'aig-standard';
 
 @Component({
     selector: 'entity-detail-esigibilita-iva',
@@ -14,7 +12,6 @@ export class AigEntityDetailEsigibilitaIvaComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     esigibilitaIva: IlFeEsigibilitaIvaDTO;
 
 }

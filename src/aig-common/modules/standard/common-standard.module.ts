@@ -117,99 +117,100 @@ import { AigSocialActionDetailBoxComponent } from './components/social-action-de
 @NgModule({
     declarations: [
 
-
-        AigProcurementStatusListTableComponent,
-        AigProcurementStatusNewUpdateFormComponent,
-
-        AigProcurementLotStatusNewUpdateFormComponent,
-        AigProcurementLotStatusListTableComponent,
+        AigCityListTableComponent,
+        AigCityNewUpdateFormComponent,
+        AigEntityDetailCityComponent,
 
         AigSocialListTableComponent,
         AigSocialNewUpdateFormComponent,
-
-        AigPartecipationTypeNewUpdateFormComponent,
-        AigPartecipationTypeListTableComponent,
-
-        AigAwardCriterionListTableComponent,
-        AigAwardCriterionNewUpdateFormComponent,
+        AigEntityDetailSocialComponent,
 
         AigSocialActionListTableComponent,
         AigSocialActionNewUpdateFormComponent,
-        
-        AigCityListTableComponent,
-        AigCityNewUpdateFormComponent,
+        AigSocialActionDetailBoxComponent,
 
         AigCpvListTableComponent,
         AigCpvNewUpdateFormComponent,
+        AigEntityDetailCpvComponent,
 
-        AigIppModalityNewUpdateFormComponent,
+        AigAwardCriterionListTableComponent,
+        AigAwardCriterionNewUpdateFormComponent,
+        AigAwardCriterionDetailBoxComponent,
+
+        AigPartecipationTypeListTableComponent,
+        AigPartecipationTypeNewUpdateFormComponent,
+        AigPartecipationTypeDetailBoxComponent,
+
+        AigProcurementStatusListTableComponent,
+        AigProcurementStatusNewUpdateFormComponent,
+        AigProcurementStatusDetailBoxComponent,
+
+        AigProcurementLotStatusListTableComponent,
+        AigProcurementLotStatusNewUpdateFormComponent,
+        AigProcurementLotStatusDetailBoxComponent,
+
         AigIppModalityListTableComponent,
+        AigIppModalityNewUpdateFormComponent,
+        AigEntityDetailIppModalityComponent,
 
         AigIppProcedureListTableComponent,
         AigIppProcedureNewUpdateFormComponent,
-
-        AigIppSectorNewUpdateFormComponent,
-        AigIppSectorListTableComponent,
-
-        AigIppLotTypeNewUpdateFormComponent,
-        AigIppLotTypeListTableComponent,
-        
-
-        AigLotCategoryNewUpdateFormComponent,
-        AigLotCategoryListTableComponent,
-        AigEntityDetailCityComponent,
-        AigEntityDetailSocialComponent,
-        AigEntityDetailCpvComponent,
-        AigEntityDetailIppLotTypeComponent,
-        AigEntityDetailIppLotCategoryComponent,
-        AigEntityDetailIppModalityComponent,
         AigEntityDetailIppProcedureComponent,
+
+        AigIppSectorListTableComponent,
+        AigIppSectorNewUpdateFormComponent,
         AigEntityDetailIppSectorComponent,
+
+        AigIppLotTypeListTableComponent,
+        AigIppLotTypeNewUpdateFormComponent,
+        AigEntityDetailIppLotTypeComponent,
+        
+        AigLotCategoryListTableComponent,
+        AigLotCategoryNewUpdateFormComponent,
+        AigEntityDetailIppLotCategoryComponent,
+
         AigRegimeFiscaleListTableComponent,
         AigRegimeFiscaleNewUpdateFormComponent,
         AigEntityDetailRegimeFiscaleComponent,
+
         AigTipoCassaListTableComponent,
         AigTipoCassaNewUpdateFormComponent,
         AigEntityDetailTipoCassaComponent,
+
         AigNaturaListTableComponent,
-        AigEntityDetailNaturaComponent,
         AigNaturaNewUpdateFormComponent,
+        AigEntityDetailNaturaComponent,
+
         AigTipoRitenutaListTableComponent,
         AigTipoRitenutaNewUpdateFormComponent,
         AigEntityDetailTipoRitenutaComponent,
+
         AigTipoCessionePrestazioneListTableComponent,
         AigTipoCessionePrestazioneNewUpdateFormComponent,
         AigEntityDetailTipoCessionePrestazioneComponent,
-        AigTipoScontoMaggiorazioneListTableComponent,
         
+        AigTipoScontoMaggiorazioneListTableComponent,
+        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
         AigEntityDetailTipoScontoMaggiorazioneComponent,
+
         AigEsigibilitaIvaListTableComponent,
         AigEsigibilitaIvaNewUpdateFormComponent,
         AigEntityDetailEsigibilitaIvaComponent,
-        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
-        AigModalitaPagamentoNewUpdateFormComponent,
+
         AigModalitaPagamentoListTableComponent,
+        AigModalitaPagamentoNewUpdateFormComponent,
         AigEntityDetailModalitaPagamentoComponent,
 
-    
-        AigAwardCriterionDetailBoxComponent,
-        AigPartecipationTypeDetailBoxComponent,
-        AigProcurementStatusDetailBoxComponent,
-        AigProcurementLotStatusDetailBoxComponent,
-        AigSocialActionDetailBoxComponent,
-
     ],
-    imports: [ 
-        RouterModule,
+    imports: [
 
+        RouterModule,
         CommonModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        
         FuseSidebarModule,
         FlexLayoutModule,
-
         AigCommonModule,
 
         MatTableModule,
@@ -226,109 +227,109 @@ import { AigSocialActionDetailBoxComponent } from './components/social-action-de
     ],
     exports: [
 
+        AigCityListTableComponent,
+        AigCityNewUpdateFormComponent,
+        AigEntityDetailCityComponent,
+
         AigSocialListTableComponent,
         AigSocialNewUpdateFormComponent,
-
-        AigProcurementLotStatusNewUpdateFormComponent,
-        AigProcurementLotStatusListTableComponent,
-
-        AigProcurementStatusListTableComponent,
-        AigProcurementStatusNewUpdateFormComponent,
-
-        AigPartecipationTypeNewUpdateFormComponent,
-        AigPartecipationTypeListTableComponent,
-
-        AigAwardCriterionListTableComponent,
-        AigAwardCriterionNewUpdateFormComponent,
+        AigEntityDetailSocialComponent,
 
         AigSocialActionListTableComponent,
         AigSocialActionNewUpdateFormComponent,
-
-        AigCityListTableComponent,
-        AigCityNewUpdateFormComponent,
+        AigSocialActionDetailBoxComponent,
 
         AigCpvListTableComponent,
         AigCpvNewUpdateFormComponent,
+        AigEntityDetailCpvComponent,
+
+        AigAwardCriterionListTableComponent,
+        AigAwardCriterionNewUpdateFormComponent,
+        AigAwardCriterionDetailBoxComponent,
+
+        AigPartecipationTypeListTableComponent,
+        AigPartecipationTypeNewUpdateFormComponent,
+        AigPartecipationTypeDetailBoxComponent,
+
+        AigProcurementStatusListTableComponent,
+        AigProcurementStatusNewUpdateFormComponent,
+        AigProcurementStatusDetailBoxComponent,
+
+        AigProcurementLotStatusListTableComponent,
+        AigProcurementLotStatusNewUpdateFormComponent,
+        AigProcurementLotStatusDetailBoxComponent,
         
         AigIppModalityListTableComponent,
         AigIppModalityNewUpdateFormComponent,
-
-        AigIppSectorListTableComponent,
-        AigIppSectorNewUpdateFormComponent,
-
-        AigIppLotTypeListTableComponent,
-        AigIppLotTypeNewUpdateFormComponent,
+        AigEntityDetailIppModalityComponent,
 
         AigIppProcedureListTableComponent,
         AigIppProcedureNewUpdateFormComponent,
+        AigEntityDetailIppProcedureComponent,
+
+        AigIppSectorListTableComponent,
+        AigIppSectorNewUpdateFormComponent,
+        AigEntityDetailIppSectorComponent,
+
+        AigIppLotTypeListTableComponent,
+        AigIppLotTypeNewUpdateFormComponent,
+        AigEntityDetailIppLotTypeComponent,
 
         AigLotCategoryListTableComponent,
         AigLotCategoryNewUpdateFormComponent,
-        AigEntityDetailCityComponent,
-        AigEntityDetailSocialComponent,
-        AigEntityDetailCpvComponent,
-        AigEntityDetailIppLotTypeComponent,
         AigEntityDetailIppLotCategoryComponent,
-        AigEntityDetailIppModalityComponent,
-        AigEntityDetailIppProcedureComponent,
-        AigEntityDetailIppSectorComponent,
+
         AigRegimeFiscaleListTableComponent,
         AigRegimeFiscaleNewUpdateFormComponent,
+        AigEntityDetailRegimeFiscaleComponent,
+
         AigTipoCassaListTableComponent,
         AigTipoCassaNewUpdateFormComponent,
         AigEntityDetailTipoCassaComponent,
+
         AigNaturaListTableComponent,
-        AigEntityDetailNaturaComponent,
         AigNaturaNewUpdateFormComponent,
+        AigEntityDetailNaturaComponent,
+
         AigTipoRitenutaListTableComponent,
         AigTipoRitenutaNewUpdateFormComponent,
         AigEntityDetailTipoRitenutaComponent,
+
         AigTipoCessionePrestazioneListTableComponent,
         AigTipoCessionePrestazioneNewUpdateFormComponent,
         AigEntityDetailTipoCessionePrestazioneComponent,
-        AigTipoScontoMaggiorazioneListTableComponent,
         
+        AigTipoScontoMaggiorazioneListTableComponent,
+        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
         AigEntityDetailTipoScontoMaggiorazioneComponent,
+
         AigEsigibilitaIvaListTableComponent,
         AigEsigibilitaIvaNewUpdateFormComponent,
         AigEntityDetailEsigibilitaIvaComponent,
-        AigTipoScontoMaggiorazioneNewUpdateFormComponent,
-        AigModalitaPagamentoNewUpdateFormComponent,
+
         AigModalitaPagamentoListTableComponent,
+        AigModalitaPagamentoNewUpdateFormComponent,
         AigEntityDetailModalitaPagamentoComponent,
-
-
-        AigAwardCriterionDetailBoxComponent,
-        AigPartecipationTypeDetailBoxComponent,
-        AigProcurementStatusDetailBoxComponent,
-        AigProcurementLotStatusDetailBoxComponent,
-        AigSocialActionDetailBoxComponent,
-        AigEntityDetailRegimeFiscaleComponent,
 
     ],
     entryComponents: [
 
     ],
     providers: [
-        SocialResolver,
+
         CityResolver,
-        CpvResolver,
+        SocialResolver,
         SocialActionResolver,
-        SectorResolver,
-        IppProcedureResolver,
-        IppModalityResolver,
-        LotResolver,
-        CategoryResolver,
+        CpvResolver,
         AwardCriterionResolver,
         PartecipationTypeResolver,
         ProcurementStatusResolver,
         ProcurementLotStatusResolver,
-
-        ItFiscalCodeService,
-        
-        AigStandardAutocompleteFilterService,
-        AigStandardAutocompleteDisplayService,
-        ContextModuleResolver,
+        IppModalityResolver,
+        IppProcedureResolver,
+        SectorResolver,
+        LotResolver,
+        CategoryResolver,
         RegimeFiscaleResolver,
         TipoCassaResolver,
         NaturaResolver,
@@ -336,7 +337,13 @@ import { AigSocialActionDetailBoxComponent } from './components/social-action-de
         TipoCessionePestazioneResolver,
         TipoScontoMaggiorazioneResolver,
         EsigibilitaIvaResolver,
-        ModalitaPagamentoResolver
+        ModalitaPagamentoResolver,
+
+        AigStandardAutocompleteFilterService,
+        AigStandardAutocompleteDisplayService,
+
+        ItFiscalCodeService,
+        ContextModuleResolver,
     ],
 })
 export class AigCommonStandardModule {}

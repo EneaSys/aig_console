@@ -12,7 +12,6 @@ export class AigEntityDetailTipoCessionePrestazioneComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     tipoCessionePrestazione: IlFeCessionePrestazioneTipoDTO;
 
 }

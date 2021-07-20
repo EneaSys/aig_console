@@ -13,5 +13,5 @@ export class AigPriceListBoxDetailComponent extends AigCommerceCommonGenericComp
     ngOnInit(): void {}
 
     @Input()
-    priceListDTO: PriceListDTO;
+    priceList: PriceListDTO;
 }

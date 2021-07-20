@@ -9,7 +9,44 @@
 
                 <button mat-stroked-button color="primary" (click)="editTenantContext(tenantContextDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteTenantContext(tenantContextDTO.id)">Delete</button>
+
+                
             </div>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Context Module</div>
+                <aig-context-module-list-table
+                    [dataSource]="contextModuleDTOs" 
+                    [displayColumns]="contextModuleDC"
+                    [error]="contextModuleError">
+                </aig-context-module-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newContextModule(tenantContextDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Context-User
+
+                </div>
+                <aig-context-user-list-table
+                    [dataSource]="contextUserDTOs" 
+                    [displayColumns]="contextUserDC"
+                    [error]="contextUserError">
+                </aig-context-user-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newContextUser(tenantContextDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
         </div>
     </div>
 </div>

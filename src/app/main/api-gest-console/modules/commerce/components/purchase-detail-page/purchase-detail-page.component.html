@@ -10,12 +10,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">
                     ID: {{ purchaseDTO.id }}
                 </div>
-                <!-- AGGIUNGERE BOX DETAIL -->
-                <div class="h4 m-8 ml-16 mb-0 secondary-text">Acquisto</div>
-                <div class="h1 m-16">{{ purchaseDTO.amount | currency:'EUR' }}</div>
-                <div class="h4 m-8 ml-16">Data: {{ purchaseDTO.insertedDateTime | date }}</div>
-                <div class="h4 m-8 ml-16">Note: {{ purchaseDTO.statusNote}}</div>
-                <div class="h4 m-8 ml-16">Closed: {{ purchaseDTO.closed }}</div>
+                <aig-purchase-box-detail [purchase]="purchaseDTO"></aig-purchase-box-detail>
                 <br>
                 <div fxLayoutAlign="end">
                     <button class="ml-8" mat-stroked-button color="primary" (click)="editPurchase(purchaseDTO)">{{
@@ -61,7 +56,7 @@
                 </aig-purchase-item-list-table>
 
                 <button mat-fab class="accent" class="add-button-in-list-table"
-                    (click)="addPurchaseItem(purchaseItemDTO)">
+                    (click)="addPurchaseItem(purchaseDTO)">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>

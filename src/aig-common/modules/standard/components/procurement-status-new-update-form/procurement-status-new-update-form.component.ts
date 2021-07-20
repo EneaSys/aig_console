@@ -28,6 +28,10 @@ export class AigProcurementStatusNewUpdateFormComponent implements OnInit {
     @Input()
     procurementStatus: IlPpProcurementStatusDTO;
 
+    isUpdate: boolean = false;
+
+    procurementStatusResult: any;
+
     procurementStatusNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -39,8 +43,9 @@ export class AigProcurementStatusNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
         
-        if (this.procurementStatus != null) {
+        if (this.procurementStatus != null && this.procurementStatus.id != null) {
             this.procurementStatusNewUpdateForm.patchValue(this.procurementStatus);
+            this.isUpdate = true;
         }
     }
 
@@ -57,20 +62,25 @@ export class AigProcurementStatusNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (procurementStatus.id != 0) {
+            if (this.isUpdate) {
                 await this.procurementStatusResourceService.updateIlPpProcurementStatusUsingPUT(procurementStatus).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.procurementStatusResourceService.createIlPpProcurementStatusUsingPOST(procurementStatus).toPromise();
                 postOrPut = "created";
             }
+
+            this.procurementStatusResult = procurementStatus;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -81,8 +91,7 @@ export class AigProcurementStatusNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
 }

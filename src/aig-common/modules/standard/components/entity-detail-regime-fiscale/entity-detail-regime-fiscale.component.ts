@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IlFeRegimeFiscaleDTO } from 'aig-standard';
 
-
-
-
-
 @Component({
     selector: 'entity-detail-regime-fiscale',
     templateUrl: './entity-detail-regime-fiscale.component.html',
@@ -16,7 +12,6 @@ export class AigEntityDetailRegimeFiscaleComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     regimeFiscale: IlFeRegimeFiscaleDTO;
 
 }

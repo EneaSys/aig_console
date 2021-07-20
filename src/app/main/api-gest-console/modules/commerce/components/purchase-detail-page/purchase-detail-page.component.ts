@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, ValuePaperPaymentItemResourceService, ValuePaperPaymentResourceService, ValuePaperPaymentItemDTO, PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
+import { PurchaseDTO, PurchaseResourceService, FiscalTransactionResourceService, FiscalTransactionDTO, PaymentResourceService, PaymentDTO, PurchaseItemDTO, PurchaseItemResourceService } from 'aig-commerce';
 import { AigPurchaseNewUpdateDialogComponent } from '../purchase-new-update-dialog/purchase-new-update-dialog.component';
 import { AigPurchaseItemNewUpdateDialogComponent } from '../purchase-item-new-update-dialog/purchase-item-new-update-dialog.component';
 import { AigCommerceGenericComponent } from '../commerce-generic-component';
@@ -42,15 +42,9 @@ export class AigPurchaseDetailPageComponent extends AigCommerceGenericComponent 
         this.loadPurchaseItem();
     }
 
-    addPurchaseItem(purchaseItemDTO: PurchaseItemDTO){
-        this.dialog.open(AigPurchaseItemNewUpdateDialogComponent, { data: { purchaseItem: purchaseItemDTO } });
-      }
-
     editPurchase(purchaseDTO: PurchaseDTO) {
 		this.dialog.open(AigPurchaseNewUpdateDialogComponent, { data: { purchase: purchaseDTO } });
     }
-
-    
 
     fiscalTransactiondisplayColumns: string[] = ['date', 'code', 'amount', 'status', 'buttons'];
     fiscalTransactionDTOs: FiscalTransactionDTO[];
@@ -95,5 +89,9 @@ export class AigPurchaseDetailPageComponent extends AigCommerceGenericComponent 
         } catch(e) {
             this.purchaseItemError = e;
         }
+    }
+
+    addPurchaseItem(purchaseDTO: PurchaseDTO){
+        this.dialog.open(AigPurchaseItemNewUpdateDialogComponent, { data: { purchaseItem: { }, purchase: purchaseDTO } });
     }
 }

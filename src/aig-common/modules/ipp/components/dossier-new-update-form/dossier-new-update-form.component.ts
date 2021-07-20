@@ -34,6 +34,10 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
     @Input()
     dossier: DossierDTO;
 
+    isUpdate: boolean = false;
+
+    dossierResult: any;
+
     dossierNewUpdateForm: FormGroup;
 
     filteredProcurementLot: Observable<ProcurementLotDTO[]>;
@@ -54,8 +58,9 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
             procurementLot: ['',[Validators.required, AigValidator.haveId] ],
         })
         
-        if (this.dossier != null) {
+        if (this.dossier != null && this.dossier.id != null) {
             this.dossierNewUpdateForm.patchValue(this.dossier);
+            this.isUpdate = true;
         }
 
         this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.dossierNewUpdateForm.controls['procurementLot'].valueChanges);
@@ -81,20 +86,25 @@ export class AigDossierNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (this.dossier.id > 0) {
+            if (this.isUpdate) {
                 await this.dossierResourceService.updateDossierUsingPUT(dossier).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.dossierResourceService.createDossierUsingPOST(dossier).toPromise();
                 postOrPut = "created";
             }
+
+            this.dossierResult = dossier;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 

@@ -1,6 +1,7 @@
 <div id="aig-permission-detail-page" class="page-layout blank">
 
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
@@ -9,6 +10,18 @@
                 <button mat-stroked-button color="primary" (click)="editPermission(permissionDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deletePermission(permissionDTO.id)">Delete</button>
             </div>
+        </div>
+    </div>
+
+    <div class="widget" fxFlex.gt-sm="auto">
+        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+
+            <aig-role-list-table [displayColumns]="roleDC" [dataSource]="roleDTOs" [error]="roleError">
+            </aig-role-list-table>
+
+            <button mat-fab class="accent" class="add-button-in-list-table" (click)="addCatalogItem(catalogDTO)">
+                <mat-icon>add</mat-icon>
+            </button>
         </div>
     </div>
 </div>

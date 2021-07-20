@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CpvDTO } from 'aig-standard';
 
-
-
-
-
 @Component({
     selector: 'entity-detail-cpv',
     templateUrl: './entity-detail-cpv.component.html',
@@ -16,7 +12,6 @@ export class AigEntityDetailCpvComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
-    cpvDTO: CpvDTO;
+    cpv: CpvDTO;
 
 }

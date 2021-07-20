@@ -33,6 +33,8 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
     @Input()
     contextModule: ContextModuleDTO;
 
+    isUpdate: boolean = false;
+
     contextModuleNewUpdateForm: FormGroup;
 
     filteredApplicationModules: Observable<ApplicationModuleDTO[]>;

@@ -35,8 +35,13 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
 
     @Input()
     eopooType: EopooTypeDTO;
+
     @Input()
     eopoo: EopooDTO;
+
+    isUpdate: boolean = false;
+
+    eopooResult: any;
 
     eopooTypeDTOs: EopooTypeDTO[];
 
@@ -47,14 +52,14 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
             id: [''],
-            taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17), AigValidator.haveId]],
-            eopooType: [this.eopooType],
+            taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
+            eopooType: [this.eopooType, [AigValidator.haveId]],
 
-            firstname: ['', [Validators.required, AigValidator.haveId]],
-            lastname: ['', [Validators.required, AigValidator.haveId]],
-            sex: ['', [Validators.required, AigValidator.haveId]],
-            bornDate: ['', [Validators.required, AigValidator.haveId]],
-            city: ['', [Validators.required, AigValidator.haveId]],
+            firstname: ['', [Validators.required]],
+            lastname: ['', [Validators.required]],
+            sex: ['', [Validators.required]],
+            bornDate: ['', [Validators.required]],
+            city: ['', [Validators.required]],
         });
 
         if(this.eopoo == undefined && this.eopooType != null) {
@@ -63,9 +68,10 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
             this.eopooPersonNewUpdateForm.patchValue(newEopoo);
         }
 
-        if (this.eopoo != null && this.eopoo.person != null) {
+        if (this.eopoo != null && this.eopoo.id != null) {
             this.eopooPersonNewUpdateForm.patchValue(this.eopoo.person);
             this.eopooPersonNewUpdateForm.patchValue(this.eopoo);
+            this.isUpdate = true;
         }
 
         this.filteredCitys = this.aigStandardAutocompleteFilterService.filterCity(this.eopooPersonNewUpdateForm.controls['city'].valueChanges);
@@ -94,22 +100,26 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         eopooPerson.person.cityCode = formValue.city.code;
 
         try {
-            let postOrPut;
-            if (eopooPerson.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.eopooResourceService.updateEopooUsingPUT(eopooPerson).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.eopooResourceService.createEopooUsingPOST(eopooPerson).toPromise();
                 postOrPut = "created";
             }
+
+            this.eopooResult = eopooPerson;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Eopoo with tax id: '${eopooPerson.taxNumber}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -117,11 +127,10 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string) {
+    private setStep(stepToShow: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

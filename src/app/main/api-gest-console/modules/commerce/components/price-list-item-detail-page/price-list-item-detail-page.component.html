@@ -9,7 +9,7 @@
                 <div class="h4 m-8 ml-16 mb-0 secondary-text">
                     ID: {{ priceListItemDTO.id }}
                 </div>
-                <aig-price-list-item-box-detail [priceListItemDTO]="priceListItemDTO"></aig-price-list-item-box-detail>
+                <aig-price-list-item-box-detail [priceListItem]="priceListItemDTO"></aig-price-list-item-box-detail>
                 <br>
                 <div fxLayoutAlign="end">
                     <button class="ml-8" mat-stroked-button color="primary" (click)="editPriceListItem(priceListItemDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>

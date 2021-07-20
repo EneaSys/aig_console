@@ -37,6 +37,10 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
     @Input()
     eopoo: EopooDTO;
 
+    isUpdate: boolean = false;
+
+    referentResult: any;
+
     referentNewUpdateForm: FormGroup;
 
     filteredEopoos: Observable<EopooDTO[]>;
@@ -51,8 +55,9 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
             position: [''],
         })
         
-        if (this.referent != null) {
+        if (this.referent != null && this.referent.id != null) {
             this.referentNewUpdateForm.patchValue(this.referent);
+            this.isUpdate = true;
         }
 
         this.filteredEopoos = this.aigGenericAutocompleteFilterService.filterEopoo(this.referentNewUpdateForm.controls['eopoo'].valueChanges);
@@ -65,16 +70,27 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let referentDTO: ReferentDTO = this.referentNewUpdateForm.value;
-        referentDTO.eopooId = this.referentNewUpdateForm.value.eopoo.id;
+        let referent: ReferentDTO = this.referentNewUpdateForm.value;
+        referent.eopooId = this.referentNewUpdateForm.value.eopoo.id;
 
         try {
-            await this.referentResourceService.createReferentUsingPOST(referentDTO).toPromise();
+            let postOrPut: string;
+            if (this.isUpdate) {
+                await this.referentResourceService.updateReferentUsingPUT(referent).toPromise();
+                postOrPut = "updated";
+            } else {
+                await this.referentResourceService.createReferentUsingPOST(referent).toPromise();
+                postOrPut = "created";
+            }
+
+            this.referentResult = referent;
+
             this.eventService.reloadCurrentPage();
-            this._snackBar.open("Referent created", null, { duration: 5000, });
+
             this.setStep("complete");
-        } catch(e) {
-            this._snackBar.open("Error: " + e.error.message, null, { duration: 10000, });
+
+        } catch (error) {
+            this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
 
@@ -85,10 +101,10 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

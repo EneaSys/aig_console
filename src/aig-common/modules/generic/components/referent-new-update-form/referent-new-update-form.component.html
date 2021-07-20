@@ -33,9 +33,10 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!referent.id" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="referent.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -43,6 +44,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ referentNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!referentNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newReferent()">Crea nuovo</button>
+
+    <h1 *ngIf="!isUpdate">Referent creato con successo</h1>
+    <h1 *ngIf="isUpdate">Referent aggiornato con successo</h1>
+    
+    <hr>
+
+    <aig-referent-entity-detail [referent]="referentResult"></aig-referent-entity-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newReferent()">Crea nuovo</button>
+    </div>
+
 </div>

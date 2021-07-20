@@ -41,9 +41,10 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!address.id" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="address.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -51,6 +52,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ addressNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!addressNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newAddress()">Crea nuovo</button>
+
+    <h1 *ngIf="!isUpdate">Address creato con successo</h1>
+    <h1 *ngIf="isUpdate">Address aggiornato con successo</h1>
+    
+    <hr>
+
+    <aig-address-entity-detail [address]="addressResult"></aig-address-entity-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newAddress()">Crea nuovo</button>
+    </div>
+
 </div>

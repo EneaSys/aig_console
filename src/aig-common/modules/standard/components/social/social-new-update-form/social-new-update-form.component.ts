@@ -28,6 +28,10 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
     @Input()
     social: SocialDTO;
 
+    isUpdate: boolean = false;
+
+    socialResult: any;
+
     socialNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -39,8 +43,9 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
         
-        if (this.social != null) {
+        if (this.social != null && this.social.id != null) {
             this.socialNewUpdateForm.patchValue(this.social);
+            this.isUpdate = true;
         }
     }
 
@@ -57,21 +62,25 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (social.id != 0) {
+            if (this.isUpdate) {
                 await this.socialResourceService.updateSocialUsingPUT(social).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.socialResourceService.createSocialUsingPOST(social).toPromise();
                 postOrPut = "created";
             }
+
+            this.socialResult = social;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Social: '${social.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -83,7 +92,6 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-			
         this.step[stepToShow] = true;
     }
 }

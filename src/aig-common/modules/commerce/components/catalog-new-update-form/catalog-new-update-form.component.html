@@ -34,8 +34,7 @@
     
     <hr>
 
-    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.CATALOG' | translate | titlecase }}</div>
-    <entity-detail-catalog [catalogDTO]="catalogResult"></entity-detail-catalog>
+    <entity-detail-catalog [catalog]="catalogResult"></entity-detail-catalog>
 
     <div *ngIf="!isUpdate">
         <br>

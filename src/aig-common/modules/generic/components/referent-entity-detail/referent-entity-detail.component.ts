@@ -12,5 +12,5 @@ export class AigReferentEntityDetailComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    referentDTO: ReferentDTO;
+    referent: ReferentDTO;
 }

@@ -28,6 +28,10 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
     @Input()
     cpv: CpvDTO;
 
+    isUpdate: boolean = false;
+
+    cpvResult: any;
+
     cpvNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -39,8 +43,9 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.cpv != null) {
+        if (this.cpv != null && this.cpv.id != null) {
             this.cpvNewUpdateForm.patchValue(this.cpv);
+            this.isUpdate = true;
         }
     }
     
@@ -54,22 +59,26 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
         let cpv = this.cpvNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (cpv.id != null && cpv.id != "") {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.cpvResourceService.updateCpvUsingPUT(cpv).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.cpvResourceService.createCpvUsingPOST(cpv).toPromise();
                 postOrPut = "created";
             }
+
+            this.cpvResult = cpv;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Cpv Type: '${cpv.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -77,11 +86,10 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string) {
+    private setStep(stepToShow: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

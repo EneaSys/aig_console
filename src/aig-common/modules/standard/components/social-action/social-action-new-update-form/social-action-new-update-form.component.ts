@@ -28,6 +28,10 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
     @Input()
     socialAction: SocialActionDTO;
 
+    isUpdate: boolean = false;
+
+    socialActionResult: any;
+
     socialActionNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -39,8 +43,9 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.socialAction != null) {
+        if (this.socialAction != null && this.socialAction.id != null) {
             this.socialActionNewUpdateForm.patchValue(this.socialAction);
+            this.isUpdate = true;
         }
     }
 
@@ -54,22 +59,26 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
         let socialAction: SocialActionDTO = this.socialActionNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (socialAction.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.socialActionResourceService.updateSocialActionUsingPUT(socialAction).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.socialActionResourceService.createSocialActionUsingPOST(socialAction).toPromise();
                 postOrPut = "created";
             }
+
+            this.socialActionResult = socialAction;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp SocialAction: '${socialAction.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -77,10 +86,10 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

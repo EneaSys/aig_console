@@ -3,6 +3,7 @@ import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { PermissionDTO, PermissionResourceService } from "aig-management";
+import { RoleDTO, RoleResourceService } from "api-gest";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigPermissionNewUpdateModalComponent } from "../permission-new-update-modal/permission-new-update-modal.component";
@@ -15,6 +16,7 @@ import { AigPermissionNewUpdateModalComponent } from "../permission-new-update-m
 export class AigPermissionDetailPageComponent extends GenericComponent {
     constructor(
         private permissionResourceService: PermissionResourceService,
+		private roleResourceService: RoleResourceService,
         private route: ActivatedRoute,
 		private _snackBar: MatSnackBar,
     	private router: Router,
@@ -27,10 +29,12 @@ export class AigPermissionDetailPageComponent extends GenericComponent {
 
     loadPage() {
 		this.permissionDTO = this.route.snapshot.data.permission;
+		this.loadRoleList();
 	}
 
 	async reloadPage() {
 		this.permissionDTO = await this.permissionResourceService.getPermissionUsingGET(this.permissionDTO.id).toPromise();
+		this.loadRoleList();
 	}
 
 	async deletePermission(id: number) {
@@ -52,4 +56,20 @@ export class AigPermissionDetailPageComponent extends GenericComponent {
 		
 		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { permission: permissionDTO } });
     }
+
+	roleDTOs: RoleDTO[];
+	roleError: any;
+	roleDC: string[] = ["id", "name", 'roleCode', 'buttons'];
+
+    private async loadRoleList() {
+        let filters = {
+            idEquals: null,
+        };
+        try {
+            this.roleDTOs = await this.roleResourceService.getAllRolesUsingGET().toPromise();
+        } catch (e) {
+            this.roleError = e;
+        }
+    }
+
 }

@@ -4,11 +4,105 @@
         <div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16">
 
-                <pre>{{ applicationModuleDTO | json }} </pre>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Application Module detail</div>
+                <div class="h1 m-16">ID:{{ applicationModuleDTO.id }}</div>
+                <div class="h1 m-16">Nome:{{ applicationModuleDTO.name }}</div>
 
                 <button mat-stroked-button color="primary" (click)="editApplicationModule(applicationModuleDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteApplicationModule(applicationModuleDTO.id)">Delete</button>
             </div>
         </div>
     </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Entity Reference</div>
+                <aig-entity-reference-list-table
+                    [dataSource]="entityReferenceDTOs" 
+                    [displayColumns]="entityReferenceDC"
+                    [error]="entityReferenceError">
+                </aig-entity-reference-list-table>
+    
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newEntityReference(applicationModuleDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Context Module</div>
+                <aig-context-module-list-table
+                    [dataSource]="contextModuleDTOs" 
+                    [displayColumns]="contextModuleDC"
+                    [error]="contextModuleError">
+                </aig-context-module-list-table>
+    
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newContextModule(applicationModuleDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Permission
+
+                </div>
+                <aig-permission-list-table
+                    [dataSource]="permissionDTOs" 
+                    [displayColumns]="permissionDC"
+                    [error]="permissionError">
+                </aig-permission-list-table>
+    
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newPermission(applicationModuleDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Context-User
+
+                </div>
+                <aig-context-user-list-table
+                    [dataSource]="contextUserDTOs" 
+                    [displayColumns]="contextUserDC"
+                    [error]="contextUserError">
+                </aig-context-user-list-table>
+    
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newContextUser(applicationModuleDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text">Role
+
+                </div>
+                <aig-role-list-table
+                    [dataSource]="roleDTOs" 
+                    [displayColumns]="roleDC"
+                    [error]="roleError">
+                </aig-role-list-table>
+    
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newRole(applicationModuleDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    
 </div>

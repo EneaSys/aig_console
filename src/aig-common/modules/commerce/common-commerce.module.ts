@@ -88,6 +88,8 @@ import { AigCatalogItemBoxDetailComponent } from './components/catalog-item-box-
 import { AigPriceListBoxDetailComponent } from './components/price-list-box-detail/price-list-box-detail.component';
 import { AigInventoryCategoryBoxDetailComponent } from './components/inventory-category-box-detail/inventory-category-box-detail.component';
 import { AigPriceListItemBoxDetailComponent } from './components/price-list-item-box-detail/price-list-item-box-detail.component';
+import { AigInventoryItemCombinationBoxDetailComponent } from './components/inventory-item-combination-box-detail/inventory-item-combination-box-detail.component';
+import { AigPurchaseBoxDetailComponent } from './components/purchase-box-detail/purchase-box-detail.component';
 
 @NgModule({
     imports: [
@@ -147,6 +149,7 @@ import { AigPriceListItemBoxDetailComponent } from './components/price-list-item
 
         AigInventoryItemCombinationListTableComponent,
         AigInventoryItemCombinationNewUpdateFormComponent,
+        AigInventoryItemCombinationBoxDetailComponent,
 
         AigInventoryItemPurchaseListTableComponent,
 
@@ -164,9 +167,11 @@ import { AigPriceListItemBoxDetailComponent } from './components/price-list-item
         AigProducerNewUpdateFormComponent,
         AigEntityDetailProducerComponent,
 
-        AigPurchaseComplexFormComponent,
         AigPurchaseListTableComponent,
         AigPurchaseNewUpdateFormComponent,
+        AigPurchaseBoxDetailComponent,
+
+        AigPurchaseComplexFormComponent,
 
         AigPurchaseItemListTableComponent,
         AigPurchaseItemNewUpdateFormComponent,
@@ -241,6 +246,7 @@ import { AigPriceListItemBoxDetailComponent } from './components/price-list-item
 
         AigInventoryItemCombinationListTableComponent,
         AigInventoryItemCombinationNewUpdateFormComponent,
+        AigInventoryItemCombinationBoxDetailComponent,
 
         AigInventoryItemPurchaseListTableComponent,
 
@@ -258,9 +264,11 @@ import { AigPriceListItemBoxDetailComponent } from './components/price-list-item
         AigProducerNewUpdateFormComponent,
         AigEntityDetailProducerComponent,
 
-        AigPurchaseComplexFormComponent,
         AigPurchaseListTableComponent,
         AigPurchaseNewUpdateFormComponent,
+        AigPurchaseBoxDetailComponent,
+
+        AigPurchaseComplexFormComponent,
 
         AigPurchaseItemListTableComponent,
         AigPurchaseItemNewUpdateFormComponent,

@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IlPpProcurementProcedureDTO } from 'aig-standard';
 
-
-
-
-
 @Component({
     selector: 'entity-detail-ipp-procedure',
     templateUrl: './entity-detail-ipp-procedure.component.html',
@@ -16,7 +12,6 @@ export class AigEntityDetailIppProcedureComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     ippProcedure: IlPpProcurementProcedureDTO;
 
 }

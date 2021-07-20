@@ -32,6 +32,8 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
 
     @Input()
     personalization: PersonalizationDTO;
+    
+    isUpdate: boolean = false;
 
     personalizationNewUpdateForm: FormGroup;
 

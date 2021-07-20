@@ -6,7 +6,6 @@
             <input formControlName="description" matInput required>
         </mat-form-field>
         
-
         <mat-form-field appearance="outline">
             <mat-label>Dossier Code</mat-label>
             <input formControlName="dossierCode" matInput >
@@ -31,7 +30,6 @@
         </mat-form-field>
     </div>
 
-
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" >
             <mat-label>Procurement</mat-label>
@@ -49,13 +47,12 @@
             </mat-autocomplete>
         </mat-form-field>
     </div>
-        
-        
-
     
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -64,15 +61,17 @@
 
 <div *ngIf="step.complete">
 
-    <span>
-        <h1>Hai creato un nuovo dossier!</h1>
-        <p>Description: {{ dossierNewUpdateForm.controls.description.value }}</p>
-        <p>Dossier code: {{ dossierNewUpdateForm.controls.dossierCode.value }}</p>
-    </span>
+    <h1 *ngIf="!isUpdate">Dossier creato con successo</h1>
+    <h1 *ngIf="isUpdate">Dossier aggiornato con successo</h1>
+    
+    <hr>
 
-    <button *ngIf="!dossierNewUpdateForm.value.id" mat-stroked-button color="primary"
-        (click)="newDossier()">Create New</button>
+    <aig-dossier-detail-box [dossier]="dossierResult"></aig-dossier-detail-box>
 
-    <button [routerLink]="'/ipp/dossier/detail/'" mat-stroked-button color="primary">Dettagli</button>
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newDossier()">Crea nuovo</button>
+    </div>
 
 </div>

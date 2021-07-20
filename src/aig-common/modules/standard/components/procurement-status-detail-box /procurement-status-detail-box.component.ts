@@ -1,10 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-import { CityDTO } from 'aig-generic';
-import { PartecipationStatusDTO } from 'aig-italianlegislation';
-import { IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementStatusDTO } from 'aig-standard';
-
-
+import { IlPpProcurementStatusDTO } from 'aig-standard';
 
 @Component({
     selector: 'procurement-status-detail-box',

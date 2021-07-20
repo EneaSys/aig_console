@@ -34,6 +34,8 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
     @Input()
     role: RoleDTO;
 
+    isUpdate: boolean = false;
+
     roleNewUpdateForm: FormGroup;
 
     filteredApplicationModules: Observable<ApplicationModuleDTO[]>;

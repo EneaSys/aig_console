@@ -29,8 +29,13 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
 
     @Input()
     eopooType: EopooTypeDTO;
+
     @Input()
     eopoo: EopooDTO;
+
+    isUpdate: boolean = false;
+
+    eopooResult: any;
 
     eopooTypeDTOs: EopooTypeDTO[];
 
@@ -40,8 +45,8 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         this.eopooGenericNewUpdateForm = this._formBuilder.group({
             id: [''],
             eopooType: [this.eopooType],
-            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11), AigValidator.haveId]],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            taxNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+            name: ['', [Validators.required]],
         });
 
         this.loadTypes();
@@ -52,9 +57,10 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
             this.eopooGenericNewUpdateForm.patchValue(newEopoo);
         }
 
-        if (this.eopoo != null && this.eopoo.genericEopoo != null) {
+        if (this.eopoo != null && this.eopoo.id != null) {
             this.eopooGenericNewUpdateForm.patchValue(this.eopoo.genericEopoo);
             this.eopooGenericNewUpdateForm.patchValue(this.eopoo);
+            this.isUpdate = true;
         }
     }
 
@@ -78,22 +84,26 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         };
 
         try {
-            let postOrPut;
-            if (eopooGeneric.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.eopooResourceService.updateEopooUsingPUT(eopooGeneric).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.eopooResourceService.createEopooUsingPOST(eopooGeneric).toPromise();
                 postOrPut = "created";
             }
+
+            this.eopooResult = eopooGeneric;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Eopoo with tax id: '${eopooGeneric.taxNumber}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -101,11 +111,10 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string) {
+    private setStep(stepToShow: string) {
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

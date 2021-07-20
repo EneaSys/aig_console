@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { SocialDTO } from 'aig-standard';
-
-
 
 @Component({
     selector: 'entity-detail-social',

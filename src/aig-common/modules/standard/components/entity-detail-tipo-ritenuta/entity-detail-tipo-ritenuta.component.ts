@@ -12,7 +12,6 @@ export class AigEntityDetailTipoRitenutaComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    
     tipoRitenuta: IlFeRitenutaTipoDTO;
 
 }

@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { CityDTO } from 'aig-generic';
-
-
 
 @Component({
     selector: 'entity-detail-city',

@@ -35,6 +35,10 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
     @Output()
 	modalitaPagamentoOutput = new EventEmitter<IlFePagamentoModalitaDTO>();
 
+    isUpdate: boolean = false;
+
+    modalitaPagamentoResult: any;
+
     modalitaPagamentoNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -45,8 +49,9 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:['']
         })
-        if (this.modalitaPagamento!= null) {
+        if (this.modalitaPagamento!= null && this.modalitaPagamento.id != null) {
             this.modalitaPagamentoNewUpdateForm.patchValue(this.modalitaPagamento);
+            this.isUpdate = true;
         }
     }
     async submit() {
@@ -62,20 +67,25 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (modalitaPagamento.id != 0) {
+            if (this.isUpdate) {
                 await this.modalitaPagamentoResourceService.updateIlFePagamentoModalitaUsingPUT(modalitaPagamento).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.modalitaPagamentoResourceService.createIlFePagamentoModalitaUsingPOST(modalitaPagamento).toPromise();
                 postOrPut = "created";
             }
+
+            this.modalitaPagamentoResult = modalitaPagamento;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -85,11 +95,10 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

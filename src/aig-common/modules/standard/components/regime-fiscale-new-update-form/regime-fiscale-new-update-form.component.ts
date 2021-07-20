@@ -29,6 +29,10 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
     @Input()
     regimeFiscale: IlFeRegimeFiscaleDTO;
 
+    isUpdate: boolean = false;
+
+    regimeFiscaleResult: any;
+
     regimeFiscaleNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -40,8 +44,9 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
         
-        if (this.regimeFiscale != null) {
+        if (this.regimeFiscale != null && this.regimeFiscale.id != null) {
             this.regimeFiscaleNewUpdateForm.patchValue(this.regimeFiscale);
+            this.isUpdate = true;
         }
     }
 
@@ -58,16 +63,20 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (regimeFiscale.id != 0) {
+            if (this.isUpdate) {
                 await this.regimeFiscaleResourceService.updateIlFeRegimeFiscaleUsingPUT(regimeFiscale).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.regimeFiscaleResourceService.createIlFeRegimeFiscaleUsingPOST(regimeFiscale).toPromise();
                 postOrPut = "created";
             }
+
+            this.regimeFiscaleResult = regimeFiscale;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
@@ -82,8 +91,7 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
-        this.step.complete = false;
-			
+        this.step.complete = false;	
         this.step[stepToShow] = true;
     }
 }

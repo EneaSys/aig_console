@@ -25,8 +25,8 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!inventoryItemCombination.id" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
-        <button *ngIf="inventoryItemCombination.id" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
     </div>
 </form>
 
@@ -35,6 +35,17 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ inventoryItemCombinationNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!inventoryItemCombinationNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newInventoryItemCombination()">{{ 'MAIN.CREATE_NEWA' | translate | titlecase }}</button>
+    <h1 *ngIf="!isUpdate">{{ 'COMMERCE.INVENTORY_ITEM_COMBINATION' | translate | titlecase }} {{ 'MAIN.CREATION_OKA' | translate }}
+    </h1>
+    <h1 *ngIf="isUpdate">{{ 'COMMERCE.INVENTORY_ITEM_COMBINATION' | translate | titlecase }} {{ 'MAIN.UPDATE_OKA' | translate }}</h1>
+
+    <hr>
+
+    <aig-inventory-item-combination-box-detail [inventoryItemCombination]="inventoryItemCombinationResult"></aig-inventory-item-combination-box-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newInventoryItemCombination()">{{ 'MAIN.CREATE_NEWA' | translate | titlecase }}</button>
+    </div>
 </div>

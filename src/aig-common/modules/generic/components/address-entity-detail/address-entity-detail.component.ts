@@ -12,5 +12,5 @@ export class AigAddressEntityDetailComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    addressDTO: AddressDTO;
+    address: AddressDTO;
 }

@@ -13,5 +13,5 @@ export class AigEntityDetailInventoryItemComponent extends AigCommerceCommonGene
     ngOnInit(): void {}
 
     @Input()
-    inventoryItemDTO: InventoryItemDTO;
+    inventoryItem: InventoryItemDTO;
 }

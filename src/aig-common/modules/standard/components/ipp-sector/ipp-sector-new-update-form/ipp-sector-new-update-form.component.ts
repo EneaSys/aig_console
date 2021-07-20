@@ -27,6 +27,10 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
     @Input()
     ippSector: IlPpProcurementSectorDTO;
 
+    isUpdate: boolean = false;
+
+    ippSectorResult: any;
+
     ippSectorNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -38,8 +42,9 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.ippSector != null) {
+        if (this.ippSector != null && this.ippSector.id != null) {
             this.ippSectorNewUpdateForm.patchValue(this.ippSector);
+            this.isUpdate = true;
         }
     }
 
@@ -53,22 +58,26 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
         let ippSector: IlPpProcurementSectorDTO = this.ippSectorNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (ippSector.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.ippSectorResourceService.updateIlPpProcurementSectorUsingPUT(ippSector).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.ippSectorResourceService.createIlPpProcurementSectorUsingPOST(ippSector).toPromise();
                 postOrPut = "created";
             }
+
+            this.ippSectorResult = ippSector;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Ipp Sector: '${ippSector.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -76,11 +85,10 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

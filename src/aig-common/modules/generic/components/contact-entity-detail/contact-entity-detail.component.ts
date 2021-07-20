@@ -12,5 +12,5 @@ export class AigContactEntityDetailComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    contactDTO: ContactDTO;
+    contact: ContactDTO;
 }

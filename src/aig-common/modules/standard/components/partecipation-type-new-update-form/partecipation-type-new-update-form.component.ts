@@ -30,6 +30,10 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
     @Input()
     partecipationType: IlPpPartecipationTypeDTO;
 
+    isUpdate: boolean = false;
+
+    partecipationTypeResult: any;
+
     partecipationTypeNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -41,8 +45,9 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
             wikiCode:['']
         })
 
-        if (this.partecipationType != null) {
+        if (this.partecipationType != null && this.partecipationType.id != null) {
             this.partecipationTypeNewUpdateForm.patchValue(this.partecipationType);
+            this.isUpdate = true;
         }
     }
 
@@ -56,22 +61,26 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
         let partecipationType: IlPpPartecipationTypeDTO = this.partecipationTypeNewUpdateForm.value;
 
         try {
-            let postOrPut;
-            if (partecipationType.id != 0) {
+            let postOrPut: string;
+            if (this.isUpdate) {
                 await this.partecipationTypeResourceService.updateIlPpPartecipationTypeUsingPUT(partecipationType).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.partecipationTypeResourceService.createIlPpPartecipationTypeUsingPOST(partecipationType).toPromise();
                 postOrPut = "created";
             }
+
+            this.partecipationTypeResult = partecipationType;
+
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Partecipation Type: '${partecipationType.id}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
+
         } catch (error) {
             this._snackBar.open("Error: " + error.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -79,11 +88,10 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }

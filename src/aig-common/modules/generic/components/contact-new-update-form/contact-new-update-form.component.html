@@ -34,12 +34,11 @@
         </mat-form-field>
     </div>
 
-
-
     <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!contact.id" type="submit" mat-raised-button color="accent">Crea</button>
-        <button *ngIf="contact.id" type="submit" mat-raised-button color="accent">Aggiorna</button>
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
     </div>
+
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
@@ -47,8 +46,18 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ contactNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!contactNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newContact()">
-        Crea nuovo
-    </button>
+
+    <h1 *ngIf="!isUpdate">Contact creato con successo</h1>
+    <h1 *ngIf="isUpdate">Contact aggiornato con successo</h1>
+    
+    <hr>
+
+    <aig-contact-entity-detail [contact]="contactResult"></aig-contact-entity-detail>
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newContact()">Crea nuovo</button>
+    </div>
+
 </div>

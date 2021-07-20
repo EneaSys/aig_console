@@ -12,5 +12,5 @@ export class AigEopooTypeEntityDetailComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    eopooTypeDTO: EopooTypeDTO;
+    eopooType: EopooTypeDTO;
 }

@@ -25,8 +25,7 @@
 
     <hr>
 
-    <div class="h2 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAILS' | translate| titlecase }} {{ 'COMMERCE.WAREHOUSE' | translate | titlecase }}</div>
-    <div class="h1 m-8 ml-16">{{ warehouseResult.name }}</div>
+    <entity-detail-warehouse [warehouse]="warehouseResult"></entity-detail-warehouse>
 
     <div *ngIf="!isUpdate">
         <br>

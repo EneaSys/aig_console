@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IlPpProcurementModalityDTO } from 'aig-standard';
 
-
-
-
-
 @Component({
     selector: 'entity-detail-ipp-modality',
     templateUrl: './entity-detail-ipp-modality.component.html',
@@ -16,6 +12,6 @@ export class AigEntityDetailIppModalityComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    ippModalityDTO: IlPpProcurementModalityDTO;
+    ippModality: IlPpProcurementModalityDTO;
 
 }

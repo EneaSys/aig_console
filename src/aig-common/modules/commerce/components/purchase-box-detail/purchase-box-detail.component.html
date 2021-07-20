@@ -1,0 +1,8 @@
+<div class="h4 ml-16">{{ 'COMMERCE.BUYER' | translate | titlecase }}: <b>{{ purchase.buyer.eopoo | eopooName }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.AMOUNT' | translate | titlecase }}: <b>{{ purchase.amount | currency:'EUR' }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.DATE' | translate | titlecase }}: <b>{{ purchase.insertedDateTime | date }}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.STATUS_NOTE' | translate | titlecase }}: <b>{{ purchase.statusNote}}</b></div>
+<div class="h4 ml-16">{{ 'COMMERCE.CLOSED_' | translate | titlecase }}: 
+    <span *ngIf="purchase.closed"><b>{{ 'COMMERCE.YES' | translate | titlecase }}</b></span>
+    <span *ngIf="!purchase.closed"><b>{{ 'COMMERCE.NO' | translate | titlecase }}</b></span>
+</div>

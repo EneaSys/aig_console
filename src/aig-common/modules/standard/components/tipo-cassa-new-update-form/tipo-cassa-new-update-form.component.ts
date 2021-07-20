@@ -35,6 +35,10 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
     @Output()
 	tipoCassaOutput = new EventEmitter<IlFeCassaTipoDTO>();
 
+    isUpdate: boolean = false;
+
+    tipoCassaResult: any;
+
     tipoCassaNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -46,8 +50,9 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
             wikiCode:['']
 
         })
-        if (this.tipoCassa!= null) {
+        if (this.tipoCassa!= null && this.tipoCassa.id != null) {
             this.tipoCassaNewUpdateForm.patchValue(this.tipoCassa);
+            this.isUpdate = true;
         }
     }
     async submit() {
@@ -63,20 +68,25 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
         try {
             let postOrPut: string;
 
-            if (tipoCassa.id != 0) {
+            if (this.isUpdate) {
                 await this.tipoCassaResourceService.updateIlFeCassaTipoUsingPUT(tipoCassa).toPromise();
                 postOrPut = "updated";
             } else {
                 await this.tipoCassaResourceService.createIlFeCassaTipoUsingPOST(tipoCassa).toPromise();
                 postOrPut = "created";
             }
+
+            this.tipoCassaResult = tipoCassa;
+
             this.eventService.reloadCurrentPage();
   
             this.setStep("complete");
+
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
             this.setStep("form");
         }
+
         this._fuseProgressBarService.hide();
     }
 
@@ -86,11 +96,10 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
         this.setStep("form");
     }
 
-    private setStep(step: string){
+    private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
         this.step.complete = false;
-
-        this.step[step] = true;
+        this.step[stepToShow] = true;
     }
 }
