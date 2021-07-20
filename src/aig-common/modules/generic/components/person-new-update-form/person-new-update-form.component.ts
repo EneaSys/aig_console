@@ -53,7 +53,7 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
             id: [''],
             taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
-            eopooType: [this.eopooType, [AigValidator.haveId]],
+            eopooType: [this.eopooType],
 
             firstname: ['', [Validators.required]],
             lastname: ['', [Validators.required]],
