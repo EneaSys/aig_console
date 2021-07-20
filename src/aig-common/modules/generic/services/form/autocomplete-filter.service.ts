@@ -18,7 +18,7 @@ export class AigGenericAutocompleteFilterService {
             switchMap((value: string) => {
                 if (value && value.length > 0) {
 					let filter = {
-						taxNumberContains: value
+						eopooCompleteNameContains: value
 					};
 					return this.eopooResourceService.getAllEopoosUsingGET(filter);
 				} else {

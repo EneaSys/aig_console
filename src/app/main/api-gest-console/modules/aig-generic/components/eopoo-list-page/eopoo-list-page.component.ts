@@ -8,7 +8,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
-import { AigCommerceAutocompleteDisplayService } from 'aig-common/modules/commerce/service/autocomplete-display.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 
@@ -19,9 +18,10 @@ import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic
 export class AigEopooListPageComponent extends GenericComponent {
 	constructor(
 		private eopooResourceService: EopooResourceService,
-		public autocompleteDisplayService: AigCommerceAutocompleteDisplayService,
-		private genericAutocompleteService: AigGenericAutocompleteFilterService,
+
+		private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
 		public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
+		
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -38,42 +38,48 @@ export class AigEopooListPageComponent extends GenericComponent {
 		this.showAllEopoo();
 	}
 
-	//			---- EOPOO TABLE AND SEARCH SECTION ----
 
+
+
+
+
+
+
+
+	//			---- EOPOO TABLE AND SEARCH SECTION ----
 	eopooDTOs: EopooDTO[];
 	eopooDC: string[];
 	eopooError: any;
+	
+	eopooPaginationSize: number;
+	eopooLength: number;
+
+
+
+
 
 	searchForm: FormGroup;
 	eopooFilters: any;
 
-	eopooPaginationSize: number;
-	eopooLength: number;
-
 	filteredEopooType: Observable<EopooTypeDTO[]>;
-	filteredEopoo: Observable<EopooDTO[]>;
 
 	private initEopooSearch() {
 		this.eopooPaginationSize = 30;
 
 		this.searchForm = this._formBuilder.group({
-			id: [''],
-			eopooType:[''],
-			taxId: [''],
+			eopooIDEquals: [''],
+			eopooCompleteNameContains: [''],
+			eopooTaxNumberContains: [''],
+			eopooTypeIDEquals: [''],
 		});
 
-		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
-
-		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.searchForm.controls['taxId'].valueChanges);
+		this.filteredEopooType = this.genericAutocompleteFilterService.filterEopooType(this.searchForm.controls['eopooTypeIDEquals'].valueChanges);
 
 		this.eopooDC = ['id', 'eopooType', 'name', 'taxId', 'buttons'];
 	}
 
 	private clearFiltersEopoo() {
 		this.eopooFilters = {
-			idEquals: null,
-			eopooTypeIdEquals: null,
-			taxNumberContains: null,
 			page: 0,
 		}
 	}
@@ -83,10 +89,6 @@ export class AigEopooListPageComponent extends GenericComponent {
 
 		this.eopooFilters.page = page;
 		this.eopooFilters.size = this.eopooPaginationSize;
-
-		this.filteredEopooType = this.genericAutocompleteService.filterEopooType(this.searchForm.controls['eopooType'].valueChanges);
-
-		this.filteredEopoo = this.genericAutocompleteService.filterEopoo(this.searchForm.controls['taxId'].valueChanges);
 
 		try {
 			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
@@ -119,24 +121,28 @@ export class AigEopooListPageComponent extends GenericComponent {
 	}
 
 	eopooSearchWithFilter() {
-		let searchedId = this.searchForm.controls.id.value;
+		let searchedId = this.searchForm.value.eopooIDEquals;
 
 		if (searchedId != null) {
 			this.clearFiltersEopoo();
 			this.searchForm.reset();
-			this.eopooFilters.idEquals = searchedId;
+			this.eopooFilters.eopooIDEquals = searchedId;
 			this.searchEopoo(0);
 			return;
 		}
 
-		this.eopooFilters.idEquals = null;
+		this.eopooFilters.eopooIDEquals = null;
 
-		if (this.searchForm.controls.eopooType.value) {
-			this.eopooFilters.eopooTypeIdEquals = this.searchForm.controls.eopooType.value.id;
+		if (this.searchForm.value.eopooCompleteNameContains) {
+			this.eopooFilters.eopooCompleteNameContains = this.searchForm.value.eopooCompleteNameContains;
 		}
 
-		if (this.searchForm.controls.taxId.value) {
-			this.eopooFilters.taxNumberContains = this.searchForm.controls.taxId.value.taxNumber;
+		if (this.searchForm.value.eopooTaxNumberContains) {
+			this.eopooFilters.eopooTaxNumberContains = this.searchForm.value.eopooTaxNumberContains;
+		}
+
+		if (this.searchForm.value.eopooTypeIDEquals) {
+			this.eopooFilters.eopooTypeIDEquals = this.searchForm.value.eopooTypeIDEquals.id;
 		}
 
 		this.searchEopoo(0);

@@ -34,6 +34,11 @@
             <mat-cell *matCellDef="let e"> {{ e.inventoryCategory.name }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="itemCode">
+            <mat-header-cell *matHeaderCellDef>{{ 'COMMERCE.INVENTORY_ITEM_CODE' | translate | titlecase }}</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.itemCode}}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let e">

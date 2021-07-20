@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddressDTO, EopooDTO, ReferentDTO } from 'aig-generic';
-import { Observable } from 'rxjs';
+import { AddressDTO, EopooDTO, EopooTypeDTO, ReferentDTO } from 'aig-generic';
 import { EopooNamePipe } from '../../pipe/eopoo-name.pipe';
 
 @Injectable()
@@ -8,6 +7,10 @@ export class AigGenericAutocompleteDisplayService {
     eopooDisplayFn(eopoo?: EopooDTO): string | undefined {
         return eopoo ? new EopooNamePipe().transform(eopoo) : undefined;
     }
+
+	eopooTypeDisplayFn(eopooType?: EopooTypeDTO): string | undefined {
+		return eopooType ? eopooType.name : undefined;
+	}
 
     addressDisplayFn(address?: AddressDTO): any | undefined {
         return address ? address.name : undefined;
