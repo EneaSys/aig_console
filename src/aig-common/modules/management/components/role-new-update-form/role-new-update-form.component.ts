@@ -62,11 +62,10 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let role: RoleDTO = {
-            name: this.roleNewUpdateForm.value.name,
-            roleCode: this.roleNewUpdateForm.value.roleCode,
-            id: this.roleNewUpdateForm.value.id,
-        }
+        let role= this.roleNewUpdateForm.value;
+
+        role.applicationModule = this.roleNewUpdateForm.value.applicationModule.name;
+        
         
         try {
             let postOrPut;
