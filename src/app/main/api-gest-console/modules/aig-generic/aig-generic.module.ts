@@ -30,6 +30,9 @@ import { AigReferentDetailPageComponent } from './components/referent-detail-pag
 import { AigContactListPageComponent } from './components/contact-list-page/contact-list-page.component';
 import { AigContactNewUpdateDialogComponent } from './components/contact-new-update-dialog/contact-new-update-dialog.component';
 import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
+import { EnzoAddressDetailPageComponent } from './components/address-detail-page copy/address-detail-page.component';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 @NgModule({
     imports: [
@@ -44,6 +47,8 @@ import { AigContactDetailPageComponent } from './components/contact-detail-page/
 
         FuseSharedModule,
         FuseSidebarModule,
+
+        TranslateModule,
 
         MatIconModule,
         MatButtonModule,
@@ -67,10 +72,13 @@ import { AigContactDetailPageComponent } from './components/contact-detail-page/
         AigGenericEopooListPageComponent,
         GenericEopooDetailPageComponent,
         AigGenericEopooNewUpdateDialogComponent,
+        
 
         AigAddressListPageComponent,
         AigAddressDetailPageComponent,
         AigAddressNewUpdateModalComponent,
+        EnzoAddressDetailPageComponent,
+      
 
         AigReferentListPageComponent,
         AigReferentDetailPageComponent,

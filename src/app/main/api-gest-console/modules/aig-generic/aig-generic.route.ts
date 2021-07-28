@@ -14,6 +14,8 @@ import { AigAddressDetailPageComponent } from './components/address-detail-page/
 import { AddressResolver } from 'aig-common/modules/generic/resolver/address.resolver';
 import { AigReferentDetailPageComponent } from './components/referent-detail-page/referent-detail-page.component';
 import { ReferentResolver } from 'aig-common/modules/generic/resolver/referent.resolver';
+import { EnzoAddressDetailPageComponent } from './components/address-detail-page copy/address-detail-page.component';
+
 
 export const aigGenericRoute: Routes = [
     {
@@ -112,7 +114,7 @@ export const aigGenericRoute: Routes = [
                     },
                     {
                         path: 'detail/:id',
-                        component: AigAddressDetailPageComponent,
+                        component: EnzoAddressDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             address: AddressResolver,

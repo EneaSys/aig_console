@@ -1,0 +1,45 @@
+<div id="enzo-address-lot-detail-page" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="34">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text">{{ 'MAIN.DETAIL' | translate | titlecase }} {{ 'IPP.PROCUREMENT_LOT' | translate }}</div>
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editAddressLot(addressDTO)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="warn" (click)="deleteAddress(addressDTO)">{{ 'MAIN.DELETE' | translate | titlecase }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="33">
+            <div class="fuse-card auto-width p-16 m-8">
+                <div class="h1 m-8 ml-16 mb-0 secondary-text"> {{ 'MAIN.DETAILS' | translate | titlecase }} {{ 'IPP.PROCUREMENT' | translate }}</div>
+                <hr>
+                <!--<aig-address-detail-box [address]="addressDTO"></aig-address-detail-box>-->
+                <br>
+                <div fxLayoutAlign="end">
+                    <button class="ml-8" mat-stroked-button color="accent" [routerLink]="'/ipp/address/detail/' + addressDTO.address.id">{{ 'MAIN.DETAILS' | translate | titlecase }}</button>
+                    <button class="ml-8" mat-stroked-button color="primary" (click)="editAddress(addressDTO.address)">{{ 'MAIN.EDIT' | translate | titlecase }}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget" fxFlex.gt-sm="33">
+   
+        </div>
+
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
