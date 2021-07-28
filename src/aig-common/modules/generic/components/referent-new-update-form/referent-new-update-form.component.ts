@@ -50,7 +50,7 @@ export class AigReferentNewUpdateFormComponent implements OnInit {
         this.referentNewUpdateForm = this._formBuilder.group({
             id: [''],
             eopoo: [this.eopoo, [Validators.required, AigValidator.haveId]],
-            firstname: ['', [Validators.required, AigValidator.haveId]],
+            firstname: ['', [Validators.required ]],
             lastname: [''],
             position: [''],
         })

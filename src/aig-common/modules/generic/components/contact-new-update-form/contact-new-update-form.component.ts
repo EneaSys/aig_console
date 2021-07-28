@@ -15,12 +15,16 @@ import { AigGenericAutocompleteDisplayService } from '../../services/form/autoco
     styleUrls: ['./contact-new-update-form.component.scss']
 })
 export class AigContactNewUpdateFormComponent implements OnInit {
+    @Input()
+    contact: ContactDTO;
 
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+    @Input()
+    eopoo: EopooDTO;
+
+	@Input()
+    referent: ReferentDTO;
+
+    isUpdate: boolean = false;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -32,31 +36,28 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
     ) { }
 
-    @Input()
-    contact: ContactDTO;
+	contactNewUpdateForm: FormGroup;
 
-    @Input()
-    eopoo: EopooDTO;
-
-    isUpdate: boolean = false;
-
-    contactResult: any;
-
-    contactNewUpdateForm: FormGroup;
+    step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
 
     filteredEopoos: Observable<EopooDTO[]>;
     filteredReferents: Observable<ReferentDTO[]>;
 
+	contactResult: any;
+
     ngOnInit(): void {
-        
         this.contactNewUpdateForm = this._formBuilder.group({
             id: [''],
             
-            referent: ['', ],
-            eopoo: [this.eopoo, [Validators.required, AigValidator.haveId]],
+            referent: [this.referent, [] ],
+            eopoo: [this.eopoo, [] ],
 
-            contactType: ['', [Validators.required, AigValidator.haveId]],
-            value: ['', [Validators.required, AigValidator.haveId]],
+            contactTypeCode: ['', [Validators.required]],
+            value: ['', [Validators.required]],
         })
         
         if (this.contact != null && this.contact.id != null) {
@@ -65,7 +66,6 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         }
 
         this.filteredReferents = this.genericAutocompleteFilterService.filterReferent(this.contactNewUpdateForm.controls['referent'].valueChanges);
-
         this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.contactNewUpdateForm.controls['eopoo'].valueChanges);
     }
 
@@ -77,14 +77,14 @@ export class AigContactNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let contact: ContactDTO = this.contactNewUpdateForm.value;
-        if(this.contactNewUpdateForm.value.referent){
-            contact.referentId = this.contactNewUpdateForm.value.referent.id;
+		
+		if(this.contactNewUpdateForm.value.referent){
+			contact.referentId = this.contactNewUpdateForm.value.referent.id;
         }
         if(this.contactNewUpdateForm.value.eopoo){
-            contact.eopooId = this.contactNewUpdateForm.value.eopoo.id;
+			contact.eopooId = this.contactNewUpdateForm.value.eopoo.id;
         }
-        //contact.contactTypeCode = this.contactNewUpdateForm.value.contactType.id; //TODO
-        contact.contactTypeCode = this.contactNewUpdateForm.value.contactType;
+        
 
         try {
             let postOrPut : string;

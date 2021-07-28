@@ -11,5 +11,16 @@ export class AigValidator {
             };
         } 
         return null; // funziona
-    }        
+    }
+
+	static haveCode(c: FormControl) {
+        if(!(c.value && c.value.code)) {
+            return {
+                validatorHaveCode: {
+                    valid: false
+                }
+            };
+        } 
+        return null; // funziona
+    }
 }
