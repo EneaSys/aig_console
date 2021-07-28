@@ -56,7 +56,6 @@ import { AigInsurancePolicyStatusListPageComponent } from './components/insuranc
 import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
-import { GleIppModule } from '@aig-ng/ipp/gle-ipp.module';
 
 
 @NgModule({
@@ -64,7 +63,6 @@ import { GleIppModule } from '@aig-ng/ipp/gle-ipp.module';
         RouterModule.forChild(ippRoute),
 
         CommonModule,
-        GleIppModule,
         AigCommonIppModule,
         AigItalianLegislationApiModule,
         CommonGenericModule,
