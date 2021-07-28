@@ -14,7 +14,7 @@
                                 class="p-8">
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Anagrafica</mat-label>
+                                        <mat-label>Stazione appaltante</mat-label>
                                         <input formControlName="contractorEopoo" matInput
                                             [matAutocomplete]="contractorEopooAutocomplete">
                                         <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
@@ -26,9 +26,68 @@
                                     </mat-form-field>
                                 </div>
 
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Cig</mat-label>
+                                        <input matInput type="string" formControlName="procurementLotCig">
+                                    </mat-form-field>
+                                </div>
+
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Descrizione</mat-label>
+                                        <input matInput type="string" formControlName="procurementLotDescription">
+                                    </mat-form-field>
+                                </div>
+
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Data scadenza offerte</mat-label>
+                                        <input matInput [matDatepicker]="picker" placeholder="Seleziona la data"
+                                            formControlName="procurementLotOfferExpiryDate">
+                                        <mat-datepicker-toggle matSuffix [for]="picker">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Anagrafica Proponente</mat-label>
+                                        <mat-label>Tipo</mat-label>
+                                        <input formControlName="type" matInput
+                                            [matAutocomplete]="typeAutocomplete">
+                                        <mat-autocomplete #typeAutocomplete="matAutocomplete"
+                                            [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+                                            <mat-option
+                                                *ngFor="let type of filteredIppLotType | async"
+                                                [value]="type">{{ type.name }}</mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Stato di partecipazione</mat-label>
+                                        <input formControlName="partecipationStatus" matInput
+                                            [matAutocomplete]="partecipationStatusAutocomplete">
+                                        <mat-autocomplete #partecipationStatusAutocomplete="matAutocomplete"
+                                            [displayWith]="ippAutocompleteDisplayService.partecipationStatusDisplayFn">
+                                            <mat-option
+                                                *ngFor="let partecipationStatus of filteredPartecipationStatus | async"
+                                                [value]="partecipationStatus">{{partecipationStatus.description}}</mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+
+
+
+
+
+
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Azienda Proponente</mat-label>
                                         <input formControlName="proposerEopoo" matInput
                                             [matAutocomplete]="proposerEopooAutocomplete">
                                         <mat-autocomplete #proposerEopooAutocomplete="matAutocomplete"
@@ -44,32 +103,6 @@
                                     <mat-slide-toggle formControlName="siteInspection">{{ 'IPP.SITE_INSPECTION' | translate }}</mat-slide-toggle>
                                 </div>
                         
-
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Cig</mat-label>
-                                        <input matInput type="string" formControlName="procurementLotCig">
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Descrizione</mat-label>
-                                        <input matInput type="string" formControlName="procurementLotDescription">
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Date</mat-label>
-                                        <input matInput [matDatepicker]="picker" placeholder="Seleziona la data"
-                                            formControlName="procurementLotOfferExpiryDate">
-                                        <mat-datepicker-toggle matSuffix [for]="picker">
-                                        </mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                    </mat-form-field>
-                                </div>
-
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Criterio di aggiudicazione</mat-label>
@@ -100,21 +133,6 @@
     
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Tipo</mat-label>
-                                        <input formControlName="type" matInput
-                                            [matAutocomplete]="typeAutocomplete">
-                                        <mat-autocomplete #typeAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
-                                            <mat-option
-                                                *ngFor="let type of filteredIppLotType | async"
-                                                [value]="type">{{ type.name }}</mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
-    
-    
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Modalità</mat-label>
                                         <input formControlName="ippModality" matInput
                                             [matAutocomplete]="ippModalityAutocomplete">
@@ -141,19 +159,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Stato di partecipazione</mat-label>
-                                        <input formControlName="partecipationStatus" matInput
-                                            [matAutocomplete]="partecipationStatusAutocomplete">
-                                        <mat-autocomplete #partecipationStatusAutocomplete="matAutocomplete"
-                                            [displayWith]="ippAutocompleteDisplayService.partecipationStatusDisplayFn">
-                                            <mat-option
-                                                *ngFor="let partecipationStatus of filteredPartecipationStatus | async"
-                                                [value]="partecipationStatus">{{partecipationStatus.description}}</mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
+
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">

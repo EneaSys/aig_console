@@ -1,6 +1,7 @@
 <form *ngIf="step.form" [formGroup]="contactNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!eopoo && !referent">
+
         <mat-form-field appearance="outline" fxFlex="50">
             <mat-label>Referent</mat-label>
             <input formControlName="referent" matInput [matAutocomplete]="referentAutocomplete">
@@ -10,7 +11,7 @@
             </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field *ngIf="!eopoo" appearance="outline" fxFlex="50" class="pl-4">
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>Eopoo</mat-label>
             <input formControlName="eopoo" matInput [matAutocomplete]="eopooAutocomplete">
             <mat-autocomplete #eopooAutocomplete="matAutocomplete"
@@ -18,20 +19,25 @@
                 <mat-option *ngFor="let eopoo of filteredEopoos | async" [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
+
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
+
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Contact Type</mat-label>
-            <input formControlName="contactType" matInput required>
+            <input formControlName="contactTypeCode" matInput required>
         </mat-form-field>
+
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
+
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Value</mat-label>
             <input formControlName="value" matInput required>
         </mat-form-field>
+
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">

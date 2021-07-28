@@ -64,11 +64,7 @@ export class AigInventoryCategoryNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let inventoryCategory: InventoryCategoryDTO = {
-            id: this.inventoryCategoryNewUpdateForm.value.id,
-            name: this.inventoryCategoryNewUpdateForm.value.name,
-            inventoryCategoryId: this.inventoryCategoryNewUpdateForm.value.parent.id,
-        }
+        let inventoryCategory= this.inventoryCategoryNewUpdateForm.value;
 
         try {
             let postOrPut: string;

@@ -66,7 +66,7 @@ export class AigWarehouseHandlingNewUpdateFormComponent implements OnInit {
 
         this.warehouseHandlingFormGroup = this._formBuilder.group({
             id: [''],
-            warehouseHandlingType: ['', [Validators.required, AigValidator.haveId]],
+            warehouseHandlingType: ['', [Validators.required]],
             warehouseToLoad: [''],
             warehouseToUnload: [''],
             date: ['', [Validators.required]],
