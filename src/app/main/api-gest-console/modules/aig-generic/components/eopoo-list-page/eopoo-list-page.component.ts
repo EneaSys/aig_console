@@ -91,7 +91,7 @@ export class AigEopooListPageComponent extends GenericComponent {
 		this.eopooFilters.size = this.eopooPaginationSize;
 
 		try {
-			this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
+			//this.eopooLength = await this.eopooResourceService.countEopoosUsingGET(this.eopooFilters).toPromise();
 
 			if (this.eopooLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
@@ -99,7 +99,7 @@ export class AigEopooListPageComponent extends GenericComponent {
 				return;
 			}
 
-			this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(this.eopooFilters).toPromise();
+			//this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET(this.eopooFilters).toPromise();
 		} catch (e) {
 			this.eopooError = e;
 		}
