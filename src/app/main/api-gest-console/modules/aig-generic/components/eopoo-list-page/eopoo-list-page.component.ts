@@ -2,14 +2,17 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { EopooResourceService, EopooDTO, EopooTypeDTO } from 'aig-generic';
-import { MatDialog } from '@angular/material/dialog';
+
 import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.component';
 import { PageEvent } from '@angular/material/paginator';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { Router } from '@angular/router';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { EventService } from 'aig-common/event-manager/event.service';
 
 @Component({
 	templateUrl: './eopoo-list-page.component.html',
@@ -22,6 +25,9 @@ export class AigEopooListPageComponent extends GenericComponent {
 		private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
 		public genericAutocompleteFunctionService: AigGenericAutocompleteDisplayService,
 		
+		private router: Router,
+		private _fuseProgressBarService: FuseProgressBarService,
+		private eventService: EventService,
 		private _formBuilder: FormBuilder,
 		private dialog: MatDialog,
 		private _snackBar: MatSnackBar,
@@ -43,6 +49,41 @@ export class AigEopooListPageComponent extends GenericComponent {
 
 
 
+	buttons: any[] = [
+        {
+            name: "dettagli",
+			fn: (e: any) => {
+				this.router.navigateByUrl("g5c/eopoo/detail/"+ e.id)
+			}
+        },{
+            name: "modifica",
+			fn: (eopooDTO:any) => {
+				this.dialog.open(AigEopooNewModalComponent, { data: { eopoo: eopooDTO } });
+			}
+        }, {
+            name: "elimina",
+			fn: (eopooDTO: any) => {
+				this._fuseProgressBarService.show();
+
+        		try {
+            		this.eopooResourceService.deleteEopooUsingDELETE(eopooDTO.id).toPromise();
+            		this._snackBar.open(`Eopoo: '${eopooDTO.id}' deleted.`, null, { duration: 2000, });
+
+            		this.eventService.reloadCurrentPage();
+        		} 
+				catch (e) {
+            		this._snackBar.open(`Error during deleting eopoo: '${eopooDTO.id}'. (${e.message})`, null, { duration: 5000, });
+        		}
+        		this._fuseProgressBarService.hide();
+			}
+        }
+    ];
+
+
+
+
+
+
 
 
 
@@ -53,8 +94,6 @@ export class AigEopooListPageComponent extends GenericComponent {
 	
 	eopooPaginationSize: number;
 	eopooLength: number;
-
-
 
 
 
