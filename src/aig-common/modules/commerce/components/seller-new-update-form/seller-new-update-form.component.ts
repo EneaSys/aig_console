@@ -8,7 +8,6 @@ import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { EopooDTO } from 'aig-generic';
-import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'seller-new-update-form',
@@ -34,8 +33,9 @@ export class AigSellerNewUpdateFormComponent implements OnInit {
     @Input()
     seller: SellerDTO;
 
+    
     @Input()
-    eopoo: SellerDTO;
+
 
     isUpdate: boolean = false;
 
@@ -49,7 +49,7 @@ export class AigSellerNewUpdateFormComponent implements OnInit {
         this.sellerNewUpdateForm = this._formBuilder.group({
             id: [''],
             name: ['', [Validators.required]],
-            eopoo: ['', [Validators.required, AigValidator.haveId]],
+            eopoo: ['', [Validators.required]],
         })
 
         if (this.seller != null && this.seller.id != null) {
@@ -68,10 +68,8 @@ export class AigSellerNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let seller: SellerDTO = {
-            name: this.sellerNewUpdateForm.value.name,
-            eopooCode: this.sellerNewUpdateForm.value.eopoo.id,
-        }
+        let seller = this.sellerNewUpdateForm.value;
+        seller.eopooCode = this.sellerNewUpdateForm.value.eopoo.id;
 
         try {
             let postOrPut: string;

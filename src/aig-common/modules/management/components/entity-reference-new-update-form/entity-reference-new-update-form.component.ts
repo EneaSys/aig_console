@@ -64,7 +64,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
     
-        let entityReference: EntityReferenceDTO = {
+        let entityReference: any = {
             id: this.entityReferenceNewUpdateForm.value.id,
             name: this.entityReferenceNewUpdateForm.value.name,
             moduleId: this.entityReferenceNewUpdateForm.value.applicationModule.id, 

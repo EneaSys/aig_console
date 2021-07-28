@@ -77,28 +77,28 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
     async loadAddress() {
         let filters = {
-            eopooIdEquals: this.eopooDTO.id,
+            eopooIDEquals: this.eopooDTO.id,
         };
         this.addressDTOs = await this.addressResourceService.getAllAddressesUsingGET(filters).toPromise();
     }
 
     addAddress(eopooDTO: EopooDTO) {
-        this.dialog.open(AigAddressNewUpdateModalComponent, { data: { address: { }, eopoo: eopooDTO } });
+        this.dialog.open(AigAddressNewUpdateModalComponent, { data: { eopoo: eopooDTO } });
     }
 
-    contactDC: string[] = ["referent", "contactType", 'value'];
+    contactDC: string[] = ['contactType', 'value', 'buttons'];
     contactDTOs: ContactDTO[];
     contactError: any;
 
     async loadContact() {
         let filters = {
-            eopooIdEquals: this.eopooDTO.id,
+            eopooIDEquals: this.eopooDTO.id,
         };
         this.contactDTOs = await this.contactResourceService.getAllContactsUsingGET(filters).toPromise();
     }
 
     addContact(eopooDTO: EopooDTO) {
-        this.dialog.open(AigContactNewUpdateDialogComponent, { data: { contact: { }, eopoo: eopooDTO } });
+        this.dialog.open(AigContactNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
     }
 
 
@@ -108,13 +108,13 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
     async loadReferent() {
         let filters = {
-            eopooIdEquals: this.eopooDTO.id,
+            eopooIDEquals: this.eopooDTO.id,
         };
         this.referentDTOs = await this.referentResourceService.getAllReferentsUsingGET(filters).toPromise();
     }
 
     addReferent(eopooDTO: EopooDTO) {
-        this.dialog.open(AigReferentNewUpdateDialogComponent, { data: { referent: { }, eopoo: eopooDTO } });
+        this.dialog.open(AigReferentNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
     }
 
 }

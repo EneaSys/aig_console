@@ -18,13 +18,15 @@ import { AigValidator } from 'aig-common/AigValidator';
     styleUrls: ['./address-new-update-form.component.scss']
 })
 export class AigAddressNewUpdateFormComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+	@Input()
+    address: AddressDTO;
 
-    constructor(
+    @Input()
+    eopoo: EopooDTO;
+
+	isUpdate: boolean = false;
+	
+	constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
@@ -36,37 +38,34 @@ export class AigAddressNewUpdateFormComponent implements OnInit {
         private addressResourceService: AddressResourceService,
     ) { }
 
-    @Input()
-    address: AddressDTO;
+	addressNewUpdateForm: FormGroup;
+	
+	step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
 
-    @Input()
-    eopoo: EopooDTO;
-
-    isUpdate: boolean = false;
+	filteredCitys: Observable<CityDTO[]>;
+    filteredEopoos: Observable<EopooDTO[]>;
 
     addressResult: any;
-
-    addressNewUpdateForm: FormGroup;
-
-    filteredCitys: Observable<CityDTO[]>;
-    filteredEopoos: Observable<EopooDTO[]>;
 
     ngOnInit(): void {
         this.addressNewUpdateForm = this._formBuilder.group({
             id: [''],
             eopoo: [this.eopoo, [Validators.required, AigValidator.haveId]],
-            name: ['', [Validators.required, AigValidator.haveId]],
-            address: ['', [Validators.required, AigValidator.haveId]],
-            city: ['', [Validators.required, AigValidator.haveId]],
+            name: ['', [Validators.required]],
+            address: ['', [Validators.required]],
+            city: ['', [Validators.required, AigValidator.haveCode]],
         })
 
-        if (this.address != null && this.address.id != null) {
+        if (this.address != null) {
             this.addressNewUpdateForm.patchValue(this.address);
             this.isUpdate = true;
         }
 
-        this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopoo'].valueChanges);
-
+		this.filteredEopoos = this.genericAutocompleteFilterService.filterEopoo(this.addressNewUpdateForm.controls['eopoo'].valueChanges);
         this.filteredCitys = this.standardAutocompleteFilterService.filterCity(this.addressNewUpdateForm.controls['city'].valueChanges);
     }
 
