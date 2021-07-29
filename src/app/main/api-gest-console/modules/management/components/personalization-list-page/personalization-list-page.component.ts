@@ -54,7 +54,7 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 			name: [''],
 		});
 
-		this.personalizationDC = ["id", "name", "buttons"];
+		this.personalizationDC = ["id", "name","moduleName","buttons"];
 	}
 
 	private clearFiltersPersonalization() {

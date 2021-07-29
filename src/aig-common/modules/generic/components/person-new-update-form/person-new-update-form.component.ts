@@ -52,14 +52,14 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.eopooPersonNewUpdateForm = this._formBuilder.group({
             id: [''],
-            taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17), AigValidator.haveId]],
+            taxNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(17)]],
             eopooType: [this.eopooType],
 
-            firstname: ['', [Validators.required, AigValidator.haveId]],
-            lastname: ['', [Validators.required, AigValidator.haveId]],
-            sex: ['', [Validators.required, AigValidator.haveId]],
-            bornDate: ['', [Validators.required, AigValidator.haveId]],
-            city: ['', [Validators.required, AigValidator.haveId]],
+            firstname: ['', [Validators.required]],
+            lastname: ['', [Validators.required]],
+            sex: ['', [Validators.required]],
+            bornDate: ['', [Validators.required]],
+            city: ['', [Validators.required]],
         });
 
         if(this.eopoo == undefined && this.eopooType != null) {

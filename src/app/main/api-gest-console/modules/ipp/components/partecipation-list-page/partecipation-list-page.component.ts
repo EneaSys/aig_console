@@ -132,18 +132,6 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		this.partecipationFilters.page = page;
 		this.partecipationFilters.size = this.partecipationPaginationSize;
 
-		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['contractorEopoo'].valueChanges);
-		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['proposerEopoo'].valueChanges);
-		this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.partecipationSearchFormGroup.controls['ippModality'].valueChanges);
-        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.partecipationSearchFormGroup.controls['ippProcedure'].valueChanges);
-        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.partecipationSearchFormGroup.controls['ippSector'].valueChanges);
-        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.partecipationSearchFormGroup.controls['awardCriterion'].valueChanges);
-        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['category'].valueChanges);
-        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.partecipationSearchFormGroup.controls['type'].valueChanges);
-		this.filteredPartecipationStatus = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationStatus'].valueChanges);
-		this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
-		
-
 		
 		try {
 			this.partecipationLength = await this.partecipationResourceService.countPartecipationsUsingGET(this.partecipationFilters).toPromise();  
@@ -194,7 +182,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 				this.partecipationFilters.proposerEopooCodeEquals = this.partecipationSearchFormGroup.controls.proposerEopoo.value.id;
 			}
 			if (this.partecipationSearchFormGroup.controls.procurementLotCig.value ) {
-				this.partecipationFilters.procurementLotCigCodeContains = this.partecipationSearchFormGroup.controls.procurementLotCig.value;
+				this.partecipationFilters.procurementLotCigContains = this.partecipationSearchFormGroup.controls.procurementLotCig.value;
 			}
 			if (this.partecipationSearchFormGroup.controls.procurementLotDescription.value ) {
 				this.partecipationFilters.procurementLotDescriptionCodeContains = this.partecipationSearchFormGroup.controls.procurementLotDescription.value;

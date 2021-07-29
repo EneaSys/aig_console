@@ -62,7 +62,7 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
       producer: ['']
     });
 
-    this.inventoryItemDC = ["id", "name", "producerName", "inventoryCategoryName", "buttons",];
+    this.inventoryItemDC = ["id", "name", "producerName", "inventoryCategoryName","itemCode", "buttons",];
 
     this.filteredInventoryCategory = this.commerceAutocompleteService.filterInventoryCategory(this.inventoryItemSearchFormGroup.controls['inventoryCategory'].valueChanges);
     this.filteredProducer = this.commerceAutocompleteService.filterProducer(this.inventoryItemSearchFormGroup.controls['producer'].valueChanges);

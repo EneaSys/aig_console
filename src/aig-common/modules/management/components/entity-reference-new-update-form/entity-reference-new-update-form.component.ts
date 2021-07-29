@@ -64,8 +64,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
         let entityReference:EntityReferenceDTO = this.entityReferenceNewUpdateForm.value;
     
-    
-
+  
         try {
             let postOrPut;
             if (entityReference.id != 0) {
