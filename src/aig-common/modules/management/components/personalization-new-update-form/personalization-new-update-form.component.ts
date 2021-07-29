@@ -66,7 +66,11 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
             id: this.personalizationNewUpdateForm.value.id,
             name: this.personalizationNewUpdateForm.value.name,
             moduleId: this.personalizationNewUpdateForm.value.applicationModule.id,
-            moduleName: this.personalizationNewUpdateForm.value.applicationModule.name,         
+            moduleName: this.personalizationNewUpdateForm.value.applicationModule.name,
+            type: this.personalizationNewUpdateForm.value,
+            typeAttribute: this.personalizationNewUpdateForm.value,
+        
+
         }; 
         try {
             let postOrPut;

@@ -1,0 +1,65 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <h3>Error!</h3>
+    <span *ngIf="error.status == 401">No access to this info</span>
+
+    <button (click)="showError = true">.</button>
+    <pre *ngIf="showError">{{ error | json }}</pre>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="isTypezed">
+            <mat-header-cell *matHeaderCellDef>Is Typezed</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.isTypezed }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="haveStatus">
+            <mat-header-cell *matHeaderCellDef>Have Status</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.haveStatus }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="haveGroup">
+            <mat-header-cell *matHeaderCellDef>have Group</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.haveGroup }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/m8t/object-reference/detail/' + e.id">
+                      <mat-icon>details</mat-icon>
+                      <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editObjectReference(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                      </button>
+                    <button mat-menu-item (click)="deleteObjectReference(e.id)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+
+    </mat-table>
+
+</div>
