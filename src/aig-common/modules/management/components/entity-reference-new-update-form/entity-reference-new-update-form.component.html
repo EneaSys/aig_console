@@ -7,16 +7,19 @@
         </mat-form-field>
     </div>
 
-
-    <div  fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Application Module</mat-label>
-            <input type="text" formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
-            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
-                <mat-option *ngFor="let applicationModule of filteredApplicationModules | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
-            </mat-autocomplete>
+            <mat-label>Table Name</mat-label>
+            <input formControlName="tableName" matInput >
         </mat-form-field>
     </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="50" class="p-24">
+            <mat-slide-toggle formControlName="isType">Is Type</mat-slide-toggle>
+        </div>
+    </div>
+
 
 
     <div fxLayout="row" fxLayoutAlign="end top">
