@@ -32,7 +32,8 @@ import { AigContactNewUpdateDialogComponent } from './components/contact-new-upd
 import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
 import { EnzoAddressDetailPageComponent } from './components/address-detail-page copy/address-detail-page.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AgalGenericModule} from '@agal-generic/agal-generic.module';
+import { AgalGenericModule } from '@agal-generic/agal-generic.module';
+
 
 
 @NgModule({

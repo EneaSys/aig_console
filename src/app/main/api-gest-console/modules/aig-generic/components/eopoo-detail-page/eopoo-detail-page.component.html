@@ -6,7 +6,10 @@
 
         <div class="widget" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16 m-16">
+
                 <aig-eopoo-entity-detail [eopoo]="eopooDTO"></aig-eopoo-entity-detail>
+                <agal-eopoo-detail-box [eopoo]="eopooDTO"></agal-eopoo-detail-box>
+
 
                 <button mat-stroked-button color="primary" (click)="editEopoo(eopooDTO)">Edit</button>
                 <button mat-stroked-button color="primary" (click)="deleteEopoo(eopooDTO.id)">Delete</button>
