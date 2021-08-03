@@ -18,6 +18,8 @@ import { AigEntityDetailRoleComponent } from "./components/entity-detail-role/en
 import { AigEntityDetailTenantContextComponent } from "./components/entity-detail-tenant-context/entity-detail-tenant-context.component";
 import { AigEntityReferenceListTableComponent } from "./components/entity-reference-list-table/entity-reference-list-table.component";
 import { AigEntityReferenceNewUpdateFormComponent } from "./components/entity-reference-new-update-form/entity-reference-new-update-form.component";
+import { AigLicenceListTableComponent } from "./components/licence-list-table/licence-list-table.component";
+import { AigLicenceNewUpdateFormComponent } from "./components/licence-new-update-form/licence-new-update-form.component";
 import { AigFieldReferenceListTableComponent } from "./components/field-reference-list-table/field-reference-list-table.component";
 import { AigFieldReferenceNewUpdateFormComponent } from "./components/field-reference-new-update-form/field-reference-new-update-form.component";
 import { AigObjectReferenceListTableComponent } from "./components/object-reference-list-table/object-reference-list-table.component";
@@ -30,6 +32,8 @@ import { AigRoleListTableComponent } from "./components/role-list-table/role-lis
 import { AigRoleNewUpdateFormComponent } from "./components/role-new-update-form/role-new-update-form.component";
 import { AigTenantContextListTableComponent } from "./components/tenant-context-list-table/tenant-context-list-table.component";
 import { AigTenantContextNewUpdateFormComponent } from "./components/tenant-context-new-update-form/tenant-context-new-update-form.component";
+import { AigUserLicenceListTableComponent } from "./components/user-licence-list-table/user-licence-list-table.component";
+import { AigUserLicenceNewUpdateFormComponent } from "./components/user-licence-new-update-form/user-licence-new-update-form.component";
 import { AigTypeCategoryReferenceListTableComponent } from "./components/type-category-reference-list-table/type-category-reference-list-table.component";
 import { AigTypeCategoryReferenceNewUpdateFormComponent } from "./components/type-category-reference-new-update-form/type-category-reference-new-update-form.component";
 import { AigEntityDetailPermissionComponent } from "./entity-detail-permission/entity-detail-permission.component";
@@ -37,12 +41,14 @@ import { AigApplicationModuleResolver } from "./resolver/application-module.reso
 import { AigContextModuleResolver } from "./resolver/context-module.resolver";
 import { AigContextUserResolver } from "./resolver/context-user.resolver";
 import { AigEntityReferenceResolver } from "./resolver/entity-reference.resolver";
+import { AigLicenceResolver } from "./resolver/licence.resolver";
 import { AigFieldReferenceResolver } from "./resolver/field-reference.resolver";
 import { AigObjectReferenceResolver } from "./resolver/object-reference-module.resolver";
 import { AigPermissionResolver } from "./resolver/permission.resolver";
 import { AigPersonalizationResolver } from "./resolver/personalization.resolver";
 import { AigRoleResolver } from "./resolver/role.resolver";
 import { AigTenantContextResolver } from "./resolver/tenant-context.resolver";
+import { AigUserLicenceResolver } from "./resolver/user-licence.resolver";
 import { AigTypeCategoryReferenceResolver } from "./resolver/type-category-reference.resolver";
 import { AigManagementAutocompleteFilterService } from "./services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "./services/form/autocomplete-function.service";
@@ -80,6 +86,12 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
     ],
 	declarations: [
 
+        AigUserLicenceListTableComponent,
+        AigUserLicenceNewUpdateFormComponent,
+
+        AigLicenceNewUpdateFormComponent,
+        AigLicenceListTableComponent,
+        
         AigFieldReferenceNewUpdateFormComponent,
         AigFieldReferenceListTableComponent,
 
@@ -120,6 +132,12 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
         AigEntityDetailTenantContextComponent
     ],
 	exports: [
+        AigUserLicenceListTableComponent,
+        AigUserLicenceNewUpdateFormComponent,
+        
+        AigLicenceNewUpdateFormComponent,
+        AigLicenceListTableComponent,
+        
 
         AigFieldReferenceNewUpdateFormComponent,
         AigFieldReferenceListTableComponent,
@@ -172,6 +190,8 @@ import { AigManagementAutocompleteFunctionService } from "./services/form/autoco
         AigPermissionResolver,
         AigPersonalizationResolver,
         AigRoleResolver,
+        AigLicenceResolver,
+        AigUserLicenceResolver,
         AigTenantContextResolver,
         AigFieldReferenceResolver,
         AigObjectReferenceResolver,
