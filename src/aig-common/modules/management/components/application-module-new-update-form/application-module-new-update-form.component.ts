@@ -28,6 +28,8 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
     @Input()
     applicationModule: ApplicationModuleDTO;
 
+    isUpdate: boolean = false;
+
     applicationModuleNewUpdateForm: FormGroup;
 
     ngOnInit(): void {
@@ -38,6 +40,7 @@ export class AigApplicationModuleNewUpdateFormComponent implements OnInit {
         
         if (this.applicationModule != null) {
             this.applicationModuleNewUpdateForm.patchValue(this.applicationModule);
+            this.isUpdate = true;
         }
     }
 

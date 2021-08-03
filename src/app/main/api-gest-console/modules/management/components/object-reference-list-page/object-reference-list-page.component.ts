@@ -119,13 +119,14 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
 			return;
 		}
 		this.objectReferenceFilters.idEquals = null;
+		this.objectReferenceFilters.nameContains = this.objectReferenceSearchFormGroup.controls.name.value;
 
 		
 		this.searchObjectReference(0);
 	}
 
 	newObjectReference(): void {
-		this.dialog.open(AigObjectReferenceNewUpdateDialogComponent, { data: { objectReference: {} } });
+		this.dialog.open(AigObjectReferenceNewUpdateDialogComponent, { data: { } });
     }
 
 }

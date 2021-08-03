@@ -48,6 +48,7 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
         
         if (this.personalization != null) {
             this.personalizationNewUpdateForm.patchValue(this.personalization);
+            this.isUpdate = true;
         }
     
 

@@ -53,15 +53,17 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 
 		this.typeCategoryReferenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			name: [''],
 			
 		});
 
-		this.typeCategoryReferenceDC = ["name","code", "buttons"];
+		this.typeCategoryReferenceDC = ["id","name","code", "buttons"];
 	}
 
 	private clearFiltersTypeCategoryReference() {
 		this.typeCategoryReferenceFilters = {
 			idEquals: null,
+			nameContains: null,
 			page: 0,
 		}
 	}
@@ -105,6 +107,7 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 	typeCategoryReferenceSearchWithFilter() {
 		let searchedId = this.typeCategoryReferenceSearchFormGroup.controls.id.value;
 
+
 		if(searchedId != null) {
 			this.clearFiltersTypeCategoryReference();
 			this.typeCategoryReferenceSearchFormGroup.reset();
@@ -113,13 +116,16 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 			return;
 		}
 		this.typeCategoryReferenceFilters.idEquals = null;
+		this.typeCategoryReferenceFilters.nameContains = this.typeCategoryReferenceSearchFormGroup.controls.name.value;
+
+
 
 		
 		this.searchTypeCategoryReference(0);
 	}
 
 	newTypeCategoryReference(): void {
-		this.dialog.open(AigTypeCategoryReferenceNewUpdateDialogComponent, { data: { typeCategoryReference: {} } });
+		this.dialog.open(AigTypeCategoryReferenceNewUpdateDialogComponent, { data: { } });
     }
 
 }

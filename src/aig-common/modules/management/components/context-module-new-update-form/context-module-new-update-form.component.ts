@@ -43,13 +43,14 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.contextModuleNewUpdateForm = this._formBuilder.group({
             id:[''],
-            active: ['', Validators.required],
+            active: [false],
             applicationModule: ['', Validators.required],
             tenantContext: ['', Validators.required]
         })
         
         if (this.contextModule != null) {
             this.contextModuleNewUpdateForm.patchValue(this.contextModule);
+            this.isUpdate = true;
         }    
 
         this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.contextModuleNewUpdateForm.controls['applicationModule'].valueChanges);

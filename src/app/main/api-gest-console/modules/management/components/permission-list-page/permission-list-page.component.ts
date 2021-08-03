@@ -128,7 +128,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
 	}
 
 	newPermission(): void {
-		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { permission: {} } });
+		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: {} });
    }
 
 }

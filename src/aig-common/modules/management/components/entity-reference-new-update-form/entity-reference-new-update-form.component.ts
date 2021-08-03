@@ -49,6 +49,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         if (this.entityReference != null) {
             this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
             this.isUpdate = true;
+           
         }
 
 		

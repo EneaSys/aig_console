@@ -50,7 +50,7 @@ export class AigLicenceNewUpdateFormComponent implements OnInit {
 
         if (this.licence != null) {
             this.licenceNewUpdateForm.patchValue(this.licence);
-           
+            this.isUpdate = true;
         }
 
         this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.licenceNewUpdateForm.controls['applicationModule'].valueChanges);

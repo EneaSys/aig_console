@@ -50,6 +50,7 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
 
         if (this.role != null) {
             this.roleNewUpdateForm.patchValue(this.role);
+            this.isUpdate = true;
         }
         this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.roleNewUpdateForm.controls['applicationModule'].valueChanges);
 

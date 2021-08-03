@@ -114,13 +114,14 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 			return;
 		}
 		this.fieldReferenceFilters.idEquals = null;
+		this.fieldReferenceFilters.nameContains = this.fieldReferenceSearchFormGroup.controls.name.value;
 
 		
 		this.searchFieldReference(0);
 	}
 
 	newFieldReference(): void {
-		this.dialog.open(AigFieldReferenceNewUpdateDialogComponent, { data: { fieldReference: {} } });
+		this.dialog.open(AigFieldReferenceNewUpdateDialogComponent, { data: {} });
     }
 
 }

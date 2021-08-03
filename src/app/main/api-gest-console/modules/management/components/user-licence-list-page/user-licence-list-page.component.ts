@@ -51,10 +51,10 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 	
 		this.userLicenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			active: [''],
 		});
 
-		this.userLicenceDC = ["id", "name", "buttons"];
+		this.userLicenceDC = ["id", "licenzeName","active","buttons"];
 	}
 
 	private clearFiltersUserLicence() {
@@ -112,13 +112,13 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 		}
 		this.userLicenceFilters.idEquals = null;
 
-		this.userLicenceFilters.nameContains = this.userLicenceSearchFormGroup.controls.name.value;
+		this.userLicenceFilters.licence = this.userLicenceSearchFormGroup.controls.name.value;
 
 		this.searchUserLicence(0);
 	}
 
 	newUserLicence(): void {
-		this.dialog.open(AigUserLicenceNewUpdateDialogComponent, { data: { userLicence: {} } });
+		this.dialog.open(AigUserLicenceNewUpdateDialogComponent, { data: {} });
    }
 
 }

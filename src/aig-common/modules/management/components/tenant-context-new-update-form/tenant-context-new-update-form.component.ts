@@ -30,6 +30,8 @@ export class AigTenantContextNewUpdateFormComponent implements OnInit {
 
     tenantContextNewUpdateForm: FormGroup;
 
+    isUpdate: boolean = false;
+
     ngOnInit(): void {
         this.tenantContextNewUpdateForm = this._formBuilder.group({
             id:[''],
@@ -40,6 +42,7 @@ export class AigTenantContextNewUpdateFormComponent implements OnInit {
         
         if (this.tenantContext != null) {
             this.tenantContextNewUpdateForm.patchValue(this.tenantContext);
+            this.isUpdate = true;
         }
     }
 

@@ -3,20 +3,29 @@
     <div  fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Licence Name</mat-label>
-            <input type="text" formControlName="licenceName" matInput required [matAutocomplete]="licenceAutocomplete">
+            <input type="text" formControlName="licence" matInput required [matAutocomplete]="licenceAutocomplete">
             <mat-autocomplete #licenceAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.licenceDisplayFn">
-                <mat-option *ngFor="let licence of filteredLicence | async" [value]="licenceName">{{ licenceName.name }}</mat-option>
+                <mat-option *ngFor="let licence of filteredLicence | async" [value]="licence">{{ licence.name }}</mat-option>
             </mat-autocomplete>
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div  fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>User code</mat-label>
-            <input formControlName="userUserCode" matInput required>
+            <mat-label>Context User</mat-label>
+            <input type="text" formControlName="contextUser" matInput required [matAutocomplete]="contextUserAutocomplete">
+            <mat-autocomplete #contextUserAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.contextUserDisplayFn">
+                <mat-option *ngFor="let contextUser of filteredContextUser | async" [value]="contextUser">{{ contextUser.userCode }}</mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="50" class="p-24">
+            <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+        </div>
+    </div>
 
 
 

@@ -49,6 +49,7 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
 
         if (this.permission != null) {
             this.permissionNewUpdateForm.patchValue(this.permission);
+            this.isUpdate = true;
         }
 
 		this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.permissionNewUpdateForm.controls['applicationModule'].valueChanges);

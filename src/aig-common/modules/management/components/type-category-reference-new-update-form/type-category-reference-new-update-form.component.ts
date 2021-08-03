@@ -52,6 +52,7 @@ export class AigTypeCategoryReferenceNewUpdateFormComponent implements OnInit {
 
         if (this.typeCategoryReference != null) {
             this.typeCategoryReferenceNewUpdateForm.patchValue(this.typeCategoryReference);
+            this.isUpdate = true;
         }
 	
         this.filteredEntityReference = this.managementAutocompleteFilterService.entityReferenceFilter(this.typeCategoryReferenceNewUpdateForm.controls['entity'].valueChanges);

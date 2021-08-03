@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
-import {  ApplicationModuleDTO, LicenzeDTO, LicenzeResourceService, PermissionDTO, UserLicenzeDTO, UserLicenzeResourceService } from "aig-management";
+import {  ApplicationModuleDTO, ContextUserDTO, LicenzeDTO, LicenzeResourceService, PermissionDTO, UserLicenzeDTO, UserLicenzeResourceService } from "aig-management";
 import { Observable } from "rxjs";
 import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
@@ -25,7 +25,7 @@ export class AigUserLicenceNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
 		private _fuseProgressBarService: FuseProgressBarService,
         private userLicenceResourceService: UserLicenzeResourceService,
-        private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
+        public managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
         public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
     ) { }
 
@@ -38,12 +38,14 @@ export class AigUserLicenceNewUpdateFormComponent implements OnInit {
     userLicenceNewUpdateForm: FormGroup;
 
     filteredLicence: Observable<LicenzeDTO[]>;
+    filteredContextUser: Observable<ContextUserDTO[]>;
 
     ngOnInit(): void { 
         this.userLicenceNewUpdateForm = this._formBuilder.group({
             id:[''],
-            licenceName: ['', Validators.required],
-            userUserCode:[''],
+            licence: ['', Validators.required],
+            active: [false],
+            contextUser:[''],
 
 
            
@@ -55,7 +57,8 @@ export class AigUserLicenceNewUpdateFormComponent implements OnInit {
             this.isUpdate = true;
         }
 
-        this.filteredLicence = this.managementAutocompleteFilterService.licenceFilter(this.userLicenceNewUpdateForm.controls['licenceName'].valueChanges);
+        this.filteredLicence = this.managementAutocompleteFilterService.licenceFilter(this.userLicenceNewUpdateForm.controls['licence'].valueChanges);
+        this.filteredContextUser = this.managementAutocompleteFilterService.contextUserFilter(this.userLicenceNewUpdateForm.controls['contextUser'].valueChanges);
        
 
 
@@ -64,13 +67,15 @@ export class AigUserLicenceNewUpdateFormComponent implements OnInit {
     async submit() {
         if (!this.userLicenceNewUpdateForm.valid) {
             return;
+          
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
     
-        let userLicence: UserLicenzeDTO = this.userLicenceNewUpdateForm.value;
-        userLicence.licenzeName = this.userLicenceNewUpdateForm.value.licenceName.id;
+        let userLicence: any = this.userLicenceNewUpdateForm.value;
+        userLicence.licenzeId = this.userLicenceNewUpdateForm.value.licence.id;
+        userLicence.userId = this.userLicenceNewUpdateForm.value.contextUser.id;
     
 
         try {

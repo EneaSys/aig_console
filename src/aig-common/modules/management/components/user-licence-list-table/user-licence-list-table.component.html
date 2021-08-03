@@ -19,10 +19,16 @@
             <mat-cell *matCellDef="let e"> {{ e.id }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
+        <ng-container matColumnDef="licenzeName">
+            <mat-header-cell *matHeaderCellDef>Licence Name</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.licenzeName | json  }} </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="active">
+            <mat-header-cell *matHeaderCellDef>Active</mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.active }} </mat-cell>
+        </ng-container>
+
 
 
 

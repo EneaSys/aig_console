@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApplicationModuleResourceService, EntityReferenceResourceService, LicenzeResourceService, ObjectReferenceResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
+import { ApplicationModuleResourceService, ContextUserResourceService, EntityReferenceResourceService, LicenzeResourceService, ObjectReferenceResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -15,6 +15,7 @@ export class AigManagementAutocompleteFilterService {
         private tenantContextResourceService: TenantContextResourceService,
         private licenceResourceService: LicenzeResourceService,
         private objectReferenceResourceService: ObjectReferenceResourceService,
+        private contextUserResourceService: ContextUserResourceService,
     ) { }
 
     roleFilter(observable: Observable<any>) {
@@ -26,6 +27,22 @@ export class AigManagementAutocompleteFilterService {
                         nameContains: value
                     };
                     return this.roleResourceService.getAllRolesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    contextUserFilter(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 0) {
+                    let filter = {
+                        userCodeContains: value
+                    };
+                    return this.contextUserResourceService.getAllContextUsersUsingGET(filter);
                 } else {
                     return of([]);
                 }

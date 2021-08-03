@@ -120,7 +120,7 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
 	}
 
 	newApplicationModule(): void {
-        this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: { applicationModule: {} } });
+        this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: { } });
     }
 	
 }

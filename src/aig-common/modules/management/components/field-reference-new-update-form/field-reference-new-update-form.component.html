@@ -103,6 +103,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ objectReferenceNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!objectReferenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newObjectReference()">Create New</button>
+    <pre>{{ fieldReferenceNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!fieldReferenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newFieldReference()">Create New</button>
 </div>

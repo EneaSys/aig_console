@@ -119,7 +119,7 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 	}
 
 	newPersonalization(): void {
-		this.dialog.open(AigPersonalizationNewUpdateModalComponent, { data: { personalization: {} } });
+		this.dialog.open(AigPersonalizationNewUpdateModalComponent, { data: { } });
    }
 
 }

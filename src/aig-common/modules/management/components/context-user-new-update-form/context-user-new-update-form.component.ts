@@ -49,6 +49,7 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
 
         if (this.contextUser != null) {
             this.contextUserNewUpdateForm.patchValue(this.contextUser);
+            this.isUpdate = true;
         }
 
 		this.filteredTenantContexts = this.managementAutocompleteFilterService.tenantContextFilter(this.contextUserNewUpdateForm.controls['tenantContext'].valueChanges);

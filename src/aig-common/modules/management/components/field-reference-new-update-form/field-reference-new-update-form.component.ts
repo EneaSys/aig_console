@@ -60,6 +60,7 @@ export class AigFieldReferenceNewUpdateFormComponent implements OnInit {
 
         if (this.fieldReference != null) {
             this.fieldReferenceNewUpdateForm.patchValue(this.fieldReference);
+            this.isUpdate = true;
         }
 
         this.filteredEntityReference = this.managementAutocompleteFilterService.entityReferenceFilter(this.fieldReferenceNewUpdateForm.controls['entity'].valueChanges);
