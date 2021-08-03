@@ -61,6 +61,8 @@ import { AigDossierDetailBoxComponent } from './components/dossier-detail-box/do
 import { AigPartecipationStatusDetailBoxComponent } from './components/partecipation-status-detail-box/partecipation-status-detail-box.component';
 import { AigPreparationStatusDetailBoxComponent } from './components/preparation-status-detail-box/preparation-status-detail-box.component';
 import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
+import { AigPartecipationModalityNewUpdateFormComponent } from './components/partecipation-modality-new-update-form/partecipation-modality-new-update-form.component';
+import { AigPartecipationModalityListTableComponent } from './components/partecipation-modality-list-table/partecipation-modality-list-table.component';
 
 
 @NgModule({
@@ -110,6 +112,9 @@ import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insuran
     ],
     declarations: [
 
+        AigPartecipationModalityNewUpdateFormComponent,
+        AigPartecipationModalityListTableComponent,
+
         AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,
         AigProcurementDetailBoxComponent,
@@ -152,6 +157,9 @@ import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insuran
     
     ],
     exports: [
+
+        AigPartecipationModalityListTableComponent,
+        AigPartecipationModalityNewUpdateFormComponent,
 
         AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,

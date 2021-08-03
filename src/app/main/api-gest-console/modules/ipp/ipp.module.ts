@@ -56,6 +56,9 @@ import { AigInsurancePolicyStatusListPageComponent } from './components/insuranc
 import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
+import { AigPartecipationModalityListPageComponent } from './components/partecipation-modality-list-page/partecipation-modality-list-page.component';
+import { AigPartecipationModalityNewUpdateDialogComponent } from './components/partecipation-modality-new-update-dialog/partecipation-modality-new-update-dialog.component';
+
 
 
 @NgModule({
@@ -106,6 +109,9 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
     declarations: [
         AigIppHeaderComponent,
 
+        AigPartecipationModalityListPageComponent,
+        AigPartecipationModalityNewUpdateDialogComponent,
+
         AigProcurementListPageComponent,
         AigProcurementLotListPageComponent,
         AigDossierListPageComponent,
@@ -148,6 +154,8 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
     ],
 
     entryComponents: [
+        AigPartecipationModalityNewUpdateDialogComponent,
+
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotNewUpdateDialogComponent,
         AigDossierNewUpdateDialogComponent,
