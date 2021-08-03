@@ -62,7 +62,16 @@ export class AigPersonalizationNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let personalization: PersonalizationDTO = this.personalizationNewUpdateForm.value;
+        let personalization: any = {
+            id: this.personalizationNewUpdateForm.value.id,
+            name: this.personalizationNewUpdateForm.value.name,
+            moduleId: this.personalizationNewUpdateForm.value.applicationModule.id,
+            moduleName: this.personalizationNewUpdateForm.value.applicationModule.name,
+            type: this.personalizationNewUpdateForm.value,
+            typeAttribute: this.personalizationNewUpdateForm.value,
+        
+
+        }; 
         try {
             let postOrPut;
             if ( personalization.id != 0) {

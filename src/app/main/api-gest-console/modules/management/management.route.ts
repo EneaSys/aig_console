@@ -4,11 +4,14 @@ import { AigContextModuleResolver } from "aig-common/modules/management/resolver
 import { AigContextUserResolver } from "aig-common/modules/management/resolver/context-user.resolver";
 import { AigEntityReferenceResolver } from "aig-common/modules/management/resolver/entity-reference.resolver";
 import { AigLicenceResolver } from "aig-common/modules/management/resolver/licence.resolver";
+import { AigFieldReferenceResolver } from "aig-common/modules/management/resolver/field-reference.resolver";
+import { AigObjectReferenceResolver } from "aig-common/modules/management/resolver/object-reference-module.resolver";
 import { AigPermissionResolver } from "aig-common/modules/management/resolver/permission.resolver";
 import { AigPersonalizationResolver } from "aig-common/modules/management/resolver/personalization.resolver";
 import { AigRoleResolver } from "aig-common/modules/management/resolver/role.resolver";
 import { AigTenantContextResolver } from "aig-common/modules/management/resolver/tenant-context.resolver";
 import { AigUserLicenceResolver } from "aig-common/modules/management/resolver/user-licence.resolver";
+import { AigTypeCategoryReferenceResolver } from "aig-common/modules/management/resolver/type-category-reference.resolver";
 import { AuthGuardService } from "auth/auth-guard.service";
 import { AigApplicationModuleDetailPageComponent } from "./components/application-module-detail-page/application-module-detail-page.component";
 import { AigApplicationModuleListPageComponent } from "./components/application-module-list-page/application-module-list-page.component";
@@ -20,7 +23,11 @@ import { AigEntityReferenceDetailPageComponent } from "./components/entity-refer
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
 import { AigLicenceDetailPageComponent } from "./components/licence-detail-page/licence-detail-page.component";
 import { AigLicenceListPageComponent } from "./components/licence-list-page/licence-list-page.component";
+import { AigFieldReferenceDetailPageComponent } from "./components/field-reference-detail-page/field-reference-detail-page.component";
+import { AigFieldReferenceListPageComponent } from "./components/field-reference-list-page/field-reference-list-page.component";
 import { AigManagementCustomListPageComponent } from "./components/management-custom-list-page/management-custom-list-page.component";
+import { AigObjectReferenceDetailPageComponent } from "./components/object-reference-detail-page/object-reference-detail-page.component";
+import { AigObjectReferenceListPageComponent } from "./components/object-reference-list-page/object-reference-list-page.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigPersonalizationDetailPageComponent } from "./components/personalization-detail-page/personalization-detail-page.component";
@@ -31,6 +38,8 @@ import { AigTenantContextDetailPageComponent } from "./components/tenant-context
 import { AigTenantContextListPageComponent } from "./components/tenant-context-list-page/tenant-context-list-page.component";
 import { AigUserLicenceDetailPageComponent } from "./components/user-licence-detail-page/user-licence-detail-page.component";
 import { AigUserLicenceListPageComponent } from "./components/user-licence-list-page/user-licence-list-page.component";
+import { AigTypeCategoryReferenceDetailPageComponent } from "./components/type-category-reference-detail-page/type-category-reference-detail-page.component";
+import { AigTypeCategoryReferenceListPageComponent } from "./components/type-category-reference-list-page/type-category-reference-list-page.component";
 
 export const managementRoute: Routes = [
     {
@@ -180,6 +189,78 @@ export const managementRoute: Routes = [
                     },
                 ]
             },
+
+            {
+                path: 'field-reference',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigFieldReferenceListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigFieldReferenceDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            fieldReference: AigFieldReferenceResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'object-reference',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigObjectReferenceListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigObjectReferenceDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            objectReference: AigObjectReferenceResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'type-category-reference',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTypeCategoryReferenceListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigTypeCategoryReferenceDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            typeCategoryReference: AigTypeCategoryReferenceResolver,
+                        },
+                    },
+                ]
+            },
             {
                 path: 'personalization',
                 children: [
@@ -198,7 +279,7 @@ export const managementRoute: Routes = [
                         component: AigPersonalizationDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            permission: AigPersonalizationResolver,
+                            personalization: AigPersonalizationResolver,
                         },
                     },
                 ]

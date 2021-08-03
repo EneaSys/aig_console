@@ -37,14 +37,12 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
     entityReferenceNewUpdateForm: FormGroup;
 
-	filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
-
-
     ngOnInit(): void { 
         this.entityReferenceNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            applicationModule: ['', Validators.required],
+            isType: [false],
+            tableName:[''],
         });
 
 
@@ -53,7 +51,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
             this.isUpdate = true;
         }
 
-		this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
+		
     }
 
     async submit() {
@@ -65,8 +63,9 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
     
         let entityReference: EntityReferenceDTO = this.entityReferenceNewUpdateForm.value;
-    
 
+    
+  
         try {
             let postOrPut;
             if (entityReference.id != 0) {

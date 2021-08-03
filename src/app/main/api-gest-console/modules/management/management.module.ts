@@ -24,7 +24,13 @@ import { AigEntityReferenceNewUpdateModalComponent } from "./components/entity-r
 import { AigLicenceDetailPageComponent } from "./components/licence-detail-page/licence-detail-page.component";
 import { AigLicenceListPageComponent } from "./components/licence-list-page/licence-list-page.component";
 import { AigLicenceNewUpdateDialogComponent } from "./components/licence-new-update-dialog/licence-new-update-dialog.component";
+import { AigFieldReferenceDetailPageComponent } from "./components/field-reference-detail-page/field-reference-detail-page.component";
+import { AigFieldReferenceListPageComponent } from "./components/field-reference-list-page/field-reference-list-page.component";
+import { AigFieldReferenceNewUpdateDialogComponent } from "./components/field-reference-new-update-dialog/field-reference-new-update-dialog.component";
 import { AigManagementCustomListPageComponent } from "./components/management-custom-list-page/management-custom-list-page.component";
+import { AigObjectReferenceDetailPageComponent } from "./components/object-reference-detail-page/object-reference-detail-page.component";
+import { AigObjectReferenceListPageComponent } from "./components/object-reference-list-page/object-reference-list-page.component";
+import { AigObjectReferenceNewUpdateDialogComponent } from "./components/object-reference-new-update-dialog/object-reference-new-update-dialog.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
 import { AigPermissionNewUpdateModalComponent } from "./components/permission-new-update-modal/permission-new-update-modal.component";
@@ -40,6 +46,9 @@ import { AigTenantContextNewUpdateModalComponent } from "./components/tenant-con
 import { AigUserLicenceDetailPageComponent } from "./components/user-licence-detail-page/user-licence-detail-page.component";
 import { AigUserLicenceListPageComponent } from "./components/user-licence-list-page/user-licence-list-page.component";
 import { AigUserLicenceNewUpdateDialogComponent } from "./components/user-licence-new-update-dialog/user-licence-new-update-dialog.component";
+import { AigTypeCategoryReferenceDetailPageComponent } from "./components/type-category-reference-detail-page/type-category-reference-detail-page.component";
+import { AigTypeCategoryReferenceListPageComponent } from "./components/type-category-reference-list-page/type-category-reference-list-page.component";
+import { AigTypeCategoryReferenceNewUpdateDialogComponent } from "./components/type-category-reference-new-update-dialog/type-category-reference-new-update-dialog.component";
 import { managementRoute } from "./management.route";
 
 
@@ -71,6 +80,18 @@ import { managementRoute } from "./management.route";
         MatTabsModule,
     ],
     declarations: [
+
+        AigFieldReferenceDetailPageComponent,
+        AigFieldReferenceListPageComponent,
+        AigFieldReferenceNewUpdateDialogComponent,
+
+        AigTypeCategoryReferenceDetailPageComponent,
+        AigTypeCategoryReferenceListPageComponent,
+        AigTypeCategoryReferenceNewUpdateDialogComponent,
+
+        AigObjectReferenceDetailPageComponent,
+        AigObjectReferenceListPageComponent,
+        AigObjectReferenceNewUpdateDialogComponent,
     
 
         AigLicenceListPageComponent,
@@ -131,6 +152,9 @@ import { managementRoute } from "./management.route";
         AigPersonalizationNewUpdateModalComponent,
         AigRoleNewUpdateModalComponent, 
         AigTenantContextNewUpdateModalComponent,
+        AigObjectReferenceNewUpdateDialogComponent,
+        AigTypeCategoryReferenceNewUpdateDialogComponent,
+        AigFieldReferenceNewUpdateDialogComponent,
 
         AigAssociateRoleToPermissionDialogComponent,
     ],
