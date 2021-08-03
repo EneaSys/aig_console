@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApplicationModuleResourceService, EntityReferenceResourceService, ObjectReferenceResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
+import { ApplicationModuleResourceService, EntityReferenceResourceService, LicenzeResourceService, ObjectReferenceResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -13,6 +13,7 @@ export class AigManagementAutocompleteFilterService {
         private applicationModuleResourceService: ApplicationModuleResourceService,
         private entityReferenceResourceService: EntityReferenceResourceService,
         private tenantContextResourceService: TenantContextResourceService,
+        private licenceResourceService: LicenzeResourceService,
         private objectReferenceResourceService: ObjectReferenceResourceService,
     ) { }
 
@@ -25,6 +26,22 @@ export class AigManagementAutocompleteFilterService {
                         nameContains: value
                     };
                     return this.roleResourceService.getAllRolesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    licenceFilter(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 0) {
+                    let filter = {
+                        nameContains: value
+                    };
+                    return this.licenceResourceService.getAllLicenzesUsingGET(filter);
                 } else {
                     return of([]);
                 }
@@ -85,7 +102,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value.length > 0) {
                     let filter = {
                         nameContains: value
                     };

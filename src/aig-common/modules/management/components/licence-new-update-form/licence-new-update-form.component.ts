@@ -3,17 +3,17 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { EventService } from "aig-common/event-manager/event.service";
-import { ApplicationModuleDTO, EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
+import {  ApplicationModuleDTO, LicenzeDTO, LicenzeResourceService, PermissionDTO } from "aig-management";
 import { Observable } from "rxjs";
 import { AigManagementAutocompleteFilterService } from "../../services/form/autocomplete-filter.service";
 import { AigManagementAutocompleteFunctionService } from "../../services/form/autocomplete-function.service";
 
 @Component({
-    selector: 'aig-entity-reference-new-update-form',
-    templateUrl: './entity-reference-new-update-form.component.html',
-    styleUrls: ['./entity-reference-new-update-form.component.scss']
+    selector: 'aig-licence-new-update-form',
+    templateUrl: './licence-new-update-form.component.html',
+    styleUrls: ['./licence-new-update-form.component.scss']
 })
-export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
+export class AigLicenceNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -24,60 +24,63 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private eventService: EventService,
 		private _fuseProgressBarService: FuseProgressBarService,
-        private entityReferenceResourceService: EntityReferenceResourceService,
+        private licenceResourceService: LicenzeResourceService,
         private managementAutocompleteFilterService: AigManagementAutocompleteFilterService,
         public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
     ) { }
 
     @Input()
-    entityReference: EntityReferenceDTO;
+    licence: LicenzeDTO;
 
     isUpdate: boolean = false;
 
 
-    entityReferenceNewUpdateForm: FormGroup;
+    licenceNewUpdateForm: FormGroup;
+
+    filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
+
 
     ngOnInit(): void { 
-        this.entityReferenceNewUpdateForm = this._formBuilder.group({
+        this.licenceNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
-            isType: [false],
-            tableName:[''],
+            applicationModule: [''],
         });
 
 
-        if (this.entityReference != null) {
-            this.entityReferenceNewUpdateForm.patchValue(this.entityReference);
-            this.isUpdate = true;
+        if (this.licence != null) {
+            this.licenceNewUpdateForm.patchValue(this.licence);
+           
         }
 
-		
+        this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.licenceNewUpdateForm.controls['applicationModule'].valueChanges);
+        
     }
 
     async submit() {
-        if (!this.entityReferenceNewUpdateForm.valid) {
+        if (!this.licenceNewUpdateForm.valid) {
             return;
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
     
-        let entityReference: EntityReferenceDTO = this.entityReferenceNewUpdateForm.value;
-
+        let licence: LicenzeDTO = this.licenceNewUpdateForm.value;
+        licence.moduleId = this.licenceNewUpdateForm.value.applicationModule.id;
     
-  
+
         try {
             let postOrPut;
-            if (entityReference.id != 0) {
-                await this.entityReferenceResourceService.updateEntityReferenceUsingPUT (entityReference).toPromise();
+            if (licence.id != 0) {
+                await this.licenceResourceService.updateLicenzeUsingPUT (licence).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.entityReferenceResourceService.createEntityReferenceUsingPOST (entityReference).toPromise();
+                await this.licenceResourceService.createLicenzeUsingPOST (licence).toPromise();
                 postOrPut = "created";
             }
             this.eventService.reloadCurrentPage();
 
-            this._snackBar.open(`Entity Reference: '${entityReference.name}' ${postOrPut}.`, null, { duration: 2000, });
+            this._snackBar.open(`Licence: '${licence.name}' ${postOrPut}.`, null, { duration: 2000, });
             this.setStep("complete");
         } catch (e) {
             this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
@@ -86,7 +89,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
     
-    newEntityReference() {
+    newLicence() {
         this.setStep("form");
     }
 
