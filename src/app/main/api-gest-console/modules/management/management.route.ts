@@ -3,10 +3,12 @@ import { AigApplicationModuleResolver } from "aig-common/modules/management/reso
 import { AigContextModuleResolver } from "aig-common/modules/management/resolver/context-module.resolver";
 import { AigContextUserResolver } from "aig-common/modules/management/resolver/context-user.resolver";
 import { AigEntityReferenceResolver } from "aig-common/modules/management/resolver/entity-reference.resolver";
+import { AigLicenceResolver } from "aig-common/modules/management/resolver/licence.resolver";
 import { AigPermissionResolver } from "aig-common/modules/management/resolver/permission.resolver";
 import { AigPersonalizationResolver } from "aig-common/modules/management/resolver/personalization.resolver";
 import { AigRoleResolver } from "aig-common/modules/management/resolver/role.resolver";
 import { AigTenantContextResolver } from "aig-common/modules/management/resolver/tenant-context.resolver";
+import { AigUserLicenceResolver } from "aig-common/modules/management/resolver/user-licence.resolver";
 import { AuthGuardService } from "auth/auth-guard.service";
 import { AigApplicationModuleDetailPageComponent } from "./components/application-module-detail-page/application-module-detail-page.component";
 import { AigApplicationModuleListPageComponent } from "./components/application-module-list-page/application-module-list-page.component";
@@ -16,6 +18,8 @@ import { AigContextUserDetailPageComponent } from "./components/context-user-det
 import { AigContextUserListPageComponent } from "./components/context-user-list-page/context-user-list-page.component";
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
+import { AigLicenceDetailPageComponent } from "./components/licence-detail-page/licence-detail-page.component";
+import { AigLicenceListPageComponent } from "./components/licence-list-page/licence-list-page.component";
 import { AigManagementCustomListPageComponent } from "./components/management-custom-list-page/management-custom-list-page.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
@@ -25,6 +29,8 @@ import { AigRoleDetailPageComponent } from "./components/role-detail-page/role-d
 import { AigRoleListPageComponent } from "./components/role-list-page/role-list-page.component";
 import { AigTenantContextDetailPageComponent } from "./components/tenant-context-detail-page/tenant-context-detail-page.component";
 import { AigTenantContextListPageComponent } from "./components/tenant-context-list-page/tenant-context-list-page.component";
+import { AigUserLicenceDetailPageComponent } from "./components/user-licence-detail-page/user-licence-detail-page.component";
+import { AigUserLicenceListPageComponent } from "./components/user-licence-list-page/user-licence-list-page.component";
 
 export const managementRoute: Routes = [
     {
@@ -101,6 +107,52 @@ export const managementRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             role: AigRoleResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'licence',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigLicenceListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigLicenceDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            licence: AigLicenceResolver,
+                        },
+                    },
+                ]
+            },
+            {
+                path: 'user-licence',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigUserLicenceListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigUserLicenceDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            licence: AigUserLicenceResolver,
                         },
                     },
                 ]

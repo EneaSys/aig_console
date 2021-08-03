@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApplicationModuleResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
+import { ApplicationModuleResourceService, LicenzeResourceService, PermissionResourceService, RoleResourceService, TenantContextResourceService } from 'aig-management';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 
@@ -12,6 +12,7 @@ export class AigManagementAutocompleteFilterService {
         private permissionResourceService: PermissionResourceService,
         private applicationModuleResourceService: ApplicationModuleResourceService,
         private tenantContextResourceService: TenantContextResourceService,
+        private licenceResourceService: LicenzeResourceService,
     ) { }
 
     roleFilter(observable: Observable<any>) {
@@ -23,6 +24,22 @@ export class AigManagementAutocompleteFilterService {
                         nameContains: value
                     };
                     return this.roleResourceService.getAllRolesUsingGET(filter);
+                } else {
+                    return of([]);
+                }
+            })
+        );
+    }
+
+    licenceFilter(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value.length > 1) {
+                    let filter = {
+                        nameContains: value
+                    };
+                    return this.licenceResourceService.getAllLicenzesUsingGET(filter);
                 } else {
                     return of([]);
                 }
@@ -50,7 +67,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value.length > 0) {
                     let filter = {
                         nameContains: value
                     };

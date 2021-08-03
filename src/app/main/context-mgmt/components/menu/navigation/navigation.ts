@@ -452,6 +452,22 @@ export const contextNavigation: FuseNavigation[] = [
 						permission: ['e4y.account.get'],
 					},
 					{
+						id       : 'licence-list-page',
+						title    : 'Licenze',
+						type     : 'item',
+						icon     : 'lock_open',
+						url      : '/m8t/licence',
+						permission: ['e4y.account.get'],
+					},
+					{
+						id       : 'user-licence-list-page',
+						title    : 'User Licence',
+						type     : 'item',
+						icon     : 'lock_open',
+						url      : '/m8t/user-licence',
+						permission: ['e4y.account.get'],
+					},
+					{
 						id       : 'tenant-context-list-page',
 						title    : 'Tenant Context',
 						type     : 'item',

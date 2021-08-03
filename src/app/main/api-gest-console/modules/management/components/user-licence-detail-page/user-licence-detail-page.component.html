@@ -1,0 +1,13 @@
+<div id="aig-user-licence-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+                <pre>{{ userLicenceDTO | json }} </pre>
+
+                <button mat-stroked-button color="primary" (click)="editUserLicence(userLicenceDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteUserLicence(userLicenceDTO.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

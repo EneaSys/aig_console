@@ -21,6 +21,9 @@ import { AigContextUserNewUpdateModalComponent } from "./components/context-user
 import { AigEntityReferenceDetailPageComponent } from "./components/entity-reference-detail-page/entity-reference-detail-page.component";
 import { AigEntityReferenceListPageComponent } from "./components/entity-reference-list-page/entity-reference-list-page.component";
 import { AigEntityReferenceNewUpdateModalComponent } from "./components/entity-reference-new-update-modal/entity-reference-new-update-modal.component";
+import { AigLicenceDetailPageComponent } from "./components/licence-detail-page/licence-detail-page.component";
+import { AigLicenceListPageComponent } from "./components/licence-list-page/licence-list-page.component";
+import { AigLicenceNewUpdateDialogComponent } from "./components/licence-new-update-dialog/licence-new-update-dialog.component";
 import { AigManagementCustomListPageComponent } from "./components/management-custom-list-page/management-custom-list-page.component";
 import { AigPermissionDetailPageComponent } from "./components/permission-detail-page/permission-detail-page.component";
 import { AigPermissionListPageComponent } from "./components/permission-list-page/permission-list-page.component";
@@ -34,6 +37,9 @@ import { AigRoleNewUpdateModalComponent } from "./components/role-new-update-mod
 import { AigTenantContextDetailPageComponent } from "./components/tenant-context-detail-page/tenant-context-detail-page.component";
 import { AigTenantContextListPageComponent } from "./components/tenant-context-list-page/tenant-context-list-page.component";
 import { AigTenantContextNewUpdateModalComponent } from "./components/tenant-context-new-update-modal/tenant-context-new-update-modal.component";
+import { AigUserLicenceDetailPageComponent } from "./components/user-licence-detail-page/user-licence-detail-page.component";
+import { AigUserLicenceListPageComponent } from "./components/user-licence-list-page/user-licence-list-page.component";
+import { AigUserLicenceNewUpdateDialogComponent } from "./components/user-licence-new-update-dialog/user-licence-new-update-dialog.component";
 import { managementRoute } from "./management.route";
 
 
@@ -66,6 +72,15 @@ import { managementRoute } from "./management.route";
     ],
     declarations: [
     
+
+        AigLicenceListPageComponent,
+        AigLicenceNewUpdateDialogComponent,
+        AigLicenceDetailPageComponent,
+
+        AigUserLicenceListPageComponent,
+        AigUserLicenceNewUpdateDialogComponent,
+        AigUserLicenceDetailPageComponent,
+        
         AigApplicationModuleDetailPageComponent,
         AigApplicationModuleListPageComponent,
         AigApplicationModuleNewUpdateModalComponent,
@@ -109,6 +124,9 @@ import { managementRoute } from "./management.route";
         AigContextModuleNewUpdateModalComponent,
         AigContextUserNewUpdateModalComponent,
         AigEntityReferenceNewUpdateModalComponent,
+        AigLicenceNewUpdateDialogComponent,
+        AigUserLicenceNewUpdateDialogComponent,
+
         AigPermissionNewUpdateModalComponent,
         AigPersonalizationNewUpdateModalComponent,
         AigRoleNewUpdateModalComponent, 
