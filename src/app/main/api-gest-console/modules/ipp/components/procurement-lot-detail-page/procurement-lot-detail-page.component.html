@@ -32,7 +32,7 @@
             <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
                 <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>{{ 'IPP.DOSSIERS' | translate | titlecase }}</b></div>
 
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDossier(procurementDTO)">
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newDossier(procurementLotDTO)">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -53,7 +53,22 @@
                 </button>
             </div>
         </div>
-
     </div>
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
+                <div class="h3 m-8 ml-16 mb-0 secondary-text"><b>Categorie Lotto di gara</b></div>
+                <aig-procurement-lot-category-list-table [dataSource]="procurementLotCategoryDTOs" [displayColumns]="procurementLotCategoryDC"
+                    [error]="procurementLotCategoryError"></aig-procurement-lot-category-list-table>
+
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="newProcurementLotCategory(procurementLotDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+   
 
 </div>

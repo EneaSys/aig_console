@@ -4,6 +4,7 @@ import { EopooResourceService } from 'aig-generic';
 import { PartecipationResourceService } from 'aig-italianlegislation';
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { combineAll, concatAll, map, mergeMap, startWith, switchMap } from 'rxjs/operators';
+import { IlPpProcurementLotCategoryResourceService } from 'aig-standard';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,6 +19,7 @@ export class AigIppAutocompleteService {
 		private preparationStatusResourceService: PreparationStatusResourceService,
 		private preparationResourceService: PreparationResourceService,
 		private insurancePolicyStatusResourceService: InsurancePolicyStatusResourceService,
+		
     ) {}
 
     filterProcurement(observable: Observable<any>) {

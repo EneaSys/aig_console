@@ -62,6 +62,7 @@ import { AigPartecipationModalityDetailPageComponent } from './components/partec
 import { AigPreparationModalityDetailPageComponent } from './components/preparation-modality-detail-page/preparation-modality-detail-page.component';
 import { AigPreparationModalityListPageComponent } from './components/preparation-modality-list-page/preparation-modality-list-page.component';
 import { AigPreparationModalityNewUpdateDialogComponent } from './components/preparation-modality-new-update-dialog/preparation-modality-new-update-dialog.component';
+import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component';
 
 
 
@@ -117,6 +118,8 @@ import { AigPreparationModalityNewUpdateDialogComponent } from './components/pre
         AigPreparationModalityNewUpdateDialogComponent,
         AigPreparationModalityDetailPageComponent,
 
+        AigProcurementLotCategoryNewUpdateDialogComponent,
+
         AigPartecipationModalityListPageComponent,
         AigPartecipationModalityNewUpdateDialogComponent,
         AigPartecipationModalityDetailPageComponent,
@@ -165,6 +168,7 @@ import { AigPreparationModalityNewUpdateDialogComponent } from './components/pre
     entryComponents: [
         AigPartecipationModalityNewUpdateDialogComponent,
         AigPreparationModalityNewUpdateDialogComponent,
+        AigProcurementLotCategoryNewUpdateDialogComponent,
 
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotNewUpdateDialogComponent,

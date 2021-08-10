@@ -68,6 +68,9 @@ import { AigPreparationModalityListTableComponent } from './components/preparati
 import { AigPreparationModalityNewUpdateFormComponent } from './components/preparation-modality-new-update-form/preparation-modality-new-update-form.component';
 import { PreparationModalityResolver } from './resolver/preparation-modality.resolver';
 import { PartecipationModalityResolver } from './resolver/partecipation-modality.resolver';
+import { AigProcurementLotCategoryNewUpdateFormComponent } from './components/procurement-lot-category-new-update-form/procurement-lot-category-new-update-form.component';
+import { AigProcurementLotCategoryListTableComponent } from './components/procurement-lot-category-list-table/procurement-lot-category-list-table.component';
+
 
 
 
@@ -121,6 +124,9 @@ import { PartecipationModalityResolver } from './resolver/partecipation-modality
     ],
     declarations: [
 
+        AigProcurementLotCategoryNewUpdateFormComponent,
+        AigProcurementLotCategoryListTableComponent,
+
         AigPreparationModalityNewUpdateFormComponent,
         AigPreparationModalityListTableComponent,
 
@@ -172,6 +178,9 @@ import { PartecipationModalityResolver } from './resolver/partecipation-modality
 
         AigPartecipationModalityListTableComponent,
         AigPartecipationModalityNewUpdateFormComponent,
+
+        AigProcurementLotCategoryNewUpdateFormComponent,
+        AigProcurementLotCategoryListTableComponent,
 
         AigPreparationModalityListTableComponent,
         AigPreparationModalityNewUpdateFormComponent,

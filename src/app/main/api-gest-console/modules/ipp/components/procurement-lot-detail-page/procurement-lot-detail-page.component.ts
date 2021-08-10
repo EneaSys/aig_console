@@ -2,10 +2,11 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
-import { PartecipationDTO, PartecipationResourceService, ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService } from "aig-italianlegislation";
+import { PartecipationDTO, PartecipationResourceService, ProcurementDTO, ProcurementLotCategoryDTO, ProcurementLotCategoryResourceService, ProcurementLotDTO, ProcurementLotResourceService } from "aig-italianlegislation";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
+import { AigProcurementLotCategoryNewUpdateDialogComponent } from "../procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component";
 import { AigProcurementLotNewUpdateDialogComponent } from "../procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component";
 import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-update-dialog/procurement-new-update-dialog.component";
 
@@ -17,6 +18,7 @@ import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-updat
 export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent {
   constructor(
     private procurementLotResourceService: ProcurementLotResourceService,
+    private procurementLotCategoryResourceService: ProcurementLotCategoryResourceService,
     private partecipationResourceService: PartecipationResourceService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -27,6 +29,7 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
   ) { super(aigGenericComponentService) }
 
   procurementLotDTO: ProcurementLotDTO;
+  procurementLotCategoryDTO: ProcurementLotCategoryDTO
 
   loadPage() {
     this.procurementLotDTO = this.route.snapshot.data.procurementLot;
@@ -40,6 +43,7 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
   async loadOther() {
     this.loadPartecipation();
+    this.loadProcurementLotCategory();
   }
 
   editProcurementLot(procurementLot: ProcurementLotDTO) {
@@ -83,6 +87,24 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
   newPartecipation(procurementLot: ProcurementLotDTO): void {
     this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { procurementLot: procurementLot } });
+  }
+
+
+
+  procurementLotCategoryDC: string[] = ["category", "level","buttons"];
+  procurementLotCategoryDTOs: ProcurementLotCategoryDTO[];
+  procurementLotCategoryError: any;
+  
+  async loadProcurementLotCategory() {
+    let filters = {
+      procurementLotIdEquals: this.procurementLotDTO.id
+    };
+    this.procurementLotCategoryDTOs = await this.procurementLotCategoryResourceService.getAllProcurementLotCategoriesUsingGET(filters).toPromise(); 
+
+  }
+
+  newProcurementLotCategory(procurementLot: ProcurementLotDTO): void {
+    this.dialog.open(AigProcurementLotCategoryNewUpdateDialogComponent, { data: { procurementLot: procurementLot } });
   }
 
 }

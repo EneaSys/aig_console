@@ -1,0 +1,54 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef>Categorie</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.category | json}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="level">
+            <mat-header-cell *matHeaderCellDef>Livello</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.level }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="procurementLot">
+            <mat-header-cell *matHeaderCellDef>lotto di gara</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.procurementLot.description}}</mat-cell>
+        </ng-container>
+
+
+        
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let e">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="editProcurementLotCategory(e)">
+                        <mat-icon>edit</mat-icon>
+                        <span>{{ 'MAIN.EDIT' | translate }}</span>
+                      </button>
+                    <button mat-menu-item (click)="deleteProcurementLotCategory(e.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>{{ 'MAIN.DELETE' | translate }}</span>
+                      </button>
+                </mat-menu>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+
+    </mat-table>
+
+</div>
