@@ -13,7 +13,7 @@
 <div *ngIf="error == null && dataSource != null">
 
     <mat-table #table [dataSource]="dataSource">
-        
+
         <ng-container matColumnDef="description">
             <mat-header-cell *matHeaderCellDef>Descrizione</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.description }}</mat-cell>
@@ -27,15 +27,15 @@
                     <mat-icon>more_vert</mat-icon>
                   </button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="'/ipp/partecipation-modality/detail/' + e.id">
+                    <button mat-menu-item [routerLink]="'/ipp/preparation-modality/detail/' + e.id">
                       <mat-icon>details</mat-icon>
                       <span>Details</span>
                     </button>
-                    <button mat-menu-item (click)="editPartecipationModality(e)">
+                    <button mat-menu-item (click)="editPreparationModality(e)">
                         <mat-icon>edit</mat-icon>
                         <span>Edit</span>
                       </button>
-                    <button mat-menu-item (click)="deletePartecipationModality(e.id)">
+                    <button mat-menu-item (click)="deletePreparationModality(e.id)">
                         <mat-icon>delete</mat-icon>
                         <span>Delete</span>
                         

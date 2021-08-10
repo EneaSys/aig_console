@@ -7,7 +7,7 @@ import { AigIppAutocompleteDisplayService } from "aig-common/modules/ipp/service
 import { AigIppAutocompleteService } from "aig-common/modules/ipp/service/autocomplete-filter.service";
 import { AigStandardAutocompleteFilterService } from "aig-common/modules/standard/services/autocomplete-filter.service";
 import { AigStandardAutocompleteDisplayService } from "aig-common/modules/standard/services/autocomplete-function.service";
-import { EopooDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from "aig-italianlegislation";
+import { EopooDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, PartecipationDTO, PartecipationModalityDTO, PartecipationModalityResourceService, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from "aig-italianlegislation";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { Observable } from "rxjs";
 import { AigIppGenericComponent } from "../ipp-generic-component";
@@ -30,7 +30,7 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
-        //*private partecipationModalityResourceService: PartecipationModalityResourceService,*/
+        private partecipationModalityResourceService: PartecipationModalityResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -54,7 +54,7 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 	partecipationModalityFilters: any;
 
 	partecipationModalityLength: number;
-	//partecipationModalityDTOs: PartecipationModalityDTO[];//
+	partecipationModalityDTOs: PartecipationModalityDTO[];
 	partecipationModalityError: any;
 
 	partecipationModalityDC: string[];
@@ -64,34 +64,37 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 		this.partecipationModalityPaginationSize = 10;
 
 		this.partecipationModalitySearchFormGroup = this._formBuilder.group({
+			id: [''],
+			description: [''],
 		});
 
 
-		this.partecipationModalityDC = ["buttons"];
+		this.partecipationModalityDC = ["description","buttons"];
 	}
 
 	private clearFiltersPartecipationModality() {
 		this.partecipationModalityFilters = {
+			idEquals: null,
 		}
 	}
 
 	private async searchPartecipationModality(page: number) {
-		//this.partecipationModalityDTOs = null;
+		this.partecipationModalityDTOs = null;
 
 		this.partecipationModalityFilters.page = page;
 		this.partecipationModalityFilters.size = this.partecipationModalityPaginationSize;
 
 		
 		try {
-			//this.partecipationModalityLength = await this.partecipationModalityResourceService.countPartecipationsModalityUsingGET(this.partecipationModalityFilters).toPromise();  
+			this.partecipationModalityLength = await this.partecipationModalityResourceService.countPartecipationModalitiesUsingGET(this.partecipationModalityFilters).toPromise();  
 
 				if(this.partecipationModalityLength == 0) {
 					this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-					//this.partecipationModalityDTOs = [];
+					this.partecipationModalityDTOs = [];
 					return;
 				}
 
-				//this.partecipationModalityDTOs =  await this.partecipationModalityResourceService.getAllPartecipationsModalityUsingGET(this.partecipationModalityFilters).toPromise();
+				this.partecipationModalityDTOs =  await this.partecipationModalityResourceService.getAllPartecipationModalitiesUsingGET(this.partecipationModalityFilters).toPromise();
 			} catch (e) {
 				this.partecipationModalityError = e;
 			}

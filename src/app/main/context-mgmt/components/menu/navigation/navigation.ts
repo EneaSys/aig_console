@@ -145,6 +145,26 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/ipp/preparation-status',
 						permission: ['c6e.admin'],
 					},
+
+					{
+						id       : 'preparation-modality-list-page',
+						title    : 'Preparation modality',
+						type     : 'item',
+						icon     : 'child_care',
+						url      : '/ipp/preparation-modality',
+						permission: ['c6e.admin'],
+					},
+
+					{
+						id       : 'partecipation-modality-list-page',
+						title    : 'Partecipation modality',
+						type     : 'item',
+						icon     : 'child_care',
+						url      : '/ipp/partecipation-modality',
+						permission: ['c6e.admin'],
+					},
+
+
 					{
 						id       : 'insurance-policy-status-list-page',
 						title    : 'Insurance Policy Status',

@@ -58,6 +58,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 import { AigPartecipationModalityListPageComponent } from './components/partecipation-modality-list-page/partecipation-modality-list-page.component';
 import { AigPartecipationModalityNewUpdateDialogComponent } from './components/partecipation-modality-new-update-dialog/partecipation-modality-new-update-dialog.component';
+import { AigPartecipationModalityDetailPageComponent } from './components/partecipation-modality-detail-page/partecipation-modality-detail-page.component';
+import { AigPreparationModalityDetailPageComponent } from './components/preparation-modality-detail-page/preparation-modality-detail-page.component';
+import { AigPreparationModalityListPageComponent } from './components/preparation-modality-list-page/preparation-modality-list-page.component';
+import { AigPreparationModalityNewUpdateDialogComponent } from './components/preparation-modality-new-update-dialog/preparation-modality-new-update-dialog.component';
 
 
 
@@ -109,8 +113,13 @@ import { AigPartecipationModalityNewUpdateDialogComponent } from './components/p
     declarations: [
         AigIppHeaderComponent,
 
+        AigPreparationModalityListPageComponent,
+        AigPreparationModalityNewUpdateDialogComponent,
+        AigPreparationModalityDetailPageComponent,
+
         AigPartecipationModalityListPageComponent,
         AigPartecipationModalityNewUpdateDialogComponent,
+        AigPartecipationModalityDetailPageComponent,
 
         AigProcurementListPageComponent,
         AigProcurementLotListPageComponent,
@@ -155,6 +164,7 @@ import { AigPartecipationModalityNewUpdateDialogComponent } from './components/p
 
     entryComponents: [
         AigPartecipationModalityNewUpdateDialogComponent,
+        AigPreparationModalityNewUpdateDialogComponent,
 
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotNewUpdateDialogComponent,

@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -63,7 +64,11 @@ import { AigPreparationStatusDetailBoxComponent } from './components/preparation
 import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
 import { AigPartecipationModalityNewUpdateFormComponent } from './components/partecipation-modality-new-update-form/partecipation-modality-new-update-form.component';
 import { AigPartecipationModalityListTableComponent } from './components/partecipation-modality-list-table/partecipation-modality-list-table.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { AigPreparationModalityListTableComponent } from './components/preparation-modality-list-table/preparation-modality-list-table.component';
+import { AigPreparationModalityNewUpdateFormComponent } from './components/preparation-modality-new-update-form/preparation-modality-new-update-form.component';
+import { PreparationModalityResolver } from './resolver/preparation-modality.resolver';
+import { PartecipationModalityResolver } from './resolver/partecipation-modality.resolver';
+
 
 
 @NgModule({
@@ -110,9 +115,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         PreparationStatusResolver,
         InsurancePolicyResolver,
         InsurancePolicyStatusResolver,
+        PreparationModalityResolver,
+        PartecipationModalityResolver,
 
     ],
     declarations: [
+
+        AigPreparationModalityNewUpdateFormComponent,
+        AigPreparationModalityListTableComponent,
 
         AigPartecipationModalityNewUpdateFormComponent,
         AigPartecipationModalityListTableComponent,
@@ -162,6 +172,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
         AigPartecipationModalityListTableComponent,
         AigPartecipationModalityNewUpdateFormComponent,
+
+        AigPreparationModalityListTableComponent,
+        AigPreparationModalityNewUpdateFormComponent,
 
         AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,
