@@ -63,6 +63,7 @@ import { AigPreparationModalityDetailPageComponent } from './components/preparat
 import { AigPreparationModalityListPageComponent } from './components/preparation-modality-list-page/preparation-modality-list-page.component';
 import { AigPreparationModalityNewUpdateDialogComponent } from './components/preparation-modality-new-update-dialog/preparation-modality-new-update-dialog.component';
 import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component';
+import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-italianlegislation.module';
 
 
 
@@ -74,6 +75,7 @@ import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/
         AigCommonIppModule,
         AigItalianLegislationApiModule,
         CommonGenericModule,
+		AgalItalianLegislationModule,
        
         FormsModule,
         ReactiveFormsModule,
@@ -103,6 +105,8 @@ import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/
         MatSlideToggleModule,
         MatIconModule,
         MatMenuModule,
+
+
 
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyALOoLRTrkbbyx1rC932uBL1Hz-dKIEN8E',
