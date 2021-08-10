@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InsurancePolicyStatusResourceService, PartecipationStatusResourceService, PreparationResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
+import { InsurancePolicyStatusResourceService, PartecipationModalityResourceService, PartecipationStatusResourceService, PreparationResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
 import { EopooResourceService } from 'aig-generic';
 import { PartecipationResourceService } from 'aig-italianlegislation';
 import { combineLatest, from, Observable, of } from 'rxjs';
@@ -12,6 +12,7 @@ export class AigIppAutocompleteService {
 	constructor(
         private procurementResourceService: ProcurementResourceService,
 		private procurementLotResourceService: ProcurementLotResourceService,
+		private partecipationModalityResourceService: PartecipationModalityResourceService, 
 		private partecipationStatusResourceService: PartecipationStatusResourceService, 
 		private partecipationResourceService: PartecipationResourceService,
 		private preparationStatusResourceService: PreparationStatusResourceService,
@@ -46,6 +47,22 @@ export class AigIppAutocompleteService {
 					return this.partecipationStatusResourceService.getAllPartecipationStatusesUsingGET(filter);
 				} else {
 					return this.partecipationStatusResourceService.getAllPartecipationStatusesUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterPartecipationModality(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						descriptionContains: value
+					};
+					return this.partecipationModalityResourceService.getAllPartecipationModalitiesUsingGET(filter);
+				} else {
+					return this.partecipationModalityResourceService.getAllPartecipationModalitiesUsingGET({});
 				}
 			})
 		);

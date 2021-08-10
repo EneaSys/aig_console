@@ -26,25 +26,6 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex="40">
-            <mat-label>{{ 'IPP.ANAC_CODE' | translate }}</mat-label>
-            <input formControlName="code" matInput required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="30" class="pl-4">
-            <mat-label>{{ 'IPP.REFERENCE' | translate }}</mat-label>
-            <input formControlName="ref" matInput>
-        </mat-form-field>
-        
-        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
-            <mat-label>{{ 'IPP.TOTAL_AMOUNT' | translate }}</mat-label>
-            <input type="number" matInput formControlName="totalAmount" required>
-        </mat-form-field>
-
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="start start">
-
         <mat-form-field appearance="outline" fxFlex="50">
             <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
             <input formControlName="status" matInput [matAutocomplete]="procurementStatusAutocomplete" required>
@@ -90,6 +71,20 @@
                     {{ ippModality.name }}
                 </mat-option>
             </mat-autocomplete>
+        </mat-form-field>
+
+    </div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>{{ 'IPP.ANAC_CODE' | translate }}</mat-label>
+            <input formControlName="code" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+            <mat-label>{{ 'IPP.REFERENCE' | translate }}</mat-label>
+            <input formControlName="ref" matInput>
         </mat-form-field>
 
     </div>

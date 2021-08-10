@@ -63,6 +63,7 @@ import { AigPreparationStatusDetailBoxComponent } from './components/preparation
 import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
 import { AigPartecipationModalityNewUpdateFormComponent } from './components/partecipation-modality-new-update-form/partecipation-modality-new-update-form.component';
 import { AigPartecipationModalityListTableComponent } from './components/partecipation-modality-list-table/partecipation-modality-list-table.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { AigPartecipationModalityListTableComponent } from './components/parteci
         MatSelectModule,
         MatMenuModule,
         MatDatepickerModule,
+		MatCheckboxModule,
     ],
     providers: [
 

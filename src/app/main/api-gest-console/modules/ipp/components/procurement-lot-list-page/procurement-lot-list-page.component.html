@@ -177,7 +177,7 @@
             </aig-procurement-lot-list-table>
 
             <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="this.procurementLotFilters.page"
-                [pageSize]="this.inventoryItemPaginationSize" [pageSizeOptions]="[30, 100, 200]"
+                [pageSize]="this.procurementLotPaginationSize" [pageSizeOptions]="[30, 100, 200]"
                 (page)="procurementLotPaginationEvent($event)"></mat-paginator>
 
 

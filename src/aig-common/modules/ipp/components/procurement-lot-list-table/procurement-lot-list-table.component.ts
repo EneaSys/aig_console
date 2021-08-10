@@ -48,4 +48,8 @@ export class AigProcurementLotListTableComponent extends AigIppCommonGenericComp
     editProcurementLot(procurementLotDTO: ProcurementLotDTO) {
         this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {procurementLot:procurementLotDTO } });
     }
+
+	addCategory(procurementLotDTO: ProcurementLotDTO) {
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {procurementLot: procurementLotDTO } });
+    }
 }

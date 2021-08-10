@@ -19,9 +19,14 @@
             <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
+		<ng-container matColumnDef="modality">
+            <mat-header-cell *matHeaderCellDef>Modalità</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.modality.description }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="type">
             <mat-header-cell *matHeaderCellDef>{{ 'IPP.PARTECIPATION_TYPE' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.type.name }}</mat-cell>
+            <mat-cell *matCellDef="let e"><span *ngIf="e.type">{{ e.type.name }}</span></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="proposer">
@@ -49,6 +54,13 @@
             <mat-cell *matCellDef="let e">{{ e.proposerEopoo | eopooName }} </mat-cell>
         </ng-container>
 
+		<ng-container matColumnDef="designedCompanies">
+            <mat-header-cell *matHeaderCellDef>Aziende designate</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<div *ngFor="let designatedCompany of e.designatedCompanies">{{ designatedCompany.companyEopoo | eopooName }}</div>
+			</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="expiryDate">
             <mat-header-cell *matHeaderCellDef>{{ 'IPP.OFFER_EXPIRY_DATE' | translate }}</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.procurementLot.offerExpiryDate | date: 'dd/MM/yyyy' }}</mat-cell>
@@ -60,8 +72,10 @@
         </ng-container>
 
         <ng-container matColumnDef="ippLotCategory">
-            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_CATEGORY' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.procurementLot.category.name }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_CATEGORIES' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngFor="let category of e.procurementLot.categories">{{ category.name }}</span>
+			</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="status">

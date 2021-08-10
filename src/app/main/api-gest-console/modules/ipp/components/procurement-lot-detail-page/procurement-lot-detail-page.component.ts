@@ -70,7 +70,7 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
 
 
-  partecipationDC: string[] = ["id", "proposer", "type", "status", "buttons"];
+  partecipationDC: string[] = ["id", "proposer", "modality", "type", "status", "buttons"];
   partecipationDTOs: PartecipationDTO[];
   partecipationError: any;
   
