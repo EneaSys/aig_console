@@ -7,6 +7,7 @@ import { RoleDTO, RoleResourceService } from "api-gest";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { AigPermissionNewUpdateModalComponent } from "../permission-new-update-modal/permission-new-update-modal.component";
+import { AigRoleNewUpdateModalComponent } from "../role-new-update-modal/role-new-update-modal.component";
 
 @Component({
 	selector: 'aig-permission-detail-page',
@@ -71,5 +72,9 @@ export class AigPermissionDetailPageComponent extends GenericComponent {
             this.roleError = e;
         }
     }
+
+	newRole(permission: PermissionDTO): void {
+		this.dialog.open(AigRoleNewUpdateModalComponent, { data: { permission: permission } });
+	  }
 
 }
