@@ -12,7 +12,7 @@
 
         <ng-container matColumnDef="category">
             <mat-header-cell *matHeaderCellDef>Categorie</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.category | json}}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.category.name }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="level">

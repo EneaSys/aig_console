@@ -1,11 +1,10 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { LazyLoadEvent } from 'primeng/api';
 
 import { AgalGenericComponent } from '@agal-core/components/main-generic-component';
 import { AgalCommonService } from '@agal-core/services/common.service';
 import { AgalListDisplayModality } from '@agal-core/enum/list-display-modality';
-import { AgalButtonFunctions } from '@agal-core/enum/button-functions';
 
 import { ProcurementLotResourceService } from 'aig-italianlegislation';
 
@@ -15,19 +14,21 @@ import { ProcurementLotResourceService } from 'aig-italianlegislation';
     styleUrls: ['./procurement-lot-list-loader.component.scss']
 })
 export class AgalProcurementLotListLoaderComponent extends AgalGenericComponent implements OnInit {
+	_filters: any = {};
+
 	@Input()
-    filters: any = {};
+	set filters(filters: any) {
+		this._filters = filters;
+		this.loadData();
+	}
     
     @Input()
     view: AgalListDisplayModality;
     @Input()
     dcs: string[];
-
     @Input()
     buttons: any[];
-    @Input()
-    customFunction: any[];
-    
+
     constructor(
         private resourceService: ProcurementLotResourceService,
         agcs: AgalCommonService
@@ -65,7 +66,7 @@ export class AgalProcurementLotListLoaderComponent extends AgalGenericComponent 
 
     lazyLoad(event: LazyLoadEvent) {
 
-		console.log(event);
+		console.log("LazyLoadEvent", event);
 
 
         if(!this.isLoaded) {
@@ -88,7 +89,7 @@ export class AgalProcurementLotListLoaderComponent extends AgalGenericComponent 
     async loadData() {
         this.loading = true;
 
-        let filters = this.filters;
+        let filters = this._filters;
         filters.page = this.pageable.page;
         filters.size = this.pageable.size;
         filters.sort = this.sort;

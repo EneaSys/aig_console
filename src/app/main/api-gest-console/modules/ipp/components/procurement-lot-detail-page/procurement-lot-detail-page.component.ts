@@ -18,7 +18,6 @@ import { AigProcurementNewUpdateDialogComponent } from "../procurement-new-updat
 export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent {
   constructor(
     private procurementLotResourceService: ProcurementLotResourceService,
-    private procurementLotCategoryResourceService: ProcurementLotCategoryResourceService,
     private partecipationResourceService: PartecipationResourceService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -43,7 +42,6 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
   async loadOther() {
     this.loadPartecipation();
-    this.loadProcurementLotCategory();
   }
 
   editProcurementLot(procurementLot: ProcurementLotDTO) {
@@ -92,17 +90,7 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
 
   procurementLotCategoryDC: string[] = ["category", "level","buttons"];
-  procurementLotCategoryDTOs: ProcurementLotCategoryDTO[];
-  procurementLotCategoryError: any;
   
-  async loadProcurementLotCategory() {
-    let filters = {
-      procurementLotIdEquals: this.procurementLotDTO.id
-    };
-    this.procurementLotCategoryDTOs = await this.procurementLotCategoryResourceService.getAllProcurementLotCategoriesUsingGET(filters).toPromise(); 
-
-  }
-
   newProcurementLotCategory(procurementLot: ProcurementLotDTO): void {
     this.dialog.open(AigProcurementLotCategoryNewUpdateDialogComponent, { data: { procurementLot: procurementLot } });
   }

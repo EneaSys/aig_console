@@ -28,9 +28,9 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
         private _formBuilder: FormBuilder,
         private dialog: MatDialog,
         private _snackBar: MatSnackBar,
-        aigGenericComponentService: AigGenericComponentService,
+        public gcs: AigGenericComponentService,
     ) {
-        super(aigGenericComponentService)
+        super(gcs)
     }
 
 
@@ -51,31 +51,65 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
     reloadPage() {
         this.showAllProcurementLot();
-      }
+    }
 
 
 
 
-    
-     //			---- PROCUREMENT LOT TABLE AND SEARCH SECTION ----
+
+
+	newTableColumns: string[] = ['_ck', 'cig', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate'];
+	newTableButtons: any[] = [
+		{
+			name: "Details",
+			severity: "primary",
+			class: "",
+			fn: (e: any) => {
+				this.gcs.router.navigateByUrl("/ipp/procurement-lot/detail/" + e.id);
+			}
+		},{
+			name: "Edit",
+			severity: "secondary",
+			class: "ml-4",
+			fn: (e: any) => {
+				this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: e } });
+			}
+		},{
+			name: "Delete",
+			severity: "danger",
+			class: "mt-4",
+			fn: async (e: any) => {
+				this.gcs.fuseProgressBarService.show();
+				try {
+					await this.procurementLotResourceService.deleteProcurementLotUsingDELETE(e.id).toPromise();
+					this._snackBar.open(`Procurement Lot: '${e.id}' deleted.`, null, { duration: 2000, });
+
+					this.gcs.eventService.reloadCurrentPage();
+				} catch (e) {
+					this._snackBar.open(`Error during deleting procurement lot: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+				}
+				this.gcs.fuseProgressBarService.hide();
+			}
+		},
+	]
+
+
+
+
+	newProcurementLot(): void {
+        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {  } });
+    }
+
+
+
+	//			---- PROCUREMENT LOT TABLE AND SEARCH SECTION ----
 
     procurementLotSearchFormGroup: FormGroup;
-    procurementLotPaginationSize: number;
     procurementLotFilters: any;
     
 
-    procurementLotLength: number;
-    procurementLotDTOs: ProcurementLotDTO[];
-    @Input()
-    procurementLotDC: string[] = ['id', 'cig', 'description', 'type', 'category', 'amount', 'offerExpiryDate', 'buttons'];
-    procurementLotError: any;
-
-   
-
-
-    private initProcurementLotSearch() {
-        this.procurementLotPaginationSize = 10
     
+    private initProcurementLotSearch() {
         this.procurementLotSearchFormGroup = this._formBuilder.group({
             id: [''],
             cig: [''],
@@ -90,9 +124,6 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
             type: [''],
         });
     
-
-  
-
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
         this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ippModality'].valueChanges);
         this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotSearchFormGroup.controls['ippProcedure'].valueChanges);
@@ -116,110 +147,70 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
             awardCriterionCodeEquals: null,
             categoryCodeEquals: null,
             typeCodeEquals: null,
-
-            page: 0,
         }
     }
-
-    private async searchProcurementLot(page: number) {
-        this.procurementLotFilters.page = page;
-        this.procurementLotFilters.size = this.procurementLotPaginationSize;
-        this.procurementLotDTOs = null;
-    
-        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
-        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ippModality'].valueChanges);
-        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotSearchFormGroup.controls['ippProcedure'].valueChanges);
-        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
-        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
-        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotSearchFormGroup.controls['category'].valueChanges);
-        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotSearchFormGroup.controls['type'].valueChanges);
-
-
-        try {
-            this.procurementLotLength = await this.procurementLotResourceService.countProcurementLotsUsingGET(this.procurementLotFilters).toPromise();
-            if (this.procurementLotLength == 0) {
-                this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
-                this.procurementLotDTOs = [];
-                return;
-            }
-            this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(this.procurementLotFilters).toPromise();
-        } catch (e) { 
-            this.procurementLotError = e;
-        }
+	
+	resetFiltersProcurementLot() {
+        this.procurementLotSearchFormGroup.reset();
+        this.clearFiltersProcurementLot();
     }
 
     showAllProcurementLot() {
         this.resetFiltersProcurementLot();
     }
-        
-        
-    resetFiltersProcurementLot() {
-        this.procurementLotSearchFormGroup.reset();
-        this.clearFiltersProcurementLot();
-        this.searchProcurementLot(0);
-    }
-
-    procurementLotPaginationEvent(pageEvent: PageEvent) {
-        this.procurementLotPaginationSize = pageEvent.pageSize;
-        this.searchProcurementLot(pageEvent.pageIndex);
-       
-    }
 
     procurementLotSearchWithFilter() {
-    let searchedId = this.procurementLotSearchFormGroup.controls.id.value;
+		let procurementLotFilters: any = {};
 
-    if (searchedId != null) {
-      this.clearFiltersProcurementLot();
-      this.procurementLotSearchFormGroup.reset();
-      this.procurementLotFilters.procurementLotIDEquals = searchedId;
-      this.searchProcurementLot(0);
-      return;
-    } else {
+		let searchedId = this.procurementLotSearchFormGroup.controls.id.value;
+		if (searchedId != null) {
+			this.clearFiltersProcurementLot();
+			this.procurementLotSearchFormGroup.reset();
+			procurementLotFilters.procurementLotIDEquals = searchedId;
+		} else {
+			if (this.procurementLotSearchFormGroup.controls.cig.value) {
+				procurementLotFilters.cigEquals = this.procurementLotSearchFormGroup.controls.cig.value;
+			}
+			if (this.procurementLotSearchFormGroup.controls.description.value) {
+				procurementLotFilters.descriptionContains = this.procurementLotSearchFormGroup.controls.description.value;
+			}
+			if (this.procurementLotSearchFormGroup.controls.offerExpiryDate.value ) {
+				procurementLotFilters.offerExpiryDateEquals = this.procurementLotSearchFormGroup.controls.offerExpiryDate.value;
+			}
 
-        if (this.procurementLotSearchFormGroup.controls.cig.value) {
-            this.procurementLotFilters.cigEquals = this.procurementLotSearchFormGroup.controls.cig.value;
-        }
-        if (this.procurementLotSearchFormGroup.controls.description.value) {
-            this.procurementLotFilters.descriptionContains = this.procurementLotSearchFormGroup.controls.description.value;
-        }
-        if (this.procurementLotSearchFormGroup.controls.offerExpiryDate.value ) {
-            this.procurementLotFilters.offerExpiryDateEquals = this.procurementLotSearchFormGroup.controls.offerExpiryDate.value;
-        }
+			if (this.procurementLotSearchFormGroup.controls.contractorEopoo.value ) {
+				procurementLotFilters.procurementContractorEopooCodeEquals = this.procurementLotSearchFormGroup.controls.contractorEopoo.value.id;
+			}
 
-        if (this.procurementLotSearchFormGroup.controls.contractorEopoo.value ) {
-            this.procurementLotFilters.procurementContractorEopooCodeEquals = this.procurementLotSearchFormGroup.controls.contractorEopoo.value.id;
-        }
+			if (this.procurementLotSearchFormGroup.controls.ippModality.value ) {
+				procurementLotFilters.ippModalityCodeEquals = this.procurementLotSearchFormGroup.controls.ippModality.value;
+			}
 
-        if (this.procurementLotSearchFormGroup.controls.ippModality.value ) {
-            this.procurementLotFilters.ippModalityCodeEquals = this.procurementLotSearchFormGroup.controls.ippModality.value;
-        }
+			if (this.procurementLotSearchFormGroup.controls.ippProcedure.value) {
+				procurementLotFilters.ippProcedureCodeEquals = this.procurementLotSearchFormGroup.controls.ippProcedure.value;
+			}
 
-        if (this.procurementLotSearchFormGroup.controls.ippProcedure.value) {
-            this.procurementLotFilters.ippProcedureCodeEquals = this.procurementLotSearchFormGroup.controls.ippProcedure.value;
-        }
+			if (this.procurementLotSearchFormGroup.controls.ippSector.value ) {
+				procurementLotFilters.ippSectorCodeEquals = this.procurementLotSearchFormGroup.controls.ippSector.value;
+			}
+			if (this.procurementLotSearchFormGroup.controls.awardCriterion.value ) {
+				procurementLotFilters.awardCriterionCodeEquals = this.procurementLotSearchFormGroup.controls.awardCriterion.value;
+			}
 
-        if (this.procurementLotSearchFormGroup.controls.ippSector.value ) {
-            this.procurementLotFilters.ippSectorCodeEquals = this.procurementLotSearchFormGroup.controls.ippSector.value;
-        }
-        if (this.procurementLotSearchFormGroup.controls.awardCriterion.value ) {
-            this.procurementLotFilters.awardCriterionCodeEquals = this.procurementLotSearchFormGroup.controls.awardCriterion.value;
-        }
-
-        if (this.procurementLotSearchFormGroup.controls.category.value ) {
-            this.procurementLotFilters.categoryCodeEquals = this.procurementLotSearchFormGroup.controls.category.value.code;
-        }
+			if (this.procurementLotSearchFormGroup.controls.category.value ) {
+				procurementLotFilters.categoryCodeEquals = this.procurementLotSearchFormGroup.controls.category.value.code;
+			}
 
 
-        if (this.procurementLotSearchFormGroup.controls.type.value ) {
-            this.procurementLotFilters.typeCodeEquals = this.procurementLotSearchFormGroup.controls.type.value.code;
-        }
-        this.searchProcurementLot(0);
-    }
-}
+			if (this.procurementLotSearchFormGroup.controls.type.value ) {
+				procurementLotFilters.typeCodeEquals = this.procurementLotSearchFormGroup.controls.type.value.code;
+			}
 
-    newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {  } });
-    }
+			this.procurementLotFilters = procurementLotFilters;
+		}
+	}
+
+
     
 }
 

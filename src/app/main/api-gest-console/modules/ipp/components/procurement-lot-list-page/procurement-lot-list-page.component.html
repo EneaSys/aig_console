@@ -172,16 +172,11 @@
                 Selected Area: {{ selectedArea.toPrecision(5) }}m<sup>2</sup>
             </mat-card>
             -->
-			<aig-procurement-lot-list-table [displayColumns]="procurementLotDC"
-                [dataSource]="procurementLotDTOs">
-            </aig-procurement-lot-list-table>
-
-            <mat-paginator #procurementLotPaginator [length]="procurementLotLength" [pageIndex]="this.procurementLotFilters.page"
-                [pageSize]="this.procurementLotPaginationSize" [pageSizeOptions]="[30, 100, 200]"
-                (page)="procurementLotPaginationEvent($event)"></mat-paginator>
-
-
-			<agal-procurement-lot-list-loader [dcs]="['_ck', 'cig', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate']"></agal-procurement-lot-list-loader>
+			<agal-procurement-lot-list-loader 
+				[dcs]="newTableColumns"
+				[buttons]="newTableButtons"
+				[filters]="procurementLotFilters">
+			</agal-procurement-lot-list-loader>
 
             <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"
                 aria-label="add procurement lot">

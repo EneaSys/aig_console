@@ -1,3 +1,5 @@
+<pre>{{ filters | json }}</pre>
+
 <div [ngSwitch]="view">
 	<p *ngSwitchCase="'CARD'">
 		card
@@ -79,7 +81,9 @@
 					</ng-container>
 					
 					<td *ngIf="buttons">
-						<button *ngFor="let button of buttons" (click)="button.fn(e)">{{button.name}}</button>
+						<button pButton type="button" *ngFor="let b of buttons"
+							class="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.name }}" 
+							(click)="b.fn(e)" ></button>
 					</td>
 
 				</tr>
