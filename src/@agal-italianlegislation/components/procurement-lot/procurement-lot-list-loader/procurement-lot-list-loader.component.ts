@@ -21,7 +21,7 @@ export class AgalProcurementLotListLoaderComponent extends AgalGenericComponent 
     @Input()
     view: AgalListDisplayModality;
     @Input()
-    dc: string[];
+    dcs: string[];
 
     @Input()
     buttons: any[];

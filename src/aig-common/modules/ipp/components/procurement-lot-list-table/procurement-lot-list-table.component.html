@@ -58,7 +58,7 @@
         <ng-container matColumnDef="category">
             <mat-header-cell *matHeaderCellDef>{{ 'IPP.LOT_CATEGORIES' | translate }}</mat-header-cell>
             <mat-cell *matCellDef="let e">
-				<span *ngFor="let category of e.categories">{{ category.name }}</span>
+				<span *ngFor="let category of e.categories">{{ category.category.name }} ({{ category.level }})</span>
 				<button mat-icon-button (click)="addCategory(e)"><mat-icon>add</mat-icon></button>
 			</mat-cell>
         </ng-container>
