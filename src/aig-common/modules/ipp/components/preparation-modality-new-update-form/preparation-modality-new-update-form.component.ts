@@ -9,18 +9,18 @@ import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
-import { PartecipationDTO, PartecipationModalityDTO, PartecipationModalityResourceService, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from 'aig-italianlegislation';
+import { PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, PreparationModalityDTO, PreparationModalityResourceService, ProcurementLotDTO } from 'aig-italianlegislation';
 import { IlPpPartecipationTypeDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
 
 @Component({
-    selector: 'aig-partecipation-modality-new-update-form',
-    templateUrl: './partecipation-modality-new-update-form.component.html',
-    styleUrls: ['./partecipation-modality-new-update-form.component.scss']
+    selector: 'aig-preparation-modality-new-update-form',
+    templateUrl: './preparation-modality-new-update-form.component.html',
+    styleUrls: ['./preparation-modality-new-update-form.component.scss']
 })
-export class AigPartecipationModalityNewUpdateFormComponent implements OnInit {
+export class AigPreparationModalityNewUpdateFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -31,7 +31,7 @@ export class AigPartecipationModalityNewUpdateFormComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
-        private partecipationModalityResourceService: PartecipationModalityResourceService,
+        private preparationModalityResourceService: PreparationModalityResourceService,
         private eventService: EventService,
         public ippAutocompleteDisplayService: AigIppAutocompleteDisplayService,
         private ippAutocompleteService: AigIppAutocompleteService,
@@ -42,25 +42,25 @@ export class AigPartecipationModalityNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    partecipationModality: PartecipationModalityDTO;
+    preparationModality: PreparationModalityDTO;
 
     @Input()
-    partecipationModalityNewUpdateForm: FormGroup;
+    preparationModalityNewUpdateForm: FormGroup;
 
     isUpdate: boolean = false;
 
-    partecipationModalityResult: any;
+    preparationModalityResult: any;
     
    
     ngOnInit(): void {
-        this.partecipationModalityNewUpdateForm = this._formBuilder.group({
+        this.preparationModalityNewUpdateForm = this._formBuilder.group({
             id:[''],
             description:[''],
            
         })
         
-        if (this.partecipationModality != null) {
-            this.partecipationModalityNewUpdateForm.patchValue(this.partecipationModality);
+        if (this.preparationModality != null && this.preparationModality.id != null) {
+            this.preparationModalityNewUpdateForm.patchValue(this.preparationModality);
             this.isUpdate = true;
         }
         
@@ -68,28 +68,28 @@ export class AigPartecipationModalityNewUpdateFormComponent implements OnInit {
     }
 
     async submit() {
-        if (!this.partecipationModalityNewUpdateForm.valid) {
+        if (!this.preparationModalityNewUpdateForm.valid) {
             return;
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-       let partecipationModality: PartecipationModalityDTO = this.partecipationModalityNewUpdateForm.value;
+       let preparationModality: PreparationModalityDTO = this.preparationModalityNewUpdateForm.value;
        
         try {
             let postOrPut: string;
 
             if (this.isUpdate) {
-                await this.partecipationModalityResourceService.updatePartecipationModalityUsingPUT(partecipationModality).toPromise();
+                await this.preparationModalityResourceService.updatePreparationModalityUsingPUT(preparationModality).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.partecipationModalityResourceService.createPartecipationModalityUsingPOST(partecipationModality).toPromise();
+                await this.preparationModalityResourceService.createPreparationModalityUsingPOST(preparationModality).toPromise();
                 postOrPut = "created";
             }
         
 
-            this.partecipationModalityResult = partecipationModality;
+            this.preparationModalityResult = preparationModality;
             
 
             this.eventService.reloadCurrentPage();
@@ -102,7 +102,7 @@ export class AigPartecipationModalityNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.hide();
     }
 
-    newPartecipationModality() {
+    newPreparationModality() {
         this.setStep("form");
     }
 

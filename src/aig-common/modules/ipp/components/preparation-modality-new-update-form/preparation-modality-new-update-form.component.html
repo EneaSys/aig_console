@@ -1,11 +1,10 @@
-<form *ngIf="step.form" [formGroup]="partecipationModalityNewUpdateForm" (ngSubmit)="submit()">
-
+<form *ngIf="step.form" [formGroup]="preparationModalityNewUpdateForm" (ngSubmit)="submit()">
 
     <mat-form-field>
         <mat-label>Description</mat-label>
         <input formControlName="description" matInput required>
     </mat-form-field>
-    
+
     <div fxLayout="row" fxLayoutAlign="end top">
         <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
         <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
@@ -17,6 +16,6 @@
 </div>
 
 <div *ngIf="step.complete">
-    <pre>{{ partecipationModalityNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!partecipationModalityNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPartecipationModality()">Create New</button>
+    <pre>{{ preparationModalityNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!preparationModalityNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPreparationModality()">Create New</button>
 </div>

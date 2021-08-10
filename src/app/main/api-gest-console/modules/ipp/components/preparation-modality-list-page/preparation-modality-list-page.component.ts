@@ -7,18 +7,19 @@ import { AigIppAutocompleteDisplayService } from "aig-common/modules/ipp/service
 import { AigIppAutocompleteService } from "aig-common/modules/ipp/service/autocomplete-filter.service";
 import { AigStandardAutocompleteFilterService } from "aig-common/modules/standard/services/autocomplete-filter.service";
 import { AigStandardAutocompleteDisplayService } from "aig-common/modules/standard/services/autocomplete-function.service";
-import { EopooDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from "aig-italianlegislation";
+import { EopooDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, PreparationModalityDTO, PreparationModalityResourceService, ProcurementLotDTO } from "aig-italianlegislation";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { Observable } from "rxjs";
 import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationModalityNewUpdateDialogComponent } from "../partecipation-modality-new-update-dialog/partecipation-modality-new-update-dialog.component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
+import { AigPreparationModalityNewUpdateDialogComponent } from "../preparation-modality-new-update-dialog/preparation-modality-new-update-dialog.component";
 
 @Component({
-    templateUrl: './partecipation-modality-list-page.component.html',
-    styleUrls: ['./partecipation-modality-list-page.component.scss']
+    templateUrl: './preparation-modality-list-page.component.html',
+    styleUrls: ['./preparation-modality-list-page.component.scss']
 })
-export class AigPartecipationModalityListPageComponent extends AigIppGenericComponent {
+export class AigPreparationModalityListPageComponent extends AigIppGenericComponent {
     constructor(
 		public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
         public genericAutocompleteFilterService:  AigGenericAutocompleteFilterService,
@@ -30,7 +31,7 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
-        //*private preparationModalityResourceService: PreparationModalityResourceService,*/
+        private preparationModalityResourceService: PreparationModalityResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -54,7 +55,7 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 	preparationModalityFilters: any;
 
 	preparationModalityLength: number;
-	//preparationModalityDTOs: PreparationModalityDTO[];//
+	preparationModalityDTOs: PreparationModalityDTO[];
 	preparationModalityError: any;
 
 	preparationModalityDC: string[];
@@ -64,34 +65,37 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 		this.preparationModalityPaginationSize = 10;
 
 		this.preparationModalitySearchFormGroup = this._formBuilder.group({
+			id: [''],
+			description: [''],
 		});
 
 
-		this.preparationModalityDC = ["buttons"];
+		this.preparationModalityDC = ["description","buttons"];
 	}
 
 	private clearFiltersPreparationModality() {
 		this.preparationModalityFilters = {
+			idEquals: null,
 		}
 	}
 
 	private async searchPreparationModality(page: number) {
-		//this.preparationModalityDTOs = null;
+		this.preparationModalityDTOs = null;
 
 		this.preparationModalityFilters.page = page;
 		this.preparationModalityFilters.size = this.preparationModalityPaginationSize;
 
 		
 		try {
-			//this.preparationModalityLength = await this.preparationModalityResourceService.countPreparationModalityUsingGET(this.preparationModalityFilters).toPromise();  
+			this.preparationModalityLength = await this.preparationModalityResourceService.countPreparationModalitiesUsingGET(this.preparationModalityFilters).toPromise();  
 
 				if(this.preparationModalityLength == 0) {
 					this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-					//this.preparationModalityDTOs = [];
+					this.preparationModalityDTOs = [];
 					return;
 				}
 
-				//this.preparationModalityDTOs =  await this.preparationModalityResourceService.getAllPreparationModalityUsingGET(this.preparationModalityFilters).toPromise();
+				this.preparationModalityDTOs =  await this.preparationModalityResourceService.getAllPreparationModalitiesUsingGET(this.preparationModalityFilters).toPromise();
 			} catch (e) {
 				this.preparationModalityError = e;
 			}

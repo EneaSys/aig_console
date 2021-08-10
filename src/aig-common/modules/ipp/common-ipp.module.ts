@@ -63,6 +63,10 @@ import { AigPreparationStatusDetailBoxComponent } from './components/preparation
 import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
 import { AigPartecipationModalityNewUpdateFormComponent } from './components/partecipation-modality-new-update-form/partecipation-modality-new-update-form.component';
 import { AigPartecipationModalityListTableComponent } from './components/partecipation-modality-list-table/partecipation-modality-list-table.component';
+import { AigPreparationModalityListTableComponent } from './components/preparation-modality-list-table/preparation-modality-list-table.component';
+import { AigPreparationModalityNewUpdateFormComponent } from './components/preparation-modality-new-update-form/preparation-modality-new-update-form.component';
+import { PreparationModalityResolver } from './resolver/preparation-modality.resolver';
+import { PartecipationModalityResolver } from './resolver/partecipation-modality.resolver';
 
 
 @NgModule({
@@ -108,9 +112,14 @@ import { AigPartecipationModalityListTableComponent } from './components/parteci
         PreparationStatusResolver,
         InsurancePolicyResolver,
         InsurancePolicyStatusResolver,
+        PreparationModalityResolver,
+        PartecipationModalityResolver,
 
     ],
     declarations: [
+
+        AigPreparationModalityNewUpdateFormComponent,
+        AigPreparationModalityListTableComponent,
 
         AigPartecipationModalityNewUpdateFormComponent,
         AigPartecipationModalityListTableComponent,
@@ -160,6 +169,9 @@ import { AigPartecipationModalityListTableComponent } from './components/parteci
 
         AigPartecipationModalityListTableComponent,
         AigPartecipationModalityNewUpdateFormComponent,
+
+        AigPreparationModalityListTableComponent,
+        AigPreparationModalityNewUpdateFormComponent,
 
         AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,

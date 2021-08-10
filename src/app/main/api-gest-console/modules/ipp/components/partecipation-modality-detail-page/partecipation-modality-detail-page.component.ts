@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
+import { PartecipationModalityDTO, PartecipationModalityResourceService } from "aig-italianlegislation";
 import { EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
@@ -15,7 +16,7 @@ import { AigPartecipationModalityNewUpdateDialogComponent } from "../partecipati
 })
 export class AigPartecipationModalityDetailPageComponent extends GenericComponent {
 	constructor(
-		//private partecipationModalityResourceService: PartecipationModalityResourceService,
+		private partecipationModalityResourceService: PartecipationModalityResourceService,
 		private route: ActivatedRoute,
 		private _snackBar: MatSnackBar,
 		private router: Router,
@@ -24,22 +25,22 @@ export class AigPartecipationModalityDetailPageComponent extends GenericComponen
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
-	//partecipationModalityDTO: PartecipationModalityDTO;
+	partecipationModalityDTO: PartecipationModalityDTO;
 
 	loadPage() {
-		//this.partecipationModalityDTO = this.route.snapshot.data.partecipationModality;
+		this.partecipationModalityDTO = this.route.snapshot.data.partecipationModality;
 		
 	}
 
 	async reloadPage() {
-		//this.partecipationModalityDTO = await this.partecipationModalityResourceService.getPartecipationModalityUsingGET(this.partecipationModalityDTO.id).toPromise();
+		this.partecipationModalityDTO = await this.partecipationModalityResourceService.getPartecipationModalityUsingGET(this.partecipationModalityDTO.id).toPromise();
 	}
 
 	async deletePartecipationModality(id: number) {
 		this._fuseProgressBarService.show();
 
 		try {
-			//await this.partecipationModalityResourceService.deletepartecipationModalityUsingDELETE(id).toPromise();
+			await this.partecipationModalityResourceService.deletePartecipationModalityUsingDELETE(id).toPromise();
 
 			this._snackBar.open(`Partecipation Modality: '${id}' deleted.`, null, { duration: 2000, });
 
@@ -50,10 +51,10 @@ export class AigPartecipationModalityDetailPageComponent extends GenericComponen
 		this._fuseProgressBarService.hide();
 	}
 
-	/*editPartecipationModality(partecipationModalityDTO: PartecipationModalityDTO) {
+	editPartecipationModality(partecipationModalityDTO: PartecipationModalityDTO) {
 		this.dialog.open(AigPartecipationModalityNewUpdateDialogComponent, { data: { partecipationModality: partecipationModalityDTO } });
 	}
-    */
+    
 }
 
 
