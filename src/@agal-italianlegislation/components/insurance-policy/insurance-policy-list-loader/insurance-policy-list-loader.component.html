@@ -1,0 +1,109 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <!-- <insurance-policy-list-table-prime [ds]="ds"></insurance-policy-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-lg"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="companyPreparatorEopooCode">companyPreparatorEopooCode</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="note">note</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="totalAmount">totalAmount</th>
+
+
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> proposerEopooCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> partecipationTypeCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> siteInspection</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> offering</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> note</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> creationDateTime</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> cig</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> offerExpiryDate</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> baseAmount</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> candidacy</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> securityAmount</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> istatCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> nutsCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> cpvCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> typeCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> categoryCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> awardCriterionCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> statusCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> code</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> ref</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> contractorEopooCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> sectorCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> procedureCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> modalityCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> statusCode</th>
+
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.companyPreparatorEopooCode }}</td>
+					<td>{{ e.note }}</td>
+					<td>{{ e.totalAmount }}</td>
+
+			<td>{{ e.insurancePolicyStatus.description }}</td>
+			<td>{{ e.partecipation.proposerEopooCode }}</td>
+			<td>{{ e.partecipation.partecipationTypeCode }}</td>
+			<td>{{ e.partecipation.siteInspection }}</td>
+			<td>{{ e.partecipation.offering }}</td>
+			<td>{{ e.partecipation.note }}</td>
+			<td>{{ e.partecipation.creationDateTime }}</td>
+			<td>{{ e.partecipationStatus.description }}</td>
+			<td>{{ e.partecipationModality.description }}</td>
+			<td>{{ e.procurementLot.cig }}</td>
+			<td>{{ e.procurementLot.description }}</td>
+			<td>{{ e.procurementLot.offerExpiryDate }}</td>
+			<td>{{ e.procurementLot.baseAmount }}</td>
+			<td>{{ e.procurementLot.candidacy }}</td>
+			<td>{{ e.procurementLot.securityAmount }}</td>
+			<td>{{ e.procurementLot.istatCode }}</td>
+			<td>{{ e.procurementLot.nutsCode }}</td>
+			<td>{{ e.procurementLot.cpvCode }}</td>
+			<td>{{ e.procurementLot.typeCode }}</td>
+			<td>{{ e.procurementLot.categoryCode }}</td>
+			<td>{{ e.procurementLot.awardCriterionCode }}</td>
+			<td>{{ e.procurementLot.statusCode }}</td>
+			<td>{{ e.procurement.description }}</td>
+			<td>{{ e.procurement.code }}</td>
+			<td>{{ e.procurement.ref }}</td>
+			<td>{{ e.procurement.contractorEopooCode }}</td>
+			<td>{{ e.procurement.sectorCode }}</td>
+			<td>{{ e.procurement.procedureCode }}</td>
+			<td>{{ e.procurement.modalityCode }}</td>
+			<td>{{ e.procurement.statusCode }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</div>
+
+<agal-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></agal-paginator>
