@@ -181,7 +181,7 @@
                 (page)="procurementLotPaginationEvent($event)"></mat-paginator>
 
 
-			<agal-procurement-lot-list-loader></agal-procurement-lot-list-loader>
+			<agal-procurement-lot-list-loader [dcs]="['_ck', 'cig', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate']"></agal-procurement-lot-list-loader>
 
             <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"
                 aria-label="add procurement lot">
