@@ -1,0 +1,51 @@
+<form *ngIf="step.form" [formGroup]="typeCategoryReferenceNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Code</mat-label>
+            <input formControlName="code" matInput >
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Entity</mat-label>
+            <input formControlName="entity" matInput [matAutocomplete]="entityReferenceAutocomplete" required>
+            <mat-autocomplete #entityReferenceAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.entityReferenceDisplayFn">
+                <mat-option *ngFor="let entity of filteredEntityReference | async" [value]="entity">{{ entity.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Object Reference</mat-label>
+            <input formControlName="object" matInput [matAutocomplete]="objectReferenceAutocomplete" required>
+            <mat-autocomplete #objectReferenceAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.objectReferenceDisplayFn">
+                <mat-option *ngFor="let object of filteredObjectReference | async" [value]="object">{{ object.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{typeCategoryReferenceNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!typeCategoryReferenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newTypeCategoryReference()">Create New</button>
+</div>
