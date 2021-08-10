@@ -3,14 +3,16 @@
 		card
 	</p>
 	<p *ngSwitchDefault>
-		<!-- <procurement-lot-list-table-prime [ds]="ds"></procurement-lot-list-table-prime> -->
-		<p-table styleClass="p-datatable-lg" [value]="ds" [loading]="loading" [lazy]="true"
-			(onLazyLoad)="lazyLoad($event)" [resizableColumns]="true" [(selection)]="selectedElements">
+		<p-table styleClass="p-datatable-lg" 
+			[value]="ds" [loading]="loading" 
+			[lazy]="true" (onLazyLoad)="lazyLoad($event)" 
+			[resizableColumns]="true" [(selection)]="selectedElements">
 
 			<ng-template pTemplate="header">
 				<tr>
-					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<!-- Filed of entity -->
 						<th *ngSwitchCase="'_ck'" style="width:50px"></th>
 						<th *ngSwitchCase="'id'" style="width:auto" pResizableColumn pSortableColumn="id">id</th>
 						<th *ngSwitchCase="'cig'" style="width:auto" pResizableColumn pSortableColumn="cig">cig</th>
@@ -27,7 +29,7 @@
 						<th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn="awardCriterionCode">awardCriterionCode</th>
 						<th *ngSwitchCase="'statusCode'" style="width:auto" pResizableColumn pSortableColumn="statusCode">statusCode</th>
 
-
+						<!-- Filed of relational entity -->
 						<th *ngSwitchCase="'procurement.description'" style="width:auto" pResizableColumn pSortableColumn=""> description</th>
 						<th *ngSwitchCase="'procurement.'" style="width:auto" pResizableColumn pSortableColumn=""> code</th>
 						<th *ngSwitchCase="'procurement.'" style="width:auto" pResizableColumn pSortableColumn=""> ref</th>
@@ -36,17 +38,17 @@
 						<th *ngSwitchCase="'procurement.'" style="width:auto" pResizableColumn pSortableColumn=""> procedureCode</th>
 						<th *ngSwitchCase="'procurement.'" style="width:auto" pResizableColumn pSortableColumn=""> modalityCode</th>
 						<th *ngSwitchCase="'procurement.'" style="width:auto" pResizableColumn pSortableColumn=""> statusCode</th>
-
 					</ng-container>
 
-					<th style="width:auto" pResizableColumn pSortableColumn="" *ngIf="buttons"></th>
+					<th *ngIf="buttons" style="width:auto" pResizableColumn pSortableColumn="" ></th>
 
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="body" let-e>
 				<tr>
-					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<!-- Filed of entity -->
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'cig'">{{ e.cig }}</td>
@@ -65,6 +67,7 @@
 						<td *ngSwitchCase="'awardCriterionCode'">{{ e.awardCriterionCode }}</td>
 						<td *ngSwitchCase="'statusCode'">{{ e.statusCode }}</td>
 	
+						<!-- Filed of relational entity -->
 						<td *ngSwitchCase="'procurement.description'">{{ e.procurement.description }}</td>
 						<td *ngSwitchCase="'procurement.'">{{ e.procurement.code }}</td>
 						<td *ngSwitchCase="'procurement.'">{{ e.procurement.ref }}</td>
@@ -73,7 +76,6 @@
 						<td *ngSwitchCase="'procurement.'">{{ e.procurement.procedureCode }}</td>
 						<td *ngSwitchCase="'procurement.'">{{ e.procurement.modalityCode }}</td>
 						<td *ngSwitchCase="'procurement.'">{{ e.procurement.statusCode }}</td>
-
 					</ng-container>
 					
 					<td *ngIf="buttons">
