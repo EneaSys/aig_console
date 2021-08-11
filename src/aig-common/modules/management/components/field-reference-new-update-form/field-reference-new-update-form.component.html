@@ -1,0 +1,108 @@
+<form *ngIf="step.form" [formGroup]="fieldReferenceNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Min length</mat-label>
+            <input type="number" formControlName="minLength" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Max length</mat-label>
+            <input type="number" formControlName="maxLength" matInput required>
+        </mat-form-field>
+    </div>
+
+
+   <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="fill">
+            <mat-label>Type</mat-label>
+            <select formControlName="type" matNativeControl required>
+                <option value="STRING">STRING</option>
+                <option value="INTEGER">INTEGER</option>
+                <option value="LONG">LONG</option>
+                <option value="BIG DECIMAL">BIG DECIMAL</option>
+                <option value="FLOAT">FLOAT</option>
+                <option value="DOUBLE">DOUBLE</option>
+                <option value="BOOLEAN">BOOLEAN</option>
+                <option value="LOCAL_DATE">LOCAL_DATE</option>
+                <option value="ZONE_DATE_TIME">ZONE DATE TIME</option>
+                <option value="INSTANT">INSTANT</option>
+                <option value="DURATION">DURATION</option>
+                <option value="UUID">UUID</option>
+                <option value="BLOB">BLOB</option>
+                <option value="ANY_BLOB">ANY BLOB</option>
+                <option value="IMAGE_BLOB">IMAGE BLOB</option>
+                <option value="TEXT_BLOB">TEXT BLOB</option>
+            </select>
+        </mat-form-field>
+    </div>
+  
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Entity</mat-label>
+            <input formControlName="entity" matInput [matAutocomplete]="entityReferenceAutocomplete" required>
+            <mat-autocomplete #entityReferenceAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.entityReferenceDisplayFn">
+                <mat-option *ngFor="let entity of filteredEntityReference | async" [value]="entity">{{ entity.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Pattern Value</mat-label>
+            <input formControlName="patternValue" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Min bytes Value</mat-label>
+            <input type="number" formControlName="minBytesValue" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Max bytes Value</mat-label>
+            <input type="number" formControlName="maxBytesValue" matInput required>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="100" class="p-24">
+            <mat-slide-toggle formControlName="isRequired">is Required</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="100" class="p-24">
+            <mat-slide-toggle formControlName="isUnique">is Unique</mat-slide-toggle>
+        </div>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ objectReferenceNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!objectReferenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newObjectReference()">Create New</button>
+</div>

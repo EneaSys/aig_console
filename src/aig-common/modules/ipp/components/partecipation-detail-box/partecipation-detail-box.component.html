@@ -1,7 +1,8 @@
 <div class="h4 m-8 ml-16 mb-0 secondary-text">
     ID: {{ partecipation.id }}
 </div>
-<div class="h4 ml-16">Tipo partecipazione: <b>{{ partecipation.type.name }}</b></div>
+<div class="h4 ml-16">Modalità partecipazione: <b>{{ partecipation.modality.description }}</b></div>
+<div class="h4 ml-16" *ngIf="partecipation.type">Tipo partecipazione: <b>{{ partecipation.type.name }}</b></div>
 <div class="h4 ml-16">Stato: <b>{{ partecipation.status.description }}</b></div>
 <div class="h4 ml-16">Sopralluogo: <b>{{ partecipation.siteInspection }}</b></div>
 

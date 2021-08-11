@@ -16,6 +16,7 @@ export class AigStandardAutocompleteFilterService {
 		private ilPpProcurementLotAwardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
 		private ilPpProcurementLotStatusResourceService: IlPpProcurementLotStatusResourceService,
 		private ilPpPartecipationTypeResourceService: IlPpPartecipationTypeResourceService,
+
         
 		
 		private ippProcedureResourceService: IlPpProcurementProcedureResourceService,
@@ -39,6 +40,7 @@ export class AigStandardAutocompleteFilterService {
 			})
 		);
 	}
+
 
 
 

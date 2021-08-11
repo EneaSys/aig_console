@@ -6,10 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { AigRoleNewUpdateModalComponent } from '../role-new-update-modal/role-new-update-modal.component';
-import { RoleDTO, RoleResourceService } from 'aig-management';
+import { PermissionDTO, PermissionResourceService, RoleDTO, RoleResourceService } from 'aig-management';
 import { MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { RoleAssignationDTO, RoleAssignationResourceService } from 'api-gest';
+import { AigPermissionNewUpdateModalComponent } from '../permission-new-update-modal/permission-new-update-modal.component';
 
 @Component({
     selector: 'aig-role-detail-page',
@@ -20,6 +21,7 @@ export class AigRoleDetailPageComponent extends GenericComponent {
     constructor(
         private roleResourceService: RoleResourceService,
         private roleAssignationResourceService: RoleAssignationResourceService,
+        private permissionResourceService: PermissionResourceService,
         private route: ActivatedRoute,
         private _snackBar: MatSnackBar,
         private router: Router,
@@ -34,10 +36,12 @@ export class AigRoleDetailPageComponent extends GenericComponent {
 
     loadPage(): void {
         this.roleDTO = this.route.snapshot.data.role;
-
-        //this.users = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, this.role.roleCode, null, null, null, null, null, null, 0, null);
-        //this.groups = this.roleAssignationResourceService.getAllRoleAssignationsUsingGET(null, null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,  this.role.roleCode, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this.loadOther();
     }
+
+    async loadOther() {
+        this.loadPermission();
+      }
 
     async reloadPage() {
 		this.roleDTO = await this.roleResourceService.getRoleUsingGET(this.roleDTO.id).toPromise();
@@ -58,12 +62,24 @@ export class AigRoleDetailPageComponent extends GenericComponent {
         this._fuseProgressBarService.hide();
     }
 
-    permissionSystemDisplayColumns: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
-    usersDisplayColumns: string[] = ['usercode', 'email', 'type'];
-    groupsDisplayedColumns: string[] = ['id', 'name'];
-
     editRole(roleDTO: RoleDTO) {
         this.dialog.open(AigRoleNewUpdateModalComponent, { data: { role: roleDTO } });
     }
     
+
+    
+    permissionDC: string[] = ['id', 'name', 'permissionCode', 'moduleName', 'buttons'];
+    permissionDTOs: PermissionDTO[];
+    permissionError: any;
+
+    async loadPermission() {
+        let filters = {
+          roleIdEquals: this.roleDTO.id
+        };
+        this.permissionDTOs = await this.permissionResourceService.getAllPermissionsUsingGET(filters).toPromise(); 
+      }
+    
+      newPermission(role: RoleDTO): void {
+        this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { role: role } });
+      }
 }

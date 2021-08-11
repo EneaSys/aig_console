@@ -105,7 +105,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		this.filteredPartecipationType = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
 		
 
-		this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopoo","expiryDate","baseAmount","ippLotCategory","status","buttons"];
+		this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopoo","designedCompanies","expiryDate","baseAmount","ippLotCategory","status","buttons"];
 	}
 
 	private clearFiltersPartecipation() {
@@ -232,7 +232,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		
 
 	newPartecipation(): void {
-        this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { partecipation: {} } });
+        this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {  } });
     }
 
 }

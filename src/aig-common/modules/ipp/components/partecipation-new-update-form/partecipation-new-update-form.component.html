@@ -12,9 +12,9 @@
 
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+	<div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex="50">
+		<mat-form-field appearance="outline" fxFlex="100">
             <mat-label>{{ 'IPP.PROPOSER' | translate }}</mat-label>
             <input formControlName="proposerEopoo" matInput [matAutocomplete]="proposerEopooAutocomplete" required>
             <mat-autocomplete #proposerEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
@@ -22,9 +22,21 @@
             </mat-autocomplete>
         </mat-form-field>
 
+	</div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Modalità</mat-label>
+            <input formControlName="modality" matInput [matAutocomplete]="modalityAutocomplete" required>
+            <mat-autocomplete #modalityAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationModalityDisplayFn">
+                <mat-option *ngFor="let partecipationModality of filteredPartecipationModality | async" [value]="partecipationModality">{{ partecipationModality.description }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>{{ 'IPP.PARTECIPATION_TYPE' | translate }}</mat-label>
-            <input formControlName="type" matInput [matAutocomplete]="typeAutocomplete" required>
+            <input formControlName="type" matInput [matAutocomplete]="typeAutocomplete" >
             <mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
                 <mat-option *ngFor="let partecipationType of filteredPartecipationType | async" [value]="partecipationType">{{ partecipationType.name }}</mat-option>
             </mat-autocomplete>

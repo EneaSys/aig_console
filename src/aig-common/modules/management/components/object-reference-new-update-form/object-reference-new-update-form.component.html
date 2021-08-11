@@ -1,0 +1,65 @@
+<form *ngIf="step.form" [formGroup]="objectReferenceNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Module</mat-label>
+            <input formControlName="module" matInput [matAutocomplete]="applicationModuleAutocomplete" required>
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
+                <mat-option *ngFor="let module of filteredApplicationModule | async" [value]="module">{{ module.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Entity</mat-label>
+            <input formControlName="entity" matInput [matAutocomplete]="entityReferenceAutocomplete" required>
+            <mat-autocomplete #entityReferenceAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.entityReferenceDisplayFn">
+                <mat-option *ngFor="let entity of filteredEntityReference | async" [value]="entity">{{ entity.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="100" class="p-24">
+            <mat-slide-toggle formControlName="isTypezed">Is Typezed</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="100" class="p-24">
+            <mat-slide-toggle formControlName="haveStatus">Have Status</mat-slide-toggle>
+        </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <div fxFlex="100" class="p-24">
+            <mat-slide-toggle formControlName="haveGroup">Have Group</mat-slide-toggle>
+        </div>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ objectReferenceNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!objectReferenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newObjectReference()">Create New</button>
+</div>

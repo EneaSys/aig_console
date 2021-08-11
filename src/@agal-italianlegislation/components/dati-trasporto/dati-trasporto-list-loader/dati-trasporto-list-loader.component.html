@@ -1,0 +1,121 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <!-- <dati-trasporto-list-table-prime [ds]="ds"></dati-trasporto-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-lg"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="vettoreEopooCode">vettoreEopooCode</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="mezzoTrasporto">mezzoTrasporto</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="causaleTrasporto">causaleTrasporto</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="numeroColli">numeroColli</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="descrizione">descrizione</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="unitaMisuraPeso">unitaMisuraPeso</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="pesoLordo">pesoLordo</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="pesoNetto">pesoNetto</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataOraRitiro">dataOraRitiro</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataInizioTrasporto">dataInizioTrasporto</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="tipoResa">tipoResa</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataOraConsegna">dataOraConsegna</th>
+
+
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> indirizzo</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> vettoreEopooCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> mezzoTrasporto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> causaleTrasporto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numeroColli</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> unitaMisuraPeso</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> pesoLordo</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> pesoNetto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> dataOraRitiro</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> dataInizioTrasporto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> tipoResa</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> dataOraConsegna</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> divisa</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> data</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numero</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> importoTotaleDocumento</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> arrotondamento</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> causale</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> art73</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> tipoDocumentoCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> bolloVirtuale</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> importoBollo</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> riferimentoFase</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numero</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> data</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numero</th>
+
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.vettoreEopooCode }}</td>
+					<td>{{ e.mezzoTrasporto }}</td>
+					<td>{{ e.causaleTrasporto }}</td>
+					<td>{{ e.numeroColli }}</td>
+					<td>{{ e.descrizione }}</td>
+					<td>{{ e.unitaMisuraPeso }}</td>
+					<td>{{ e.pesoLordo }}</td>
+					<td>{{ e.pesoNetto }}</td>
+					<td>{{ e.dataOraRitiro }}</td>
+					<td>{{ e.dataInizioTrasporto }}</td>
+					<td>{{ e.tipoResa }}</td>
+					<td>{{ e.dataOraConsegna }}</td>
+
+			<td>{{ e.indirizzoResa.indirizzo }}</td>
+			<td>{{ e.datiTrasporto.vettoreEopooCode }}</td>
+			<td>{{ e.datiTrasporto.mezzoTrasporto }}</td>
+			<td>{{ e.datiTrasporto.causaleTrasporto }}</td>
+			<td>{{ e.datiTrasporto.numeroColli }}</td>
+			<td>{{ e.datiTrasporto.descrizione }}</td>
+			<td>{{ e.datiTrasporto.unitaMisuraPeso }}</td>
+			<td>{{ e.datiTrasporto.pesoLordo }}</td>
+			<td>{{ e.datiTrasporto.pesoNetto }}</td>
+			<td>{{ e.datiTrasporto.dataOraRitiro }}</td>
+			<td>{{ e.datiTrasporto.dataInizioTrasporto }}</td>
+			<td>{{ e.datiTrasporto.tipoResa }}</td>
+			<td>{{ e.datiTrasporto.dataOraConsegna }}</td>
+			<td>{{ e.datiGeneraliDocumento.divisa }}</td>
+			<td>{{ e.datiGeneraliDocumento.data }}</td>
+			<td>{{ e.datiGeneraliDocumento.numero }}</td>
+			<td>{{ e.datiGeneraliDocumento.importoTotaleDocumento }}</td>
+			<td>{{ e.datiGeneraliDocumento.arrotondamento }}</td>
+			<td>{{ e.datiGeneraliDocumento.causale }}</td>
+			<td>{{ e.datiGeneraliDocumento.art73 }}</td>
+			<td>{{ e.datiGeneraliDocumento.tipoDocumentoCode }}</td>
+			<td>{{ e.datiBollo.bolloVirtuale }}</td>
+			<td>{{ e.datiBollo.importoBollo }}</td>
+			<td>{{ e.datiSal.riferimentoFase }}</td>
+			<td>{{ e.fatturaPrincipale.numero }}</td>
+			<td>{{ e.fatturaPrincipale.data }}</td>
+			<td>{{ e.fatturaElettronicaBody.numero }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</div>
+
+<agal-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></agal-paginator>

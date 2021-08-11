@@ -116,7 +116,7 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 	}
 
 	newEntityReference(): void {
-		this.dialog.open(AigEntityReferenceNewUpdateModalComponent, { data: { entityReference: {} } });
+		this.dialog.open(AigEntityReferenceNewUpdateModalComponent, { data: {} });
    }
 
 }

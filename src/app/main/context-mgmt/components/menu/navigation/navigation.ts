@@ -145,6 +145,26 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/ipp/preparation-status',
 						permission: ['c6e.admin'],
 					},
+
+					{
+						id       : 'preparation-modality-list-page',
+						title    : 'Preparation modality',
+						type     : 'item',
+						icon     : 'child_care',
+						url      : '/ipp/preparation-modality',
+						permission: ['c6e.admin'],
+					},
+
+					{
+						id       : 'partecipation-modality-list-page',
+						title    : 'Partecipation modality',
+						type     : 'item',
+						icon     : 'child_care',
+						url      : '/ipp/partecipation-modality',
+						permission: ['c6e.admin'],
+					},
+
+
 					{
 						id       : 'insurance-policy-status-list-page',
 						title    : 'Insurance Policy Status',
@@ -443,12 +463,55 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/m8t/entity-reference',
 						permission: ['e4y.account.get'],
 					},
+
+					{
+						id       : 'type-category-reference-list-page',
+						title    : 'Type Category Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/type-category-reference',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'object-reference-list-page',
+						title    : 'Object Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/object-reference',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'field-reference-list-page',
+						title    : 'Field Reference',
+						type     : 'item',
+						icon     : 'star_half',
+						url      : '/m8t/field-reference',
+						permission: ['e4y.account.get'],
+					},
 					{
 						id       : 'permission-list-page',
 						title    : 'Permessi',
 						type     : 'item',
 						icon     : 'lock_open',
 						url      : '/m8t/permission',
+						permission: ['e4y.account.get'],
+					},
+					{
+						id       : 'licence-list-page',
+						title    : 'Licenze',
+						type     : 'item',
+						icon     : 'lock_open',
+						url      : '/m8t/licence',
+						permission: ['e4y.account.get'],
+					},
+					{
+						id       : 'user-licence-list-page',
+						title    : 'User Licence',
+						type     : 'item',
+						icon     : 'lock_open',
+						url      : '/m8t/user-licence',
 						permission: ['e4y.account.get'],
 					},
 					{
