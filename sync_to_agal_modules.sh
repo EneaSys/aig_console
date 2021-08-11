@@ -6,7 +6,7 @@ i=0
 while read line
 do
 	echo "----------- $line -------"
-	rsync -av src/$line ../webapp
+	rsync -av --delete src/$line ../webapp 
     echo $line
 	echo;
 	echo;
