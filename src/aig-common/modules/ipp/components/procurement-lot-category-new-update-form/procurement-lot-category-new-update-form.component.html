@@ -1,52 +1,53 @@
 <form *ngIf="step.form" [formGroup]="procurementLotCategoryNewUpdateForm" (ngSubmit)="submit()">
 
+	<div *ngIf="!procurementLot" fxLayout="row" fxLayoutAlign="start start">
+		<mat-form-field appearance="outline" fxFlex="100">
+			<mat-label>{{ 'IPP.PROCUREMENT_LOT' | translate }}</mat-label>
+			<input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete" required>
+			<mat-autocomplete #procurementLotAutocomplete="matAutocomplete"
+				[displayWith]="ippAutoCompleteDisplayService.procurementLotDisplayFn">
+				<mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">
+					{{ procurementLot.description }}</mat-option>
+			</mat-autocomplete>
+		</mat-form-field>
+	</div>
 
-        <mat-form-field appearance="outline" fxFlex="100">
-            <mat-label>Level</mat-label>
-            <input formControlName="level" matInput required>
-        </mat-form-field>
+	<div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex="100">
-            <mat-label>{{ 'IPP.PROCUREMENT_LOT' | translate }}</mat-label>
-            <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete" required>
-            <mat-autocomplete #procurementLotAutocomplete="matAutocomplete"
-                [displayWith]="ippAutoCompleteDisplayService.procurementLotDisplayFn">
-                <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">
-                    {{ procurementLot.description }}</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+		<mat-form-field appearance="outline" fxFlex="60">
+			<mat-label>Categoria</mat-label>
+			<input formControlName="category" matInput [matAutocomplete]="categoryAutocomplete" required>
+			<mat-autocomplete #categoryAutocomplete="matAutocomplete"
+				[displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
+				<mat-option *ngFor="let category of filteredCategory | async" [value]="category">
+					{{ category.name}}
+				</mat-option>
+			</mat-autocomplete>
+		</mat-form-field>
 
+		<mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+			<mat-label>Livello</mat-label>
+			<input formControlName="level" matInput required>
+		</mat-form-field>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+	</div>
 
-        <mat-form-field appearance="outline" fxFlex="100">
-            <mat-label>Categorie</mat-label>
-            <input formControlName="category" matInput [matAutocomplete]="categoryAutocomplete" required>
-            <mat-autocomplete #categoryAutocomplete="matAutocomplete"
-                [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                <mat-option *ngFor="let category of filteredCategory | async" [value]="category">
-                    {{ category.name}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-
-    </div>
-
-
-    <div fxLayout="row" fxLayoutAlign="end top">
-        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
-        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
-    </div>
+	
+	<div fxLayout="row" fxLayoutAlign="end top">
+		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
+		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate }}</button>
+	</div>
 
 </form>
 
 <div *ngIf="step.loading" fxLayoutAlign="center">
-    <mat-spinner></mat-spinner>
+	<mat-spinner></mat-spinner>
 </div>
-   
+
 
 
 <div *ngIf="step.complete">
-    <pre>{{ procurementLotCategoryNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!procurementLotCategoryNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newProcurementLotCategory()">Create New</button>
+	<pre>{{ procurementLotCategoryNewUpdateForm.value | json }}</pre>
+	<button *ngIf="!procurementLotCategoryNewUpdateForm.value.id" mat-stroked-button color="primary"
+		(click)="newProcurementLotCategory()">Create New</button>
 </div>

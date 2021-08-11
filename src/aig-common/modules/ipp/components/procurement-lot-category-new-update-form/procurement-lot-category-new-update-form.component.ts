@@ -20,6 +20,13 @@ import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standa
     styleUrls: ['./procurement-lot-category-new-update-form.component.scss']
 })
 export class AigProcurementLotCategoryNewUpdateFormComponent implements OnInit {
+	@Input()
+    procurementLotCategory: ProcurementLotCategoryDTO;
+	
+	@Input()
+    procurementLot: ProcurementLotDTO;
+
+
     step: any = {
         form: true,
         loading: false,
@@ -38,11 +45,6 @@ export class AigProcurementLotCategoryNewUpdateFormComponent implements OnInit {
         public ippAutoCompleteDisplayService: AigIppAutocompleteDisplayService,
     ) { }
 
-    @Input()
-    procurementLotCategory: ProcurementLotCategoryDTO;
-
-    @Input()
-
     procurementLotCategoryNewUpdateForm: FormGroup;
 
     isUpdate: boolean = false;
@@ -55,9 +57,9 @@ export class AigProcurementLotCategoryNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.procurementLotCategoryNewUpdateForm = this._formBuilder.group({
             id: [null],
-            category: [[Validators.required, AigValidator.haveId]],
-            procurementLot: [ [Validators.required, AigValidator.haveId]],
-            level: [null],
+            procurementLot: [this.procurementLot, [Validators.required, AigValidator.haveId]],
+            category: [null, [Validators.required, AigValidator.haveId]],
+            level: [null, [Validators.required]],
         })
         
         if (this.procurementLotCategory != null) {
@@ -65,8 +67,8 @@ export class AigProcurementLotCategoryNewUpdateFormComponent implements OnInit {
             this.isUpdate = true;
         }
 
-        this.filteredCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotCategoryNewUpdateForm.controls['category'].valueChanges);
         this.filteredProcurementLot = this.ippAutocompleteService.filterProcurementLot(this.procurementLotCategoryNewUpdateForm.controls['procurementLot'].valueChanges);
+        this.filteredCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotCategoryNewUpdateForm.controls['category'].valueChanges);
     }
 
     async submit() {
