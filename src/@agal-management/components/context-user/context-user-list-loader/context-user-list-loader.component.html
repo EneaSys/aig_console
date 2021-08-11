@@ -1,0 +1,53 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <!-- <context-user-list-table-prime [ds]="ds"></context-user-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-lg"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="userCode">userCode</th>
+
+
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> contextCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> nameDatabase</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> logoImage</th>
+
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.userCode }}</td>
+
+			<td>{{ e.tenantContext.name }}</td>
+			<td>{{ e.tenantContext.contextCode }}</td>
+			<td>{{ e.tenantContext.nameDatabase }}</td>
+			<td>{{ e.tenantContext.logoImage }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</div>
+
+<agal-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></agal-paginator>
