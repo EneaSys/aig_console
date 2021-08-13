@@ -32,100 +32,105 @@ export class AigPartecipationStatusListPageComponent extends GenericComponent {
 	}
 
 
-//			---- TABLE AND SEARCH SECTION ----
+	//			---- TABLE AND SEARCH SECTION ----
 
-partecipationStatusSearchFormGroup: FormGroup;
-partecipationStatusPaginationSize: number;
-partecipationStatusFilters: any;
+	partecipationStatusSearchFormGroup: FormGroup;
+	partecipationStatusPaginationSize: number;
+	partecipationStatusFilters: any;
 
-partecipationStatusLength: number;
-partecipationStatusDTOs: PartecipationStatusDTO[];
-partecipationStatusError: any;
+	partecipationStatusLength: number;
+	partecipationStatusDTOs: PartecipationStatusDTO[];
+	partecipationStatusError: any;
 
-partecipationStatusDC: string[];
+	partecipationStatusDC: string[];
 
-	
-private initPartecipationStatusSearch() {
-	this.partecipationStatusDC = ["id","description","buttons"];
-
-	this.partecipationStatusPaginationSize = 10;
 		
+	private initPartecipationStatusSearch() {
+		this.partecipationStatusDC = ["id","description","buttons"];
 
-	this.partecipationStatusSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			description: [''],
-		});
-	}
+		this.partecipationStatusPaginationSize = 10;
+			
 
-private clearFiltersPartecipationStatus() {
-	this.partecipationStatusFilters = {
-		idEquals: null,
-	}
-}
-
-private async searchPartecipationStatus(page: number) {
-	this.partecipationStatusDTOs = null;
-
-	this.partecipationStatusFilters.page = page;
-	this.partecipationStatusFilters.size = this.partecipationStatusPaginationSize;
-
-	try {
-		this.partecipationStatusLength = await this.partecipationStatusResourceService.countPartecipationStatusesUsingGET({}).toPromise();  
-
-		if(this.partecipationStatusLength == 0) {
-			this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-			this.partecipationStatusDTOs = [];
-			return;
+		this.partecipationStatusSearchFormGroup = this._formBuilder.group({
+				id: [''],
+				description: [''],
+			});
 		}
 
-		this.partecipationStatusDTOs =  await this.partecipationStatusResourceService.getAllPartecipationStatusesUsingGET({}).toPromise();
-	} catch (e) {
-		console.log(e);
-		this.partecipationStatusError = e;
+	private clearFiltersPartecipationStatus() {
+		this.partecipationStatusFilters = {
+			idEquals: null,
+		}
 	}
-}
 
-	
+	private async searchPartecipationStatus(page: number) {
+		this.partecipationStatusDTOs = null;
 
-showAllPartecipationStatus() {
-	this.resetFiltersPartecipationStatus();
+		this.partecipationStatusFilters.page = page;
+		this.partecipationStatusFilters.size = this.partecipationStatusPaginationSize;
+
+		try {
+			this.partecipationStatusLength = await this.partecipationStatusResourceService.countPartecipationStatusesUsingGET({}).toPromise();  
+
+			if(this.partecipationStatusLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+				this.partecipationStatusDTOs = [];
+				return;
+			}
+
+			this.partecipationStatusDTOs =  await this.partecipationStatusResourceService.getAllPartecipationStatusesUsingGET({}).toPromise();
+		} catch (e) {
+			console.log(e);
+			this.partecipationStatusError = e;
+		}
+	}
+
 		
-}
 
-resetFiltersPartecipationStatus() {
-	this.partecipationStatusSearchFormGroup.reset();
-	this.clearFiltersPartecipationStatus();
-	this.searchPartecipationStatus(0);
-
-}
-
-partecipationStatusPaginationEvent(pageEvent: PageEvent) {
-	this.partecipationStatusPaginationSize = pageEvent.pageSize;
-	this.searchPartecipationStatus(pageEvent.pageIndex);
-}
-
-partecipationStatusSearchWithFilter() {
-	let searchedId = this.partecipationStatusSearchFormGroup.controls.id.value;
-
-	if(searchedId != null) {
-		this.clearFiltersPartecipationStatus();
-		this.partecipationStatusSearchFormGroup.reset();
-		this.partecipationStatusFilters.idEquals = searchedId;
-		this.searchPartecipationStatus(0);
-		return;
+	showAllPartecipationStatus() {
+		this.resetFiltersPartecipationStatus();
+			
 	}
-	this.partecipationStatusFilters.idEquals = null;
 
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+	resetFiltersPartecipationStatus() {
+		this.partecipationStatusSearchFormGroup.reset();
+		this.clearFiltersPartecipationStatus();
+		this.searchPartecipationStatus(0);
 
-	this.searchPartecipationStatus(0);
-}
+	}
+
+	partecipationStatusPaginationEvent(pageEvent: PageEvent) {
+		this.partecipationStatusPaginationSize = pageEvent.pageSize;
+		this.searchPartecipationStatus(pageEvent.pageIndex);
+	}
+
+	partecipationStatusSearchWithFilter() {
+		let searchedId = this.partecipationStatusSearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersPartecipationStatus();
+			this.partecipationStatusSearchFormGroup.reset();
+			this.partecipationStatusFilters.idEquals = searchedId;
+			this.searchPartecipationStatus(0);
+			return;
+		}
+		this.partecipationStatusFilters.idEquals = null;
+
+			/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+
+		this.searchPartecipationStatus(0);
+	}
 
 	//			---- !TABLE AND SEARCH SECTION ----
 
-newPartecipationStatus(): void {
-    this.dialog.open(AigPartecipationStatusNewUpdateDialogComponent, { data: { partecipationStatus: {} } });
-    }
+	newPartecipationStatus(): void {
+		this.dialog.open(AigPartecipationStatusNewUpdateDialogComponent, { data: {} });
+	}
+
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 	
 }

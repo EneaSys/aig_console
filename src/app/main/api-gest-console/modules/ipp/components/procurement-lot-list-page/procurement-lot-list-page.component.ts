@@ -96,11 +96,6 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
 
 
-	newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {  } });
-    }
-
-
 
 	//			---- PROCUREMENT LOT TABLE AND SEARCH SECTION ----
 
@@ -209,6 +204,14 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			this.procurementLotFilters = procurementLotFilters;
 		}
 	}
+
+    newProcurementLot(): void {
+		this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {} });
+	}
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 
     

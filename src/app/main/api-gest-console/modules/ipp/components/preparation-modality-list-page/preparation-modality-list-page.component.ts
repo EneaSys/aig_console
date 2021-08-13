@@ -139,4 +139,9 @@ export class AigPreparationModalityListPageComponent extends AigIppGenericCompon
         this.dialog.open(AigPreparationModalityNewUpdateDialogComponent, { data: { } });
     }
 
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
 }

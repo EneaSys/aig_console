@@ -155,4 +155,9 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 		this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: {  } });
 	}
 
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
 }

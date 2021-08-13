@@ -120,7 +120,13 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 	}
 
     newPartecipationType(){
-        this.dialog.open(AigPartecipationTypeNewUpdateDialogComponent, {data: { partecipationType: {} } });
+        this.dialog.open(AigPartecipationTypeNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !partecipation Type TABLE AND SEARCH SECTION ----
 }

@@ -142,6 +142,10 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
 	//			---- !PRICE LIST ITEM TABLE AND SEARCH SECTION ----
 
 	newPriceListItem(): void {
-        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { priceListItem: {} } });
+        this.dialog.open(AigPriceListItemNewUpdateDialogComponent, { data: { } });
     }
+
+	async publish() {
+		await this.priceListItemResourceService.publishUsingGET10(this.priceListItemFilters).toPromise;
+	}
 }

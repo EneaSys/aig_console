@@ -120,7 +120,13 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 	}
 
     newAwardCriterion(){
-        this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, {data: { awardCriterion: {} } });
+        this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !award Criterion TABLE AND SEARCH SECTION ----
 }

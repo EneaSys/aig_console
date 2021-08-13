@@ -191,4 +191,7 @@ export class AigPurchaseListPageComponent extends AigCommerceGenericComponent {
             this.dialog.open(AigPurchaseComplexDialogComponent, { data: {} });
         }
     
+        async publish() {
+            await this.purchaseResourceService.publishUsingGET14(this.purchaseFilters).toPromise;
+        }
     }

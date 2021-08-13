@@ -235,4 +235,9 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
         this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {  } });
     }
 
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
 }

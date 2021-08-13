@@ -142,11 +142,15 @@ export class AigPriceListListPageComponent extends AigCommerceGenericComponent {
 
 		this.searchPriceList(0);
 	}
-	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
+	//			---- !price list TABLE AND SEARCH SECTION ----
 
-	newPriceList(catalogDTO: CatalogDTO): void {
-		this.dialog.open(AigPriceListNewUpdateDialogComponent, { data: { catalog: catalogDTO } });
+	newPriceList(): void {
+		this.dialog.open(AigPriceListNewUpdateDialogComponent, { data: {}});
 		
+	}
+
+	async publish() {
+		await this.priceListResourceService.publishUsingGET11(this.priceListFilters).toPromise;
 	}
 
 }

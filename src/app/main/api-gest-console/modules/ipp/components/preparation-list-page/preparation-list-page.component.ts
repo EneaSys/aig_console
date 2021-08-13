@@ -33,97 +33,102 @@ export class AigPreparationListPageComponent extends GenericComponent {
 	}
 
 
-//			---- TABLE AND SEARCH SECTION ----
+	//			---- TABLE AND SEARCH SECTION ----
 
-preparationDTOs: PreparationDTO[];
-preparationDC: string[];
-preparationError: any;
+	preparationDTOs: PreparationDTO[];
+	preparationDC: string[];
+	preparationError: any;
 
-preparationSearchFormGroup: FormGroup;
-preparationFilters: any;
+	preparationSearchFormGroup: FormGroup;
+	preparationFilters: any;
 
-preparationPaginationSize: number;
-preparationLength: number;
-	
-private initPreparationSearch() {
-	this.preparationPaginationSize = 10;	
+	preparationPaginationSize: number;
+	preparationLength: number;
+		
+	private initPreparationSearch() {
+		this.preparationPaginationSize = 10;	
 
-	this.preparationSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			companyPreparatorEopooCode: [''],
-			note: [''],
-			partecipationId: [''],
-			partecipationProposerEopooCode: [''],
-			statusDescription: [''],
-			statusId: [''],
-		});
+		this.preparationSearchFormGroup = this._formBuilder.group({
+				id: [''],
+				companyPreparatorEopooCode: [''],
+				note: [''],
+				partecipationId: [''],
+				partecipationProposerEopooCode: [''],
+				statusDescription: [''],
+				statusId: [''],
+			});
 
-		this.preparationDC = ["id","companyPreparatorEopoo","note","partecipationId","partecipationProposerEopoo","statusDescription","buttons"];
+			this.preparationDC = ["id","companyPreparatorEopoo","note","partecipationId","partecipationProposerEopoo","statusDescription","buttons"];
+		}
+
+	private clearFiltersPreparation() {
+		this.preparationFilters = {
+			idEquals: null,
+		}
 	}
 
-private clearFiltersPreparation() {
-	this.preparationFilters = {
-		idEquals: null,
+	private async searchPreparation(page: number) {
+		this.preparationDTOs = null;
+
+		this.preparationFilters.page = page;
+		this.preparationFilters.size = this.preparationPaginationSize;
+
+		try {
+			this.preparationLength = await this.preparationResourceService.countPreparationsUsingGET(this.preparationFilters).toPromise();  
+
+			if(this.preparationLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+				this.preparationDTOs = [];
+				return;
+			}
+
+			this.preparationDTOs =  await this.preparationResourceService.getAllPreparationsUsingGET(this.preparationFilters).toPromise();
+		} catch (e) {
+			console.log(e);
+			this.preparationError = e;
+		}
 	}
-}
 
-private async searchPreparation(page: number) {
-	this.preparationDTOs = null;
+	showAllPreparation() {
+		this.resetFiltersPreparation();	
+	}
 
-	this.preparationFilters.page = page;
-	this.preparationFilters.size = this.preparationPaginationSize;
+	resetFiltersPreparation() {
+		this.preparationSearchFormGroup.reset();
+		this.clearFiltersPreparation();
+		this.searchPreparation(0);
+	}
 
-	try {
-		this.preparationLength = await this.preparationResourceService.countPreparationsUsingGET(this.preparationFilters).toPromise();  
+	preparationPaginationEvent(pageEvent: PageEvent) {
+		this.preparationPaginationSize = pageEvent.pageSize;
+		this.searchPreparation(pageEvent.pageIndex);
+	}
 
-		if(this.preparationLength == 0) {
-			this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-			this.preparationDTOs = [];
+	preparationSearchWithFilter() {
+		let searchedId = this.preparationSearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersPreparation();
+			this.preparationSearchFormGroup.reset();
+			this.preparationFilters.idEquals = searchedId;
+			this.searchPreparation(0);
 			return;
 		}
 
-		this.preparationDTOs =  await this.preparationResourceService.getAllPreparationsUsingGET(this.preparationFilters).toPromise();
-	} catch (e) {
-		console.log(e);
-		this.preparationError = e;
-	}
-}
+		this.preparationFilters.idEquals = null;
 
-showAllPreparation() {
-	this.resetFiltersPreparation();	
-}
-
-resetFiltersPreparation() {
-	this.preparationSearchFormGroup.reset();
-	this.clearFiltersPreparation();
-	this.searchPreparation(0);
-}
-
-preparationPaginationEvent(pageEvent: PageEvent) {
-	this.preparationPaginationSize = pageEvent.pageSize;
-	this.searchPreparation(pageEvent.pageIndex);
-}
-
-preparationSearchWithFilter() {
-	let searchedId = this.preparationSearchFormGroup.controls.id.value;
-
-	if(searchedId != null) {
-		this.clearFiltersPreparation();
-		this.preparationSearchFormGroup.reset();
-		this.preparationFilters.idEquals = searchedId;
 		this.searchPreparation(0);
-		return;
 	}
-
-	this.preparationFilters.idEquals = null;
-
-	this.searchPreparation(0);
-}
 
 	//			---- !TABLE AND SEARCH SECTION ----
 
-newPreparation(): void {
-    this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: { preparation: {} } });
-    }
+	newPreparation(): void {
+		this.dialog.open(AigPreparationNewUpdateDialogComponent, { data: {} });
+	}
+
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 }

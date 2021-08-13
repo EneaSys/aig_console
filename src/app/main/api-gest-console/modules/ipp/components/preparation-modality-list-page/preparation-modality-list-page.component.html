@@ -27,6 +27,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                 <!--<div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                -->
                             </form>
                         </div>
                     </div>
@@ -55,7 +60,7 @@
                 [error]="preparationModalityError"></aig-preparation-modality-list-table>
 
             <mat-paginator #paginator [length]="preparationModalityLength" [pageIndex]="this.preparationModalityFilters.page"
-                [pageSize]="this.preparationPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                [pageSize]="this.preparationModalityPaginationSize" [pageSizeOptions]="[10, 20, 50]"
                 (page)="preparationModalityPaginationEvent($event)">
             </mat-paginator>
 

@@ -20,6 +20,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                  <!--<div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                -->
                             </form>
                         </div>
                     </div>
@@ -46,7 +51,7 @@
 
             <aig-field-reference-list-table [displayColumns]="fieldReferenceDC" [dataSource]="fieldReferenceDTOs" [error]="fieldReferenceError"></aig-field-reference-list-table>
 
-            <mat-paginator #paginator [length]="fieldReferenceLength" [pageSize]="this.fieldReferencePaginationSize" [pageIndex]="this.fieldReferenceFilters.page" [pageSizeOptions]="[10, 20, 50]" (page)="objectReferencePaginationEvent($event)">
+            <mat-paginator #paginator [length]="fieldReferenceLength" [pageSize]="this.fieldReferencePaginationSize" [pageIndex]="this.fieldReferenceFilters.page" [pageSizeOptions]="[10, 20, 50]" (page)="fieldReferencePaginationEvent($event)">
             </mat-paginator>
 
             <button mat-fab class="accent" id="add-field-reference-button" (click)="newFieldReference()" aria-label="add field-reference">

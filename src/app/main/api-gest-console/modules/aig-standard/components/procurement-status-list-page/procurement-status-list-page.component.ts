@@ -120,7 +120,13 @@ export class AigProcurementStatusListPageComponent extends GenericComponent {
 	}
 
     newProcurementStatus(){
-        this.dialog.open(AigProcurementStatusNewUpdateDialogComponent, {data: { procurementStatus: {} } });
+        this.dialog.open(AigProcurementStatusNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !procurement Status TABLE AND SEARCH SECTION ----
 }

@@ -131,7 +131,11 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
   
   
   newPurchaseItem(): void {
-    this.dialog.open(AigPurchaseItemNewUpdateDialogComponent, { data: { purchaseItem: {} } });
+    this.dialog.open(AigPurchaseItemNewUpdateDialogComponent, { data: {} });
   }
+
+  async publish() {
+		await this.purchaseItemResourceService.publishUsingGET13(this.purchaseItemFilters).toPromise;
+	}
   
 }

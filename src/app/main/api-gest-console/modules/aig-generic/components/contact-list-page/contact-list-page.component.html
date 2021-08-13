@@ -37,6 +37,10 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -67,6 +71,8 @@
         <button mat-fab class="accent" id="add-contact-button" (click)="newContact()" aria-label="add contact">
             <mat-icon>add</mat-icon>
         </button>
+
+
         <!-- / CONTENT -->
     </div>
     <!-- / CENTER -->

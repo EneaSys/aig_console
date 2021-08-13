@@ -140,6 +140,10 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
 	//			---- !CATALOG ITEM TABLE AND SEARCH SECTION ----
 
 	newCatalogItem(): void {
-        this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { catalogItem: {} } });
+        this.dialog.open(AigCatalogItemNewUpdateDialogComponent, { data: { } });
     }
+
+	async publish() {
+		await this.catalogItemResourceService.publishUsingGET1(this.catalogItemFilters).toPromise;
+	}
 }

@@ -1,5 +1,5 @@
 <div class="h1 m-8 ml-16">{{ contact.value }}</div>
 <div class="h4 ml-16">Id: <b>{{ contact.id }}</b></div>
 <div class="h4 ml-16">Contact Type Code: <b>{{ contact.contactTypeCode }}</b></div>
-<div class="h4 ml-16">Referent Last Name: <b>{{ contactDTO.referentLastname }}</b></div>
-<div class="h4 ml-16">Codice fiscale: <b>{{ contact.eopooTaxNumber }}</b></div>
+<div class="h4 ml-16">Referent: <b>{{ contact.referent.firstname }} {{contact.referent.lastname}}</b></div>
+<div class="h4 ml-16">Codice fiscale: <b>{{ contact.eopoo.taxNumber}}</b></div>

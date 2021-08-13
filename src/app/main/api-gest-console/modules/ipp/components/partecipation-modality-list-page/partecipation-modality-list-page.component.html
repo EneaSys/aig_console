@@ -21,6 +21,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                 <!--<div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                -->
                             </form>
                         </div>
                     </div>
@@ -49,7 +54,7 @@
                 [error]="partecipationModalityError"></aig-partecipation-modality-list-table>
 
             <mat-paginator #paginator [length]="partecipationModalityLength" [pageIndex]="this.partecipationModalityFilters.page"
-                [pageSize]="this.preparationPaginationSize" [pageSizeOptions]="[10, 20, 50]"
+                [pageSize]="this.partecipationModalityPaginationSize" [pageSizeOptions]="[10, 20, 50]"
                 (page)="partecipationModalityPaginationEvent($event)">
             </mat-paginator>
 
