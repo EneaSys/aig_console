@@ -15,12 +15,12 @@
     <mat-table #table [dataSource]="dataSource">
         
         <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Descrizione </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="dossierCode">
-            <mat-header-cell *matHeaderCellDef> Dossier Code </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Codice Dossier</mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.dossierCode }} </mat-cell>
         </ng-container>
 
@@ -30,17 +30,17 @@
         </ng-container>
 
         <ng-container matColumnDef="preparation">
-            <mat-header-cell *matHeaderCellDef> Preparation </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Preparazione </mat-header-cell>
             <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurement">
-            <mat-header-cell *matHeaderCellDef> Procurement </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Gara d'appalto </mat-header-cell>
             <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="procurementLot">
-            <mat-header-cell *matHeaderCellDef> Procurement lot</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Lotto di gara </mat-header-cell>
             <mat-cell *matCellDef="let e"> campo vuoto </mat-cell>
         </ng-container>
 
@@ -59,15 +59,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/dossier/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>Dettagli</span>
                     </button>
                     <button mat-menu-item (click)="editDossier(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>Modifica</span>
                       </button>
                     <button mat-menu-item (click)="deleteDossier(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>Cancella</span>
                       </button>
                   </mat-menu>
             </mat-cell>

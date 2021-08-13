@@ -2,19 +2,19 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline">
-            <mat-label>Dossier Description</mat-label>
+            <mat-label>Descrizione</mat-label>
             <input formControlName="description" matInput required>
         </mat-form-field>
         
         <mat-form-field appearance="outline">
-            <mat-label>Dossier Code</mat-label>
+            <mat-label> Codice Dossier</mat-label>
             <input formControlName="dossierCode" matInput >
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" >
-            <mat-label>Partecipation</mat-label>
+            <mat-label>Partecipazione</mat-label>
             <input formControlName="partecipation" matInput [matAutocomplete]="partecipationAutocomplete">
             <mat-autocomplete #partecipationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationDisplayFn">
                 <mat-option *ngFor="let partecipation of filteredPartecipation | async" [value]="partecipation">{{ partecipation.id}}</mat-option>
@@ -22,7 +22,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>Preparation</mat-label>
+            <mat-label>Preparazione</mat-label>
             <input formControlName="preparation" matInput [matAutocomplete]="preparationAutocomplete">
             <mat-autocomplete #preparationAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationDisplayFn">
                 <mat-option *ngFor="let preparation of filteredPreparation | async" [value]="preparation">{{ preparation.id}}</mat-option>
@@ -32,7 +32,7 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" >
-            <mat-label>Procurement</mat-label>
+            <mat-label>Gara d'appalto</mat-label>
             <input formControlName="procurement" matInput [matAutocomplete]="procurementAutocomplete">
             <mat-autocomplete #procurementAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementDisplayFn">
                 <mat-option *ngFor="let procurement of filteredProcurement | async" [value]="procurement">{{ procurement.description}}</mat-option>
@@ -40,7 +40,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" >
-            <mat-label>Procurement Lot </mat-label>
+            <mat-label>Lotto di gara</mat-label>
             <input formControlName="procurementLot" matInput [matAutocomplete]="procurementLotAutocomplete">
             <mat-autocomplete #procurementLotAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.procurementLotDisplayFn">
                 <mat-option *ngFor="let procurementLot of filteredProcurementLot | async" [value]="procurementLot">{{ procurementLot.description}}</mat-option>

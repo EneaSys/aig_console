@@ -116,6 +116,10 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 
 		this.awardCriterionFilters.nameContains = this.awardCriterionSearchFormGroup.controls.name.value;
 
+		
+
+
+
 		this.searchAwardCriterion(0);
 	}
 

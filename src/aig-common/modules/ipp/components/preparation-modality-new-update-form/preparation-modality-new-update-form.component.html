@@ -1,7 +1,7 @@
 <form *ngIf="step.form" [formGroup]="preparationModalityNewUpdateForm" (ngSubmit)="submit()">
 
     <mat-form-field>
-        <mat-label>Description</mat-label>
+        <mat-label>Descrizione</mat-label>
         <input formControlName="description" matInput required>
     </mat-form-field>
 
@@ -17,5 +17,5 @@
 
 <div *ngIf="step.complete">
     <pre>{{ preparationModalityNewUpdateForm.value | json }}</pre>
-    <button *ngIf="!preparationModalityNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPreparationModality()">Create New</button>
+    <button *ngIf="!preparationModalityNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newPreparationModality()">Crea Nuovo</button>
 </div>
