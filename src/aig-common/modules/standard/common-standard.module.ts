@@ -50,7 +50,7 @@ import { CategoryResolver } from "./resolver/category.resolver";
 import { AigStandardAutocompleteFilterService } from './services/autocomplete-filter.service';
 import { ItFiscalCodeService } from './services/itFiscalCode.service';
 import { ContextModuleResolver } from './resolver/context-module.resolver';
-import { MatMenuModule } from '@angular/material';
+import { MatDatepickerModule, MatMenuModule } from '@angular/material';
 import { AigEntityDetailCityComponent } from './components/entity-detail-city/entity-detail-city.component';
 import { AigEntityDetailSocialComponent } from './components/entity-detail-social/entity-detail-social.component';
 import { AigEntityDetailCpvComponent } from './components/entity-detail-cpv/entity-detail-cpv.component';
@@ -223,6 +223,7 @@ import { AigSocialActionDetailBoxComponent } from './components/social-action-de
         MatAutocompleteModule,
         MatSelectModule,
         MatMenuModule,
+        MatDatepickerModule,
         
     ],
     exports: [

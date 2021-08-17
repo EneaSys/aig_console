@@ -46,7 +46,8 @@ export class AigCityNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate: [''],
         })
         if (this.city != null && this.city.id != null) {
             this.cityNewUpdateForm.patchValue(this.city);
