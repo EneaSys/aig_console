@@ -21,7 +21,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
@@ -37,7 +37,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 0) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
@@ -53,7 +53,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
@@ -69,7 +69,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
@@ -86,7 +86,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
@@ -102,7 +102,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 0) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
@@ -119,7 +119,7 @@ export class AigManagementAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 1) {
+                if (value && value.length > 0) {
                     let filter = {
                         nameContains: value
                     };
