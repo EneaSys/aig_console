@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.city == null" class="title dialog-title">Update City </span>
-            <span *ngIf="!data.city != null" class="title dialog-title">Create New City </span>
+            <span *ngIf="data.city == null" class="title dialog-title">Create City </span>
+            <span *ngIf="data.city != null" class="title dialog-title">Update New City </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>

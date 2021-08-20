@@ -14,38 +14,38 @@
 
             <ng-template pTemplate="header">
                 <tr>
-					<th style="width:50px" ></th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="proposerEopooCode">proposerEopooCode</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="partecipationTypeCode">partecipationTypeCode</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="siteInspection">siteInspection</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="offering">offering</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="note">note</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="creationDateTime">creationDateTime</th>
+					<th *ngSwitchCase="'_ck'" style="width:50px" ></th>
+                    <th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn="proposerEopooCode">azienda proponente</th>
+                    <th *ngSwitchCase="'partecipationTypeCode'" style="width:auto" pResizableColumn pSortableColumn="partecipationTypeCode">tipo di partecipazione</th>
+                    <th *ngSwitchCase="'siteInspection'" style="width:auto" pResizableColumn pSortableColumn="siteInspection">sopralluogo</th>
+                    <th *ngSwitchCase="'offering'"  style="width:auto" pResizableColumn pSortableColumn="offering">offerta</th>
+                    <th *ngSwitchCase="'note'" style="width:auto" pResizableColumn pSortableColumn="note">note</th>
+                    <th *ngSwitchCase="'creationDateTime'" style="width:auto" pResizableColumn pSortableColumn="creationDateTime">data inserimento</th>
 
 
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> cig</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> offerExpiryDate</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> baseAmount</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> candidacy</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> securityAmount</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> istatCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> nutsCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> cpvCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> typeCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> categoryCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> awardCriterionCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> statusCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> code</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> ref</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> contractorEopooCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> sectorCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> procedureCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> modalityCode</th>
-			<th style="width:auto" pResizableColumn pSortableColumn= ""> statusCode</th>
+			<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
+			<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
+			<th *ngSwitchCase="'cig'" style="width:auto" pResizableColumn pSortableColumn= ""> cig</th>
+			<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
+			<th *ngSwitchCase="'offerExpiryDate'"style="width:auto" pResizableColumn pSortableColumn= ""> data di scadenza offerta</th>
+			<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> importo di base</th>
+			<th *ngSwitchCase="'candidacy'" style="width:auto" pResizableColumn pSortableColumn= ""> candidatura</th>
+			<th *ngSwitchCase="'securityAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> importo di sicurezza</th>
+			<th *ngSwitchCase="'istatCode'" style="width:auto" pResizableColumn pSortableColumn= ""> codice istat</th>
+			<th *ngSwitchCase="'nutsCode'" style="width:auto" pResizableColumn pSortableColumn= ""> codice nuts</th>
+			<th *ngSwitchCase="'cpvCode'"style="width:auto" pResizableColumn pSortableColumn= ""> cpv</th>
+			<th *ngSwitchCase="'typeCode'"style="width:auto" pResizableColumn pSortableColumn= ""> tipo</th>
+			<th *ngSwitchCase="'categoryCode'" style="width:auto" pResizableColumn pSortableColumn= ""> categoria</th>
+			<th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn= ""> criterio di aggiudicazione</th>
+			<th *ngSwitchCase="'statusCode'"style="width:auto" pResizableColumn pSortableColumn= ""> stato</th>
+			<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
+			<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn= ""> codice</th>
+			<th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn= ""> ref</th>
+			<th *ngSwitchCase="'contractorEopooCode'" style="width:auto" pResizableColumn pSortableColumn= ""> stazione appaltante</th>
+			<th *ngSwitchCase="'sectorCode'" style="width:auto" pResizableColumn pSortableColumn= ""> settore</th>
+			<th *ngSwitchCase="'procedureCode'" style="width:auto" pResizableColumn pSortableColumn= ""> procedura</th>
+			<th *ngSwitchCase="'modalityCode'" style="width:auto" pResizableColumn pSortableColumn= ""> modalità</th>
+			<th *ngSwitchCase="'statusCode'" style="width:auto" pResizableColumn pSortableColumn= ""> stato</th>
 
             <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
 
