@@ -30,8 +30,8 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
         private partecipationResourceService: PartecipationResourceService,
-        aigGenericComponentService: AigGenericComponentService,
-    ) { super(aigGenericComponentService) }
+		public gcs: AigGenericComponentService,
+    ) { super(gcs) }
 
 	filteredEopoo: Observable<EopooDTO[]>;
 	filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
@@ -55,6 +55,41 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 	reloadPage() {
 		this.showAllPartecipation();
 	}
+
+	newTableColumns: string[] = ['_ck', 'proposerEopooCode', 'partecipationTypeCode', 'siteInspection', 'offering', 'note', 'creationDateTime'];
+	newTableButtons: any[] = [
+		{
+			name: "Details",
+			severity: "primary",
+			class: "",
+			fn: (e: any) => {
+				this.gcs.router.navigateByUrl("/ipp/partecipation/detail/" + e.id);
+			}
+		},{
+			name: "Edit",
+			severity: "secondary",
+			class: "ml-4",
+			fn: (e: any) => {
+				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {partecipation: e } });
+			}
+		},{
+			name: "Delete",
+			severity: "danger",
+			class: "mt-4",
+			fn: async (e: any) => {
+				this.gcs.fuseProgressBarService.show();
+				try {
+					await this.partecipationResourceService.deletePartecipationUsingDELETE(e.id).toPromise();
+					this._snackBar.open(`partecipation: '${e.id}' deleted.`, null, { duration: 2000, });
+
+					this.gcs.eventService.reloadCurrentPage();
+				} catch (e) {
+					this._snackBar.open(`Error during deleting partecipation: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+				}
+				this.gcs.fuseProgressBarService.hide();
+			}
+		},
+	]
 
 
 //			---- TABLE AND SEARCH SECTION ----
