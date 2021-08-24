@@ -35,15 +35,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/insurance-policy-status/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>Dettagli</span>
                     </button>
                     <button mat-menu-item (click)="editInsurancePolicyStatus(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>Modifica</span>
                       </button>
                     <button mat-menu-item (click)="deleteInsurancePolicyStatus(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>Cancella</span>
                       </button>
                   </mat-menu>
             </mat-cell>

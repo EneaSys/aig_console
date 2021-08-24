@@ -122,7 +122,13 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 	}
 
     newIppProcedure(){
-        this.dialog.open(AigIppProcedureNewUpdateModalComponent, {data: { ippProcedure: {} } });
+        this.dialog.open(AigIppProcedureNewUpdateModalComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !IPP PROCEDURE TABLE AND SEARCH SECTION ----
 }

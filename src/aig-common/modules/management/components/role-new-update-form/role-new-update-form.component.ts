@@ -64,7 +64,7 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
 
         let role= this.roleNewUpdateForm.value;
 
-        role.applicationModule = this.roleNewUpdateForm.value.applicationModule.name;
+        role.moduleId = this.roleNewUpdateForm.value.applicationModule.id;
         
         
         try {

@@ -20,6 +20,16 @@
         </div>
     </div>
 
+    <div  fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Application Module</mat-label>
+            <input type="text" formControlName="applicationModule" matInput required [matAutocomplete]="applicationModuleAutocomplete">
+            <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.applicationModuleDisplayFn">
+                <mat-option *ngFor="let applicationModule of filteredApplicationModules | async" [value]="applicationModule">{{ applicationModule.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
 
 
     <div fxLayout="row" fxLayoutAlign="end top">

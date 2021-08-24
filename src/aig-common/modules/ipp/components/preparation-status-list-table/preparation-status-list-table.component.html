@@ -21,7 +21,7 @@
         </ng-container>
 
         <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Descrizione </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.description }} </mat-cell>
         </ng-container>
 
@@ -34,15 +34,15 @@
                   <mat-menu #menu="matMenu">
                     <button mat-menu-item [routerLink]="'/ipp/preparation-status/detail/' + e.id">
                       <mat-icon>details</mat-icon>
-                      <span>Details</span>
+                      <span>Dettagli</span>
                     </button>
                     <button mat-menu-item (click)="editPreparationStatus(e)">
                         <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
+                        <span>Modifica</span>
                       </button>
                     <button mat-menu-item (click)="deletePreparationStatus(e.id)">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>Cancella</span>
                       </button>
                   </mat-menu>
             </mat-cell>

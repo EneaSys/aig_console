@@ -114,8 +114,12 @@ export class AigProducerListPageComponent extends AigCommerceGenericComponent {
 	}
 
 	newProducer(): void {
-		this.dialog.open(AigProducerNewUpdateModalComponent, { data: { producer: {} } });
-   }
+		this.dialog.open(AigProducerNewUpdateModalComponent, { data: {} });
+   	}
+
+	async publish() {
+		await this.producerResourceService.publishUsingGET12(this.producerFilters).toPromise;
+	}
 	
 	//			---- !PRODUCER SECTION ----
 

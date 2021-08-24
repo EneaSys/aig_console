@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { CityResourceService, CpvResourceService, IlPpPartecipationTypeResourceService, IlPpProcurementLotAwardCriterionResourceService, IlPpProcurementLotCategoryResourceService, IlPpProcurementLotStatusResourceService, IlPpProcurementLotTypeResourceService, IlPpProcurementModalityResourceService, IlPpProcurementProcedureResourceService, IlPpProcurementSectorResourceService, IlPpProcurementStatusResourceService } from 'aig-standard';
+import * as moment from 'moment';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
@@ -26,14 +27,18 @@ export class AigStandardAutocompleteFilterService {
         private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
     ) {}
 
+	DATE_TIME_FORMAT = 'YYYY-MM-DD'; 
+
     filterCity(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.cityResourceService.getAllCitiesUsingGET(filter);
@@ -54,11 +59,12 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThanOrEqual: now.format()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.cpvResourceService.getAllCpvsUsingGET(filter);
 			})
@@ -79,9 +85,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ilPpProcurementStatusResourceService.getAllIlPpProcurementStatusesUsingGET(filter);
@@ -95,9 +103,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ilPpProcurementLotAwardCriterionResourceService.getAllIlPpProcurementLotAwardCriteriaUsingGET(filter);
@@ -109,9 +119,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ilPpProcurementLotStatusResourceService.getAllIlPpProcurementLotStatusesUsingGET(filter);
@@ -123,9 +135,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ilPpPartecipationTypeResourceService.getAllIlPpPartecipationTypesUsingGET(filter);
@@ -145,9 +159,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ippLotTypeResourceService.getAllIlPpProcurementLotTypesUsingGET(filter);
@@ -160,9 +176,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filter);
@@ -175,9 +193,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ippSectorResourceService.getAllIlPpProcurementSectorsUsingGET(filter);
@@ -190,9 +210,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ippModalityResourceService.getAllIlPpProcurementModalitiesUsingGET(filter);
@@ -205,9 +227,11 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter = {};
+				let now = moment(new Date(), this.DATE_TIME_FORMAT);
                 if (value && value.length > 0) {
 					filter = {
-						nameContains: value
+						nameContains: value,
+						expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.ippProcedureResourceService.getAllIlPpProcurementProceduresUsingGET(filter);

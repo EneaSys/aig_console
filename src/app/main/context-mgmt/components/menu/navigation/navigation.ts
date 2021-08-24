@@ -548,6 +548,40 @@ export const contextNavigation: FuseNavigation[] = [
 					},
 				]
 			},
+			{
+				id       : 'Internal Page',
+				title    : 'pagine interne',
+				translate: 'Pagine interne',
+				type     : 'collapsable',
+				children : [
+					{
+						id       : 'address-list-page',
+						title    : 'Indirizzi',
+						type     : 'item',
+						icon     : 'account_circle',
+						url      : '/g5c/address',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'contact-list-page',
+						title    : 'Contatti',
+						type     : 'item',
+						icon     : 'account_circle',
+						url      : '/g5c/contact',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'referent-list-page',
+						title    : 'Referente',
+						type     : 'item',
+						icon     : 'account_circle',
+						url      : '/g5c/referent',
+						permission: ['e4y.account.get'],
+					},
+				]
+			}	
 		]
 	},
 ];

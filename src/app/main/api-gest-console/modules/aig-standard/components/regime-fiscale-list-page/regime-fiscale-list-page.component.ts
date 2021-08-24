@@ -129,9 +129,12 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newRegimeFiscale(): void {
-        this.dialog.open(AigRegimeFiscaleNewUpdateDialogComponent, { data: {regimeFiscale: {} } });
+        this.dialog.open(AigRegimeFiscaleNewUpdateDialogComponent, { data: {} });
     }
 
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 	
 }
 

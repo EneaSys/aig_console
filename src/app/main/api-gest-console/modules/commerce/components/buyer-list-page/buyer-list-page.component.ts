@@ -148,8 +148,11 @@ export class AigBuyerListPageComponent extends AigCommerceGenericComponent {
 
 	//			---- !BUYER TABLE AND SEARCH SECTION ----
 
-	newBuyer(sellerDTO: SellerDTO): void {
-		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: { seller: sellerDTO } });
+	newBuyer(): void {
+		this.dialog.open(AigBuyerNewUpdateModalComponent, { data: {} });
 	}
 
+	async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}
 }

@@ -67,7 +67,7 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
             permissionCode: this.permissionNewUpdateForm.value.permissionCode,
             id: this.permissionNewUpdateForm.value.id,
             moduleId: this.permissionNewUpdateForm.value.applicationModule.id,
-            moduleName: this.permissionNewUpdateForm.value.applicationModule.name,
+            
         }
         
         try {

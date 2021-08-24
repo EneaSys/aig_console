@@ -114,7 +114,11 @@ export class AigContactListPageComponent extends GenericComponent {
 	}
 
     newContact() {
-        this.dialog.open(AigContactNewUpdateDialogComponent, { data: { contact: {} } });
+        this.dialog.open(AigContactNewUpdateDialogComponent, { data: { } });
     }
+
+    async publish() {
+		await this.contactResourceService.publishUsingGET1(this.contactFilters).toPromise;
+	}
     //			---- !CONTACT TABLE AND SEARCH SECTION ----
 }

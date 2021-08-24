@@ -123,7 +123,11 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 	}
 
     newTipoRitenuta(){
-        this.dialog.open(AigTipoRitenutaNewUpdateDialogComponent, { data: { tipoRitenuta: {} } });
+        this.dialog.open(AigTipoRitenutaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !TABLE AND SEARCH SECTION ----
 }

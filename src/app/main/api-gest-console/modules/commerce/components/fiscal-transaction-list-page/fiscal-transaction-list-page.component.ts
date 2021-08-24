@@ -126,7 +126,11 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
 	//			---- !FISCAL TRANSACTION TABLE AND SEARCH SECTION ----
 
 	newFiscalTransaction(): void {
-        this.dialog.open(AigFiscalTransactionNewUpdateModalComponent, { data: { fiscalTransaction: {} } });
+        this.dialog.open(AigFiscalTransactionNewUpdateModalComponent, { data: { } });
     }
+
+	async publish() {
+		await this.fiscalTransactionResourceService.publishUsingGET4(this.fiscalTransactionFilters).toPromise;
+	}
 	
 }

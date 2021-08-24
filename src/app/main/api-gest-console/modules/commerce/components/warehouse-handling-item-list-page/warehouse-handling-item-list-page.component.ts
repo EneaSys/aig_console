@@ -162,7 +162,10 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
 	//			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
 
 	newWarehouseHandlingItem(): void {
-        this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { warehouseHandlingItem: {} } });
+        this.dialog.open(AigWarehouseHandlingItemNewUpdateModalComponent, { data: { } });
     }
-	
+
+	async publish() {
+		await this.warehouseHandlingItemResourceService.publishUsingGET18(this.warehouseHandlingItemFilters).toPromise;
+	}
 }

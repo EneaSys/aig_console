@@ -122,7 +122,13 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 	}
 
     newIppModality(){
-        this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: { ippModality: {} } });
+        this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !IPP MODALITY TABLE AND SEARCH SECTION ----
 }

@@ -122,7 +122,14 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 	}
 
     newIppLotCategory(){
-        this.dialog.open(AigLotCategoryNewUpdateModalComponent, {data: { ippLotCategory: {} } });
+        this.dialog.open(AigLotCategoryNewUpdateModalComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+
+
     //			---- !IPP LOT CATEGORY TABLE AND SEARCH SECTION ----
 }

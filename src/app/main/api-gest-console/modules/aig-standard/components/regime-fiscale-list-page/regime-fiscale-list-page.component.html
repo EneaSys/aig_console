@@ -31,6 +31,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                <!--<div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                -->
                             </form>
                         </div>
                     </div>
@@ -56,7 +61,7 @@
         <div class="content mb-48">
             <aig-regime-fiscale-list-table [displayColumns]="regimeFiscaleDC" [dataSource]="regimeFiscaleDTOs" [error]="regimeFiscaleError"></aig-regime-fiscale-list-table>
 
-            <mat-paginator #paginator [length]="regimeFiscaleLength" [pageIndex]="this.regimeFiscaleFilters.page" [pageSize]="this.regimeFiscaleLengthPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="regimeFiscalePaginationEvent($event)">
+            <mat-paginator #paginator [length]="regimeFiscaleLength" [pageIndex]="this.regimeFiscaleFilters.page" [pageSize]="this.regimeFiscalePaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="regimeFiscalePaginationEvent($event)">
             </mat-paginator>
 
             <button mat-fab class="accent" id="add-regime-fiscale-button" (click)="newRegimeFiscale()" aria-label="add regimeFiscale">

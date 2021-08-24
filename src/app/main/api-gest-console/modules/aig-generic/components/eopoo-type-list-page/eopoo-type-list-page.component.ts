@@ -116,7 +116,11 @@ export class AigEopooTypeListPageComponent extends GenericComponent {
 	}
 
     newEopooType() {
-        this.dialog.open(AigEopooTypeNewUpdateModalComponent, { data: { eopooType: {} } });
+        this.dialog.open(AigEopooTypeNewUpdateModalComponent, { data: { } });
     }
+
+    async publish() {
+		await this.eopooTypeResourceService.publishUsingGET3(this.eopooTypeFilters).toPromise;
+	}
     //			---- !EOPOO TYPE TABLE AND SEARCH SECTION ----
 }

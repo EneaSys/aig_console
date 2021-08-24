@@ -125,7 +125,11 @@ export class AigEsigibilitaIvaListPageComponent extends GenericComponent {
 	}
 
     newEsigibilitaIva(){
-        this.dialog.open(AigEsigibilitaIvaNewUpdateDialogComponent, { data: { esigibilitaIva: {} } });
+        this.dialog.open(AigEsigibilitaIvaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !TABLE AND SEARCH SECTION ----
 }

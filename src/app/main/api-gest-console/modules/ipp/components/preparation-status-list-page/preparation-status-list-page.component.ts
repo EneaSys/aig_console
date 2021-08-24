@@ -34,100 +34,105 @@ export class AigPreparationStatusListPageComponent extends GenericComponent {
 	}
 
 
-//			---- TABLE AND SEARCH SECTION ----
+	//			---- TABLE AND SEARCH SECTION ----
 
-preparationStatusSearchFormGroup: FormGroup;
-preparationStatusPaginationSize: number;
-preparationStatusFilters: any;
+	preparationStatusSearchFormGroup: FormGroup;
+	preparationStatusPaginationSize: number;
+	preparationStatusFilters: any;
 
-preparationStatusLength: number;
-preparationStatusDTOs: PreparationStatusDTO[];
-preparationStatusError: any;
+	preparationStatusLength: number;
+	preparationStatusDTOs: PreparationStatusDTO[];
+	preparationStatusError: any;
 
-preparationStatusDC: string[];
+	preparationStatusDC: string[];
 
-	
-private initPreparationStatusSearch() {
-	this.preparationStatusDC = ["id","description","buttons"];
-
-	this.preparationStatusPaginationSize = 10;
 		
+	private initPreparationStatusSearch() {
+		this.preparationStatusDC = ["id","description","buttons"];
 
-	this.preparationStatusSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			description: [''],
-		});
-	}
+		this.preparationStatusPaginationSize = 10;
+			
 
-private clearFiltersPreparationStatus() {
-	this.preparationStatusFilters = {
-		idEquals: null,
-	}
-}
-
-private async searchPreparationStatus(page: number) {
-	this.preparationStatusDTOs = null;
-
-	this.preparationStatusFilters.page = page;
-	this.preparationStatusFilters.size = this.preparationStatusPaginationSize;
-
-	try {
-		this.preparationStatusLength = await this.preparationStatusResourceService.countPreparationStatusesUsingGET({}).toPromise();  
-
-		if(this.preparationStatusLength == 0) {
-			this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
-			this.preparationStatusDTOs = [];
-			return;
+		this.preparationStatusSearchFormGroup = this._formBuilder.group({
+				id: [''],
+				description: [''],
+			});
 		}
 
-		this.preparationStatusDTOs =  await this.preparationStatusResourceService.getAllPreparationStatusesUsingGET({}).toPromise();
-	} catch (e) {
-		console.log(e);
-		this.preparationStatusError = e;
+	private clearFiltersPreparationStatus() {
+		this.preparationStatusFilters = {
+			idEquals: null,
+		}
 	}
-}
 
-	
+	private async searchPreparationStatus(page: number) {
+		this.preparationStatusDTOs = null;
 
-showAllPreparationStatus() {
-	this.resetFiltersPreparationStatus();
+		this.preparationStatusFilters.page = page;
+		this.preparationStatusFilters.size = this.preparationStatusPaginationSize;
+
+		try {
+			this.preparationStatusLength = await this.preparationStatusResourceService.countPreparationStatusesUsingGET({}).toPromise();  
+
+			if(this.preparationStatusLength == 0) {
+				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
+				this.preparationStatusDTOs = [];
+				return;
+			}
+
+			this.preparationStatusDTOs =  await this.preparationStatusResourceService.getAllPreparationStatusesUsingGET({}).toPromise();
+		} catch (e) {
+			console.log(e);
+			this.preparationStatusError = e;
+		}
+	}
+
 		
-}
 
-resetFiltersPreparationStatus() {
-	this.preparationStatusSearchFormGroup.reset();
-	this.clearFiltersPreparationStatus();
-	this.searchPreparationStatus(0);
-
-}
-
-preparationStatusPaginationEvent(pageEvent: PageEvent) {
-	this.preparationStatusPaginationSize = pageEvent.pageSize;
-	this.searchPreparationStatus(pageEvent.pageIndex);
-}
-
-preparationStatusSearchWithFilter() {
-	let searchedId = this.preparationStatusSearchFormGroup.controls.id.value;
-
-	if(searchedId != null) {
-		this.clearFiltersPreparationStatus();
-		this.preparationStatusSearchFormGroup.reset();
-		this.preparationStatusFilters.idEquals = searchedId;
-		this.searchPreparationStatus(0);
-		return;
+	showAllPreparationStatus() {
+		this.resetFiltersPreparationStatus();
+			
 	}
-	this.preparationStatusFilters.idEquals = null;
 
-		/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+	resetFiltersPreparationStatus() {
+		this.preparationStatusSearchFormGroup.reset();
+		this.clearFiltersPreparationStatus();
+		this.searchPreparationStatus(0);
 
-	this.searchPreparationStatus(0);
-}
+	}
+
+	preparationStatusPaginationEvent(pageEvent: PageEvent) {
+		this.preparationStatusPaginationSize = pageEvent.pageSize;
+		this.searchPreparationStatus(pageEvent.pageIndex);
+	}
+
+	preparationStatusSearchWithFilter() {
+		let searchedId = this.preparationStatusSearchFormGroup.controls.id.value;
+
+		if(searchedId != null) {
+			this.clearFiltersPreparationStatus();
+			this.preparationStatusSearchFormGroup.reset();
+			this.preparationStatusFilters.idEquals = searchedId;
+			this.searchPreparationStatus(0);
+			return;
+		}
+		this.preparationStatusFilters.idEquals = null;
+
+			/*this.dossierFilters.nameContains = this.dossierSearchFormGroup.controls.name.value;*/
+
+		this.searchPreparationStatus(0);
+	}
 
 	//			---- !TABLE AND SEARCH SECTION ----
 
-newPreparationStatus(): void {
-    this.dialog.open(AigPreparationStatusNewUpdateDialogComponent, { data: { preparationStatus: {} } });
-    }
+	newPreparationStatus(): void {
+		this.dialog.open(AigPreparationStatusNewUpdateDialogComponent, { data: {} });
+		}
+
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 	
 }

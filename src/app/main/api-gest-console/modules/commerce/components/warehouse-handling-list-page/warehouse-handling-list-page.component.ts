@@ -161,11 +161,15 @@ export class AigWarehouseHandlingListPageComponent extends GenericComponent {
 	}
 
 	newWarehouseHandling(warehouseDTO: WarehouseDTO ): void {
-		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: { warehouse: warehouseDTO } });
+		this.dialog.open(AigWarehouseHandlingNewUpdateModalComponent, { data: {} });
    }
 
    newWarehouseHandlingComplex(): void {
-		this.dialog.open(AigWarehouseHandlingComplexModalComponent, { data: { warehouseHandling: {} } });
+		this.dialog.open(AigWarehouseHandlingComplexModalComponent, { data: {} });
+	}
+
+	async publish() {
+		await this.warehouseHandlingResourceService.publishUsingGET19(this.warehouseHandlingFilters).toPromise;
 	}
 	
 	//			---- !WAREHOUSE HANDLING SECTION ----

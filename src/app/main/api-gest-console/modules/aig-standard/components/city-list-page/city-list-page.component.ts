@@ -123,7 +123,11 @@ export class AigCityListPageComponent extends GenericComponent {
 	//             ---- !FILTER CITY SECTION ----
 
     newCity(){
-        this.dialog.open(AigCityNewUpdateModalComponent, { data: { city: {} } });
+        this.dialog.open(AigCityNewUpdateModalComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

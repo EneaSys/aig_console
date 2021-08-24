@@ -121,7 +121,13 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 	}
 
     newTipoCessionePrestazione(): void {
-        this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: { tipoCessionePrestazione: {} } });
+        this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !TABLE AND SEARCH SECTION ----
 }
