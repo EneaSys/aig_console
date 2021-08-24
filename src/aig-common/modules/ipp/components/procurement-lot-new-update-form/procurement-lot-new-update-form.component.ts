@@ -92,6 +92,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 			candidacy: [false],
 			
 			cig: [null, Validators.required],
+			workLocationCode: [''],
 
             securityAmount: [''],
 			istatCode: [''],
@@ -109,7 +110,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['type'].valueChanges);
         this.filteredProcurementLotAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotNewUpdateForm.controls['awardCriterion'].valueChanges);
         this.filteredProcurementLotStatus = this.standardAutocompleteFilterService.filterIlPpProcurementLotStatus(this.procurementLotNewUpdateForm.controls['status'].valueChanges);
-		this.filteredLocality = this.standardAutocompleteFilterService.filterCity(this.procurementLotNewUpdateForm.controls['nustCode'].valueChanges);
+		this.filteredLocality = this.standardAutocompleteFilterService.filterCity(this.procurementLotNewUpdateForm.controls['workLocationCode'].valueChanges);
     }
 
 	candidacyChecked(isCandidacy: boolean) {
@@ -136,13 +137,14 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurementLot: ProcurementLotDTO = this.procurementLotNewUpdateForm.value;
+        let procurementLot: any = this.procurementLotNewUpdateForm.value;
         procurementLot.procurementId = this.procurementLotNewUpdateForm.value.procurement.id;
         
         procurementLot.typeCode = this.procurementLotNewUpdateForm.value.type.code;
         procurementLot.awardCriterionCode = this.procurementLotNewUpdateForm.value.awardCriterion.code;
         procurementLot.statusCode = this.procurementLotNewUpdateForm.value.status.code;
 
+		procurementLot.workLocationCode = (this.procurementLotNewUpdateForm.value.workLocationCode) ? this.procurementLotNewUpdateForm.value.workLocationCode.code : null;
 		procurementLot.cpvCode = (this.procurementLotNewUpdateForm.value.cpv) ? this.procurementLotNewUpdateForm.value.cpv.code : null;
         procurementLot.nutsCode = (this.procurementLotNewUpdateForm.value.nustCode) ? this.procurementLotNewUpdateForm.value.nustCode.code : null;
 
