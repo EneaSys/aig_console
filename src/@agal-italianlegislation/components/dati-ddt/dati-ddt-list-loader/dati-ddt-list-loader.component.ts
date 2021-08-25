@@ -14,7 +14,7 @@ import { DatiDdtResourceService } from 'aig-italianlegislation';
     templateUrl: './dati-ddt-list-loader.component.html',
     styleUrls: ['./dati-ddt-list-loader.component.scss']
 })
-export class AgalDatiDDTListLoaderComponent extends AgalGenericComponent implements OnInit {
+export class AgalDatiDdtListLoaderComponent extends AgalGenericComponent implements OnInit {
 	@Input()
     filters: any = {};
     
@@ -93,9 +93,9 @@ export class AgalDatiDDTListLoaderComponent extends AgalGenericComponent impleme
         filters.size = this.pageable.size;
         filters.sort = this.sort;
         
-        this.ds = await this.resourceService.getAllDatiDDTSUsingGET(filters).toPromise();
+        this.ds = await this.resourceService.getAllDatiDdtsUsingGET(filters).toPromise();
         
-        this.totalRecords = await this.resourceService.countDatiDDTSUsingGET(filters).toPromise();
+        this.totalRecords = await this.resourceService.countDatiDdtsUsingGET(filters).toPromise();
 
         this.loading = false;
     }
