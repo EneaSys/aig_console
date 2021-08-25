@@ -14,7 +14,7 @@ import { DatiSalResourceService } from 'aig-italianlegislation';
     templateUrl: './dati-sal-list-loader.component.html',
     styleUrls: ['./dati-sal-list-loader.component.scss']
 })
-export class AgalDatiSALListLoaderComponent extends AgalGenericComponent implements OnInit {
+export class AgalDatiSalListLoaderComponent extends AgalGenericComponent implements OnInit {
 	@Input()
     filters: any = {};
     
@@ -93,9 +93,9 @@ export class AgalDatiSALListLoaderComponent extends AgalGenericComponent impleme
         filters.size = this.pageable.size;
         filters.sort = this.sort;
         
-        this.ds = await this.resourceService.getAllDatiSALSUsingGET(filters).toPromise();
+        this.ds = await this.resourceService.getAllDatiSalsUsingGET(filters).toPromise();
         
-        this.totalRecords = await this.resourceService.countDatiSALSUsingGET(filters).toPromise();
+        this.totalRecords = await this.resourceService.countDatiSalsUsingGET(filters).toPromise();
 
         this.loading = false;
     }

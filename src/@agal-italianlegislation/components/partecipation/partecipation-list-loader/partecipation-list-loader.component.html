@@ -13,88 +13,78 @@
             [(selection)]="selectedElements" >
 
             <ng-template pTemplate="header">
-            	<tr>
-					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
-						<th *ngSwitchCase="'_ck'" style="width:50px" ></th>
-						<th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn="proposerEopooCode">azienda proponente</th>
-						<th *ngSwitchCase="'partecipationTypeCode'" style="width:auto" pResizableColumn pSortableColumn="partecipationTypeCode">tipo di partecipazione</th>
-						<th *ngSwitchCase="'siteInspection'" style="width:auto" pResizableColumn pSortableColumn="siteInspection">sopralluogo</th>
-						<th *ngSwitchCase="'offering'"  style="width:auto" pResizableColumn pSortableColumn="offering">offerta</th>
-						<th *ngSwitchCase="'note'" style="width:auto" pResizableColumn pSortableColumn="note">note</th>
-						<th *ngSwitchCase="'creationDateTime'" style="width:auto" pResizableColumn pSortableColumn="creationDateTime">data inserimento</th>
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="proposerEopooCode">proposerEopooCode</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="partecipationTypeCode">partecipationTypeCode</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="siteInspection">siteInspection</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="offering">offering</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="note">note</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="creationDateTime">creationDateTime</th>
 
 
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
-						<th *ngSwitchCase="'cig'" style="width:auto" pResizableColumn pSortableColumn= ""> cig</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
-						<th *ngSwitchCase="'offerExpiryDate'"style="width:auto" pResizableColumn pSortableColumn= ""> data di scadenza offerta</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> importo di base</th>
-						<th *ngSwitchCase="'candidacy'" style="width:auto" pResizableColumn pSortableColumn= ""> candidatura</th>
-						<th *ngSwitchCase="'securityAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> importo di sicurezza</th>
-						<th *ngSwitchCase="'istatCode'" style="width:auto" pResizableColumn pSortableColumn= ""> codice istat</th>
-						<th *ngSwitchCase="'nutsCode'" style="width:auto" pResizableColumn pSortableColumn= ""> codice nuts</th>
-						<th *ngSwitchCase="'cpvCode'"style="width:auto" pResizableColumn pSortableColumn= ""> cpv</th>
-						<th *ngSwitchCase="'typeCode'"style="width:auto" pResizableColumn pSortableColumn= ""> tipo</th>
-						<th *ngSwitchCase="'categoryCode'" style="width:auto" pResizableColumn pSortableColumn= ""> categoria</th>
-						<th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn= ""> criterio di aggiudicazione</th>
-						<th *ngSwitchCase="'statusCode'"style="width:auto" pResizableColumn pSortableColumn= ""> stato</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
-						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn= ""> codice</th>
-						<th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn= ""> ref</th>
-						<th *ngSwitchCase="'contractorEopooCode'" style="width:auto" pResizableColumn pSortableColumn= ""> stazione appaltante</th>
-						<th *ngSwitchCase="'sectorCode'" style="width:auto" pResizableColumn pSortableColumn= ""> settore</th>
-						<th *ngSwitchCase="'procedureCode'" style="width:auto" pResizableColumn pSortableColumn= ""> procedura</th>
-						<th *ngSwitchCase="'modalityCode'" style="width:auto" pResizableColumn pSortableColumn= ""> modalità</th>
-						<th *ngSwitchCase="'statusCode'" style="width:auto" pResizableColumn pSortableColumn= ""> stato</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> cig</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> offerExpiryDate</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> baseAmount</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> candidacy</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> securityAmount</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> istatCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> nutsCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> cpvCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> typeCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> awardCriterionCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> statusCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> description</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> code</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> ref</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> contractorEopooCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> sectorCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> procedureCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> modalityCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> statusCode</th>
 
-					</ng-container>
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
 
-            		<th *ngIf="buttons" style="width:auto" pResizableColumn pSortableColumn="" ></th>  
-			
-            	</tr>
+                </tr>
             </ng-template>
             <ng-template pTemplate="body" let-e>
                 <tr>
-					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
-						<td  *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
-						<td *ngSwitchCase="'proposerEopooCode'">{{ e.proposerEopooCode }}</td>
-						<td *ngSwitchCase="'proposerEopooCode'">{{ e.partecipationTypeCode }}</td>
-						<td *ngSwitchCase="'siteInspection'">{{ e.siteInspection }}</td>
-						<td *ngSwitchCase="'offering'">{{ e.offering }}</td>
-						<td *ngSwitchCase="'note'">{{ e.note }}</td>
-						<td *ngSwitchCase="'creationDateTime'">{{ e.creationDateTime }}</td>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.proposerEopooCode }}</td>
+					<td>{{ e.partecipationTypeCode }}</td>
+					<td>{{ e.siteInspection }}</td>
+					<td>{{ e.offering }}</td>
+					<td>{{ e.note }}</td>
+					<td>{{ e.creationDateTime }}</td>
 
-						<td *ngSwitchCase="'partecipationStatus.description'">{{ e.partecipationStatus.description }}</td>
-						<td *ngSwitchCase="'partecipationModality.description'">{{ e.partecipationModality.description }}</td>
-						<td *ngSwitchCase="'procurementLot.cig'">{{ e.procurementLot.cig }}</td>
-						<td *ngSwitchCase="'procurementLot.description'">{{ e.procurementLot.description }}</td>
-						<td *ngSwitchCase="'procurementLot.offerExpiryDate'">{{ e.procurementLot.offerExpiryDate }}</td>
-						<td *ngSwitchCase="'procurementLot.baseAmount'">{{ e.procurementLot.baseAmount }}</td>
-						<td *ngSwitchCase="'procurementLot.candidacy'">{{ e.procurementLot.candidacy }}</td>
-						<td *ngSwitchCase="'procurementLot.securityAmount'">{{ e.procurementLot.securityAmount }}</td>
-						<td *ngSwitchCase="'procurementLot.istatCode'">{{ e.procurementLot.istatCode }}</td>
-						<td *ngSwitchCase="'procurementLot.nutsCode'">{{ e.procurementLot.nutsCode }}</td>
-						<td *ngSwitchCase="'procurementLot.cpvCode'">{{ e.procurementLot.cpvCode }}</td>
-						<td *ngSwitchCase="'procurementLot.typeCode'">{{ e.procurementLot.typeCode }}</td>
-						<td *ngSwitchCase="'procurementLot.categoryCode'">{{ e.procurementLot.categoryCode }}</td>
-						<td *ngSwitchCase="'proposerEopooCode'">{{ e.procurementLot.awardCriterionCode }}</td>
-						<td *ngSwitchCase="'procurementLot.statusCode'">{{ e.procurementLot.statusCode }}</td>
-						<td *ngSwitchCase="'procurement.description'">{{ e.procurement.description }}</td>
-						<td *ngSwitchCase="'procurement.code'">{{ e.procurement.code }}</td>
-						<td *ngSwitchCase="'procurement.ref'">{{ e.procurement.ref }}</td>
-						<td *ngSwitchCase="'procurement.contractorEopooCode'">{{ e.procurement.contractorEopooCode }}</td>
-						<td *ngSwitchCase="'procurement.sectorCode'">{{ e.procurement.sectorCode }}</td>
-						<td *ngSwitchCase="'procurement.procedureCode'">{{ e.procurement.procedureCode }}</td>
-						<td *ngSwitchCase="'procurement.modalityCode'">{{ e.procurement.modalityCode }}</td>
-						<td *ngSwitchCase="'procurement.statusCode'">{{ e.procurement.statusCode }}</td>
-					</ng-container>
-						<td *ngIf="buttons">
-							<button pButton type="button" *ngFor="let b of buttons"
-							class="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.name }}" 
-							(click)="b.fn(e)" ></button>
-						</td>
-					
+			<td>{{ e.partecipationStatus.description }}</td>
+			<td>{{ e.partecipationModality.description }}</td>
+			<td>{{ e.procurementLot.cig }}</td>
+			<td>{{ e.procurementLot.description }}</td>
+			<td>{{ e.procurementLot.offerExpiryDate }}</td>
+			<td>{{ e.procurementLot.baseAmount }}</td>
+			<td>{{ e.procurementLot.candidacy }}</td>
+			<td>{{ e.procurementLot.securityAmount }}</td>
+			<td>{{ e.procurementLot.istatCode }}</td>
+			<td>{{ e.procurementLot.nutsCode }}</td>
+			<td>{{ e.procurementLot.cpvCode }}</td>
+			<td>{{ e.procurementLot.typeCode }}</td>
+			<td>{{ e.procurementLot.awardCriterionCode }}</td>
+			<td>{{ e.procurementLot.statusCode }}</td>
+			<td>{{ e.procurement.description }}</td>
+			<td>{{ e.procurement.code }}</td>
+			<td>{{ e.procurement.ref }}</td>
+			<td>{{ e.procurement.contractorEopooCode }}</td>
+			<td>{{ e.procurement.sectorCode }}</td>
+			<td>{{ e.procurement.procedureCode }}</td>
+			<td>{{ e.procurement.modalityCode }}</td>
+			<td>{{ e.procurement.statusCode }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
                 </tr>
             </ng-template>
         </p-table>

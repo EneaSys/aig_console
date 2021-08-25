@@ -21,7 +21,7 @@ export class AgalPartecipationListLoaderComponent extends AgalGenericComponent i
     @Input()
     view: AgalListDisplayModality;
     @Input()
-    dcs: string[];
+    dc: string[];
 
     @Input()
     buttons: any[];

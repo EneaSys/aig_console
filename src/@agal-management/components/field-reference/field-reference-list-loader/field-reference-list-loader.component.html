@@ -28,7 +28,17 @@
 
 			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
 			<th style="width:auto" pResizableColumn pSortableColumn= ""> isType</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> isTypeReg</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> isGroupReg</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> isStatusReg</th>
 			<th style="width:auto" pResizableColumn pSortableColumn= ""> tableName</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> isTypezed</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> haveStatus</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> haveGroup</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> code</th>
 
             <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
 
@@ -49,7 +59,17 @@
 
 			<td>{{ e.entityReference.name }}</td>
 			<td>{{ e.entityReference.isType }}</td>
+			<td>{{ e.entityReference.isTypeReg }}</td>
+			<td>{{ e.entityReference.isGroupReg }}</td>
+			<td>{{ e.entityReference.isStatusReg }}</td>
 			<td>{{ e.entityReference.tableName }}</td>
+			<td>{{ e.applicationModule.name }}</td>
+			<td>{{ e.objectReference.name }}</td>
+			<td>{{ e.objectReference.isTypezed }}</td>
+			<td>{{ e.objectReference.haveStatus }}</td>
+			<td>{{ e.objectReference.haveGroup }}</td>
+			<td>{{ e.typeCategoryReference.name }}</td>
+			<td>{{ e.typeCategoryReference.code }}</td>
             <td *ngIf="buttons">
                 <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
             </td>
