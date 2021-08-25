@@ -21,7 +21,7 @@ export class AgalPartecipationListLoaderComponent extends AgalGenericComponent i
     @Input()
     view: AgalListDisplayModality;
     @Input()
-    dc: string[];
+    dcs: string[];
 
     @Input()
     buttons: any[];
@@ -46,7 +46,6 @@ export class AgalPartecipationListLoaderComponent extends AgalGenericComponent i
     private sort: string[] = [];
 
     ngOnInit(): void {
-        
     }
 
     async changePagination(event: any) {
@@ -64,8 +63,6 @@ export class AgalPartecipationListLoaderComponent extends AgalGenericComponent i
     }
 
     lazyLoad(event: LazyLoadEvent) {
-
-		console.log(event);
 
 
         if(!this.isLoaded) {

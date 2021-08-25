@@ -40,7 +40,8 @@ export class AigProcurementStatusNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
         
         if (this.procurementStatus != null && this.procurementStatus.id != null) {

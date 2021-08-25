@@ -5,6 +5,7 @@
 		card
 	</p>
 	<p *ngSwitchDefault>
+		
 		<p-table styleClass="p-datatable-lg" 
 			[value]="ds" [loading]="loading" 
 			[lazy]="true" (onLazyLoad)="lazyLoad($event)" 
@@ -42,7 +43,7 @@
 						<th *ngSwitchCase="'procurement.statusCode'" style="width:auto" pResizableColumn pSortableColumn=""> stato</th>
 					</ng-container>
 
-					<th *ngIf="buttons" style="width:auto" pResizableColumn pSortableColumn="" ></th>
+					<th *ngIf="buttons" style="width:auto"></th>
 
 				</tr>
 			</ng-template>

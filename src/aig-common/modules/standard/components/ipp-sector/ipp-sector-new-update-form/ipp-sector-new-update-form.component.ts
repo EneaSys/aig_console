@@ -39,7 +39,8 @@ export class AigIppSectorNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
 
         if (this.ippSector != null && this.ippSector.id != null) {

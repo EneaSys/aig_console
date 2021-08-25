@@ -47,7 +47,8 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
             code: ['', [Validators.required]],
             name: ['', [Validators.required]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
         if (this.tipoScontoMaggiorazione!= null && this.tipoScontoMaggiorazione.id != null) {
             this.tipoScontoMaggiorazioneNewUpdateForm.patchValue(this.tipoScontoMaggiorazione);

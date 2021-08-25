@@ -41,7 +41,8 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
             code: ['', [Validators.required,]],
             name:['', [Validators.required,]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
         
         if (this.regimeFiscale != null && this.regimeFiscale.id != null) {

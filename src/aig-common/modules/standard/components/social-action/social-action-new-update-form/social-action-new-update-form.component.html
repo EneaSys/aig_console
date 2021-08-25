@@ -12,12 +12,20 @@
             <mat-label>Nome</mat-label>
             <input name="name" formControlName="name" matInput >
         </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+            <mat-label>Data Di scadenza</mat-label>
+            <input formControlName="expirationDate" matInput [matDatepicker]="picker" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Descrizione</mat-label>
-            <input name="description" formControlName="description" matInput required>
+            <input name="description" formControlName="description" matInput >
         </mat-form-field>
     </div>
 

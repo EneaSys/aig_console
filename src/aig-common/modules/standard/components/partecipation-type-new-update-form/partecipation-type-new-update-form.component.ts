@@ -42,7 +42,8 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
             code: ['', [Validators.required,]],
             name: ['', [Validators.required,]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
 
         if (this.partecipationType != null && this.partecipationType.id != null) {

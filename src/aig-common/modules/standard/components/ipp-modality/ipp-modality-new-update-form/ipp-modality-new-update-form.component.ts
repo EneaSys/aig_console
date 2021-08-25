@@ -41,7 +41,8 @@ export class AigIppModalityNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
 
         if (this.ippModality != null && this.ippModality.id != null) {

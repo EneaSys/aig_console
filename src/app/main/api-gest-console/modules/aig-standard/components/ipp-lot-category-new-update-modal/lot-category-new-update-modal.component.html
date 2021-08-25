@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.ippLotCategory" class="title dialog-title">Ipp Lot Category Form</span>
+            <span *ngIf="data.ippLotCategory == null" class="title dialog-title">Crea Categoria lotto di gara </span>
+            <span *ngIf="data.ippLotCategory != null" class="title dialog-title">Aggiorna Categoria lotto di gara </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>

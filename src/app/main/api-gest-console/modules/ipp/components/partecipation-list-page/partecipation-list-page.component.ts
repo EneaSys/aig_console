@@ -7,7 +7,8 @@ import { AigIppAutocompleteDisplayService } from "aig-common/modules/ipp/service
 import { AigIppAutocompleteService } from "aig-common/modules/ipp/service/autocomplete-filter.service";
 import { AigStandardAutocompleteFilterService } from "aig-common/modules/standard/services/autocomplete-filter.service";
 import { AigStandardAutocompleteDisplayService } from "aig-common/modules/standard/services/autocomplete-function.service";
-import { EopooDTO, IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO, ProcurementLotDTO } from "aig-italianlegislation";
+import { EopooDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO} from "aig-italianlegislation";
+import { IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from "aig-standard";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
 import { Observable } from "rxjs";
 import { AigIppGenericComponent } from "../ipp-generic-component";
@@ -137,7 +138,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
         this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['category'].valueChanges);
         this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.partecipationSearchFormGroup.controls['type'].valueChanges);
 		this.filteredPartecipationStatus = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationStatus'].valueChanges);
-		this.filteredPartecipationType = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
+		this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
 		
 
 		this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopoo","designedCompanies","expiryDate","baseAmount","ippLotCategory","status","buttons"];

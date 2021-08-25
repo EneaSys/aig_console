@@ -47,7 +47,8 @@ export class AigModalitaPagamentoNewUpdateFormComponent implements OnInit {
             code: ['', [Validators.required,]],
             name: ['', [Validators.required,]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
         })
         if (this.modalitaPagamento!= null && this.modalitaPagamento.id != null) {
             this.modalitaPagamentoNewUpdateForm.patchValue(this.modalitaPagamento);

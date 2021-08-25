@@ -47,7 +47,9 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
             code: ['', [Validators.required,]],
             name: ['', [Validators.required,]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
+
 
         })
         if (this.tipoRitenuta!= null && this.tipoRitenuta.id != null) {

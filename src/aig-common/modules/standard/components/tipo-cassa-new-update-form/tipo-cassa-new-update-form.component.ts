@@ -47,7 +47,8 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
             code: ['', [Validators.required,]],
             name: ['', [Validators.required,]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
 
         })
         if (this.tipoCassa!= null && this.tipoCassa.id != null) {
