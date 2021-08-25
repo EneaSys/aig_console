@@ -38,7 +38,7 @@ export class AigStandardAutocompleteFilterService {
                 if (value && value.length > 0) {
 					filter = {
 						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
+						//expirationDateGreaterThanOrEqual: now
 					};
 				}
 				return this.cityResourceService.getAllCitiesUsingGET(filter);
@@ -59,9 +59,8 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: now.format()
+					expirationDateGreaterThanOrEqual: moment().format(this.DATE_TIME_FORMAT)
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;

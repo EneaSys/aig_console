@@ -146,7 +146,15 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
 		procurementLot.workLocationCode = (this.procurementLotNewUpdateForm.value.workLocation) ? this.procurementLotNewUpdateForm.value.workLocation.code : null;
 		procurementLot.cpvCode = (this.procurementLotNewUpdateForm.value.cpv) ? this.procurementLotNewUpdateForm.value.cpv.code : null;
-
+		
+		this.procurementLotResult = procurementLot;
+		
+		procurementLot.procurement = null;
+		procurementLot.type = null;
+		procurementLot.awardCriterion = null;
+		procurementLot.status = null;
+		procurementLot.workLocation = null;
+		procurementLot.cpv = null;
 
         try {
             let postOrPut: string;

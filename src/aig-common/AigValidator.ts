@@ -17,6 +17,9 @@ export class AigValidator {
     }
 
 	static haveCode(c: FormControl) {
+		if(c.value == null || c.value == "") {
+			return null;
+		}
         if(!(c.value && c.value.code)) {
             return {
                 validatorHaveCode: {
