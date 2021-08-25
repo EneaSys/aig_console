@@ -27,7 +27,7 @@ export class AigStandardAutocompleteFilterService {
         private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
     ) {}
 
-	DATE_TIME_FORMAT = 'YYYY-MM-DD'; 
+	DATE_TIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss:SSZ'; 
 
     filterCity(observable: Observable<any>) {
         return observable.pipe(
@@ -60,7 +60,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: moment().format(this.DATE_TIME_FORMAT)
+					expirationDateGreaterThanOrEqual: moment().format("YYYY-MM-DDTHH:mm:ss.SSS")+"Z"
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
