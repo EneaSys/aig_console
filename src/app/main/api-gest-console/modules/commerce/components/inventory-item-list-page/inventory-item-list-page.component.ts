@@ -149,7 +149,10 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
 
 
   newInventoryItem(): void {
-    this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: {} } });
+    this.dialog.open(AigInventoryItemDialogComponent, { data: {  } });
   }
 
+  async publish() {
+		await this.inventoryItemResourceService.publishUsingGET7(this.inventoryItemFilters).toPromise;
+	}
 }

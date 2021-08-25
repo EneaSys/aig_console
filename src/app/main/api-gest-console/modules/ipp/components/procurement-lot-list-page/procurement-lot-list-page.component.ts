@@ -12,6 +12,7 @@ import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
+import { AigPartecipationNewUpdateDialogComponent } from '../partecipation-new-update-dialog/partecipation-new-update-dialog.component';
 
 @Component({
     templateUrl: './procurement-lot-list-page.component.html',
@@ -61,16 +62,23 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 	newTableColumns: string[] = ['_ck', 'cig', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate'];
 	newTableButtons: any[] = [
 		{
-			name: "Details",
-			severity: "primary",
+			name: "Partecipa",
+			severity: "secondary",
 			class: "",
+			fn: (e: any) => {
+				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { procurementLot: e } });
+			}
+		},{
+			name: "Dettagli",
+			severity: "primary",
+			class: "mt-4",
 			fn: (e: any) => {
 				this.gcs.router.navigateByUrl("/ipp/procurement-lot/detail/" + e.id);
 			}
 		},{
 			name: "Edit",
 			severity: "secondary",
-			class: "ml-4",
+			class: "mt-4 ml-4",
 			fn: (e: any) => {
 				this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: e } });
 			}
@@ -94,11 +102,6 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 	]
 
 
-
-
-	newProcurementLot(): void {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {  } });
-    }
 
 
 
@@ -209,6 +212,14 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			this.procurementLotFilters = procurementLotFilters;
 		}
 	}
+
+    newProcurementLot(): void {
+		this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {} });
+	}
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 
     

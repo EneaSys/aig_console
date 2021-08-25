@@ -117,5 +117,7 @@ export class AigGenericEopooListPageComponent extends GenericComponent {
     newGenericEopoo() {
         this.dialog.open(AigGenericEopooNewUpdateDialogComponent, { data: { genericEopoo: {} } });
     }
+
+   
     //			---- !GENERIC EOPOO TABLE AND SEARCH SECTION ----
 }

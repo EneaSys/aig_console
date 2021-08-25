@@ -122,7 +122,11 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 	}
 
 	newContextModule(): void {
-		this.dialog.open(AigContextModuleNewUpdateModalComponent, { data: { contextModule: {} } });
-   }
+		this.dialog.open(AigContextModuleNewUpdateModalComponent, { data: {} });
+   	}
+
+   /*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 }

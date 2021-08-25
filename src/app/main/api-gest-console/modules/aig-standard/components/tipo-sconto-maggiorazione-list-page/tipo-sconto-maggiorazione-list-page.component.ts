@@ -126,7 +126,11 @@ export class AigTipoScontoMaggiorazioneListPageComponent extends GenericComponen
 	}
 
     newTipoScontoMaggiorazione(){
-        this.dialog.open(AigTipoScontoMaggiorazioneNewUpdateDialogComponent, { data: { tipoScontoMaggiorazione: {} } });
+        this.dialog.open(AigTipoScontoMaggiorazioneNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !TABLE AND SEARCH SECTION ----
 }

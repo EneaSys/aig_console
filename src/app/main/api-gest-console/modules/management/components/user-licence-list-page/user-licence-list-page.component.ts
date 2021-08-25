@@ -118,7 +118,11 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 	}
 
 	newUserLicence(): void {
-		this.dialog.open(AigUserLicenceNewUpdateDialogComponent, { data: { userLicence: {} } });
-   }
+		this.dialog.open(AigUserLicenceNewUpdateDialogComponent, { data: {} });
+   	}
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 }

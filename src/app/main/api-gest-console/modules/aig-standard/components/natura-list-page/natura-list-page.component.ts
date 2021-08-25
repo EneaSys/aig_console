@@ -131,7 +131,13 @@ export class AigNaturaListPageComponent extends GenericComponent {
 	}
 
     newNatura(){
-        this.dialog.open(AigNaturaNewUpdateDialogComponent, { data: { natura: {} } });
+        this.dialog.open(AigNaturaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

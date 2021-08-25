@@ -1,0 +1,49 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <!-- <permission-list-table-prime [ds]="ds"></permission-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-lg"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="name">name</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="permissionCode">permissionCode</th>
+
+
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
+
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.name }}</td>
+					<td>{{ e.permissionCode }}</td>
+
+			<td>{{ e.applicationModule.name }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</div>
+
+<agal-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></agal-paginator>

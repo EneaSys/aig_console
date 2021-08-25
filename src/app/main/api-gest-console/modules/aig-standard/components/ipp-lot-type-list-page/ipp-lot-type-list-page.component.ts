@@ -122,7 +122,12 @@ export class AigIppLotTypeListPageComponent extends GenericComponent {
 	}
 
     newIppLotType(){
-        this.dialog.open(AigIppLotTypeNewUpdateModalComponent, {data: { ippLotType: {} } });
+        this.dialog.open(AigIppLotTypeNewUpdateModalComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+	
     //			---- !IPP LOT TYPE TABLE AND SEARCH SECTION ----
 }

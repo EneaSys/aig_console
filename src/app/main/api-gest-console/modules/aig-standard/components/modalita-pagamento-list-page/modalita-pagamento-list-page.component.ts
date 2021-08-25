@@ -131,7 +131,13 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
 	}
 
     newModalitaPagamento(){
-        this.dialog.open(AigModalitaPagamentoNewUpdateDialogComponent, { data: { modalitaPagamento: {} } });
+        this.dialog.open(AigModalitaPagamentoNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

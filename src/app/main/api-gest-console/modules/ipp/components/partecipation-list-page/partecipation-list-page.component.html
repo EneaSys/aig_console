@@ -179,6 +179,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                 <!--<div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                -->
                             </form>
                         </div>
                     </div>
@@ -198,19 +203,18 @@
                 (click)="toggleSidebar('partecipation-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Partecipation</h2>
+            <h2>Partecipazione</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-           <aig-partecipation-list-table [displayColumns]="partecipationDC" [dataSource]="partecipationDTOs"
-                [error]="partecipationError"></aig-partecipation-list-table>
-
-            <mat-paginator #paginator [length]="partecipationLength" [pageIndex]="this.partecipationFilters.page"
-                [pageSize]="this.partecipationPaginationSize" [pageSizeOptions]="[10, 20, 50]"
-                (page)="partecipationPaginationEvent($event)">
-            </mat-paginator>
-
+<!--
+            <agal-partecipation-list-loader 
+			    [dcs]="newTableColumns"
+				[buttons]="newTableButtons"
+				[filters]="partecipationFilters">
+			</agal-partecipation-list-loader>
+-->
             <button mat-fab class="accent" id="add-partecipation-button" (click)="newPartecipation()"
                 aria-label="add partecipation">
                 <mat-icon>add</mat-icon>

@@ -44,8 +44,8 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
     ngOnInit(): void {
         this.tipoScontoMaggiorazioneNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: ['', [Validators.required, AigValidator.haveId]],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            code: ['', [Validators.required]],
+            name: ['', [Validators.required]],
             description: [''],
             wikiCode:['']
         })

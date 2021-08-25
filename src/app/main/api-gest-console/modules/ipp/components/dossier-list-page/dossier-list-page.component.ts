@@ -125,7 +125,12 @@ export class AigDossierListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newDossier(): void {
-		this.dialog.open(AigDossierNewUpdateDialogComponent, { data: { dossier: {} } });
+		this.dialog.open(AigDossierNewUpdateDialogComponent, { data: {} });
 	}
+
+	
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 
 }

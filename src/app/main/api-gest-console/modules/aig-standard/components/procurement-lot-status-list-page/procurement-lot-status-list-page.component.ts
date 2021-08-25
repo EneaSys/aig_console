@@ -121,7 +121,13 @@ export class AigProcurementLotStatusListPageComponent extends GenericComponent {
 	}
 
     newProcurementLotStatus(){
-        this.dialog.open(AigProcurementLotStatusNewUpdateDialogComponent, {data: { procurementLotStatus: {} } });
+        this.dialog.open(AigProcurementLotStatusNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !procurement Lot Status TABLE AND SEARCH SECTION ----
 }

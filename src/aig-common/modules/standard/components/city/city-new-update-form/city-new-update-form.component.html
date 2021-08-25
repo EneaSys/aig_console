@@ -14,6 +14,16 @@
         </mat-form-field>
     </div>
 
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-label>Data</mat-label>
+		<input formControlName="expirationDate" matInput [matDatepicker]="picker" required>
+		<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		<mat-datepicker #picker></mat-datepicker>
+        
+    </div>
+
+
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Descrizione</mat-label>

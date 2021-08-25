@@ -129,7 +129,11 @@ export class AigReferentListPageComponent extends GenericComponent {
 	}
 
     newReferent() {
-        this.dialog.open(AigReferentNewUpdateDialogComponent, { data: { referent: {} } });
+        this.dialog.open(AigReferentNewUpdateDialogComponent, { data: {}});
     }
+
+    async publish() {
+		await this.referentResourceService.publishUsingGET4(this.referentFilters).toPromise;
+	}
     //			---- !REFERENT TABLE AND SEARCH SECTION ----
 }

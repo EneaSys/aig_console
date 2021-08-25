@@ -154,7 +154,13 @@ export class AigUserListComponent extends GenericComponent {
     //			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
 
     newUser() {
-        this.dialog.open(AigUserNewDialogComponent, { data: { user: {} } });
+        this.dialog.open(AigUserNewDialogComponent, { data: {} });
     }
+
+    /*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+
 }
 

@@ -56,14 +56,14 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.procurementNewUpdateForm = this._formBuilder.group({
             id: [''],
-            contractorEopoo: ['',[Validators.required, AigValidator.haveId]],
+            contractorEopoo: ['',[Validators.required, AigValidator.haveCode]],
             
 			description: ['', Validators.required],
             
-			status: ['', [Validators.required, AigValidator.haveId]],
-            sector: ['', [Validators.required, AigValidator.haveId]],
-            procedure: ['', [Validators.required, AigValidator.haveId]],
-            modality: ['', [Validators.required, AigValidator.haveId]],
+			status: ['', [Validators.required, AigValidator.haveCode]],
+            sector: ['', [Validators.required, AigValidator.haveCode]],
+            procedure: ['', [Validators.required, AigValidator.haveCode]],
+            modality: ['', [Validators.required, AigValidator.haveCode]],
 
 			code: [''],
             ref:[''],

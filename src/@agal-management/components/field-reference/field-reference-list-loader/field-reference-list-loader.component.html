@@ -1,0 +1,67 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <!-- <field-reference-list-table-prime [ds]="ds"></field-reference-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-lg"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="name">name</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="type">type</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="isRequired">isRequired</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="isUnique">isUnique</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="minLength">minLength</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="maxLength">maxLength</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="patternValue">patternValue</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="minbytesValue">minbytesValue</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="maxbytesValue">maxbytesValue</th>
+
+
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> name</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> isType</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> tableName</th>
+
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.name }}</td>
+					<td>{{ e.type }}</td>
+					<td>{{ e.isRequired }}</td>
+					<td>{{ e.isUnique }}</td>
+					<td>{{ e.minLength }}</td>
+					<td>{{ e.maxLength }}</td>
+					<td>{{ e.patternValue }}</td>
+					<td>{{ e.minbytesValue }}</td>
+					<td>{{ e.maxbytesValue }}</td>
+
+			<td>{{ e.entityReference.name }}</td>
+			<td>{{ e.entityReference.isType }}</td>
+			<td>{{ e.entityReference.tableName }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</div>
+
+<agal-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></agal-paginator>
