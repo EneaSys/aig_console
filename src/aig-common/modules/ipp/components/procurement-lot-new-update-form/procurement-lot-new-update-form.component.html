@@ -85,7 +85,7 @@
 
 		<mat-form-field appearance="outline" fxFlex="25" class="pl-4">
             <mat-label>Località lavori</mat-label>
-            <input formControlName="workLocationCode" matInput [matAutocomplete]="workLocationAutocomplete">
+            <input formControlName="workLocation" matInput [matAutocomplete]="workLocationAutocomplete">
             <mat-autocomplete #workLocationAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.cityDisplayFn">
                 <mat-option *ngFor="let city of filteredLocality | async" [value]="city">{{ city.name}}</mat-option>
             </mat-autocomplete>
@@ -108,7 +108,7 @@
     
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
             <mat-label>Nuts Code</mat-label>
-            <input formControlName="nustCode" matInput>
+            <input formControlName="nutsCode" matInput>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
