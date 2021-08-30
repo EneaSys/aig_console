@@ -4,6 +4,7 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { ProcurementLotDTO, ProcurementLotResourceService } from 'aig-italianlegislation';
+import { AigProcurementLotCategoryNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component';
 import { AigProcurementLotNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/ipp/components/procurement-lot-new-update-dialog/procurement-lot-new-update-dialog.component';
 import { AigIppCommonGenericComponent } from '../ipp-common-generic-component';
 
@@ -50,6 +51,6 @@ export class AigProcurementLotListTableComponent extends AigIppCommonGenericComp
     }
 
 	addCategory(procurementLotDTO: ProcurementLotDTO) {
-        this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {procurementLot: procurementLotDTO } });
+        this.dialog.open(AigProcurementLotCategoryNewUpdateDialogComponent, { data: {procurementLot: procurementLotDTO } });
     }
 }

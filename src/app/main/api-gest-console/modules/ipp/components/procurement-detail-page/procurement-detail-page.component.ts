@@ -71,7 +71,7 @@ export class AigProcurementDetailPageComponent extends AigIppGenericComponent {
   procurementLotError: any;
   async loadProcurementLot() {
     let filters = {
-      procurementIdEquals: this.procurementDTO.id
+      procurementIDEquals: this.procurementDTO.id
     };
     try {
       this.procurementLotDTOs = await this.procurementLotResourceService.getAllProcurementLotsUsingGET(filters).toPromise();
