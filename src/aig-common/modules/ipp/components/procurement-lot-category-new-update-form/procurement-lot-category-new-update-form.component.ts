@@ -56,7 +56,7 @@ export class AigProcurementLotCategoryNewUpdateFormComponent implements OnInit {
         this.procurementLotCategoryNewUpdateForm = this._formBuilder.group({
             id: [null],
             procurementLot: [this.procurementLot, [Validators.required, AigValidator.haveId]],
-            category: [null, [Validators.required, AigValidator.haveId]],
+            category: [null, [Validators.required, AigValidator.haveCode]],
             level: [null, [Validators.required]],
         })
         
