@@ -43,6 +43,7 @@ export class AigTipoCessionePrestazioneNewUpdateFormComponent implements OnInit 
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
 
         })
         if (this.tipoCessionePrestazione!= null && this.tipoCessionePrestazione.id != null) {

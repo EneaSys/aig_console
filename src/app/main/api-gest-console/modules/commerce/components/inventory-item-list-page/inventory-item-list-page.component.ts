@@ -53,7 +53,7 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
   inventoryItemDC: string[];
 
   private initInventoryItemSearch() {
-    this.inventoryItemPaginationSize = 10
+    this.inventoryItemPaginationSize = 500
 
     this.inventoryItemSearchFormGroup = this._formBuilder.group({
       id: [''],

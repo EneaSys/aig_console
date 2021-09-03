@@ -123,8 +123,8 @@ export class AigLicenceListPageComponent extends GenericComponent {
 		this.dialog.open(AigLicenceNewUpdateDialogComponent, { data: {} });
    	}
 
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.licenceResourceService.publishUsingGET5(this.licenceFilters).toPromise;
+	}
 
 }

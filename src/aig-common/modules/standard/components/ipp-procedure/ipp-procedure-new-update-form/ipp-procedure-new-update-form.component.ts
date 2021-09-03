@@ -42,6 +42,7 @@ export class AigIppProcedureNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
 
         if (this.ippProcedure != null && this.ippProcedure.id != null) {

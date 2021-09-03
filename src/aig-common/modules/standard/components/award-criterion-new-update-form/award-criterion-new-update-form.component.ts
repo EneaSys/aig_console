@@ -44,6 +44,7 @@ export class AigAwardCriterionNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
 
         if (this.awardCriterion != null && this.awardCriterion.id != null) {

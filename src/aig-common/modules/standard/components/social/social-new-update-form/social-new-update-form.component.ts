@@ -42,6 +42,7 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
 
         })
         

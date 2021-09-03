@@ -122,8 +122,7 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 		this.dialog.open(AigTypeCategoryReferenceNewUpdateDialogComponent, { data: {} });
     }
 
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
-
+	async publish() {
+		await this.typeCategoryReferenceResourceService.publishUsingGET11(this.typeCategoryReferenceFilters).toPromise;
+	}
 }

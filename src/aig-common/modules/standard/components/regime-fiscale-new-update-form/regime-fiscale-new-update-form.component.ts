@@ -43,6 +43,7 @@ export class AigRegimeFiscaleNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
         
         if (this.regimeFiscale != null && this.regimeFiscale.id != null) {

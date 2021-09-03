@@ -156,8 +156,8 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 	}
 
 	
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.procurementResourceService.publishUsingGET6(this.procurementFilters).toPromise;
+	}
 
 }

@@ -29,9 +29,9 @@
             <mat-cell *matCellDef="let e"> {{ e.contextId }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="contextName">
+        <ng-container matColumnDef="tenantContext">
             <mat-header-cell *matHeaderCellDef>Context</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.contextName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.tenantContext.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="moduleId">
@@ -39,9 +39,9 @@
             <mat-cell *matCellDef="let e"> {{ e.moduleId }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="moduleName">
+        <ng-container matColumnDef="applicationModule">
             <mat-header-cell *matHeaderCellDef>Module Name</mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.moduleName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.applicationModule}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

@@ -123,9 +123,9 @@ export class AigApplicationModuleListPageComponent extends GenericComponent {
         this.dialog.open(AigApplicationModuleNewUpdateModalComponent, { data: {} });
     }
 
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.applicationModuleResourceService.publishUsingGET(this.applicationModuleFilters).toPromise;
+	}
 	
 }
 

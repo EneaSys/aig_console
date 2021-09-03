@@ -44,6 +44,7 @@ export class AigPartecipationTypeNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
 
         if (this.partecipationType != null && this.partecipationType.id != null) {

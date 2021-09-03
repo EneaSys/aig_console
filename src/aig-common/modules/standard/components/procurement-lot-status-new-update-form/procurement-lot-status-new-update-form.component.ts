@@ -43,6 +43,7 @@ export class AigProcurementLotStatusNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
         
         if (this.procurementLotStatus != null && this.procurementLotStatus.id != null) {

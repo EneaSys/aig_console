@@ -23,6 +23,7 @@
 						<th *ngSwitchCase="'offering'" style="width:auto" pResizableColumn pSortableColumn="offering">Offerta</th>
 						<th *ngSwitchCase="'note'" style="width:auto" pResizableColumn pSortableColumn="note">Note</th>
 						<th *ngSwitchCase="'creationDateTime'" style="width:auto" pResizableColumn pSortableColumn="creationDateTime">Data Creazione</th>
+						<th *ngSwitchCase="'categories'" style="width:auto" pResizableColumn pSortableColumn="categories">Categorie</th>
 
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
@@ -30,7 +31,7 @@
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
 						<th *ngSwitchCase="'offerExpiryDate'" style="width:auto" pResizableColumn pSortableColumn= ""> Data scadenza offerta</th>
 						<th *ngSwitchCase="'baseAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> Importo base</th>
-						<th *ngSwitchCase="'candidacy'" style="width:auto" pResizableColumn pSortableColumn= ""> Manifestazione</th>
+						<th *ngSwitchCase="'procurementLot.candidacy'" style="width:auto" pResizableColumn pSortableColumn= ""> Manifestazione d'interesse</th>
 						<th *ngSwitchCase="'securityAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> Importo di sicurezza</th>
 						<th *ngSwitchCase="'istatCode'" style="width:auto" pResizableColumn pSortableColumn= "">Codice istat</th>
 						<th *ngSwitchCase="'nutsCode'" style="width:auto" pResizableColumn pSortableColumn= "">Codice nuts</th>
@@ -41,14 +42,14 @@
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
 						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn= ""> Codice</th>
 						<th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn= ""> Ref</th>
-						<th *ngSwitchCase="'contractorEopooCode'" style="width:auto" pResizableColumn pSortableColumn= "">Azienda appaltante</th>
+						<th *ngSwitchCase="'procurement.contractorEopooCode'" style="width:auto" pResizableColumn pSortableColumn= "contractorEopooCode">Azienda appaltante</th>
 						<th *ngSwitchCase="'sectorCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Settore</th>
 						<th *ngSwitchCase="'procedureCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Procedura</th>
 						<th *ngSwitchCase="'modalityCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Modalità</th>
 						<th *ngSwitchCase="'statusCode'" style="width:auto" pResizableColumn pSortableColumn= "">Stato</th>
 					</ng-container>
 
-					<th style="width:auto">buttons</th>
+					<th style="width:auto"></th>
 
 				</tr>
 			</ng-template>

@@ -49,6 +49,7 @@ export class AigTipoRitenutaNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
 
 
         })

@@ -42,6 +42,7 @@ export class AigSocialActionNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
 
         if (this.socialAction != null && this.socialAction.id != null) {

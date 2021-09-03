@@ -123,10 +123,9 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		this.dialog.open(AigTenantContextNewUpdateModalComponent, { data: {} });
    	}
 	
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
-
+	async publish() {
+		await this.tenantContextResourceService.publishUsingGET10(this.tenantContextFilters).toPromise;
+	}
 	
 	//			---- !TENANT CONTEXT SECTION ----
 

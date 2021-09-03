@@ -49,6 +49,7 @@ export class AigEsigibilitaIvaNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
 
         })
         if (this.esigibilitaIva!= null && this.esigibilitaIva.id != null) {

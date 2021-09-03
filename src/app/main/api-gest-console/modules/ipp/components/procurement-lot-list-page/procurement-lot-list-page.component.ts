@@ -217,9 +217,9 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 		this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: {} });
 	}
 
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.procurementLotResourceService.publishUsingGET5(this.procurementLotFilters).toPromise;
+	}
 
 
     

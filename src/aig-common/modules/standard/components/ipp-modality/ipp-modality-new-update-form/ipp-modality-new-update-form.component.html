@@ -5,6 +5,14 @@
             <mat-label>Code</mat-label>
             <input name="code" formControlName="code" matInput required>
         </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="20" class="pl-4">
+            <mat-label>Data attivazione</mat-label>
+            <input formControlName="activationDate" matInput [matDatepicker]="activationDataPicker" required>
+            <mat-datepicker-toggle matSuffix [for]="activationDataPicker"></mat-datepicker-toggle>
+            <mat-datepicker #activationDataPicker></mat-datepicker>
+        </mat-form-field>
+        
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">

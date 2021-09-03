@@ -43,6 +43,7 @@ export class AigLotCategoryNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate :[''],
+            activationDate :[''],
         })
 
         if (this.ippLotCategory != null && this.ippLotCategory.id != null) {

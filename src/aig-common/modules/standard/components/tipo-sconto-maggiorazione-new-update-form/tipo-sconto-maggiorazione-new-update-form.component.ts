@@ -49,6 +49,7 @@ export class AigTipoScontoMaggiorazioneNewUpdateFormComponent implements OnInit 
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
         })
         if (this.tipoScontoMaggiorazione!= null && this.tipoScontoMaggiorazione.id != null) {
             this.tipoScontoMaggiorazioneNewUpdateForm.patchValue(this.tipoScontoMaggiorazione);

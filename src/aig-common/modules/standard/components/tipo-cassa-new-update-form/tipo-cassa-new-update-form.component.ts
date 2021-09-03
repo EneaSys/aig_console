@@ -49,6 +49,7 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate:[''],
+            activationDate:[''],
 
         })
         if (this.tipoCassa!= null && this.tipoCassa.id != null) {

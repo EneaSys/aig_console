@@ -1,10 +1,9 @@
 <form *ngIf="step.form" [formGroup]="contextModuleNewUpdateForm" (ngSubmit)="submit()">
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Active</mat-label>
-            <input name="active" formControlName="active" matInput required>
-        </mat-form-field>
+        <div fxFlex="50" class="p-24">
+            <mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+        </div>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">

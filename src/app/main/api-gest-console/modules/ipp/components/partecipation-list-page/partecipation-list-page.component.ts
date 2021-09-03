@@ -57,7 +57,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		this.showAllPartecipation();
 	}
 
-	newTableColumns: string[] = ['_ck', 'proposerEopooCode', 'partecipationTypeCode', 'siteInspection', 'offering', 'note', 'creationDateTime'];
+	newTableColumns: string[] = ['_ck', 'proposerEopooCode','contractorEopooCode','candidacy', 'partecipationTypeCode', 'siteInspection', 'offering', 'note', 'creationDateTime'];
 	newTableButtons: any[] = [
 		{
 			name: "Details",
@@ -141,7 +141,6 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
 		
 
-		this.partecipationDC = ["id","contractorEopoo","procurementLotDescription","procurementLotCig","proposerEopoo","designedCompanies","expiryDate","baseAmount","ippLotCategory","status","buttons"];
 	}
 
 	private clearFiltersPartecipation() {
@@ -272,8 +271,8 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
     }
 
 	
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.partecipationResourceService.publishUsingGET3(this.partecipationFilters).toPromise;
+	}
 
 }

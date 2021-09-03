@@ -131,8 +131,8 @@ export class AigPermissionListPageComponent extends GenericComponent {
 		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: {} });
    	}
 
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.permissionResourceService.publishUsingGET7(this.permissionFilters).toPromise;
+	}
 
 }

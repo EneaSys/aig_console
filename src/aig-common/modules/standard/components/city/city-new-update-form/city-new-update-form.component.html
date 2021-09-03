@@ -22,11 +22,18 @@
         </mat-form-field>
        <mat-form-field appearance="outline" fxFlex>
             <mat-label>Descrizione</mat-label>
-            <input name="description" formControlName="description" matInput required>
+            <input name="description" formControlName="description" matInput>
         </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="40" class="pl-4">
+            <mat-label>Data attivazione</mat-label>
+            <input formControlName="activationDate" matInput [matDatepicker]="activationDataPicker" required>
+            <mat-datepicker-toggle matSuffix [for]="activationDataPicker"></mat-datepicker-toggle>
+            <mat-datepicker #activationDataPicker></mat-datepicker>
+        </mat-form-field>
+        
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>WikiCode</mat-label>
             <input name="wikiCode" formControlName="wikiCode" matInput >
