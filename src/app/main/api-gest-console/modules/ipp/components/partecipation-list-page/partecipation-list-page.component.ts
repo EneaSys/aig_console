@@ -57,7 +57,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		this.showAllPartecipation();
 	}
 
-	newTableColumns: string[] = ['_ck','procurementLot.cig', 'proposerEopoo | eopooName','cig','category.name','candidacy', 'type.name', 'siteInspection', 'offering', 'note', 'creationDateTime'];
+	newTableColumns: string[] = ['_ck','procurement.contractorEopoo','candidacy', 'procurementLot.description', 'procurementLot.cig', 'proposerEopoo | eopooName','designatedCompany','procurementLot.offerExpiryDate','procurementLot.baseAmount','category.name','status.description', ];
 	newTableButtons: any[] = [
 		{
 			name: "Details",
