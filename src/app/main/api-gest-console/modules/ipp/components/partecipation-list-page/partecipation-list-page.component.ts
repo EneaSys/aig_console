@@ -272,7 +272,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 	
 	async publish() {
-		await this.partecipationResourceService.publishUsingGET3(this.partecipationFilters).toPromise;
+		await this.partecipationResourceService.publishUsingGET3(this.partecipationFilters).toPromise();
 	}
 
 }

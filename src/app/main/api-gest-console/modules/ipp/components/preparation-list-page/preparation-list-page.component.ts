@@ -128,6 +128,6 @@ export class AigPreparationListPageComponent extends GenericComponent {
 
 	
 	async publish() {
-		await this.preparationResourceService.publishUsingGET4(this.preparationFilters).toPromise;
+		await this.preparationResourceService.publishUsingGET4(this.preparationFilters).toPromise();
 	}
 }
