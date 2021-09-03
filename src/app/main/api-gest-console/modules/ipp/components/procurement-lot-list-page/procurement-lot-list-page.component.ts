@@ -76,7 +76,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
             procurementLotDescriptionContains: [''],
             offerExpiryDate: [''],
             contractorEopoo: [''],
-            ippModality: [''],
+            ilPpProcurementModality: [''],
             ippProcedure: [''],
             ippSector: [''],
             awardCriterion: [''],
@@ -85,7 +85,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
         });
     
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
-        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ippModality'].valueChanges);
+        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ilPpProcurementModality'].valueChanges);
         this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotSearchFormGroup.controls['ippProcedure'].valueChanges);
         this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
         this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
@@ -104,16 +104,23 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     }
 
     procurementLotSearchWithFilter() {
+		let procurementLotFilters: any = {};
+		
 		let searchedId = this.procurementLotSearchFormGroup.value.procurementLotCigEquals;
 		if (searchedId != null) {
 			this.procurementLotSearchFormGroup.reset();
-			this.procurementLotFilters = {
-				procurementLotCigEquals: searchedId
-			};
-			return;
-		}
+			procurementLotFilters.procurementLotCigEquals = searchedId;
+		} else {
+			procurementLotFilters = this.procurementLotSearchFormGroup.value;
 
-		this.procurementLotFilters = this.procurementLotSearchFormGroup.value;
+			if(procurementLotFilters.contractorEopoo) {
+				procurementLotFilters.contractorCodeEquals = procurementLotFilters.contractorEopoo.id;
+			}
+			if(procurementLotFilters.ilPpProcurementModality) {
+				procurementLotFilters.procurementModalityCodeEquals = procurementLotFilters.ilPpProcurementModality.code;
+			}
+		}
+		this.procurementLotFilters = procurementLotFilters;
 	}
 
 

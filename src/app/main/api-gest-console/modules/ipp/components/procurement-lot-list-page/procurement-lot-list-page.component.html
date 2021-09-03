@@ -38,7 +38,7 @@
 
                             <div fxLayout="row">
                                 <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Anagrafica</mat-label>
+                                    <mat-label>Stazie appaltante</mat-label>
                                     <input formControlName="contractorEopoo" matInput
                                         [matAutocomplete]="contractorEopooAutocomplete">
                                     <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
@@ -96,7 +96,7 @@
                             <div fxLayout="row">
                                 <mat-form-field appearance="outline" fxFlex="100">
                                     <mat-label>Modalità</mat-label>
-                                    <input formControlName="ippModality" matInput
+                                    <input formControlName="ilPpProcurementModality" matInput
                                         [matAutocomplete]="ippModalityAutocomplete">
                                     <mat-autocomplete #ippModalityAutocomplete="matAutocomplete"
                                         [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
