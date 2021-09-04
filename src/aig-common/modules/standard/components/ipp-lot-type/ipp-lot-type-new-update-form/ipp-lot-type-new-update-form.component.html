@@ -26,14 +26,14 @@
 
         <mat-form-field appearance="outline" fxFlex=50% class="pl-4">
             <mat-label>Data attivazione</mat-label>
-            <input formControlName="activationDate" matInput [matDatepicker]="activationDataPicker" required>
+            <input formControlName="activationDate" matInput [matDatepicker]="activationDataPicker" >
             <mat-datepicker-toggle matSuffix [for]="activationDataPicker"></mat-datepicker-toggle>
             <mat-datepicker #activationDataPicker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex=50% class="pl-4">
             <mat-label>Data Di scadenza</mat-label>
-            <input formControlName="expirationDate" matInput [matDatepicker]="picker" required>
+            <input formControlName="expirationDate" matInput [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

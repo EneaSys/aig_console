@@ -5,11 +5,12 @@ import { ProcurementResourceService, ProcurementDTO } from 'aig-italianlegislati
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
 import { AigProcurementNewUpdateDialogComponent } from '../procurement-new-update-dialog/procurement-new-update-dialog.component';
-import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService } from 'aig-standard';
+import { IlPpProcurementModalityDTO, IlPpProcurementModalityResourceService, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigIppGenericComponent } from '../ipp-generic-component';
+
 
 @Component({
 	templateUrl: './procurement-list-page.component.html',
@@ -24,42 +25,37 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 		private procurementResourceService: ProcurementResourceService,
 		private italianPublicProcurementModalityResourceService: IlPpProcurementModalityResourceService,
 		public standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
-		aigGenericComponentService: AigGenericComponentService,
-	) { super(aigGenericComponentService) }
+		public gcs: AigGenericComponentService,
+	) {
+		super(gcs)
+	}
 
 	/*@Input()
 	staticItalianPublicProcurementModality: IlPpProcurementModalityDTO = null;*/
 
-	filteredItalianPublicProcurementModality: Observable<IlPpProcurementModalityDTO[]>;
 
-	italianPublicProcurementModalityDTO: IlPpProcurementModalityDTO;
 
 	loadPage() {
 		this.initProcurementSearch();
 
-		this.showAllProcurement();
+		this.resetFiltersProcurement();
 	}
 
 	reloadPage() {
-		this.showAllProcurement();
+		this.procurementSearchWithFilter();
 	}
 
 	//			---- TABLE AND SEARCH SECTION ----
 
 	procurementSearchFormGroup: FormGroup;
-	procurementPaginationSize: number;
 	procurementFilters: any;
 
-	procurementLength: number;
-	procurementDTOs: ProcurementDTO[];
-	procurementError: any;
-
-	procurementDC: string[];
+	filteredItalianPublicProcurementModality: Observable<IlPpProcurementModalityDTO[]>;
+	filteredItalianPublicProcurementProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+	filteredItalianPublicProcurementSector: Observable<IlPpProcurementSectorDTO[]>;
 
 	private initProcurementSearch() {
-		this.procurementDC = ["id", "description", "contractorEopoo", "ippModality", "ippProcedure", "buttons"];
 
-		this.procurementPaginationSize = 10;
 
 		this.procurementSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -73,81 +69,96 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 			totalAmount: [''],
 			procurementStatus: [''],
 		});
-	}
 
-	private clearFiltersProcurement() {
-		this.procurementFilters = {
-			idEquals: null,
-			descriptionContains: null,
-			refContains: null,
-			codeContains: null,
-			contractorEopooCodeContains: null,
-			ippModalityEquals: null,
-			ippProcedureEquals: null,
-			ippSectorEquals: null,
-			totalAmountEquals: null,
-			procurementStatusEquals: null,
-		}
-	}
-
-	private async searchProcurement(page: number) {
-		this.procurementDTOs = null;
-
-		this.procurementFilters.page = page;
-		this.procurementFilters.size = this.procurementPaginationSize;
-		/*this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);*/
-
-		try {
-			this.procurementLength = await this.procurementResourceService.countProcurementsUsingGET(this.procurementFilters).toPromise();
-
-			if (this.procurementLength == 0) {
-				this._snackBar.open("Nessun valore trovato con questi parametri!", null, { duration: 2000, });
-				this.procurementDTOs = [];
-				return;
-			}
-
-			this.procurementDTOs = await this.procurementResourceService.getAllProcurementsUsingGET(this.procurementFilters).toPromise();
-
-		} catch (e) {
-			this.procurementError = e;
-		}
-	}
-
-	showAllProcurement() {
-		this.resetFiltersProcurement();
+		this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);
+		this.filteredItalianPublicProcurementProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementSearchFormGroup.controls['ippProcedure'].valueChanges);
+		this.filteredItalianPublicProcurementSector = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementSearchFormGroup.controls['ippSector'].valueChanges);
+		
+		
 	}
 
 	resetFiltersProcurement() {
 		this.procurementSearchFormGroup.reset();
-		this.clearFiltersProcurement();
-		this.searchProcurement(0);
-	}
-
-	procurementPaginationEvent(pageEvent: PageEvent) {
-		this.procurementPaginationSize = pageEvent.pageSize;
-		this.searchProcurement(pageEvent.pageIndex);
+		this.procurementSearchWithFilter();
 	}
 
 	procurementSearchWithFilter() {
-		let searchedId = this.procurementSearchFormGroup.controls.id.value;
+		let filters: any = {};
+		let searchedId = this.procurementSearchFormGroup.value.idEquals;
 
 		if (searchedId != null) {
-			this.clearFiltersProcurement();
 			this.procurementSearchFormGroup.reset();
-			this.procurementFilters.idEquals = searchedId;
-			this.searchProcurement(0);
-			return;
+			filters.idEquals = searchedId;
+		} else {
+			filters = this.procurementSearchFormGroup.value;
+
+			/*if (filters.contractorEopoo){
+				filters.contractorCodeEquals = filters.contractorEopoo.id
+			}*/
+
+			if (filters.ippModality) {
+				filters.ilPpProcurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+			}
+
+			if (filters.ippProcedure) {
+				filters.ilPpProcurementProcedureCodeEquals = filters.ilPpProcurementProcedure.code;
+			}
+
+			if (filters.ippSector) {
+				filters.ilPpProcurementSectorCodeEquals = filters.ilPpProcurementSector.code;
+			}
 		}
-
-		this.procurementFilters.idEquals = null;
-		this.procurementFilters.codeContains = this.procurementSearchFormGroup.controls.code.value;
-		this.procurementFilters.refContains = this.procurementSearchFormGroup.controls.ref.value;
-		this.procurementFilters.descriptionContains = this.procurementSearchFormGroup.controls.description.value;
-		this.procurementFilters.contractorEopooCodeContains = this.procurementSearchFormGroup.controls.contractorEopoo.value;
-		this.procurementFilters.totalAmountEquals = this.procurementSearchFormGroup.controls.totalAmount.value;
-
-		this.searchProcurement(0);
+		this.procurementFilters = filters;
 	}
+
+	//			---- PROCUREMENT LOT TABLE SECTION ----
+
+
+
+
+	newTableColumns: string[] = ['_ck','code', 'contractorEopoo','modality','procedure','baseAmount','ref','sector','status'];
+	newTableButtons: any[] = [
+		
+		{
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-search",
+			severity: "primary",
+			class: "mt-4",
+			command: (e: any) => {
+				this.gcs.router.navigateByUrl("/ipp/procurement/detail/" + e.id);
+			},
+		},
+		{
+			label: "Edit",
+			hideLabel: true,
+			icon: "pi pi-pencil",
+			severity: "secondary",
+			class: "mt-4 ml-4",
+			command: (e: any) => {
+				this.dialog.open(AigProcurementNewUpdateDialogComponent, { data: { procurement: e } });
+			}
+		},{
+			label: "Delete",
+			hideLabel: true,
+			icon: "pi pi-trash",
+			severity: "danger",
+			class: "mt-4  ml-4",
+			command: async (e: any) => {
+				this.gcs.fuseProgressBarService.show();
+				try {
+					await this.procurementResourceService.deleteProcurementUsingDELETE(e.id).toPromise();
+					this._snackBar.open(`Procurement: '${e.id}' deleted.`, null, { duration: 2000, });
+					this.gcs.eventService.reloadCurrentPage();
+				} catch (e) {
+					this._snackBar.open(`Error during deleting procurement : '${e.id}'. (${e.message})`, null, { duration: 5000, });
+				}
+				this.gcs.fuseProgressBarService.hide();
+			}
+		}
+	]
+
+	
 
 	//			---- !TABLE AND SEARCH SECTION ----
 

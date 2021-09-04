@@ -5,7 +5,7 @@
         <div class="content">
             <div>
                 <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-                    <button mat-raised-button (click)="showAllProcurement()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
+                    <button mat-raised-button (click)="resetFiltersProcurement()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
                     <span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
@@ -95,16 +95,12 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <aig-procurement-list-table 
-                [displayColumns]="procurementDC" 
-                [dataSource]="procurementDTOs"
-                [error]="procurementError"></aig-procurement-list-table>
-           
+            <agal-procurement-list-loader 
+				[dcs]="newTableColumns"
+				[buttons]="newTableButtons"
+				[filters]="procurementFilters">
+			</agal-procurement-list-loader>
 
-            <mat-paginator #paginator [length]="procurementLength" [pageIndex]="this.procurementFilters.page"
-                [pageSize]="this.procurementPaginationSize" [pageSizeOptions]="[10, 20, 50]"
-                (page)="procurementPaginationEvent($event)">
-            </mat-paginator>
 
             <button mat-fab class="accent" id="add-procurement-button" (click)="newProcurement()"
                 aria-label="add procurement">

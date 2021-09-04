@@ -10,6 +10,7 @@ import { AigCommonStandardModule } from 'aig-common/modules/standard/common-stan
 import { AigStandardModule } from 'app/main/api-gest-console/modules/aig-standard/aig-standard.module';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import {  MatIconModule } from '@angular/material';
+import { AgalProcurementListLoaderComponent } from './components/procurement/procurement-list-loader/procurement-list-loader.component';
 
 @NgModule({
 	imports: [ 
@@ -36,11 +37,14 @@ import {  MatIconModule } from '@angular/material';
 	declarations: [
 		AgalProcurementLotListLoaderComponent,
 		AgalPartecipationListLoaderComponent,
+		AgalProcurementListLoaderComponent,
+
 
 	],
 	exports: [
 		AgalProcurementLotListLoaderComponent,
 		AgalPartecipationListLoaderComponent,
+		AgalProcurementListLoaderComponent,
 		
 	],
 	providers: [

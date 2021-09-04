@@ -1,59 +1,66 @@
 <div [ngSwitch]="view">
-    <p *ngSwitchCase="'CARD'">
-        card
-    </p>
-    <p *ngSwitchDefault>
-        <!-- <procurement-list-table-prime [ds]="ds"></procurement-list-table-prime> -->
-        <p-table 
-            styleClass="p-datatable-lg"
-            [value]="ds" [loading]="loading"
-            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+	<p *ngSwitchCase="'CARD'">
+		card
+	</p>
+	<p *ngSwitchDefault>
+		
+		<p-table styleClass="p-datatable-lg" 
+			[value]="ds" [loading]="loading" 
+			[lazy]="true" (onLazyLoad)="lazyLoad($event)" 
+			[resizableColumns]="true" [(selection)]="selectedElements">
             
             [resizableColumns]="true"
             [(selection)]="selectedElements" >
 
             <ng-template pTemplate="header">
                 <tr>
-					<th style="width:50px" ></th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="description">description</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="code">code</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="ref">ref</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="contractorEopooCode">contractorEopooCode</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="sectorCode">sectorCode</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="procedureCode">procedureCode</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="modalityCode">modalityCode</th>
-                    <th style="width:auto" pResizableColumn pSortableColumn="statusCode">statusCode</th>
-
-
-
-            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+                    <ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+                        <th *ngSwitchCase="'_ck'" style="width:50px" ></th>
+                        <th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
+                        <th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn="code">codice</th>
+                        <th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn="ref">ref</th>
+                        <th *ngSwitchCase="'contractorEopoo'" style="width:auto" pResizableColumn pSortableColumn="contractorEopoo">Stazione appaltante</th>
+                        <th *ngSwitchCase="'sector'" style="width:auto" pResizableColumn pSortableColumn="sector">settore</th>
+                        <th *ngSwitchCase="'procedure'" style="width:auto" pResizableColumn pSortableColumn="procedure">procedura</th>
+                        <th *ngSwitchCase="'modality'" style="width:auto" pResizableColumn pSortableColumn="modality">modalità</th>
+                        <th *ngSwitchCase="'status'" style="width:auto" pResizableColumn pSortableColumn="status">stato</th>
+                    </ng-container>
+                
+                    <th *ngIf="buttons" style="width:140px"></th>    
 
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-e>
                 <tr>
-                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
-					<td>{{ e.description }}</td>
-					<td>{{ e.code }}</td>
-					<td>{{ e.ref }}</td>
-					<td>{{ e.contractorEopooCode }}</td>
-					<td>{{ e.sectorCode }}</td>
-					<td>{{ e.procedureCode }}</td>
-					<td>{{ e.modalityCode }}</td>
-					<td>{{ e.statusCode }}</td>
+                    <ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+                        <td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+                        <td *ngSwitchCase="'description'">{{ e.description }}</td>
+                        <td *ngSwitchCase="'code'">{{ e.code }}</td>
+                        <td *ngSwitchCase="'ref'">{{ e.ref }}</td>
+                        <td *ngSwitchCase="'contractorEopoo'">{{ e.contractorEopoo  | eopooName}}</td>
+                        <td *ngSwitchCase="'sector'">{{ e.sector.name }}</td>
+                        <td *ngSwitchCase="'procedure'">{{ e.procedure.name }}</td>
+                        <td *ngSwitchCase="'modality'">{{ e.modality.name }}</td>
+                        <td *ngSwitchCase="'status'">{{ e.status.description }}</td>
+                    </ng-container>
 
-            <td *ngIf="buttons">
-                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
-            </td>
+                    <td *ngIf="buttons">
+						<ng-container *ngFor="let b of buttons">
+							<p-splitButton *ngIf="b.childs" 
+								styleClass="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.label }}" 
+								(onClick)="b.command(e)" [model]="b.childs"></p-splitButton>
+
+							<button *ngIf="!b.childs" pButton type="button" 
+								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}"
+								label="{{ b.label }}" icon="{{ b.icon }}"
+								(click)="b.command(e)" ></button>
+						</ng-container>
+					</td>
                 </tr>
             </ng-template>
         </p-table>
     </p>
 </div>
 
-<agal-paginator 
-    [totalRecords]="totalRecords"
-    [pageSizeOptions]="[30,50,100,500]"
-    [initialSize]="30"
-    (paginator)="changePagination($event)"
-    ></agal-paginator>
+<agal-paginator [totalRecords]="totalRecords" [pageSizeOptions]="[30,50,100,500]" [initialSize]="30"
+	(paginator)="changePagination($event)"></agal-paginator>
