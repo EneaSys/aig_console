@@ -9,6 +9,7 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
 import { AigCommonStandardModule } from 'aig-common/modules/standard/common-standard.module';
 import { AigStandardModule } from 'app/main/api-gest-console/modules/aig-standard/aig-standard.module';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import {  MatIconModule } from '@angular/material';
 
 @NgModule({
 	imports: [ 
@@ -25,6 +26,8 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 		AigGenericModule,
 
 		CommonGenericModule,
+		
+		MatIconModule,
 
 		SplitButtonModule,
 
