@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigIppGenericComponent } from '../ipp-generic-component';
+import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 		private procurementResourceService: ProcurementResourceService,
 		private italianPublicProcurementModalityResourceService: IlPpProcurementModalityResourceService,
 		public standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+		public standardAutocompleteDisplayService:  AigStandardAutocompleteDisplayService, 
 		public gcs: AigGenericComponentService,
 	) {
 		super(gcs)
@@ -58,7 +60,6 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 
 
 		this.procurementSearchFormGroup = this._formBuilder.group({
-			id: [''],
 			description: [''],
 			ref: [''],
 			code: [''],
@@ -66,8 +67,8 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 			ippModality: [''],
 			ippProcedure: [''],
 			ippSector: [''],
-			totalAmount: [''],
-			procurementStatus: [''],
+			baseAmount: [''],
+			status: [''],
 		});
 
 		this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);
@@ -84,7 +85,7 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 
 	procurementSearchWithFilter() {
 		let filters: any = {};
-		let searchedId = this.procurementSearchFormGroup.value.idEquals;
+		let searchedId = this.procurementSearchFormGroup.value.procurementIdEquals;
 
 		if (searchedId != null) {
 			this.procurementSearchFormGroup.reset();
@@ -97,15 +98,15 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 			}*/
 
 			if (filters.ippModality) {
-				filters.ilPpProcurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
 			}
 
 			if (filters.ippProcedure) {
-				filters.ilPpProcurementProcedureCodeEquals = filters.ilPpProcurementProcedure.code;
+				filters.procurementProcedureCodeEquals = filters.ilPpProcurementProcedure.code;
 			}
 
 			if (filters.ippSector) {
-				filters.ilPpProcurementSectorCodeEquals = filters.ilPpProcurementSector.code;
+				filters.procurementSectorCodeEquals = filters.ilPpProcurementSector.code;
 			}
 		}
 		this.procurementFilters = filters;
