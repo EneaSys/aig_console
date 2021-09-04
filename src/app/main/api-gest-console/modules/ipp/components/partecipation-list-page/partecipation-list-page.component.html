@@ -91,82 +91,31 @@
                                     </mat-form-field>
                                 </div>
 
+                                <div fxLayout="row">
+                                    <mat-slide-toggle formControlName="siteInspectionEquals">{{ 'IPP.SITE_INSPECTION' | translate }}</mat-slide-toggle>
+                                </div>
+								
 								<hr>
 
                                 <div fxLayout="row">
-                                    <mat-slide-toggle formControlName="siteInspection">{{ 'IPP.SITE_INSPECTION' | translate }}</mat-slide-toggle>
-                                </div>
-                        
-                                <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Criterio di aggiudicazione</mat-label>
-                                        <input formControlName="awardCriterion" matInput
-                                            [matAutocomplete]="awardCriterionAutocomplete">
-                                        <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
-                                            <mat-option
-                                                *ngFor="let awardCriterion of filteredAwardCriterion | async"
-                                                [value]="awardCriterion">{{ awardCriterion.name }}</mat-option>
+                                        <input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete">
+                                        <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
+                                            <mat-option *ngFor="let awardCriterion of filteredAwardCriterion | async" [value]="awardCriterion">{{ awardCriterion.name }}</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
     
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Tipo</mat-label>
-                                        <input formControlName="type" matInput
-                                            [matAutocomplete]="typeAutocomplete">
-                                        <mat-autocomplete #typeAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
-                                            <mat-option
-                                                *ngFor="let type of filteredIppLotType | async"
-                                                [value]="type">{{ type.name }}</mat-option>
+                                        <mat-label>Tipo Lotto</mat-label>
+                                        <input formControlName="procurementLotType" matInput [matAutocomplete]="typeAutocomplete">
+                                        <mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+                                            <mat-option *ngFor="let type of filteredIppLotType | async" [value]="type">{{ type.name }}</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Modalità</mat-label>
-                                        <input formControlName="ippModality" matInput
-                                            [matAutocomplete]="ippModalityAutocomplete">
-                                        <mat-autocomplete #ippModalityAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
-                                            <mat-option
-                                                *ngFor="let ippModality of filteredIppModality | async"
-                                                [value]="ippModality">{{ippModality.name}}</mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
-    
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Procedura</mat-label>
-                                        <input formControlName="ippProcedure" matInput
-                                            [matAutocomplete]="ippProcedureAutocomplete">
-                                        <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
-                                            <mat-option
-                                                *ngFor="let ippProcedure of filteredIppProcedure | async"
-                                                [value]="ippProcedure">{{ippProcedure.name}}</mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
-
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Tipo di partecipazione</mat-label>
-                                        <input formControlName="partecipationType" matInput
-                                            [matAutocomplete]="partecipationTypeAutocomplete">
-                                        <mat-autocomplete #partecipationTypeAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ilPpPartecipationTypeDisplayFn">
-                                            <mat-option
-                                                *ngFor="let partecipationType of filteredPartecipationType | async"
-                                                [value]="partecipationType">{{partecipationType.description}}</mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
-    
                                 
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>

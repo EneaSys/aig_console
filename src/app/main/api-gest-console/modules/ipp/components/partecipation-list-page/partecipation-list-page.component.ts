@@ -61,9 +61,6 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 	filteredContractorEopoo: Observable<EopooDTO[]>;
 	filteredProposerEopoo: Observable<EopooDTO[]>;
-	filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
-    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
-    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
     filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
     filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
     filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
@@ -79,30 +76,21 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			procurementLotOfferExpiryDateStart: [null],
 			procurementLotOfferExpiryDateEnd: [null],
 			procurementLotCategories: [null],
-			partecipationType: [null],
-			proposerEopoo: [null],
-			ippModality: [null],
-            ippProcedure: [null],
-            ippSector: [null],
-            awardCriterion: [null],
-            category: [null],
-            type: [null],
-			siteInspection: [false],
 			partecipationStatus: [null],
+			proposerEopoo: [null],
+			siteInspectionEquals: [false],
+            awardCriterion: [null],
+            procurementLotType: [null],
+			partecipationType: [null],
 		});
 
 
 		this.filteredContractorEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['contractorEopoo'].valueChanges);
-		this.filteredProposerEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['proposerEopoo'].valueChanges);
-		this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.partecipationSearchFormGroup.controls['ippModality'].valueChanges);
-        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.partecipationSearchFormGroup.controls['ippProcedure'].valueChanges);
-        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.partecipationSearchFormGroup.controls['ippSector'].valueChanges);
-        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.partecipationSearchFormGroup.controls['awardCriterion'].valueChanges);
-        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['category'].valueChanges);
-        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.partecipationSearchFormGroup.controls['type'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['procurementLotCategories'].valueChanges);
 		this.filteredPartecipationStatus = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationStatus'].valueChanges);
-		this.filteredPartecipationType = this.standardAutocompleteFilterService.filterIlPpPartecipationType(this.partecipationSearchFormGroup.controls['partecipationType'].valueChanges);
-		
+		this.filteredProposerEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['proposerEopoo'].valueChanges);
+        this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.partecipationSearchFormGroup.controls['awardCriterion'].valueChanges);
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.partecipationSearchFormGroup.controls['procurementLotType'].valueChanges);
 
 	}
 
@@ -132,6 +120,18 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			}
 			if(filters.procurementLotOfferExpiryDateEnd) {
 				filters.procurementLotOfferExpiryDateLessThanOrEqual = filters.procurementLotOfferExpiryDateEnd;
+			}
+			if(filters.partecipationStatus) {
+				filters.partecipationStatusIDEquals = filters.partecipationStatus.id;
+			}
+			if(filters.proposerEopoo) {
+				filters.proposerEopooCodeEquals = filters.proposerEopoo.id;
+			}
+			if(filters.awardCriterion) {
+				filters.procurementLotAwardCriterionCodeEquals = filters.awardCriterion.code;
+			}
+			if(filters.procurementLotType) {
+				filters.procurementLotTypeCodeEquals = filters.procurementLotType.code;
 			}
 			
 		}
