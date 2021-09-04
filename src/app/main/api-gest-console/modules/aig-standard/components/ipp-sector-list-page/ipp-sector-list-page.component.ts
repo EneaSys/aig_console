@@ -55,7 +55,7 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippSectorDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippSectorDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppSector() {

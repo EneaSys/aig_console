@@ -55,7 +55,7 @@ export class AigSocialListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.socialDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.socialDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersSocial() {

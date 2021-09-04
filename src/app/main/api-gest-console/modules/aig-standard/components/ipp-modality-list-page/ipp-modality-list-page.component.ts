@@ -55,7 +55,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippModalityDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippModalityDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppModality() {
