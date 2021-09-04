@@ -57,55 +57,14 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		this.showAllPartecipation();
 	}
 
-	newTableColumns: string[] = ['_ck','procurement.contractorEopoo','candidacy', 'procurementLot.description', 'procurementLot.cig', 'proposerEopoo | eopooName','designatedCompany','procurementLot.offerExpiryDate','procurementLot.baseAmount','category.name','status.description', ];
-	newTableButtons: any[] = [
-		{
-			name: "Details",
-			severity: "primary",
-			class: "",
-			fn: (e: any) => {
-				this.gcs.router.navigateByUrl("/ipp/partecipation/detail/" + e.id);
-			}
-		},{
-			name: "Edit",
-			severity: "secondary",
-			class: "ml-4",
-			fn: (e: any) => {
-				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {partecipation: e } });
-			}
-		},{
-			name: "Delete",
-			severity: "danger",
-			class: "mt-4",
-			fn: async (e: any) => {
-				this.gcs.fuseProgressBarService.show();
-				try {
-					await this.partecipationResourceService.deletePartecipationUsingDELETE(e.id).toPromise();
-					this._snackBar.open(`partecipation: '${e.id}' deleted.`, null, { duration: 2000, });
-
-					this.gcs.eventService.reloadCurrentPage();
-				} catch (e) {
-					this._snackBar.open(`Error during deleting partecipation: '${e.id}'. (${e.message})`, null, { duration: 5000, });
-				}
-				this.gcs.fuseProgressBarService.hide();
-			}
-		},
-	]
-
+	
 
 //			---- TABLE AND SEARCH SECTION ----
 
 	partecipationSearchFormGroup: FormGroup;
-	partecipationPaginationSize: number;
 	partecipationFilters: any;
 
-	partecipationLength: number;
-	partecipationDTOs: PartecipationDTO[];
-	partecipationError: any;
 
-	partecipationDC: string[];
-
-		
 	private initPartecipationSearch() {
 		this.partecipationPaginationSize = 10;
 
@@ -143,23 +102,89 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 	}
 
-	private clearFiltersPartecipation() {
-		this.partecipationFilters = {
-			idEquals: null,
-			contractorEopooCodeContains: null,
-			procurementLotCigCodeContains: null,
-			procurementLotOfferExpiryDateCodeEquals: null,
-			siteInspectionIDEquals: null,
-			ippModalityCodeEquals: null,
-            ippProcedureCodeEquals: null,
-            ippSectorCodeEquals: null,
-            awardCriterionCodeEquals: null,
-            categoryCodeEquals: null,
-            typeCodeEquals: null,
-			statusIdEquals: null,
-			partecipationTypeCodeEquals: null,
+	resetFiltersPartecipation() {
+		this.partecipationSearchFormGroup.reset();
+		this.partecipationSearchWithFilter();
+	}
+
+	showAllPartecipation() {
+		this.resetFiltersPartecipation();
+	}
+
+	partecipationSearchWithFilter() {
+		let partecipationFilters: any = {};
+
+
+		let searchedId = this.partecipationSearchFormGroup.value.idEquals;
+
+		if(searchedId != null) {
+			this.partecipationSearchFormGroup.reset();
+			this.partecipationFilters.idEquals = searchedId;
+		} else {
+
+			partecipationFilters = this.partecipationSearchFormGroup.value;
+
+			if (partecipationFilters.contractorEopoo) {
+				this.partecipationFilters.procurementContractorEopooCodeEquals = partecipationFilters.contractorEopoo.id;
+			}
+
+			if (partecipationFilters.proposerEopoo) {
+				this.partecipationFilters.proposerEopooCodeEquals = partecipationFilters.proposerEopoo.id;
+			}
+			if (partecipationFilters.procurementLotCig ) {
+				this.partecipationFilters.procurementLotCigContains = partecipationFilters.procurementLotCig;
+			}
+			if (partecipationFilters.procurementLotDescription) {
+				this.partecipationFilters.procurementLotDescriptionCodeContains = partecipationFilters.procurementLotDescription;
+			}
+
+			if (partecipationFilters.procurementLotOfferExpiryDate) {
+				this.partecipationFilters.procurementLotOfferExpiryDateCodeEquals = partecipationFilters.procurementLotOfferExpiryDate;
+			}
+			if (partecipationFilters.siteInspection != null ) {
+				this.partecipationFilters.siteInspectionEquals = partecipationFilters.siteInspection;
+			}
+
+			if (partecipationFilters.ippModality) {
+				this.partecipationFilters.ippModalityCodeEquals = partecipationFilters.ippModality.code;
+			}
+	
+			if (partecipationFilters.ippProcedure) {
+				this.partecipationFilters.ippProcedureCodeEquals = partecipationFilters.ippProcedure.code;
+			}
+	
+			if (partecipationFilters.ippSector) {
+				this.partecipationFilters.ippSectorCodeEquals = partecipationFilters.ippSector.code;
+			}
+			if (partecipationFilters.awardCriterion ) {
+				this.partecipationFilters.awardCriterionCodeEquals = partecipationFilters.awardCriterion.code;
+			}
+	
+			if (partecipationFilters.category) {
+				this.partecipationFilters.categoryCodeEquals = partecipationFilters.category.code;
+			}
+
+			if (partecipationFilters.partecipationStatus) {
+				this.partecipationFilters.statusIdEquals = partecipationFilters.partecipationStatus.id;
+			}
+
+			if (partecipationFilters.partecipationType) {
+				this.partecipationFilters.partecipationTypeCodeEquals = partecipationFilters.partecipationType.code;
+			}
+	
+
+			this.partecipationFilters = partecipationFilters;
 		}
 	}
+
+
+	//PAGINATOR//
+
+
+	partecipationPaginationSize: number;
+	partecipationLength: number;
+	partecipationDTOs: PartecipationDTO[];
+	partecipationError: any;
 
 	private async searchPartecipation(page: number) {
 		this.partecipationDTOs = null;
@@ -183,86 +208,51 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			}
 		}	
 
-	showAllPartecipation() {
-		this.resetFiltersPartecipation();
-	}
+	
 
-	resetFiltersPartecipation() {
-		this.partecipationSearchFormGroup.reset();
-			this.clearFiltersPartecipation();
-			this.searchPartecipation(0);
-	}
+	
 
 	partecipationPaginationEvent(pageEvent: PageEvent) {
 		this.partecipationPaginationSize = pageEvent.pageSize;
 		this.searchPartecipation(pageEvent.pageIndex);
 	}
 
-	partecipationSearchWithFilter() {
-		let searchedId = this.partecipationSearchFormGroup.controls.id.value;
-
-		if(searchedId != null) {
-			this.clearFiltersPartecipation();
-			this.partecipationSearchFormGroup.reset();
-			this.partecipationFilters.idEquals = searchedId;
-			this.searchPartecipation(0);
-			return;
-		} else {
-
-			if (this.partecipationSearchFormGroup.controls.contractorEopoo.value ) {
-				this.partecipationFilters.procurementContractorEopooCodeEquals = this.partecipationSearchFormGroup.controls.contractorEopoo.value.id;
-			}
-
-			if (this.partecipationSearchFormGroup.controls.proposerEopoo.value ) {
-				this.partecipationFilters.proposerEopooCodeEquals = this.partecipationSearchFormGroup.controls.proposerEopoo.value.id;
-			}
-			if (this.partecipationSearchFormGroup.controls.procurementLotCig.value ) {
-				this.partecipationFilters.procurementLotCigContains = this.partecipationSearchFormGroup.controls.procurementLotCig.value;
-			}
-			if (this.partecipationSearchFormGroup.controls.procurementLotDescription.value ) {
-				this.partecipationFilters.procurementLotDescriptionCodeContains = this.partecipationSearchFormGroup.controls.procurementLotDescription.value;
-			}
-
-			if (this.partecipationSearchFormGroup.controls.procurementLotOfferExpiryDate.value ) {
-				this.partecipationFilters.procurementLotOfferExpiryDateCodeEquals = this.partecipationSearchFormGroup.controls.procurementLotOfferExpiryDate.value;
-			}
-			if (this.partecipationSearchFormGroup.controls.siteInspection.value != null ) {
-				this.partecipationFilters.siteInspectionEquals = this.partecipationSearchFormGroup.controls.siteInspection.value;
-			}
-
-			if (this.partecipationSearchFormGroup.controls.ippModality.value ) {
-				this.partecipationFilters.ippModalityCodeEquals = this.partecipationSearchFormGroup.controls.ippModality.value.code;
-			}
 	
-			if (this.partecipationSearchFormGroup.controls.ippProcedure.value) {
-				this.partecipationFilters.ippProcedureCodeEquals = this.partecipationSearchFormGroup.controls.ippProcedure.value.code;
+	// NEW TABLE//
+	newTableColumns: string[] = ['_ck','procurement.contractorEopoo','candidacy', 'procurementLot.description', 'procurementLot.cig', 'proposerEopoo | eopooName','designatedCompany','procurementLot.offerExpiryDate','procurementLot.baseAmount','category.name','status.description', ];
+	newTableButtons: any[] = [
+		{
+			name: "Details",
+			severity: "primary",
+			class: "",
+			fn: (e: any) => {
+				this.gcs.router.navigateByUrl("/ipp/partecipation/detail/" + e.id);
 			}
-	
-			if (this.partecipationSearchFormGroup.controls.ippSector.value ) {
-				this.partecipationFilters.ippSectorCodeEquals = this.partecipationSearchFormGroup.controls.ippSector.value.code;
+		},{
+			name: "Edit",
+			severity: "secondary",
+			class: "ml-4",
+			fn: (e: any) => {
+				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {partecipation: e } });
 			}
-			if (this.partecipationSearchFormGroup.controls.awardCriterion.value ) {
-				this.partecipationFilters.awardCriterionCodeEquals = this.partecipationSearchFormGroup.controls.awardCriterion.value.code;
-			}
-	
-			if (this.partecipationSearchFormGroup.controls.category.value ) {
-				this.partecipationFilters.categoryCodeEquals = this.partecipationSearchFormGroup.controls.category.value.code;
-			}
+		},{
+			name: "Delete",
+			severity: "danger",
+			class: "mt-4",
+			fn: async (e: any) => {
+				this.gcs.fuseProgressBarService.show();
+				try {
+					await this.partecipationResourceService.deletePartecipationUsingDELETE(e.id).toPromise();
+					this._snackBar.open(`partecipation: '${e.id}' deleted.`, null, { duration: 2000, });
 
-			if (this.partecipationSearchFormGroup.controls.partecipationStatus.value ) {
-				this.partecipationFilters.statusIdEquals = this.partecipationSearchFormGroup.controls.partecipationStatus.value.id;
+					this.gcs.eventService.reloadCurrentPage();
+				} catch (e) {
+					this._snackBar.open(`Error during deleting partecipation: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+				}
+				this.gcs.fuseProgressBarService.hide();
 			}
-
-			if (this.partecipationSearchFormGroup.controls.partecipationType.value ) {
-				this.partecipationFilters.partecipationTypeCodeEquals = this.partecipationSearchFormGroup.controls.partecipationType.value.code;
-			}
-	
-
-			this.partecipationFilters.idEquals = null;
-
-			this.searchPartecipation(0);
-		}
-	}
+		},
+	]
 
 		
 

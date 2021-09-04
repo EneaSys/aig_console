@@ -25,14 +25,14 @@
 						<th *ngSwitchCase="'creationDateTime'" style="width:auto" pResizableColumn pSortableColumn="creationDateTime">Data Creazione</th>
 						<th *ngSwitchCase="'categories'" style="width:auto" pResizableColumn pSortableColumn="categories">Categorie</th>
 
-						<th *ngSwitchCase="'procurementLot.description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
+						<th *ngSwitchCase="'procurementLot.description'" style="width:25%" pResizableColumn pSortableColumn= ""> Descrizione</th>
 						<th *ngSwitchCase="'designatedCompany'" style="width:auto" pResizableColumn pSortableColumn= "">Azienda designata</th>
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
-						<th *ngSwitchCase="'procurementLot.cig'" style="width:auto" pResizableColumn pSortableColumn= ""> Cig</th>
+						<th *ngSwitchCase="'procurementLot.cig'" style="width:150px" pResizableColumn pSortableColumn= ""> Cig</th>
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
-						<th *ngSwitchCase="'procurementLot.offerExpiryDate'" style="width:auto" pResizableColumn pSortableColumn= ""> Data scadenza offerta</th>
+						<th *ngSwitchCase="'procurementLot.offerExpiryDate'" style="width:100px" pResizableColumn pSortableColumn= ""> Data scadenza offerta</th>
 						<th *ngSwitchCase="'procurementLot.baseAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> Importo base</th>
-						<th *ngSwitchCase="'candidacy'" style="width:auto" pResizableColumn pSortableColumn= ""> Manifestazione d'interesse</th>
+						<th *ngSwitchCase="'candidacy'" style="width:50px" pResizableColumn pSortableColumn= ""> M.I.</th>
 						<th *ngSwitchCase="'securityAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> Importo di sicurezza</th>
 						<th *ngSwitchCase="'istatCode'" style="width:auto" pResizableColumn pSortableColumn= "">Codice istat</th>
 						<th *ngSwitchCase="'nutsCode'" style="width:auto" pResizableColumn pSortableColumn= "">Codice nuts</th>
@@ -43,7 +43,7 @@
 						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
 						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn= ""> Codice</th>
 						<th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn= ""> Ref</th>
-						<th *ngSwitchCase="'procurement.contractorEopoo'" style="width:auto" pResizableColumn pSortableColumn= "">stazione appaltante</th>
+						<th *ngSwitchCase="'procurement.contractorEopoo'" style="width:15%" pResizableColumn pSortableColumn= "">Stazione appaltante</th>
 						<th *ngSwitchCase="'sectorCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Settore</th>
 						<th *ngSwitchCase="'procedureCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Procedura</th>
 						<th *ngSwitchCase="'modalityCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Modalità</th>
@@ -75,7 +75,14 @@
 						<td *ngSwitchCase="'designatedCompany'">{{ e.designatedCompany}}</td>
 						<td *ngSwitchCase="'note'">{{ e.note }}</td>
 						<td *ngSwitchCase="'creationDateTime'">{{ e.creationDateTime }}</td>
-						<td *ngSwitchCase="'candidacy'">{{ e.candidacy }}</td>
+						<td *ngSwitchCase="'candidacy'">
+							<span *ngIf="e.candidacy">
+							<mat-icon style="color: green;">done</mat-icon>
+						</span>
+
+						<span *ngIf="!e.candidacy">
+							<mat-icon style="color: red;">highlight_off</mat-icon>
+						</span></td>
 						<td *ngSwitchCase="'status.description'">{{ e.status.description }}</td>
 						<td *ngSwitchCase="'categories'">
 							<div *ngFor="let category of e.procurementLot.categories">{{ category.category.name }} ({{ category.level }})</div>
@@ -85,7 +92,7 @@
 						<td *ngSwitchCase="'partecipationModality.description'">{{ e.partecipationModality.description }}</td>
 						<td *ngSwitchCase="'procurementLot.cig'">{{ e.procurementLot.cig }}</td>
 						<td *ngSwitchCase="'procurementLot.description'">{{ e.procurementLot.description }}</td>
-						<td *ngSwitchCase="'procurementLot.offerExpiryDate'">{{ e.procurementLot.offerExpiryDate }}</td>
+						<td *ngSwitchCase="'procurementLot.offerExpiryDate'">{{ e.procurementLot.offerExpiryDate |date }}</td>
 						<td *ngSwitchCase="'procurementLot.baseAmount'">{{ e.procurementLot.baseAmount }}</td>
 						<td *ngSwitchCase="'procurementLot.candidacy'">{{ e.procurementLot.candidacy }}</td>
 						<td *ngSwitchCase="'procurementLot.securityAmount'">{{ e.procurementLot.securityAmount }}</td>

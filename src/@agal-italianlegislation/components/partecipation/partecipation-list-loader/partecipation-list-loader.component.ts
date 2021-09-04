@@ -15,8 +15,13 @@ import { PartecipationResourceService } from 'aig-italianlegislation';
     styleUrls: ['./partecipation-list-loader.component.scss']
 })
 export class AgalPartecipationListLoaderComponent extends AgalGenericComponent implements OnInit {
-	@Input()
-    filters: any = {};
+    _filters: any = {};
+    @Input()
+    set filters(filters: any) {
+        this._filters = filters;
+        this.loadData();
+    }
+   
     
     @Input()
     view: AgalListDisplayModality;
@@ -25,8 +30,7 @@ export class AgalPartecipationListLoaderComponent extends AgalGenericComponent i
 
     @Input()
     buttons: any[];
-    @Input()
-    customFunction: any[];
+   
     
     constructor(
         private resourceService: PartecipationResourceService,
@@ -85,7 +89,7 @@ export class AgalPartecipationListLoaderComponent extends AgalGenericComponent i
     async loadData() {
         this.loading = true;
 
-        let filters = this.filters;
+        let filters = this._filters;
         filters.page = this.pageable.page;
         filters.size = this.pageable.size;
         filters.sort = this.sort;

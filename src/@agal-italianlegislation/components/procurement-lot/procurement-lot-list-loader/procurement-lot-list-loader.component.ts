@@ -66,7 +66,6 @@ export class AgalProcurementLotListLoaderComponent extends AgalGenericComponent 
 
     lazyLoad(event: LazyLoadEvent) {
 
-		console.log("LazyLoadEvent", event);
 
 
         if(!this.isLoaded) {
