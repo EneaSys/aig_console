@@ -126,6 +126,10 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			if(filters.ilPpProcurementModality) {
 				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
 			}
+			if(filters.procurementLotOfferExpiryDateStart) {
+				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+			}
+			
 		}
 		this.partecipationFilters = filters;
 	}
