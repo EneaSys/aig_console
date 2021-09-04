@@ -7,7 +7,7 @@
             
         </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex>
+        <mat-form-field appearance="outline" fxFlex class="pl-4">
             <mat-label>WikiCode</mat-label>
             <input name="wikiCode" formControlName="wikiCode" matInput >
         </mat-form-field>
@@ -24,7 +24,7 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
 
-        <mat-form-field appearance="outline" fxFlex=50% class="pl-4">
+        <mat-form-field appearance="outline" fxFlex=50%>
             <mat-label>Data attivazione</mat-label>
             <input formControlName="activationDate" matInput [matDatepicker]="activationDataPicker">
             <mat-datepicker-toggle matSuffix [for]="activationDataPicker"></mat-datepicker-toggle>

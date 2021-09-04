@@ -42,7 +42,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
     loadPage() {
 		this.initPartecipationSearch();
 
-		this.resetFiltersPartecipation();
+		this.partecipationSearchWithFilter();
 	}
 
 	reloadPage() {
@@ -72,22 +72,23 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 	private initPartecipationSearch() {
 		this.partecipationSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			procurementLotCigEquals: [''],
-			contractorEopoo:[''],
-			procurementLotDescriptionContains:[''],
-			procurementLotOfferExpiryDateStart:[''],
-			procurementLotOfferExpiryDateEnd: [''],
-			partecipationType: [''],
-			proposerEopoo: [''],
-			ippModality: [''],
-            ippProcedure: [''],
-            ippSector: [''],
-            awardCriterion: [''],
-            category: [''],
-            type: [''],
+			id: [null],
+			procurementLotCigEquals: [null],
+			contractorEopoo: [null],
+			procurementLotDescriptionContains: [null],
+			procurementLotOfferExpiryDateStart: [null],
+			procurementLotOfferExpiryDateEnd: [null],
+			procurementLotCategories: [null],
+			partecipationType: [null],
+			proposerEopoo: [null],
+			ippModality: [null],
+            ippProcedure: [null],
+            ippSector: [null],
+            awardCriterion: [null],
+            category: [null],
+            type: [null],
 			siteInspection: [false],
-			partecipationStatus: [''],
+			partecipationStatus: [null],
 		});
 
 
@@ -127,7 +128,10 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
 			}
 			if(filters.procurementLotOfferExpiryDateStart) {
-				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+				filters.procurementLotOfferExpiryDateGreaterThanOrEqual = filters.procurementLotOfferExpiryDateStart;
+			}
+			if(filters.procurementLotOfferExpiryDateEnd) {
+				filters.procurementLotOfferExpiryDateLessThanOrEqual = filters.procurementLotOfferExpiryDateEnd;
 			}
 			
 		}

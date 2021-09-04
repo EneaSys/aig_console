@@ -33,7 +33,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+				//	expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -57,7 +57,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -81,7 +81,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -97,7 +97,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -111,7 +111,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -125,7 +125,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -147,7 +147,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -162,7 +162,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -177,7 +177,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -192,7 +192,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -207,7 +207,7 @@ export class AigStandardAutocompleteFilterService {
             startWith(''),
             switchMap((value: string) => {
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: new Date()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;

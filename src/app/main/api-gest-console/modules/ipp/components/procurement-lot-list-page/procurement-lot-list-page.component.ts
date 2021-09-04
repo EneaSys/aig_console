@@ -39,7 +39,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     loadPage() {
         this.initProcurementLotSearch();
 
-        this.resetFiltersProcurementLot();
+        this.procurementLotSearchWithFilter();
     }
 
     reloadPage() {
@@ -66,16 +66,16 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     
     private initProcurementLotSearch() {
         this.procurementLotSearchFormGroup = this._formBuilder.group({
-            procurementLotCigEquals: [''],
-            procurementLotDescriptionContains: [''],
-            offerExpiryDate: [''],
-            contractorEopoo: [''],
-            ilPpProcurementModality: [''],
-            ippProcedure: [''],
-            ippSector: [''],
-            awardCriterion: [''],
-            category: [''],
-            type: [''],
+            procurementLotCigEquals: [null],
+            procurementLotDescriptionContains: [null],
+            offerExpiryDate: [null],
+            contractorEopoo: [null],
+            ilPpProcurementModality: [null],
+            ippProcedure: [null],
+            ippSector: [null],
+            awardCriterion: [null],
+            category: [null],
+            type: [null],
         });
     
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
