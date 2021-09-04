@@ -187,7 +187,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 	}
 
 	async publish() {
-		await this.procurementLotResourceService.publishUsingGET5(this.procurementLotFilters).toPromise();
+		await this.procurementLotResourceService.publishUsingGET6(this.procurementLotFilters).toPromise();
 	}
 
 
