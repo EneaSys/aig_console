@@ -55,7 +55,7 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.awardCriterionDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.awardCriterionDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersAwardCriterion() {

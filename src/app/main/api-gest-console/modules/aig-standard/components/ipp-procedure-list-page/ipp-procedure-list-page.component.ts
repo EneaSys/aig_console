@@ -55,7 +55,7 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippProcedureDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippProcedureDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppProcedure() {

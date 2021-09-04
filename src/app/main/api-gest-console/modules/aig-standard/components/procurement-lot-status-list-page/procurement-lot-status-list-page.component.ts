@@ -56,7 +56,7 @@ export class AigProcurementLotStatusListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.procurementLotStatusDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.procurementLotStatusDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersProcurementLotStatus() {
