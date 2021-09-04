@@ -146,7 +146,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 		},{
 			label: "Dettagli",
 			hideLabel: true,
-			icon: "pi pi-refresh",
+			icon: "pi pi-search",
 			severity: "primary",
 			class: "mt-4",
 			command: (e: any) => {
