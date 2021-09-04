@@ -45,7 +45,7 @@
 						<th *ngSwitchCase="'procurement.statusCode'" style="width:auto" pResizableColumn pSortableColumn=""> stato</th>
 					</ng-container>
 
-					<th *ngIf="buttons" style="width:180px"></th>
+					<th *ngIf="buttons" style="width:140px"></th>
 
 				</tr>
 			</ng-template>
@@ -88,9 +88,16 @@
 					</ng-container>
 					
 					<td *ngIf="buttons">
-						<button pButton type="button" *ngFor="let b of buttons"
-							class="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.name }}" 
-							(click)="b.fn(e)" ></button>
+						<ng-container *ngFor="let b of buttons">
+							<p-splitButton *ngIf="b.childs" 
+								styleClass="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.label }}" 
+								(onClick)="b.command(e)" [model]="b.childs"></p-splitButton>
+
+							<button *ngIf="!b.childs" pButton type="button" 
+								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}"
+								label="{{ b.label }}" icon="{{ b.icon }}"
+								(click)="b.command(e)" ></button>
+						</ng-container>
 					</td>
 
 				</tr>

@@ -137,43 +137,49 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 	newTableColumns: string[] = ['_ck', 'procurement.contractorEopoo', 'cig', 'candidacy', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate'];
 	newTableButtons: any[] = [
 		{
-			name: "Partecipa",
+			label: "Partecipa",
 			severity: "secondary",
-			class: "",
-			fn: (e: any) => {
+			class: "ml-8",
+			command: (e: any) => {
 				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { procurementLot: e } });
 			}
 		},{
-			name: "Dettagli",
+			label: "Dettagli",
+			hideLabel: true,
+			icon: "pi pi-refresh",
 			severity: "primary",
 			class: "mt-4",
-			fn: (e: any) => {
+			command: (e: any) => {
 				this.gcs.router.navigateByUrl("/ipp/procurement-lot/detail/" + e.id);
-			}
-		},{
-			name: "Edit",
+			},
+		},
+		{
+			label: "Edit",
+			hideLabel: true,
+			icon: "pi pi-pencil",
 			severity: "secondary",
 			class: "mt-4 ml-4",
-			fn: (e: any) => {
+			command: (e: any) => {
 				this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: e } });
 			}
 		},{
-			name: "Delete",
+			label: "Delete",
+			hideLabel: true,
+			icon: "pi pi-trash",
 			severity: "danger",
-			class: "mt-4",
-			fn: async (e: any) => {
+			class: "mt-4  ml-4",
+			command: async (e: any) => {
 				this.gcs.fuseProgressBarService.show();
 				try {
 					await this.procurementLotResourceService.deleteProcurementLotUsingDELETE(e.id).toPromise();
 					this._snackBar.open(`Procurement Lot: '${e.id}' deleted.`, null, { duration: 2000, });
-
 					this.gcs.eventService.reloadCurrentPage();
 				} catch (e) {
 					this._snackBar.open(`Error during deleting procurement lot: '${e.id}'. (${e.message})`, null, { duration: 5000, });
 				}
 				this.gcs.fuseProgressBarService.hide();
 			}
-		},
+		}
 	]
 
 
