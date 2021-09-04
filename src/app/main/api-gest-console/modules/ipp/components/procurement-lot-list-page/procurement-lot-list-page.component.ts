@@ -35,27 +35,15 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     }
 
 
-    filteredEopoo: Observable<EopooDTO[]>;
-    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
-    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
-    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
-    filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
-    filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
-    filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
-
-
-
-
-
 
     loadPage() {
         this.initProcurementLotSearch();
 
-        this.showAllProcurementLot();
+        this.resetFiltersProcurementLot();
     }
 
     reloadPage() {
-        this.showAllProcurementLot();
+        this.procurementLotSearchWithFilter();
     }
 
 
@@ -68,7 +56,13 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     procurementLotSearchFormGroup: FormGroup;
     procurementLotFilters: any;
     
-
+    filteredEopoo: Observable<EopooDTO[]>;
+    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
+    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
+    filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
+    filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
+    filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
     
     private initProcurementLotSearch() {
         this.procurementLotSearchFormGroup = this._formBuilder.group({
@@ -99,28 +93,24 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 		this.procurementLotSearchWithFilter();
     }
 
-    showAllProcurementLot() {
-        this.resetFiltersProcurementLot();
-    }
-
     procurementLotSearchWithFilter() {
-		let procurementLotFilters: any = {};
+		let filters: any = {};
 		
 		let searchedId = this.procurementLotSearchFormGroup.value.procurementLotCigEquals;
 		if (searchedId != null) {
 			this.procurementLotSearchFormGroup.reset();
-			procurementLotFilters.procurementLotCigEquals = searchedId;
+			filters.procurementLotCigEquals = searchedId;
 		} else {
-			procurementLotFilters = this.procurementLotSearchFormGroup.value;
+			filters = this.procurementLotSearchFormGroup.value;
 
-			if(procurementLotFilters.contractorEopoo) {
-				procurementLotFilters.contractorCodeEquals = procurementLotFilters.contractorEopoo.id;
+			if(filters.contractorEopoo) {
+				filters.contractorCodeEquals = filters.contractorEopoo.id;
 			}
-			if(procurementLotFilters.ilPpProcurementModality) {
-				procurementLotFilters.procurementModalityCodeEquals = procurementLotFilters.ilPpProcurementModality.code;
+			if(filters.ilPpProcurementModality) {
+				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
 			}
 		}
-		this.procurementLotFilters = procurementLotFilters;
+		this.procurementLotFilters = filters;
 	}
 
 

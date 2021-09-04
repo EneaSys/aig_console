@@ -17,22 +17,21 @@
 
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:50px" ></th>
-						<th *ngSwitchCase="'proposerEopoo | eopooName'" style="width:auto" pResizableColumn pSortableColumn="">Proponente</th>
+						<th *ngSwitchCase="'proposerEopoo'" style="width:200px" pResizableColumn pSortableColumn="proposerCompleteName">Proponente</th>
 						<th *ngSwitchCase="'type.name'" style="width:auto" pResizableColumn pSortableColumn="">Tipo di partecipazione</th>
 						<th *ngSwitchCase="'siteInspection'"style="width:auto" pResizableColumn pSortableColumn="siteInspection" >Sopralluogo</th>
 						<th *ngSwitchCase="'offering'" style="width:auto" pResizableColumn pSortableColumn="offering">Offerta</th>
 						<th *ngSwitchCase="'note'" style="width:auto" pResizableColumn pSortableColumn="note">Note</th>
 						<th *ngSwitchCase="'creationDateTime'" style="width:auto" pResizableColumn pSortableColumn="creationDateTime">Data Creazione</th>
-						<th *ngSwitchCase="'categories'" style="width:auto" pResizableColumn pSortableColumn="categories">Categorie</th>
-
-						<th *ngSwitchCase="'procurementLot.description'" style="width:25%" pResizableColumn pSortableColumn= ""> Descrizione</th>
-						<th *ngSwitchCase="'designatedCompany'" style="width:auto" pResizableColumn pSortableColumn= "">Azienda designata</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
-						<th *ngSwitchCase="'procurementLot.cig'" style="width:150px" pResizableColumn pSortableColumn= ""> Cig</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
-						<th *ngSwitchCase="'procurementLot.offerExpiryDate'" style="width:100px" pResizableColumn pSortableColumn= ""> Data scadenza offerta</th>
-						<th *ngSwitchCase="'procurementLot.baseAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> Importo base</th>
-						<th *ngSwitchCase="'candidacy'" style="width:50px" pResizableColumn pSortableColumn= ""> M.I.</th>
+						<th *ngSwitchCase="'designatedCompany'" style="width:auto" pResizableColumn pSortableColumn="partecipationDesignatedCompany">Azienda designata</th>
+						<th *ngSwitchCase="'status'" style="width:auto" pResizableColumn> Stato</th>
+						
+						<th *ngSwitchCase="'procurementLot.description'" style="width:20%" pResizableColumn > Descrizione</th>
+						<th *ngSwitchCase="'procurementLot.cig'" style="width:130px" pResizableColumn> Cig</th>
+						<th *ngSwitchCase="'categories'" style="width:auto" pResizableColumn >Categorie</th>
+						<th *ngSwitchCase="'procurementLot.offerExpiryDate'" style="width:100px" pResizableColumn pSortableColumn="procurementLotOfferExpiryDate">Data scadenza offerta</th>
+						<th *ngSwitchCase="'candidacy'" style="width:50px" pResizableColumn> M.I.</th>
+						<th *ngSwitchCase="'procurementLot.baseAmount'" style="width:100px" pResizableColumn pSortableColumn="procurementLotBaseAmount"> Importo base</th>
 						<th *ngSwitchCase="'securityAmount'" style="width:auto" pResizableColumn pSortableColumn= ""> Importo di sicurezza</th>
 						<th *ngSwitchCase="'istatCode'" style="width:auto" pResizableColumn pSortableColumn= "">Codice istat</th>
 						<th *ngSwitchCase="'nutsCode'" style="width:auto" pResizableColumn pSortableColumn= "">Codice nuts</th>
@@ -40,17 +39,17 @@
 						<th *ngSwitchCase="'typeCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Tipo</th>
 						<th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Criterio di aggiudicazione</th>
 						<th *ngSwitchCase="'statusCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Stato</th>
-						<th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn= ""> Descrizione</th>
+						
+						<th *ngSwitchCase="'procurement.contractorEopoo'" style="width:200px" pResizableColumn pSortableColumn= "contractorCompleteName">Stazione appaltante</th>
 						<th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn= ""> Codice</th>
 						<th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn= ""> Ref</th>
-						<th *ngSwitchCase="'procurement.contractorEopoo'" style="width:15%" pResizableColumn pSortableColumn= "">Stazione appaltante</th>
 						<th *ngSwitchCase="'sectorCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Settore</th>
 						<th *ngSwitchCase="'procedureCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Procedura</th>
 						<th *ngSwitchCase="'modalityCode'" style="width:auto" pResizableColumn pSortableColumn= ""> Modalità</th>
 						<th *ngSwitchCase="'status.description'" style="width:auto" pResizableColumn pSortableColumn= "">Stato</th>
 					</ng-container>
 
-					<th style="width:auto" *ngIf="buttons"></th>
+					<th style="width:135px" *ngIf="buttons"></th>
 
 				</tr>
 			</ng-template>
@@ -60,7 +59,7 @@
 
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc" >
 						<td *ngSwitchCase="'_ck'" ><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
-						<td *ngSwitchCase="'proposerEopoo | eopooName'">{{ e.proposerEopoo | eopooName }}</td>
+						<td *ngSwitchCase="'proposerEopoo'">{{ e.proposerEopoo | eopooName }}</td>
 						<td *ngSwitchCase="'type.name'">{{ e.type.name}}</td>
 						<td *ngSwitchCase="'siteInspection'">
 							<span *ngIf="e.siteInspection">
@@ -83,7 +82,7 @@
 						<span *ngIf="!e.candidacy">
 							<mat-icon style="color: red;">highlight_off</mat-icon>
 						</span></td>
-						<td *ngSwitchCase="'status.description'">{{ e.status.description }}</td>
+						<td *ngSwitchCase="'status'">{{ e.status.description }}</td>
 						<td *ngSwitchCase="'categories'">
 							<div *ngFor="let category of e.procurementLot.categories">{{ category.category.name }} ({{ category.level }})</div>
 						</td>
@@ -93,9 +92,9 @@
 						<td *ngSwitchCase="'procurementLot.cig'">{{ e.procurementLot.cig }}</td>
 						<td *ngSwitchCase="'procurementLot.description'">{{ e.procurementLot.description }}</td>
 						<td *ngSwitchCase="'procurementLot.offerExpiryDate'">{{ e.procurementLot.offerExpiryDate |date }}</td>
-						<td *ngSwitchCase="'procurementLot.baseAmount'">{{ e.procurementLot.baseAmount }}</td>
+						<td *ngSwitchCase="'procurementLot.baseAmount'">{{ e.procurementLot.baseAmount | currency: 'EUR' }}</td>
 						<td *ngSwitchCase="'procurementLot.candidacy'">{{ e.procurementLot.candidacy }}</td>
-						<td *ngSwitchCase="'procurementLot.securityAmount'">{{ e.procurementLot.securityAmount }}</td>
+						<td *ngSwitchCase="'procurementLot.securityAmount'">{{ e.procurementLot.securityAmount | currency: 'EUR' }}</td>
 						<td *ngSwitchCase="'procurementLot.istatCode'">{{ e.procurementLot.istatCode }}</td>
 						<td *ngSwitchCase="'procurementLot.nutsCode'">{{ e.procurementLot.nutsCode }}</td>
 						<td *ngSwitchCase="'procurementLot.cpvCode'">{{ e.procurementLot.cpvCode }}</td>
@@ -113,10 +112,16 @@
 					</ng-container>
 
 					<td *ngIf="buttons">
-						<button pButton type="button" *ngFor="let b of buttons"
-							class="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.name }}" 
-							(click)="b.fn(e)" >
-						</button>
+						<ng-container *ngFor="let b of buttons">
+							<p-splitButton *ngIf="b.childs" 
+								styleClass="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.label }}" 
+								(onClick)="b.command(e)" [model]="b.childs"></p-splitButton>
+
+							<button *ngIf="!b.childs" pButton type="button" 
+								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}"
+								label="{{ b.label }}" icon="{{ b.icon }}"
+								(click)="b.command(e)" ></button>
+						</ng-container>
 					</td>
 
 				</tr>
@@ -125,9 +130,5 @@
     </p>
 </div>
 
-<agal-paginator 
-    [totalRecords]="totalRecords"
-    [pageSizeOptions]="[30,50,100,500]"
-    [initialSize]="30"
-    (paginator)="changePagination($event)"
-></agal-paginator>
+<agal-paginator [totalRecords]="totalRecords" [pageSizeOptions]="[30,50,100,500]" [initialSize]="30"
+	(paginator)="changePagination($event)"></agal-paginator>
