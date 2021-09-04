@@ -28,7 +28,7 @@ export class AigIppAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 0) {
 					let filter = {
-						descriptionContains: value
+						procurementDescriptionContains: value
 					};
 					return this.procurementResourceService.getAllProcurementsUsingGET(filter);
 				} else {
