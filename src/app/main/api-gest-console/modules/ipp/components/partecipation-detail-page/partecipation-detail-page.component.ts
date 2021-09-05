@@ -104,7 +104,7 @@ export class AigPartecipationDetailPageComponent extends AigIppGenericComponent 
 
   async loadDesignatedCompany() {
     let filters = {
-      partecipationIdEquals: this.partecipationDTO.id
+      partecipationIDEquals: this.partecipationDTO.id
     };
     this.designatedCompanyDTOs = await this.designatedCompanyResourceService.getAllDesignatedCompaniesUsingGET(filters).toPromise();
   }
