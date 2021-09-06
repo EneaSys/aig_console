@@ -30,9 +30,15 @@
 
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex="50">
-            <mat-label>{{ 'MAIN.NOTE' | translate }}</mat-label>
-            <input formControlName="note" matInput>
+
+		<mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>{{ 'MAIN.MODALITY' | translate }}</mat-label>
+            <input formControlName="modality" matInput [matAutocomplete]="modailityAutocomplete" required>
+            <mat-autocomplete #modailityAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.preparationModalityDisplayFn">
+                <mat-option *ngFor="let preparationModaility of filteredPreparationModality | async" [value]="preparationModaility">
+                    {{ preparationModaility.description }}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
@@ -47,6 +53,12 @@
 
     </div>
 
+	<div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex="100">
+            <mat-label>{{ 'MAIN.NOTE' | translate }}</mat-label>
+            <input formControlName="note" matInput>
+        </mat-form-field>
+	</div>
     
     <div fxLayout="row" fxLayoutAlign="end top">
         <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate }}</button>
