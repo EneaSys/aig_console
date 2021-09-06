@@ -136,7 +136,6 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			if(filters.procurementLotCategories) {
 				console.log(filters.procurementLotCategories);
 			}
-			console.log(filters);
 		}
 		this.partecipationFilters = filters;
 	}

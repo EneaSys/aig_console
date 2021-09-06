@@ -16,6 +16,7 @@ import { AigContextRepositoryService } from 'aig-common/context-browser-reposito
 import { navigation } from 'app/navigation/navigation';
 import { UserPermissionMemoryResourceService } from 'api-gest';
 import { AigModuleNavigationService } from 'app/main/api-gest-console/navigation/navigation.service';
+import { EventService } from 'aig-common/event-manager/event.service';
 
 
 
@@ -60,6 +61,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private aigContextRepositoryService: AigContextRepositoryService,
         private userPermissionMemoryResourceService: UserPermissionMemoryResourceService,
         private aigModuleNavigationService: AigModuleNavigationService,
+		private eventService: EventService,
     ) {
         this.languages = [
             {
@@ -143,6 +145,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
             );
         }
     }
+
+	reload() {
+		this.eventService.reloadCurrentPage();
+	}
 
     private loggedUserInfo(user: any) {
         if (user != undefined) {
