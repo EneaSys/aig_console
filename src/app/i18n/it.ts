@@ -16,7 +16,7 @@ export const locale = {
             'RESET_FILTERS': 'resetta filtri',
             'SEARCH': 'cerca',
             'STATUS': 'stato',
-			'modality': 'modalità',
+			'MODALITY': 'modalità',
             'GROUP': 'gruppo',
             'GROUPS': 'gruppi',
             'DESCRIPTION': 'descrizione',

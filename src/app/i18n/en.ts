@@ -12,7 +12,7 @@ export const locale = {
             'RESET_FILTERS': 'reset filters',
             'SEARCH': 'search',
             'STATUS': 'status',
-			'modality': 'modality',
+			'MODALITY': 'modality',
             'GROUP': 'group',
             'GROUPS': 'groups',
             'DESCRIPTION': 'description',
