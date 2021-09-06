@@ -120,7 +120,11 @@ export class AigLicenceListPageComponent extends GenericComponent {
 	}
 
 	newLicence(): void {
-		this.dialog.open(AigLicenceNewUpdateDialogComponent, { data: { licence: {} } });
-   }
+		this.dialog.open(AigLicenceNewUpdateDialogComponent, { data: {} });
+   	}
+
+	async publish() {
+		await this.licenceResourceService.publishUsingGET5(this.licenceFilters).toPromise;
+	}
 
 }

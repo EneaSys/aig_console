@@ -127,7 +127,12 @@ insurancePolicySearchWithFilter() {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 newInsurancePolicy(): void {
-    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: { insurancePolicy: {} } });
+    this.dialog.open(AigInsurancePolicyNewUpdateDialogComponent, { data: {} });
     }
+
+	
+/*async publish() {
+	await this.insurancePolicyResourceService.publishUsingGET(this.insurancePolicyFilters).toPromise;
+}*/
 
 }

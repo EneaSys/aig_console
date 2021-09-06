@@ -12,6 +12,6 @@
 <div class="h4 ml-16">
     {{ 'IPP.OFFER_EXPIRY_DATE' | translate }}: <b>{{ procurementLot.offerExpiryDate | date: 'dd/MM/yyyy' }}</b>
 </div>
-<div class="h4 ml-16">{{ 'IPP.LOT_TYPE' | translate }}: <b>{{ procurementLot.type.name }}</b></div>
+<div class="h4 ml-16" *ngIf="procurementLot.type">{{ 'IPP.LOT_TYPE' | translate }}: <b>{{ procurementLot.type.name }}</b></div>
 <div class="h4 ml-16" *ngIf="procurementLot.awardCriterion">{{ 'IPP.AWARD_CRITERION' | translate }}: <b>{{ procurementLot.awardCriterion.name }}</b></div>
-<div class="h4 ml-16">{{ 'MAIN.STATUS' | translate }}: <b>{{ procurementLot.status.name }}</b></div>
+<div class="h4 ml-16" *ngIf="procurementLot.status">{{ 'MAIN.STATUS' | translate }}: <b>{{ procurementLot.status.name }}</b></div>

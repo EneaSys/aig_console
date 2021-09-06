@@ -138,4 +138,9 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
         this.dialog.open(AigPartecipationModalityNewUpdateDialogComponent, { data: { } });
     }
 
+	
+	/*async publish() {
+		await this.partecipationModalityResourceService.publishUsingGET(this.partecipationModalityFilters).toPromise;
+	}*/
+
 }

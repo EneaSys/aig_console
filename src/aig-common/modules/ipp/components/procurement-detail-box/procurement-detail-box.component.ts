@@ -8,10 +8,11 @@ import { AigIppCommonGenericComponent } from '../ipp-common-generic-component';
     templateUrl: './procurement-detail-box.component.html',
     styleUrls: ['./procurement-detail-box.component.scss']
 })
-export class AigProcurementDetailBoxComponent extends AigIppCommonGenericComponent implements OnInit {
-    constructor(_fuseTranslationLoaderService: FuseTranslationLoaderService) { super(_fuseTranslationLoaderService); }
-    ngOnInit(): void {}
-
-    @Input()
+export class AigProcurementDetailBoxComponent extends AigIppCommonGenericComponent {
+	@Input()
     procurement: ProcurementDTO;
+	
+	constructor(
+		_fuseTranslationLoaderService: FuseTranslationLoaderService
+	) { super(_fuseTranslationLoaderService); }
 }

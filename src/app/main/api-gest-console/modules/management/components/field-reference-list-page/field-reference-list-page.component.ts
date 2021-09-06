@@ -120,7 +120,10 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 	}
 
 	newFieldReference(): void {
-		this.dialog.open(AigFieldReferenceNewUpdateDialogComponent, { data: { fieldReference: {} } });
+		this.dialog.open(AigFieldReferenceNewUpdateDialogComponent, { data: {} });
     }
 
+	async publish() {
+		await this.fieldReferenceResourceService.publishUsingGET4(this.fieldReferenceFilters).toPromise;
+	}
 }

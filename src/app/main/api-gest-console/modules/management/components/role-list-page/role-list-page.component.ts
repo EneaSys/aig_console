@@ -127,8 +127,11 @@ export class AigRoleListPageComponent extends GenericComponent {
 	}
 
 	newRole(): void {
-		this.dialog.open(AigRoleNewUpdateModalComponent, { data: { role: {} } });
-   }
-
+		this.dialog.open(AigRoleNewUpdateModalComponent, { data: {} });
+   	}
+	
+	async publish() {
+		await this.roleResourceService.publishUsingGET9(this.roleFilters).toPromise;
+	}
 }
 

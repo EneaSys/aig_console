@@ -76,14 +76,14 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
-            id: [''],
+            id: [null],
             
             procurement: [this.procurement, [Validators.required, AigValidator.haveId] ],
 			
-			type: [null, [Validators.required, AigValidator.haveId] ],
-            awardCriterion: [null, [Validators.required, AigValidator.haveId] ],
-            status: [null, [Validators.required, AigValidator.haveId] ],
-			cpv: [null, [AigValidator.haveId]],
+			type: [null, [Validators.required, AigValidator.haveCode] ],
+            awardCriterion: [null, [Validators.required, AigValidator.haveCode] ],
+            status: [null, [Validators.required, AigValidator.haveCode] ],
+			cpv: [null, [AigValidator.haveCode]],
 
             description: [null, Validators.required],
             offerExpiryDate: [null, Validators.required],
@@ -92,15 +92,17 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 			candidacy: [false],
 			
 			cig: [null, Validators.required],
+			workLocation: [null, AigValidator.haveCode],
 
-            securityAmount: [''],
-			istatCode: [''],
-            nustCode: [''],
+            securityAmount: [null],
+			istatCode: [null],
+            nutsCode: [null],
         })
         
         if (this.procurementLot != null) {
             this.procurementLotNewUpdateForm.patchValue(this.procurementLot);
             this.isUpdate = true;
+			this.candidacyChecked(this.procurementLot.candidacy);
         }
 
         this.filteredProcurement = this.ippAutocompleteFilterService.filterProcurement(this.procurementLotNewUpdateForm.controls['procurement'].valueChanges);
@@ -109,7 +111,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotNewUpdateForm.controls['type'].valueChanges);
         this.filteredProcurementLotAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotNewUpdateForm.controls['awardCriterion'].valueChanges);
         this.filteredProcurementLotStatus = this.standardAutocompleteFilterService.filterIlPpProcurementLotStatus(this.procurementLotNewUpdateForm.controls['status'].valueChanges);
-		this.filteredLocality = this.standardAutocompleteFilterService.filterCity(this.procurementLotNewUpdateForm.controls['nustCode'].valueChanges);
+		this.filteredLocality = this.standardAutocompleteFilterService.filterCity(this.procurementLotNewUpdateForm.controls['workLocation'].valueChanges);
     }
 
 	candidacyChecked(isCandidacy: boolean) {
@@ -136,16 +138,24 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let procurementLot: ProcurementLotDTO = this.procurementLotNewUpdateForm.value;
+        let procurementLot: any = this.procurementLotNewUpdateForm.value;
         procurementLot.procurementId = this.procurementLotNewUpdateForm.value.procurement.id;
         
         procurementLot.typeCode = this.procurementLotNewUpdateForm.value.type.code;
         procurementLot.awardCriterionCode = this.procurementLotNewUpdateForm.value.awardCriterion.code;
         procurementLot.statusCode = this.procurementLotNewUpdateForm.value.status.code;
 
+		procurementLot.workLocationCode = (this.procurementLotNewUpdateForm.value.workLocation) ? this.procurementLotNewUpdateForm.value.workLocation.code : null;
 		procurementLot.cpvCode = (this.procurementLotNewUpdateForm.value.cpv) ? this.procurementLotNewUpdateForm.value.cpv.code : null;
-        procurementLot.nutsCode = (this.procurementLotNewUpdateForm.value.nustCode) ? this.procurementLotNewUpdateForm.value.nustCode.code : null;
-
+		
+		this.procurementLotResult = procurementLot;
+		
+		procurementLot.procurement = null;
+		procurementLot.type = null;
+		procurementLot.awardCriterion = null;
+		procurementLot.status = null;
+		procurementLot.workLocation = null;
+		procurementLot.cpv = null;
 
         try {
             let postOrPut: string;

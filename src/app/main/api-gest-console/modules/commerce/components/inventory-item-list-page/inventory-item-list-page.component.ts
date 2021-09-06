@@ -53,7 +53,7 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
   inventoryItemDC: string[];
 
   private initInventoryItemSearch() {
-    this.inventoryItemPaginationSize = 10
+    this.inventoryItemPaginationSize = 500
 
     this.inventoryItemSearchFormGroup = this._formBuilder.group({
       id: [''],
@@ -149,7 +149,10 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
 
 
   newInventoryItem(): void {
-    this.dialog.open(AigInventoryItemDialogComponent, { data: { inventoryItem: {} } });
+    this.dialog.open(AigInventoryItemDialogComponent, { data: {  } });
   }
 
+  async publish() {
+		await this.inventoryItemResourceService.publishUsingGET7(this.inventoryItemFilters).toPromise;
+	}
 }

@@ -55,7 +55,7 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippSectorDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippSectorDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppSector() {
@@ -122,7 +122,13 @@ export class AigIppSectorListPageComponent extends GenericComponent {
 	}
 
     newIppSector(){
-        this.dialog.open(AigIppSectorNewUpdateModalComponent, {data: { ippSector: {} } });
+        this.dialog.open(AigIppSectorNewUpdateModalComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !IPP SECTOR TABLE AND SEARCH SECTION ----
 }

@@ -55,7 +55,7 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippModalityDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippModalityDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppModality() {
@@ -122,7 +122,13 @@ export class AigIppModalityListPageComponent extends GenericComponent {
 	}
 
     newIppModality(){
-        this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: { ippModality: {} } });
+        this.dialog.open(AigIppModalityNewUpdateModalComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !IPP MODALITY TABLE AND SEARCH SECTION ----
 }

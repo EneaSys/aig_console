@@ -117,6 +117,10 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 
 	newEntityReference(): void {
 		this.dialog.open(AigEntityReferenceNewUpdateModalComponent, { data: {} });
-   }
+   	}
+
+	async publish() {
+		await this.entityReferenceResourceService.publishUsingGET3(this.entityReferenceFilters).toPromise;
+	}
 
 }

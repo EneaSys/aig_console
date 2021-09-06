@@ -131,7 +131,11 @@ export class AigSellerListPageComponent extends AigCommerceGenericComponent {
 	//			---- !SELLER TABLE AND SEARCH SECTION ----
 
     newSeller() {
-		this.dialog.open(AigSellerNewUpdateDialogComponent, { data: { seller: {} } });
+		this.dialog.open(AigSellerNewUpdateDialogComponent, { data: { } });
+	}
+
+	async publish() {
+		await this.sellerResourceService.publishUsingGET15(this.sellerFilters).toPromise;
 	}
 	
 }

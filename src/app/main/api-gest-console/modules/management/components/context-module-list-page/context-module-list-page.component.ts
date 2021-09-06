@@ -53,9 +53,11 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 		this.contextModuleSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			active: [''],
+			applicationModule: [''],
+			tenantContext: [''],
 		});
 
-		this.contextModuleDC = ["id", "active", "buttons"];
+		this.contextModuleDC = ["id", "active","applicationModule","tenantContext", "buttons"];
 	}
 
 	private clearFiltersContextModule() {
@@ -122,7 +124,11 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 	}
 
 	newContextModule(): void {
-		this.dialog.open(AigContextModuleNewUpdateModalComponent, { data: { contextModule: {} } });
-   }
+		this.dialog.open(AigContextModuleNewUpdateModalComponent, { data: {} });
+   	}
+
+   async publish() {
+		await this.contextModuleResourceService.publishUsingGET1(this.contextModuleFilters).toPromise;
+	}
 
 }

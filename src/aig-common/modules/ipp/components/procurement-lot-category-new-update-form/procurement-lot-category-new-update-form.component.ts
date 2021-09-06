@@ -4,15 +4,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigValidator } from 'aig-common/AigValidator';
-import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
-import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
-import { EopooDTO } from 'aig-generic';
-import { DesignatedCompanyDTO, DesignatedCompanyResourceService,IlPpProcurementLotCategoryDTO,PartecipationDTO, ProcurementLotCategoryDTO, ProcurementLotCategoryResourceService, ProcurementLotDTO } from 'aig-italianlegislation';
+import { ProcurementLotCategoryDTO, ProcurementLotCategoryResourceService, ProcurementLotDTO } from 'aig-italianlegislation';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { IlPpProcurementLotCategoryDTO } from 'aig-standard';
 
 @Component({
     selector: 'aig-procurement-lot-category-new-update-form',
@@ -58,7 +56,7 @@ export class AigProcurementLotCategoryNewUpdateFormComponent implements OnInit {
         this.procurementLotCategoryNewUpdateForm = this._formBuilder.group({
             id: [null],
             procurementLot: [this.procurementLot, [Validators.required, AigValidator.haveId]],
-            category: [null, [Validators.required, AigValidator.haveId]],
+            category: [null, [Validators.required, AigValidator.haveCode]],
             level: [null, [Validators.required]],
         })
         

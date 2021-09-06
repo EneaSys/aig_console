@@ -125,7 +125,11 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
 	}
 
 	newObjectReference(): void {
-		this.dialog.open(AigObjectReferenceNewUpdateDialogComponent, { data: { objectReference: {} } });
+		this.dialog.open(AigObjectReferenceNewUpdateDialogComponent, { data: {} });
     }
+
+	async publish() {
+		await this.objectReferenceResourceService.publishUsingGET6(this.objectReferenceFilters).toPromise;
+	}
 
 }

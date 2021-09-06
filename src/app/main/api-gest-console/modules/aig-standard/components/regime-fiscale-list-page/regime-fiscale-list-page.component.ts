@@ -48,7 +48,7 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 
 	
 	private initRegimeFiscaleSearch() {
-		this.regimeFiscaleDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.regimeFiscaleDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.regimeFiscalePaginationSize = 10;
 		
@@ -129,9 +129,12 @@ export class AigRegimeFiscaleListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newRegimeFiscale(): void {
-        this.dialog.open(AigRegimeFiscaleNewUpdateDialogComponent, { data: {regimeFiscale: {} } });
+        this.dialog.open(AigRegimeFiscaleNewUpdateDialogComponent, { data: {} });
     }
 
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
 	
 }
 

@@ -29,6 +29,10 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                                 </div>
+
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -42,7 +46,7 @@
     <div class="center">
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('producer-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
             <h2>{{ 'COMMERCE.PRODUCTORS' | translate | titlecase }}</h2>

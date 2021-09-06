@@ -5,8 +5,8 @@
 
                 <pre>{{ insurancePolicyStatus | json }}</pre>
 
-                <button mat-stroked-button color="primary" (click)="editInsurancePolicyStatus(insurancePolicyStatus)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteInsurancePolicyStatus(insurancePolicyStatus)">Delete</button>
+                <button mat-stroked-button color="primary" (click)="editInsurancePolicyStatus(insurancePolicyStatus)">Modifica</button>
+                <button mat-stroked-button color="primary" (click)="deleteInsurancePolicyStatus(insurancePolicyStatus.id)">Cancella</button>
 
             </div>
         </div>

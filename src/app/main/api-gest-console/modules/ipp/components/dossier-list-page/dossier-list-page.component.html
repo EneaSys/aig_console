@@ -20,42 +20,42 @@
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Dossier Code</mat-label>
+                                        <mat-label>Codice Dossier</mat-label>
                                         <input matInput type="text" formControlName="dossierCode">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Description</mat-label>
-                                        <input matInput type="text" formControlName="description">
+                                        <mat-label>Descrizione</mat-label>
+                                        <input matInput type="text" formControlName="dossierDescription">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Partecipation </mat-label>
+                                        <mat-label>Partecipazione</mat-label>
                                         <input matInput type="text" formControlName="partecipation">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Procurement </mat-label>
+                                        <mat-label>Gara d'appalto </mat-label>
                                         <input matInput type="text" formControlName="procurement">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Preparation Id</mat-label>
+                                        <mat-label>Id Preparazione </mat-label>
                                         <input matInput type="text" formControlName="preparation">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Procurement Lot </mat-label>
+                                        <mat-label>Lotto di gara</mat-label>
                                         <input matInput type="text" formControlName="procurementLot">
                                     </mat-form-field>
                                 </div>
@@ -63,7 +63,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
-                            </form>
+
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                                            </form>
                         </div>
                     </div>
                 </div>

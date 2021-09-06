@@ -44,6 +44,7 @@ import { AigContactNewUpdateFormComponent } from './components/contact-new-updat
 import { AigPersonNewUpdateFormComponent } from './components/person-new-update-form/person-new-update-form.component';
 import { AddressResolver } from './resolver/address.resolver';
 import { ReferentResolver } from './resolver/referent.resolver';
+import { ContactResolver } from './resolver/contact.resolver';
 
 @NgModule({
     imports: [
@@ -108,6 +109,7 @@ import { ReferentResolver } from './resolver/referent.resolver';
         EopooTypeResolver,
         AddressResolver,
         ReferentResolver,
+        ContactResolver,
         
         AigGenericAutocompleteFilterService,
         AigGenericAutocompleteDisplayService,

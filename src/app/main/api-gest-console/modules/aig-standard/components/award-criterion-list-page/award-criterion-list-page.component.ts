@@ -55,7 +55,7 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.awardCriterionDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.awardCriterionDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersAwardCriterion() {
@@ -116,11 +116,21 @@ export class AigAwardCriterionListPageComponent extends GenericComponent {
 
 		this.awardCriterionFilters.nameContains = this.awardCriterionSearchFormGroup.controls.name.value;
 
+		
+
+
+
 		this.searchAwardCriterion(0);
 	}
 
     newAwardCriterion(){
-        this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, {data: { awardCriterion: {} } });
+        this.dialog.open(AigAwardCriterionNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !award Criterion TABLE AND SEARCH SECTION ----
 }

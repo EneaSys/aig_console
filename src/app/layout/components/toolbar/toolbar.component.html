@@ -26,6 +26,12 @@
 
 			<div class="toolbar-separator"></div>
 
+			<button mat-icon-button class="quick-panel-toggle-button" (click)="reload()">
+				<mat-icon class="secondary-text">autorenew</mat-icon>
+			</button>
+
+			<div class="toolbar-separator"></div>
+
 			<div *ngIf="isAuthenticated && loadedUserInfo">
 				<button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
 					<div fxLayout="row" fxLayoutAlign="center center">

@@ -18,7 +18,7 @@
         
         <ng-container matColumnDef="eopoo">
             <mat-header-cell *matHeaderCellDef> Eopoo </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{ element.eopoo }} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{ element.eopoo | eopooName }} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="referent">
@@ -39,10 +39,26 @@
         <ng-container matColumnDef="buttons">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-stroked-button color="primary" (click)="editContact(element)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteContact(element)">Delete</button>
-            </mat-cell>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/g5c/contact/detail/' + element.id">
+                        <mat-icon>details</mat-icon>
+                        <span>Details</span>
+                    </button>
+                    <button mat-menu-item (click)="editContact(element)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteContact(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+            </mat-cell> 
         </ng-container>
+
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let dataSource; columns: displayedColumns;"></mat-row>

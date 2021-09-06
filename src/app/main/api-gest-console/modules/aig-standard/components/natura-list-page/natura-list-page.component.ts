@@ -47,7 +47,7 @@ export class AigNaturaListPageComponent extends GenericComponent {
 
     
     private initNaturaSearch() {
-		this.naturaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.naturaDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.naturaPaginationSize = 10;
 		
@@ -131,7 +131,13 @@ export class AigNaturaListPageComponent extends GenericComponent {
 	}
 
     newNatura(){
-        this.dialog.open(AigNaturaNewUpdateDialogComponent, { data: { natura: {} } });
+        this.dialog.open(AigNaturaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

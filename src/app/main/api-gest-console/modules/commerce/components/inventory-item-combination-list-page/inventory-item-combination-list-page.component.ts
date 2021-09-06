@@ -127,7 +127,9 @@ export class AigInventoryItemCombinationListPageComponent extends GenericCompone
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newInventoryItemCombination(): void {
-        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: { inventoryItemCombination: {} } });
+        this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: {  } });
     }
-	
+	async publish() {
+		await this.inventoryItemCombinationResourceService.publishUsingGET6(this.inventoryItemCombinationFilters).toPromise;
+	}
 }

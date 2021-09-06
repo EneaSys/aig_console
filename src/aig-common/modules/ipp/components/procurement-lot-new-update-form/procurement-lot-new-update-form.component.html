@@ -47,7 +47,7 @@
     <div fxLayout="row" fxLayoutAlign="start start">
 
 		<div fxFlex="15" fxLayout="column" class="pt-20" fxLayoutAlign="center center">
-			<button mat-raised-button 
+			<button mat-raised-button type="button"
 				[disabled]="!this.procurementLotNewUpdateForm.value.procurement"
 				(click)="descriptionFromProcurement()">
 				Copia nome gara
@@ -83,6 +83,14 @@
             </mat-autocomplete>
         </mat-form-field>
 
+		<mat-form-field appearance="outline" fxFlex="25" class="pl-4">
+            <mat-label>Località lavori</mat-label>
+            <input formControlName="workLocation" matInput [matAutocomplete]="workLocationAutocomplete">
+            <mat-autocomplete #workLocationAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.cityDisplayFn">
+                <mat-option *ngFor="let city of filteredLocality | async" [value]="city">{{ city.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
     </div>
 
     
@@ -94,16 +102,13 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Istat Code</mat-label>
+            <mat-label>Codice Istat</mat-label>
             <input formControlName="istatCode" matInput>
         </mat-form-field>
     
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">
-            <mat-label>Località lavori</mat-label>
-            <input formControlName="nustCode" matInput [matAutocomplete]="localityAutocomplete">
-            <mat-autocomplete #localityAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.cityDisplayFn">
-                <mat-option *ngFor="let city of filteredLocality | async" [value]="city">{{ city.name}}</mat-option>
-            </mat-autocomplete>
+            <mat-label>Nuts Code</mat-label>
+            <input formControlName="nutsCode" matInput>
         </mat-form-field>
 
         <mat-form-field appearance="outline" fxFlex="25" class="pl-4">

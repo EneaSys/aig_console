@@ -55,7 +55,7 @@ export class AigCpvListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.cpvDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.cpvDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersCpv() {
@@ -122,7 +122,11 @@ export class AigCpvListPageComponent extends GenericComponent {
 	}
 
     newCpv(): void {
-        this.dialog.open(AigCpvNewUpdateModalComponent, { data: { cpv: {} } });
+        this.dialog.open(AigCpvNewUpdateModalComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !CPV TABLE AND SEARCH SECTION ----
 }

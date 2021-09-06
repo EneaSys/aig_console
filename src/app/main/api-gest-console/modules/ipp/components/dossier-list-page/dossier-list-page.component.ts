@@ -48,7 +48,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 		this.dossierSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			description: [''],
+			dossierDescription: [''],
 			dossierCode: [''],
 			partecipation: ['', Validators.required],
 			preparation: [''],
@@ -56,14 +56,14 @@ export class AigDossierListPageComponent extends GenericComponent {
 			procurementLot: ['']
 		});
 
-		this.dossierDC = ["id", "description", "dossierCode", "partecipation", "preparation", "procurement", "procurementLot", "buttons"];
+		this.dossierDC = ["id", "dossierDescription", "dossierCode", "partecipation", "preparation", "procurement", "procurementLot", "buttons"];
 	}
 
 	private clearFiltersDossier() {
 		this.dossierFilters = {
 			idEquals: null,
 			dossierCodeContains: null,
-			descriptionContains: null,
+			dossierDescriptionContains: null,
 		}
 	}
 
@@ -117,7 +117,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 		this.dossierFilters.idEquals = null;
 		this.dossierFilters.dossierCodeContains = this.dossierSearchFormGroup.controls.dossierCode.value;
-		this.dossierFilters.descriptionContains = this.dossierSearchFormGroup.controls.description.value;
+		this.dossierFilters.dossierDescriptionContains = this.dossierSearchFormGroup.controls.description.value;
 
 		this.searchDossier(0);
 	}
@@ -125,7 +125,12 @@ export class AigDossierListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newDossier(): void {
-		this.dialog.open(AigDossierNewUpdateDialogComponent, { data: { dossier: {} } });
+		this.dialog.open(AigDossierNewUpdateDialogComponent, { data: {} });
 	}
+
+	
+	/*async publish() {
+		await this.dossierResourceService.publishUsingGET(this.dossierFilters).toPromise;
+	}*/
 
 }

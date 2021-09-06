@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { FiscalTransactionDTO, FiscalTransactionResourceService, WarehouseDTO, WarehouseResourceService } from 'aig-commerce';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-fiscal-transaction-new-update-form',
@@ -37,8 +38,8 @@ export class AigFiscalTransactionNewUpdateFormComponent implements OnInit {
             date: [''],
             code: [''],
             amount: [''],
-            seller:  [''],
-            buyer:  [''],
+            seller:  ['', [Validators.required, AigValidator.haveId]],
+            buyer:  ['', [Validators.required, AigValidator.haveId]],
             status:  [''],
         })
         
