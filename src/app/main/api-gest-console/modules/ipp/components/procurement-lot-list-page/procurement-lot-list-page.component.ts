@@ -98,6 +98,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
 			if(filters.contractorEopoo) {
 				filters.contractorCodeEquals = filters.contractorEopoo.id;
+				filters.contractorEopoo = null;
 			}
 			if(filters.procurementLotOfferExpiryDateStart) {
 				filters.procurementLotOfferExpiryDateGreaterThanOrEqual = filters.procurementLotOfferExpiryDateStart;
@@ -107,9 +108,11 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			}
 			if(filters.awardCriterion) {
 				filters.procurementLotAwardCriterionCodeEquals = filters.awardCriterion.code;
+				filters.awardCriterion = null;
 			}
 			if(filters.procurementLotType) {
 				filters.procurementLotTypeCodeEquals = filters.procurementLotType.code;
+				filters.procurementLotType = null;
 			}
 			if(filters.procurementLotCategories) {
 				console.log(filters.procurementLotCategories);

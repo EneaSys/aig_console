@@ -78,7 +78,6 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			procurementLotCategories: [null],
 			partecipationStatus: [null],
 			proposerEopoo: [null],
-			siteInspectionEquals: [false],
             awardCriterion: [null],
             procurementLotType: [null],
 			partecipationType: [null],
@@ -111,9 +110,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 			if(filters.contractorEopoo) {
 				filters.contractorCodeEquals = filters.contractorEopoo.id;
-			}
-			if(filters.ilPpProcurementModality) {
-				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+				filters.contractorEopoo = null;
 			}
 			if(filters.procurementLotOfferExpiryDateStart) {
 				filters.procurementLotOfferExpiryDateGreaterThanOrEqual = filters.procurementLotOfferExpiryDateStart;
@@ -123,17 +120,23 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			}
 			if(filters.partecipationStatus) {
 				filters.partecipationStatusIDEquals = filters.partecipationStatus.id;
+				filters.partecipationStatus = null;
 			}
 			if(filters.proposerEopoo) {
-				filters.proposerEopooCodeEquals = filters.proposerEopoo.id;
+				filters.proposerCodeEquals = filters.proposerEopoo.id;
 			}
 			if(filters.awardCriterion) {
 				filters.procurementLotAwardCriterionCodeEquals = filters.awardCriterion.code;
+				filters.awardCriterion = null;
 			}
 			if(filters.procurementLotType) {
 				filters.procurementLotTypeCodeEquals = filters.procurementLotType.code;
+				filters.procurementLotType = null;
 			}
-			
+			if(filters.procurementLotCategories) {
+				console.log(filters.procurementLotCategories);
+			}
+			console.log(filters);
 		}
 		this.partecipationFilters = filters;
 	}
