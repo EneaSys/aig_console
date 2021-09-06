@@ -3,7 +3,7 @@ import { FormControl } from "@angular/forms";
 export class AigValidator {
 
     static haveId(c: FormControl) {
-		if(c.value == null || c.value == "") {
+		if(c.value == null || c.value == "" || c.value.id == null) {
 			return null;
 		}
         if(!(c.value && c.value.id)) {
@@ -17,7 +17,7 @@ export class AigValidator {
     }
 
 	static haveCode(c: FormControl) {
-		if(c.value == null || c.value == "") {
+		if(c.value == null || c.value == "" || c.value.code == null) {
 			return null;
 		}
         if(!(c.value && c.value.code)) {

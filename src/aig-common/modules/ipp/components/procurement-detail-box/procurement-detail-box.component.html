@@ -5,7 +5,7 @@
 </div>
 <div class="h1 m-8 ml-16">{{ procurement.description }}</div>
 <div class="h4 ml-16">
-    {{ 'IPP.TOTAL_AMOUNT' | translate }}: <b>{{ procurement.totalAmount | currency: "EUR" }}</b>
+    {{ 'IPP.TOTAL_AMOUNT' | translate }}: <b>{{ procurement.procurementAmount | currency: "EUR" }}</b>
 </div>
 <div class="h4 ml-16">{{ 'IPP.SECTOR' | translate }}: <b>{{ procurement.sector.name }}</b></div>
 <div class="h4 ml-16">{{ 'IPP.PROCEDURE' | translate }}: <b>{{ procurement.procedure.name }}</b></div>

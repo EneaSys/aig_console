@@ -126,7 +126,6 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 			}
 		}
 		this.procurementFilters = filters;
-		console.log(this.procurementFilters);
 	}
 
 	//			---- PROCUREMENT LOT TABLE SECTION ----

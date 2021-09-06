@@ -76,7 +76,7 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.procurementLotNewUpdateForm = this._formBuilder.group({
-            id: [''],
+            id: [null],
             
             procurement: [this.procurement, [Validators.required, AigValidator.haveId] ],
 			
@@ -92,16 +92,17 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 			candidacy: [false],
 			
 			cig: [null, Validators.required],
-			workLocation: ['', AigValidator.haveCode],
+			workLocation: [null, AigValidator.haveCode],
 
-            securityAmount: [''],
-			istatCode: [''],
-            nutsCode: [''],
+            securityAmount: [null],
+			istatCode: [null],
+            nutsCode: [null],
         })
         
         if (this.procurementLot != null) {
             this.procurementLotNewUpdateForm.patchValue(this.procurementLot);
             this.isUpdate = true;
+			this.candidacyChecked(this.procurementLot.candidacy);
         }
 
         this.filteredProcurement = this.ippAutocompleteFilterService.filterProcurement(this.procurementLotNewUpdateForm.controls['procurement'].valueChanges);

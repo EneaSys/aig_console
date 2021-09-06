@@ -56,35 +56,28 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
     procurementLotSearchFormGroup: FormGroup;
     procurementLotFilters: any;
     
-    filteredEopoo: Observable<EopooDTO[]>;
-    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
-    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
-    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
-    filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
+    filteredContractorEopoo: Observable<EopooDTO[]>;
     filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
+    filteredAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
     filteredIppLotType: Observable<IlPpProcurementLotTypeDTO[]>;
     
     private initProcurementLotSearch() {
         this.procurementLotSearchFormGroup = this._formBuilder.group({
-            procurementLotCigEquals: [null],
-            procurementLotDescriptionContains: [null],
-            offerExpiryDate: [null],
-            contractorEopoo: [null],
-            ilPpProcurementModality: [null],
-            ippProcedure: [null],
-            ippSector: [null],
+			id: [null],
+			procurementLotCigEquals: [null],
+			contractorEopoo: [null],
+			procurementLotDescriptionContains: [null],
+			procurementLotOfferExpiryDateStart: [null],
+			procurementLotOfferExpiryDateEnd: [null],
+			procurementLotCategories: [null],
             awardCriterion: [null],
-            category: [null],
-            type: [null],
+            procurementLotType: [null],
         });
     
-        this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
-        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotSearchFormGroup.controls['ilPpProcurementModality'].valueChanges);
-        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotSearchFormGroup.controls['ippProcedure'].valueChanges);
-        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotSearchFormGroup.controls['ippSector'].valueChanges);
+        this.filteredContractorEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementLotSearchFormGroup.controls['contractorEopoo'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.loadIppLotCategory({});
         this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotSearchFormGroup.controls['awardCriterion'].valueChanges);
-        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.procurementLotSearchFormGroup.controls['category'].valueChanges);
-        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotSearchFormGroup.controls['type'].valueChanges);
+        this.filteredIppLotType = this.standardAutocompleteFilterService.filterIppLotType(this.procurementLotSearchFormGroup.controls['procurementLotType'].valueChanges);
     }
 
 
@@ -106,8 +99,20 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			if(filters.contractorEopoo) {
 				filters.contractorCodeEquals = filters.contractorEopoo.id;
 			}
-			if(filters.ilPpProcurementModality) {
-				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+			if(filters.procurementLotOfferExpiryDateStart) {
+				filters.procurementLotOfferExpiryDateGreaterThanOrEqual = filters.procurementLotOfferExpiryDateStart;
+			}
+			if(filters.procurementLotOfferExpiryDateEnd) {
+				filters.procurementLotOfferExpiryDateLessThanOrEqual = filters.procurementLotOfferExpiryDateEnd;
+			}
+			if(filters.awardCriterion) {
+				filters.procurementLotAwardCriterionCodeEquals = filters.awardCriterion.code;
+			}
+			if(filters.procurementLotType) {
+				filters.procurementLotTypeCodeEquals = filters.procurementLotType.code;
+			}
+			if(filters.procurementLotCategories) {
+				console.log(filters.procurementLotCategories);
 			}
 		}
 		this.procurementLotFilters = filters;

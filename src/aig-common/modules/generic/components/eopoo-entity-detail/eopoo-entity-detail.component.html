@@ -4,9 +4,8 @@
     TIPO: {{ eopoo.eopooType.name }}
 </div>
 <div class="h1 m-8 ml-16">{{ eopoo | eopooName }}</div>
-<div class="h4 ml-16" *ngIf="eopoo.person">Codice fiscale: <b>{{ eopoo.taxNumber }}</b></div>
-<div class="h4 ml-16" *ngIf="!eopoo.person">Partita Iva: <b>{{ eopoo.taxNumber }}</b></div>
-<div *ngIf="eopoo.person">
+<div class="h4 ml-16">Codice fiscale: <b>{{ eopoo.taxNumber }}</b></div>
+<div *ngIf="eopoo.person.id">
     <div class="h4 ml-16">Sesso: <b>{{ eopoo.person.sex }}</b></div>
     <div class="h4 ml-16">Data nascita: <b>{{ eopoo.person.bornDate }}</b></div>
     <div class="h4 ml-16">Città nascita: <b>{{ eopoo.person.city.name }}</b></div>

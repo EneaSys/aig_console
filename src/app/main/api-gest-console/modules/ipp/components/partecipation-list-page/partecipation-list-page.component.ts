@@ -86,7 +86,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 
 		this.filteredContractorEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['contractorEopoo'].valueChanges);
-        this.filteredIppLotCategory = this.standardAutocompleteFilterService.filterIppLotCategory(this.partecipationSearchFormGroup.controls['procurementLotCategories'].valueChanges);
+        this.filteredIppLotCategory = this.standardAutocompleteFilterService.loadIppLotCategory({});
 		this.filteredPartecipationStatus = this.ippAutocompleteFilterService.filterPartecipationStatus(this.partecipationSearchFormGroup.controls['partecipationStatus'].valueChanges);
 		this.filteredProposerEopoo = this.genericAutocompleteFilterService.filterEopoo(this.partecipationSearchFormGroup.controls['proposerEopoo'].valueChanges);
         this.filteredAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.partecipationSearchFormGroup.controls['awardCriterion'].valueChanges);

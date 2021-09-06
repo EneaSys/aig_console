@@ -161,15 +161,20 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter: any = {
-					expirationDateGreaterThan: new Date()
-				};
+				let filters: any = { };
                 if (value && value.length > 0) {
-					filter.nameContains = value;
+					filters.nameContains = value;
 				}
-				return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filter);
+				return this.loadIppLotCategory(filters);
 			})
 		);
+	}
+
+	loadIppLotCategory(filters: any) {
+		if(filters.expirationDateGreaterThan == null) {
+			filters.expirationDateGreaterThan = new Date();
+		}
+		return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filters);
 	}
 
     filterIppSector(observable: Observable<any>) {
