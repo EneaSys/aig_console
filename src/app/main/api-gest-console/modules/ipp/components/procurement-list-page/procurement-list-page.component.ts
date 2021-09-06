@@ -11,6 +11,9 @@ import { Observable } from 'rxjs';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigIppGenericComponent } from '../ipp-generic-component';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
+import { EopooDTO } from 'aig-generic';
+import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
+import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 
 
 @Component({
@@ -24,8 +27,9 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
 		private procurementResourceService: ProcurementResourceService,
-		private italianPublicProcurementModalityResourceService: IlPpProcurementModalityResourceService,
-		public standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
+		private genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+		public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
+		private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
 		public standardAutocompleteDisplayService:  AigStandardAutocompleteDisplayService, 
 		public gcs: AigGenericComponentService,
 	) {
@@ -52,28 +56,32 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 	procurementSearchFormGroup: FormGroup;
 	procurementFilters: any;
 
-	filteredItalianPublicProcurementModality: Observable<IlPpProcurementModalityDTO[]>;
-	filteredItalianPublicProcurementProcedure: Observable<IlPpProcurementProcedureDTO[]>;
-	filteredItalianPublicProcurementSector: Observable<IlPpProcurementSectorDTO[]>;
+	filteredContractorEopoo: Observable<EopooDTO[]>;
+	filteredProcurementModality: Observable<IlPpProcurementModalityDTO[]>;
+	filteredProcurementProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+	filteredProcurementSector: Observable<IlPpProcurementSectorDTO[]>;
 
 	private initProcurementSearch() {
 
 
 		this.procurementSearchFormGroup = this._formBuilder.group({
-			description: [''],
-			ref: [''],
-			code: [''],
+			id: [''],
 			contractorEopoo: [''],
-			ippModality: [''],
-			ippProcedure: [''],
-			ippSector: [''],
-			baseAmount: [''],
+			procurementDescriptionContains: [''],
+			totalAmountStart: [''],
+			totalAmountEnd: [''],
+			procurementRefContains: [''],
+			procurementCodeEquals: [''],
 			status: [''],
+			ilPpProcurementModality: [''],
+			ilPpProcurementProcedure: [''],
+			ilPpProcurementSector: [''],
 		});
 
-		this.filteredItalianPublicProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ippModality'].valueChanges);
-		this.filteredItalianPublicProcurementProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementSearchFormGroup.controls['ippProcedure'].valueChanges);
-		this.filteredItalianPublicProcurementSector = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementSearchFormGroup.controls['ippSector'].valueChanges);
+		this.filteredContractorEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementSearchFormGroup.controls['contractorEopoo'].valueChanges);
+		this.filteredProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ilPpProcurementModality'].valueChanges);
+		this.filteredProcurementProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementSearchFormGroup.controls['ilPpProcurementProcedure'].valueChanges);
+		this.filteredProcurementSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementSearchFormGroup.controls['ilPpProcurementSector'].valueChanges);
 		
 		
 	}
@@ -85,31 +93,40 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 
 	procurementSearchWithFilter() {
 		let filters: any = {};
-		let searchedId = this.procurementSearchFormGroup.value.procurementIdEquals;
 
+		let searchedId = this.procurementSearchFormGroup.value.id;
 		if (searchedId != null) {
 			this.procurementSearchFormGroup.reset();
-			filters.idEquals = searchedId;
+			filters.procurementIDEquals = searchedId;
 		} else {
 			filters = this.procurementSearchFormGroup.value;
 
-			/*if (filters.contractorEopoo){
-				filters.contractorCodeEquals = filters.contractorEopoo.id
-			}*/
-
-			if (filters.ippModality) {
+			if (filters.contractorEopoo){
+				filters.contractorEopooCodeEquals = filters.contractorEopoo.id;
+				filters.contractorEopoo = null;
+			}
+			if (filters.totalAmountStart){
+				filters.procurementAmountGreaterThanOrEqual = filters.totalAmountStart;
+			}
+			if (filters.totalAmountEnd){
+				filters.procurementAmountLessThanOrEqual = filters.totalAmountEnd;
+			}
+			filters.procurementCodeEquals = (filters.procurementCodeEquals != "") ? filters.procurementCodeEquals : null;
+			if (filters.ilPpProcurementModality) {
 				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
+				filters.ilPpProcurementModality = null;
 			}
-
-			if (filters.ippProcedure) {
+			if (filters.ilPpProcurementProcedure) {
 				filters.procurementProcedureCodeEquals = filters.ilPpProcurementProcedure.code;
+				filters.ilPpProcurementProcedure = null;
 			}
-
-			if (filters.ippSector) {
+			if (filters.ilPpProcurementSector) {
 				filters.procurementSectorCodeEquals = filters.ilPpProcurementSector.code;
+				filters.ilPpProcurementSector = null;
 			}
 		}
 		this.procurementFilters = filters;
+		console.log(this.procurementFilters);
 	}
 
 	//			---- PROCUREMENT LOT TABLE SECTION ----
@@ -117,7 +134,7 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 
 
 
-	newTableColumns: string[] = ['_ck','code', 'contractorEopoo','modality','procedure','baseAmount','ref','sector','status'];
+	newTableColumns: string[] = ['_ck', 'contractorEopoo', 'description', 'modality', 'procedure', 'status'];
 	newTableButtons: any[] = [
 		
 		{

@@ -21,42 +21,60 @@
                                         <input matInput type="number" formControlName="id">
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Codice</mat-label>
-                                        <input matInput type="text" formControlName="code">
-                                    </mat-form-field>
-                                </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Ref</mat-label>
-                                        <input matInput type="text" formControlName="ref">
-                                    </mat-form-field>
-                                </div>
-                                <!--<div fxLayout="row">
+
+								<div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Stazione appaltante</mat-label>
-                                        <input formControlName="contractorEopoo" matInput
-                                            [matAutocomplete]="contractorEopooAutocomplete">
-                                        <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
-                                            [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-                                            <mat-option
-                                                *ngFor="let eopoo of filteredEopoo | async"
-                                                [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
+                                        <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
+                                        <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                                            <mat-option *ngFor="let eopoo of filteredContractorEopoo | async" [value]="eopoo">
+												{{ eopoo | eopooName }}
+											</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
-                                -->
+
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Oggetto</mat-label>
+                                        <input matInput type="text" formControlName="procurementDescriptionContains">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="50">
+                                        <mat-label>Importo da:</mat-label>
+                                        <input matInput type="number" formControlName="totalAmountStart">
+                                    </mat-form-field>
+
+									<mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                                        <mat-label>Importo a:</mat-label>
+                                        <input matInput type="number" formControlName="totalAmountEnd">
+                                    </mat-form-field>
+                                </div>
+
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Codice Anac</mat-label>
+                                        <input matInput type="text" formControlName="procurementCodeEquals">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Ref</mat-label>
+                                        <input matInput type="text" formControlName="procurementRefContains">
+                                    </mat-form-field>
+                                </div>
+                                
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Modalità</mat-label>
-                                        <input formControlName="ilPpProcurementModality" matInput
-                                            [matAutocomplete]="ippModalityAutocomplete">
-                                        <mat-autocomplete #ippModalityAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
-                                            <mat-option
-                                                *ngFor="let ippModality of filteredItalianPublicProcurementModality | async"
-                                                [value]="ippModality">{{ippModality.name}}</mat-option>
+                                        <input formControlName="ilPpProcurementModality" matInput [matAutocomplete]="ippModalityAutocomplete">
+                                        <mat-autocomplete #ippModalityAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
+                                            <mat-option *ngFor="let modality of filteredProcurementModality | async" [value]="modality">
+												{{ modality.name }}
+											</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
@@ -64,13 +82,11 @@
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Procedura</mat-label>
-                                        <input formControlName="ippProcedure" matInput
-                                            [matAutocomplete]="ippProcedureAutocomplete">
-                                        <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
-                                            <mat-option
-                                                *ngFor="let ippProcedure of filteredItalianPublicProcurementProcedure | async"
-                                                [value]="ippProcedure">{{ippProcedure.name}}</mat-option>
+                                        <input formControlName="ilPpProcurementProcedure" matInput [matAutocomplete]="ippProcedureAutocomplete">
+                                        <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
+                                            <mat-option *ngFor="let procedure of filteredProcurementProcedure | async" [value]="procedure">
+												{{ procedure.name }}
+											</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
@@ -78,22 +94,15 @@
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Settore</mat-label>
-                                        <input formControlName="ippSector" matInput
-                                            [matAutocomplete]="ippSectorAutocomplete">
-                                        <mat-autocomplete #ippSectorAutocomplete="matAutocomplete"
-                                            [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
-                                            <mat-option
-                                                *ngFor="let ippSector of filteredItalianPublicProcurementSector | async"
-                                                [value]="ippSector">{{ippSector.name}}</mat-option>
+                                        <input formControlName="ilPpProcurementSector" matInput [matAutocomplete]="ippSectorAutocomplete">
+                                        <mat-autocomplete #ippSectorAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
+                                            <mat-option *ngFor="let sector of filteredProcurementSector | async" [value]="sector">
+												{{ sector.name }}
+											</mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Importo totale</mat-label>
-                                        <input matInput type="number" formControlName="totalAmount">
-                                    </mat-form-field>
-                                </div>
+
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                                 </div>
