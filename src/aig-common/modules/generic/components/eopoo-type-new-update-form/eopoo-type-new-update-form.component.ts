@@ -11,11 +11,8 @@ import { EventService } from 'aig-common/event-manager/event.service';
     styleUrls: ['./eopoo-type-new-update-form.component.scss']
 })
 export class AigEopooTypeNewUpdateFormComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+	@Input()
+    eopooType: EopooTypeDTO;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -24,11 +21,16 @@ export class AigEopooTypeNewUpdateFormComponent implements OnInit {
         private eventService: EventService,
         private eopooTypeResourceService: EopooTypeResourceService,
     ) { }
+	
+	step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
 
     eopooTypeCategorys = ['GENERIC', 'PERSON'];
 
-    @Input()
-    eopooType: EopooTypeDTO;
+
 
     isUpdate: boolean = false;
 
