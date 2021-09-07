@@ -17,7 +17,7 @@
 
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<th *ngSwitchCase="'_ck'" style="width:50px" ></th>
-						<th *ngSwitchCase="'id'" style="width:40px" pSortableColumn="partecipationID">id</th>
+						<th *ngSwitchCase="'id'" style="width:70px" pSortableColumn="partecipationID">id</th>
 						<th *ngSwitchCase="'proposerEopoo'" style="width:200px" pResizableColumn pSortableColumn="proposerCompleteName">Proponente</th>
 						<th *ngSwitchCase="'type.name'" style="width:auto" pResizableColumn pSortableColumn="">Tipo di partecipazione</th>
 						<th *ngSwitchCase="'siteInspection'"style="width:auto" pResizableColumn pSortableColumn="siteInspection" >Sopralluogo</th>
@@ -60,7 +60,7 @@
 
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc" >
 						<td *ngSwitchCase="'_ck'" ><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
-						<td *ngSwitchCase="'id'">{{ e.id }}</td>
+						<td *ngSwitchCase="'id'">{{ e.id }}/21</td>
 						<td *ngSwitchCase="'proposerEopoo'">{{ e.proposerEopoo | eopooName }}</td>
 						<td *ngSwitchCase="'type.name'">{{ e.type.name}}</td>
 						<td *ngSwitchCase="'siteInspection'">
