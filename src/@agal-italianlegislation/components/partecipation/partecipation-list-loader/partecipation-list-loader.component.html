@@ -75,11 +75,11 @@
 						<td *ngSwitchCase="'note'">{{ e.note }}</td>
 						<td *ngSwitchCase="'creationDateTime'">{{ e.creationDateTime }}</td>
 						<td *ngSwitchCase="'candidacy'">
-							<span *ngIf="e.candidacy">
+							<span *ngIf="e.procurementLot.candidacy">
 							<mat-icon style="color: green;">done</mat-icon>
 						</span>
 
-						<span *ngIf="!e.candidacy">
+						<span *ngIf="!e.procurementLot.candidacy">
 							<mat-icon style="color: red;">highlight_off</mat-icon>
 						</span></td>
 						<td *ngSwitchCase="'status'">{{ e.status.description }}</td>
