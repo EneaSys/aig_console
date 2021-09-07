@@ -59,8 +59,8 @@
 						<td *ngSwitchCase="'offerExpiryDate'">{{ e.offerExpiryDate | date }}</td>
 						<td *ngSwitchCase="'baseAmount'">{{ e.baseAmount | currency: 'EUR' }}</td>
 						<td *ngSwitchCase="'candidacy'">
-							<span *ngIf="e.candidacy">si</span>
-							<span *ngIf="!e.candidacy">no</span>
+							<span *ngIf="e.candidacy">MI</span>
+							<span *ngIf="!e.candidacy">GA</span>
 						</td>
 						<td *ngSwitchCase="'securityAmount'">{{ e.securityAmount | currency: 'EUR' }}</td>
 						<td *ngSwitchCase="'istatCode'">{{ e.istatCode }}</td>
