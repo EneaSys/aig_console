@@ -16,14 +16,14 @@
                 <tr>
                     <ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
                         <th *ngSwitchCase="'_ck'" style="width:50px" ></th>
-                        <th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="description">Descrizione</th>
+                        <th *ngSwitchCase="'description'" style="width:auto" pResizableColumn pSortableColumn="procurementDescription">Descrizione</th>
                         <th *ngSwitchCase="'code'" style="width:auto" pResizableColumn pSortableColumn="code">codice</th>
                         <th *ngSwitchCase="'ref'" style="width:auto" pResizableColumn pSortableColumn="ref">ref</th>
-                        <th *ngSwitchCase="'contractorEopoo'" style="width:auto" pResizableColumn pSortableColumn="contractorEopoo">Stazione appaltante</th>
+                        <th *ngSwitchCase="'contractorEopoo'" style="width:auto" pResizableColumn pSortableColumn="contractorCompleteName">Stazione appaltante</th>
                         <th *ngSwitchCase="'sector'" style="width:auto" pResizableColumn pSortableColumn="sector">settore</th>
-                        <th *ngSwitchCase="'procedure'" style="width:auto" pResizableColumn pSortableColumn="procedure">procedura</th>
-                        <th *ngSwitchCase="'modality'" style="width:auto" pResizableColumn pSortableColumn="modality">modalità</th>
-                        <th *ngSwitchCase="'status'" style="width:auto" pResizableColumn pSortableColumn="status">stato</th>
+                        <th *ngSwitchCase="'procedure'" style="width:auto" pResizableColumn pSortableColumn="procurementProcedureName">procedura</th>
+                        <th *ngSwitchCase="'modality'" style="width:auto" pResizableColumn pSortableColumn="procurementModalityName">modalità</th>
+                        <th *ngSwitchCase="'status'" style="width:auto" pResizableColumn pSortableColumn="procurementStatusName">stato</th>
                     </ng-container>
                 
                     <th *ngIf="buttons" style="width:140px"></th>    
