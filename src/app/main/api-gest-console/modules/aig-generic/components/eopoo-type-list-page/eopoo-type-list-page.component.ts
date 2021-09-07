@@ -120,7 +120,7 @@ export class AigEopooTypeListPageComponent extends GenericComponent {
     }
 
     async publish() {
-		await this.eopooTypeResourceService.publishUsingGET3(this.eopooTypeFilters).toPromise;
+		await this.eopooTypeResourceService.publishUsingGET3(this.eopooTypeFilters).toPromise();
 	}
     //			---- !EOPOO TYPE TABLE AND SEARCH SECTION ----
 }

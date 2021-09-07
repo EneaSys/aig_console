@@ -147,7 +147,7 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 	//			---- PROCUREMENT LOT TABLE SECTION ----
 
 
-	newTableColumns: string[] = ['_ck','procurement.contractorEopoo','candidacy', 'procurementLot.description', 'procurementLot.cig', 'proposerEopoo','procurementLot.offerExpiryDate','procurementLot.baseAmount','categories','status', ];
+	newTableColumns: string[] = ['_ck','id','procurement.contractorEopoo','candidacy', 'procurementLot.description', 'procurementLot.cig', 'proposerEopoo','procurementLot.offerExpiryDate','procurementLot.baseAmount','categories','status', ];
 	newTableButtons: any[] = [
 		{
 			label: "Dettagli",
