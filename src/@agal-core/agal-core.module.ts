@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { AgalCommonService } from './services/common.service';
 import { AgalPaginatorComponent } from './components/paginator/paginator.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	imports: [ 
@@ -18,6 +19,8 @@ import { AgalPaginatorComponent } from './components/paginator/paginator.compone
         ReactiveFormsModule,
 		
         DropdownModule,
+
+		FlexLayoutModule,
 	],
 	declarations: [
 		AgalPaginatorComponent,
@@ -27,6 +30,8 @@ import { AgalPaginatorComponent } from './components/paginator/paginator.compone
 
 		TableModule,
 		ButtonModule,
+		
+		FlexLayoutModule,
 	],
 	providers: [
 		AgalCommonService,

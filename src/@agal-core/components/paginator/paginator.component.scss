@@ -1,5 +1,31 @@
-#pages {
-	input[type=text] {
-		width: 40px;
+.paginator-main {
+	overflow: auto;
+	padding: 5px 0 0;
+
+	.paginator-el {
+		float: left;
+	}
+
+	.paginator-el-bl {
+		border-left: 1px solid;
+		padding-left: 2px;
+	}
+	.paginator-el-br {
+		border-right: 1px solid;
+		padding-right: 2px;
+	}
+
+	.paginator-el-rows {
+		select {
+			border: 1px solid;
+		}
+	}
+
+	.paginator-el-pages {
+		input[type=text] {
+			width: 40px;
+			height: 20px;
+			border: 1px solid;
+		}
 	}
 }
