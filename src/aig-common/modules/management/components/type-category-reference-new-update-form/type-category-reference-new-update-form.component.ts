@@ -68,7 +68,7 @@ export class AigTypeCategoryReferenceNewUpdateFormComponent implements OnInit {
 
         let typeCategoryReference: TypeCategoryReferenceDTO = this.typeCategoryReferenceNewUpdateForm.value;
         typeCategoryReference.entityId = this.typeCategoryReferenceNewUpdateForm.value.entity.id;
-        typeCategoryReference.objectReferenceId = this.typeCategoryReferenceNewUpdateForm.value.object.id;
+        typeCategoryReference.parentObjectId = this.typeCategoryReferenceNewUpdateForm.value.object.id;
     
 
         try {

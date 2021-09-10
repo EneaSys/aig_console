@@ -70,7 +70,7 @@ export class AigUserLicenceNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
     
         let userLicence: UserLicenzeDTO = this.userLicenceNewUpdateForm.value;
-        userLicence.licenzeName = this.userLicenceNewUpdateForm.value.licenceName.id;
+        userLicence.licenze = this.userLicenceNewUpdateForm.value.licenceName.id;
     
 
         try {

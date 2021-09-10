@@ -13,138 +13,89 @@
                 <div class="content" fusePerfectScrollbar>
                     <div class="nav material2">
                         <form [formGroup]="procurementLotSearchFormGroup" (ngSubmit)="procurementLotSearchWithFilter()" class="p-8">
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Cig</mat-label>
-                                    <input matInput type="string" formControlName="cig">
-                                </mat-form-field>
-                            </div>
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Descrizione</mat-label>
-                                    <input matInput type="string" formControlName="description">
-                                </mat-form-field>
-                            </div>
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Data</mat-label>
-                                    <input matInput [matDatepicker]="picker" placeholder="Seleziona la data"
-                                        formControlName="offerExpiryDate">
-                                    <mat-datepicker-toggle matSuffix [for]="picker">
-                                    </mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                </mat-form-field>
-                            </div>
 
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Anagrafica</mat-label>
-                                    <input formControlName="contractorEopoo" matInput
-                                        [matAutocomplete]="contractorEopooAutocomplete">
-                                    <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete"
-                                        [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-                                        <mat-option
-                                            *ngFor="let eopoo of filteredEopoo | async"
-                                            [value]="eopoo">{{ eopoo | eopooName }}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Cig</mat-label>
+									<input matInput type="string" formControlName="procurementLotCigEquals">
+								</mat-form-field>
+							</div>
 
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Criterio di aggiudicazione</mat-label>
-                                    <input formControlName="awardCriterion" matInput
-                                        [matAutocomplete]="awardCriterionAutocomplete">
-                                    <mat-autocomplete #awardCriterionAutocomplete="matAutocomplete"
-                                        [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
-                                        <mat-option
-                                            *ngFor="let awardCriterion of filteredAwardCriterion | async"
-                                            [value]="awardCriterion">{{ awardCriterion.name }}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Stazione appaltante</mat-label>
+									<input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
+									<mat-autocomplete #contractorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+										<mat-option *ngFor="let eopoo of filteredContractorEopoo | async" [value]="eopoo">
+											{{ eopoo | eopooName }}
+										</mat-option>
+									</mat-autocomplete>
+								</mat-form-field>
+							</div>
 
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Categoria</mat-label>
-                                    <input formControlName="category" matInput
-                                        [matAutocomplete]="categoryAutocomplete">
-                                    <mat-autocomplete #categoryAutocomplete="matAutocomplete"
-                                        [displayWith]="standardAutocompleteDisplayService.ippLotCategoryDisplayFn">
-                                        <mat-option
-                                            *ngFor="let category of filteredIppLotCategory | async"
-                                            [value]="category">{{ category.name }}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Descrizione</mat-label>
+									<input matInput type="string" formControlName="procurementLotDescriptionContains">
+								</mat-form-field>
+							</div>
 
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Tipo</mat-label>
-                                    <input formControlName="type" matInput
-                                        [matAutocomplete]="typeAutocomplete">
-                                    <mat-autocomplete #typeAutocomplete="matAutocomplete"
-                                        [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
-                                        <mat-option
-                                            *ngFor="let type of filteredIppLotType | async"
-                                            [value]="type">{{ type.name }}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="50">
+									<mat-label>Data scadenza offerte</mat-label>
+									<input matInput [matDatepicker]="expiryDateStartPicker" placeholder="Seleziona la data"formControlName="procurementLotOfferExpiryDateStart">
+									<mat-datepicker-toggle matSuffix [for]="expiryDateStartPicker"></mat-datepicker-toggle>
+									<mat-datepicker #expiryDateStartPicker></mat-datepicker>
+								</mat-form-field>
 
+								<mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+									<mat-label>Data scadenza offerte</mat-label>
+									<input matInput [matDatepicker]="expiryDateEndPicker" placeholder="Seleziona la data" formControlName="procurementLotOfferExpiryDateEnd">
+									<mat-datepicker-toggle matSuffix [for]="expiryDateEndPicker"></mat-datepicker-toggle>
+									<mat-datepicker #expiryDateEndPicker></mat-datepicker>
+								</mat-form-field>
+							</div>
 
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Modalità</mat-label>
-                                    <input formControlName="ippModality" matInput
-                                        [matAutocomplete]="ippModalityAutocomplete">
-                                    <mat-autocomplete #ippModalityAutocomplete="matAutocomplete"
-                                        [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
-                                        <mat-option
-                                            *ngFor="let ippModality of filteredIppModality | async"
-                                            [value]="ippModality">{{ippModality.name}}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Categorie</mat-label>
+									<mat-select formControlName="procurementLotCategories" multiple>
+										<mat-option *ngFor="let category of filteredIppLotCategory | async" [value]="category">
+											{{ category.name }}
+										</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</div>
 
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Procedura</mat-label>
-                                    <input formControlName="ippProcedure" matInput
-                                        [matAutocomplete]="ippProcedureAutocomplete">
-                                    <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete"
-                                        [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
-                                        <mat-option
-                                            *ngFor="let ippProcedure of filteredIppProcedure | async"
-                                            [value]="ippProcedure">{{ippProcedure.name}}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Criterio di aggiudicazione</mat-label>
+									<input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete">
+									<mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
+										<mat-option *ngFor="let awardCriterion of filteredAwardCriterion | async" [value]="awardCriterion">{{ awardCriterion.name }}</mat-option>
+									</mat-autocomplete>
+								</mat-form-field>
+							</div>
 
-
-                            <div fxLayout="row">
-                                <mat-form-field appearance="outline" fxFlex="100">
-                                    <mat-label>Settore</mat-label>
-                                    <input formControlName="ippSector" matInput
-                                        [matAutocomplete]="ippSectorAutocomplete">
-                                    <mat-autocomplete #ippSectorAutocomplete="matAutocomplete"
-                                        [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
-                                        <mat-option
-                                            *ngFor="let ippSector of filteredIppSector | async"
-                                            [value]="ippSector">{{ippSector.name}}</mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                            </div>
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Tipo Lotto</mat-label>
+									<input formControlName="procurementLotType" matInput [matAutocomplete]="typeAutocomplete">
+									<mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+										<mat-option *ngFor="let type of filteredIppLotType | async" [value]="type">{{ type.name }}</mat-option>
+									</mat-autocomplete>
+								</mat-form-field>
+							</div>
                             
                             <div fxLayout="row" class="mt-24" fxLayoutAlign="end top">
                                 <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                             </div>
-
-                             <!--<div fxLayout="row" fxLayoutAlign="end top">
-                                    <button mat-raised-button (click)="publish()"> Publish </button>
-                                </div>
-                                -->
+                            
                         </form>
+						
+						<div fxLayout="row" fxLayoutAlign="end top">
+							<button mat-raised-button (click)="publish()"> Publish </button>
+						</div>
                     </div>
                 </div>
             </div>
@@ -178,9 +129,9 @@
             </mat-card>
             -->
 			<agal-procurement-lot-list-loader 
-				[dcs]="newTableColumns"
-				[buttons]="newTableButtons"
-				[filters]="procurementLotFilters">
+                [dcs]="newTableColumns"
+                [buttons]="newTableButtons"
+                [filters]="procurementLotFilters">
 			</agal-procurement-lot-list-loader>
 
             <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"

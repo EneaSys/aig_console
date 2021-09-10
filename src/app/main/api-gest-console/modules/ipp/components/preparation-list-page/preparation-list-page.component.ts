@@ -127,8 +127,7 @@ export class AigPreparationListPageComponent extends GenericComponent {
 	}
 
 	
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
-
+	async publish() {
+		await this.preparationResourceService.publishUsingGET4(this.preparationFilters).toPromise();
+	}
 }

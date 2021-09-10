@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DatiSALDTO } from 'aig-italianlegislation';
+import { DatiSalDTO } from 'aig-italianlegislation';
 
 @Component({
     selector: 'agal-dati-sal-detail-box',
@@ -12,5 +12,5 @@ export class AgalDatiSALDetailBoxComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    datiSal: DatiSALDTO;
+    datiSal: DatiSalDTO;
 }

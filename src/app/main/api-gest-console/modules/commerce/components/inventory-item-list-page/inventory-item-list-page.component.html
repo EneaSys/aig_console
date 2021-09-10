@@ -85,7 +85,7 @@
                 [error]="inventoryItemError"></aig-inventory-item-list-table>
 
             <mat-paginator #paginator [length]="inventoryItemLength" [pageIndex]="this.inventoryItemFilters.page"
-                [pageSize]="this.inventoryItemPaginationSize" [pageSizeOptions]="[10,30,50]"
+                [pageSize]="this.inventoryItemPaginationSize" [pageSizeOptions]="[100,500,1000]"
                 (page)="inventoryItemPaginationEvent($event)"></mat-paginator>
         </div>
 

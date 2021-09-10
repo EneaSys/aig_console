@@ -42,6 +42,7 @@ export class AigCpvNewUpdateFormComponent implements OnInit {
             description: [''],
             wikiCode:[''],
             expirationDate: [''],
+            activationDate: [''],
         })
 
         if (this.cpv != null && this.cpv.id != null) {

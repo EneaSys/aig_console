@@ -122,8 +122,7 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 		this.dialog.open(AigPersonalizationNewUpdateModalComponent, { data: {} });
    	}
 	
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
-
+	async publish() {
+		await this.personalizationResourceService.publishUsingGET8(this.personalizationFilters).toPromise;
+	}
 }

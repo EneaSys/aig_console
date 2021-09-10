@@ -75,7 +75,7 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
 			modality: [null, [Validators.required, AigValidator.haveId]],
             status: [null, [Validators.required, AigValidator.haveId]],
             
-			type: [null, [AigValidator.haveId]],
+			type: [null, [AigValidator.haveCode]],
 
             siteInspection: [false],
         })

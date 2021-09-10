@@ -78,7 +78,7 @@ export class AigProcurementLotDetailPageComponent extends AigIppGenericComponent
 
 	async loadPartecipation() {
 		let filters = {
-			procurementLotIdEquals: this.procurementLotDTO.id
+			procurementLotIDEquals: this.procurementLotDTO.id
 		};
 		this.partecipationDTOs = await this.partecipationResourceService.getAllPartecipationsUsingGET(filters).toPromise();
 	}

@@ -27,19 +27,16 @@ export class AigStandardAutocompleteFilterService {
         private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
     ) {}
 
-	DATE_TIME_FORMAT = 'YYYY-MM-DD'; 
 
     filterCity(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+				//	expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.cityResourceService.getAllCitiesUsingGET(filter);
 			})
@@ -59,9 +56,8 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
 				let filter: any = {
-					expirationDateGreaterThanOrEqual: now.format()
+					expirationDateGreaterThan: new Date()
 				};
                 if (value && value.length > 0) {
 					filter.nameContains = value;
@@ -84,13 +80,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpProcurementStatusResourceService.getAllIlPpProcurementStatusesUsingGET(filter);
 			})
@@ -102,13 +96,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpProcurementLotAwardCriterionResourceService.getAllIlPpProcurementLotAwardCriteriaUsingGET(filter);
 			})
@@ -118,13 +110,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpProcurementLotStatusResourceService.getAllIlPpProcurementLotStatusesUsingGET(filter);
 			})
@@ -134,13 +124,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpPartecipationTypeResourceService.getAllIlPpPartecipationTypesUsingGET(filter);
 			})
@@ -158,13 +146,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ippLotTypeResourceService.getAllIlPpProcurementLotTypesUsingGET(filter);
 			})
@@ -175,30 +161,31 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filters: any = { };
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filters.nameContains = value;
 				}
-				return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filter);
+				return this.loadIppLotCategory(filters);
 			})
 		);
+	}
+
+	loadIppLotCategory(filters: any) {
+		if(filters.expirationDateGreaterThan == null) {
+			filters.expirationDateGreaterThan = new Date();
+		}
+		return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filters);
 	}
 
     filterIppSector(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ippSectorResourceService.getAllIlPpProcurementSectorsUsingGET(filter);
 			})
@@ -209,13 +196,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ippModalityResourceService.getAllIlPpProcurementModalitiesUsingGET(filter);
 			})
@@ -226,13 +211,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
-				let now = moment(new Date(), this.DATE_TIME_FORMAT);
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value,
-						expirationDateGreaterThanOrEqual: now
-					};
+					filter.nameContains = value;
 				}
 				return this.ippProcedureResourceService.getAllIlPpProcurementProceduresUsingGET(filter);
 			})

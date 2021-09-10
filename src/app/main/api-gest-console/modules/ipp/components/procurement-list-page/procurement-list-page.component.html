@@ -5,7 +5,7 @@
         <div class="content">
             <div>
                 <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
-                    <button mat-raised-button (click)="showAllProcurement()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
+                    <button mat-raised-button (click)="resetFiltersProcurement()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
                 </div>
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
                     <span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
@@ -21,57 +21,97 @@
                                         <input matInput type="number" formControlName="id">
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row">
+
+								<div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Codice</mat-label>
-                                        <input matInput type="text" formControlName="code">
+                                        <mat-label>Stazione appaltante</mat-label>
+                                        <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
+                                        <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                                            <mat-option *ngFor="let eopoo of filteredContractorEopoo | async" [value]="eopoo">
+												{{ eopoo | eopooName }}
+											</mat-option>
+                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
+
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Oggetto</mat-label>
+                                        <input matInput type="text" formControlName="procurementDescriptionContains">
+                                    </mat-form-field>
+                                </div>
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="50">
+                                        <mat-label>Importo da:</mat-label>
+                                        <input matInput type="number" formControlName="totalAmountStart">
+                                    </mat-form-field>
+
+									<mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+                                        <mat-label>Importo a:</mat-label>
+                                        <input matInput type="number" formControlName="totalAmountEnd">
+                                    </mat-form-field>
+                                </div>
+
+								<div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Codice Anac</mat-label>
+                                        <input matInput type="text" formControlName="procurementCodeEquals">
+                                    </mat-form-field>
+                                </div>
+
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Ref</mat-label>
-                                        <input matInput type="text" formControlName="ref">
+                                        <input matInput type="text" formControlName="procurementRefContains">
                                     </mat-form-field>
                                 </div>
+                                
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Stazione appaltante</mat-label>
-                                        <input matInput type="text" formControlName="contractorEopoo">
+                                        <mat-label>Modalità</mat-label>
+                                        <input formControlName="ilPpProcurementModality" matInput [matAutocomplete]="ippModalityAutocomplete">
+                                        <mat-autocomplete #ippModalityAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
+                                            <mat-option *ngFor="let modality of filteredProcurementModality | async" [value]="modality">
+												{{ modality.name }}
+											</mat-option>
+                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Modalità gara d'appalto </mat-label>
-                                        <input matInput type="text" formControlName="ippModality">
-                                    </mat-form-field>
-                                </div>
+    
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Procedura</mat-label>
-                                        <input matInput type="text" formControlName="ippProcedure">
+                                        <input formControlName="ilPpProcurementProcedure" matInput [matAutocomplete]="ippProcedureAutocomplete">
+                                        <mat-autocomplete #ippProcedureAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
+                                            <mat-option *ngFor="let procedure of filteredProcurementProcedure | async" [value]="procedure">
+												{{ procedure.name }}
+											</mat-option>
+                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
+
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Settore</mat-label>
-                                        <input matInput type="text" formControlName="ippSector">
+                                        <input formControlName="ilPpProcurementSector" matInput [matAutocomplete]="ippSectorAutocomplete">
+                                        <mat-autocomplete #ippSectorAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
+                                            <mat-option *ngFor="let sector of filteredProcurementSector | async" [value]="sector">
+												{{ sector.name }}
+											</mat-option>
+                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
-                                <div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Importo totale</mat-label>
-                                        <input matInput type="number" formControlName="totalAmount">
-                                    </mat-form-field>
-                                </div>
+
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                                 </div>
-
-                                 <!--<div fxLayout="row" fxLayoutAlign="end top">
-                                    <button mat-raised-button (click)="publish()"> Publish </button>
-                                </div>
-                                -->
+                                
                             </form>
+
+							<div fxLayout="row" fxLayoutAlign="end top">
+								<button mat-raised-button (click)="publish()"> Publish </button>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -95,16 +135,12 @@
         <!-- / HEADER -->
         <!-- CONTENT -->
         <div class="content mb-48">
-            <aig-procurement-list-table 
-                [displayColumns]="procurementDC" 
-                [dataSource]="procurementDTOs"
-                [error]="procurementError"></aig-procurement-list-table>
-           
+            <agal-procurement-list-loader 
+				[dcs]="newTableColumns"
+				[buttons]="newTableButtons"
+				[filters]="procurementFilters">
+			</agal-procurement-list-loader>
 
-            <mat-paginator #paginator [length]="procurementLength" [pageIndex]="this.procurementFilters.page"
-                [pageSize]="this.procurementPaginationSize" [pageSizeOptions]="[10, 20, 50]"
-                (page)="procurementPaginationEvent($event)">
-            </mat-paginator>
 
             <button mat-fab class="accent" id="add-procurement-button" (click)="newProcurement()"
                 aria-label="add procurement">

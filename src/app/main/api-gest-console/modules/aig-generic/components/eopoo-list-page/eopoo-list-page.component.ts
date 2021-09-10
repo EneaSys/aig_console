@@ -148,12 +148,16 @@ export class AigEopooListPageComponent extends GenericComponent {
 		this.searchEopoo(0);
 	}
 
+
+
+
+	
 	newEopoo() {
 		this.dialog.open(AigEopooNewModalComponent, { data: { } });
 	}
 
 	async publish() {
-		await this.eopooResourceService.publishUsingGET2(this.eopooFilters).toPromise;
+		await this.eopooResourceService.publishUsingGET2(this.eopooFilters).toPromise();
 	}
-	//			---- !EOPOO TABLE AND SEARCH SECTION ----
+
 }

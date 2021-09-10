@@ -43,13 +43,14 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.contextModuleNewUpdateForm = this._formBuilder.group({
             id:[''],
-            active: ['', Validators.required],
+            active: [false],
             applicationModule: ['', Validators.required],
             tenantContext: ['', Validators.required]
         })
         
         if (this.contextModule != null) {
             this.contextModuleNewUpdateForm.patchValue(this.contextModule);
+            this.isUpdate = true;
         }    
 
         this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.contextModuleNewUpdateForm.controls['applicationModule'].valueChanges);
@@ -62,18 +63,13 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let contextModule: ContextModuleDTO = {
-            id: this.contextModuleNewUpdateForm.value.id,
-            active: this.contextModuleNewUpdateForm.value.active,
-            moduleId: this.contextModuleNewUpdateForm.value.applicationModule.id,
-            moduleName: this.contextModuleNewUpdateForm.value.applicationModule.name,
-            contextId: this.contextModuleNewUpdateForm.value.tenantContext.id,
-            contextName: this.contextModuleNewUpdateForm.value.tenantContext.name,
-         
-        }; 
+        let contextModule: any = this.contextModuleNewUpdateForm.value;
+            contextModule.moduleId = this.contextModuleNewUpdateForm.value.applicationModule.id;
+            contextModule.contextId = this.contextModuleNewUpdateForm.value.tenantContext.id; 
+
         try {
             let postOrPut;
-            if ( contextModule.id != 0) {
+            if ( this.isUpdate) {
                 await this.contextModuleResourceService.updateContextModuleUsingPUT(contextModule).toPromise();
                 postOrPut = "updated";
             } else {

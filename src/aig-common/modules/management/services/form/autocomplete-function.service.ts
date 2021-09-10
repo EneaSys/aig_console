@@ -25,7 +25,7 @@ export class AigManagementAutocompleteFunctionService {
 
 
     contextModuleDisplayFn(contextModule?: ContextModuleDTO): string | undefined {
-        return contextModule ? contextModule.contextName : undefined;
+        return contextModule ? contextModule.tenantContext.name : undefined;
     }
 
     contextUserDisplayFn(contextUser?: ContextUserDTO): string | undefined {

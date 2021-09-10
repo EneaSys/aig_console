@@ -5,27 +5,49 @@
             <mat-label>Code</mat-label>
             <input name="code" formControlName="code" matInput required>
         </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>WikiCode</mat-label>
+            <input name="wikiCode" formControlName="wikiCode" matInput >
+        </mat-form-field>
+
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Nome</mat-label>
-            <input name="name" formControlName="name" matInput >
+            <input name="name" formControlName="name" matInput required>
         </mat-form-field>
+        
+       
     </div>
 
     <div fxLayout="row" fxLayoutAlign="start start">
-        <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Descrizione</mat-label>
-            <input name="description" formControlName="description" matInput required>
+
+        <mat-form-field appearance="outline" fxFlex=50% class="pl-4">
+            <mat-label>Data attivazione</mat-label>
+            <input formControlName="activationDate" matInput [matDatepicker]="activationDataPicker" >
+            <mat-datepicker-toggle matSuffix [for]="activationDataPicker"></mat-datepicker-toggle>
+            <mat-datepicker #activationDataPicker></mat-datepicker>
         </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex=50% class="pl-4">
+            <mat-label>Data Di scadenza</mat-label>
+            <input formControlName="expirationDate" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        
+      
     </div>
     
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>WikiCode</mat-label>
-            <input name="wikiCode" formControlName="wikiCode" matInput >
+            <mat-label>Descrizione</mat-label>
+            <input name="description" formControlName="description" matInput >
         </mat-form-field>
+       
     </div>
 
     <div fxLayout="row" fxLayoutAlign="end top">

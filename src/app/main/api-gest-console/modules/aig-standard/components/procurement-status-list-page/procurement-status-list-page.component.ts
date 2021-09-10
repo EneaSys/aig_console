@@ -55,7 +55,7 @@ export class AigProcurementStatusListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.procurementStatusDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.procurementStatusDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersProcurementStatus() {

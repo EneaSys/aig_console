@@ -55,7 +55,7 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.partecipationTypeDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.partecipationTypeDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersPartecipationType() {

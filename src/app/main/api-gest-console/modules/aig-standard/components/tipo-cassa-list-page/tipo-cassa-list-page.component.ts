@@ -45,7 +45,7 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 
     
     private initTipoCassaSearch() {
-		this.tipoCassaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.tipoCassaDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.tipoCassaPaginationSize = 10;
 		

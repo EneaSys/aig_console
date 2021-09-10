@@ -9,6 +9,7 @@ import { FuseSearchBarModule, FuseShortcutsModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.component';
+import { EventManagerModule } from 'aig-common/event-manager/event-manager.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,9 @@ import { ToolbarComponent } from 'app/layout/components/toolbar/toolbar.componen
 
         FuseSharedModule,
         FuseSearchBarModule,
-        FuseShortcutsModule
+        FuseShortcutsModule,
+
+		EventManagerModule,
     ],
     exports     : [
         ToolbarComponent

@@ -41,7 +41,9 @@ export class AigIppLotTypeNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
+            activationDate:[''],
         })
 
         if (this.ippLotType != null && this.ippLotType.id != null) {

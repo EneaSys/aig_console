@@ -132,7 +132,7 @@ newInsurancePolicy(): void {
 
 	
 /*async publish() {
-	await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	await this.insurancePolicyResourceService.publishUsingGET(this.insurancePolicyFilters).toPromise;
 }*/
 
 }

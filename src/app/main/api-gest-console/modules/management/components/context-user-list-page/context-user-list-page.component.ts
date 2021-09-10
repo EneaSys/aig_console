@@ -124,8 +124,8 @@ export class AigContextUserListPageComponent extends GenericComponent {
 		this.dialog.open(AigContextUserNewUpdateModalComponent, { data: {} });
     }
 
-	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
-	}*/
+	async publish() {
+		await this.contextUserResourceService.publishUsingGET2(this.contextUserFilters).toPromise;
+	}
 
 }

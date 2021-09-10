@@ -7,7 +7,7 @@ import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
-import { PartecipationDTO, PreparationDTO, PreparationResourceService, PreparationStatusDTO } from 'aig-italianlegislation';
+import { PartecipationDTO, PreparationDTO, PreparationModalityDTO, PreparationResourceService, PreparationStatusDTO } from 'aig-italianlegislation';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
@@ -18,12 +18,12 @@ import { AigIppAutocompleteService } from '../../service/autocomplete-filter.ser
     styleUrls: ['./preparation-new-update-form.component.scss']
 })
 export class AigPreparationNewUpdateFormComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+	@Input()
+    preparation: PreparationDTO;
 
+    @Input()
+    partecipation: PartecipationDTO;
+    
     constructor(
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -35,12 +35,14 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         public genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
     ) { }
+	
+	step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
 
-    @Input()
-    preparation: PreparationDTO;
 
-    @Input()
-    partecipation: PartecipationDTO;
 
     preparationNewUpdateForm: FormGroup;
 
@@ -50,6 +52,7 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
 
     filteredEopoo: Observable<EopooDTO[]>;
     filteredPartecipation: Observable<PartecipationDTO[]>;
+	filteredPreparationModality: Observable<PreparationModalityDTO[]>;
     filteredPreparationStatus: Observable<PreparationStatusDTO[]>;
 
     ngOnInit(): void {
@@ -58,6 +61,7 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
             companyPreparatorEopoo: ['',[Validators.required, AigValidator.haveId] ],
             partecipation: [this.partecipation,[Validators.required, AigValidator.haveId] ],
             note: [''],
+			modality: ['',[Validators.required, AigValidator.haveId] ],
             status: ['',[Validators.required, AigValidator.haveId] ],
         })
         
@@ -68,6 +72,7 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.preparationNewUpdateForm.controls['companyPreparatorEopoo'].valueChanges);
         this.filteredPartecipation = this.ippAutocompleteFilterService.filterPartecipation(this.preparationNewUpdateForm.controls['partecipation'].valueChanges);
+		this.filteredPreparationModality = this.ippAutocompleteFilterService.filterPreparationModality(this.preparationNewUpdateForm.controls['modality'].valueChanges);
         this.filteredPreparationStatus = this.ippAutocompleteFilterService.filterPreparationStatus(this.preparationNewUpdateForm.controls['status'].valueChanges);
     }
 
@@ -80,9 +85,10 @@ export class AigPreparationNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let preparation: PreparationDTO = this.preparationNewUpdateForm.value;
+        preparation.partecipationId = this.preparationNewUpdateForm.value.partecipation.id;
         preparation.companyPreparatorEopooCode = this.preparationNewUpdateForm.value.companyPreparatorEopoo.id;
         preparation.statusId = this.preparationNewUpdateForm.value.status.id;
-        preparation.partecipationId = this.preparationNewUpdateForm.value.partecipation.id;
+		preparation.modalityId = this.preparationNewUpdateForm.value.modality.id;
 
         try {
             let postOrPut: string;

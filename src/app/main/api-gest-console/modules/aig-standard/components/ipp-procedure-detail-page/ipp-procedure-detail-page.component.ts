@@ -28,7 +28,6 @@ export class AigIppProcedureDetailPageComponent extends GenericComponent {
     
     async loadComponent() {
         if(this.firstLoad) {
-            console.log(this.ippProcedure)
             this.ippProcedure = this.route.snapshot.data.ippProcedure;
         } else {
             this.ippProcedure = await this.ippProcedureResourceService.getIlPpProcurementProcedureUsingGET(this.ippProcedure.id).toPromise();
