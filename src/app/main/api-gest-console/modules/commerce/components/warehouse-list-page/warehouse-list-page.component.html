@@ -10,7 +10,9 @@
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
 					<span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
 				</div>
+                <warehouse-filters-form></warehouse-filters-form>
                 <div class="content" fusePerfectScrollbar>
+                
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
                             <form [formGroup]="warehouseSearchFormGroup" (ngSubmit)="warehouseSearchWithFilter()" class="p-8">
