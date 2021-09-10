@@ -46,7 +46,7 @@ export class AgalPaginatorComponent implements OnInit {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.calculate();
+		this.calculate();
     }
 
     selectPageFormSubmit() {

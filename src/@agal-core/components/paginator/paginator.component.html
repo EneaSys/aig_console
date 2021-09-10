@@ -1,11 +1,24 @@
-{{ pagination.first }} - {{ pagination.last }} of {{ totalRecords }}
+<table id="rows">
+	<tr>
+		<td>Rows: {{ pagination.first }} - </td>
+		<td>
+			<select [ngModel]="initialSize" (ngModelChange)="selectSize($event)">
+				<option *ngFor="let pageSizeOption of pageSizeOptions">{{ pageSizeOption }}</option>
+			</select>
+		</td>
+		<td>of {{ totalRecords }}</td>
+	</tr>
+</table>
 
-<form [formGroup]="selectPageForm" (ngSubmit)="selectPageFormSubmit()">
-    <input formControlName="page" required>    
-</form>
+<table id="pages">
+	<tr>
+		<td>Page: </td>
+		<td>
+			<form [formGroup]="selectPageForm" (ngSubmit)="selectPageFormSubmit()">
+				<input type="text" formControlName="page" required>    
+			</form>
+		</td>
+		<td>of {{ pages | number: '1.0-0' }}</td>
+	</tr>
+</table>
 
-of {{ pages | number: '1.0-0' }}
-
-<select [ngModel]="initialSize" (ngModelChange)="selectSize($event)">
-    <option *ngFor="let pageSizeOption of pageSizeOptions">{{ pageSizeOption }}</option>
-</select>
