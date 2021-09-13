@@ -125,8 +125,12 @@ export class AigWarehouseListPageComponent extends AigCommerceGenericComponent {
 	//			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
 
 	newWarehouse(): void {
-        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: { warehouse: {} } });
+        this.dialog.open(AigWarehouseNewUpdateModalComponent, { data: {} });
     }
+
+	async publish() {
+		await this.warehouseResourceService.publishUsingGET20(this.warehouseFilters).toPromise;
+	}
 
 	
 }

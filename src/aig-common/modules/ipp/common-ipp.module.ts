@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -61,6 +62,16 @@ import { AigDossierDetailBoxComponent } from './components/dossier-detail-box/do
 import { AigPartecipationStatusDetailBoxComponent } from './components/partecipation-status-detail-box/partecipation-status-detail-box.component';
 import { AigPreparationStatusDetailBoxComponent } from './components/preparation-status-detail-box/preparation-status-detail-box.component';
 import { AigInsurancePolicyStatusDetailBoxComponent } from './components/insurance-policy-status-detail-box/insurance-policy-status-detail-box.component';
+import { AigPartecipationModalityNewUpdateFormComponent } from './components/partecipation-modality-new-update-form/partecipation-modality-new-update-form.component';
+import { AigPartecipationModalityListTableComponent } from './components/partecipation-modality-list-table/partecipation-modality-list-table.component';
+import { AigPreparationModalityListTableComponent } from './components/preparation-modality-list-table/preparation-modality-list-table.component';
+import { AigPreparationModalityNewUpdateFormComponent } from './components/preparation-modality-new-update-form/preparation-modality-new-update-form.component';
+import { PreparationModalityResolver } from './resolver/preparation-modality.resolver';
+import { PartecipationModalityResolver } from './resolver/partecipation-modality.resolver';
+import { AigProcurementLotCategoryNewUpdateFormComponent } from './components/procurement-lot-category-new-update-form/procurement-lot-category-new-update-form.component';
+import { AigProcurementLotCategoryListTableComponent } from './components/procurement-lot-category-list-table/procurement-lot-category-list-table.component';
+
+
 
 import { TableModule } from 'primeng/table';
 
@@ -91,8 +102,12 @@ import { TableModule } from 'primeng/table';
         MatSelectModule,
         MatMenuModule,
         MatDatepickerModule,
+<<<<<<< HEAD
 
         TableModule,
+=======
+		MatCheckboxModule,
+>>>>>>> develop
     ],
     providers: [
 
@@ -109,9 +124,20 @@ import { TableModule } from 'primeng/table';
         PreparationStatusResolver,
         InsurancePolicyResolver,
         InsurancePolicyStatusResolver,
+        PreparationModalityResolver,
+        PartecipationModalityResolver,
 
     ],
     declarations: [
+
+        AigProcurementLotCategoryNewUpdateFormComponent,
+        AigProcurementLotCategoryListTableComponent,
+
+        AigPreparationModalityNewUpdateFormComponent,
+        AigPreparationModalityListTableComponent,
+
+        AigPartecipationModalityNewUpdateFormComponent,
+        AigPartecipationModalityListTableComponent,
 
         AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,
@@ -162,6 +188,15 @@ import { TableModule } from 'primeng/table';
         AigInsurancePolicyDetailBoxComponent,
     ],
     exports: [
+
+        AigPartecipationModalityListTableComponent,
+        AigPartecipationModalityNewUpdateFormComponent,
+
+        AigProcurementLotCategoryNewUpdateFormComponent,
+        AigProcurementLotCategoryListTableComponent,
+
+        AigPreparationModalityListTableComponent,
+        AigPreparationModalityNewUpdateFormComponent,
 
         AigProcurementListTableComponent,
         AigProcurementNewUpdateFormComponent,

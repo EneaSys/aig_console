@@ -140,7 +140,11 @@ export class AigAddressListPageComponent extends GenericComponent {
     }
 
     newAddress() {
-        this.dialog.open(AigAddressNewUpdateModalComponent, { data: { address: {} } });
+        this.dialog.open(AigAddressNewUpdateModalComponent, { data: { } });
     }
+
+    async publish() {
+		await this.addressResourceService.publishUsingGET(this.addressFilters).toPromise;
+	}
     //			---- !ADDRESS TABLE AND SEARCH SECTION ----
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { InsurancePolicyStatusResourceService, PartecipationStatusResourceService, PreparationResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
+import { InsurancePolicyStatusResourceService, PartecipationModalityResourceService, PartecipationStatusResourceService, PreparationModalityResourceService, PreparationResourceService, PreparationStatusResourceService, ProcurementLotResourceService, ProcurementResourceService } from 'aig-italianlegislation';
 import { EopooResourceService } from 'aig-generic';
 import { PartecipationResourceService } from 'aig-italianlegislation';
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { combineAll, concatAll, map, mergeMap, startWith, switchMap } from 'rxjs/operators';
+import { IlPpProcurementLotCategoryResourceService } from 'aig-standard';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,11 +13,14 @@ export class AigIppAutocompleteService {
 	constructor(
         private procurementResourceService: ProcurementResourceService,
 		private procurementLotResourceService: ProcurementLotResourceService,
+		private partecipationModalityResourceService: PartecipationModalityResourceService, 
 		private partecipationStatusResourceService: PartecipationStatusResourceService, 
 		private partecipationResourceService: PartecipationResourceService,
 		private preparationStatusResourceService: PreparationStatusResourceService,
+		private preparationModalityResourceService: PreparationModalityResourceService,
 		private preparationResourceService: PreparationResourceService,
 		private insurancePolicyStatusResourceService: InsurancePolicyStatusResourceService,
+		
     ) {}
 
     filterProcurement(observable: Observable<any>) {
@@ -25,7 +29,7 @@ export class AigIppAutocompleteService {
 			switchMap((value: string) => {
 				if (value && value.length > 0) {
 					let filter = {
-						descriptionContains: value
+						procurementDescriptionContains: value
 					};
 					return this.procurementResourceService.getAllProcurementsUsingGET(filter);
 				} else {
@@ -51,6 +55,23 @@ export class AigIppAutocompleteService {
 		);
 	}
 
+	filterPartecipationModality(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				if (value && value.length > 0) {
+					let filter = {
+						descriptionContains: value
+					};
+					return this.partecipationModalityResourceService.getAllPartecipationModalitiesUsingGET(filter);
+				} else {
+					return this.partecipationModalityResourceService.getAllPartecipationModalitiesUsingGET({});
+				}
+			})
+		);
+	}
+
+	
 	filterPreparationStatus(observable: Observable<any>) {
 		return observable.pipe(
 			startWith(''),
@@ -63,6 +84,18 @@ export class AigIppAutocompleteService {
 				} else {
 					return this.preparationStatusResourceService.getAllPreparationStatusesUsingGET({});
 				}
+			})
+		);
+	}
+	filterPreparationModality(observable: Observable<any>) {
+		return observable.pipe(
+			startWith(''),
+			switchMap((value: string) => {
+				let filter: any = { };
+				if (value && value.length > 0) {
+					filter.descriptionContains = value;
+				}
+				return this.preparationModalityResourceService.getAllPreparationModalitiesUsingGET(filter);
 			})
 		);
 	}

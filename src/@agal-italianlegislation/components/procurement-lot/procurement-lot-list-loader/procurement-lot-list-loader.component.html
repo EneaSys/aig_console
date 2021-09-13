@@ -1,0 +1,108 @@
+<div [ngSwitch]="view">
+	<p *ngSwitchCase="'CARD'">
+		card
+	</p>
+	<p *ngSwitchDefault>
+		
+		<p-table styleClass="p-datatable-lg" 
+			[value]="ds" [loading]="loading" 
+			[lazy]="true" (onLazyLoad)="lazyLoad($event)" 
+			[resizableColumns]="true" [(selection)]="selectedElements">
+
+			<ng-template pTemplate="header">
+				<tr>
+
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<!-- Filed of entity -->
+						<th *ngSwitchCase="'_ck'" style="width:50px"></th>
+						<th *ngSwitchCase="'id'" style="width:auto" pResizableColumn pSortableColumn="id">id</th>
+						<th *ngSwitchCase="'cig'" style="width:150px" pResizableColumn>cig</th>
+						<th *ngSwitchCase="'description'" style="width:25%" pResizableColumn pSortableColumn="procurementLotDescription">descrizione</th>
+						<th *ngSwitchCase="'offerExpiryDate'" style="width:100px" pResizableColumn pSortableColumn="procurementLotOfferExpiryDate">data di scadenza offerta</th>
+						<th *ngSwitchCase="'baseAmount'" style="width:auto" pResizableColumn pSortableColumn="procurementLotBaseAmount">importo base</th>
+						<th *ngSwitchCase="'candidacy'" style="width:50px" pResizableColumn pSortableColumn="procurementLotCandidacy">Man. interesse</th>
+						<th *ngSwitchCase="'securityAmount'" style="width:auto" pResizableColumn pSortableColumn="securityAmount">importo di sicurezza</th>
+						<th *ngSwitchCase="'istatCode'" style="width:auto" pResizableColumn pSortableColumn="istatCode">istatCode</th>
+						<th *ngSwitchCase="'nutsCode'" style="width:auto" pResizableColumn pSortableColumn="nutsCode"></th>
+						<th *ngSwitchCase="'cpvCode'" style="width:auto" pResizableColumn pSortableColumn="cpvCode">cpv</th>
+						<th *ngSwitchCase="'type'" style="width:auto" pResizableColumn pSortableColumn="procurementLotTypeCode">tipo</th>
+						<th *ngSwitchCase="'categories'" style="width:auto" pResizableColumn>categorie</th>
+						<th *ngSwitchCase="'awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn="awardCriterionCode">criterio di aggiudicazione</th>
+						<th *ngSwitchCase="'statusCode'" style="width:auto" pResizableColumn pSortableColumn="statusCode">stato</th>
+						
+						<!-- Filed of relational entity -->
+						<th *ngSwitchCase="'procurement.contractorEopooCode'" style="width:auto" pResizableColumn pSortableColumn="contractorEopooCode">Id Stazione appaltante</th>
+						<th *ngSwitchCase="'procurement.contractorEopoo'" style="width:15%" pResizableColumn pSortableColumn="contractorCompleteName">Stazione appaltante</th>
+						<th *ngSwitchCase="'procurement.description'" style="width:auto" pResizableColumn pSortableColumn=""> descrizione</th>
+						<th *ngSwitchCase="'procurement.code'" style="width:auto" pResizableColumn pSortableColumn=""> codice</th>
+						<th *ngSwitchCase="'procurement.ref'" style="width:auto" pResizableColumn pSortableColumn=""> ref</th>
+						<th *ngSwitchCase="'procurement.awardCriterionCode'" style="width:auto" pResizableColumn pSortableColumn=""> criterio di aggiudicazione</th>
+						<th *ngSwitchCase="'procurement.sectorCode'" style="width:auto" pResizableColumn pSortableColumn=""> settore</th>
+						<th *ngSwitchCase="'procurement.procedureCode'" style="width:auto" pResizableColumn pSortableColumn=""> procedura</th>
+						<th *ngSwitchCase="'procurement.modalityCode'" style="width:auto" pResizableColumn pSortableColumn=""> modalità</th>
+						<th *ngSwitchCase="'procurement.statusCode'" style="width:auto" pResizableColumn pSortableColumn=""> stato</th>
+					</ng-container>
+
+					<th *ngIf="buttons" style="width:140px"></th>
+
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-e>
+				<tr>
+
+					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
+						<!-- Filed of entity -->
+						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+						<td *ngSwitchCase="'id'">{{ e.id }}</td>
+						<td *ngSwitchCase="'cig'">{{ e.cig }}</td>
+						<td *ngSwitchCase="'description'">{{ e.description }}</td>
+						<td *ngSwitchCase="'offerExpiryDate'">{{ e.offerExpiryDate | date }}</td>
+						<td *ngSwitchCase="'baseAmount'">{{ e.baseAmount | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'candidacy'">
+							<span *ngIf="e.candidacy">MI</span>
+							<span *ngIf="!e.candidacy">GA</span>
+						</td>
+						<td *ngSwitchCase="'securityAmount'">{{ e.securityAmount | currency: 'EUR' }}</td>
+						<td *ngSwitchCase="'istatCode'">{{ e.istatCode }}</td>
+						<td *ngSwitchCase="'nutsCode'">{{ e.nutsCode }}</td>
+						<td *ngSwitchCase="'cpvCode'">{{ e.cpvCode }}</td>
+						<td *ngSwitchCase="'type'">{{ e.type.name }}</td>
+						<td *ngSwitchCase="'categories'">
+							<div *ngFor="let category of e.categories">{{ category.category.name }} ({{ category.level }})</div>
+						</td>
+						<td *ngSwitchCase="'awardCriterionCode'">{{ e.awardCriterionCode }}</td>
+						<td *ngSwitchCase="'statusCode'">{{ e.statusCode }}</td>
+	
+						<!-- Filed of relational entity -->
+						<td *ngSwitchCase="'procurement.description'">{{ e.procurement.description }}</td>
+						<td *ngSwitchCase="'procurement.'">{{ e.procurement.code }}</td>
+						<td *ngSwitchCase="'procurement.'">{{ e.procurement.ref }}</td>
+						<td *ngSwitchCase="'procurement.contractorEopooCode'">{{ e.procurement.contractorEopooCode }}</td>
+						<td *ngSwitchCase="'procurement.contractorEopoo'">{{ e.procurement.contractorEopoo | eopooName }}</td>
+						<td *ngSwitchCase="'procurement.'">{{ e.procurement.sectorCode }}</td>
+						<td *ngSwitchCase="'procurement.'">{{ e.procurement.procedureCode }}</td>
+						<td *ngSwitchCase="'procurement.'">{{ e.procurement.modalityCode }}</td>
+						<td *ngSwitchCase="'procurement.'">{{ e.procurement.statusCode }}</td>
+					</ng-container>
+					
+					<td *ngIf="buttons">
+						<ng-container *ngFor="let b of buttons">
+							<p-splitButton *ngIf="b.childs" 
+								styleClass="{{ b.class }} p-button-{{ b.severity }}" label="{{ b.label }}" 
+								(onClick)="b.command(e)" [model]="b.childs"></p-splitButton>
+
+							<button *ngIf="!b.childs" pButton type="button" 
+								class="{{ b.class }} p-button-{{ b.severity }}" [ngClass]="{'ui-button-icon-only': b.hideLabel}"
+								label="{{ b.label }}" icon="{{ b.icon }}"
+								(click)="b.command(e)" ></button>
+						</ng-container>
+					</td>
+
+				</tr>
+			</ng-template>
+		</p-table>
+	</p>
+</div>
+
+<agal-paginator [totalRecords]="totalRecords" [pageSizeOptions]="[30,50,100,500]" [initialSize]="30"
+	(paginator)="changePagination($event)"></agal-paginator>

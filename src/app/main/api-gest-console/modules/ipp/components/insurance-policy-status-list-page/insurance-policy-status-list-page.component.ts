@@ -128,8 +128,13 @@ export class AigInsurancePolicyStatusListPageComponent extends GenericComponent 
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newInsurancePolicyStatus(): void {
-        this.dialog.open(AigInsurancePolicyStatusNewUpdateDialogComponent, { data: { insurancePolicyStatus: {} } });
+        this.dialog.open(AigInsurancePolicyStatusNewUpdateDialogComponent, { data: {} });
     }
+
+	
+	/*async publish() {
+		await this.insurancePolicyStatusResourceService.publishUsingGET(this.insurancePolicyStatusFilters).toPromise;
+	}*/
 
 	
 }

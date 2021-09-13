@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DropdownModule } from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+
 
 import { AgalCommonService } from './services/common.service';
 import { AgalPaginatorComponent } from './components/paginator/paginator.component';
-import { TableModule } from 'primeng/table';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	imports: [ 
@@ -18,6 +21,8 @@ import { TableModule } from 'primeng/table';
         ReactiveFormsModule,
 
         DropdownModule,
+
+		FlexLayoutModule,
 	],
 	declarations: [
 		AgalPaginatorComponent,
@@ -26,6 +31,11 @@ import { TableModule } from 'primeng/table';
 		TableModule,
 
 		AgalPaginatorComponent,
+
+		TableModule,
+		ButtonModule,
+		
+		FlexLayoutModule,
 	],
 	providers: [
 		AgalCommonService,

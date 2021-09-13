@@ -16,7 +16,8 @@ export class AgalPaginatorComponent implements OnInit {
     @Input()
     initialSize: number = 30;
 
-    @Output() paginator = new EventEmitter<any>();
+    @Output()
+	paginator = new EventEmitter<any>();
 
     selectPageForm: FormGroup;
 
@@ -46,7 +47,7 @@ export class AgalPaginatorComponent implements OnInit {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.calculate();
+		this.calculate();
     }
 
     selectPageFormSubmit() {

@@ -37,12 +37,15 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
     entityReferenceNewUpdateForm: FormGroup;
 
+    filteredApplicationModules: Observable<ApplicationModuleDTO[]>;
+
     ngOnInit(): void { 
         this.entityReferenceNewUpdateForm = this._formBuilder.group({
             id:[''],
             name: ['', Validators.required],
             isType: [false],
             tableName:[''],
+            applicationModule: ['', Validators.required],
         });
 
 
@@ -51,6 +54,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
             this.isUpdate = true;
         }
 
+        this.filteredApplicationModules = this.managementAutocompleteFilterService.applicationModuleFilter(this.entityReferenceNewUpdateForm.controls['applicationModule'].valueChanges);
 		
     }
 
@@ -61,8 +65,11 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
+    
+        let entityReference: EntityReferenceDTO = this.entityReferenceNewUpdateForm.value;
 
-        let entityReference:EntityReferenceDTO = this.entityReferenceNewUpdateForm.value;
+       // entityReference.applicationModule = this.entityReferenceNewUpdateForm.value.applicationModule.id;
+
     
   
         try {

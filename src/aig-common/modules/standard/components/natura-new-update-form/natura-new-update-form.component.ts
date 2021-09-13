@@ -47,6 +47,8 @@ export class AigNaturaNewUpdateFormComponent implements OnInit {
             name: ['', Validators.required],
             description: [''],
             wikiCode:[''],
+            expirationDate:[''],
+            activationDate:[''],
 
         })
         if (this.natura!= null && this.natura.id != null) {

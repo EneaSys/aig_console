@@ -55,7 +55,7 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.socialActionDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.socialActionDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersSocialAction() {
@@ -122,7 +122,13 @@ export class AigSocialActionListPageComponent extends GenericComponent {
 	}
 
     newAction(){
-        this.dialog.open(AigSocialActionNewUpdateModalComponent, { data: { socialAction: {} } });
+        this.dialog.open(AigSocialActionNewUpdateModalComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !SOCIAL ACTION TABLE AND SEARCH SECTION ----
 }

@@ -56,7 +56,7 @@ export class AigProcurementLotStatusListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.procurementLotStatusDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.procurementLotStatusDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersProcurementLotStatus() {
@@ -121,7 +121,13 @@ export class AigProcurementLotStatusListPageComponent extends GenericComponent {
 	}
 
     newProcurementLotStatus(){
-        this.dialog.open(AigProcurementLotStatusNewUpdateDialogComponent, {data: { procurementLotStatus: {} } });
+        this.dialog.open(AigProcurementLotStatusNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !procurement Lot Status TABLE AND SEARCH SECTION ----
 }

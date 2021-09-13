@@ -134,7 +134,11 @@ export class AigCatalogListPageComponent extends AigCommerceGenericComponent {
 	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
 	newCatalog(): void {
-        this.dialog.open(AigCatalogNewUpdateDialogComponent, { data: { catalog: {} } });
+        this.dialog.open(AigCatalogNewUpdateDialogComponent, { data: { } });
     }
+
+	async publish() {
+		await this.catalogResourceService.publishUsingGET2(this.catalogFilters).toPromise;
+	}
 
 }

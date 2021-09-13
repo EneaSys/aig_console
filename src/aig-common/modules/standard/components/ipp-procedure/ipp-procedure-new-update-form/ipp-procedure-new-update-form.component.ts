@@ -40,7 +40,9 @@ export class AigIppProcedureNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
+            activationDate:[''],
         })
 
         if (this.ippProcedure != null && this.ippProcedure.id != null) {

@@ -56,7 +56,7 @@ export class AigContactNewUpdateFormComponent implements OnInit {
             referent: [this.referent, [] ],
             eopoo: [this.eopoo, [] ],
 
-            contactTypeCode: ['', [Validators.required]],
+            contactTypeCode: ['', ],
             value: ['', [Validators.required]],
         })
         

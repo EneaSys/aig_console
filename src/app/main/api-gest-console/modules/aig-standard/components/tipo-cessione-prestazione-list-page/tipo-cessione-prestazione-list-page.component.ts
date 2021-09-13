@@ -44,7 +44,7 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 	tipoCessionePrestazioneLength: number;
 
 	private initTipoCessionePrestazioneSearch() {
-		this.tipoCessionePrestazioneDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.tipoCessionePrestazioneDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.tipoCessionePrestazionePaginationSize = 10;
 		
@@ -121,7 +121,13 @@ export class AigTipoCessionePrestazioneListPageComponent extends GenericComponen
 	}
 
     newTipoCessionePrestazione(): void {
-        this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: { tipoCessionePrestazione: {} } });
+        this.dialog.open(AigTipoCessionePrestazioneNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !TABLE AND SEARCH SECTION ----
 }

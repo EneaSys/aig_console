@@ -55,7 +55,7 @@ export class AigSocialListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.socialDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.socialDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersSocial() {
@@ -122,7 +122,7 @@ export class AigSocialListPageComponent extends GenericComponent {
 	}
 
     newSocial(): void {
-        this.dialog.open(AigSocialNewUpdateModalComponent, { data: { social: {} } });
+        this.dialog.open(AigSocialNewUpdateModalComponent, { data: {} });
     }
     //			---- !SOCIAL TABLE AND SEARCH SECTION ----
 }

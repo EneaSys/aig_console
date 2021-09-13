@@ -1,0 +1,36 @@
+<form *ngIf="step.form" [formGroup]="userLicenceNewUpdateForm" (ngSubmit)="submit()">
+
+    <div  fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Licence Name</mat-label>
+            <input type="text" formControlName="licenceName" matInput required [matAutocomplete]="licenceAutocomplete">
+            <mat-autocomplete #licenceAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteFunctionService.licenceDisplayFn">
+                <mat-option *ngFor="let licence of filteredLicence | async" [value]="licenceName">{{ licenceName.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>User code</mat-label>
+            <input formControlName="userUserCode" matInput required>
+        </mat-form-field>
+    </div>
+
+
+
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <pre>{{ userLicenceNewUpdateForm.value | json }}</pre>
+    <button *ngIf="!userLicenceNewUpdateForm.value.id" mat-stroked-button color="primary" (click)="newUserLicence()">Create New</button>
+</div>

@@ -56,6 +56,15 @@ import { AigInsurancePolicyStatusListPageComponent } from './components/insuranc
 import { AigInsurancePolicyStatusDetailPageComponent } from './components/insurance-policy-status-detail-page/insurance-policy-status-detail-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
+import { AigPartecipationModalityListPageComponent } from './components/partecipation-modality-list-page/partecipation-modality-list-page.component';
+import { AigPartecipationModalityNewUpdateDialogComponent } from './components/partecipation-modality-new-update-dialog/partecipation-modality-new-update-dialog.component';
+import { AigPartecipationModalityDetailPageComponent } from './components/partecipation-modality-detail-page/partecipation-modality-detail-page.component';
+import { AigPreparationModalityDetailPageComponent } from './components/preparation-modality-detail-page/preparation-modality-detail-page.component';
+import { AigPreparationModalityListPageComponent } from './components/preparation-modality-list-page/preparation-modality-list-page.component';
+import { AigPreparationModalityNewUpdateDialogComponent } from './components/preparation-modality-new-update-dialog/preparation-modality-new-update-dialog.component';
+import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component';
+import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-italianlegislation.module';
+
 
 
 @NgModule({
@@ -66,6 +75,7 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
         AigCommonIppModule,
         AigItalianLegislationApiModule,
         CommonGenericModule,
+		AgalItalianLegislationModule,
        
         FormsModule,
         ReactiveFormsModule,
@@ -96,6 +106,8 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
         MatIconModule,
         MatMenuModule,
 
+
+
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyALOoLRTrkbbyx1rC932uBL1Hz-dKIEN8E',
             libraries: ['places', 'drawing', 'geometry']
@@ -105,6 +117,16 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
     ],
     declarations: [
         AigIppHeaderComponent,
+
+        AigPreparationModalityListPageComponent,
+        AigPreparationModalityNewUpdateDialogComponent,
+        AigPreparationModalityDetailPageComponent,
+
+        AigProcurementLotCategoryNewUpdateDialogComponent,
+
+        AigPartecipationModalityListPageComponent,
+        AigPartecipationModalityNewUpdateDialogComponent,
+        AigPartecipationModalityDetailPageComponent,
 
         AigProcurementListPageComponent,
         AigProcurementLotListPageComponent,
@@ -148,6 +170,10 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
     ],
 
     entryComponents: [
+        AigPartecipationModalityNewUpdateDialogComponent,
+        AigPreparationModalityNewUpdateDialogComponent,
+        AigProcurementLotCategoryNewUpdateDialogComponent,
+
         AigProcurementNewUpdateDialogComponent,
         AigProcurementLotNewUpdateDialogComponent,
         AigDossierNewUpdateDialogComponent,

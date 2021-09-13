@@ -1,0 +1,141 @@
+<div [ngSwitch]="view">
+    <p *ngSwitchCase="'CARD'">
+        card
+    </p>
+    <p *ngSwitchDefault>
+        <!-- <dettaglio-pagamento-list-table-prime [ds]="ds"></dettaglio-pagamento-list-table-prime> -->
+        <p-table 
+            styleClass="p-datatable-lg"
+            [value]="ds" [loading]="loading"
+            [lazy]="true" (onLazyLoad)="lazyLoad($event)"
+            
+            [resizableColumns]="true"
+            [(selection)]="selectedElements" >
+
+            <ng-template pTemplate="header">
+                <tr>
+					<th style="width:50px" ></th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="beneficiario">beneficiario</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="modalitaPagamentoCode">modalitaPagamentoCode</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataRiferimentoTerminiPagamento">dataRiferimentoTerminiPagamento</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="giorniTerminiPagamento">giorniTerminiPagamento</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataScadenzaPagamento">dataScadenzaPagamento</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="importoPagamento">importoPagamento</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="codUfficioPostale">codUfficioPostale</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="cognomeQuietanzante">cognomeQuietanzante</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="nomeQuietanzante">nomeQuietanzante</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="cFQuietanzante">cFQuietanzante</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="titoloQuietanzante">titoloQuietanzante</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="istitutoFinanziario">istitutoFinanziario</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="iban">iban</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="abi">abi</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="cab">cab</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="bic">bic</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="scontoPagamentoAnticipato">scontoPagamentoAnticipato</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataLimitePagamentoAnticipato">dataLimitePagamentoAnticipato</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="penalitaPagamentiRitardati">penalitaPagamentiRitardati</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="dataDecorrenzaPenale">dataDecorrenzaPenale</th>
+                    <th style="width:auto" pResizableColumn pSortableColumn="codicePagamento">codicePagamento</th>
+
+
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> condizioniPagamento</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numero</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> divisa</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> data</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numero</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> importoTotaleDocumento</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> arrotondamento</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> causale</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> art73</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> tipoDocumentoCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> bolloVirtuale</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> importoBollo</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> riferimentoFase</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> vettoreEopooCode</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> mezzoTrasporto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> causaleTrasporto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numeroColli</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> descrizione</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> unitaMisuraPeso</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> pesoLordo</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> pesoNetto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> dataOraRitiro</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> dataInizioTrasporto</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> tipoResa</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> dataOraConsegna</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> indirizzo</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> numero</th>
+			<th style="width:auto" pResizableColumn pSortableColumn= ""> data</th>
+
+            <th style="width:auto" pResizableColumn pSortableColumn="">buttons</th>    
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+                <tr>
+                    <td><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
+					<td>{{ e.beneficiario }}</td>
+					<td>{{ e.modalitaPagamentoCode }}</td>
+					<td>{{ e.dataRiferimentoTerminiPagamento }}</td>
+					<td>{{ e.giorniTerminiPagamento }}</td>
+					<td>{{ e.dataScadenzaPagamento }}</td>
+					<td>{{ e.importoPagamento }}</td>
+					<td>{{ e.codUfficioPostale }}</td>
+					<td>{{ e.cognomeQuietanzante }}</td>
+					<td>{{ e.nomeQuietanzante }}</td>
+					<td>{{ e.cFQuietanzante }}</td>
+					<td>{{ e.titoloQuietanzante }}</td>
+					<td>{{ e.istitutoFinanziario }}</td>
+					<td>{{ e.iban }}</td>
+					<td>{{ e.abi }}</td>
+					<td>{{ e.cab }}</td>
+					<td>{{ e.bic }}</td>
+					<td>{{ e.scontoPagamentoAnticipato }}</td>
+					<td>{{ e.dataLimitePagamentoAnticipato }}</td>
+					<td>{{ e.penalitaPagamentiRitardati }}</td>
+					<td>{{ e.dataDecorrenzaPenale }}</td>
+					<td>{{ e.codicePagamento }}</td>
+
+			<td>{{ e.datiPagamento.condizioniPagamento }}</td>
+			<td>{{ e.fatturaElettronicaBody.numero }}</td>
+			<td>{{ e.datiGeneraliDocumento.divisa }}</td>
+			<td>{{ e.datiGeneraliDocumento.data }}</td>
+			<td>{{ e.datiGeneraliDocumento.numero }}</td>
+			<td>{{ e.datiGeneraliDocumento.importoTotaleDocumento }}</td>
+			<td>{{ e.datiGeneraliDocumento.arrotondamento }}</td>
+			<td>{{ e.datiGeneraliDocumento.causale }}</td>
+			<td>{{ e.datiGeneraliDocumento.art73 }}</td>
+			<td>{{ e.datiGeneraliDocumento.tipoDocumentoCode }}</td>
+			<td>{{ e.datiBollo.bolloVirtuale }}</td>
+			<td>{{ e.datiBollo.importoBollo }}</td>
+			<td>{{ e.datiSal.riferimentoFase }}</td>
+			<td>{{ e.datiTrasporto.vettoreEopooCode }}</td>
+			<td>{{ e.datiTrasporto.mezzoTrasporto }}</td>
+			<td>{{ e.datiTrasporto.causaleTrasporto }}</td>
+			<td>{{ e.datiTrasporto.numeroColli }}</td>
+			<td>{{ e.datiTrasporto.descrizione }}</td>
+			<td>{{ e.datiTrasporto.unitaMisuraPeso }}</td>
+			<td>{{ e.datiTrasporto.pesoLordo }}</td>
+			<td>{{ e.datiTrasporto.pesoNetto }}</td>
+			<td>{{ e.datiTrasporto.dataOraRitiro }}</td>
+			<td>{{ e.datiTrasporto.dataInizioTrasporto }}</td>
+			<td>{{ e.datiTrasporto.tipoResa }}</td>
+			<td>{{ e.datiTrasporto.dataOraConsegna }}</td>
+			<td>{{ e.indirizzoResa.indirizzo }}</td>
+			<td>{{ e.fatturaPrincipale.numero }}</td>
+			<td>{{ e.fatturaPrincipale.data }}</td>
+            <td *ngIf="buttons">
+                <button *ngFor="let button of buttons" (click)="button.fn(e)" >{{button.name}}</button>
+            </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p>
+</div>
+
+<agal-paginator 
+    [totalRecords]="totalRecords"
+    [pageSizeOptions]="[30,50,100,500]"
+    [initialSize]="30"
+    (paginator)="changePagination($event)"
+    ></agal-paginator>

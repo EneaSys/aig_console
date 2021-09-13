@@ -119,7 +119,10 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 	}
 
 	newTypeCategoryReference(): void {
-		this.dialog.open(AigTypeCategoryReferenceNewUpdateDialogComponent, { data: { typeCategoryReference: {} } });
+		this.dialog.open(AigTypeCategoryReferenceNewUpdateDialogComponent, { data: {} });
     }
 
+	async publish() {
+		await this.typeCategoryReferenceResourceService.publishUsingGET11(this.typeCategoryReferenceFilters).toPromise;
+	}
 }

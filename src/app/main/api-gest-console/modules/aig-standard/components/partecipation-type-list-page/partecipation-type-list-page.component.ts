@@ -55,7 +55,7 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.partecipationTypeDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.partecipationTypeDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersPartecipationType() {
@@ -120,7 +120,13 @@ export class AigPartecipationTypeListPageComponent extends GenericComponent {
 	}
 
     newPartecipationType(){
-        this.dialog.open(AigPartecipationTypeNewUpdateDialogComponent, {data: { partecipationType: {} } });
+        this.dialog.open(AigPartecipationTypeNewUpdateDialogComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !partecipation Type TABLE AND SEARCH SECTION ----
 }

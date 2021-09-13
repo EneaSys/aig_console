@@ -40,7 +40,10 @@ export class AigSocialNewUpdateFormComponent implements OnInit {
             code: ['', Validators.required],
             name: ['', Validators.required],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
+            activationDate:[''],
+
         })
         
         if (this.social != null && this.social.id != null) {

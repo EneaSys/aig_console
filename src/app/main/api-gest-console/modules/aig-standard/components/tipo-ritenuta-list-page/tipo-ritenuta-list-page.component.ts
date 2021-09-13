@@ -45,7 +45,7 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 
     
     private initTipoRitenutaSearch() {
-		this.tipoRitenutaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.tipoRitenutaDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.tipoRitenutaPaginationSize = 10;
 		
@@ -123,7 +123,11 @@ export class AigTipoRitenutaListPageComponent extends GenericComponent {
 	}
 
     newTipoRitenuta(){
-        this.dialog.open(AigTipoRitenutaNewUpdateDialogComponent, { data: { tipoRitenuta: {} } });
+        this.dialog.open(AigTipoRitenutaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !TABLE AND SEARCH SECTION ----
 }

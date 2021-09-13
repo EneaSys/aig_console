@@ -138,7 +138,10 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 	//			---- !TABLE AND SEARCH SECTION ----
 
 	newDesignatedCompany(): void {
-		this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: { designatedCompany: {} } });
+		this.dialog.open(AigDesignatedCompanyNewUpdateDialogComponent, { data: {} });
 	}
 
+	/*async publish() {
+		await this.designatedCompanyResourceService.publishUsingGET(this.designatedCompanyFilters).toPromise;
+	}*/
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InsurancePolicyStatusDTO, PartecipationStatusDTO, PreparationDTO, PreparationStatusDTO, ProcurementDTO, ProcurementLotDTO } from 'aig-italianlegislation';
+import { IlPpProcurementLotCategoryDTO, InsurancePolicyStatusDTO, PartecipationModalityDTO, PartecipationStatusDTO, PreparationDTO, PreparationModalityDTO, PreparationStatusDTO, ProcurementDTO, ProcurementLotDTO } from 'aig-italianlegislation';
 import { PartecipationDTO } from 'aig-italianlegislation';
 
 
@@ -19,6 +19,10 @@ export class AigIppAutocompleteDisplayService {
         return partecipation ? partecipation.procurementLot.cig + " > " + partecipation.proposerEopooCode : undefined;
     }
 
+	partecipationModalityDisplayFn(partecipationModality?: PartecipationModalityDTO): any | undefined {
+        return partecipationModality ? partecipationModality.description : undefined;
+    }
+
     partecipationStatusDisplayFn(partecipationStatus?: PartecipationStatusDTO): any | undefined {
         return partecipationStatus ? partecipationStatus.description : undefined;
     }
@@ -27,8 +31,16 @@ export class AigIppAutocompleteDisplayService {
         return preparationStatus ? preparationStatus.description : undefined;
     }
 
+	preparationModalityDisplayFn(preparationModality?: PreparationModalityDTO): any | undefined {
+        return preparationModality ? preparationModality.description : undefined;
+    }
+
     preparationDisplayFn(preparation?: PreparationDTO): any | undefined {
         return preparation ? preparation.id : undefined;
+    }
+
+    categoryDisplayFn(category?: IlPpProcurementLotCategoryDTO): any | undefined {
+        return category ? category.name : undefined;
     }
 
     insurancePolicyStatusDisplayFn(insurancePolicyStatus?: InsurancePolicyStatusDTO): any | undefined {

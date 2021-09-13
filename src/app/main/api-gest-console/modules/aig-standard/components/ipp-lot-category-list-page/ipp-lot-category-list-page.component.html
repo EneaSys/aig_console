@@ -18,8 +18,8 @@
 
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Id</mat-label>
-                                        <input matInput type="number" formControlName="id">
+                                        <mat-label>Codice</mat-label>
+                                        <input matInput type="text" formControlName="code">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
@@ -31,6 +31,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                  <!--<div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                -->
                             </form>
                         </div>
                     </div>
@@ -48,7 +53,7 @@
                 (click)="toggleSidebar('ipp-lot-category-list-page-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Ipp lot category</h2>
+            <h2>Categorie lotti di gara</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

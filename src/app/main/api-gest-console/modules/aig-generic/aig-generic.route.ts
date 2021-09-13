@@ -14,8 +14,9 @@ import { AigAddressDetailPageComponent } from './components/address-detail-page/
 import { AddressResolver } from 'aig-common/modules/generic/resolver/address.resolver';
 import { AigReferentDetailPageComponent } from './components/referent-detail-page/referent-detail-page.component';
 import { ReferentResolver } from 'aig-common/modules/generic/resolver/referent.resolver';
+import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
+import { ContactResolver } from 'aig-common/modules/generic/resolver/contact.resolver';
 import { EnzoAddressDetailPageComponent } from './components/address-detail-page copy/address-detail-page.component';
-
 
 export const aigGenericRoute: Routes = [
     {
@@ -160,14 +161,14 @@ export const aigGenericRoute: Routes = [
                         component: AigContactListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*{
+                    {
                         path: 'detail/:id',
-                        component: AigEopooTypeDetailPageComponent,
+                        component: AigContactDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            eopooType: EopooTypeResolver,
+                            contact: ContactResolver,
                         },
-                    },*/
+                    },
                 ]
             },
         ]

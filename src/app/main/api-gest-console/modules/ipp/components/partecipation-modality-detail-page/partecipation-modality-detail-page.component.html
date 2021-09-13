@@ -1,0 +1,14 @@
+<div id="aig-partecipation-modality-detail-page" class="page-layout blank">
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16">
+
+                <pre>{{ partecipationModalityDTO | json }} </pre> 
+
+                <button mat-stroked-button color="primary" (click)="editPartecipationModality(partecipationModalityDTO)">Modifica</button>
+                <button mat-stroked-button color="primary" (click)="deletePartecipationModality(partecipationModalityDTO.id)">Cancella</button>
+                 
+            </div>
+        </div>
+    </div>
+</div>

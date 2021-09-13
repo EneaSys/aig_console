@@ -47,7 +47,7 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
 
     
     private initModalitaPagamentoSearch() {
-		this.modalitaPagamentoDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.modalitaPagamentoDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.modalitaPagamentoPaginationSize = 10;
 		
@@ -131,7 +131,13 @@ export class AigModalitaPagamentoListPageComponent extends GenericComponent {
 	}
 
     newModalitaPagamento(){
-        this.dialog.open(AigModalitaPagamentoNewUpdateDialogComponent, { data: { modalitaPagamento: {} } });
+        this.dialog.open(AigModalitaPagamentoNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !CITY TABLE AND SEARCH SECTION ----
 }

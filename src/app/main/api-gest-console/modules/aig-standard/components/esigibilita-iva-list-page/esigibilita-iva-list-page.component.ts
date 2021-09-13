@@ -46,8 +46,7 @@ export class AigEsigibilitaIvaListPageComponent extends GenericComponent {
 
     
 	private initEsigibilitaIvaSearch() {
-		this.esigibilitaIvaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
-
+		this.esigibilitaIvaDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 		this.esigibilitaIvaPaginationSize = 10;
 		
 
@@ -125,7 +124,11 @@ export class AigEsigibilitaIvaListPageComponent extends GenericComponent {
 	}
 
     newEsigibilitaIva(){
-        this.dialog.open(AigEsigibilitaIvaNewUpdateDialogComponent, { data: { esigibilitaIva: {} } });
+        this.dialog.open(AigEsigibilitaIvaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !TABLE AND SEARCH SECTION ----
 }

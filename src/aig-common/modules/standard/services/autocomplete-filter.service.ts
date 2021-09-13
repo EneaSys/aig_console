@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { CityResourceService, CpvResourceService, IlPpPartecipationTypeResourceService, IlPpProcurementLotAwardCriterionResourceService, IlPpProcurementLotCategoryResourceService, IlPpProcurementLotStatusResourceService, IlPpProcurementLotTypeResourceService, IlPpProcurementModalityResourceService, IlPpProcurementProcedureResourceService, IlPpProcurementSectorResourceService, IlPpProcurementStatusResourceService } from 'aig-standard';
+import * as moment from 'moment';
 
 @Injectable()
 export class AigStandardAutocompleteFilterService {
@@ -16,6 +17,7 @@ export class AigStandardAutocompleteFilterService {
 		private ilPpProcurementLotAwardCriterionResourceService: IlPpProcurementLotAwardCriterionResourceService,
 		private ilPpProcurementLotStatusResourceService: IlPpProcurementLotStatusResourceService,
 		private ilPpPartecipationTypeResourceService: IlPpPartecipationTypeResourceService,
+
         
 		
 		private ippProcedureResourceService: IlPpProcurementProcedureResourceService,
@@ -25,15 +27,16 @@ export class AigStandardAutocompleteFilterService {
         private ippLotCategoryResourceService: IlPpProcurementLotCategoryResourceService,
     ) {}
 
+
     filterCity(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+				//	expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.cityResourceService.getAllCitiesUsingGET(filter);
 			})
@@ -48,15 +51,16 @@ export class AigStandardAutocompleteFilterService {
 
 
 
+
 	filterCpv(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.cpvResourceService.getAllCpvsUsingGET(filter);
 			})
@@ -76,11 +80,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpProcurementStatusResourceService.getAllIlPpProcurementStatusesUsingGET(filter);
 			})
@@ -92,11 +96,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpProcurementLotAwardCriterionResourceService.getAllIlPpProcurementLotAwardCriteriaUsingGET(filter);
 			})
@@ -106,11 +110,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpProcurementLotStatusResourceService.getAllIlPpProcurementLotStatusesUsingGET(filter);
 			})
@@ -120,11 +124,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ilPpPartecipationTypeResourceService.getAllIlPpPartecipationTypesUsingGET(filter);
 			})
@@ -142,11 +146,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ippLotTypeResourceService.getAllIlPpProcurementLotTypesUsingGET(filter);
 			})
@@ -157,26 +161,31 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filters: any = { };
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filters.nameContains = value;
 				}
-				return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filter);
+				return this.loadIppLotCategory(filters);
 			})
 		);
+	}
+
+	loadIppLotCategory(filters: any) {
+		if(filters.expirationDateGreaterThan == null) {
+			filters.expirationDateGreaterThan = new Date();
+		}
+		return this.ippLotCategoryResourceService.getAllIlPpProcurementLotCategoriesUsingGET(filters);
 	}
 
     filterIppSector(observable: Observable<any>) {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ippSectorResourceService.getAllIlPpProcurementSectorsUsingGET(filter);
 			})
@@ -187,11 +196,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ippModalityResourceService.getAllIlPpProcurementModalitiesUsingGET(filter);
 			})
@@ -202,11 +211,11 @@ export class AigStandardAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-				let filter = {};
+				let filter: any = {
+					expirationDateGreaterThan: new Date()
+				};
                 if (value && value.length > 0) {
-					filter = {
-						nameContains: value
-					};
+					filter.nameContains = value;
 				}
 				return this.ippProcedureResourceService.getAllIlPpProcurementProceduresUsingGET(filter);
 			})

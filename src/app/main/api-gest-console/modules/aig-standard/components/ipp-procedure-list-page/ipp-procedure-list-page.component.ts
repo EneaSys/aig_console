@@ -55,7 +55,7 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippProcedureDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippProcedureDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppProcedure() {
@@ -122,7 +122,13 @@ export class AigIppProcedureListPageComponent extends GenericComponent {
 	}
 
     newIppProcedure(){
-        this.dialog.open(AigIppProcedureNewUpdateModalComponent, {data: { ippProcedure: {} } });
+        this.dialog.open(AigIppProcedureNewUpdateModalComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+	
     //			---- !IPP PROCEDURE TABLE AND SEARCH SECTION ----
 }

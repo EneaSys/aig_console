@@ -131,6 +131,10 @@ export class AigInventoryCategoryListPageComponent extends AigCommerceGenericCom
 	//			---- !INVENTORY CATEGORY TABLE AND SEARCH SECTION ----
 
 	newInventoryCategory(): void {
-        this.dialog.open(AigInventoryCategoryNewUpdateModalComponent, { data: { inventoryCategory: {} } });
+        this.dialog.open(AigInventoryCategoryNewUpdateModalComponent, { data: {} });
     }
+
+	async publish() {
+		await this.inventoryCategoryResourceService.publishUsingGET5(this.inventoryCategoryFilters).toPromise;
+	}
 }

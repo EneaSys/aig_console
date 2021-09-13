@@ -44,10 +44,12 @@ export class AigTipoCassaNewUpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.tipoCassaNewUpdateForm = this._formBuilder.group({
             id: [''],
-            code: ['', [Validators.required, AigValidator.haveId]],
-            name: ['', [Validators.required, AigValidator.haveId]],
+            code: ['', [Validators.required,]],
+            name: ['', [Validators.required,]],
             description: [''],
-            wikiCode:['']
+            wikiCode:[''],
+            expirationDate:[''],
+            activationDate:[''],
 
         })
         if (this.tipoCassa!= null && this.tipoCassa.id != null) {

@@ -1,7 +1,7 @@
 <form *ngIf="step.form" [formGroup]="preparationStatusNewUpdateForm" (ngSubmit)="submit()">
 
     <mat-form-field>
-        <mat-label>Description</mat-label>
+        <mat-label>Descrizione</mat-label>
         <input formControlName="description" matInput required>
     </mat-form-field>
 
@@ -18,8 +18,8 @@
 
 <div *ngIf="step.complete">
 
-    <h1 *ngIf="!isUpdate">Preparation Status creato con successo</h1>
-    <h1 *ngIf="isUpdate">Preparation Status aggiornato con successo</h1>
+    <h1 *ngIf="!isUpdate">Stato di preparazione creato con successo</h1>
+    <h1 *ngIf="isUpdate">Stato di preparazione aggiornato con successo</h1>
     
     <hr>
 

@@ -1,7 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">Form Award Criterion</span>
+            <span *ngIf="data.awardCriterion == null" class="title dialog-title">Crea criterio di aggiudicazione </span>
+            <span *ngIf="data.city != null" class="title dialog-title">Aggiorna criterio di aggiudicazione </span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>

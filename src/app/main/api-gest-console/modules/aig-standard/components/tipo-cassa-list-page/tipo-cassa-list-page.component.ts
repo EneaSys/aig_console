@@ -45,7 +45,7 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 
     
     private initTipoCassaSearch() {
-		this.tipoCassaDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.tipoCassaDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
 
 		this.tipoCassaPaginationSize = 10;
 		
@@ -121,7 +121,11 @@ export class AigTipoCassaListPageComponent extends GenericComponent {
 	}
 
     newTipoCassa(){
-        this.dialog.open(AigTipoCassaNewUpdateDialogComponent, { data: { tipoCassa: {} } });
+        this.dialog.open(AigTipoCassaNewUpdateDialogComponent, { data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
     //			---- !TABLE AND SEARCH SECTION ----
 }

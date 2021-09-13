@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RoleDTO, PermissionDTO, ApplicationModuleDTO, TenantContextDTO, EntityReferenceDTO, ContextModuleDTO, ContextUserDTO, PersonalizationDTO, ObjectReferenceDTO,} from 'aig-management';
+import { RoleDTO, PermissionDTO, ApplicationModuleDTO, TenantContextDTO, EntityReferenceDTO, ContextModuleDTO, ContextUserDTO, PersonalizationDTO, ObjectReferenceDTO,LicenzeDTO,} from 'aig-management';
 
 
 @Injectable({
@@ -25,7 +25,7 @@ export class AigManagementAutocompleteFunctionService {
 
 
     contextModuleDisplayFn(contextModule?: ContextModuleDTO): string | undefined {
-        return contextModule ? contextModule.contextName : undefined;
+        return contextModule ? contextModule.tenantContext.name : undefined;
     }
 
     contextUserDisplayFn(contextUser?: ContextUserDTO): string | undefined {
@@ -42,6 +42,10 @@ export class AigManagementAutocompleteFunctionService {
 
     personalizationDisplayFn(personalization?: PersonalizationDTO): string | undefined {
         return personalization ? personalization.name : undefined;
+    }
+
+    licenceDisplayFn(licence?: LicenzeDTO): string | undefined {
+        return licence ? licence.name : undefined;
     }
 
 }

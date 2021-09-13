@@ -3,8 +3,10 @@ import { DesignatedCompanyResolver } from 'aig-common/modules/ipp/resolver/desig
 import { DossierResolver } from 'aig-common/modules/ipp/resolver/dossier.resolver';
 import { InsurancePolicyStatusResolver } from 'aig-common/modules/ipp/resolver/insurance-policy-status.resolver';
 import { InsurancePolicyResolver } from 'aig-common/modules/ipp/resolver/insurance-policy.resolver';
+import { PartecipationModalityResolver } from 'aig-common/modules/ipp/resolver/partecipation-modality.resolver';
 import { PartecipationStatusResolver } from 'aig-common/modules/ipp/resolver/partecipation-status.resolver';
 import { PartecipationResolver } from 'aig-common/modules/ipp/resolver/partecipation.resolver';
+import { PreparationModalityResolver } from 'aig-common/modules/ipp/resolver/preparation-modality.resolver';
 import { PreparationStatusResolver } from 'aig-common/modules/ipp/resolver/preparation-status.resolver';
 import { PreparationResolver } from 'aig-common/modules/ipp/resolver/preparation.resolver';
 import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
@@ -20,10 +22,14 @@ import { AigInsurancePolicyStatusDetailPageComponent } from './components/insura
 import { AigInsurancePolicyStatusListPageComponent } from './components/insurance-policy-status-list-page/insurance-policy-status-list-page.component';
 import { AigPartecipationDetailPageComponent } from './components/partecipation-detail-page/partecipation-detail-page.component';
 import { AigPartecipationListPageComponent } from './components/partecipation-list-page/partecipation-list-page.component';
+import { AigPartecipationModalityDetailPageComponent } from './components/partecipation-modality-detail-page/partecipation-modality-detail-page.component';
+import { AigPartecipationModalityListPageComponent } from './components/partecipation-modality-list-page/partecipation-modality-list-page.component';
 import { AigPartecipationStatusDetailPageComponent } from './components/partecipation-status-detail-page/partecipation-status-detail-page.component';
 import { AigPartecipationStatusListPageComponent } from './components/partecipation-status-list-page/partecipation-status-list-page.component';
 import { AigPreparationDetailPageComponent } from './components/preparation-detail-page/preparation-detail-page.component';
 import { AigPreparationListPageComponent } from './components/preparation-list-page/preparation-list-page.component';
+import { AigPreparationModalityDetailPageComponent } from './components/preparation-modality-detail-page/preparation-modality-detail-page.component';
+import { AigPreparationModalityListPageComponent } from './components/preparation-modality-list-page/preparation-modality-list-page.component';
 import { AigPreparationStatusDetailPageComponent } from './components/preparation-status-detail-page/preparation-status-detail-page.component';
 import { AigPreparationStatusListPageComponent } from './components/preparation-status-list-page/preparation-status-list-page.component';
 import { AigProcurementDetailPageComponent } from './components/procurement-detail-page/procurement-detail-page.component';
@@ -111,6 +117,56 @@ export const ippRoute: Routes = [
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             insurancePolicyStatus:  InsurancePolicyStatusResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'preparation-modality',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPreparationModalityListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigPreparationModalityDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            preparationModality:  PreparationModalityResolver,
+                        },
+                    },
+                ]
+            },
+
+            {
+                path: 'partecipation-modality',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigPartecipationModalityListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    {
+                        path: 'detail/:id',
+                        component: AigPartecipationModalityDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            partecipationModality:  PartecipationModalityResolver,
                         },
                     },
                 ]

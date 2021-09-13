@@ -23,7 +23,7 @@
                             
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Company Eopoo</mat-label>
+                                        <mat-label>Anagrafica Azienda</mat-label>
                                         <input matInput formControlName="companyEopoo" [matAutocomplete]="companyEopooAutocomplete">
 										<mat-autocomplete #companyEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.eopooDisplayFn">
 											<mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">{{ eopoo.taxNumber }}</mat-option>
@@ -33,6 +33,11 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">Cerca</button>
                                 </div>
+
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -52,7 +57,7 @@
                 (click)="toggleSidebar('designated-company-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Designated Company</h2>
+            <h2>Compagnia designata</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

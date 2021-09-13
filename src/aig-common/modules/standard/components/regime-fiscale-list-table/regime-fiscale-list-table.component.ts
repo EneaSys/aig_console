@@ -3,7 +3,8 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { IlFeRegimeFiscaleResourceService } from 'aig-standard';
+import { IlFeRegimeFiscaleDTO, IlFeRegimeFiscaleResourceService } from 'aig-standard';
+import { AigRegimeFiscaleNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-standard/components/regime-fiscale-new-update-dialog/regime-fiscale-new-update-dialog.component';
 
 
 @Component({
@@ -42,6 +43,10 @@ export class AigRegimeFiscaleListTableComponent implements OnInit {
             this._snackBar.open(`Error during deleting regime fiscale: '${id}'. (${e.message})`, null, { duration: 5000, });
         }
         this._fuseProgressBarService.hide();
+    }
+
+    editRegimeFiscale (regimeFiscaleDTO: IlFeRegimeFiscaleDTO) {
+        this.dialog.open(AigRegimeFiscaleNewUpdateDialogComponent, { data: { regimeFiscale: regimeFiscaleDTO } });
     }
 
 }

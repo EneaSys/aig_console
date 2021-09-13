@@ -55,7 +55,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 			wikiCode: [''],
 		});
 
-		this.ippLotCategoryDC = ['id','code', 'name','description','wikiCode', 'buttons'];
+		this.ippLotCategoryDC = ['code', 'name','activationDate','expirationDate','wikiCode','description', 'buttons'];
     }
     
     private clearFiltersIppLotCategory() {
@@ -117,12 +117,20 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 		this.ippLotCategoryFilters.idEquals = null;
 
 		this.ippLotCategoryFilters.nameContains = this.ippLotCategorySearchFormGroup.controls.name.value;
+		this.ippLotCategoryFilters.codeContains = this.ippLotCategorySearchFormGroup.controls.code.value;
 
 		this.searchIppLotCategory(0);
 	}
 
     newIppLotCategory(){
-        this.dialog.open(AigLotCategoryNewUpdateModalComponent, {data: { ippLotCategory: {} } });
+        this.dialog.open(AigLotCategoryNewUpdateModalComponent, {data: {} });
     }
+
+	/*async publish() {
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+	}*/
+
+
+
     //			---- !IPP LOT CATEGORY TABLE AND SEARCH SECTION ----
 }

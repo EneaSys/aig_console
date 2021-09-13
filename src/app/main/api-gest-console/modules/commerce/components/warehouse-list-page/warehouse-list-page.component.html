@@ -10,7 +10,9 @@
                 <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
 					<span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
 				</div>
+                <warehouse-filters-form></warehouse-filters-form>
                 <div class="content" fusePerfectScrollbar>
+                
 					<div class="nav material2">
 						<div class="nav-item" aria-label="inbox">
                             <form [formGroup]="warehouseSearchFormGroup" (ngSubmit)="warehouseSearchWithFilter()" class="p-8">
@@ -29,6 +31,10 @@
                                 <div fxLayout="row" fxLayoutAlign="end top">
                                     <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
                                 </div>
+
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button mat-raised-button (click)="publish()"> Publish </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -43,7 +49,7 @@
     <div class="center">
         <!-- HEADER -->
         <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
-            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('purchase-sidebar')">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('warehouse-sidebar')">
 				<mat-icon>menu</mat-icon>
 			</button>
             <h2>{{ 'COMMERCE.WAREHOUSES' | translate | titlecase }}</h2>
