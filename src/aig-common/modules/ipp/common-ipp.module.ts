@@ -102,12 +102,7 @@ import { TableModule } from 'primeng/table';
         MatSelectModule,
         MatMenuModule,
         MatDatepickerModule,
-<<<<<<< HEAD
-
-        TableModule,
-=======
 		MatCheckboxModule,
->>>>>>> develop
     ],
     providers: [
 
