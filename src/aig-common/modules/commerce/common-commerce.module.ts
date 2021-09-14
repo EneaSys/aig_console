@@ -92,6 +92,7 @@ import { AigInventoryItemCombinationBoxDetailComponent } from './components/inve
 import { AigPurchaseBoxDetailComponent } from './components/purchase-box-detail/purchase-box-detail.component';
 import { WarehouseFilterFormComponent } from './components/warehouse-filters-form/warehouse-filters-form.component';
 import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 
@@ -113,7 +114,7 @@ import { ButtonModule } from 'primeng/button';
         InputTextModule,
         BrowserModule,
         BrowserAnimationsModule,
-        InputTextModule,
+        InputNumberModule,
         ButtonModule,
         FormsModule,
   
