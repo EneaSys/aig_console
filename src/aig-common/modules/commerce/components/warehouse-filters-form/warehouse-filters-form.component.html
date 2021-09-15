@@ -1,13 +1,65 @@
+<div class="content">
+    <div>
+        <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+            <button mat-raised-button (click)="showAllWarehouse()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
+        </div>
+        <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+            <span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
+        </div>
+        <div class="content" fusePerfectScrollbar>
+        
+            <div class="nav material2">
+                <div class="nav-item" aria-label="inbox">
+                    <form [formGroup]="warehouseSearchFormGroup" (ngSubmit)="warehouseSearchWithFilter()" class="p-8">
+                        <div fxLayout="row">
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>Id</mat-label>
+                                <input matInput type="number" formControlName="id">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field appearance="outline" fxFlex="100">
+                                <mat-label>{{ 'COMMERCE.NAME' | translate | titlecase }}</mat-label>
+                                <input matInput type="text" formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="end top">
+                            <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase }}</button>
+                        </div>
 
-<span class="p-float-label">
-    <input id="float-input" type="text" pInputText [(ngModel)]="id"> 
-    <label for="float-input">Id</label>
-</span>
-<br>
-
-<span class="p-float-label">
-    <input id="float-input" type="text" pInputText [(ngModel)]="name"> 
-    <label for="float-input">Name</label>
-</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+
+
+<!--
+
+<div class="nav material2">
+    <div class="nav-item" aria-label="inbox">
+        <form [formGroup]="warehouseSearchFormGroup" (ngSubmit)="warehouseSearchWithFilter()" class="p-8">
+            <div fxLayout="row">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText formControlName="id">
+                    <label for="float-input">Id</label>
+                </span>
+            </div>
+            <br>
+            <div fxLayout="row">
+                <span class="p-float-label">
+                    <input id="float-input" type="text" pInputText formControlName="name">
+                    <label for="float-input">Name</label>
+                </span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end top">
+                <button type="submit" mat-raised-button color="accent">{{ 'MAIN.SEARCH' | translate | titlecase}}</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+-->
