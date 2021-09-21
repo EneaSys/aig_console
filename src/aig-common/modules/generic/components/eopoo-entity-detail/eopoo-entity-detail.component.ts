@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EopooDTO } from 'aig-generic';
+import { EopooDTO, EopooTypeDTO } from 'aig-generic';
 
 @Component({
     selector: 'aig-eopoo-entity-detail',
@@ -7,10 +7,10 @@ import { EopooDTO } from 'aig-generic';
     styleUrls: ['./eopoo-entity-detail.component.scss']
 })
 export class AigEopooEntityDetailComponent implements OnInit {
-    constructor(
-    ) { }
+    constructor( ) { }
     ngOnInit(): void {}
 
     @Input()
     eopoo: EopooDTO;
+    eopooType: EopooTypeDTO;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { WarehouseResourceService, WarehouseDTO, WarehouseHandlingDTO, WarehouseHandlingResourceService, WarehouseHandlingItemDTO, WarehouseHandlingItemResourceService } from 'aig-commerce';
 import { EventService } from 'aig-common/event-manager/event.service';
@@ -17,6 +17,7 @@ export class AigWarehouseManagerPageComponent extends AigCommerceGenericComponen
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
+    
 
     warehouseDTOs: WarehouseDTO[] = [];
     selectedWarehouse: WarehouseDTO;

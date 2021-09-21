@@ -12,7 +12,7 @@
 
     </div>
 
-	<div fxLayout="row" fxLayoutAlign="start start">
+	<div *ngIf="!proposerEopoo" fxLayout="row" fxLayoutAlign="start start">
 
 		<mat-form-field appearance="outline" fxFlex="100">
             <mat-label>{{ 'IPP.PROPOSER' | translate }}</mat-label>
@@ -24,9 +24,9 @@
 
 	</div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!modality && !type">
 
-        <mat-form-field appearance="outline" fxFlex="50">
+        <mat-form-field *ngIf="!modality" appearance="outline" fxFlex="50">
             <mat-label>Modalità</mat-label>
             <input formControlName="modality" matInput [matAutocomplete]="modalityAutocomplete" required>
             <mat-autocomplete #modalityAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationModalityDisplayFn">
@@ -34,7 +34,7 @@
             </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex="50" class="pl-4">
+        <mat-form-field *ngIf="!type" appearance="outline" fxFlex="50" class="pl-4">
             <mat-label>{{ 'IPP.PARTECIPATION_TYPE' | translate }}</mat-label>
             <input formControlName="type" matInput [matAutocomplete]="typeAutocomplete" >
             <mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteFunctionService.ilPpPartecipationTypeDisplayFn">
@@ -49,7 +49,7 @@
             <mat-slide-toggle formControlName="siteInspection">{{ 'IPP.SITE_INSPECTION' | translate }}</mat-slide-toggle>
         </div>
 
-        <mat-form-field appearance="outline" fxFlex="100">
+        <mat-form-field *ngIf="!status" appearance="outline" fxFlex="100">
             <mat-label>{{ 'MAIN.STATUS' | translate }}</mat-label>
             <input formControlName="status" matInput [matAutocomplete]="statusAutocomplete" required>
             <mat-autocomplete #statusAutocomplete="matAutocomplete" [displayWith]="ippAutocompleteDisplayService.partecipationStatusDisplayFn">

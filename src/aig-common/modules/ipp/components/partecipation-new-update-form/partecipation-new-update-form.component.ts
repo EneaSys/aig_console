@@ -21,14 +21,13 @@ import { AigIppAutocompleteService } from '../../service/autocomplete-filter.ser
     styleUrls: ['./partecipation-new-update-form.component.scss']
 })
 export class AigPartecipationNewUpdateFormComponent implements OnInit {
-	@Input()
-    partecipation: PartecipationDTO;
+	@Input() partecipation: PartecipationDTO;
 
-    @Input()
-    procurementLot: ProcurementLotDTO;
-
-	@Input()
-    proposerEopoo: EopooDTO;
+    @Input() procurementLot: ProcurementLotDTO;
+	@Input() proposerEopoo: EopooDTO;
+    @Input() modality: PartecipationModalityDTO;
+    @Input() status: PartecipationStatusDTO;
+    @Input() type: IlPpPartecipationTypeDTO;
 
 
     step: any = {
@@ -72,10 +71,10 @@ export class AigPartecipationNewUpdateFormComponent implements OnInit {
             procurementLot: [this.procurementLot, [Validators.required, AigValidator.haveId]],
             proposerEopoo: [this.proposerEopoo, [Validators.required, AigValidator.haveId]],
 
-			modality: [null, [Validators.required, AigValidator.haveId]],
-            status: [null, [Validators.required, AigValidator.haveId]],
+			modality: [this.modality, [Validators.required, AigValidator.haveId]],
+            status: [this.status, [Validators.required, AigValidator.haveId]],
             
-			type: [null, [AigValidator.haveCode]],
+			type: [this.type, [AigValidator.haveCode]],
 
             siteInspection: [false],
         })

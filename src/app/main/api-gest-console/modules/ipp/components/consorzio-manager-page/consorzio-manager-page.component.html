@@ -1,0 +1,62 @@
+<div id="aig-consorzio-manager" class="page-layout simple right-sidebar" fxLayout="row">
+
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar *ngIf="selectedConsorzio">
+        <!-- HEADER -->
+        <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+
+            <div fxLayout="row" fxLayoutAlign="space-between start">
+
+                <span class="mat-display-1 my-0 my-sm-24 welcome-message">Consorzi</span>
+
+            </div>
+
+            <div fxLayout="row">
+
+                <div class="selected-consorzio">{{ selectedConsorzio | eopooName }}</div>
+                <button mat-icon-button class="consorzio-selector" [matMenuTriggerFor]="consorzioMenu"
+                    aria-label="Select consorzio">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+
+                <mat-menu #consorzioMenu="matMenu">
+                    <div *ngFor="let consorzioDTO of consorzioDTOs">
+                        <button mat-menu-item (click)="setConsorzio(consorzioDTO)">
+                            <span *ngIf="consorzioDTO == selectedConsorzio">-</span>
+                            <span>{{ consorzioDTO | eopooName }}</span>
+                        </button>
+                    </div>
+                </mat-menu>
+
+
+            </div>
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <mat-tab-group dynamicHeight>
+
+                <mat-tab label="Dashboard">
+                    a breve i dati
+                </mat-tab>
+
+                <mat-tab label="Lotti di gara">
+                    <aig-procurement-lot-list-page [staticEopoo]="selectedConsorzio" [partecipationFn]="partecipationFn" [hideEdit]="true"></aig-procurement-lot-list-page>
+                </mat-tab>
+
+                <mat-tab label="Partecipazioni">
+                    <aig-partecipation-list-page [staticEopoo]="selectedConsorzio" [hideEdit]="true"></aig-partecipation-list-page>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+
+    <!-- / CENTER -->
+
+
+</div>

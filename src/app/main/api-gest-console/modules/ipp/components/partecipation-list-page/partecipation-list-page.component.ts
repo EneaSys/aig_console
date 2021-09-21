@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
 import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
@@ -7,6 +7,7 @@ import { AigIppAutocompleteDisplayService } from "aig-common/modules/ipp/service
 import { AigIppAutocompleteService } from "aig-common/modules/ipp/service/autocomplete-filter.service";
 import { AigStandardAutocompleteFilterService } from "aig-common/modules/standard/services/autocomplete-filter.service";
 import { AigStandardAutocompleteDisplayService } from "aig-common/modules/standard/services/autocomplete-function.service";
+import { EopooResourceService } from "aig-generic";
 import { EopooDTO, PartecipationDTO, PartecipationResourceService, PartecipationStatusDTO} from "aig-italianlegislation";
 import { IlPpPartecipationTypeDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from "aig-standard";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
@@ -15,10 +16,17 @@ import { AigIppGenericComponent } from "../ipp-generic-component";
 import { AigPartecipationNewUpdateDialogComponent } from "../partecipation-new-update-dialog/partecipation-new-update-dialog.component";
 
 @Component({
+	selector:'aig-partecipation-list-page',
     templateUrl: './partecipation-list-page.component.html',
     styleUrls: ['./partecipation-list-page.component.scss']
 })
 export class AigPartecipationListPageComponent extends AigIppGenericComponent {
+
+	@Input()
+	staticEopoo: EopooDTO = null;
+
+	@Input() hideEdit: boolean = false;
+
     constructor(
 		public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
         public genericAutocompleteFilterService:  AigGenericAutocompleteFilterService,
@@ -31,8 +39,11 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
         private partecipationResourceService: PartecipationResourceService,
+		private eopooResourceService: EopooResourceService,
 		public gcs: AigGenericComponentService,
     ) { super(gcs) }
+
+
 
 	
 
@@ -42,10 +53,12 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
     loadPage() {
 		this.initPartecipationSearch();
 
+		this.prepareTableButtons();
+
 		this.partecipationSearchWithFilter();
 	}
 
-	reloadPage() {
+	async reloadPage() {
 		this.partecipationSearchWithFilter();
 	}
 
@@ -137,6 +150,12 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 				console.log(filters.procurementLotCategories);
 			}
 		}
+		
+		// Static filters
+		if(this.staticEopoo) {
+			filters.proposerCodeEquals = this.staticEopoo.id;
+		}
+
 		this.partecipationFilters = filters;
 	}
 
@@ -148,8 +167,11 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 
 
 	newTableColumns: string[] = ['_ck','id','procurement.contractorEopoo','candidacy', 'procurementLot.description', 'procurementLot.cig', 'proposerEopoo','procurementLot.offerExpiryDate','procurementLot.baseAmount','categories','status', ];
-	newTableButtons: any[] = [
-		{
+	newTableButtons: any[] = [];
+
+	prepareTableButtons() {
+		this.newTableButtons.push({
+		
 			label: "Dettagli",
 			hideLabel: true,
 			icon: "pi pi-search",
@@ -158,35 +180,41 @@ export class AigPartecipationListPageComponent extends AigIppGenericComponent {
 			command: (e: any) => {
 				this.gcs.router.navigateByUrl("/ipp/partecipation/detail/" + e.id);
 			}
-		},{
-			label: "Edit",
-			hideLabel: true,
-			icon: "pi pi-pencil",
-			severity: "secondary",
-			class: "ml-4",
-			command: (e: any) => {
-				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {partecipation: e } });
-			}
-		},{
-			label: "Delete",
-			hideLabel: true,
-			icon: "pi pi-trash",
-			severity: "danger",
-			class: "ml-4",
-			command: async (e: any) => {
-				this.gcs.fuseProgressBarService.show();
-				try {
-					await this.partecipationResourceService.deletePartecipationUsingDELETE(e.id).toPromise();
-					this._snackBar.open(`partecipation: '${e.id}' deleted.`, null, { duration: 2000, });
+		});
 
-					this.gcs.eventService.reloadCurrentPage();
-				} catch (e) {
-					this._snackBar.open(`Error during deleting partecipation: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+		if(!this.hideEdit) {
+			this.newTableButtons.push({
+				label: "Edit",
+				hideLabel: true,
+				icon: "pi pi-pencil",
+				severity: "secondary",
+				class: "ml-4",
+				command: (e: any) => {
+					this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: {partecipation: e } });
 				}
-				this.gcs.fuseProgressBarService.hide();
-			}
-		},
-	]
+			});
+			this.newTableButtons.push({
+				label: "Delete",
+				hideLabel: true,
+				icon: "pi pi-trash",
+				severity: "danger",
+				class: "ml-4",
+				command: async (e: any) => {
+					this.gcs.fuseProgressBarService.show();
+					try {
+						await this.partecipationResourceService.deletePartecipationUsingDELETE(e.id).toPromise();
+						this._snackBar.open(`partecipation: '${e.id}' deleted.`, null, { duration: 2000, });
+
+						this.gcs.eventService.reloadCurrentPage();
+					} catch (e) {
+						this._snackBar.open(`Error during deleting partecipation: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+					}
+					this.gcs.fuseProgressBarService.hide();
+				}
+			});
+	
+		}
+	}
 
 
 	//			---- PROCUREMENT LOT OTHER FN SECTION ----
