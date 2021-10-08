@@ -76,7 +76,11 @@ export class AigRoleDetailPageComponent extends GenericComponent {
         this.permissionDTOs = this.roleDTO.permissions
     }
     
-	associatePermission(role: RoleDTO): void {
-		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { role: role } });
+	associatePermission(roleDTO: RoleDTO): void {
+		this.dialog.open(AigAssociateRoleToPermissionDialogComponent, { data: { role: roleDTO } });
 	}
+
+	
+	
+
 }

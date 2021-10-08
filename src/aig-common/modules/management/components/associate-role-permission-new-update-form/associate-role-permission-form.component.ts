@@ -63,17 +63,9 @@ export class AigAssociateRolePermissionFormComponent implements OnInit {
     ngOnInit(): void {
         // PREPARE FORM
         this.formGroup = this._formBuilder.group({
-            role: ['', Validators.required],
+            role: [this.role, Validators.required],
             permission: ['', Validators.required],
         });
-
-        // PRECOMPILE
-        if (this.role != null) {
-            this.formGroup.controls['role'].setValue(this.role);
-        }
-        if (this.permission != null) {
-            this.formGroup.controls['permission'].setValue(this.permission);
-        }
 
 
 

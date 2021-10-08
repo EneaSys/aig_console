@@ -23,7 +23,7 @@ export class AigManagementAutocompleteFilterService {
             switchMap((value: string) => {
                 if (value && value.length > 0) {
                     let filter = {
-                        nameContains: value
+                        roleNameContains: value
                     };
                     return this.roleResourceService.getAllRolesUsingGET(filter);
                 } else {
@@ -88,7 +88,7 @@ export class AigManagementAutocompleteFilterService {
             switchMap((value: string) => {
                 if (value && value.length > 0) {
                     let filter = {
-                        nameContains: value
+                        permissionNameContains: value
                     };
                     return this.permissionResourceService.getAllPermissionsUsingGET(filter);
                 } else {
