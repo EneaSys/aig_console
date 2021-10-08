@@ -120,7 +120,7 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
    	}
 
 	async publish() {
-		await this.entityReferenceResourceService.publishUsingGET3(this.entityReferenceFilters).toPromise();
+		await this.entityReferenceResourceService.publishUsingGET2(this.entityReferenceFilters).toPromise();
 	}
 
 }

@@ -123,6 +123,6 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
    	}
 	
 	async publish() {
-		await this.personalizationResourceService.publishUsingGET8(this.personalizationFilters).toPromise();
+		await this.personalizationResourceService.publishUsingGET6(this.personalizationFilters).toPromise();
 	}
 }

@@ -131,7 +131,7 @@ export class AigRoleListPageComponent extends GenericComponent {
    	}
 	
 	async publish() {
-		await this.roleResourceService.publishUsingGET9(this.roleFilters).toPromise();
+		await this.roleResourceService.publishRoleUsingGET(this.roleFilters).toPromise();
 	}
 }
 

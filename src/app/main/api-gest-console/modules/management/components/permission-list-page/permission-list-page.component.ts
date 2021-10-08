@@ -132,7 +132,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
    	}
 
 	async publish() {
-		await this.permissionResourceService.publishUsingGET7(this.permissionFilters).toPromise();
+		await this.permissionResourceService.publishPermissionUsingGET(this.permissionFilters).toPromise();
 	}
 
 }
