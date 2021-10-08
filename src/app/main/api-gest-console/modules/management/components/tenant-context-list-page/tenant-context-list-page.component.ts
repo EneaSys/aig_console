@@ -124,7 +124,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
    	}
 	
 	async publish() {
-		await this.tenantContextResourceService.publishUsingGET10(this.tenantContextFilters).toPromise;
+		await this.tenantContextResourceService.publishUsingGET10(this.tenantContextFilters).toPromise();
 	}
 	
 	//			---- !TENANT CONTEXT SECTION ----

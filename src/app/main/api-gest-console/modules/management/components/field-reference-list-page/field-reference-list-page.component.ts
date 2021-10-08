@@ -124,6 +124,6 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
     }
 
 	async publish() {
-		await this.fieldReferenceResourceService.publishUsingGET4(this.fieldReferenceFilters).toPromise;
+		await this.fieldReferenceResourceService.publishUsingGET4(this.fieldReferenceFilters).toPromise();
 	}
 }

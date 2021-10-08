@@ -146,6 +146,6 @@ export class AigPriceListItemListPageComponent extends GenericComponent {
     }
 
 	async publish() {
-		await this.priceListItemResourceService.publishUsingGET10(this.priceListItemFilters).toPromise;
+		await this.priceListItemResourceService.publishUsingGET10(this.priceListItemFilters).toPromise();
 	}
 }

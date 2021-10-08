@@ -124,7 +124,7 @@ export class AigLicenceListPageComponent extends GenericComponent {
    	}
 
 	async publish() {
-		await this.licenceResourceService.publishUsingGET5(this.licenceFilters).toPromise;
+		await this.licenceResourceService.publishUsingGET5(this.licenceFilters).toPromise();
 	}
 
 }

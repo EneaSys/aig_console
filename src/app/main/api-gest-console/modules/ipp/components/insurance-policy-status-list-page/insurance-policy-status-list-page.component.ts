@@ -133,7 +133,7 @@ export class AigInsurancePolicyStatusListPageComponent extends GenericComponent 
 
 	
 	/*async publish() {
-		await this.insurancePolicyStatusResourceService.publishUsingGET(this.insurancePolicyStatusFilters).toPromise;
+		await this.insurancePolicyStatusResourceService.publishUsingGET(this.insurancePolicyStatusFilters).toPromise();
 	}*/
 
 	

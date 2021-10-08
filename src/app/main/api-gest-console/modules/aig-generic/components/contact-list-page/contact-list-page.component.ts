@@ -118,7 +118,7 @@ export class AigContactListPageComponent extends GenericComponent {
     }
 
     async publish() {
-		await this.contactResourceService.publishUsingGET1(this.contactFilters).toPromise;
+		await this.contactResourceService.publishUsingGET1(this.contactFilters).toPromise();
 	}
     //			---- !CONTACT TABLE AND SEARCH SECTION ----
 }

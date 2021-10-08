@@ -45,7 +45,11 @@ export class AigConsorzioManagerPageComponent extends GenericComponent {
 
     async loadPage() {
         try {
-            this.consorzioDTOs = await this.consorzioResourceService.getAllEopoosUsingGET(this.consorzioFilters).toPromise();
+            //this.consorzioDTOs = await this.consorzioResourceService.getAllEopoosUsingGET(this.consorzioFilters).toPromise();
+
+			let consorzioStatic: EopooDTO = await this.consorzioResourceService.getEopooUsingGET(586).toPromise();
+			this.consorzioDTOs.push(consorzioStatic);
+
             if(this.consorzioDTOs.length == 0){
                 this._snackBar.open("Nessun consorzio trovato!", null, {duration: 5000,});
             }
@@ -56,7 +60,7 @@ export class AigConsorzioManagerPageComponent extends GenericComponent {
             }
 
             this.modality = await this.partecipationModalityResourceService.getPartecipationModalityUsingGET(1).toPromise();
-            this.status = await this.partecipationStatusResourceService.getPartecipationStatusUsingGET(9).toPromise();
+            this.status = await this.partecipationStatusResourceService.getPartecipationStatusUsingGET(5).toPromise();
             this.type = await this.partecipationTypeResourceService.getIlPpPartecipationTypeUsingGET(1).toPromise();
 
         } catch (e) {

@@ -88,7 +88,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     async loadEntityReference() {
         
         let filters = {
-            moduleIdEquals: this.applicationModuleDTO.id
+            applicationModuleIDEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -103,14 +103,14 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
         this.dialog.open(AigEntityReferenceNewUpdateModalComponent , { data: { applicationModule: applicationModuleDTO } });
     }
 
-    contextModuleDC: string[] = ['id', 'contextName','active','moduleName','buttons'];
+    contextModuleDC: string[] = ['id','tenantContext','active','buttons'];
     contextModuleDTOs: ContextModuleDTO[];
     contextModuleError: any;
     
     async loadContextModule() {
        
         let filters = {
-            moduleIdEquals: this.applicationModuleDTO.id
+            applicationModuleIDEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -125,14 +125,14 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
         this.dialog.open( AigContextModuleNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
     }
 
-    permissionDC: string[] = ['id', 'name','permissionCode','moduleName','buttons'];
+    permissionDC: string[] = ['id','name','permissionCode','buttons'];
     permissionDTOs: PermissionDTO[];
     permissionError: any;
     
     async loadPermission() {
        
         let filters = {
-            moduleIdEquals: this.applicationModuleDTO.id
+            applicationModuleIDEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -153,7 +153,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
     
     async loadContextUser() {
         let filters = {
-            moduleIdEquals: this.applicationModuleDTO.id
+            applicationModuleIDEquals: this.applicationModuleDTO.id
         };
         
         try {
@@ -168,13 +168,13 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
         this.dialog.open(AigContextUserNewUpdateModalComponent, { data: { applicationModule: applicationModuleDTO } });
     }
 
-    roleDC: string[] = ['id', 'name','permission','roleCode','buttons'];
+    roleDC: string[] = ['id','name','roleCode','permissions','buttons'];
     roleDTOs: RoleDTO[];
     roleError: any;
     
     async loadRole() {
         let filters = {
-            moduleIdEquals: this.applicationModuleDTO.id
+            applicationModuleIDEquals: this.applicationModuleDTO.id
         };
         
         try {

@@ -125,7 +125,7 @@ export class AigContextUserListPageComponent extends GenericComponent {
     }
 
 	async publish() {
-		await this.contextUserResourceService.publishUsingGET2(this.contextUserFilters).toPromise;
+		await this.contextUserResourceService.publishUsingGET2(this.contextUserFilters).toPromise();
 	}
 
 }

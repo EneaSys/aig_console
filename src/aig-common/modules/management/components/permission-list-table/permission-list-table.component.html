@@ -31,7 +31,7 @@
 
         <ng-container matColumnDef="moduleName">
             <mat-header-cell *matHeaderCellDef> Module Name </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.moduleName }} </mat-cell>
+            <mat-cell *matCellDef="let e"> {{ e.applicationModule.name }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="moduleId">

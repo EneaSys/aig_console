@@ -129,7 +129,7 @@ export class AigPartecipationStatusListPageComponent extends GenericComponent {
 
 	
 	/*async publish() {
-		await this.partecipationStatusResourceService.publishUsingGET(this.partecipationStatusFilters).toPromise;
+		await this.partecipationStatusResourceService.publishUsingGET(this.partecipationStatusFilters).toPromise();
 	}*/
 
 	

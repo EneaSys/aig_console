@@ -133,7 +133,7 @@ export class AigReferentListPageComponent extends GenericComponent {
     }
 
     async publish() {
-		await this.referentResourceService.publishUsingGET4(this.referentFilters).toPromise;
+		await this.referentResourceService.publishUsingGET4(this.referentFilters).toPromise();
 	}
     //			---- !REFERENT TABLE AND SEARCH SECTION ----
 }

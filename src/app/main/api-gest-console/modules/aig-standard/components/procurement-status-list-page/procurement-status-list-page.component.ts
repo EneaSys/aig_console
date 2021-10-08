@@ -124,7 +124,7 @@ export class AigProcurementStatusListPageComponent extends GenericComponent {
     }
 
 	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise();
 	}*/
 
 	

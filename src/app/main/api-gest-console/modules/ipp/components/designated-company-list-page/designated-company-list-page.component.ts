@@ -142,6 +142,6 @@ export class AigDesignatedCompanyListPageComponent extends GenericComponent {
 	}
 
 	/*async publish() {
-		await this.designatedCompanyResourceService.publishUsingGET(this.designatedCompanyFilters).toPromise;
+		await this.designatedCompanyResourceService.publishUsingGET(this.designatedCompanyFilters).toPromise();
 	}*/
 }

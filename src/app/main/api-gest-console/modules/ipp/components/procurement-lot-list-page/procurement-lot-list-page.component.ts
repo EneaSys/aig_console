@@ -146,7 +146,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
 
 
-	newTableColumns: string[] = ['_ck', 'procurement.contractorEopoo', 'cig', 'candidacy', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate'];
+	newTableColumns: string[] = ['_ck', 'procurement.contractorEopoo', 'cig', 'candidacy', 'description', 'type', 'baseAmount', 'offerExpiryDate'];
 	newTableButtons: any[] = [];
 
 	prepareTableButtons() {

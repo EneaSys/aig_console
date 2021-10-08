@@ -118,7 +118,7 @@ export class AigProducerListPageComponent extends AigCommerceGenericComponent {
    	}
 
 	async publish() {
-		await this.producerResourceService.publishUsingGET12(this.producerFilters).toPromise;
+		await this.producerResourceService.publishUsingGET12(this.producerFilters).toPromise();
 	}
 	
 	//			---- !PRODUCER SECTION ----

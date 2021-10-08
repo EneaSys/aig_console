@@ -65,7 +65,7 @@ export class AigTenantContextDetailPageComponent extends GenericComponent {
     }
 
 
-	contextModuleDC: string[] = ['id', 'contextName','active','moduleName','buttons'];
+	contextModuleDC: string[] = ['id', 'tenantContext','active','buttons'];
     contextModuleDTOs: ContextModuleDTO[];
     contextModuleError: any;
 	

@@ -130,7 +130,7 @@ export class AigFiscalTransactionListPageComponent extends GenericComponent {
     }
 
 	async publish() {
-		await this.fiscalTransactionResourceService.publishUsingGET4(this.fiscalTransactionFilters).toPromise;
+		await this.fiscalTransactionResourceService.publishUsingGET4(this.fiscalTransactionFilters).toPromise();
 	}
 	
 }

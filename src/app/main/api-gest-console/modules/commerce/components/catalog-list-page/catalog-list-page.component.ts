@@ -138,7 +138,7 @@ export class AigCatalogListPageComponent extends AigCommerceGenericComponent {
     }
 
 	async publish() {
-		await this.catalogResourceService.publishUsingGET2(this.catalogFilters).toPromise;
+		await this.catalogResourceService.publishUsingGET2(this.catalogFilters).toPromise();
 	}
 
 }

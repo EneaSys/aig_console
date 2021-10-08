@@ -48,7 +48,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
 
 	private initPermissionSearch() {
 
-		this.permissionPaginationSize = 10;
+		this.permissionPaginationSize = 100;
 
 		this.permissionSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -56,7 +56,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
             permissionCode: [''],
 		});
 
-		this.permissionDC = ["id", "name","permissionCode", "buttons"];
+		this.permissionDC = ["id", "name","permissionCode","moduleName","buttons"];
 	}
 
 	private clearFiltersPermission() {
@@ -132,7 +132,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
    	}
 
 	async publish() {
-		await this.permissionResourceService.publishUsingGET7(this.permissionFilters).toPromise;
+		await this.permissionResourceService.publishUsingGET7(this.permissionFilters).toPromise();
 	}
 
 }

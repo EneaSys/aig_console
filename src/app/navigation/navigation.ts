@@ -22,7 +22,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'how_to_reg',
                 url      : '/g5c/eopoo',
-                permission: ['g5c.eopoo.get'],
+                permission: ['g5c.eopoo.geta'],
             },
             /*{
                 id       : 'generic-eopoo-list-page',
@@ -73,11 +73,11 @@ export const navigation: FuseNavigation[] = [
             {
                 id       : 'consorzio-manager-page',
                 title    : 'Consorzio',
-                translate: 'Consorzio',
+                translate: 'Area consorziato',
                 type     : 'item',
                 icon     : 'business_center',
                 url      : '/ipp/consorzio-page',
-                permission: ['il.pp.p11n.get.my','il.pp.p8tlot.get'],
+//                permission: ['il.pp.p11n.get.my','il.pp.p8tlot.get'],
             },
             {
                 id       : 'procurement-list-page',

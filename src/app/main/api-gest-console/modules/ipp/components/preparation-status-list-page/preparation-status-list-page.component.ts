@@ -131,7 +131,7 @@ export class AigPreparationStatusListPageComponent extends GenericComponent {
 
 	
 	/*async publish() {
-		await this.preparationStatusResourceService.publishUsingGET(this.preparationStatusFilters).toPromise;
+		await this.preparationStatusResourceService.publishUsingGET(this.preparationStatusFilters).toPromise();
 	}*/
 
 	

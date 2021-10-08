@@ -73,13 +73,10 @@ export class AigRoleDetailPageComponent extends GenericComponent {
     permissionError: any;
 
     async loadPermission() {
-        let filters = {
-          roleIdEquals: this.roleDTO.id
-        };
-        this.permissionDTOs = await this.permissionResourceService.getAllPermissionsUsingGET(filters).toPromise(); 
-      }
+        this.permissionDTOs = this.roleDTO.permissions
+    }
     
-      newPermission(role: RoleDTO): void {
-        this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { role: role } });
-      }
+	associatePermission(role: RoleDTO): void {
+		this.dialog.open(AigPermissionNewUpdateModalComponent, { data: { role: role } });
+	}
 }

@@ -144,6 +144,6 @@ export class AigCatalogItemListPageComponent extends GenericComponent {
     }
 
 	async publish() {
-		await this.catalogItemResourceService.publishUsingGET1(this.catalogItemFilters).toPromise;
+		await this.catalogItemResourceService.publishUsingGET1(this.catalogItemFilters).toPromise();
 	}
 }

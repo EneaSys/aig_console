@@ -150,7 +150,7 @@ export class AigPriceListListPageComponent extends AigCommerceGenericComponent {
 	}
 
 	async publish() {
-		await this.priceListResourceService.publishUsingGET11(this.priceListFilters).toPromise;
+		await this.priceListResourceService.publishUsingGET11(this.priceListFilters).toPromise();
 	}
 
 }

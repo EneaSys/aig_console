@@ -130,6 +130,6 @@ export class AigInventoryItemCombinationListPageComponent extends GenericCompone
         this.dialog.open(AigInventoryItemCombinationNewUpdateDialogComponent, { data: {  } });
     }
 	async publish() {
-		await this.inventoryItemCombinationResourceService.publishUsingGET6(this.inventoryItemCombinationFilters).toPromise;
+		await this.inventoryItemCombinationResourceService.publishUsingGET6(this.inventoryItemCombinationFilters).toPromise();
 	}
 }

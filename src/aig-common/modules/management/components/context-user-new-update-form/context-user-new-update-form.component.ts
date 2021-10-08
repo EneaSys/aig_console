@@ -14,11 +14,10 @@ import { AigManagementAutocompleteFunctionService } from "../../services/form/au
     styleUrls: ['./context-user-new-update-form.component.scss']
 })
 export class AigContextUserNewUpdateFormComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+    @Input() contextUser: ContextUserDTO;
+	
+	@Input() tenantContext: TenantContextDTO;
+	
     constructor(	
         private _snackBar: MatSnackBar,	
         private _formBuilder: FormBuilder,
@@ -29,8 +28,11 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
         public managementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
     ) { }
 
-    @Input()
-    contextUser: ContextUserDTO;
+    step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
 
     isUpdate: boolean = false;
 
@@ -43,7 +45,7 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
         this.contextUserNewUpdateForm = this._formBuilder.group({
             id:[''],
             userCode: ['', Validators.required],
-            tenantContext: ['', Validators.required],
+            tenantContext: [this.tenantContext, Validators.required],
         });
 
 

@@ -140,7 +140,7 @@ export class AigPartecipationModalityListPageComponent extends AigIppGenericComp
 
 	
 	/*async publish() {
-		await this.partecipationModalityResourceService.publishUsingGET(this.partecipationModalityFilters).toPromise;
+		await this.partecipationModalityResourceService.publishUsingGET(this.partecipationModalityFilters).toPromise();
 	}*/
 
 }
