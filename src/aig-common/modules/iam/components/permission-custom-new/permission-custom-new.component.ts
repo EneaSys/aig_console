@@ -6,6 +6,8 @@ import { CustomRolePermissionResourceService, CustomRolePermissionDTO, Permissio
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-permission-custom-new',
@@ -21,8 +23,9 @@ export class AigPermissionCustomNewComponent implements OnInit {
         private _snackBar: MatSnackBar,
         private _fuseProgressBarService: FuseProgressBarService,
         private customRolePermissionResourceService: CustomRolePermissionResourceService,
-        private permissionResourceService: PermissionResourceService,
         private customRoleResourceService: CustomRoleResourceService,
+		private aigManagementAutocompleteFilterService: AigManagementAutocompleteFilterService,
+        public aigManagementAutocompleteFunctionService: AigManagementAutocompleteFunctionService,
         private eventService: EventService,
     ) { }
 
@@ -42,7 +45,7 @@ export class AigPermissionCustomNewComponent implements OnInit {
 
     ngOnInit(): void {
         this.addPermissionToCustomRoleForm = this._formBuilder.group({
-            role: ['', Validators.required],
+            role: [this.customRole, Validators.required],
             permission: ['', Validators.required],
         });
 
@@ -57,21 +60,15 @@ export class AigPermissionCustomNewComponent implements OnInit {
                 }
             }
         );
-        this.permissionResourceService.getAllPermissionsUsingGET().subscribe(
-            (value: PermissionDTO[]) => {
-                this.permissions = value;
-            }
-        );
-
-        this.filteredRoles = this.addPermissionToCustomRoleForm.controls['role'].valueChanges.pipe(
+		this.filteredRoles = this.addPermissionToCustomRoleForm.controls['role'].valueChanges.pipe(
             startWith(''),
             map(value => this.roleFilter(value))
         );
 
-        this.filteredPermissions = this.addPermissionToCustomRoleForm.controls['permission'].valueChanges.pipe(
-            startWith(''),
-            map(value => this.permissionFilter(value))
-        );
+
+        this.filteredPermissions = this.aigManagementAutocompleteFilterService.permissionFilter(this.addPermissionToCustomRoleForm.controls['permission'].valueChanges);
+
+        
     }
 
     private roleFilter(value: any): any[] {
@@ -83,22 +80,11 @@ export class AigPermissionCustomNewComponent implements OnInit {
         }
     }
 
-    private permissionFilter(value: any): any[] {
-        if (typeof value === "string") {
-            if (value.length > 2) {
-                const filterValue = value.toLowerCase();
-                return this.permissions.filter(option => option.name.toLowerCase().includes(filterValue));
-            }
-        }
-    }
 
     roleDisplayFn(customRole?: CustomRoleDTO): string | undefined {
         return customRole ? customRole.name : undefined;
     }
 
-    permissionDisplayFn(permission?: PermissionDTO): string | undefined {
-        return permission ? permission.name : undefined;
-    }
 
     addPermissionToCustomRole() {
         if (!this.addPermissionToCustomRoleForm.valid) {

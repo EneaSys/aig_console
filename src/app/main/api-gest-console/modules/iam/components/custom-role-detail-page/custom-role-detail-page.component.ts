@@ -67,6 +67,6 @@ export class AigRoleCustomDetailComponent extends GenericComponent {
     }
 
     newCustomPermission() {
-        this.dialog.open(AigPermissionCustomNewDialogComponent, { data: this.customRole });
+        this.dialog.open(AigPermissionCustomNewDialogComponent, { data: { customRole: this.customRole } });
     }
 }

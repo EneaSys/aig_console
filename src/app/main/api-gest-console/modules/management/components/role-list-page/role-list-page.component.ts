@@ -108,13 +108,14 @@ export class AigRoleListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersRole();
 			this.roleSearchFormGroup.reset();
-			this.roleFilters.idEquals = searchedId;
+			this.roleFilters.roleIDEquals = searchedId;
 			this.searchRole(0);
 			return;
 		}
+		this.roleFilters.roleIDEquals = null;
 
 		if(this.roleSearchFormGroup.controls.name.value){
-			this.roleFilters.nameContains = this.roleSearchFormGroup.controls.name.value;
+			this.roleFilters.roleNameContains = this.roleSearchFormGroup.controls.name.value;
 		}
 
 		if(this.roleSearchFormGroup.controls.roleCode.value){
