@@ -6,6 +6,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { Observable, Subscriber, from, Subject } from 'rxjs';
 
 import { TenantContextResourceService, TenantContextDTO } from 'api-gest';
+import { TenantContextResourceService as TenantContextResourceService2 } from 'aig-management';
 import { IContext } from './Context.model';
 
 @Injectable()
@@ -15,6 +16,7 @@ export class AigContextRepositoryService {
         private router: Router,
         private location: Location,
         private tenantContextResourceService: TenantContextResourceService,
+		private tenantContextResourceService2: TenantContextResourceService2,
     ) { }
 
     private currentContextObservable: Subject<IContext> = new Subject<IContext>();
@@ -182,7 +184,11 @@ export class AigContextRepositoryService {
     }
     private getContextByContextCodeFromBackend(contextCode: string) {
         return new Observable((observer: Subscriber<IContext>) => {
-            this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+			let filter = {
+				tenantContextCodeEquals: contextCode
+			};
+			this.tenantContextResourceService2.getAllTenantContextsUsingGET(filter)
+            //this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
             .subscribe(
                 (TenantContextDTOs: TenantContextDTO[]) => {
                     let validContext: IContext = {

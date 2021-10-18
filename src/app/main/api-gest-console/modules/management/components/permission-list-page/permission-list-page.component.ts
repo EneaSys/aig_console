@@ -105,23 +105,23 @@ export class AigPermissionListPageComponent extends GenericComponent {
 	}
 
 	permissionSearchWithFilter() {
-		let searchedId = this.permissionSearchFormGroup.controls.id.value;
+		let searchedId = this.permissionSearchFormGroup.value.id;
 
 		if(searchedId != null) {
 			this.clearFiltersPermission();
 			this.permissionSearchFormGroup.reset();
-			this.permissionFilters.idEquals = searchedId;
+			this.permissionFilters.permissionIDEquals = searchedId;
 			this.searchPermission(0);
 			return;
 		}
-		this.permissionFilters.idEquals = null;
+		this.permissionFilters.permissionIDEquals = null;
 
 		if(this.permissionSearchFormGroup.controls.name.value){
-			this.permissionFilters.nameContains = this.permissionSearchFormGroup.controls.name.value;
+			this.permissionFilters.permissionNameContains = this.permissionSearchFormGroup.value.name;
 		}
 
 		if(this.permissionSearchFormGroup.controls.permissionCode.value){
-			this.permissionFilters.permissionCodeContains = this.permissionSearchFormGroup.controls.permissionCode.value;
+			this.permissionFilters.permissionCodeContains = this.permissionSearchFormGroup.value.permissionCode;
 		}
 
 		this.searchPermission(0);

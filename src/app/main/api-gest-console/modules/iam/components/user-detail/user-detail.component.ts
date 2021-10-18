@@ -61,6 +61,7 @@ export class AigUserDetailComponent extends GenericComponent {
                     eopooIds.push(Number(contextUserEopooDTO.eopooCode));
                 });
             }
+			console.log(eopooIds);
             if(eopooIds.length > 0) {
                 this.eopooDTOs = await this.eopooResourceService.getAllEopoosUsingGET().toPromise();
             } else {
