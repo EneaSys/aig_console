@@ -506,14 +506,7 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/m8t/field-reference',
 						permission: ['e4y.account.get'],
 					},
-					{
-						id       : 'permission-list-page',
-						title    : 'Permessi',
-						type     : 'item',
-						icon     : 'lock_open',
-						url      : '/m8t/permission',
-						permission: ['e4y.account.get'],
-					},
+					
 					{
 						id       : 'licence-list-page',
 						title    : 'Licenze',
