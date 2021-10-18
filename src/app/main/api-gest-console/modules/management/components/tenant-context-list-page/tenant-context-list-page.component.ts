@@ -46,7 +46,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 
 
 	private initTenantContextSearch() {
-		this.tenantContextPaginationSize = 10;
+		this.tenantContextPaginationSize = 50;
 	
 		this.tenantContextSearchFormGroup = this._formBuilder.group({
 			id: [''],
