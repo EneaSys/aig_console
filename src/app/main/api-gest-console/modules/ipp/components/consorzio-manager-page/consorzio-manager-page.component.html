@@ -1,29 +1,27 @@
 <div id="aig-consorzio-manager" class="page-layout simple right-sidebar" fxLayout="row">
 
     <!-- CENTER -->
-    <div class="center" fusePerfectScrollbar *ngIf="selectedConsorzio">
+    <div class="center" fusePerfectScrollbar *ngIf="selectedCompanyEopoo">
         <!-- HEADER -->
         <div class="header accent p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
 
             <div fxLayout="row" fxLayoutAlign="space-between start">
-
                 <span class="mat-display-1 my-0 my-sm-24 welcome-message">Area consorziato</span>
-
             </div>
 
             <div fxLayout="row">
 
-                <div class="selected-consorzio">{{ selectedConsorzio | eopooName }}</div>
+                <div class="selected-consorzio">{{ selectedCompanyEopoo | eopooName }}</div>
                 <button mat-icon-button class="consorzio-selector" [matMenuTriggerFor]="consorzioMenu"
                     aria-label="Select consorzio">
                     <mat-icon>more_horiz</mat-icon>
                 </button>
 
                 <mat-menu #consorzioMenu="matMenu">
-                    <div *ngFor="let consorzioDTO of consorzioDTOs">
-                        <button mat-menu-item (click)="setConsorzio(consorzioDTO)">
-                            <span *ngIf="consorzioDTO == selectedConsorzio">-</span>
-                            <span>{{ consorzioDTO | eopooName }}</span>
+                    <div *ngFor="let companyEopooDTO of companyEopooDTOs">
+                        <button mat-menu-item (click)="setCompany(companyEopooDTO)">
+                            <span *ngIf="companyEopooDTO == selectedCompanyEopoo"><b>{{ companyEopooDTO | eopooName }}</b></span>
+							<span *ngIf="companyEopooDTO != selectedCompanyEopoo">{{ companyEopooDTO | eopooName }}</span>
                         </button>
                     </div>
                 </mat-menu>
@@ -44,11 +42,11 @@
                 </mat-tab>
 -->
                 <mat-tab label="Lotti di gara">
-                    <aig-procurement-lot-list-page [staticEopoo]="selectedConsorzio" [partecipationFn]="partecipationFn" [hideEdit]="true"></aig-procurement-lot-list-page>
+                    <aig-procurement-lot-list-page [staticEopoo]="selectedCompanyEopoo" [partecipationFn]="partecipationFn" [hideEdit]="true"></aig-procurement-lot-list-page>
                 </mat-tab>
 
                 <mat-tab label="Partecipazioni">
-                    <aig-partecipation-list-page [staticEopoo]="selectedConsorzio" [hideEdit]="true"></aig-partecipation-list-page>
+                    <aig-partecipation-list-page [staticEopoo]="selectedCompanyEopoo" [hideEdit]="true"></aig-partecipation-list-page>
                 </mat-tab>
             </mat-tab-group>
         </div>
