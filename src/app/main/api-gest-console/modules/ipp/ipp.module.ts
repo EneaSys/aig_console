@@ -65,6 +65,7 @@ import { AigPreparationModalityNewUpdateDialogComponent } from './components/pre
 import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component';
 import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-italianlegislation.module';
 import { AigConsorzioManagerPageComponent } from './components/consorzio-manager-page/consorzio-manager-page.component';
+import { AigEntityManagerApiModule } from 'aig-entity-manager';
 
 
 
@@ -77,6 +78,7 @@ import { AigConsorzioManagerPageComponent } from './components/consorzio-manager
         AigItalianLegislationApiModule,
         CommonGenericModule,
 		AgalItalianLegislationModule,
+		AigEntityManagerApiModule,
        
         FormsModule,
         ReactiveFormsModule,

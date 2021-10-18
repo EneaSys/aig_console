@@ -18,10 +18,10 @@
                 </button>
 
                 <mat-menu #consorzioMenu="matMenu">
-                    <div *ngFor="let companyEopooDTO of companyEopooDTOs">
-                        <button mat-menu-item (click)="setCompany(companyEopooDTO)">
-                            <span *ngIf="companyEopooDTO == selectedCompanyEopoo"><b>{{ companyEopooDTO | eopooName }}</b></span>
-							<span *ngIf="companyEopooDTO != selectedCompanyEopoo">{{ companyEopooDTO | eopooName }}</span>
+                    <div *ngFor="let contextUserEopooDTO of contextUserEopooDTOs">
+                        <button mat-menu-item (click)="setCompany(contextUserEopooDTO.eopooDTO)">
+                            <span *ngIf="contextUserEopooDTO.eopooDTO == selectedCompanyEopoo"><b>{{ contextUserEopooDTO.eopooDTO | eopooName }}</b></span>
+							<span *ngIf="contextUserEopooDTO.eopooDTO != selectedCompanyEopoo">{{ contextUserEopooDTO.eopooDTO | eopooName }}</span>
                         </button>
                     </div>
                 </mat-menu>
