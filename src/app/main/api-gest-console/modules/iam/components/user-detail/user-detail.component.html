@@ -24,7 +24,6 @@
             </div>
             <div class="fuse-card auto-width mt-16 p-16" id="group-member-list">
                 <div class="h4 m-16 mt-0 mb-0">Anagrafiche associate</div>
-				<pre>{{ eopooDTOs | json }}</pre>
                 <aig-eopoo-list-table [displayColumns]="associatedEopooDisplayColumns" [dataSource]="eopooDTOs" [error]="associatedEopooLoadError"></aig-eopoo-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="associateToEopoo()" aria-label="add to eopoo">

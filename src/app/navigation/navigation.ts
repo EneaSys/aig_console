@@ -103,7 +103,7 @@ export const navigation: FuseNavigation[] = [
                 translate: 'Area consorziato',
                 type     : 'item',
                 icon     : 'business_center',
-                url      : '/ipp/consorzio-page',
+                url      : '/ipp/partecipation-company-manager',
                 permission: ['il.pp.p11n.get.my','il.pp.p8tlot.get'],
             },
         ]

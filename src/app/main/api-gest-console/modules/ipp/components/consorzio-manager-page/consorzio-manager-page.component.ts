@@ -25,19 +25,13 @@ export class AigConsorzioManagerPageComponent extends GenericComponent {
     ) { super(aigGenericComponentService) }
 
 
-    consorzioDTOs: EopooDTO[] = [];
+    companyEopooDTOs: EopooDTO[] = [];
 
-    selectedConsorzio: EopooDTO;
+    selectedCompanyEopoo: EopooDTO;
     partecipationDTO: PartecipationDTO;
 
     loadingPage: boolean = true;
     errorInLoading: any;
-
-    consorzioFilters = {
-        consorzioIDEquals: null,
-        consorzioNameContains: null,
-        page: 0,
-    }
 
     modality: PartecipationModalityDTO;
     status: PartecipationStatusDTO;
@@ -45,18 +39,20 @@ export class AigConsorzioManagerPageComponent extends GenericComponent {
 
     async loadPage() {
         try {
-            //this.consorzioDTOs = await this.consorzioResourceService.getAllEopoosUsingGET(this.consorzioFilters).toPromise();
+			// DA CANCELLARE QUANDO METTO IL MY EOPOO
+			{
+				let eopooStatic: EopooDTO = await this.consorzioResourceService.getEopooUsingGET(1).toPromise();
+				this.companyEopooDTOs.push(eopooStatic);
+			}
 
-			let consorzioStatic: EopooDTO = await this.consorzioResourceService.getEopooUsingGET(586).toPromise();
-			this.consorzioDTOs.push(consorzioStatic);
-
-            if(this.consorzioDTOs.length == 0){
-                this._snackBar.open("Nessun consorzio trovato!", null, {duration: 5000,});
+			//this.consorzioDTOs = await this.consorzioResourceService.getAllEopoosUsingGET(this.consorzioFilters).toPromise();
+            if(this.companyEopooDTOs.length == 0){
+                this._snackBar.open("Nessun azienda trovata!", null, {duration: 5000,});
             }
-            if (this.consorzioDTOs.length > 0) {
-                this.setConsorzio(this.consorzioDTOs[0]);
+            if (this.companyEopooDTOs.length > 0) {
+                this.setCompany(this.companyEopooDTOs[0]);
             } else {
-                throw new Error("Nessun consorzio associato");
+                throw new Error("Nessun azienda associata");
             }
 
             this.modality = await this.partecipationModalityResourceService.getPartecipationModalityUsingGET(1).toPromise();
@@ -73,7 +69,7 @@ export class AigConsorzioManagerPageComponent extends GenericComponent {
         this.dialog.open(AigPartecipationNewUpdateDialogComponent, { 
             data: { 
                 procurementLot: e, 
-                proposerEopoo: this.selectedConsorzio,
+                proposerEopoo: this.selectedCompanyEopoo,
                 modality: this.modality,
                 type: this.type,
                 status: this.status,
@@ -81,8 +77,8 @@ export class AigConsorzioManagerPageComponent extends GenericComponent {
         });
     }
 
-    setConsorzio(selectedConsorzio: EopooDTO) {
-        this.selectedConsorzio = selectedConsorzio;
+    setCompany(companyEopoo: EopooDTO) {
+        this.selectedCompanyEopoo = companyEopoo;
         setTimeout(()=>{ this.eventService.reloadCurrentPage(); }, 1);
     }
 }

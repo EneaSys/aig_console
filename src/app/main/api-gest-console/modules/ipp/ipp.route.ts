@@ -98,19 +98,13 @@ export const ippRoute: Routes = [
                 ]
             },
             {
-                path: 'consorzio-page',
+                path: 'partecipation-company-manager',
                 children: [
-                    
                     {
                         path: '',
-                        pathMatch: 'full',
-                        redirectTo: 'list'
-                    },
-                    {
-                        path: 'list',
                         component: AigConsorzioManagerPageComponent,
                         canActivate: [ AuthGuardService ],
-                    },
+                    }
                 ]
             },
 
