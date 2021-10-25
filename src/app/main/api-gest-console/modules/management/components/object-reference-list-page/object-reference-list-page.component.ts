@@ -129,7 +129,7 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
     }
 
 	async publish() {
-		await this.objectReferenceResourceService.publishUsingGET6(this.objectReferenceFilters).toPromise;
+		await this.objectReferenceResourceService.publishUsingGET5(this.objectReferenceFilters).toPromise();
 	}
 
 }

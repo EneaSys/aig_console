@@ -9,7 +9,7 @@ import { CustomRoleDTO } from 'api-gest';
 export class AigPermissionCustomNewDialogComponent implements OnInit {
     constructor(
         public matDialogRef: MatDialogRef<AigPermissionCustomNewDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public customRole: CustomRoleDTO,
+        @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
 
     ngOnInit(): void { }

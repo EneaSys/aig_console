@@ -123,6 +123,6 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
     }
 
 	async publish() {
-		await this.typeCategoryReferenceResourceService.publishUsingGET11(this.typeCategoryReferenceFilters).toPromise;
+		await this.typeCategoryReferenceResourceService.publishUsingGET8(this.typeCategoryReferenceFilters).toPromise();
 	}
 }

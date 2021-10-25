@@ -12,6 +12,7 @@ import { PreparationResolver } from 'aig-common/modules/ipp/resolver/preparation
 import { ProcurementLotResolver } from 'aig-common/modules/ipp/resolver/procurement-lot.resolver';
 import { ProcurementResolver } from 'aig-common/modules/ipp/resolver/procurement.resolver';
 import { AuthGuardService } from 'auth/auth-guard.service';
+import { AigConsorzioManagerPageComponent } from './components/consorzio-manager-page/consorzio-manager-page.component';
 import { AigDesignatedCompanyDetailPageComponent } from './components/designated-company-detail-page/designated-company-detail-page.component';
 import { AigDesignatedCompanyListPageComponent } from './components/designated-company-list-page/designated-company-list-page.component';
 import { AigDossierDetailPageComponent } from './components/dossier-detail-page/dossier-detail-page.component';
@@ -94,6 +95,16 @@ export const ippRoute: Routes = [
                            procurementLot: ProcurementLotResolver,
                         },
                     },
+                ]
+            },
+            {
+                path: 'partecipation-company-manager',
+                children: [
+                    {
+                        path: '',
+                        component: AigConsorzioManagerPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    }
                 ]
             },
 

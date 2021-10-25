@@ -153,6 +153,6 @@ export class AigInventoryItemListPageComponent extends AigCommerceGenericCompone
   }
 
   async publish() {
-		await this.inventoryItemResourceService.publishUsingGET7(this.inventoryItemFilters).toPromise;
+		await this.inventoryItemResourceService.publishUsingGET7(this.inventoryItemFilters).toPromise();
 	}
 }

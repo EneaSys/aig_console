@@ -166,6 +166,6 @@ export class AigWarehouseHandlingItemListPageComponent extends GenericComponent 
     }
 
 	async publish() {
-		await this.warehouseHandlingItemResourceService.publishUsingGET18(this.warehouseHandlingItemFilters).toPromise;
+		await this.warehouseHandlingItemResourceService.publishUsingGET18(this.warehouseHandlingItemFilters).toPromise();
 	}
 }

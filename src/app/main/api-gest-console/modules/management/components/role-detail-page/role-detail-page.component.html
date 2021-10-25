@@ -1,29 +1,29 @@
 <div id="aig-role-detail-page" class="page-layout blank">
 
-        <div class="widget p-16" fxFlex.gt-sm="50">
-            <div class="fuse-card auto-width p-16">
+	<div class="widget p-16" fxFlex.gt-sm="50">
+		<div class="fuse-card auto-width p-16">
 
-                <entity-detail-role [roleDTO]="roleDTO"></entity-detail-role>
+			<entity-detail-role [roleDTO]="roleDTO"></entity-detail-role>
 
-                <button mat-stroked-button color="primary" (click)="editRole(roleDTO)">Edit</button>
-                <button mat-stroked-button color="primary" (click)="deleteRole(roleDTO.id)">Delete</button>
-            </div>
-        </div>
-    
-
+			<button mat-stroked-button color="primary" (click)="editRole(roleDTO)">Edit</button>
+			<button mat-stroked-button color="primary" (click)="deleteRole(roleDTO.id)">Delete</button>
+		</div>
+	</div>
 
 
-    <div class="widget p-16" fxFlex.gt-sm="50">
-        <div class="fuse-card auto-width p-16 m-8 table-with-add-button">
-                <div class="h4 m-16">Lista dei permessi</div>
-                <aig-permission-list-table [displayColumns]="permissionDC"
-                    [dataSource]="permissionDTOs" [error]="permissionError"></aig-permission-list-table>
-                <div style="height: 35px;"></div>
-                <button mat-fab class="accent" class="add-button-in-list-table" (click)=" newPermission()"
-                    aria-label="add permission to role">
-                    <mat-icon>add</mat-icon>
-                </button>
-        </div>
-    </div>
+	<div class="widget p-16" fxFlex.gt-sm="50">
+		<div class="fuse-card auto-width p-16 table-with-add-button">
+			<div class="h4 m-16">Lista dei permessi</div>
+			
+			<aig-permission-list-table [displayColumns]="permissionDC" [dataSource]="permissionDTOs"
+				[error]="permissionError"></aig-permission-list-table>
+			
+			<div style="height: 35px;"></div>
+			
+			<button mat-fab class="accent" class="add-button-in-list-table" (click)="associatePermission(roleDTO)"
+				aria-label="add permission to role">
+				<mat-icon>add</mat-icon>
+			</button>
+		</div>
+	</div>
 </div>
-

@@ -90,6 +90,11 @@ import { AigInventoryCategoryBoxDetailComponent } from './components/inventory-c
 import { AigPriceListItemBoxDetailComponent } from './components/price-list-item-box-detail/price-list-item-box-detail.component';
 import { AigInventoryItemCombinationBoxDetailComponent } from './components/inventory-item-combination-box-detail/inventory-item-combination-box-detail.component';
 import { AigPurchaseBoxDetailComponent } from './components/purchase-box-detail/purchase-box-detail.component';
+import { WarehouseFilterFormComponent } from './components/warehouse-filters-form/warehouse-filters-form.component';
+import {InputTextModule} from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
     imports: [
@@ -104,6 +109,16 @@ import { AigPurchaseBoxDetailComponent } from './components/purchase-box-detail/
         ReactiveFormsModule,
         FlexLayoutModule,
         TranslateModule,
+
+        InputTextModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        InputTextModule,
+        ButtonModule,
+        FormsModule,
+  
+
+
 
         MatTableModule,
         MatProgressSpinnerModule,
@@ -183,6 +198,7 @@ import { AigPurchaseBoxDetailComponent } from './components/purchase-box-detail/
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,
         AigEntityDetailWarehouseComponent,
+        WarehouseFilterFormComponent,
 
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,
@@ -280,6 +296,7 @@ import { AigPurchaseBoxDetailComponent } from './components/purchase-box-detail/
         AigWarehouseListTableComponent,
         AigWarehouseNewUpdateFormComponent,
         AigEntityDetailWarehouseComponent,
+        WarehouseFilterFormComponent,
 
         AigWarehouseHandlingListTableComponent,
         AigWarehouseHandlingNewUpdateFormComponent,

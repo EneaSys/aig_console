@@ -122,7 +122,7 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
    	}
 
 	async publish() {
-		await this.userLicenceResourceService.publishUsingGET12(this.userLicenceFilters).toPromise;
+		await this.userLicenceResourceService.publishUsingGET9(this.userLicenceFilters).toPromise();
 	}
 
 }

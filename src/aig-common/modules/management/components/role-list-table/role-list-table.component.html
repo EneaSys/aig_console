@@ -24,14 +24,23 @@
             <mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="permission">
-            <mat-header-cell *matHeaderCellDef> Permission </mat-header-cell>
-            <mat-cell *matCellDef="let e"> {{ e.permission }} </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="roleCode">
             <mat-header-cell *matHeaderCellDef> Role Code </mat-header-cell>
             <mat-cell *matCellDef="let e"> {{ e.roleCode }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="moduleName">
+            <mat-header-cell *matHeaderCellDef> Module Name </mat-header-cell>
+            <mat-cell *matCellDef="let e"> {{ e.applicationModule.name }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="permissions">
+            <mat-header-cell *matHeaderCellDef> Permissions </mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngFor="let permission of e.permissions" class="p-2 m-4" style="background-color: aquamarine; ">
+					{{ permission.name }}
+				</span>
+			</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="buttons">

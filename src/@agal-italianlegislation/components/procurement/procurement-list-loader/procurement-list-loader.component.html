@@ -1,3 +1,7 @@
+<div>
+	<agal-paginator fxFlex fxLayoutAlign="end start"
+		[totalRecords]="totalRecords" [pageSizeOptions]="[30,50,100,500]" [initialSize]="30" (paginator)="changePagination($event)"></agal-paginator>
+</div>
 <div [ngSwitch]="view">
 	<p *ngSwitchCase="'CARD'">
 		card
@@ -61,6 +65,3 @@
         </p-table>
     </p>
 </div>
-
-<agal-paginator [totalRecords]="totalRecords" [pageSizeOptions]="[30,50,100,500]" [initialSize]="30"
-	(paginator)="changePagination($event)"></agal-paginator>

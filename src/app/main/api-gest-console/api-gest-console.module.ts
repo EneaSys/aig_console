@@ -32,6 +32,7 @@ import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
 import { AIG_M8T_PATH } from 'aig-management';
 import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
+import { AIG_E4Y_PATH } from 'aig-entity-manager';
 
 
 @NgModule({
@@ -119,7 +120,10 @@ import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
             provide: AIG_ITALIANLEGISLATION_PATH,
             useValue: API_URL + "/i16n"
         },
-
+		{
+            provide: AIG_E4Y_PATH,
+            useValue: API_URL
+        },
     ],
 })
 export class ApiGestConsoleModule { }

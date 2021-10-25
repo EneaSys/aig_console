@@ -126,7 +126,7 @@ export class AigCpvListPageComponent extends GenericComponent {
     }
 
 	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise();
 	}*/
     //			---- !CPV TABLE AND SEARCH SECTION ----
 }

@@ -135,6 +135,6 @@ export class AigInventoryCategoryListPageComponent extends AigCommerceGenericCom
     }
 
 	async publish() {
-		await this.inventoryCategoryResourceService.publishUsingGET5(this.inventoryCategoryFilters).toPromise;
+		await this.inventoryCategoryResourceService.publishUsingGET5(this.inventoryCategoryFilters).toPromise();
 	}
 }

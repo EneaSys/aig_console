@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { ContextGroupResourceService, UserResourceService, RoleResourceService, CustomRoleResourceService } from 'api-gest';
+import { ContextGroupResourceService, UserResourceService, CustomRoleResourceService } from 'api-gest';
+import { RoleResourceService } from 'aig-management';
 
 @Injectable()
 export class AigAutocompleteFilterService {
@@ -42,8 +43,11 @@ export class AigAutocompleteFilterService {
         return observable.pipe(
             startWith(''),
             switchMap((value: string) => {
-                if (value.length > 4) {
-                    return this.roleResourceService.getAllRolesUsingGET(null, null, null, null, null, null, null, null, value, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 10, null);
+                if (value.length > 1) {
+					let filters = {
+						roleNameContains: value
+					};
+                    return this.roleResourceService.getAllRolesUsingGET(filters);
                 } else {
                     return of([]);
                 }

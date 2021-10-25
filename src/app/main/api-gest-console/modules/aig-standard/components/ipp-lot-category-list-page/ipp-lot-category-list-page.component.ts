@@ -117,6 +117,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
 		this.ippLotCategoryFilters.idEquals = null;
 
 		this.ippLotCategoryFilters.nameContains = this.ippLotCategorySearchFormGroup.controls.name.value;
+		this.ippLotCategoryFilters.codeContains = this.ippLotCategorySearchFormGroup.controls.code.value;
 
 		this.searchIppLotCategory(0);
 	}
@@ -126,7 +127,7 @@ export class AigIppLotCategoryListPageComponent extends GenericComponent {
     }
 
 	/*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise();
 	}*/
 
 

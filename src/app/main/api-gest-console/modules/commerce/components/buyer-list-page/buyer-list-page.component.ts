@@ -153,6 +153,6 @@ export class AigBuyerListPageComponent extends AigCommerceGenericComponent {
 	}
 
 	async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise;
+		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise();
 	}
 }

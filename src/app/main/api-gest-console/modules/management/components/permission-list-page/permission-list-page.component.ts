@@ -48,7 +48,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
 
 	private initPermissionSearch() {
 
-		this.permissionPaginationSize = 10;
+		this.permissionPaginationSize = 100;
 
 		this.permissionSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -56,7 +56,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
             permissionCode: [''],
 		});
 
-		this.permissionDC = ["id", "name","permissionCode", "buttons"];
+		this.permissionDC = ["id", "name","permissionCode","moduleName","buttons"];
 	}
 
 	private clearFiltersPermission() {
@@ -105,23 +105,23 @@ export class AigPermissionListPageComponent extends GenericComponent {
 	}
 
 	permissionSearchWithFilter() {
-		let searchedId = this.permissionSearchFormGroup.controls.id.value;
+		let searchedId = this.permissionSearchFormGroup.value.id;
 
 		if(searchedId != null) {
 			this.clearFiltersPermission();
 			this.permissionSearchFormGroup.reset();
-			this.permissionFilters.idEquals = searchedId;
+			this.permissionFilters.permissionIDEquals = searchedId;
 			this.searchPermission(0);
 			return;
 		}
-		this.permissionFilters.idEquals = null;
+		this.permissionFilters.permissionIDEquals = null;
 
 		if(this.permissionSearchFormGroup.controls.name.value){
-			this.permissionFilters.nameContains = this.permissionSearchFormGroup.controls.name.value;
+			this.permissionFilters.permissionNameContains = this.permissionSearchFormGroup.value.name;
 		}
 
 		if(this.permissionSearchFormGroup.controls.permissionCode.value){
-			this.permissionFilters.permissionCodeContains = this.permissionSearchFormGroup.controls.permissionCode.value;
+			this.permissionFilters.permissionCodeContains = this.permissionSearchFormGroup.value.permissionCode;
 		}
 
 		this.searchPermission(0);
@@ -132,7 +132,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
    	}
 
 	async publish() {
-		await this.permissionResourceService.publishUsingGET7(this.permissionFilters).toPromise;
+		await this.permissionResourceService.publishPermissionUsingGET(this.permissionFilters).toPromise();
 	}
 
 }

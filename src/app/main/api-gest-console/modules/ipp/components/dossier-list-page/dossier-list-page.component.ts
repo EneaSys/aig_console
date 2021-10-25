@@ -130,7 +130,7 @@ export class AigDossierListPageComponent extends GenericComponent {
 
 	
 	/*async publish() {
-		await this.dossierResourceService.publishUsingGET(this.dossierFilters).toPromise;
+		await this.dossierResourceService.publishUsingGET(this.dossierFilters).toPromise();
 	}*/
 
 }

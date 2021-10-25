@@ -1,11 +1,31 @@
-{{ pagination.first }} - {{ pagination.last }} of {{ totalRecords }}
 
-<form [formGroup]="selectPageForm" (ngSubmit)="selectPageFormSubmit()">
-    <input formControlName="page" required>    
-</form>
 
-of {{ pages | number: '1.0-0' }}
-
-<select [ngModel]="initialSize" (ngModelChange)="selectSize($event)">
-    <option *ngFor="let pageSizeOption of pageSizeOptions">{{ pageSizeOption }}</option>
-</select>
+<div class="paginator-main" >
+	<div class="paginator-el paginator-el-pages">
+		<table>
+			<tr>
+				<td class="paginator-el-bl">pagina: </td>
+				<td>
+					<form [formGroup]="selectPageForm" (ngSubmit)="selectPageFormSubmit()">
+						<input type="text" formControlName="page" required>    
+					</form>
+				</td>
+				<td>di {{ pages | number: '1.0-0' }}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="paginator-el paginator-el-rows">
+		<table>
+			<tr>
+				<td class="paginator-el-bl"> righe: {{ pagination.first }} - {{ pagination.last }}</td>
+				<td>di {{ totalRecords }} </td>
+				<td class="paginator-el-br">
+					<select [ngModel]="initialSize" (ngModelChange)="selectSize($event)">
+						<option *ngFor="let pageSizeOption of pageSizeOptions">{{ pageSizeOption }}</option>
+					</select>
+					per pagina
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

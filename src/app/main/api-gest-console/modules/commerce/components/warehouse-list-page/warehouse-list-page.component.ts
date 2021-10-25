@@ -129,7 +129,7 @@ export class AigWarehouseListPageComponent extends AigCommerceGenericComponent {
     }
 
 	async publish() {
-		await this.warehouseResourceService.publishUsingGET20(this.warehouseFilters).toPromise;
+		await this.warehouseResourceService.publishUsingGET20(this.warehouseFilters).toPromise();
 	}
 
 	

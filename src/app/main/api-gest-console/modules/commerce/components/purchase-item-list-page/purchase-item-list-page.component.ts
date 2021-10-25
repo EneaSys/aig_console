@@ -135,7 +135,7 @@ export class AigPurchaseItemListPageComponent extends GenericComponent {
   }
 
   async publish() {
-		await this.purchaseItemResourceService.publishUsingGET13(this.purchaseItemFilters).toPromise;
+		await this.purchaseItemResourceService.publishUsingGET13(this.purchaseItemFilters).toPromise();
 	}
   
 }

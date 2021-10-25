@@ -7,7 +7,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="tenantContext == null">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Tenant Context</mat-label>
             <input formControlName="tenantContext" matInput required [matAutocomplete]="tenantContextAutocomplete">

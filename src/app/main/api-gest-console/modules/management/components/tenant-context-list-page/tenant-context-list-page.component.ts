@@ -46,7 +46,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 
 
 	private initTenantContextSearch() {
-		this.tenantContextPaginationSize = 10;
+		this.tenantContextPaginationSize = 50;
 	
 		this.tenantContextSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -124,7 +124,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
    	}
 	
 	async publish() {
-		await this.tenantContextResourceService.publishUsingGET10(this.tenantContextFilters).toPromise;
+		await this.tenantContextResourceService.publishUsingGET7(this.tenantContextFilters).toPromise();
 	}
 	
 	//			---- !TENANT CONTEXT SECTION ----

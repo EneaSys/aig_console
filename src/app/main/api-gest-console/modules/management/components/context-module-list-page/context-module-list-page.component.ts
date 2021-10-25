@@ -128,7 +128,7 @@ export class AigContextModuleListPageComponent extends GenericComponent {
    	}
 
    async publish() {
-		await this.contextModuleResourceService.publishUsingGET1(this.contextModuleFilters).toPromise;
+		await this.contextModuleResourceService.publishUsingGET(this.contextModuleFilters).toPromise();
 	}
 
 }

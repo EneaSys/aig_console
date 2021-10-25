@@ -46,7 +46,7 @@ export class AigRoleListPageComponent extends GenericComponent {
 
     private initRoleSearch() {
 		
-		this.rolePaginationSize = 10;
+		this.rolePaginationSize = 100;
 		
 		this.roleSearchFormGroup = this._formBuilder.group({
 			id: [''],
@@ -54,7 +54,7 @@ export class AigRoleListPageComponent extends GenericComponent {
             roleCode: [''],
 		});
 
-        this.roleDC = ["id", "name", 'roleCode', 'buttons'];
+        this.roleDC = ["id", "name", 'roleCode','moduleName','permissions','buttons'];
 	}
 
     private clearFiltersRole() {
@@ -108,13 +108,14 @@ export class AigRoleListPageComponent extends GenericComponent {
 		if(searchedId != null) {
 			this.clearFiltersRole();
 			this.roleSearchFormGroup.reset();
-			this.roleFilters.idEquals = searchedId;
+			this.roleFilters.roleIDEquals = searchedId;
 			this.searchRole(0);
 			return;
 		}
+		this.roleFilters.roleIDEquals = null;
 
 		if(this.roleSearchFormGroup.controls.name.value){
-			this.roleFilters.nameContains = this.roleSearchFormGroup.controls.name.value;
+			this.roleFilters.roleNameContains = this.roleSearchFormGroup.controls.name.value;
 		}
 
 		if(this.roleSearchFormGroup.controls.roleCode.value){
@@ -131,7 +132,7 @@ export class AigRoleListPageComponent extends GenericComponent {
    	}
 	
 	async publish() {
-		await this.roleResourceService.publishUsingGET9(this.roleFilters).toPromise;
+		await this.roleResourceService.publishRoleUsingGET(this.roleFilters).toPromise();
 	}
 }
 

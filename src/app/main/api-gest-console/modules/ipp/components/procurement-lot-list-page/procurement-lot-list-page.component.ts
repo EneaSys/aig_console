@@ -15,10 +15,16 @@ import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlP
 import { AigPartecipationNewUpdateDialogComponent } from '../partecipation-new-update-dialog/partecipation-new-update-dialog.component';
 
 @Component({
+	selector: 'aig-procurement-lot-list-page',
     templateUrl: './procurement-lot-list-page.component.html',
     styleUrls: ['./procurement-lot-list-page.component.scss']
 })
 export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
+	
+	@Input() staticEopoo: EopooDTO = null;
+	@Input() partecipationFn: any;
+	@Input() hideEdit: boolean = false;
+
     constructor(
         public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
         public genericAutocompleteFilterService:  AigGenericAutocompleteFilterService,
@@ -36,8 +42,11 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
 
 
+
     loadPage() {
         this.initProcurementLotSearch();
+
+		this.prepareTableButtons();
 
         this.procurementLotSearchWithFilter();
     }
@@ -117,6 +126,11 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			if(filters.procurementLotCategories) {
 				console.log(filters.procurementLotCategories);
 			}
+
+		}
+
+		if(this.staticEopoo) {
+			filters.proposerCodeEquals = this.staticEopoo.id;
 		}
 		this.procurementLotFilters = filters;
 	}
@@ -132,16 +146,23 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
 
 
-	newTableColumns: string[] = ['_ck', 'procurement.contractorEopoo', 'cig', 'candidacy', 'description', 'type', 'categories', 'baseAmount', 'offerExpiryDate'];
-	newTableButtons: any[] = [
-		{
+	newTableColumns: string[] = ['_ck', 'procurement.contractorEopoo', 'cig', 'candidacy', 'description', 'type', 'baseAmount', 'offerExpiryDate'];
+	newTableButtons: any[] = [];
+
+	prepareTableButtons() {
+		this.newTableButtons.push({
 			label: "Partecipa",
 			severity: "secondary",
 			class: "ml-8",
 			command: (e: any) => {
-				this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { procurementLot: e } });
+				if(this.partecipationFn) {
+					this.partecipationFn(e);
+				} else {
+					this.dialog.open(AigPartecipationNewUpdateDialogComponent, { data: { procurementLot: e, proposerEopoo: this.staticEopoo } });
+				}
 			}
-		},{
+		});
+		this.newTableButtons.push({
 			label: "Dettagli",
 			hideLabel: true,
 			icon: "pi pi-search",
@@ -150,35 +171,40 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			command: (e: any) => {
 				this.gcs.router.navigateByUrl("/ipp/procurement-lot/detail/" + e.id);
 			},
-		},
-		{
-			label: "Edit",
-			hideLabel: true,
-			icon: "pi pi-pencil",
-			severity: "secondary",
-			class: "mt-4 ml-4",
-			command: (e: any) => {
-				this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: e } });
-			}
-		},{
-			label: "Delete",
-			hideLabel: true,
-			icon: "pi pi-trash",
-			severity: "danger",
-			class: "mt-4  ml-4",
-			command: async (e: any) => {
-				this.gcs.fuseProgressBarService.show();
-				try {
-					await this.procurementLotResourceService.deleteProcurementLotUsingDELETE(e.id).toPromise();
-					this._snackBar.open(`Procurement Lot: '${e.id}' deleted.`, null, { duration: 2000, });
-					this.gcs.eventService.reloadCurrentPage();
-				} catch (e) {
-					this._snackBar.open(`Error during deleting procurement lot: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+		});
+
+		if(!this.hideEdit) {
+			this.newTableButtons.push({
+				label: "Edit",
+				hideLabel: true,
+				icon: "pi pi-pencil",
+				severity: "secondary",
+				class: "mt-4 ml-4",
+				command: (e: any) => {
+					this.dialog.open(AigProcurementLotNewUpdateDialogComponent, { data: { procurementLot: e } });
 				}
-				this.gcs.fuseProgressBarService.hide();
-			}
+			});
+
+			this.newTableButtons.push({
+				label: "Delete",
+				hideLabel: true,
+				icon: "pi pi-trash",
+				severity: "danger",
+				class: "mt-4  ml-4",
+				command: async (e: any) => {
+					this.gcs.fuseProgressBarService.show();
+					try {
+						await this.procurementLotResourceService.deleteProcurementLotUsingDELETE(e.id).toPromise();
+						this._snackBar.open(`Procurement Lot: '${e.id}' deleted.`, null, { duration: 2000, });
+						this.gcs.eventService.reloadCurrentPage();
+					} catch (e) {
+						this._snackBar.open(`Error during deleting procurement lot: '${e.id}'. (${e.message})`, null, { duration: 5000, });
+					}
+					this.gcs.fuseProgressBarService.hide();
+				}
+			});
 		}
-	]
+	}
 
 
 

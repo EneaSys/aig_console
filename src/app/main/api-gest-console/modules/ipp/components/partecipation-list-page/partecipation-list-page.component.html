@@ -79,7 +79,7 @@
                                     </mat-form-field>
                                 </div>
 
-                                <div fxLayout="row">
+                                <div fxLayout="row" *ngIf="staticEopoo == null">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Azienda Proponente</mat-label>
                                         <input formControlName="proposerEopoo" matInput [matAutocomplete]="proposerEopooAutocomplete">

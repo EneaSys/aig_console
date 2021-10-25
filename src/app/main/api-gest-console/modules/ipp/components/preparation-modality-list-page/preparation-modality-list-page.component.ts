@@ -141,7 +141,7 @@ export class AigPreparationModalityListPageComponent extends AigIppGenericCompon
 
 	
 	/*async publish() {
-		await this.preparationModalityResourceService.publishUsingGET(this.preparationModalityFilters).toPromise;
+		await this.preparationModalityResourceService.publishUsingGET(this.preparationModalityFilters).toPromise();
 	}*/
 
 }

@@ -135,7 +135,7 @@ export class AigSellerListPageComponent extends AigCommerceGenericComponent {
 	}
 
 	async publish() {
-		await this.sellerResourceService.publishUsingGET15(this.sellerFilters).toPromise;
+		await this.sellerResourceService.publishUsingGET15(this.sellerFilters).toPromise();
 	}
 	
 }

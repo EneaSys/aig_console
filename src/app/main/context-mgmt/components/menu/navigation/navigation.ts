@@ -443,14 +443,7 @@ export const contextNavigation: FuseNavigation[] = [
 				translate: 'NAV.MANAGEMENT',
 				type     : 'collapsable',
 				children : [
-					{
-						id       : 'role-list-page',
-						title    : 'Ruoli',
-						type     : 'item',
-						icon     : 'account_circle',
-						url      : '/m8t/role',
-						permission: ['e4y.account.get'],
-					},
+
 					{
 						id       : 'application-module-list-page',
 						title    : 'Application Module',
@@ -459,6 +452,25 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/m8t/application-module',
 						permission: ['e4y.account.get'],
 					},
+
+					{
+						id       : 'role-list-page',
+						title    : 'Ruoli',
+						type     : 'item',
+						icon     : 'account_circle',
+						url      : '/m8t/role',
+						permission: ['e4y.account.get'],
+					},
+
+					{
+						id       : 'permission-list-page',
+						title    : 'Permessi',
+						type     : 'item',
+						icon     : 'lock_open',
+						url      : '/m8t/permission',
+						permission: ['e4y.account.get'],
+					},
+					
 					{
 						id       : 'entity-reference-list-page',
 						title    : 'Entity Reference',
@@ -494,14 +506,7 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/m8t/field-reference',
 						permission: ['e4y.account.get'],
 					},
-					{
-						id       : 'permission-list-page',
-						title    : 'Permessi',
-						type     : 'item',
-						icon     : 'lock_open',
-						url      : '/m8t/permission',
-						permission: ['e4y.account.get'],
-					},
+					
 					{
 						id       : 'licence-list-page',
 						title    : 'Licenze',

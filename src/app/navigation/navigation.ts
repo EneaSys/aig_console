@@ -77,7 +77,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'business_center',
                 url      : '/ipp/procurement',
-                permission: ['ipp.p9t.get'],
+                permission: ['il.pp.p8t.get'],
             },
             {
                 id       : 'procurement-lot-list-page',
@@ -86,7 +86,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'next_week',
                 url      : '/ipp/procurement-lot',
-                permission: ['ipp.p9t.get'],
+                permission: ['il.pp.p8tlot.get'],
             },
             {
                 id       : 'partecipation-list-page',
@@ -95,8 +95,17 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'network_locked',
                 url      : '/ipp/partecipation',
-                permission: ['ipp.p9t.get'],
-            }
+                permission: ['il.pp.p11n.get'],
+            },
+			{
+                id       : 'consorzio-manager-page',
+                title    : 'Consorzio',
+                translate: 'Area consorziato',
+                type     : 'item',
+                icon     : 'business_center',
+                url      : '/ipp/partecipation-company-manager',
+                permission: ['il.pp.p11n.get.my','il.pp.p8tlot.get'],
+            },
         ]
     },
 
@@ -142,30 +151,7 @@ export const navigation: FuseNavigation[] = [
                 permission: ['c6e.admin'],
             },
         ]
-    },
-    {
-        id       : 'pd',
-        title    : 'Public database',
-        type     : 'group',
-        children : [
-            {
-                id       : 'management-custom',
-                title    : 'Management custom page',
-                type     : 'item',
-                icon     : 'view_carousel',
-                url      : '/m8t/management-custom',
-                permission: ['c6e.admin'],
-            },
-            {
-                id       : 'standard-custom',
-                title    : 'Standard custom page',
-                type     : 'item',
-                icon     : 'view_carousel',
-                url      : '/s6d/standard-custom',
-                permission: ['c6e.admin'],
-            }
-        ]
-    },
+	}
 ];
 
 

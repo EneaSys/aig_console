@@ -61,14 +61,9 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
-    
-        let permission: PermissionDTO = {
-            name: this.permissionNewUpdateForm.value.name,
-            permissionCode: this.permissionNewUpdateForm.value.permissionCode,
-            id: this.permissionNewUpdateForm.value.id,
-            moduleId: this.permissionNewUpdateForm.value.applicationModule.id,
-            
-        }
+        let permission= this.permissionNewUpdateForm.value;
+
+        permission.moduleId = this.permissionNewUpdateForm.value.applicationModule.id;
         
         try {
             let postOrPut;

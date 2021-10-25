@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { CustomRoleResourceService, CustomRoleDTO } from 'api-gest';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
 
 @Component({
     selector: 'aig-role-custom-new',

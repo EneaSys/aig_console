@@ -36,6 +36,7 @@ export class AigPermissionListTableComponent implements OnInit {
         try {
             await this.permissionResourceService.deletePermissionUsingDELETE(id).toPromise();
             this._snackBar.open(`Permission: '${id}' deleted.`, null, { duration: 2000, });
+            
 
             this.eventService.reloadCurrentPage();
         } catch (e) {

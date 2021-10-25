@@ -37,7 +37,7 @@ export class AgalGenericTable extends AgalGenericComponent {
 
 	async changePagination(event: any) {
 		this.pageable = event;
-		
+	
 		await this.loadData();
 	}
 

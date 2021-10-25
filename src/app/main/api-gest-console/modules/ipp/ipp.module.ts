@@ -18,7 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FuseSidebarModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule } from '@angular/material';
+import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule, MatTabsModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 import { AigProcurementDetailPageComponent } from './components/procurement-detail-page/procurement-detail-page.component';
 import { AigProcurementNewUpdateDialogComponent } from './components/procurement-new-update-dialog/procurement-new-update-dialog.component';
@@ -64,6 +64,8 @@ import { AigPreparationModalityListPageComponent } from './components/preparatio
 import { AigPreparationModalityNewUpdateDialogComponent } from './components/preparation-modality-new-update-dialog/preparation-modality-new-update-dialog.component';
 import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/procurement-lot-category-new-update-dialog/procurement-lot-category-new-update-dialog.component';
 import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-italianlegislation.module';
+import { AigConsorzioManagerPageComponent } from './components/consorzio-manager-page/consorzio-manager-page.component';
+import { AigEntityManagerApiModule } from 'aig-entity-manager';
 
 
 
@@ -76,6 +78,7 @@ import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-ital
         AigItalianLegislationApiModule,
         CommonGenericModule,
 		AgalItalianLegislationModule,
+		AigEntityManagerApiModule,
        
         FormsModule,
         ReactiveFormsModule,
@@ -86,6 +89,7 @@ import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-ital
         TranslateModule,
         
         MatIconModule,
+        MatTabsModule,
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
@@ -117,6 +121,8 @@ import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-ital
     ],
     declarations: [
         AigIppHeaderComponent,
+
+        AigConsorzioManagerPageComponent,
 
         AigPreparationModalityListPageComponent,
         AigPreparationModalityNewUpdateDialogComponent,
@@ -166,6 +172,7 @@ import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-ital
         
     ],
     exports: [
+        AigProcurementLotListPageComponent,
 
     ],
 

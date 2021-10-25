@@ -144,7 +144,7 @@ export class AigAddressListPageComponent extends GenericComponent {
     }
 
     async publish() {
-		await this.addressResourceService.publishUsingGET(this.addressFilters).toPromise;
+		await this.addressResourceService.publishUsingGET(this.addressFilters).toPromise();
 	}
     //			---- !ADDRESS TABLE AND SEARCH SECTION ----
 }
