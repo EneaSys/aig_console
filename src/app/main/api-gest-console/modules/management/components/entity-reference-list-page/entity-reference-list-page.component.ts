@@ -1,9 +1,12 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
-import { EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
+import { AigManagementAutocompleteFilterService } from "aig-common/modules/management/services/form/autocomplete-filter.service";
+import { AigManagementAutocompleteFunctionService } from "aig-common/modules/management/services/form/autocomplete-function.service";
+import { ApplicationModuleDTO, EntityReferenceDTO, EntityReferenceResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { Observable } from "rxjs";
 import { AigEntityReferenceNewUpdateModalComponent } from "../entity-reference-new-update-modal/entity-reference-new-update-modal.component";
 
 @Component({
@@ -17,6 +20,8 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -43,6 +48,8 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 
 	entityReferenceDC: string[];
 
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
+
 
 	private initEntityReferenceSearch() {
 		this.entityReferencePaginationSize = 10;
@@ -50,7 +57,10 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 		this.entityReferenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+			applicationModule: [''],
 		});
+
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.entityReferenceSearchFormGroup.controls['applicationModule'].valueChanges);
 
 		this.entityReferenceDC = ["id", "name", "buttons"];
 	}
@@ -111,6 +121,10 @@ export class AigEntityReferenceListPageComponent extends GenericComponent {
 		this.entityReferenceFilters.idEquals = null;
 
 		this.entityReferenceFilters.nameContains = this.entityReferenceSearchFormGroup.controls.name.value;
+
+		
+		this.entityReferenceFilters.applicationModuleIDEquals = this.entityReferenceSearchFormGroup.value.applicationModule.id;
+		
 
 		this.searchEntityReference(0);
 	}
