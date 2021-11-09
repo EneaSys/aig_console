@@ -77,7 +77,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'business_center',
                 url      : '/ipp/procurement',
-                permission: ['il.pp.p8t.get'],
+                permission: ['il.pp.ui.p8t.list'],
             },
             {
                 id       : 'procurement-lot-list-page',
@@ -86,7 +86,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'next_week',
                 url      : '/ipp/procurement-lot',
-                permission: ['il.pp.p8tlot.get'],
+                permission: ['il.pp.ui.p8tlot.list'],
             },
             {
                 id       : 'partecipation-list-page',
@@ -95,7 +95,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'network_locked',
                 url      : '/ipp/partecipation',
-                permission: ['il.pp.p11n.get'],
+                permission: ['il.pp.ui.p11n.list'],
             },
 			{
                 id       : 'consorzio-manager-page',
@@ -104,7 +104,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'business_center',
                 url      : '/ipp/partecipation-company-manager',
-                permission: ['il.pp.p11n.get.my','il.pp.p8tlot.get'],
+                permission: ['il.pp.ui.p11n.manager'],
             },
         ]
     },

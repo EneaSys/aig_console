@@ -34,7 +34,7 @@
             <mat-cell *matCellDef="let e"> {{ e.applicationModule.name }} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="permissions">
+        <ng-container matColumnDef="permissions" style="width: 50%;">
             <mat-header-cell *matHeaderCellDef> Permissions </mat-header-cell>
             <mat-cell *matCellDef="let e">
 				<span *ngFor="let permission of e.permissions" class="p-2 m-4" style="background-color: aquamarine; ">
