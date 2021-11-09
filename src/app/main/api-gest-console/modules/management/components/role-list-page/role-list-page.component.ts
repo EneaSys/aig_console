@@ -2,9 +2,12 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
 import { EventService } from "aig-common/event-manager/event.service";
-import { RoleDTO, RoleResourceService } from "aig-management";
+import { AigManagementAutocompleteFilterService } from "aig-common/modules/management/services/form/autocomplete-filter.service";
+import { AigManagementAutocompleteFunctionService } from "aig-common/modules/management/services/form/autocomplete-function.service";
+import { ApplicationModuleDTO, RoleDTO, RoleResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { Observable } from "rxjs";
 import { AigRoleNewUpdateModalComponent } from "../role-new-update-modal/role-new-update-modal.component";
 
 @Component({
@@ -18,6 +21,8 @@ export class AigRoleListPageComponent extends GenericComponent {
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
         private dialog: MatDialog,        
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
@@ -44,6 +49,8 @@ export class AigRoleListPageComponent extends GenericComponent {
 
 	roleDC: string[];
 
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
+
     private initRoleSearch() {
 		
 		this.rolePaginationSize = 100;
@@ -52,7 +59,10 @@ export class AigRoleListPageComponent extends GenericComponent {
 			id: [''],
 			name: [''],
             roleCode: [''],
+			applicationModule: [''],
 		});
+
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.roleSearchFormGroup.controls['applicationModule'].valueChanges);
 
         this.roleDC = ["id", "name", 'roleCode','moduleName','permissions','buttons'];
 	}
@@ -114,14 +124,17 @@ export class AigRoleListPageComponent extends GenericComponent {
 		}
 		this.roleFilters.roleIDEquals = null;
 
-		if(this.roleSearchFormGroup.controls.name.value){
+		if(this.roleSearchFormGroup.value.name){
 			this.roleFilters.roleNameContains = this.roleSearchFormGroup.controls.name.value;
 		}
 
-		if(this.roleSearchFormGroup.controls.roleCode.value){
+		if(this.roleSearchFormGroup.value.roleCode){
 			this.roleFilters.roleCodeContains = this.roleSearchFormGroup.controls.roleCode.value;
 		}
 
+		if(this.roleSearchFormGroup.value.applicationModule){
+			this.roleFilters.applicationModuleIDEquals = this.roleSearchFormGroup.value.applicationModule.id;
+		}
 		this.roleFilters.idEquals = null;
 
 		this.searchRole(0);
