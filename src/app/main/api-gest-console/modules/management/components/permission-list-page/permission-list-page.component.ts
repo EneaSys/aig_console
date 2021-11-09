@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
-import { PermissionDTO, PermissionResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, PermissionDTO, PermissionResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigPermissionNewUpdateModalComponent } from '../permission-new-update-modal/permission-new-update-modal.component';
 
 @Component({
@@ -20,6 +23,8 @@ export class AigPermissionListPageComponent extends GenericComponent {
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
     ) { super(aigGenericComponentService) }
 	
 
@@ -45,6 +50,7 @@ export class AigPermissionListPageComponent extends GenericComponent {
 
 	permissionDC: string[];
 	
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 
 	private initPermissionSearch() {
 
@@ -54,7 +60,10 @@ export class AigPermissionListPageComponent extends GenericComponent {
 			id: [''],
 			name: [''],
             permissionCode: [''],
+			applicationModule: [''],
 		});
+
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.permissionSearchFormGroup.controls['applicationModule'].valueChanges);
 
 		this.permissionDC = ["id", "name","permissionCode","moduleName","buttons"];
 	}
@@ -116,11 +125,15 @@ export class AigPermissionListPageComponent extends GenericComponent {
 		}
 		this.permissionFilters.permissionIDEquals = null;
 
-		if(this.permissionSearchFormGroup.controls.name.value){
+		if(this.permissionSearchFormGroup.value.name){
 			this.permissionFilters.permissionNameContains = this.permissionSearchFormGroup.value.name;
 		}
 
-		if(this.permissionSearchFormGroup.controls.permissionCode.value){
+		if(this.permissionSearchFormGroup.value.applicationModule){
+			this.permissionFilters.applicationModuleIDEquals = this.permissionSearchFormGroup.value.applicationModule.id;
+		}
+
+		if(this.permissionSearchFormGroup.value.permissionCode){
 			this.permissionFilters.permissionCodeContains = this.permissionSearchFormGroup.value.permissionCode;
 		}
 

@@ -1,6 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatToolbarModule } from "@angular/material";
+import { MatAutocompleteModule, MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatToolbarModule } from "@angular/material";
 import { RouterModule } from "@angular/router";
 import { FuseSidebarModule } from "@fuse/components";
 import { FuseSharedModule } from "@fuse/shared.module";
@@ -78,6 +78,7 @@ import { managementRoute } from "./management.route";
 		MatProgressSpinnerModule,
 		MatPaginatorModule,
         MatTabsModule,
+        MatAutocompleteModule,
     ],
     declarations: [
 
