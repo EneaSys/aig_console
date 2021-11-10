@@ -28,6 +28,18 @@
                                     <input matInput type="text" formControlName="roleCode">
                                 </mat-form-field>
                             </div>
+
+                            <div fxLayout="row">
+                                <mat-form-field appearance="outline" fxFlex="100">
+                                    <mat-label>Module Name</mat-label>
+                                    <input formControlName="applicationModule" matInput [matAutocomplete]="applicationModuleAutocomplete">
+                                    <mat-autocomplete #applicationModuleAutocomplete="matAutocomplete" [displayWith]="managementAutocompleteService.applicationModuleDisplayFn">
+                                        <mat-option *ngFor="let applicationModule of filteredApplicationModule | async" [value]="applicationModule">
+                                            {{ applicationModule.name }}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
                             <div fxLayout="row" fxLayoutAlign="end top">
                                 <button type="submit" mat-raised-button color="accent">Cerca</button>
                             </div>

@@ -108,7 +108,7 @@ export class AigManagementAutocompleteFilterService {
                     };
                     return this.applicationModuleResourceService.getAllApplicationModulesUsingGET(filter);
                 } else {
-                    return of([]);
+                    return this.applicationModuleResourceService.getAllApplicationModulesUsingGET({});
                 }
             })
         );
