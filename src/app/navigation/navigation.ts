@@ -22,7 +22,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'how_to_reg',
                 url      : '/g5c/eopoo',
-                permission: ['g5c.eopoo.get'],
+                permission: ['g5c.ui.eopoo.list'],
             },
             /*{
                 id       : 'generic-eopoo-list-page',
