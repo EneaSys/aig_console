@@ -1,9 +1,12 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
-import { EntityReferenceDTO, LicenzeDTO, LicenzeResourceService, UserLicenzeDTO, UserLicenzeResourceService,  } from "aig-management";
+import { AigManagementAutocompleteFilterService } from "aig-common/modules/management/services/form/autocomplete-filter.service";
+import { AigManagementAutocompleteFunctionService } from "aig-common/modules/management/services/form/autocomplete-function.service";
+import { ApplicationModuleDTO, EntityReferenceDTO, LicenzeDTO, LicenzeResourceService, UserLicenzeDTO, UserLicenzeResourceService,  } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { Observable } from "rxjs";
 import { AigEntityReferenceNewUpdateModalComponent } from "../entity-reference-new-update-modal/entity-reference-new-update-modal.component";
 import { AigLicenceNewUpdateDialogComponent } from "../licence-new-update-dialog/licence-new-update-dialog.component";
 import { AigUserLicenceNewUpdateDialogComponent } from "../user-licence-new-update-dialog/user-licence-new-update-dialog.component";
@@ -19,6 +22,8 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -44,6 +49,7 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 	userLicenceError: any;
 
 	userLicenceDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 
 
 	private initUserLicenceSearch() {
@@ -52,9 +58,11 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 		this.userLicenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+			applicationModule: [''],
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.userLicenceSearchFormGroup.controls['applicationModule'].valueChanges);
 
-		this.userLicenceDC = ["id", "name", "buttons"];
+		this.userLicenceDC = ["id", "name","applicationModule", "buttons"];
 	}
 
 	private clearFiltersUserLicence() {
@@ -112,7 +120,11 @@ export class AigUserLicenceListPageComponent extends GenericComponent {
 		}
 		this.userLicenceFilters.idEquals = null;
 
-		this.userLicenceFilters.nameContains = this.userLicenceSearchFormGroup.controls.name.value;
+		this.userLicenceFilters.nameContains = this.userLicenceSearchFormGroup.value.name;
+
+	
+		this.userLicenceFilters.applicationModuleIDEquals = this.userLicenceSearchFormGroup.value.applicationModule.id;
+		
 
 		this.searchUserLicence(0);
 	}
