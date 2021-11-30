@@ -127,6 +127,20 @@ export const navigation: FuseNavigation[] = [
 				icon     : 'store',
 				url      : '/wallet/merchant',
 			},
+			{
+				id       : 'credit-card-list-page',
+				title    : 'Carte di credito',
+				type     : 'item',
+				icon     : 'credit-card',
+				url      : '/wallet/credit-card',
+			},
+			{
+				id       : 'transaction-list-page',
+				title    : 'Transazioni',
+				type     : 'item',
+				icon     : 'transaction',
+				url      : '/wallet/transaction',
+			},
 		]
 	},
 
