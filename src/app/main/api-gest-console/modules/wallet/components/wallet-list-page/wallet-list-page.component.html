@@ -29,7 +29,12 @@
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
                                         <mat-label>Anagrafica</mat-label>
-                                        <input matInput formControlName="eopoo">
+										<input formControlName="eopoo" matInput [matAutocomplete]="eopooAutocomplete">
+                                        <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                                            <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+												{{ eopoo | eopooName }}
+											</mat-option>
+                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">
@@ -56,7 +61,7 @@
             <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('wallet-sidebar')">
                 <mat-icon>menu</mat-icon>
             </button>
-            <h2>Postazioni</h2>
+            <h2>Wallet</h2>
         </div>
         <!-- / HEADER -->
         <!-- CONTENT -->

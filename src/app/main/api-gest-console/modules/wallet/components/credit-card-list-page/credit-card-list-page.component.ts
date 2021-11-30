@@ -64,16 +64,16 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 		let searchedId = this.searchForm.value.id;
 		if (searchedId != null) {
 			this.searchForm.reset();
-			filters.idEquals = searchedId;
+			filters.creditCardIDEquals = searchedId;
 		} else {
 			filters = this.searchForm.value;
 
 			if(filters.code) {
-				filters.codeContains = filters.code;
+				filters.creditCardCodeContains = filters.code;
 				filters.code = null;
 			}
 			if(filters.walletId) {
-				filters.walletIdEquals = filters.walletId;
+				filters.walletIDEquals = filters.walletId;
 				filters.walletId = null;
 			}
 		}

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AigMerchantListPageComponent } from './components/merchant-list-page/merchant-list-page.component';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatToolbarModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatToolbarModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ import { AigCreditCardListPageComponent } from './components/credit-card-list-pa
 import { AigTransactionNewUpdateDialogComponent } from './components/transaction-new-update-dialog/transaction-new-update-dialog.component';
 import { AigTransactionListPageComponent } from './components/transaction-list-page/transaction-list-page.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 @NgModule({
 	imports: [ 
@@ -26,6 +27,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 		CommonModule,
 		AigCommonWalletModule,
+		CommonGenericModule,
 		
 		InputTextModule,
 		FormsModule,
@@ -45,6 +47,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 		MatNativeDateModule,
 		MatDatepickerModule,
 		MatDialogModule,
+		MatAutocompleteModule,
+
+
 	],
 	providers: [
 
