@@ -2,8 +2,13 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
+import { AigValidator } from "aig-common/AigValidator";
 import { EventService } from "aig-common/event-manager/event.service";
+import { AigGenericAutocompleteFilterService } from "aig-common/modules/generic/services/form/autocomplete-filter.service";
+import { AigGenericAutocompleteDisplayService } from "aig-common/modules/generic/services/form/autocomplete-function.service";
+import { EopooDTO } from "aig-generic";
 import { WalletResourceService, WalletDTO } from 'aig-wallet';
+import { Observable } from "rxjs";
 
 @Component({
     selector: 'aig-wallet-new-update-form',
@@ -18,6 +23,8 @@ export class AigWalletNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
+		public genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
+        public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
 		private walletResourceService: WalletResourceService,
         private eventService: EventService,
         private _formBuilder: FormBuilder,
@@ -28,25 +35,30 @@ export class AigWalletNewUpdateFormComponent implements OnInit {
     @Input()
     wallet: any;
 
+	@Input()
+    eopoo: EopooDTO;
+
     isUpdate: boolean = false;
 
     walletResult: any;
 
     walletNewUpdateForm: FormGroup;
 
+	filteredEopoo: Observable<EopooDTO[]>;
+
     ngOnInit(): void {
         this.walletNewUpdateForm = this._formBuilder.group({
             id:[''],
-            name: ['', [Validators.required]],
-            username: ['', [Validators.required]],
-			password: ['', [Validators.required]],
-            wallet_id: ['', [Validators.required]],
+			eopoo: [this.eopoo, [Validators.required, AigValidator.haveId] ],
+            description: ['', [Validators.required]],
         })
         
         if (this.wallet != null) {
             this.walletNewUpdateForm.patchValue(this.wallet);
             this.isUpdate = true
         }
+
+		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.walletNewUpdateForm.controls['eopoo'].valueChanges);
     }
 
     async submit() {
@@ -58,6 +70,7 @@ export class AigWalletNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let wallet: any = this.walletNewUpdateForm.value;
+		wallet.eopooCode = this.walletNewUpdateForm.value.eopoo.id;
         
         try {
             let postOrPut: string;

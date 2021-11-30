@@ -99,7 +99,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
     async loadCreditCard() {
 		try {
 			let filters = {
-				'walletId.equals': this.walletDTO.id,
+				walletIdEquals: this.walletDTO.id,
 			};
 			this.creditCardDTOs = await this.creditCardResourceService.getAllCreditCardsUsingGET(filters).toPromise();
 		} catch(e) {

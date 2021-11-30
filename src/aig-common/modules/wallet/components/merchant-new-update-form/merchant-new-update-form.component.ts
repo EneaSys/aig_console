@@ -2,8 +2,13 @@ import { Component, Input, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
+import { AigValidator } from "aig-common/AigValidator";
 import { EventService } from "aig-common/event-manager/event.service";
+import { Observable } from "rxjs";
 import { AigMerchantService } from "../../services/merchant.service";
+import { WalletDTO } from "aig-wallet";
+import { AigWalletAutocompleteDisplayService } from "../../services/autocomplete-function.service";
+import { AigWalletAutocompleteFilterService } from "../../services/autocomplete-filter.service";
 
 @Component({
     selector: 'aig-merchant-new-update-form',
@@ -18,6 +23,8 @@ export class AigMerchantNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
+		public walletAutocompleteFilterService: AigWalletAutocompleteFilterService,
+        public walletAutocompleteDisplayService: AigWalletAutocompleteDisplayService,
 		private merchantService: AigMerchantService,
         private eventService: EventService,
         private _formBuilder: FormBuilder,
@@ -28,11 +35,16 @@ export class AigMerchantNewUpdateFormComponent implements OnInit {
     @Input()
     merchant: any;
 
+	@Input()
+    wallet: any;
+
     isUpdate: boolean = false;
 
     merchantResult: any;
 
     merchantNewUpdateForm: FormGroup;
+
+	filteredWallet: Observable<WalletDTO[]>;
 
     ngOnInit(): void {
         this.merchantNewUpdateForm = this._formBuilder.group({
@@ -40,13 +52,15 @@ export class AigMerchantNewUpdateFormComponent implements OnInit {
             name: ['', [Validators.required]],
             username: ['', [Validators.required]],
 			password: ['', [Validators.required]],
-            wallet_id: ['', [Validators.required]],
+            wallet: [this.wallet, [Validators.required, AigValidator.haveId] ],
         })
         
         if (this.merchant != null) {
             this.merchantNewUpdateForm.patchValue(this.merchant);
             this.isUpdate = true
         }
+
+		this.filteredWallet = this.walletAutocompleteFilterService.filterWallet(this.merchantNewUpdateForm.controls['wallet'].valueChanges);
     }
 
     async submit() {
@@ -58,6 +72,7 @@ export class AigMerchantNewUpdateFormComponent implements OnInit {
         this.setStep("loading");
 
         let merchant: any = this.merchantNewUpdateForm.value;
+		merchant.wallet_id = this.merchantNewUpdateForm.value.wallet.id;
         
         try {
             let postOrPut: string;

@@ -14,6 +14,9 @@ import { AigWalletApiModule } from 'aig-wallet';
 import { AigWalletNewUpdateFormComponent } from './components/wallet-new-update-form/wallet-new-update-form.component';
 import { AigWalletListTableComponent } from './components/wallet-list-table/wallet-list-table.component';
 import { WalletResolver } from './resolver/wallet.resolver';
+import { CommonGenericModule } from '../generic/common-generic.module';
+import { AigWalletAutocompleteDisplayService } from './services/autocomplete-function.service';
+import { AigWalletAutocompleteFilterService } from './services/autocomplete-filter.service';
 
 @NgModule({
 	imports: [
@@ -27,6 +30,7 @@ import { WalletResolver } from './resolver/wallet.resolver';
 		ReactiveFormsModule,
 
 		AigWalletApiModule,
+		CommonGenericModule,
 
 		TranslateModule,
 
@@ -40,6 +44,9 @@ import { WalletResolver } from './resolver/wallet.resolver';
         MatAutocompleteModule,
 	],
 	providers: [
+		AigWalletAutocompleteDisplayService,
+		AigWalletAutocompleteFilterService,
+
 		AigMerchantService,
 		WalletResolver,
 	],

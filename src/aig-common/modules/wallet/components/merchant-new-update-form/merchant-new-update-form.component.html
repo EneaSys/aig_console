@@ -21,10 +21,16 @@
         </mat-form-field>
     </div>
 
-	<div fxLayout="row" fxLayoutAlign="start start">
+	<div fxLayout="row" fxLayoutAlign="start start" *ngIf="!wallet">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Wallet ID</mat-label>
-            <input formControlName="wallet_id" matInput required>
+            <mat-label>Wallet</mat-label>
+            <input formControlName="wallet" matInput [matAutocomplete]="walletAutocomplete" required>
+            <mat-autocomplete #walletAutocomplete="matAutocomplete"
+                [displayWith]="walletAutocompleteDisplayService.walletDisplayFn">
+                <mat-option *ngFor="let wallet of filteredWallet | async" [value]="wallet">
+                    {{ wallet.description }}
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </div>
 
