@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { ContextUserDTO, ContextUserResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, ContextUserDTO, ContextUserResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigContextUserNewUpdateModalComponent } from '../context-user-new-update-modal/context-user-new-update-modal.component';
 
 @Component({
@@ -18,6 +21,8 @@ export class AigContextUserListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -43,6 +48,7 @@ export class AigContextUserListPageComponent extends GenericComponent {
 	contextUserError: any;
 
 	contextUserDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 	
 
 	private initContextUserSearch() {
@@ -52,9 +58,11 @@ export class AigContextUserListPageComponent extends GenericComponent {
 		this.contextUserSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			userCode: [''],
+			applicationModule: [''],
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.contextUserSearchFormGroup.controls['applicationModule'].valueChanges);
 
-		this.contextUserDC = ["id", "userCode", "buttons"];
+		this.contextUserDC = ["id", "userCode","applicationModule", "buttons"];
 	}
 
 	private clearFiltersContextUser() {
@@ -115,6 +123,9 @@ export class AigContextUserListPageComponent extends GenericComponent {
 
 		if(this.contextUserSearchFormGroup.controls.userCode.value){
 			this.contextUserFilters.userCodeContains = this.contextUserSearchFormGroup.controls.userCode.value;
+		}
+		if(this.contextUserSearchFormGroup.value.applicationModule){
+			this.contextUserFilters.applicationModuleIDEquals = this.contextUserSearchFormGroup.value.applicationModule.id;
 		}
 		
 		this.searchContextUser(0);

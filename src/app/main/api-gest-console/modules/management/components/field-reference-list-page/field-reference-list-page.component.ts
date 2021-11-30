@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { ContextUserDTO, FieldReferenceDTO, FieldReferenceResourceService, ObjectReferenceDTO, ObjectReferenceResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, ContextUserDTO, FieldReferenceDTO, FieldReferenceResourceService, ObjectReferenceDTO, ObjectReferenceResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigContextUserNewUpdateModalComponent } from '../context-user-new-update-modal/context-user-new-update-modal.component';
 import { AigFieldReferenceNewUpdateDialogComponent } from '../field-reference-new-update-dialog/field-reference-new-update-dialog.component';
 import { AigObjectReferenceNewUpdateDialogComponent } from '../object-reference-new-update-dialog/object-reference-new-update-dialog.component';
@@ -20,6 +23,8 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -45,6 +50,7 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 	fieldReferenceError: any;
 
 	fieldReferenceDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 	
 
 	private initFieldReferenceSearch() {
@@ -56,6 +62,7 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 			name: [''],
 	
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.fieldReferenceSearchFormGroup.controls['applicationModule'].valueChanges);
 
 		this.fieldReferenceDC = ["name","type","isRequired","isUnique","minLength","maxLength","patternValue","minBytesValue","maxBytesValue", "buttons"];
 	}
@@ -105,6 +112,7 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 
 	fieldReferenceSearchWithFilter() {
 		let searchedId = this.fieldReferenceSearchFormGroup.controls.id.value;
+		
 
 		if(searchedId != null) {
 			this.clearFiltersFieldReference();
@@ -115,7 +123,9 @@ export class AigFieldReferenceListPageComponent extends GenericComponent {
 		}
 		this.fieldReferenceFilters.idEquals = null;
 
-		
+		if(this.fieldReferenceSearchFormGroup.value.applicationModule){
+			this.fieldReferenceFilters.applicationModuleIDEquals = this.fieldReferenceSearchFormGroup.value.applicationModule.id;
+		}
 		this.searchFieldReference(0);
 	}
 

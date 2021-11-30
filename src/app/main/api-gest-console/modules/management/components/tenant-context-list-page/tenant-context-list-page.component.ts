@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { TenantContextDTO, TenantContextResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, TenantContextDTO, TenantContextResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigTenantContextNewUpdateModalComponent } from '../tenant-context-new-update-modal/tenant-context-new-update-modal.component';
 
 @Component({
@@ -18,6 +21,8 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
 		private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
 		aigGenericComponentService: AigGenericComponentService,
 	) { super(aigGenericComponentService) }
 
@@ -43,6 +48,7 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 	tenantContextError: any;
 
 	tenantContextDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 
 
 	private initTenantContextSearch() {
@@ -53,9 +59,11 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 			name: [''],
 			contextCode: [''],
 			nameDatabase: [''],
+			applicationModule: [''],
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.tenantContextSearchFormGroup.controls['applicationModule'].valueChanges);
 
-		this.tenantContextDC = ["id", "name", "contextCode","nameDatabase", "buttons"];
+		this.tenantContextDC = ["id", "name", "contextCode","nameDatabase","applicationModule", "buttons"];
 	}
 
 	private clearFiltersTenantContext() {
@@ -115,6 +123,10 @@ export class AigTenantContextListPageComponent extends GenericComponent {
 		this.tenantContextFilters.idEquals = null;
 
 		this.tenantContextFilters.nameContains = this.tenantContextSearchFormGroup.controls.name.value;
+
+
+		this.tenantContextFilters.applicationModuleIDEquals = this.tenantContextSearchFormGroup.value.applicationModule.id;
+		
 
 		this.searchTenantContext(0);
 	}
