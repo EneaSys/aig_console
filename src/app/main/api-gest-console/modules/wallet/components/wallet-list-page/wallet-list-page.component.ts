@@ -47,9 +47,8 @@ export class AigWalletListPageComponent extends GenericComponent {
 	private initSearch() {
 		this.searchForm = this._formBuilder.group({
             id: [''],
-            name: [''],
-            username: [''],
-            walletId: [''],
+            description: [''],
+            eopoo: ['']
         });
 	}
 
@@ -65,21 +64,17 @@ export class AigWalletListPageComponent extends GenericComponent {
 		let searchedId = this.searchForm.value.id;
 		if (searchedId != null) {
 			this.searchForm.reset();
-			filters['walletId.equals'] = searchedId;
+			filters.idEquals = searchedId;
 		} else {
 			filters = this.searchForm.value;
 
-			if(filters.name) {
-				filters['walletName.contains'] = filters.name;
-				filters.name = null;
+			if(filters.description) {
+				filters.descriptionContains = filters.description;
+				filters.description = null;
 			}
-			if(filters.username) {
-				filters['walletUsername.contains'] = filters.username;
+			if(filters.eopoo) {
+				filters.eopooIdEquals = filters.eopoo.id;
 				filters.username = null;
-			}
-			if(filters.walletId) {
-				filters['walletWalletID.equals'] = filters.walletId;
-				filters.walletId = null;
 			}
 		}
 
