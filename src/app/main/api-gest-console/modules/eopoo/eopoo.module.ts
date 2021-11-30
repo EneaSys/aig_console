@@ -21,6 +21,7 @@ import { EopooDetailComponent } from './components/eopoo-detail/eopoo-detail.com
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AigCommonModule } from 'aig-common/common.module';
 import { AigOldCommonModule } from 'aig-common/old-common/old-common.module';
+import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AigOldCommonModule } from 'aig-common/old-common/old-common.module';
         AigCommonModule,
         // Per i service
         AigOldCommonModule,
+		CommonGenericModule,
 
         FuseSharedModule,
         FuseSidebarModule,

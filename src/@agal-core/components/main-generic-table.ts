@@ -53,6 +53,8 @@ export class AgalGenericTable extends AgalGenericComponent {
             this.sort.push(sortable);
         }
 
+		console.log(this.sort);
+
         if(this.sort.length > 0) {
             this.loadData();
         }

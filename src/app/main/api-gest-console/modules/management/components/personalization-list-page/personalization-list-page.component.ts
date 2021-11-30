@@ -1,9 +1,12 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog, MatSnackBar, PageEvent } from "@angular/material";
-import { PersonalizationDTO, PersonalizationResourceService } from "aig-management";
+import { AigManagementAutocompleteFilterService } from "aig-common/modules/management/services/form/autocomplete-filter.service";
+import { AigManagementAutocompleteFunctionService } from "aig-common/modules/management/services/form/autocomplete-function.service";
+import { ApplicationModuleDTO, PersonalizationDTO, PersonalizationResourceService } from "aig-management";
 import { GenericComponent } from "app/main/api-gest-console/generic-component/generic-component";
 import { AigGenericComponentService } from "app/main/api-gest-console/generic-component/generic-component.service";
+import { Observable } from "rxjs";
 import { AigPersonalizationNewUpdateModalComponent } from "../personalization-new-update-modal/personalization-new-update-modal.component";
 
 @Component({
@@ -18,6 +21,8 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -43,6 +48,7 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 	personalizationError: any;
 
 	personalizationDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 	
 
 	private initPersonalizationSearch() {
@@ -52,9 +58,11 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 		this.personalizationSearchFormGroup = this._formBuilder.group({
 			id: [''],
 			name: [''],
+			applicationModule: [''],
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.personalizationSearchFormGroup.controls['applicationModule'].valueChanges);
 
-		this.personalizationDC = ["id", "name","moduleName","buttons"];
+		this.personalizationDC = ["id", "name","applicationModule","buttons"];
 	}
 
 	private clearFiltersPersonalization() {
@@ -114,6 +122,9 @@ export class AigPersonalizationListPageComponent extends GenericComponent {
 		this.personalizationFilters.idEquals = null;
 
 		this.personalizationFilters.nameContains = this.personalizationSearchFormGroup.controls.name.value;
+	
+		this.personalizationFilters.applicationModuleIDEquals = this.personalizationSearchFormGroup.value.applicationModule.id;
+		
 
 		this.searchPersonalization(0);
 	}

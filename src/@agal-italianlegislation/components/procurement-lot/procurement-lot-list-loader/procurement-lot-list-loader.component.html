@@ -54,7 +54,7 @@
 						<!-- Filed of entity -->
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<td *ngSwitchCase="'cig'">{{ e.cig }}</td>
+						<td *ngSwitchCase="'cig'">{{ e.cig }}<a href="https://dati.anticorruzione.it/superset/dettaglio_cig/{{ e.cig }}" target="_BLANK">anac</a></td>
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
 						<td *ngSwitchCase="'offerExpiryDate'">{{ e.offerExpiryDate | date }}</td>
 						<td *ngSwitchCase="'baseAmount'">{{ e.baseAmount | currency: 'EUR' }}</td>

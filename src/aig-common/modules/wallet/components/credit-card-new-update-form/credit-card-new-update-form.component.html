@@ -1,0 +1,54 @@
+<form *ngIf="step.form" [formGroup]="creditCardNewUpdateForm" (ngSubmit)="submit()">
+
+	<div fxLayout="row" fxLayoutAlign="start start" *ngIf="!wallet">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Wallet</mat-label>
+            <input formControlName="wallet" matInput [matAutocomplete]="walletAutocomplete" required>
+            <mat-autocomplete #walletAutocomplete="matAutocomplete"
+                [displayWith]="walletAutocompleteDisplayService.walletDisplayFn">
+                <mat-option *ngFor="let wallet of filteredWallet | async" [value]="wallet">
+                    {{ wallet.description }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Codice</mat-label>
+            <input formControlName="code" matInput required>
+        </mat-form-field>
+    </div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Pin</mat-label>
+            <input formControlName="pin" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <h1 *ngIf="!isUpdate">Portafoglio {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">Portafoglio {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    OK
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newCreditCard()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
+</div>

@@ -55,6 +55,25 @@
 
     </div>
 
+	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+		<div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16" id="wallet-list">
+                <div class="h4 m-16 mt-0 mb-0">Portafoglio</div>
+				<aig-wallet-list-table [dataSource]="walletDTOs" [displayColumns]="walletDC" [error]="walletError"></aig-wallet-list-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addWallet(eopooDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>   
+        </div>
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            
+        </div>
+
+    </div>
+<!--
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
         
         <div class="widget p-16" fxFlex.gt-sm="50">
@@ -74,5 +93,5 @@
         </div>
 
     </div>
-
+-->
 </div>

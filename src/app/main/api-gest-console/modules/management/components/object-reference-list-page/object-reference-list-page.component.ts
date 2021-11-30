@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { ContextUserDTO, ObjectReferenceDTO, ObjectReferenceResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, ContextUserDTO, ObjectReferenceDTO, ObjectReferenceResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigContextUserNewUpdateModalComponent } from '../context-user-new-update-modal/context-user-new-update-modal.component';
 import { AigObjectReferenceNewUpdateDialogComponent } from '../object-reference-new-update-dialog/object-reference-new-update-dialog.component';
 
@@ -19,6 +22,8 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -44,6 +49,7 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
 	objectReferenceError: any;
 
 	objectReferenceDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 	
 
 	private initObjectReferenceSearch() {
@@ -56,11 +62,11 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
 			isTypezed: [''],
 			haveStatus: [''],
 			haveGroup: [''],
-			moduleId: [''],
-			moduleName: [''],
+			apllicationModule: [''],
 			entityId: [''],
 			entityName: [''],
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.objectReferenceSearchFormGroup.controls['applicationModule'].valueChanges);
 
 		this.objectReferenceDC = ["name","isTypezed","haveStatus","haveGroup", "buttons"];
 	}
@@ -119,6 +125,9 @@ export class AigObjectReferenceListPageComponent extends GenericComponent {
 			return;
 		}
 		this.objectReferenceFilters.idEquals = null;
+		
+		this.objectReferenceFilters.applicationModuleIDEquals = this.objectReferenceSearchFormGroup.value.applicationModule.id;
+		
 
 		
 		this.searchObjectReference(0);
