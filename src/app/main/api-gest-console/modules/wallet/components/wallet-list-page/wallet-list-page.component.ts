@@ -94,4 +94,8 @@ export class AigWalletListPageComponent extends GenericComponent {
 	newWallet() {
 		this.dialog.open(AigWalletNewUpdateDialogComponent, { data: { } });
 	}
+
+	async publish() {
+		await this.walletResourceService.publishWalletUsingGET(this.filters).toPromise();
+	}
 }
