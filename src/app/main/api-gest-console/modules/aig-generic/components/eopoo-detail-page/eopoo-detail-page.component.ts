@@ -10,6 +10,7 @@ import { AigEopooNewModalComponent } from '../eopoo-new-modal/eopoo-new-modal.co
 import { AigAddressNewUpdateModalComponent } from '../address-new-update-modal/address-new-update-modal.component';
 import { ContextUserEopooResourceService, ContextUserEopooDTO } from 'api-gest';
 import { SellerResourceService, SellerDTO } from 'aig-commerce';
+import { WalletResourceService, WalletDTO } from 'aig-wallet';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { MatSnackBar } from '@angular/material';
 import { AigReferentNewUpdateDialogComponent } from '../referent-new-update-dialog/referent-new-update-dialog.component';
@@ -32,6 +33,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         private eopooResourceService: EopooResourceService,
         private contactResourceService: ContactResourceService,
         private referentResourceService: ReferentResourceService,
+		private walletResourceService: WalletResourceService,
 		private merchantService: AigMerchantService,
         private contextUserEopooResourceService: ContextUserEopooResourceService,
         private sellerResourceService: SellerResourceService,
@@ -46,6 +48,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.loadAddress();
         this.loadContact();
         this.loadReferent();
+		this.loadWallet();
 		this.loadPos();
     }
 
@@ -54,6 +57,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.loadAddress();
         this.loadContact();
         this.loadReferent();
+		this.loadWallet();
 		this.loadPos();
     }
 
@@ -124,7 +128,30 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
 
 
+	// Wallet Section
+	walletDC: string[] = ["name", "username", "wallet", "buttons"];
+    walletDTOs: WalletDTO[];
+    walletError: any;
 
+    async loadWallet() {
+		try {
+			let filters = {
+				eopooCodeEquals: this.eopooDTO.id,
+			};
+			this.walletDTOs = await this.walletResourceService.getAllWalletsUsingGET(filters).toPromise();
+		} catch(e) {
+			this.walletError = e;
+		}
+    }
+
+    addWallet(eopooDTO: EopooDTO) {
+        this.dialog.open(AigMerchantNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
+    }
+
+
+
+
+	// POS Section
 	posDC: string[] = ["name", "username", "wallet", "buttons"];
     posDTOs: any[];
     posError: any;

@@ -10,6 +10,7 @@ import { AigMerchantNewUpdateFormComponent } from './components/merchant-new-upd
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { AigMerchantService } from './services/merchant.service';
+import { AigWalletApiModule } from 'aig-wallet';
 
 @NgModule({
 	imports: [
@@ -21,6 +22,8 @@ import { AigMerchantService } from './services/merchant.service';
 		InputTextModule,
 		FormsModule,
 		ReactiveFormsModule,
+
+		AigWalletApiModule,
 
 		TranslateModule,
 
