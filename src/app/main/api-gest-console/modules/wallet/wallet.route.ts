@@ -3,6 +3,7 @@ import { WalletResolver } from "aig-common/modules/wallet/resolver/wallet.resolv
 import { AuthGuardService } from "auth/auth-guard.service";
 import { AigCreditCardListPageComponent } from "./components/credit-card-list-page/credit-card-list-page.component";
 import { AigMerchantListPageComponent } from "./components/merchant-list-page/merchant-list-page.component";
+import { AigTransactionListPageComponent } from "./components/transaction-list-page/transaction-list-page.component";
 import { AigWalletDetailPageComponent } from "./components/wallet-detail-page/wallet-detail-page.component";
 import { AigWalletListPageComponent } from "./components/wallet-list-page/wallet-list-page.component";
 
@@ -77,6 +78,33 @@ export const walletRoute: Routes = [
                     {
                         path: 'list',
                         component: AigMerchantListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*
+					{
+                        path: 'detail/:id',
+                        component: AigProcurementDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            //merchant:  ProcurementResolver,
+                        },
+                    },
+					*/
+                ]
+            },
+
+			{
+                path: 'transaction',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigTransactionListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
                     /*
