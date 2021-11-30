@@ -58,8 +58,7 @@
         <!-- CONTENT -->
         <div class="content mb-48">
 
-			<pre>{{ dataSource | json }}</pre>
-            <!-- <aig-credit-card-list-table [dataSource]="dataSource" [displayColumns]="displayColumns" [error]="error"></aig-credit-card-list-table>-->
+            <aig-credit-card-list-table [dataSource]="dataSource" [displayColumns]="displayColumns" [error]="error"></aig-credit-card-list-table>
 
             <button mat-fab class="accent" id="add-credit-card-button" (click)="newCreditCard()" aria-label="add buyer">
                 <mat-icon>add</mat-icon>

@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="!data.creditCard" class="title dialog-title">{{ 'MAIN.CREATE_NEW' | translate | titlecase }} CreditCard</span>
-            <span *ngIf="data.creditCard" class="title dialog-title">{{ 'MAIN.EDIT' | translate | titlecase }} CreditCard</span>
+            <span *ngIf="!data.creditCard" class="title dialog-title">{{ 'MAIN.CREATE_NEW' | translate | titlecase }} Carta di Credito</span>
+            <span *ngIf="data.creditCard" class="title dialog-title">{{ 'MAIN.EDIT' | translate | titlecase }} Carta di Credito</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -10,6 +10,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-        <!--<aig-credit-card-new-update-form [credit-card]="data.creditCard"></aig-credit-card-new-update-form>-->
+        <aig-credit-card-new-update-form [creditCard]="data.creditCard" [wallet]="data.wallet"></aig-credit-card-new-update-form>
     </div>
 </div>

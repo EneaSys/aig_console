@@ -32,7 +32,7 @@
 		<div class="widget p-16" fxFlex.gt-sm="30">
             <div class="fuse-card auto-width p-16" id="credit-card-list">
                 <div class="h4 m-16 mt-0 mb-0">Carta di Credito</div>
-				<pre>{{ creditCardDTOs | json }}</pre>
+				<aig-credit-card-list-table [dataSource]="creditCardDTOs" [displayColumns]="creditCardDC" [error]="creditCardError"></aig-credit-card-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addCreditCard(walletDTO)">
                     <mat-icon>add</mat-icon>

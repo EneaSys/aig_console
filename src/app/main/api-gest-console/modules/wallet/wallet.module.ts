@@ -59,6 +59,7 @@ import { AigCreditCardListPageComponent } from './components/credit-card-list-pa
 	entryComponents: [
 		AigMerchantNewUpdateDialogComponent,
 		AigWalletNewUpdateDialogComponent,
+		AigCreditCardNewUpdateDialogComponent,
 
 	],
 })

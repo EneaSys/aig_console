@@ -17,6 +17,8 @@ import { WalletResolver } from './resolver/wallet.resolver';
 import { CommonGenericModule } from '../generic/common-generic.module';
 import { AigWalletAutocompleteDisplayService } from './services/autocomplete-function.service';
 import { AigWalletAutocompleteFilterService } from './services/autocomplete-filter.service';
+import { AigCreditCardListTableComponent } from './components/credit-card-list-table/credit-card-list-table.component';
+import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-new-update-form/credit-card-new-update-form.component';
 
 @NgModule({
 	imports: [
@@ -57,6 +59,11 @@ import { AigWalletAutocompleteFilterService } from './services/autocomplete-filt
 		AigWalletListTableComponent,
 		AigWalletNewUpdateFormComponent,
 
+		AigCreditCardListTableComponent,
+		AigCreditCardNewUpdateFormComponent,
+
+
+		
 	],
 	exports: [
 		AigMerchantListTableComponent,
@@ -64,6 +71,10 @@ import { AigWalletAutocompleteFilterService } from './services/autocomplete-filt
 
 		AigWalletListTableComponent,
 		AigWalletNewUpdateFormComponent,
+
+		AigCreditCardListTableComponent,
+		AigCreditCardNewUpdateFormComponent,
+
 
 	],
 	

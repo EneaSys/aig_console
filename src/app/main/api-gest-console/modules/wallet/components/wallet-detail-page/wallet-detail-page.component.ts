@@ -13,6 +13,7 @@ import { GenericComponent } from 'app/main/api-gest-console/generic-component/ge
 import { AigMerchantService } from 'aig-common/modules/wallet/services/merchant.service';
 import { AigMerchantNewUpdateDialogComponent } from '../merchant-new-update-dialog/merchant-new-update-dialog.component';
 import { AigWalletNewUpdateDialogComponent } from '../wallet-new-update-dialog/wallet-new-update-dialog.component';
+import { AigCreditCardNewUpdateDialogComponent } from '../credit-card-new-update-dialog/credit-card-new-update-dialog.component';
 
 
 @Component({
@@ -108,7 +109,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
     }
 
     addCreditCard(walletDTO: WalletDTO) {
-        this.dialog.open(AigMerchantNewUpdateDialogComponent, { data: { wallet: walletDTO } });
+        this.dialog.open(AigCreditCardNewUpdateDialogComponent, { data: { wallet: walletDTO } });
     }
 
 
