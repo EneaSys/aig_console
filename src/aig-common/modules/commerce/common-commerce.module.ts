@@ -105,17 +105,15 @@ import { ButtonModule } from 'primeng/button';
         
         RouterModule,
         BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
         FlexLayoutModule,
         TranslateModule,
 
         InputTextModule,
         BrowserModule,
         BrowserAnimationsModule,
-        InputTextModule,
         ButtonModule,
         FormsModule,
+		ReactiveFormsModule,
   
 
 

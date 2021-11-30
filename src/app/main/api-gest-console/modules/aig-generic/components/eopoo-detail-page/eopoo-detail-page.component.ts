@@ -14,6 +14,8 @@ import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-b
 import { MatSnackBar } from '@angular/material';
 import { AigReferentNewUpdateDialogComponent } from '../referent-new-update-dialog/referent-new-update-dialog.component';
 import { AigContactNewUpdateDialogComponent } from '../contact-new-update-dialog/contact-new-update-dialog.component';
+import { AigMerchantService } from 'aig-common/modules/wallet/services/merchant.service';
+import { AigMerchantNewUpdateDialogComponent } from '../../../wallet/components/merchant-new-update-dialog/merchant-new-update-dialog.component';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         private eopooResourceService: EopooResourceService,
         private contactResourceService: ContactResourceService,
         private referentResourceService: ReferentResourceService,
+		private merchantService: AigMerchantService,
         private contextUserEopooResourceService: ContextUserEopooResourceService,
         private sellerResourceService: SellerResourceService,
         private addressResourceService: AddressResourceService,
@@ -43,6 +46,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.loadAddress();
         this.loadContact();
         this.loadReferent();
+		this.loadPos();
     }
 
     async reloadPage() {
@@ -50,6 +54,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.loadAddress();
         this.loadContact();
         this.loadReferent();
+		this.loadPos();
     }
 
     editEopoo(eopooDTO: EopooDTO) {
@@ -116,5 +121,29 @@ export class AigEopooDetailPageComponent extends GenericComponent {
     addReferent(eopooDTO: EopooDTO) {
         this.dialog.open(AigReferentNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
     }
+
+
+
+
+	posDC: string[] = ["name", "username", "wallet", "buttons"];
+    posDTOs: any[];
+    posError: any;
+
+    async loadPos() {
+		try {
+			let filters = {
+				'merchantWalletID.equals': this.eopooDTO.id,
+			};
+			this.posDTOs = await this.merchantService.getMerchants(filters).toPromise();
+		} catch(e) {
+			this.posError = e;
+		}
+    }
+
+    addPos(eopooDTO: EopooDTO) {
+        this.dialog.open(AigMerchantNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
+    }
+
+
 
 }

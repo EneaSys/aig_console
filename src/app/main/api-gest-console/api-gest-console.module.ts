@@ -32,7 +32,9 @@ import { FuseWidgetModule } from '@fuse/components';
 import { AigWelcomeModule } from './modules/welcome/welcome.modlue';
 import { AIG_M8T_PATH } from 'aig-management';
 import { AIG_ITALIANLEGISLATION_PATH } from 'aig-italianlegislation';
+import { AIG_WALLET_PATH } from 'aig-wallet';
 import { AIG_E4Y_PATH } from 'aig-entity-manager';
+import { AigWalletModule } from './modules/wallet/wallet.module';
 
 
 @NgModule({
@@ -73,7 +75,9 @@ import { AIG_E4Y_PATH } from 'aig-entity-manager';
         AigIppModule,
         AigSolidarityModule,
         AigCommerceModule,
+		AigWalletModule,
 
+		
     ],
     exports: [],
     providers: [
@@ -123,6 +127,10 @@ import { AIG_E4Y_PATH } from 'aig-entity-manager';
 		{
             provide: AIG_E4Y_PATH,
             useValue: API_URL
+        },
+		{
+            provide: AIG_WALLET_PATH,
+            useValue: API_URL + "/wallet"
         },
     ],
 })

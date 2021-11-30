@@ -70,7 +70,7 @@ export const navigation: FuseNavigation[] = [
         title    : 'Public Procurement',
         type     : 'group',
         children : [
-            {
+			{
                 id       : 'procurement-list-page',
                 title    : 'Procurement',
                 translate: 'NAV.IPP.PROCUREMENT',
@@ -108,6 +108,22 @@ export const navigation: FuseNavigation[] = [
             },
         ]
     },
+	{
+        id       : 'wallet',
+        title    : 'Wallet system',
+        type     : 'group',
+        children : [
+			{
+				id       : 'pos-list-page',
+				title    : 'POS',
+				type     : 'item',
+				icon     : 'store',
+				url      : '/wallet/merchant',
+			},
+		]
+	},
+
+
 
     {
         id       : 'commerce',
