@@ -94,4 +94,8 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 	newCreditCard() {
 		this.dialog.open(AigCreditCardNewUpdateDialogComponent, { data: { } });
 	}
+
+	async publish() {
+		await this.creditCardResourceService.publishCreditCardUsingGET(this.filters).toPromise();
+	}
 }

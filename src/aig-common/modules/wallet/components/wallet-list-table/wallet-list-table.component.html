@@ -23,7 +23,7 @@
 
 		<ng-container matColumnDef="eopoo">
             <mat-header-cell *matHeaderCellDef>Anagrafica</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.eopooCode }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.eopoo | eopooName }}</mat-cell>
         </ng-container>
 		
         <ng-container matColumnDef="buttons">

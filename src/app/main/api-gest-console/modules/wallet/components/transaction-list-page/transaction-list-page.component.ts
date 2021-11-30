@@ -88,4 +88,8 @@ export class AigTransactionListPageComponent extends GenericComponent {
 	newTransaction() {
 		this.dialog.open(AigTransactionNewUpdateDialogComponent, { data: { } });
 	}
+
+	async publish() {
+		await this.transactionResourceService.publishTransactionUsingGET(this.filters).toPromise();
+	}
 }
