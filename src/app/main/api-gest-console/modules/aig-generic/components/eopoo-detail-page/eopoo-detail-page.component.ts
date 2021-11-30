@@ -17,6 +17,7 @@ import { AigReferentNewUpdateDialogComponent } from '../referent-new-update-dial
 import { AigContactNewUpdateDialogComponent } from '../contact-new-update-dialog/contact-new-update-dialog.component';
 import { AigMerchantService } from 'aig-common/modules/wallet/services/merchant.service';
 import { AigMerchantNewUpdateDialogComponent } from '../../../wallet/components/merchant-new-update-dialog/merchant-new-update-dialog.component';
+import { AigWalletNewUpdateDialogComponent } from '../../../wallet/components/wallet-new-update-dialog/wallet-new-update-dialog.component';
 
 
 @Component({
@@ -49,7 +50,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.loadContact();
         this.loadReferent();
 		this.loadWallet();
-		this.loadPos();
+
     }
 
     async reloadPage() {
@@ -58,7 +59,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
         this.loadContact();
         this.loadReferent();
 		this.loadWallet();
-		this.loadPos();
+
     }
 
     editEopoo(eopooDTO: EopooDTO) {
@@ -145,31 +146,11 @@ export class AigEopooDetailPageComponent extends GenericComponent {
     }
 
     addWallet(eopooDTO: EopooDTO) {
-        this.dialog.open(AigMerchantNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
+        this.dialog.open(AigWalletNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
     }
 
 
 
-
-	// POS Section
-	posDC: string[] = ["name", "username", "wallet", "buttons"];
-    posDTOs: any[];
-    posError: any;
-
-    async loadPos() {
-		try {
-			let filters = {
-				'merchantWalletID.equals': this.eopooDTO.id,
-			};
-			this.posDTOs = await this.merchantService.getMerchants(filters).toPromise();
-		} catch(e) {
-			this.posError = e;
-		}
-    }
-
-    addPos(eopooDTO: EopooDTO) {
-        this.dialog.open(AigMerchantNewUpdateDialogComponent, { data: { eopoo: eopooDTO } });
-    }
 
 
 

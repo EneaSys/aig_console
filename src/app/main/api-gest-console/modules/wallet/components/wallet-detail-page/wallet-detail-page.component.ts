@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-import { WalletResourceService, WalletDTO, CreditCardResourceService, CreditCardDTO } from 'aig-wallet';
+import { WalletResourceService, WalletDTO, CreditCardResourceService, CreditCardDTO, TransactionDTO, TransactionResourceService } from 'aig-wallet';
 
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -30,6 +30,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		private walletResourceService: WalletResourceService,
 		private merchantService: AigMerchantService,
 		private creditCardResourceService: CreditCardResourceService,
+		private transactionResourceService: TransactionResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
@@ -71,7 +72,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
     
 
 	// POS Section
-	posDC: string[] = ["name", "username", "buttons"];
+	posDC: string[] = ["name", "username", "password", "buttons"];
     posDTOs: any[];
     posError: any;
 
@@ -112,6 +113,23 @@ export class AigWalletDetailPageComponent extends GenericComponent {
         this.dialog.open(AigCreditCardNewUpdateDialogComponent, { data: { wallet: walletDTO } });
     }
 
+
+
+	// Transaction
+	transactionDC: string[] = ["creationDateTime", "buttons"];
+    transactionDTOs: TransactionDTO[];
+    transactionError: any;
+
+    async loadTransaction() {
+		try {
+			let filters = {
+				walletIdEquals: this.walletDTO.id,
+			};
+			this.transactionDTOs = await this.transactionResourceService.getAllTransactionsUsingGET(filters).toPromise();
+		} catch(e) {
+			this.transactionError = e;
+		}
+    }
 
 
 }

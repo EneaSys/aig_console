@@ -26,6 +26,11 @@
             <mat-cell *matCellDef="let e">{{ e.username }}</mat-cell>
         </ng-container>
 
+		<ng-container matColumnDef="password">
+            <mat-header-cell *matHeaderCellDef>Password</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.password }}</mat-cell>
+        </ng-container>
+
 		<ng-container matColumnDef="wallet">
             <mat-header-cell *matHeaderCellDef>Wallet</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.wallet_id }}</mat-cell>

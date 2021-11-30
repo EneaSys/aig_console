@@ -14,7 +14,7 @@
 
 		<div class="widget" fxFlex.gt-sm="20">
             <div class="fuse-card auto-width p-16 m-16">
-                <pre>{{ walletDTO | json }}</pre>
+                <pre>{{ walletDTO.eopoo | json }}</pre>
             </div>
         </div>
 
@@ -40,16 +40,18 @@
             </div>   
         </div>
 
-
-		
-        
     </div>
 
 
 	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
 
-
-
+		<div class="widget p-16" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16" id="transaction-list">
+                <div class="h4 m-16 mt-0 mb-0">Transazioni</div>
+				<pre>{{ transactionDTOs }}</pre>
+                <div style="height: 35px;"></div>
+            </div>   
+        </div>
 
     </div>
 

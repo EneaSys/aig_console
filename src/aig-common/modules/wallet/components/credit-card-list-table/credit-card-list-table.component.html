@@ -28,7 +28,7 @@
 
 		<ng-container matColumnDef="wallet">
             <mat-header-cell *matHeaderCellDef>Portafoglio</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.wallet }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.wallet.description }}</mat-cell>
         </ng-container>
 		
         <ng-container matColumnDef="buttons">
