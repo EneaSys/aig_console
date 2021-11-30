@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AigMerchantListTableComponent } from './components/merchant-list-table/merchant-list-table.component';
-import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule, MatTableModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule, MatTableModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { AigMerchantNewUpdateFormComponent } from './components/merchant-new-update-form/merchant-new-update-form.component';
@@ -19,6 +19,9 @@ import { AigWalletAutocompleteDisplayService } from './services/autocomplete-fun
 import { AigWalletAutocompleteFilterService } from './services/autocomplete-filter.service';
 import { AigCreditCardListTableComponent } from './components/credit-card-list-table/credit-card-list-table.component';
 import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-new-update-form/credit-card-new-update-form.component';
+import { AigTransactionListTableComponent } from './components/transaction-list-table/transaction-list-table.component';
+import { AigTransactionNewUpdateFormComponent } from './components/transaction-new-update-form/transaction-new-update-form.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
 	imports: [
@@ -44,6 +47,9 @@ import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-ne
 		MatFormFieldModule,
 		MatInputModule,
         MatAutocompleteModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
+		
 	],
 	providers: [
 		AigWalletAutocompleteDisplayService,
@@ -62,6 +68,9 @@ import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-ne
 		AigCreditCardListTableComponent,
 		AigCreditCardNewUpdateFormComponent,
 
+		AigTransactionListTableComponent,
+		AigTransactionNewUpdateFormComponent,
+
 
 		
 	],
@@ -74,6 +83,10 @@ import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-ne
 
 		AigCreditCardListTableComponent,
 		AigCreditCardNewUpdateFormComponent,
+
+		AigTransactionListTableComponent,
+		AigTransactionNewUpdateFormComponent,
+
 
 
 	],
