@@ -114,6 +114,13 @@ export const navigation: FuseNavigation[] = [
         type     : 'group',
         children : [
 			{
+				id       : 'wallet-list-page',
+				title    : 'Wallet',
+				type     : 'item',
+				icon     : 'wallet',
+				url      : '/wallet/wallet',
+			},
+			{
 				id       : 'pos-list-page',
 				title    : 'POS',
 				type     : 'item',

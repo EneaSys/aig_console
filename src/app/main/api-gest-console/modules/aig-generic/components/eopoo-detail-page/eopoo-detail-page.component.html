@@ -60,7 +60,7 @@
 		<div class="widget p-16" fxFlex.gt-sm="50">
             <div class="fuse-card auto-width p-16" id="wallet-list">
                 <div class="h4 m-16 mt-0 mb-0">Portafoglio</div>
-				<pre>{{ walletDTOs | json }}</pre>
+				<aig-wallet-list-table [dataSource]="walletDTOs" [displayColumns]="walletDC" [error]="walletError"></aig-wallet-list-table>
                 <div style="height: 35px;"></div>
                 <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPos(eopooDTO)">
                     <mat-icon>add</mat-icon>

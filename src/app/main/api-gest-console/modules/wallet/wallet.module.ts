@@ -11,6 +11,9 @@ import { AigCommonWalletModule } from 'aig-common/modules/wallet/common-wallet.m
 import { walletRoute } from './wallet.route';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AigWalletNewUpdateDialogComponent } from './components/wallet-new-update-dialog/wallet-new-update-dialog.component';
+import { AigWalletListPageComponent } from './components/wallet-list-page/wallet-list-page.component';
+import { AigWalletDetailPageComponent } from './components/wallet-detail-page/wallet-detail-page.component';
 
 @NgModule({
 	imports: [ 
@@ -43,9 +46,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		AigMerchantListPageComponent,
 		AigMerchantNewUpdateDialogComponent,
 
+		AigWalletListPageComponent,
+		AigWalletDetailPageComponent,
+		AigWalletNewUpdateDialogComponent,
+
 	],
 	entryComponents: [
 		AigMerchantNewUpdateDialogComponent,
+		AigWalletNewUpdateDialogComponent,
 
 	],
 })

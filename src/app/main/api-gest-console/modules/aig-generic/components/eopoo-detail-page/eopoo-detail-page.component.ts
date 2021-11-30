@@ -129,7 +129,7 @@ export class AigEopooDetailPageComponent extends GenericComponent {
 
 
 	// Wallet Section
-	walletDC: string[] = ["name", "username", "wallet", "buttons"];
+	walletDC: string[] = ["description", "buttons"];
     walletDTOs: WalletDTO[];
     walletError: any;
 
