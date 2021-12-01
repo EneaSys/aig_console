@@ -21,6 +21,37 @@
             <mat-cell *matCellDef="let e">{{ e.creationDateTime }}</mat-cell>
         </ng-container>
 
+		<ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef>Importo</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.amount }}</mat-cell>
+        </ng-container>
+
+		<ng-container matColumnDef="sender">
+            <mat-header-cell *matHeaderCellDef>Inviante</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngFor="let giveHave of e.giveHaves">
+					<div *ngIf="giveHave.type == 'OUTPUT'">
+						<span>{{ giveHave.wallet.eopoo | eopooName }}</span><br>
+						<span>{{ giveHave.wallet.description }}</span>
+					</div>
+				</span>
+			</mat-cell>
+        </ng-container>
+		
+		<ng-container matColumnDef="reciver">
+            <mat-header-cell *matHeaderCellDef>Ricevente</mat-header-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngFor="let giveHave of e.giveHaves">
+					<div *ngIf="giveHave.type == 'INPUT'">
+						<span>{{ giveHave.wallet.eopoo | eopooName }}</span><br>
+						<span>{{ giveHave.wallet.description }}</span>
+					</div>
+				</span>
+			</mat-cell>
+        </ng-container>
+
+
+
 		
 		
         <ng-container matColumnDef="buttons">
@@ -33,14 +64,6 @@
                     <button mat-menu-item [routerLink]="'/wallet/transaction/detail/' + e.id">
                       <mat-icon>details</mat-icon>
                       <span>{{ 'MAIN.DETAILS' | translate | titlecase }}</span>
-                    </button>
-                    <button mat-menu-item (click)="editTransaction(e)">
-                        <mat-icon>edit</mat-icon>
-                        <span>{{ 'MAIN.EDIT' | translate | titlecase }}</span>
-                      </button>
-                    <button mat-menu-item (click)="deleteTransaction(e.id)">
-                      <mat-icon>delete</mat-icon>
-                      <span>{{ 'MAIN.DELETE' | translate | titlecase }}</span>
                     </button>
                   </mat-menu>
             </mat-cell>
