@@ -22,6 +22,7 @@ import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-ne
 import { AigTransactionListTableComponent } from './components/transaction-list-table/transaction-list-table.component';
 import { AigTransactionNewUpdateFormComponent } from './components/transaction-new-update-form/transaction-new-update-form.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	imports: [
@@ -33,6 +34,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 		InputTextModule,
 		FormsModule,
 		ReactiveFormsModule,
+		FlexLayoutModule,
 
 		AigWalletApiModule,
 		CommonGenericModule,
