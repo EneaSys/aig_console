@@ -25,7 +25,7 @@ export class AigWalletListPageComponent extends GenericComponent {
 	) { super(aigGenericComponentService) }
 
 	dataSource: WalletDTO[];
-	displayColumns: string[] = ['id', 'description', 'eopoo', 'buttons'];
+	displayColumns: string[] = ['id', 'eopoo', 'description', 'buttons'];
 	error: any;
 
 	loadPage() {

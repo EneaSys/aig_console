@@ -119,6 +119,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'wallet',
 				url      : '/wallet/wallet',
+				permission: ['wallet.wallet.get'],
 			},
 			{
 				id       : 'pos-list-page',
@@ -126,6 +127,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'store',
 				url      : '/wallet/merchant',
+				permission: ['wallet.pos.get'],
 			},
 			{
 				id       : 'credit-card-list-page',
@@ -133,6 +135,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'credit-card',
 				url      : '/wallet/credit-card',
+				permission: ['wallet.creditCard.get'],
 			},
 
 			{
@@ -141,6 +144,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'transaction',
 				url      : '/wallet/transaction',
+				permission: ['wallet.transaction.get'],
 			},
 		]
 	},
