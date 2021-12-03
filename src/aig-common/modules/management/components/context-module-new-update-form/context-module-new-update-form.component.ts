@@ -33,6 +33,9 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
     @Input()
     contextModule: ContextModuleDTO;
 
+	@Input()
+	applicationModule: ApplicationModuleDTO;
+
     isUpdate: boolean = false;
 
     contextModuleNewUpdateForm: FormGroup;
@@ -44,7 +47,7 @@ export class AigContextModuleNewUpdateFormComponent implements OnInit {
         this.contextModuleNewUpdateForm = this._formBuilder.group({
             id:[''],
             active: [false],
-            applicationModule: ['', Validators.required],
+            applicationModule: [this.applicationModule, Validators.required],
             tenantContext: ['', Validators.required]
         })
         

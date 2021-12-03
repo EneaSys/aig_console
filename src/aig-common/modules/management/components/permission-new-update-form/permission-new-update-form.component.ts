@@ -7,6 +7,7 @@ import { AigManagementAutocompleteFilterService } from '../../services/form/auto
 import { AigManagementAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { ApplicationModuleDTO, PermissionDTO, PermissionResourceService, RoleDTO } from 'aig-management';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-permission-new-update-form',
@@ -32,6 +33,9 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
 
     @Input()
     permission: PermissionDTO;
+	
+	@Input()
+	applicationModule: ApplicationModuleDTO;
 
     isUpdate: boolean = false;
 
@@ -44,7 +48,7 @@ export class AigPermissionNewUpdateFormComponent implements OnInit {
             id: [''],
             name: ['', Validators.required],
             permissionCode: ['', Validators.required],
-            applicationModule: ['', Validators.required],
+            applicationModule: [this.applicationModule, [Validators.required, AigValidator.haveId]],
         });
 
         if (this.permission != null) {
