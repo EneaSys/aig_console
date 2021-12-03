@@ -30,6 +30,7 @@ import { AigReferentDetailPageComponent } from './components/referent-detail-pag
 import { AigContactListPageComponent } from './components/contact-list-page/contact-list-page.component';
 import { AigContactNewUpdateDialogComponent } from './components/contact-new-update-dialog/contact-new-update-dialog.component';
 import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
+import { AigCommonWalletModule } from 'aig-common/modules/wallet/common-wallet.module';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { AigContactDetailPageComponent } from './components/contact-detail-page/
         CommonGenericModule,
 
         AigGenericClientModule,
+		AigCommonWalletModule,
 
         FormsModule,
         ReactiveFormsModule,

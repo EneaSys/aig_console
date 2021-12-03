@@ -1,0 +1,47 @@
+<form *ngIf="step.form" [formGroup]="walletNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!eopoo">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Anagrafica</mat-label>
+            <input formControlName="eopoo" matInput [matAutocomplete]="eopooAutocomplete" required>
+            <mat-autocomplete #eopooAutocomplete="matAutocomplete"
+                [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+                    {{ eopoo | eopooName }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Descrizione Wallet</mat-label>
+            <input formControlName="description" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">{{ 'MAIN.UPDATE' | translate | titlecase }}</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <h1 *ngIf="!isUpdate">Portafoglio {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    <h1 *ngIf="isUpdate">Portafoglio {{ 'MAIN.UPDATE_OK' | translate }}</h1>
+    
+    <hr>
+
+    OK
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newWallet()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
+</div>

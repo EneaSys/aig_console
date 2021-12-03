@@ -1,0 +1,80 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="wallet-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="resetFilters()">{{ 'MAIN.RESET_FILTERS' | translate | titlecase }}</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">{{ 'MAIN.FILTERS' | translate | titlecase }}</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <form [formGroup]="searchForm" (ngSubmit)="search()" class="p-8">
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Id</mat-label>
+                                        <input matInput formControlName="id">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Descrizione</mat-label>
+                                        <input matInput formControlName="description">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>Anagrafica</mat-label>
+										<input formControlName="eopoo" matInput [matAutocomplete]="eopooAutocomplete">
+                                        <mat-autocomplete #eopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+                                            <mat-option *ngFor="let eopoo of filteredEopoo | async" [value]="eopoo">
+												{{ eopoo | eopooName }}
+											</mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+                            </form>
+
+							<div fxLayout="row" fxLayoutAlign="end top">
+								<button mat-raised-button (click)="publish()">Aggiorna</button>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('wallet-sidebar')">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h2>Wallet</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+
+            <aig-wallet-list-table [dataSource]="dataSource" [displayColumns]="displayColumns" [error]="error"></aig-wallet-list-table>
+
+            <button mat-fab class="accent" id="add-wallet-button" (click)="newWallet()" aria-label="add buyer">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+</div>
+

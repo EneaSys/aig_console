@@ -7,6 +7,7 @@ import { AigManagementAutocompleteFilterService } from '../../services/form/auto
 import { AigManagementAutocompleteFunctionService } from '../../services/form/autocomplete-function.service';
 import { Observable } from 'rxjs';
 import { ApplicationModuleDTO, RoleDTO, RoleResourceService } from 'aig-management';
+import { AigValidator } from 'aig-common/AigValidator';
 
 @Component({
     selector: 'aig-role-new-update-form',
@@ -34,6 +35,9 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
     @Input()
     role: RoleDTO;
 
+	@Input()
+    applicationModule: ApplicationModuleDTO;
+
     isUpdate: boolean = false;
 
     roleNewUpdateForm: FormGroup;
@@ -45,7 +49,7 @@ export class AigRoleNewUpdateFormComponent implements OnInit {
             id: [''],
             name: ['', Validators.required],
             roleCode: ['', Validators.required],
-            applicationModule: ['', Validators.required],
+            applicationModule: [this.applicationModule, [Validators.required, AigValidator.haveId]],
         })
 
         if (this.role != null) {

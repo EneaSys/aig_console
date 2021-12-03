@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { ContextUserDTO, ObjectReferenceDTO, ObjectReferenceResourceService, TypeCategoryReferenceDTO, TypeCategoryReferenceResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, ContextUserDTO, ObjectReferenceDTO, ObjectReferenceResourceService, TypeCategoryReferenceDTO, TypeCategoryReferenceResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigContextUserNewUpdateModalComponent } from '../context-user-new-update-modal/context-user-new-update-modal.component';
 import { AigObjectReferenceNewUpdateDialogComponent } from '../object-reference-new-update-dialog/object-reference-new-update-dialog.component';
 import { AigTypeCategoryReferenceNewUpdateDialogComponent } from '../type-category-reference-new-update-dialog/type-category-reference-new-update-dialog.component';
@@ -20,6 +23,8 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -45,6 +50,7 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 	typeCategoryReferenceError: any;
 
 	typeCategoryReferenceDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 	
 
 	private initTypeCategoryReferenceSearch() {
@@ -53,10 +59,12 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 
 		this.typeCategoryReferenceSearchFormGroup = this._formBuilder.group({
 			id: [''],
+			applicationModule: [''],
 			
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.typeCategoryReferenceSearchFormGroup.controls['applicationModule'].valueChanges);
 
-		this.typeCategoryReferenceDC = ["name","code", "buttons"];
+		this.typeCategoryReferenceDC = ["applicationModule","name","code", "buttons"];
 	}
 
 	private clearFiltersTypeCategoryReference() {
@@ -113,6 +121,9 @@ export class AigTypeCategoryReferenceListPageComponent extends GenericComponent 
 			return;
 		}
 		this.typeCategoryReferenceFilters.idEquals = null;
+
+		this.typeCategoryReferenceFilters.applicationModuleIDEquals = this.typeCategoryReferenceSearchFormGroup.value.applicationModule.id;
+		
 
 		
 		this.searchTypeCategoryReference(0);

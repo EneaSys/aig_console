@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatSnackBar, PageEvent } from '@angular/material';
-import { ContextModuleDTO, ContextModuleResourceService } from 'aig-management';
+import { AigManagementAutocompleteFilterService } from 'aig-common/modules/management/services/form/autocomplete-filter.service';
+import { AigManagementAutocompleteFunctionService } from 'aig-common/modules/management/services/form/autocomplete-function.service';
+import { ApplicationModuleDTO, ContextModuleDTO, ContextModuleResourceService } from 'aig-management';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
+import { Observable } from 'rxjs';
 import { AigContextModuleNewUpdateModalComponent } from '../context-module-new-update-modal/context-module-new-update-modal.component';
 
 @Component({
@@ -19,6 +22,8 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 		private _formBuilder: FormBuilder,
 		private _snackBar: MatSnackBar,
         private dialog: MatDialog,
+		public managementFilterService: AigManagementAutocompleteFilterService,
+		public managementAutocompleteService: AigManagementAutocompleteFunctionService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 	
@@ -44,6 +49,7 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 	contextModuleError: any;
 
 	contextModuleDC: string[];
+	filteredApplicationModule: Observable<ApplicationModuleDTO[]>;
 	
 
 	private initContextModuleSearch() {
@@ -56,6 +62,7 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 			applicationModule: [''],
 			tenantContext: [''],
 		});
+		this.filteredApplicationModule = this.managementFilterService.applicationModuleFilter(this.contextModuleSearchFormGroup.controls['applicationModule'].valueChanges);
 
 		this.contextModuleDC = ["id", "active","applicationModule","tenantContext", "buttons"];
 	}
@@ -118,6 +125,9 @@ export class AigContextModuleListPageComponent extends GenericComponent {
 
 		if(this.contextModuleSearchFormGroup.controls.active.value){
 			this.contextModuleFilters.activeEquals = this.contextModuleSearchFormGroup.controls.active.value;
+		}
+		if(this.contextModuleSearchFormGroup.value.applicationModule){
+			this.contextModuleFilters.applicationModuleIDEquals = this.contextModuleSearchFormGroup.value.applicationModule.id;
 		}
 
 		this.searchContextModule(0);

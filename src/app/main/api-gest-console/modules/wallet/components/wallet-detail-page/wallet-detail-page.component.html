@@ -1,0 +1,61 @@
+<div id="aig-wallet-detail-page" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-16">
+				<div class="h4 ml-16">Id: {{ walletDTO.id }}</div>
+				<div class="h1 m-8 ml-16">{{ walletDTO.description }}</div>
+
+                <button mat-stroked-button color="primary" (click)="editWallet(walletDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteWallet(walletDTO.id)">Delete</button>
+            </div>
+        </div>
+
+		<div class="widget" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16 m-16">
+                <pre>{{ walletDTO.eopoo | json }}</pre>
+            </div>
+        </div>
+		
+    </div>
+
+	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+		<div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16" id="pos-list">
+                <div class="h4 m-16 mt-0 mb-0">Pos</div>
+				<aig-merchant-list-table [dataSource]="posDTOs" [displayColumns]="posDC" [error]="posError"></aig-merchant-list-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addPos(walletDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>   
+        </div>
+
+		<div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-16" id="credit-card-list">
+                <div class="h4 m-16 mt-0 mb-0">Carte di Credito</div>
+				<aig-credit-card-list-table [dataSource]="creditCardDTOs" [displayColumns]="creditCardDC" [error]="creditCardError"></aig-credit-card-list-table>
+                <div style="height: 35px;"></div>
+                <button mat-fab class="accent" class="add-button-in-list-table" (click)="addCreditCard(walletDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>   
+        </div>
+
+	</div>
+
+	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+		<div class="widget p-16" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16" id="transaction-list">
+                <div class="h4 m-16 mt-0 mb-0">Transazioni</div>
+				<pre>{{ transactionDTOs }}</pre>
+                <div style="height: 35px;"></div>
+            </div>   
+        </div>
+
+    </div>
+
+</div>

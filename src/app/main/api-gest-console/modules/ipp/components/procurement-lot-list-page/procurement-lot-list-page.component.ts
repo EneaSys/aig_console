@@ -76,7 +76,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 			procurementLotCigEquals: [null],
 			contractorEopoo: [null],
 			procurementLotDescriptionContains: [null],
-			procurementLotOfferExpiryDateStart: [null],
+			procurementLotOfferExpiryDateStart: [new Date()],
 			procurementLotOfferExpiryDateEnd: [null],
 			procurementLotCategories: [null],
             awardCriterion: [null],
@@ -132,6 +132,8 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 		if(this.staticEopoo) {
 			filters.proposerCodeEquals = this.staticEopoo.id;
 		}
+		filters.sort = ['procurementLotOfferExpiryDate,asc'];
+
 		this.procurementLotFilters = filters;
 	}
 
