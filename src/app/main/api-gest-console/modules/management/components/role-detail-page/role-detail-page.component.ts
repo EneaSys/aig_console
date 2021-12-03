@@ -45,6 +45,7 @@ export class AigRoleDetailPageComponent extends GenericComponent {
 
     async reloadPage() {
 		this.roleDTO = await this.roleResourceService.getRoleUsingGET(this.roleDTO.id).toPromise();
+		this.loadPermission();
 	}
 
     async deleteRole(id: number) {

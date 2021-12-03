@@ -48,6 +48,7 @@ export class AigApplicationModuleDetailPageComponent extends GenericComponent {
 
 	async reloadPage() {
 		this.applicationModuleDTO = await this.applicationModuleResourceService.getApplicationModuleUsingGET(this.applicationModuleDTO.id).toPromise();
+		this.loadOther();
 	}
 
     async loadOther() {
