@@ -45,6 +45,10 @@ import { AigPersonNewUpdateFormComponent } from './components/person-new-update-
 import { AddressResolver } from './resolver/address.resolver';
 import { ReferentResolver } from './resolver/referent.resolver';
 import { ContactResolver } from './resolver/contact.resolver';
+import { AigFormTypeListTableComponent } from './components/form-type-list-table/form-type-list-table.component';
+import { AigFormTypeNewUpdateFormComponent } from './components/form-type-new-update-form/form-type-new-update-form.component';
+import { AigFormDataListTableComponent } from './components/form-data-list-table/form-data-list-table.component';
+import { AigFormDataNewUpdateFormComponent } from './components/form-data-new-update-form/form-data-new-update-form.component';
 
 @NgModule({
     imports: [
@@ -103,6 +107,12 @@ import { ContactResolver } from './resolver/contact.resolver';
         AigContactEntityDetailComponent,
 
         AigPersonNewUpdateFormComponent,
+
+		AigFormTypeListTableComponent,
+		AigFormTypeNewUpdateFormComponent,
+
+		AigFormDataListTableComponent,
+		AigFormDataNewUpdateFormComponent
     ],
     providers: [
         EopooResolver,
@@ -142,6 +152,12 @@ import { ContactResolver } from './resolver/contact.resolver';
         AigContactEntityDetailComponent,
 
         AigPersonNewUpdateFormComponent,
+
+		AigFormTypeListTableComponent,
+		AigFormTypeNewUpdateFormComponent,
+
+		AigFormDataListTableComponent,
+		AigFormDataNewUpdateFormComponent,
     ],
 })
 export class CommonGenericModule {}

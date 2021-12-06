@@ -1,0 +1,15 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar matDialogTitle class="mat-accent m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span *ngIf="data.formType" class="title dialog-title">Update form Type</span>
+            <span *ngIf="!data.formType" class="title dialog-title">Create new form Type</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+        <aig-form-type-new-update-form [formType]="data.formType"></aig-form-type-new-update-form>
+    </div>
+</div>

@@ -76,24 +76,25 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let eopooGeneric: EopooDTO = {
+        let eopoo: EopooDTO = {
             id: this.eopooGenericNewUpdateForm.value.id,
             taxNumber: this.eopooGenericNewUpdateForm.value.taxNumber,
             eopooTypeId: this.eopooGenericNewUpdateForm.value.eopooType.id,
             genericEopoo: this.eopooGenericNewUpdateForm.value,
         };
+		eopoo.eopooType = this.eopoo.eopooType;
 
         try {
             let postOrPut: string;
             if (this.isUpdate) {
-                await this.eopooResourceService.updateEopooUsingPUT(eopooGeneric).toPromise();
+                await this.eopooResourceService.updateEopooUsingPUT(eopoo).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.eopooResourceService.createEopooUsingPOST(eopooGeneric).toPromise();
+                await this.eopooResourceService.createEopooUsingPOST(eopoo).toPromise();
                 postOrPut = "created";
             }
 
-            this.eopooResult = eopooGeneric;
+            this.eopooResult = eopoo;
 
             this.eventService.reloadCurrentPage();
 

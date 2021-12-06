@@ -1,0 +1,35 @@
+<form *ngIf="step.form" [formGroup]="formDataNewUpdateForm" (ngSubmit)="submit()">
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>n1</mat-label>
+            <input formControlName="n1" matInput />
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+        <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+
+    <h1 *ngIf="!isUpdate">Form Data creato con successo</h1>
+    <h1 *ngIf="isUpdate">Form Data con successo</h1>
+    
+    <hr>
+
+
+    <div *ngIf="!isUpdate">
+        <br>
+        <hr>
+        <button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newFormData()">Crea nuovo</button>
+    </div>
+
+</div>

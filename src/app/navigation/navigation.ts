@@ -24,14 +24,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo',
                 permission: ['g5c.ui.eopoo.list'],
             },
-            /*{
-                id       : 'generic-eopoo-list-page',
-                title    : 'Generic Eopoo',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/generic-eopoo',
-                permission: ['g5c.eopoo.get'],
-            },*/
+			{
+				id       : 'form-data-list-page',
+				title    : 'Form Data',
+				type     : 'item',
+				icon     : 'how_to_reg',
+				url      : '/g5c/form-data',
+				permission: ['g5c.ui.eopoo.list'],
+			},
         ]
     },
     {
@@ -119,7 +119,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'wallet',
 				url      : '/wallet/wallet',
-				permission: ['wallet.wallet.get'],
+				//permission: ['wallet.wallet.get'],
 			},
 			{
 				id       : 'pos-list-page',
@@ -127,7 +127,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'store',
 				url      : '/wallet/merchant',
-				permission: ['wallet.pos.get'],
+				//permission: ['wallet.pos.get'],
 			},
 			{
 				id       : 'credit-card-list-page',
@@ -135,7 +135,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'credit-card',
 				url      : '/wallet/credit-card',
-				permission: ['wallet.creditCard.get'],
+				//permission: ['wallet.creditCard.get'],
 			},
 
 			{
@@ -144,7 +144,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'transaction',
 				url      : '/wallet/transaction',
-				permission: ['wallet.transaction.get'],
+				//permission: ['wallet.transaction.get'],
 			},
 		]
 	},
