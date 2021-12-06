@@ -24,15 +24,14 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo',
                 permission: ['g5c.ui.eopoo.list'],
             },
-			
-            /*{
-                id       : 'generic-eopoo-list-page',
-                title    : 'Generic Eopoo',
-                type     : 'item',
-                icon     : 'how_to_reg',
-                url      : '/g5c/generic-eopoo',
-                permission: ['g5c.eopoo.get'],
-            },*/
+			{
+				id       : 'form-data-list-page',
+				title    : 'Form Data',
+				type     : 'item',
+				icon     : 'how_to_reg',
+				url      : '/g5c/form-data',
+				permission: ['g5c.ui.eopoo.list'],
+			},
         ]
     },
     {

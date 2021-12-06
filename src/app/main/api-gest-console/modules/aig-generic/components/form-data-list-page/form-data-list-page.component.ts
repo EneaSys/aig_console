@@ -52,7 +52,7 @@ export class AigFormDataListPageComponent extends GenericComponent {
             n1: [''],
         });
 
-        this.formDataDC = ["n1", "buttons"];
+        this.formDataDC = ["s1", "s2", "s3", "s9", "s10", "n3", "d1", "buttons"];
     }
 
     private clearFiltersFormData() {

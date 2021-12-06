@@ -114,14 +114,6 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/g5c/form-type',
 						permission: ['g5c.ui.eopoo.list'],
 					},
-					{
-						id       : 'form-data-list-page',
-						title    : 'Form Data',
-						type     : 'item',
-						icon     : 'how_to_reg',
-						url      : '/g5c/form-data',
-						permission: ['g5c.ui.eopoo.list'],
-					},
 				]
             },
 			{
