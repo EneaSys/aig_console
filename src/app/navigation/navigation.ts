@@ -24,6 +24,7 @@ export const navigation: FuseNavigation[] = [
                 url      : '/g5c/eopoo',
                 permission: ['g5c.ui.eopoo.list'],
             },
+			
             /*{
                 id       : 'generic-eopoo-list-page',
                 title    : 'Generic Eopoo',

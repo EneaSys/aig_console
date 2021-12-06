@@ -1,0 +1,63 @@
+<div class="page-layout simple left-sidebar">
+    <!-- SIDEBAR -->
+    <fuse-sidebar class="sidebar" name="form-data-sidebar" position="left" lockedOpen="gt-md">
+        <!-- SIDEBAR CONTENT -->
+        <div class="content">
+            <div>
+                <div class="p-16 border-bottom" fxLayout="row" fxLayoutAlign="center top">
+                    <button mat-raised-button (click)="showAllFormData()">Resetta filtri</button>
+                </div>
+                <div class="header pl-16 mt-8" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="h3">Filtri</span>
+                </div>
+                <div class="content" fusePerfectScrollbar>
+                    <div class="nav material2">
+                        <div class="nav-item" aria-label="inbox">
+                            <form [formGroup]="formDataSearchFormGroup" (ngSubmit)="formDataSearchWithFilter()"
+                                class="p-8">
+
+                                <div fxLayout="row">
+                                    <mat-form-field appearance="outline" fxFlex="100">
+                                        <mat-label>n1</mat-label>
+                                        <input matInput type="text" formControlName="n1">
+                                    </mat-form-field>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="end top">
+                                    <button type="submit" mat-raised-button color="accent">Cerca</button>
+                                </div>
+
+                            </form>
+
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- / SIDEBAR CONTENT -->
+    </fuse-sidebar>
+    <!-- / SIDEBAR -->
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header p-24 primary" fxLayout="row" fxLayoutAlign="start center">
+            <h2>Data form</h2>
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content mb-48">
+            <aig-form-data-list-table [dataSource]="formDataDTOs" [displayColumns]="formDataDC"
+                [error]="formDataError"></aig-form-data-list-table>
+
+            <mat-paginator #paginator [length]="formDataLength" [pageIndex]="index"
+                [pageSize]="this.formDataPaginationSize" [pageSizeOptions]="[10, 50, 100]"
+                (page)="formDataPaginationEvent($event)"></mat-paginator>
+        </div>
+
+        <button mat-fab class="accent" id="add-form-data-button" (click)="newFormData()" aria-label="add form data">
+            <mat-icon>add</mat-icon>
+        </button>
+        <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+</div>

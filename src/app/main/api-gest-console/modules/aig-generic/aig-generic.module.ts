@@ -31,6 +31,10 @@ import { AigContactListPageComponent } from './components/contact-list-page/cont
 import { AigContactNewUpdateDialogComponent } from './components/contact-new-update-dialog/contact-new-update-dialog.component';
 import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
 import { AigCommonWalletModule } from 'aig-common/modules/wallet/common-wallet.module';
+import { AigFormTypeListPageComponent } from './components/form-type-list-page/form-type-list-page.component';
+import { AigFormTypeNewUpdateDialogComponent } from './components/form-type-new-update-dialog/form-type-new-update-dialog.component';
+import { AigFormDataNewUpdateDialogComponent } from './components/form-data-new-update-dialog/form-data-new-update-dialog.component';
+import { AigFormDataListPageComponent } from './components/form-data-list-page/form-data-list-page.component';
 
 @NgModule({
     imports: [
@@ -81,6 +85,13 @@ import { AigCommonWalletModule } from 'aig-common/modules/wallet/common-wallet.m
         AigContactListPageComponent,
         AigContactDetailPageComponent,
         AigContactNewUpdateDialogComponent,
+
+		AigFormTypeListPageComponent,
+		AigFormTypeNewUpdateDialogComponent,
+
+        AigFormDataNewUpdateDialogComponent,
+		AigFormDataListPageComponent,
+
     ],
     entryComponents: [
         AigEopooNewModalComponent,
@@ -89,6 +100,8 @@ import { AigCommonWalletModule } from 'aig-common/modules/wallet/common-wallet.m
         AigAddressNewUpdateModalComponent,
         AigReferentNewUpdateDialogComponent,
         AigContactNewUpdateDialogComponent,
+		AigFormTypeNewUpdateDialogComponent,
+		AigFormDataNewUpdateDialogComponent,
     ],
     exports: [
 

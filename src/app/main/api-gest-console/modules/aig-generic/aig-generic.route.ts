@@ -16,6 +16,8 @@ import { AigReferentDetailPageComponent } from './components/referent-detail-pag
 import { ReferentResolver } from 'aig-common/modules/generic/resolver/referent.resolver';
 import { AigContactDetailPageComponent } from './components/contact-detail-page/contact-detail-page.component';
 import { ContactResolver } from 'aig-common/modules/generic/resolver/contact.resolver';
+import { AigFormTypeListPageComponent } from './components/form-type-list-page/form-type-list-page.component';
+import { AigFormDataListPageComponent } from './components/form-data-list-page/form-data-list-page.component';
 
 export const aigGenericRoute: Routes = [
     {
@@ -72,6 +74,58 @@ export const aigGenericRoute: Routes = [
                             eopooType: EopooTypeResolver,
                         },
                     },
+                ]
+            },
+
+			{
+                path: 'form-type',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigFormTypeListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigEopooTypeDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            eopooType: EopooTypeResolver,
+                        },
+                    },
+					*/
+                ]
+            },
+
+			{
+                path: 'form-data',
+                children: [
+                    
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'list'
+                    },
+                    {
+                        path: 'list',
+                        component: AigFormDataListPageComponent,
+                        canActivate: [ AuthGuardService ],
+                    },
+                    /*{
+                        path: 'detail/:id',
+                        component: AigEopooTypeDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            eopooType: EopooTypeResolver,
+                        },
+                    },
+					*/
                 ]
             },
             {
