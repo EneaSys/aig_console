@@ -28,10 +28,10 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    eopooType: EopooTypeDTO;
+    eopoo: EopooDTO;
 
     @Input()
-    eopoo: EopooDTO;
+    eopooType: EopooTypeDTO;
 
     isUpdate: boolean = false;
 
@@ -82,7 +82,12 @@ export class AigGenericEopooNewUpdateFormComponent implements OnInit {
             eopooTypeId: this.eopooGenericNewUpdateForm.value.eopooType.id,
             genericEopoo: this.eopooGenericNewUpdateForm.value,
         };
-		eopoo.eopooType = this.eopoo.eopooType;
+		if(this.eopooType) {
+			eopoo.eopooType = this.eopooType;
+		}
+		if(this.isUpdate) {
+			eopoo.eopooType = this.eopoo.eopooType;
+		}
 
         try {
             let postOrPut: string;
