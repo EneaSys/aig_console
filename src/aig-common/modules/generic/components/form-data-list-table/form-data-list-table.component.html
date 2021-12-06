@@ -10,6 +10,11 @@
 
     <mat-table #table [dataSource]="dataSource">
 
+		<ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.id }}</mat-cell>
+        </ng-container>
+
 		<ng-container matColumnDef="s1">
             <mat-header-cell *matHeaderCellDef>S1</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.s1 }}</mat-cell>

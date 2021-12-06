@@ -48,14 +48,17 @@ export class AigFormDataListPageComponent extends GenericComponent {
         this.formDataPaginationSize = 10;
 
         this.formDataSearchFormGroup = this._formBuilder.group({
-            
+			id: [''],
+			s2: [''],
+			s3: [''],
             n1: [''],
         });
 
-        this.formDataDC = ["s1", "s2", "s3", "s9", "s10", "n3", "d1", "buttons"];
+        this.formDataDC = ["id", "s1", "s2", "s3", "s9", "s10", "n3", "d1", "buttons"];
     }
 
     private clearFiltersFormData() {
+		this.formDataSearchFormGroup.reset();
         this.formDataFilters = {
 			idEquals: null,
             nameContains: null,
@@ -100,19 +103,23 @@ export class AigFormDataListPageComponent extends GenericComponent {
 	}
 
     formDataSearchWithFilter() {
-		let searchedId = this.formDataSearchFormGroup.controls.id.value;
-
+		let searchedId = this.formDataSearchFormGroup.value.id;
 		if(searchedId != null) {
 			this.clearFiltersFormData();
-			this.formDataSearchFormGroup.reset();
-			this.formDataFilters.idEquals = searchedId;
+			this.formDataFilters.formDataIDEquals = searchedId;
 			this.searchFormData(0);
 			return;
 		}
 
-		this.formDataFilters.idEquals = null;
+		let filters: any = {};
+		filters = this.formDataSearchFormGroup.value;
 
-		this.formDataFilters.nameContains = this.formDataSearchFormGroup.controls.name.value;
+		if(filters.s2) {
+			this.formDataFilters.s2Contains = filters.s2;
+		}
+		if(filters.s3) {
+			this.formDataFilters.s3Contains = filters.s3;
+		}
 
 		this.searchFormData(0);
 	}
