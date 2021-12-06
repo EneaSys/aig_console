@@ -98,7 +98,12 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
             person: formValue,
         };
         eopoo.person.cityCode = formValue.city.code;
-		eopoo.eopooType = this.eopoo.eopooType;
+		if(this.eopooType) {
+			eopoo.eopooType = this.eopooType;
+		}
+		if(this.isUpdate) {
+			eopoo.eopooType = this.eopoo.eopooType;
+		}
 
         try {
             let postOrPut: string;
