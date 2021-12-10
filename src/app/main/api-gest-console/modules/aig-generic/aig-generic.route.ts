@@ -18,6 +18,8 @@ import { AigContactDetailPageComponent } from './components/contact-detail-page/
 import { ContactResolver } from 'aig-common/modules/generic/resolver/contact.resolver';
 import { AigFormTypeListPageComponent } from './components/form-type-list-page/form-type-list-page.component';
 import { AigFormDataListPageComponent } from './components/form-data-list-page/form-data-list-page.component';
+import { AigFormDataDetailPageComponent } from './components/form-data-detail-page/form-data-detail-page.component';
+import { FormDataResolver } from 'aig-common/modules/generic/resolver/form-data.resolver';
 
 export const aigGenericRoute: Routes = [
     {
@@ -117,15 +119,15 @@ export const aigGenericRoute: Routes = [
                         component: AigFormDataListPageComponent,
                         canActivate: [ AuthGuardService ],
                     },
-                    /*{
+                    {
                         path: 'detail/:id',
-                        component: AigEopooTypeDetailPageComponent,
+                        component: AigFormDataDetailPageComponent,
                         canActivate: [ AuthGuardService ],
                         resolve: {
-                            eopooType: EopooTypeResolver,
+                            formData: FormDataResolver,
                         },
                     },
-					*/
+				
                 ]
             },
             {

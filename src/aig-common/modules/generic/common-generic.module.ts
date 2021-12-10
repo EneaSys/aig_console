@@ -49,6 +49,8 @@ import { AigFormTypeListTableComponent } from './components/form-type-list-table
 import { AigFormTypeNewUpdateFormComponent } from './components/form-type-new-update-form/form-type-new-update-form.component';
 import { AigFormDataListTableComponent } from './components/form-data-list-table/form-data-list-table.component';
 import { AigFormDataNewUpdateFormComponent } from './components/form-data-new-update-form/form-data-new-update-form.component';
+import { FormDataResolver } from './resolver/form-data.resolver';
+import { AigFormDataDetailPageComponent } from 'app/main/api-gest-console/modules/aig-generic/components/form-data-detail-page/form-data-detail-page.component';
 
 @NgModule({
     imports: [
@@ -120,6 +122,7 @@ import { AigFormDataNewUpdateFormComponent } from './components/form-data-new-up
         AddressResolver,
         ReferentResolver,
         ContactResolver,
+		FormDataResolver,
         
         AigGenericAutocompleteFilterService,
         AigGenericAutocompleteDisplayService,
@@ -158,6 +161,7 @@ import { AigFormDataNewUpdateFormComponent } from './components/form-data-new-up
 
 		AigFormDataListTableComponent,
 		AigFormDataNewUpdateFormComponent,
+		
     ],
 })
 export class CommonGenericModule {}

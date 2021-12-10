@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddressDTO, EopooDTO, EopooTypeDTO, ReferentDTO } from 'aig-generic';
+import { AddressDTO, EopooDTO, EopooTypeDTO, FormTypeDTO, ReferentDTO } from 'aig-generic';
 import { EopooNamePipe } from '../../pipe/eopoo-name.pipe';
 
 @Injectable()
@@ -18,5 +18,9 @@ export class AigGenericAutocompleteDisplayService {
 
     referentDisplayFn(referent?: ReferentDTO): any | undefined {
         return referent ? referent.firstname + " " + referent.lastname : undefined;
+    }
+
+	formTypeDisplayFn(formType?: FormTypeDTO): any | undefined {
+        return formType ? formType.name : undefined;
     }
 }

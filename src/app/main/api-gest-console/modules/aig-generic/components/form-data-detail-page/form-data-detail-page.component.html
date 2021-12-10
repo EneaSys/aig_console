@@ -1,0 +1,56 @@
+<div id="aig-form-data-detail-page" class="page-layout blank">
+
+    <aig-generic-header [sectionName]="formDataDTO.s3" [search]="false"></aig-generic-header>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="34">
+            <div class="fuse-card auto-width p-16 m-16">
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">Form Data</div>
+                <div class="h1 m-16">b1:{{ formDataDTO.b1 }}</div>
+				<div class="h1 m-16">b2:{{ formDataDTO.b2 }}</div>
+				<div class="h1 m-16">b3:{{ formDataDTO.b3 }}</div>
+				<div class="h1 m-16">d1:{{ formDataDTO.d1 }}</div>
+				<div class="h1 m-16">d2:{{ formDataDTO.d2 }}</div>
+				<div class="h1 m-16">d3:{{ formDataDTO.d3 }}</div>
+				<div class="h1 m-16">Form Type:{{ formDataDTO.formType.name }}</div>
+				<div class="h1 m-16">ID:{{ formDataDTO.id }}</div>
+				<div class="h1 m-16">n1:{{ formDataDTO.n1 }}</div>
+				<div class="h1 m-16">n2:{{ formDataDTO.n2 }}</div>
+				<div class="h1 m-16">n3:{{ formDataDTO.n3 }}</div>
+				<div class="h1 m-16">n4:{{ formDataDTO.n4 }}</div>
+				<div class="h1 m-16">n5:{{ formDataDTO.n5 }}</div>
+				<div class="h1 m-16">n6:{{ formDataDTO.n6 }}</div>
+				<div class="h1 m-16">n7:{{ formDataDTO.n7 }}</div>
+				<div class="h1 m-16">n8:{{ formDataDTO.n8 }}</div>
+				<div class="h1 m-16">n9:{{ formDataDTO.n9 }}</div>
+				<div class="h1 m-16">n10:{{ formDataDTO.n10 }}</div>
+				<div class="h1 m-16">s1:{{ formDataDTO.s1 }}</div>
+				<div class="h1 m-16">s2:{{ formDataDTO.s2 }}</div>
+				<div class="h1 m-16">s3:{{ formDataDTO.s3 }}</div>
+				<div class="h1 m-16">s4:{{ formDataDTO.s4 }}</div>
+				<div class="h1 m-16">s5:{{ formDataDTO.s5 }}</div>
+				<div class="h1 m-16">s6:{{ formDataDTO.s6 }}</div>
+				<div class="h1 m-16">s7:{{ formDataDTO.s7 }}</div>
+				<div class="h1 m-16">s8:{{ formDataDTO.s8 }}</div>
+				<div class="h1 m-16">s9:{{ formDataDTO.s9 }}</div>
+				<div class="h1 m-16">s10:{{ formDataDTO.s10 }}</div>
+				<div class="h1 m-16">s11:{{ formDataDTO.s11 }}</div>
+				<div class="h1 m-16">s12:{{ formDataDTO.s12 }}</div>
+				<div class="h1 m-16">s13:{{ formDataDTO.s13 }}</div>
+				<div class="h1 m-16">s14:{{ formDataDTO.s14 }}</div>
+				<div class="h1 m-16">s15:{{ formDataDTO.s15 }}</div>
+				<div class="h1 m-16">s16:{{ formDataDTO.s16 }}</div>
+				<div class="h1 m-16">s17:{{ formDataDTO.s17 }}</div>
+				<div class="h1 m-16">s18:{{ formDataDTO.s18 }}</div>
+				<div class="h1 m-16">s19:{{ formDataDTO.s19 }}</div>
+
+
+                <button mat-stroked-button color="primary" (click)="editFormData(formDataDTO)">Edit</button>
+                <button mat-stroked-button color="primary" (click)="deleteFormData(formDataDTO.id)">Delete</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { MatDialog } from '@angular/material/dialog';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { EopooTypeResourceService, EopooTypeDTO, FormTypeResourceService, FormTypeDTO, FormDataResourceService, FormDataDTO } from 'aig-generic';
+import {  FormDataResourceService, FormDataDTO } from 'aig-generic';
 import { AigEopooTypeNewUpdateModalComponent } from '../eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar, PageEvent } from '@angular/material';
@@ -54,7 +54,7 @@ export class AigFormDataListPageComponent extends GenericComponent {
             n1: [''],
         });
 
-        this.formDataDC = ["id", "s1", "s2", "s3", "s9", "s10", "n3", "d1", "buttons"];
+        this.formDataDC = ["id", "s1", "s2","formTyepe", "s3", "s9", "s10", "n3", "d1", "buttons"];
     }
 
     private clearFiltersFormData() {
