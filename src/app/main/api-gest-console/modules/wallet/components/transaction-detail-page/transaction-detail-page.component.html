@@ -1,0 +1,37 @@
+<div id="aig-transaction-detail-page" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget" fxFlex.gt-sm="100">
+            <div class="fuse-card auto-width p-16 m-16">
+				<div class="h4 ml-16">Id: {{ transactionDTO.id }}</div>
+				<div class="h4 m-8 ml-16">Data transazione: {{ transactionDTO.creationDateTime }}</div>
+            </div>
+        </div>
+
+	</div>
+
+	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="space-around none">
+
+		<div class="widget" fxFlex.gt-sm="100">
+			<div class="fuse-card auto-width p-16 m-8" id="give-have-list">
+				<div class="h4 m-16 mt-0 mb-0">INPUT</div>
+				<aig-give-have-list-table [dataSource]="giveHaveDTOsINPUT" [displayColumns]="giveHaveDC" [error]="giveHaveError"></aig-give-have-list-table>
+				
+				<div style="height: 35px;"></div>
+			</div>
+
+		</div>
+
+		<div class="widget" fxFlex.gt-sm="100">
+			<div class="fuse-card auto-width p-16 m-8" id="give-have-list">
+				<div class="h4 m-16 mt-0 mb-0">OUTPUT</div>
+				<aig-give-have-list-table [dataSource]="giveHaveDTOsOUTPUT" [displayColumns]="giveHaveDC" [error]="giveHaveError"></aig-give-have-list-table>
+				<div style="height: 35px;"></div>
+			</div>  
+		</div>
+
+	</div>
+	
+
+</div>

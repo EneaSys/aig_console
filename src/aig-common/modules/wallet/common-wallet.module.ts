@@ -22,6 +22,8 @@ import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-ne
 import { AigTransactionListTableComponent } from './components/transaction-list-table/transaction-list-table.component';
 import { AigTransactionNewUpdateFormComponent } from './components/transaction-new-update-form/transaction-new-update-form.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AigGiveHaveListTableComponent } from './components/give-have-list-table/give-have-list-table.component';
+import { TransactionResolver } from './resolver/transaction.resolver';
 
 @NgModule({
 	imports: [
@@ -57,6 +59,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 		AigMerchantService,
 		WalletResolver,
+		TransactionResolver,
 	],
 	declarations: [
 		AigMerchantListTableComponent,	
@@ -70,6 +73,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 		AigTransactionListTableComponent,
 		AigTransactionNewUpdateFormComponent,
+
+		AigGiveHaveListTableComponent,
 
 
 		
@@ -87,6 +92,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 		AigTransactionListTableComponent,
 		AigTransactionNewUpdateFormComponent,
 
+		AigGiveHaveListTableComponent,
 
 
 	],

@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { WalletResourceService, WalletDTO, TransactionResourceService, TransactionDTO, GiveHaveResourceService } from 'aig-wallet';
-import { AigWalletNewUpdateDialogComponent } from '../wallet-new-update-dialog/wallet-new-update-dialog.component';
-import { AigTransactionNewUpdateDialogComponent } from '../transaction-new-update-dialog/transaction-new-update-dialog.component';
 
 @Component({
 	templateUrl: './transaction-list-page.component.html',
@@ -86,9 +84,6 @@ export class AigTransactionListPageComponent extends GenericComponent {
 		}
 	}
 
-	newTransaction() {
-		this.dialog.open(AigTransactionNewUpdateDialogComponent, { data: { } });
-	}
 
 	async publish() {
 		await this.transactionResourceService.publishTransactionUsingGET(this.filters).toPromise();
