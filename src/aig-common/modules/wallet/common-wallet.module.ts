@@ -24,6 +24,7 @@ import { AigTransactionNewUpdateFormComponent } from './components/transaction-n
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AigGiveHaveListTableComponent } from './components/give-have-list-table/give-have-list-table.component';
 import { TransactionResolver } from './resolver/transaction.resolver';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	imports: [
@@ -35,6 +36,7 @@ import { TransactionResolver } from './resolver/transaction.resolver';
 		InputTextModule,
 		FormsModule,
 		ReactiveFormsModule,
+		FlexLayoutModule,
 
 		AigWalletApiModule,
 		CommonGenericModule,

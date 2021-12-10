@@ -14,9 +14,11 @@ import { AigManagementAutocompleteFunctionService } from "../../services/form/au
     styleUrls: ['./context-user-new-update-form.component.scss']
 })
 export class AigContextUserNewUpdateFormComponent implements OnInit {
-    @Input() contextUser: ContextUserDTO;
+    @Input()
+	contextUser: ContextUserDTO;
 	
-	@Input() tenantContext: TenantContextDTO;
+	@Input() 
+	tenantContext: TenantContextDTO;
 	
     constructor(	
         private _snackBar: MatSnackBar,	

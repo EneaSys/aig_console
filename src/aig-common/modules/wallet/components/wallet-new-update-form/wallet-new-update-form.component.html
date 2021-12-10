@@ -1,6 +1,6 @@
 <form *ngIf="step.form" [formGroup]="walletNewUpdateForm" (ngSubmit)="submit()">
 
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="!eopoo">
         <mat-form-field appearance="outline" fxFlex>
             <mat-label>Anagrafica</mat-label>
             <input formControlName="eopoo" matInput [matAutocomplete]="eopooAutocomplete" required>
@@ -15,7 +15,7 @@
 
     <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-            <mat-label>Descrizione</mat-label>
+            <mat-label>Descrizione Wallet</mat-label>
             <input formControlName="description" matInput required>
         </mat-form-field>
     </div>

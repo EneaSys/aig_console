@@ -91,25 +91,31 @@ export class AigPersonNewUpdateFormComponent implements OnInit {
 
         let formValue = this.eopooPersonNewUpdateForm.value;
         
-        let eopooPerson: EopooDTO = {
+        let eopoo: EopooDTO = {
             id: formValue.id,
             taxNumber: formValue.taxNumber,
             eopooTypeId: formValue.eopooType.id,
             person: formValue,
         };
-        eopooPerson.person.cityCode = formValue.city.code;
+        eopoo.person.cityCode = formValue.city.code;
+		if(this.eopooType) {
+			eopoo.eopooType = this.eopooType;
+		}
+		if(this.isUpdate) {
+			eopoo.eopooType = this.eopoo.eopooType;
+		}
 
         try {
             let postOrPut: string;
             if (this.isUpdate) {
-                await this.eopooResourceService.updateEopooUsingPUT(eopooPerson).toPromise();
+                await this.eopooResourceService.updateEopooUsingPUT(eopoo).toPromise();
                 postOrPut = "updated";
             } else {
-                await this.eopooResourceService.createEopooUsingPOST(eopooPerson).toPromise();
+                await this.eopooResourceService.createEopooUsingPOST(eopoo).toPromise();
                 postOrPut = "created";
             }
 
-            this.eopooResult = eopooPerson;
+            this.eopooResult = eopoo;
 
             this.eventService.reloadCurrentPage();
 

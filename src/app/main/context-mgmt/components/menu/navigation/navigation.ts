@@ -106,6 +106,14 @@ export const contextNavigation: FuseNavigation[] = [
 						url      : '/s6d/city2',
 						permission: ['e4y.account.get'],
 					},
+					{
+						id       : 'form-type-list-page',
+						title    : 'Form Type',
+						type     : 'item',
+						icon     : 'how_to_reg',
+						url      : '/g5c/form-type',
+						permission: ['g5c.ui.eopoo.list'],
+					},
 				]
             },
 			{

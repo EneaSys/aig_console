@@ -1,0 +1,120 @@
+<div *ngIf="error != null" class="p-48" fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <span *ngIf="error.status == 401">No access to this info</span>
+</div>
+<div *ngIf="error == null && dataSource == null" class="p-48">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div *ngIf="error == null && dataSource != null">
+
+    <mat-table #table [dataSource]="dataSource">
+
+		<ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.id }}</mat-cell>
+        </ng-container>
+
+		<ng-container matColumnDef="s1">
+            <mat-header-cell *matHeaderCellDef>S1</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.s1 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s2">
+            <mat-header-cell *matHeaderCellDef>S2</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s2 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s3">
+            <mat-header-cell *matHeaderCellDef>S3</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s3 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s4">
+            <mat-header-cell *matHeaderCellDef>S4</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s4 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s5">
+            <mat-header-cell *matHeaderCellDef>S5</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s5 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s6">
+            <mat-header-cell *matHeaderCellDef>S6</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s6 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s7">
+            <mat-header-cell *matHeaderCellDef>S7</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s7 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s8">
+            <mat-header-cell *matHeaderCellDef>S8</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s8 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s9">
+            <mat-header-cell *matHeaderCellDef>S9</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s9 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="s10">
+            <mat-header-cell *matHeaderCellDef>S10</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.s10 }}</mat-cell>
+        </ng-container>
+		
+
+		<ng-container matColumnDef="n1">
+            <mat-header-cell *matHeaderCellDef>N1</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.n1 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="n2">
+            <mat-header-cell *matHeaderCellDef>N2</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.n2 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="n3">
+            <mat-header-cell *matHeaderCellDef>N3</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.n3 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="n4">
+            <mat-header-cell *matHeaderCellDef>N4</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.n4 }}</mat-cell>
+        </ng-container>
+
+
+		<ng-container matColumnDef="d1">
+            <mat-header-cell *matHeaderCellDef>D1</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.d1 }}</mat-cell>
+        </ng-container>
+		<ng-container matColumnDef="d2">
+            <mat-header-cell *matHeaderCellDef>D2</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.d2 }}</mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="buttons">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [routerLink]="'/g5c/form-data/detail/' + element.id">
+                        <mat-icon>details</mat-icon>
+                        <span>Details</span>
+                    </button>
+
+                    <button mat-menu-item (click)="editFormData(element)">
+                        <mat-icon>edit</mat-icon>
+                        <span>Edit</span>
+                    </button>
+
+                    <button mat-menu-item (click)="deleteFormData(element.id)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let dataSource; columns: displayColumns;"></mat-row>
+    </mat-table>
+
+</div>

@@ -1,12 +1,14 @@
-<div class="h4 m-8 ml-16 mb-0 secondary-text">
-    ID: {{ eopoo.id }}
-    -
-    TIPO: {{ eopoo.eopooType |eopooName }}
-</div>
-<div class="h1 m-8 ml-16">{{ eopoo | eopooName }}</div>
-<div class="h4 ml-16">Codice fiscale: <b>{{ eopoo.taxNumber }}</b></div>
-<div *ngIf="eopoo.person && eopoo.person.id">
-    <div class="h4 ml-16">Sesso: <b>{{ eopoo.person.sex }}</b></div>
-    <div class="h4 ml-16">Data nascita: <b>{{ eopoo.person.bornDate }}</b></div>
-    <div class="h4 ml-16">Città nascita: <b>{{ eopoo.person.city.name }}</b></div>
+<div *ngIf="eopoo != null">
+	<div class="h4 m-8 ml-16 mb-0 secondary-text">
+		ID: {{ eopoo.id }}
+		-
+		TIPO: {{ eopoo.eopooType.eopooCategory }}
+	</div>
+	<div class="h1 m-8 ml-16">{{ eopoo | eopooName }}</div>
+	<div class="h4 ml-16">Codice fiscale: <b>{{ eopoo.taxNumber }}</b></div>
+	<div *ngIf="eopoo.person && eopoo.person.id">
+		<div class="h4 ml-16">Sesso: <b>{{ eopoo.person.sex }}</b></div>
+		<div class="h4 ml-16">Data nascita: <b>{{ eopoo.person.bornDate }}</b></div>
+		<div class="h4 ml-16">Città nascita: <b>{{ eopoo.person.city.name }}</b></div>
+	</div>
 </div>

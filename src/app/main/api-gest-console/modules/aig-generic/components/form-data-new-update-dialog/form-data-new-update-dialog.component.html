@@ -1,8 +1,8 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span *ngIf="data.entityReference != null" class="title dialog-title">Update Entity Reference</span>
-            <span *ngIf="data.entityReference == null" class="title dialog-title">Create New Entity Reference</span>
+            <span *ngIf="data.formType" class="title dialog-title">Update form Data</span>
+            <span *ngIf="!data.formType" class="title dialog-title">Create new form data</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -10,6 +10,6 @@
     </mat-toolbar>
 
     <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-       <aig-entity-reference-new-update-form [entityReference]="data.entityReference" [applicationModule]="data.applicationModule"></aig-entity-reference-new-update-form>
+        <aig-form-data-new-update-form [formData]="data.formData"></aig-form-data-new-update-form>
     </div>
 </div>

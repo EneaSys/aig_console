@@ -32,6 +32,9 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
     @Input()
     entityReference: EntityReferenceDTO;
 
+	@Input()
+	applicationModule: ApplicationModuleDTO;
+
     isUpdate: boolean = false;
 
 
@@ -45,7 +48,7 @@ export class AigEntityReferenceNewUpdateFormComponent implements OnInit {
             name: ['', Validators.required],
             isType: [false],
             tableName:[''],
-            applicationModule: ['', Validators.required],
+            applicationModule: [this.applicationModule, Validators.required],
         });
 
 
