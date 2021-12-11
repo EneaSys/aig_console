@@ -51,17 +51,17 @@ export class AigFormDataListPageComponent extends GenericComponent {
 			id: [''],
 			s2: [''],
 			s3: [''],
-            n1: [''],
+			s4: [''],
+            n4: [''],
         });
 
-        this.formDataDC = ["id", "s1", "s2","formTyepe", "s3", "s9", "s10", "n3", "d1", "buttons"];
+        this.formDataDC = ["id", "s2", "s3", "s4", "s10", "n4", "buttons"];
     }
 
     private clearFiltersFormData() {
 		this.formDataSearchFormGroup.reset();
         this.formDataFilters = {
 			idEquals: null,
-            nameContains: null,
             page: 0,
         }
     }
@@ -106,7 +106,7 @@ export class AigFormDataListPageComponent extends GenericComponent {
 		let searchedId = this.formDataSearchFormGroup.value.id;
 		if(searchedId != null) {
 			this.clearFiltersFormData();
-			this.formDataFilters.formDataIDEquals = searchedId;
+			this.formDataFilters.idEquals = searchedId;
 			this.searchFormData(0);
 			return;
 		}
@@ -119,6 +119,12 @@ export class AigFormDataListPageComponent extends GenericComponent {
 		}
 		if(filters.s3) {
 			this.formDataFilters.s3Contains = filters.s3;
+		}
+		if(filters.s4) {
+			this.formDataFilters.s4Contains = filters.s4;
+		}
+		if(filters.n4) {
+			this.formDataFilters.n4Contains = filters.n4;
 		}
 
 		this.searchFormData(0);

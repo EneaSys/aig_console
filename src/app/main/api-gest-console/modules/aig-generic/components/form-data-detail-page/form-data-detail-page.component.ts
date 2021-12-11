@@ -6,10 +6,9 @@ import { EopooTypeDTO, EopooTypeResourceService, FormDataDTO, FormDataResourceSe
 
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
-import { AigEopooTypeNewUpdateModalComponent } from '../eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
-import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
-import { MatSnackBar } from '@angular/material';
-import { AigFormDataNewUpdateDialogComponent } from '../form-data-new-update-dialog/form-data-new-update-dialog.component';
+import { EventService } from 'aig-common/event-manager/event.service';
+import { AuthService } from 'auth/auth.service';
+import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
 
 @Component({
     templateUrl: './form-data-detail-page.component.html',
@@ -17,41 +16,57 @@ import { AigFormDataNewUpdateDialogComponent } from '../form-data-new-update-dia
 })
 export class AigFormDataDetailPageComponent extends GenericComponent {
     constructor(
-        private _fuseProgressBarService: FuseProgressBarService,
-        private _snackBar: MatSnackBar,
-        private dialog: MatDialog,
-        private router: Router,
         private route: ActivatedRoute,
         private formDataResourceService: FormDataResourceService,
+		public calculatorService: AigSolidarityRequestCalculatorService,
+		private eventService: EventService,
+		private authService: AuthService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
     formDataDTO: FormDataDTO;
+	user: any;
+	async loadPage() {
+		this.formDataDTO = this.route.snapshot.data.formData;
+		this.user = await this.authService.getUser();
+		this.afterLoad2();
+	}
 
-    async loadComponent() {
-        if(this.firstLoad) {
-            this.formDataDTO = this.route.snapshot.data.formData;
-        } else {
-            this.formDataDTO = await this.formDataResourceService.getFormDataUsingGET(this.formDataDTO.id).toPromise();
+    async reloadPage() {
+		this.formDataDTO = await this.formDataResourceService.getFormDataUsingGET(this.formDataDTO.id).toPromise();
+		this.afterLoad2();
+	}
+
+	instructor: any = null;
+	family: any[];
+	afterLoad2() {
+		if(this.formDataDTO.s15) {
+            let instructor = this.formDataDTO.s15.split('|');
+			this.instructor = {
+				id: instructor[0],
+				name: instructor[1]
+			}
         }
-    }
+	}
 
-    editFormData(formDataDTO: FormDataDTO) {
-        this.dialog.open(AigFormDataNewUpdateDialogComponent, { data: { formData: formDataDTO } });
-    }
+	async setStatus(state: number) {
+		var formDataDTO = Object.assign({}, this.formDataDTO);
+		formDataDTO.n4 = state;
+		formDataDTO.s15 = this.user.sub + "|" + this.user.lastName + " " + this.user.firstName;
+		await this.formDataResourceService.updateFormDataUsingPUT(formDataDTO).toPromise();
+		this.eventService.reloadCurrentPage();
+	}
 
-    async deleteFormData(id: number) {
-        this._fuseProgressBarService.show();
-    
-        try {
-            await this.formDataResourceService.deleteFormDataUsingDELETE(id).toPromise();
-    
-            this._snackBar.open(`Form data: '${id}' deleted.`, null, { duration: 2000, });
-            
-            this.router.navigate(['/g5c', 'form-data']);
-        } catch (e) {
-            this._snackBar.open(`Error during deleting form data: '${id}'. (${e.message})`, null, { duration: 5000, });
-        }
-        this._fuseProgressBarService.hide();
-      }
+	checkUserCanManage() {
+		if(this.formDataDTO.s15 == null) {
+			return true;
+		}
+		if(this.instructor && this.instructor.id == this.user.sub) {
+			return true;
+		}
+		if(this.formDataDTO.n4 > 5) {
+			return true;
+		}
+		return false;
+	}
 }

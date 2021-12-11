@@ -30,7 +30,7 @@ export const navigation: FuseNavigation[] = [
 				type     : 'item',
 				icon     : 'how_to_reg',
 				url      : '/g5c/form-data',
-				permission: ['g5c.ui.eopoo.list'],
+				permission: ['g5c.fd.get'],
 			},
         ]
     },

@@ -20,15 +20,15 @@
             <mat-cell *matCellDef="let element">{{element.s1 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="s2">
-            <mat-header-cell *matHeaderCellDef>S2</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.s2 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="s3">
-            <mat-header-cell *matHeaderCellDef>S3</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Cognome</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.s3 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="s4">
-            <mat-header-cell *matHeaderCellDef>S4</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>CF</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.s4 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="s5">
@@ -52,7 +52,7 @@
             <mat-cell *matCellDef="let element">{{ element.s9 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="s10">
-            <mat-header-cell *matHeaderCellDef>S10</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Fascia</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.s10 }}</mat-cell>
         </ng-container>
 		
@@ -70,8 +70,10 @@
             <mat-cell *matCellDef="let element">{{ element.n3 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="n4">
-            <mat-header-cell *matHeaderCellDef>N4</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.n4 }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>Stato</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+				<span [ngStyle]="{'color': calculatorService.getStatus4(element.n4).color}">{{ calculatorService.getStatus4(element.n4).des }}</span>
+			</mat-cell>
         </ng-container>
 
 
