@@ -2,24 +2,24 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { CreditCardDTO, TransactionDTO, TransactionResourceService } from 'aig-wallet';
+import { CreditCardDTO, GiveHaveDTO, GiveHaveResourceService, TransactionResourceService } from 'aig-wallet';
 
 
 @Component({
-	selector: 'aig-transaction-list-table',
-	templateUrl: './transaction-list-table.component.html',
-	styleUrls: ['./transaction-list-table.component.scss']
+	selector: 'aig-give-have-list-table',
+	templateUrl: './give-have-list-table.component.html',
+	styleUrls: ['./give-have-list-table.component.scss']
 })
-export class AigTransactionListTableComponent implements OnInit {
+export class AigGiveHaveListTableComponent implements OnInit {
 	@Input()
     error: any;
     @Input()
     displayColumns: string[];
     @Input()
-    dataSource: TransactionDTO[];
+    dataSource: GiveHaveDTO[];
 
     constructor(
-        private transactionResourceService: TransactionResourceService,
+        private giveHaveResourceService: GiveHaveResourceService,
         private eventService: EventService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,

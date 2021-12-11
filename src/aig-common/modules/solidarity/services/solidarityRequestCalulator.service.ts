@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormDataDTO } from 'aig-generic';
 import { FoodProductRequestDTO } from 'aig-solidarety';
 
 @Injectable()
@@ -105,4 +106,62 @@ export class AigSolidarityRequestCalculatorService {
 
         return amount;
     }
+
+	calculate4(formDataDTO: FormDataDTO) {
+		let amount: number = 0; 
+		{
+			let nComponent = formDataDTO.n1 + formDataDTO.n2;
+			
+			if(nComponent < 3) {
+				amount += 200;
+			}
+			if(nComponent == 3) {
+				amount += 250;
+			}
+			if(nComponent > 3) {
+				amount += 300;
+			}
+		}
+
+		if(formDataDTO.s10 == 'A') {
+			amount += 50;
+		}
+		return amount;
+	}
+
+	getStatus4(status: number) {
+		switch (status) {
+			case 1:
+				return {
+					des: "Istruttoria in corso",
+					color: "yellow"
+				}
+			case 2:
+				return {
+					des: "Soccorso istruttorio",
+					color: "orange"
+				}
+			case 8:
+				return {
+					des: "Nulla",
+					color: "violet"
+				}
+			case 9:
+				return {
+					des: "Rigettata",
+					color: "red"
+				}
+			case 10:
+				return {
+					des: "Approvata",
+					color: "green"
+				}
+			default:
+				return {
+					des: "Da istruire",
+					color: "gray"
+				}
+		}
+
+	}
 }

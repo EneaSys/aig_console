@@ -7,6 +7,16 @@
         </mat-form-field>
     </div>
 
+	<div *ngIf="!eopoo" fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Form Type</mat-label>
+            <input type="text" matInput formControlName="formType" required [matAutocomplete]="formTypeAutocomplete">
+            <mat-autocomplete #formTypeAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteFunctionService.formTypeDisplayFn">
+                <mat-option *ngFor="let formType of filteredFormType | async" [value]="formType">{{ formType.name }}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
     <div fxLayout="row" fxLayoutAlign="end top">
         <button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
         <button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>

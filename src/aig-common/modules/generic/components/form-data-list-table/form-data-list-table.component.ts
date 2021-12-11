@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
 import { EopooTypeDTO, EopooTypeResourceService, FormDataDTO, FormDataResourceService, FormTypeDTO, FormTypeResourceService } from 'aig-generic';
 import { AigEopooTypeNewUpdateModalComponent } from 'app/main/api-gest-console/modules/aig-generic/components/eopoo-type-new-update-modal/eopoo-type-new-update-modal.component';
 import { AigFormDataNewUpdateDialogComponent } from 'app/main/api-gest-console/modules/aig-generic/components/form-data-new-update-dialog/form-data-new-update-dialog.component';
@@ -16,6 +17,7 @@ export class AigFormDataListTableComponent implements OnInit {
     constructor(
         private formDataResourceService: FormDataResourceService,
         private eventService: EventService,
+		public calculatorService: AigSolidarityRequestCalculatorService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private dialog: MatDialog,

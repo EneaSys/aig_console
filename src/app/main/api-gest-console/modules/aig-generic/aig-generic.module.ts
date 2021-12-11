@@ -35,6 +35,7 @@ import { AigFormTypeListPageComponent } from './components/form-type-list-page/f
 import { AigFormTypeNewUpdateDialogComponent } from './components/form-type-new-update-dialog/form-type-new-update-dialog.component';
 import { AigFormDataNewUpdateDialogComponent } from './components/form-data-new-update-dialog/form-data-new-update-dialog.component';
 import { AigFormDataListPageComponent } from './components/form-data-list-page/form-data-list-page.component';
+import { AigFormDataDetailPageComponent } from './components/form-data-detail-page/form-data-detail-page.component';
 
 @NgModule({
     imports: [
@@ -91,6 +92,7 @@ import { AigFormDataListPageComponent } from './components/form-data-list-page/f
 
         AigFormDataNewUpdateDialogComponent,
 		AigFormDataListPageComponent,
+		AigFormDataDetailPageComponent
 
     ],
     entryComponents: [

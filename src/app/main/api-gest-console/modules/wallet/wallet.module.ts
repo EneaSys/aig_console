@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AigMerchantListPageComponent } from './components/merchant-list-page/merchant-list-page.component';
 import { RouterModule } from '@angular/router';
-import { MatAutocompleteModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatToolbarModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatTableModule, MatToolbarModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,10 +16,10 @@ import { AigWalletListPageComponent } from './components/wallet-list-page/wallet
 import { AigWalletDetailPageComponent } from './components/wallet-detail-page/wallet-detail-page.component';
 import { AigCreditCardNewUpdateDialogComponent } from './components/credit-card-new-update-dialog/credit-card-new-update-dialog.component';
 import { AigCreditCardListPageComponent } from './components/credit-card-list-page/credit-card-list-page.component';
-import { AigTransactionNewUpdateDialogComponent } from './components/transaction-new-update-dialog/transaction-new-update-dialog.component';
 import { AigTransactionListPageComponent } from './components/transaction-list-page/transaction-list-page.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
+import { AigTransactionDetailPageComponent } from './components/transaction-detail-page/transaction-detail-page.component';
 
 @NgModule({
 	imports: [ 
@@ -65,16 +65,14 @@ import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.m
 		AigCreditCardListPageComponent,
 		AigCreditCardNewUpdateDialogComponent,
 
-		AigTransactionNewUpdateDialogComponent,
 		AigTransactionListPageComponent,
+		AigTransactionDetailPageComponent,
 
 	],
 	entryComponents: [
 		AigMerchantNewUpdateDialogComponent,
 		AigWalletNewUpdateDialogComponent,
 		AigCreditCardNewUpdateDialogComponent,
-		AigTransactionNewUpdateDialogComponent,
-
 	],
 })
 export class AigWalletModule {}

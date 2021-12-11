@@ -3,9 +3,7 @@ stages:
   steps:
   - runScriptConfig:
       image: node:lts
-      shellScript: |-
-        npm install
-        node_modules/@angular/cli/bin/ng build 
+      shellScript: "npm install\nnode_modules/@angular/cli/bin/ng build "
 - name: publish
   steps:
   - runScriptConfig:
@@ -40,12 +38,12 @@ stages:
         ssh -p1088 -oStrictHostKeyChecking=no $user@$url "rm -rf $path"
         scp -P1088 -r dist/public_html/ $user@$url:$path
     env:
-      path: public_html/api-gest.dev/public_html 
+      path: public_html/api-gest.dev/public_html
       url: cpanel.sm-host.com
       user: eneasys
     when:
       branch:
         include:
         - develop-for-backend
-timeout: 60
+timeout: 120
 notification: {}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
-import { AddressResourceService, EopooResourceService, EopooTypeResourceService, ReferentResourceService } from 'aig-generic';
+import { AddressResourceService, EopooResourceService, EopooTypeResourceService, FormTypeResourceService, ReferentResourceService } from 'aig-generic';
 
 @Injectable()
 export class AigGenericAutocompleteFilterService {
@@ -10,6 +10,7 @@ export class AigGenericAutocompleteFilterService {
         private eopooTypeResourceService: EopooTypeResourceService,
 		private addressResourceService: AddressResourceService,
 		private referentResourceService: ReferentResourceService,
+		private formTypeResourceService: FormTypeResourceService,
     ) { }
 
     filterEopoo(observable: Observable<any>) {
@@ -23,6 +24,22 @@ export class AigGenericAutocompleteFilterService {
 					return this.eopooResourceService.getAllEopoosUsingGET(filter);
 				} else {
 					return this.eopooResourceService.getAllEopoosUsingGET({});
+				}
+			})
+		);
+	}
+
+	filterFormType(observable: Observable<any>) {
+        return observable.pipe(
+            startWith(''),
+            switchMap((value: string) => {
+                if (value && value.length > 0) {
+					let filter = {
+						formTypeNameContains: value
+					};
+					return this.formTypeResourceService.getAllFormTypesUsingGET(filter);
+				} else {
+					return this.formTypeResourceService.getAllFormTypesUsingGET({});
 				}
 			})
 		);
