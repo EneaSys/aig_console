@@ -1,0 +1,12 @@
+image: node:16
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: Build
+          caches:
+            - node
+          script:
+            - npm install
+            - node_modules/@angular/cli/bin/ng build 
