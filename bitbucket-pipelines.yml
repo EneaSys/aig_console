@@ -9,4 +9,15 @@ pipelines:
             - node
           script:
             - npm install
-            - node_modules/@angular/cli/bin/ng build 
+            - node_modules/@angular/cli/bin/ng build
+          artifacts:
+          - dist
+      - step:
+          name: Publish
+          deployment: prod
+          caches:
+            - node
+          script:
+            - npm install
+            - ssh -p1088 -oStrictHostKeyChecking=no eneasys@cpanel.sm-host.com "rm -rf $path"
+            - scp -P1088 -r dist/public_html/ eneasys@cpanel.sm-host.com:api-gest.eneasys.com/public_html
