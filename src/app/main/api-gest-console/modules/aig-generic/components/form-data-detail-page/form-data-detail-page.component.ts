@@ -9,6 +9,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AuthService } from 'auth/auth.service';
 import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
+import { AigFamilyInformationService } from 'aig-common/modules/solidarity/services/familyInformation.service';
 
 @Component({
     templateUrl: './form-data-detail-page.component.html',
@@ -18,6 +19,7 @@ export class AigFormDataDetailPageComponent extends GenericComponent {
     constructor(
         private route: ActivatedRoute,
         private formDataResourceService: FormDataResourceService,
+		private aigFamilyInformationService: AigFamilyInformationService,
 		public calculatorService: AigSolidarityRequestCalculatorService,
 		private eventService: EventService,
 		private authService: AuthService,
@@ -39,13 +41,24 @@ export class AigFormDataDetailPageComponent extends GenericComponent {
 
 	instructor: any = null;
 	family: any[];
-	afterLoad2() {
+	async afterLoad2() {
 		if(this.formDataDTO.s15) {
             let instructor = this.formDataDTO.s15.split('|');
 			this.instructor = {
 				id: instructor[0],
 				name: instructor[1]
 			}
+        }
+		try {
+            this.family = await this.aigFamilyInformationService.getFamily(this.formDataDTO.s4).toPromise();
+            this.family.forEach(async familyMember => {
+				let filters = {
+					s4Contains: familyMember.codice_fiscale_non_validato
+				};
+                familyMember.numero_domande = await this.formDataResourceService.countFormDataUsingGET(filters).toPromise();
+            });
+        } catch(e) {
+            console.log(e);
         }
 	}
 

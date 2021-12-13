@@ -25,7 +25,7 @@
 				<div class="h4 m-8 ml-16">bambini: <b>{{ formDataDTO.n2 }}</b></div>
 				<div class="h4 m-8 ml-16">abitazione: 
 					<b *ngIf="formDataDTO.s9 == 'A'">Proprietà</b>
-					<b *ngIf="formDataDTO.s9 == 'B'">Affitto</b>
+					<b *ngIf="formDataDTO.s9 == 'C'">Affitto</b>
 				</div>
 				<div *ngIf="formDataDTO.s10 == 'B'" class="h4 m-8 ml-16">reddito: <b>{{ formDataDTO.n3 | currency: 'EUR' }}</b></div>
             </div>
@@ -86,7 +86,7 @@
                         <td>{{ familyMember.cognome }}</td>
                         <td>{{ familyMember.codice_fiscale_non_validato }}</td>
                         <td>{{ familyMember.data_nascita }}</td>
-                        <td>2</td>
+                        <td>{{ familyMember.numero_domande }}</td>
                     </tr>
                 </table>
             </div>

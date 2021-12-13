@@ -8,7 +8,7 @@ export class AigFamilyInformationService {
         private http: HttpClient,
     ) { }
 
-    hypersicApiUrl: string = "https://smlc.eneasys.net/";
+    hypersicApiUrl: string = "https://office.eneasys.net/";
 
     getFamily(taxId: string): Observable<any[]> {
         return this.http.get<any[]>(this.hypersicApiUrl + 'get-family?cf=' + taxId.toUpperCase());
