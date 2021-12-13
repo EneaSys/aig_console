@@ -14,6 +14,7 @@ pipelines:
           - dist/**
       - step:
           name: Publish
+          deployment: Production
           caches:
             - node
           script:
