@@ -32,8 +32,9 @@ pipelines:
           - dist/**
       - step:
           name: Publish
+          deployment: staging
           caches:
             - node
           script:
-            - ssh -p1088 -oStrictHostKeyChecking=no eneasys@cpanel.sm-host.com "rm -rf api-gest.stage.eneasys.com/public_html"
-            - scp -P1088 -r dist/public_html/ eneasys@cpanel.sm-host.com:api-gest.stage.eneasys.com/public_html
+            - ssh -p1088 -oStrictHostKeyChecking=no eneasys@cpanel.sm-host.com "rm -rf stage.eneasys.com/api-gest/public_html"
+            - scp -P1088 -r dist/public_html/ eneasys@cpanel.sm-host.com:stage.eneasys.com/api-gest/public_html

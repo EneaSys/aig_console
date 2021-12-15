@@ -8,7 +8,10 @@
 </div>
 <div *ngIf="error == null && dataSource != null">
 
-    <mat-table #table [dataSource]="dataSource">
+    <button class="m-4" mat-raised-button (click)="exporter.exportTable('csv')">CSV</button>
+    <button class="m-4"mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'graduatoria', sheet: 'graduatoria', Props: {Author: 'ApiGest'}})">Excel</button>
+
+    <mat-table #table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" matSort>
 
 		<ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
@@ -56,6 +59,15 @@
             <mat-cell *matCellDef="let element">{{ element.s10 }}</mat-cell>
         </ng-container>
 		
+		<ng-container matColumnDef="comp">
+            <mat-header-cell *matHeaderCellDef>Componenti</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.n1 + element.n2 }}</mat-cell>
+        </ng-container>
+
+		<ng-container matColumnDef="altro">
+            <mat-header-cell *matHeaderCellDef>Importo</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ calculatorService.calculate4(element) | currency: 'EUR' }}</mat-cell>
+        </ng-container>
 
 		<ng-container matColumnDef="n1">
             <mat-header-cell *matHeaderCellDef>N1</mat-header-cell>
@@ -66,8 +78,8 @@
             <mat-cell *matCellDef="let element">{{ element.n2 }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="n3">
-            <mat-header-cell *matHeaderCellDef>N3</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.n3 }}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>Reddito</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.n3 | currency: 'EUR' }}</mat-cell>
         </ng-container>
 		<ng-container matColumnDef="n4">
             <mat-header-cell *matHeaderCellDef>Stato</mat-header-cell>

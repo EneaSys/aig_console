@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { WalletResourceService, WalletDTO } from 'aig-wallet';
@@ -25,6 +25,7 @@ export class AigWalletListPageComponent extends GenericComponent {
 	) { super(aigGenericComponentService) }
 
 	dataSource: WalletDTO[];
+	size: number;
 	displayColumns: string[] = ['id', 'eopoo', 'description', 'buttons'];
 	error: any;
 
@@ -60,6 +61,8 @@ export class AigWalletListPageComponent extends GenericComponent {
         });
 
 		this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.searchForm.controls['eopoo'].valueChanges);
+		
+		this.filters = {};
 	}
 
 	resetFilters() {
@@ -68,32 +71,34 @@ export class AigWalletListPageComponent extends GenericComponent {
 		this.search();
 	}
 
+	paginationEvent(pageEvent: PageEvent) {
+		this.filters.page = pageEvent.pageIndex;
+		this.filters.size = pageEvent.pageSize;
+		this.search();
+	}
+
 	async search() {
-		let filters: any = {};
+		console.log(this.filters);
 		
-		let searchedId = this.searchForm.value.id;
+		let formValue = this.searchForm.value;
+		
+		let searchedId = formValue.id;
 		if (searchedId != null) {
 			this.searchForm.reset();
-			filters.walletIDEquals = searchedId;
+			this.filters.walletIDEquals = searchedId;
 		} else {
-			filters = this.searchForm.value;
-
-			if(filters.description) {
-				filters.walletDescriptionContains = filters.description;
-				filters.description = null;
+			if(formValue.description) {
+				this.filters.walletDescriptionContains = formValue.description;
 			}
-			if(filters.eopoo) {
-				filters.eopooCodeEquals = filters.eopoo.id;
-				filters.eopoo = null;
+			if(formValue.eopoo) {
+				this.filters.eopooCodeEquals = formValue.eopoo.id;
 			}
 		}
-
-		this.filters = filters;
-
 
 
 
 		try {
+			this.size = await this.walletResourceService.countWalletsUsingGET(this.filters).toPromise();
 			this.dataSource = await this.walletResourceService.getAllWalletsUsingGET(this.filters).toPromise();
 		} catch(e) {
 			console.log(e);
@@ -106,6 +111,7 @@ export class AigWalletListPageComponent extends GenericComponent {
 	}
 
 	async publish() {
+		this.filters.size = 100;
 		await this.walletResourceService.publishWalletUsingGET(this.filters).toPromise();
 	}
 }

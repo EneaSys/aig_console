@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
+import { FormDataDTO, FormDataResourceService } from 'aig-generic';
 import { FamilyUnitResourceService, FoodProductRequestDTO, FoodProductRequestResourceService } from 'aig-solidarety';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
@@ -10,35 +11,36 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 })
 export class AigSolidarityDashboard2Component extends GenericComponent {
     constructor(
+		private formDataResourceService: FormDataResourceService,
         public solidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
-        private foodProductRequestResourceService: FoodProductRequestResourceService,
-        private familyUnitResourceService: FamilyUnitResourceService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    foodProductRequestDTOs: FoodProductRequestDTO[] = null;
+    formDataDTOs: FormDataDTO[] = null;
 
     async loadComponent() {
-        this.foodProductRequestDTOs = await this.foodProductRequestResourceService.getAllFoodProductRequestsUsingGET(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 3, null, null, null, null, null, null, null, 1000, null, null, null, null, null).toPromise();
+		let filter = {
+			size: 500
+		};
+        this.formDataDTOs = await this.formDataResourceService.getAllFormDataUsingGET(filter).toPromise();
 
-        this.calculator(this.foodProductRequestDTOs);
+        this.calculator(this.formDataDTOs);
     }
 
     numberOfRequests: number = 0;
 
     total: number = 0;
     totalCount: number = 0;
-    totalCountComodato: number = 0;
     totalNotCount: number = 0;
 
 
-    list: FoodProductRequestDTO[] = [];
-    listTmp: FoodProductRequestDTO[] = [];
+    list: FormDataDTO[] = [];
+    listTmp: FormDataDTO[] = [];
 
 
 
-    listA: FoodProductRequestDTO[] = [];
-    listAtmp: FoodProductRequestDTO[] = [];
+    listA: FormDataDTO[] = [];
+    listAtmp: FormDataDTO[] = [];
 
     fA: number = 0;
     fAcount: number = 0;
@@ -54,8 +56,8 @@ export class AigSolidarityDashboard2Component extends GenericComponent {
 
 
 
-    listB: FoodProductRequestDTO[] = [];
-    listBtmp: FoodProductRequestDTO[] = [];
+    listB: FormDataDTO[] = [];
+    listBtmp: FormDataDTO[] = [];
 
     fB: number = 0;
     fBcount: number = 0;
@@ -70,23 +72,23 @@ export class AigSolidarityDashboard2Component extends GenericComponent {
     fB4count: number = 0;
 
 
-    calculator(foodProductRequestDTOs: FoodProductRequestDTO[]) {
-        this.numberOfRequests = this.foodProductRequestDTOs.length;
-        foodProductRequestDTOs.forEach((foodProductRequestDTO: FoodProductRequestDTO) => {
-            if (foodProductRequestDTO.note != "3") { // non approvate
+    calculator(formDataDTOs: FormDataDTO[]) {
+        this.numberOfRequests = this.formDataDTOs.length;
+        formDataDTOs.forEach((formDataDTO: FormDataDTO) => {
+            if (formDataDTO.n4 != 10) { // non approvate
                 this.totalNotCount += 1;
                 return;
             }
 
 
-            let calculatdValue = this.solidarityRequestCalculatorService.calculate3(foodProductRequestDTO);
+            let calculatdValue = this.solidarityRequestCalculatorService.calculate4(formDataDTO);
 
-            let familyComponents: number = foodProductRequestDTO.familyUnit.adultNumber + foodProductRequestDTO.familyUnit.childrenNumber;
+            let familyComponents: number = formDataDTO.n1 + formDataDTO.n2;
 
-            this.listTmp.push(foodProductRequestDTO);
+            this.listTmp.push(formDataDTO);
 
-            if(foodProductRequestDTO.familyUnit.city == "") {   // FASCIA A
-                this.listAtmp.push(foodProductRequestDTO);
+            if(formDataDTO.s10 == "A") {			// FASCIA A
+                this.listAtmp.push(formDataDTO);
 
                 if(familyComponents < 3) {
                     this.fA2 += calculatdValue;
@@ -98,8 +100,9 @@ export class AigSolidarityDashboard2Component extends GenericComponent {
                     this.fA4 += calculatdValue;
                     this.fA4count += 1
                 }
-            } else {                                            // FASCIA B
-                this.listBtmp.push(foodProductRequestDTO);
+            }
+			if(formDataDTO.s10 == "B") {			// FASCIA B
+                this.listBtmp.push(formDataDTO);
 
                 if(familyComponents < 3) {
                     this.fB2 += calculatdValue;
@@ -111,9 +114,6 @@ export class AigSolidarityDashboard2Component extends GenericComponent {
                     this.fB4 += calculatdValue;
                     this.fB4count += 1
                 }
-            }
-            if (foodProductRequestDTO.requestStatusA) {
-                this.totalCountComodato += 1
             }
         });
 

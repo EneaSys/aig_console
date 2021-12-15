@@ -69,6 +69,9 @@
 
             <aig-wallet-list-table [dataSource]="dataSource" [displayColumns]="displayColumns" [error]="error"></aig-wallet-list-table>
 
+            <mat-paginator #paginator [length]="size" [pageIndex]="0" [pageSize]="20"
+                [pageSizeOptions]="[30, 100, 200]" (page)="paginationEvent($event)"></mat-paginator>
+
             <button mat-fab class="accent" id="add-wallet-button" (click)="newWallet()" aria-label="add buyer">
                 <mat-icon>add</mat-icon>
             </button>
