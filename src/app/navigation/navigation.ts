@@ -44,23 +44,7 @@ export const navigation: FuseNavigation[] = [
                 title    : 'Dashboard',
                 type     : 'item',
                 icon     : 'dashboard',
-                url      : '/solidarity/dashboard',
-                permission: ['s8y.request.get'],
-            },
-            {
-                id       : 'solidarity-dashboard2',
-                title    : 'Dashboard2',
-                type     : 'item',
-                icon     : 'dashboard',
                 url      : '/solidarity/dashboard2',
-                permission: ['s8y.request.get'],
-            },
-            {
-                id       : 'solidarity-request-list-page',
-                title    : 'Requests',
-                type     : 'item',
-                icon     : 'child_care',
-                url      : '/solidarity/request',
                 permission: ['s8y.request.get'],
             },
         ]

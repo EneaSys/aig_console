@@ -8,7 +8,10 @@
 </div>
 <div *ngIf="error == null && dataSource != null">
 
-    <mat-table #table [dataSource]="dataSource">
+    <button class="m-4" mat-raised-button (click)="exporter.exportTable('csv')">CSV</button>
+    <button class="m-4"mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'graduatoria', sheet: 'graduatoria', Props: {Author: 'ApiGest'}})">Excel</button>
+
+    <mat-table #table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" matSort>
 
 		<ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>id</mat-header-cell>

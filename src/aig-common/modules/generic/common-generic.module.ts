@@ -51,6 +51,7 @@ import { AigFormDataListTableComponent } from './components/form-data-list-table
 import { AigFormDataNewUpdateFormComponent } from './components/form-data-new-update-form/form-data-new-update-form.component';
 import { FormDataResolver } from './resolver/form-data.resolver';
 import { AigFormDataDetailPageComponent } from 'app/main/api-gest-console/modules/aig-generic/components/form-data-detail-page/form-data-detail-page.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
     imports: [
@@ -78,6 +79,7 @@ import { AigFormDataDetailPageComponent } from 'app/main/api-gest-console/module
         MatSelectModule,
         MatDatepickerModule,
         MatMenuModule,
+		MatTableExporterModule,
 
 
     ],

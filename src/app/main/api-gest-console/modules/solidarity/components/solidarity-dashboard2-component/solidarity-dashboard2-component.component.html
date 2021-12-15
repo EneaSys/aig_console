@@ -1,4 +1,5 @@
-<div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
+<div id="dashboard-project" class="page-layout blank">
+
     <div class="center">
         <div class="content">
             <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100">
@@ -37,7 +38,6 @@
                             Totale pervenute: <b>{{ numberOfRequests }}</b><br>
                             Approvate: <b>{{ totalCount }}</b><br>
                             Non approvate: <b>{{ totalNotCount }}</b><br>
-                            Approvate con comodato: <b>{{ totalCountComodato }}</b><br>
                         </div>
                     </div>
                 </fuse-widget>
@@ -119,13 +119,26 @@
                     </div>
                 </fuse-widget>
 
-
-                <fuse-widget class="widget" fxLayout="column" fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-md="100">
-                    <aig-solidarity-request-list-table [displayedColumns]="['id', 'surname', 'name', 'cf', 'cell', 'familyTotal', 'cat3', 'reason', 'reddito', 'comodato', 'amount3']" [dataSource]="list"></aig-solidarity-request-list-table>
-                </fuse-widget>
-
-
             </div>
         </div>
     </div>
+
+	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-4">
+				<div class="h1 m-16">Fascia A</div>
+				<aig-form-data-list-table [dataSource]="listA" [displayColumns]="['id', 's2', 's3', 's4']"></aig-form-data-list-table>
+            </div>
+        </div>
+
+		<div class="widget p-16" fxFlex.gt-sm="50">
+            <div class="fuse-card auto-width p-4">
+				<div class="h1 m-16">Fascia B</div>
+				<aig-form-data-list-table [dataSource]="listB" [displayColumns]="['id', 's2', 's3', 's4']"></aig-form-data-list-table>
+            </div>
+        </div>
+
+	</div>
+
 </div>
