@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AigMerchantListPageComponent } from './components/merchant-list-page/merchant-list-page.component';
 import { RouterModule } from '@angular/router';
-import { MatAutocompleteModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { MatAutocompleteModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatTableModule, MatToolbarModule } from '@angular/material';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseSidebarModule, FuseWidgetModule } from '@fuse/components';
 import { TranslateModule } from '@ngx-translate/core';
@@ -48,6 +48,7 @@ import { AigTransactionDetailPageComponent } from './components/transaction-deta
 		MatDatepickerModule,
 		MatDialogModule,
 		MatAutocompleteModule,
+		MatPaginatorModule,
 
 
 	],
