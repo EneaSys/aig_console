@@ -78,8 +78,6 @@ export class AigWalletListPageComponent extends GenericComponent {
 	}
 
 	async search() {
-		console.log(this.filters);
-		
 		let formValue = this.searchForm.value;
 		
 		let searchedId = formValue.id;
@@ -111,7 +109,6 @@ export class AigWalletListPageComponent extends GenericComponent {
 	}
 
 	async publish() {
-		this.filters.size = 100;
 		await this.walletResourceService.publishWalletUsingGET(this.filters).toPromise();
 	}
 }

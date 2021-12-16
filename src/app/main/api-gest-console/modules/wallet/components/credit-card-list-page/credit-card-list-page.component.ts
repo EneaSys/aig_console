@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { CreditCardResourceService, CreditCardDTO } from 'aig-wallet';
@@ -19,6 +19,7 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 	) { super(aigGenericComponentService) }
 
 	dataSource: CreditCardDTO[];
+	size: number;
 	displayColumns: string[] = ['id', 'wallet', 'code', 'buttons'];
 	error: any;
 
@@ -50,6 +51,8 @@ export class AigCreditCardListPageComponent extends GenericComponent {
             code: [''],
             walletId: [''],
         });
+
+		this.filters = {};
 	}
 
 	resetFilters() {
@@ -58,32 +61,33 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 		this.search();
 	}
 
+	paginationEvent(pageEvent: PageEvent) {
+		this.filters.page = pageEvent.pageIndex;
+		this.filters.size = pageEvent.pageSize;
+		this.search();
+	}
+
 	async search() {
-		let filters: any = {};
+		let formValue = this.searchForm.value;
 		
-		let searchedId = this.searchForm.value.id;
+		let searchedId = formValue.id;
 		if (searchedId != null) {
 			this.searchForm.reset();
-			filters.creditCardIDEquals = searchedId;
+			this.filters.creditCardIDEquals = searchedId;
 		} else {
-			filters = this.searchForm.value;
-
-			if(filters.code) {
-				filters.creditCardCodeContains = filters.code;
-				filters.code = null;
+			if(formValue.code) {
+				this.filters.creditCardCodeContains = formValue.code;
 			}
-			if(filters.walletId) {
-				filters.walletIDEquals = filters.walletId;
-				filters.walletId = null;
+			if(formValue.walletId) {
+				this.filters.walletIDEquals = formValue.walletId;
 			}
 		}
-
-		this.filters = filters;
 
 
 
 
 		try {
+			this.size = await this.creditCardResourceService.countCreditCardsUsingGET(this.filters).toPromise();
 			this.dataSource = await this.creditCardResourceService.getAllCreditCardsUsingGET(this.filters).toPromise();
 		} catch(e) {
 			console.log(e);

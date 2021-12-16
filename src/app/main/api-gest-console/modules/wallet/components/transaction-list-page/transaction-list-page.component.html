@@ -53,6 +53,11 @@
         <div class="content mb-48">
 
             <aig-transaction-list-table [dataSource]="dataSource" [displayColumns]="displayColumns" [error]="error"></aig-transaction-list-table>
+
+			<mat-paginator #paginator [length]="size" [pageIndex]="0" [pageSize]="20"
+				[pageSizeOptions]="[30, 100, 200]" (page)="paginationEvent($event)"></mat-paginator>
+
+
         </div>
         <!-- / CONTENT -->
     </div>

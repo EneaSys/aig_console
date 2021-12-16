@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { WalletResourceService, WalletDTO, TransactionResourceService, TransactionDTO, GiveHaveResourceService } from 'aig-wallet';
@@ -19,6 +19,7 @@ export class AigTransactionListPageComponent extends GenericComponent {
 	) { super(aigGenericComponentService) }
 
 	dataSource: TransactionDTO[];
+	size: number;
 	displayColumns: string[] = ['id','creationDateTime','sender','reciver','buttons'];
 	error: any;
 
@@ -47,9 +48,9 @@ export class AigTransactionListPageComponent extends GenericComponent {
 	private initSearch() {
 		this.searchForm = this._formBuilder.group({
             id: [''],
-			
-          
         });
+
+		this.filters = {};
 	}
 
 	resetFilters() {
@@ -58,25 +59,31 @@ export class AigTransactionListPageComponent extends GenericComponent {
 		this.search();
 	}
 
+	paginationEvent(pageEvent: PageEvent) {
+		this.filters.page = pageEvent.pageIndex;
+		this.filters.size = pageEvent.pageSize;
+		this.search();
+	}
+
 	async search() {
-		let filters: any = {};
+		let formValue = this.searchForm.value;
 		
-		let searchedId = this.searchForm.value.id;
+		let searchedId = formValue.id;
 		if (searchedId != null) {
 			this.searchForm.reset();
-			filters.idEquals = searchedId;
+			this.filters.idEquals = searchedId;
 		} else {
-			filters = this.searchForm.value;
+			
 
 			
 		}
 
-		this.filters = filters;
-
+		
 
 
 
 		try {
+			this.size = await this.transactionResourceService.countTransactionsUsingGET(this.filters).toPromise();
 			this.dataSource = await this.transactionResourceService.getAllTransactionsUsingGET(this.filters).toPromise();
 		} catch(e) {
 			console.log(e);

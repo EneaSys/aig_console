@@ -141,6 +141,11 @@ export class AigSolidarityRequestCalculatorService {
 					des: "Soccorso istruttorio",
 					color: "orange"
 				}
+			case 7:
+				return {
+					des: "Rifiutate",
+					color: "red"
+				}
 			case 8:
 				return {
 					des: "Nulla",
@@ -148,7 +153,7 @@ export class AigSolidarityRequestCalculatorService {
 				}
 			case 9:
 				return {
-					des: "Rigettata",
+					des: "Non ammissibile",
 					color: "red"
 				}
 			case 10:
