@@ -20,6 +20,7 @@ import { AigTransactionListPageComponent } from './components/transaction-list-p
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 import { AigTransactionDetailPageComponent } from './components/transaction-detail-page/transaction-detail-page.component';
+import { AigTransactionNewDialogComponent } from './components/transaction-new-dialog/transaction-new-dialog.component';
 
 @NgModule({
 	imports: [ 
@@ -69,11 +70,14 @@ import { AigTransactionDetailPageComponent } from './components/transaction-deta
 		AigTransactionListPageComponent,
 		AigTransactionDetailPageComponent,
 
+		AigTransactionNewDialogComponent
+
 	],
 	entryComponents: [
 		AigMerchantNewUpdateDialogComponent,
 		AigWalletNewUpdateDialogComponent,
 		AigCreditCardNewUpdateDialogComponent,
+		AigTransactionNewDialogComponent,
 	],
 })
 export class AigWalletModule {}

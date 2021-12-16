@@ -4,17 +4,17 @@ import { MatSnackBar } from "@angular/material";
 import { FuseProgressBarService } from "@fuse/components/progress-bar/progress-bar.service";
 import { AigValidator } from "aig-common/AigValidator";
 import { EventService } from "aig-common/event-manager/event.service";
-import { CreditCardResourceService, CreditCardDTO, WalletDTO, TransactionResourceService, TransactionDTO } from 'aig-wallet';
+import { CreditCardResourceService, CreditCardDTO, WalletDTO, TransactionApiControllerService, TransactionRequest } from 'aig-wallet';
 import { Observable } from "rxjs";
 import { AigWalletAutocompleteFilterService } from "../../services/autocomplete-filter.service";
 import { AigWalletAutocompleteDisplayService } from "../../services/autocomplete-function.service";
 
 @Component({
-    selector: 'aig-transaction-new-update-form',
-    templateUrl: './transaction-new-update-form.component.html',
-    styleUrls: ['./transaction-new-update-form.component.scss']
+    selector: 'aig-transaction-new-form',
+    templateUrl: './transaction-new-form.component.html',
+    styleUrls: ['./transaction-new-form.component.scss']
 })
-export class AigTransactionNewUpdateFormComponent implements OnInit {
+export class AigTransactionNewFormComponent implements OnInit {
     step: any = {
         form: true,
         loading: false,
@@ -22,7 +22,9 @@ export class AigTransactionNewUpdateFormComponent implements OnInit {
     };
 
     constructor(
-		private transactionResourceService: TransactionResourceService,
+		public walletAutocompleteFilterService: AigWalletAutocompleteFilterService,
+        public walletAutocompleteDisplayService: AigWalletAutocompleteDisplayService,
+		private transactionApiControllerService: TransactionApiControllerService,
         private eventService: EventService,
         private _formBuilder: FormBuilder,
         private _fuseProgressBarService: FuseProgressBarService,
@@ -30,54 +32,49 @@ export class AigTransactionNewUpdateFormComponent implements OnInit {
     ) { }
 
     @Input()
-    transaction: any;
+    creditCard: CreditCardDTO;
 
+	@Input()
+    wallet: WalletDTO;
 
-    isUpdate: boolean = false;
+    transactionNewForm: FormGroup;
 
-    transactionResult: any;
-
-    transactionNewUpdateForm: FormGroup;
-
-	filteredTransaction: Observable<TransactionDTO[]>;
+	filteredWallet: Observable<WalletDTO[]>;
 
     ngOnInit(): void {
-        this.transactionNewUpdateForm = this._formBuilder.group({
+        this.transactionNewForm = this._formBuilder.group({
             id:[''],
-			creationDateTime:[''],
+			wallet: [this.wallet, [Validators.required, AigValidator.haveId] ],
+            amount: ['', [Validators.required]],
+			creditCardCode: ['', [Validators.required]],
+			pin: ['', [Validators.required]],
         })
         
-        if (this.transaction != null) {
-            this.transactionNewUpdateForm.patchValue(this.transaction);
-            this.isUpdate = true
+        if (this.creditCard != null) {
+			this.transactionNewForm.controls['creditCardCode'].patchValue(this.creditCard.code);
         }
 
-
+		this.filteredWallet = this.walletAutocompleteFilterService.filterWallet(this.transactionNewForm.controls['wallet'].valueChanges);
     }
 
     async submit() {
-        if (!this.transactionNewUpdateForm.valid) {
+        if (!this.transactionNewForm.valid) {
             return;
         }
 
         this._fuseProgressBarService.show();
         this.setStep("loading");
 
-        let transaction: any = this.transactionNewUpdateForm.value;
+		let formValue = this.transactionNewForm.value;
+        let transactionRequest: TransactionRequest = {
+			walletReceiver: this.transactionNewForm.value.wallet.id,
+			amount: formValue.amount,
+			cardCode: formValue.creditCardCode,
+			cardPin: formValue.pin,
+		};
 		
-        
         try {
-            let postOrPut: string;
-
-            if (this.isUpdate) {
-                await this.transactionResourceService.updateTransactionUsingPUT(transaction).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.transactionResourceService.createTransactionUsingPOST(transaction).toPromise();
-                postOrPut = "created";
-            }
-
-            this.transactionResult = transaction;
+            await this.transactionApiControllerService.createTransaction(transactionRequest).toPromise();
 
             this.eventService.reloadCurrentPage();
 

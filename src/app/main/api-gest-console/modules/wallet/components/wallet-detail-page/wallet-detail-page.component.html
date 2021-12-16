@@ -51,8 +51,11 @@
 		<div class="widget p-16" fxFlex.gt-sm="100">
             <div class="fuse-card auto-width p-16" id="transaction-list">
                 <div class="h4 m-16 mt-0 mb-0">Transazioni</div>
-				<pre>{{ transactionDTOs }}</pre>
+				<aig-transaction-list-table [dataSource]="transactionDTOs" [displayColumns]="transactionDC" [error]="transactionError"></aig-transaction-list-table>
                 <div style="height: 35px;"></div>
+				<button mat-fab class="accent" class="add-button-in-list-table" (click)="addTransaction(walletDTO)">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>   
         </div>
 
