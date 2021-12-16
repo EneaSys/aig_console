@@ -46,12 +46,14 @@
 					<button mat-stroked-button color="primary" (click)="setStatus(2)">Soccorso istruttorio</button>
 					
 					<button mat-stroked-button color="primary" (click)="setStatus(10)">Approva</button>
-					<button mat-stroked-button color="primary" (click)="setStatus(9)">Rigetta</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(7)">Rifiutata</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(9)">Non ammissibile</button>
 					<button mat-stroked-button color="primary" (click)="setStatus(8)">Nulla</button>
 				</p>
 				<p *ngSwitchCase="2">
 					<button mat-stroked-button color="primary" (click)="setStatus(10)">Approva</button>
-					<button mat-stroked-button color="primary" (click)="setStatus(9)">Rigetta</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(7)">Rifiutata</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(9)">Non ammissibile</button>
 					<button mat-stroked-button color="primary" (click)="setStatus(8)">Nulla</button>
 				</p>
 				<p *ngSwitchDefault>

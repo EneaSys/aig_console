@@ -103,29 +103,30 @@ export class AigFormDataListPageComponent extends GenericComponent {
 	}
 
     formDataSearchWithFilter() {
-		let searchedId = this.formDataSearchFormGroup.value.id;
+		let formValue = this.formDataSearchFormGroup.value;
+
+		let searchedId = formValue.id;
 		if(searchedId != null) {
-			this.clearFiltersFormData();
+			this.formDataSearchFormGroup.reset();
 			this.formDataFilters.idEquals = searchedId;
-			this.searchFormData(0);
-			return;
+		} else {
+			let filters: any = {};
+			filters = this.formDataSearchFormGroup.value;
+	
+			if(filters.s2) {
+				this.formDataFilters.s2Contains = filters.s2;
+			}
+			if(filters.s3) {
+				this.formDataFilters.s3Contains = filters.s3;
+			}
+			if(filters.s4) {
+				this.formDataFilters.s4Contains = filters.s4;
+			}
+			if(filters.n4) {
+				this.formDataFilters.n4Equals = filters.n4;
+			}
 		}
-
-		let filters: any = {};
-		filters = this.formDataSearchFormGroup.value;
-
-		if(filters.s2) {
-			this.formDataFilters.s2Contains = filters.s2;
-		}
-		if(filters.s3) {
-			this.formDataFilters.s3Contains = filters.s3;
-		}
-		if(filters.s4) {
-			this.formDataFilters.s4Contains = filters.s4;
-		}
-		if(filters.n4) {
-			this.formDataFilters.n4Contains = filters.n4;
-		}
+		console.log(this.formDataFilters);
 
 		this.searchFormData(0);
 	}

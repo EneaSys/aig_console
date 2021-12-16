@@ -79,7 +79,7 @@
             <aig-form-data-list-table [dataSource]="formDataDTOs" [displayColumns]="formDataDC"
                 [error]="formDataError"></aig-form-data-list-table>
 
-            <mat-paginator #paginator [length]="formDataLength" [pageIndex]="index"
+            <mat-paginator #paginator [length]="formDataLength" [pageIndex]="0"
                 [pageSize]="this.formDataPaginationSize" [pageSizeOptions]="[10, 50, 100]"
                 (page)="formDataPaginationEvent($event)"></mat-paginator>
         </div>
