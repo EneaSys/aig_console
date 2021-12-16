@@ -20,11 +20,11 @@ import { AigWalletAutocompleteFilterService } from './services/autocomplete-filt
 import { AigCreditCardListTableComponent } from './components/credit-card-list-table/credit-card-list-table.component';
 import { AigCreditCardNewUpdateFormComponent } from './components/credit-card-new-update-form/credit-card-new-update-form.component';
 import { AigTransactionListTableComponent } from './components/transaction-list-table/transaction-list-table.component';
-import { AigTransactionNewUpdateFormComponent } from './components/transaction-new-update-form/transaction-new-update-form.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AigGiveHaveListTableComponent } from './components/give-have-list-table/give-have-list-table.component';
 import { TransactionResolver } from './resolver/transaction.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AigTransactionNewFormComponent } from './components/transaction-new-form/transaction-new-form.component';
 
 @NgModule({
 	imports: [
@@ -74,9 +74,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		AigCreditCardNewUpdateFormComponent,
 
 		AigTransactionListTableComponent,
-		AigTransactionNewUpdateFormComponent,
+		AigTransactionNewFormComponent,
 
 		AigGiveHaveListTableComponent,
+		
 
 
 		
@@ -92,7 +93,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		AigCreditCardNewUpdateFormComponent,
 
 		AigTransactionListTableComponent,
-		AigTransactionNewUpdateFormComponent,
+		AigTransactionNewFormComponent,
 
 		AigGiveHaveListTableComponent,
 

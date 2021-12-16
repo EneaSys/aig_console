@@ -1,0 +1,59 @@
+<form *ngIf="step.form" [formGroup]="transactionNewForm" (ngSubmit)="submit()">
+
+	<div fxLayout="row" fxLayoutAlign="start start" *ngIf="!wallet">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Wallet</mat-label>
+            <input formControlName="wallet" matInput [matAutocomplete]="walletAutocomplete" required>
+            <mat-autocomplete #walletAutocomplete="matAutocomplete"
+                [displayWith]="walletAutocompleteDisplayService.walletDisplayFn">
+                <mat-option *ngFor="let wallet of filteredWallet | async" [value]="wallet">
+                    {{ wallet.description }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Importo</mat-label>
+            <input type="number" formControlName="amount" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Codice Carta di Credito</mat-label>
+            <input formControlName="creditCardCode" matInput required>
+        </mat-form-field>
+    </div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Pin</mat-label>
+            <input formControlName="pin" matInput required>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end top">
+        <button type="submit" mat-raised-button color="accent">{{ 'MAIN.CREATE' | translate | titlecase }}</button>
+    </div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+    <h1>Transactione {{ 'MAIN.CREATION_OK' | translate }}</h1>
+    
+    <hr>
+
+    OK
+
+    <div >
+        <br>
+        <hr>
+        <button mat-stroked-button color="primary" (click)="newTransaction()">{{ 'MAIN.CREATE_NEW' | translate | titlecase }}</button>
+    </div>
+</div>

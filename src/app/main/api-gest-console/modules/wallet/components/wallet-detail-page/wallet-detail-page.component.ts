@@ -14,6 +14,7 @@ import { AigMerchantService } from 'aig-common/modules/wallet/services/merchant.
 import { AigMerchantNewUpdateDialogComponent } from '../merchant-new-update-dialog/merchant-new-update-dialog.component';
 import { AigWalletNewUpdateDialogComponent } from '../wallet-new-update-dialog/wallet-new-update-dialog.component';
 import { AigCreditCardNewUpdateDialogComponent } from '../credit-card-new-update-dialog/credit-card-new-update-dialog.component';
+import { AigTransactionNewDialogComponent } from '../transaction-new-dialog/transaction-new-dialog.component';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		
 		this.loadPos();
 		this.loadCreditCard();
+		this.loadTransaction();
     }
 
     async reloadPage() {
@@ -48,6 +50,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 
 		this.loadPos();
 		this.loadCreditCard();
+		this.loadTransaction();
     }
 
     editWallet(walletDTO: WalletDTO) {
@@ -116,7 +119,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 
 
 	// Transaction
-	transactionDC: string[] = ["creationDateTime", "buttons"];
+	transactionDC: string[] = ['id','creationDateTime','sender','reciver'];
     transactionDTOs: TransactionDTO[];
     transactionError: any;
 
@@ -129,6 +132,10 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		} catch(e) {
 			this.transactionError = e;
 		}
+    }
+
+	addTransaction(walletDTO: WalletDTO) {
+        this.dialog.open(AigTransactionNewDialogComponent, { data: { wallet: walletDTO } });
     }
 
 
