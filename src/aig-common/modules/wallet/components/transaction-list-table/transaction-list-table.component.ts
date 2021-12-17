@@ -28,4 +28,7 @@ export class AigTransactionListTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
+	totals = {
+		
+	}
 }

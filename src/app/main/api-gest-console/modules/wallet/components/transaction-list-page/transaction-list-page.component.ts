@@ -20,7 +20,7 @@ export class AigTransactionListPageComponent extends GenericComponent {
 
 	dataSource: TransactionDTO[];
 	size: number;
-	displayColumns: string[] = ['id','creationDateTime','sender','reciver','buttons'];
+	displayColumns: string[] = ['id','creationDateTime', 'amount', 'sender','reciver','buttons'];
 	error: any;
 
 	loadPage() {

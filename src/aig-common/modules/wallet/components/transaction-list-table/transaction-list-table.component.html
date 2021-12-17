@@ -18,12 +18,18 @@
 
         <ng-container matColumnDef="creationDateTime">
             <mat-header-cell *matHeaderCellDef>Data transazione</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.creationDateTime }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.creationDateTime | date }}</mat-cell>
         </ng-container>
 
 		<ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef>Importo</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.amount }}</mat-cell>
+            <mat-cell *matCellDef="let e">
+				<span *ngFor="let giveHave of e.giveHaves">
+					<div *ngIf="giveHave.type == 'INPUT'">
+						<span>{{ (totals[e.id] =+ giveHave.amount) | currency: 'EUR' }}</span>
+					</div>
+				</span>
+			</mat-cell>
         </ng-container>
 
 		<ng-container matColumnDef="sender">
@@ -31,7 +37,7 @@
             <mat-cell *matCellDef="let e">
 				<span *ngFor="let giveHave of e.giveHaves">
 					<div *ngIf="giveHave.type == 'OUTPUT'">
-						<span>{{ giveHave.wallet.eopoo | eopooName }}</span><br>
+						<span>{{ giveHave.wallet.eopoo | eopooName }}</span> |
 						<span>{{ giveHave.wallet.description }}</span>
 					</div>
 				</span>
@@ -43,7 +49,7 @@
             <mat-cell *matCellDef="let e">
 				<span *ngFor="let giveHave of e.giveHaves">
 					<div *ngIf="giveHave.type == 'INPUT'">
-						<span>{{ giveHave.wallet.eopoo | eopooName }}</span><br>
+						<span>{{ giveHave.wallet.eopoo | eopooName }}</span> |
 						<span>{{ giveHave.wallet.description }}</span>
 					</div>
 				</span>
