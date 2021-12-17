@@ -20,7 +20,7 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 
 	dataSource: CreditCardDTO[];
 	size: number;
-	displayColumns: string[] = ['id', 'wallet', 'code', 'buttons'];
+	displayColumns: string[] = ['id', 'wallet', 'code', 'pin', 'buttons'];
 	error: any;
 
 	loadPage() {

@@ -25,6 +25,7 @@ import { AigGiveHaveListTableComponent } from './components/give-have-list-table
 import { TransactionResolver } from './resolver/transaction.resolver';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AigTransactionNewFormComponent } from './components/transaction-new-form/transaction-new-form.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
 	imports: [
@@ -53,6 +54,7 @@ import { AigTransactionNewFormComponent } from './components/transaction-new-for
         MatAutocompleteModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		MatTableExporterModule,
 		
 	],
 	providers: [

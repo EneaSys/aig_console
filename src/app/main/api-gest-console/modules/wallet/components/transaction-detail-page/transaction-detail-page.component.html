@@ -15,23 +15,20 @@
 
 		<div class="widget" fxFlex.gt-sm="100">
 			<div class="fuse-card auto-width p-16 m-8" id="give-have-list">
-				<div class="h4 m-16 mt-0 mb-0">INPUT</div>
-				<aig-give-have-list-table [dataSource]="giveHaveDTOsINPUT" [displayColumns]="giveHaveDC" [error]="giveHaveError"></aig-give-have-list-table>
-				
-				<div style="height: 35px;"></div>
-			</div>
-
-		</div>
-
-		<div class="widget" fxFlex.gt-sm="100">
-			<div class="fuse-card auto-width p-16 m-8" id="give-have-list">
 				<div class="h4 m-16 mt-0 mb-0">OUTPUT</div>
 				<aig-give-have-list-table [dataSource]="giveHaveDTOsOUTPUT" [displayColumns]="giveHaveDC" [error]="giveHaveError"></aig-give-have-list-table>
 				<div style="height: 35px;"></div>
 			</div>  
 		</div>
 
+		<div class="widget" fxFlex.gt-sm="100">
+			<div class="fuse-card auto-width p-16 m-8" id="give-have-list">
+				<div class="h4 m-16 mt-0 mb-0">INPUT</div>
+				<aig-give-have-list-table [dataSource]="giveHaveDTOsINPUT" [displayColumns]="giveHaveDC" [error]="giveHaveError"></aig-give-have-list-table>
+				<div style="height: 35px;"></div>
+			</div>
+		</div>
+
 	</div>
-	
 
 </div>
