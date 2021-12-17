@@ -47,7 +47,7 @@ export class AigTransactionListPageComponent extends GenericComponent {
 
 	private initSearch() {
 		this.searchForm = this._formBuilder.group({
-            id: [''],
+            id: [null],
         });
 
 		this.filters = {};

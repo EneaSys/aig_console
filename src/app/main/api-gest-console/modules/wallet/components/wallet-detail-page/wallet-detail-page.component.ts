@@ -126,7 +126,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
     async loadTransaction() {
 		try {
 			let filters = {
-				walletIdEquals: this.walletDTO.id,
+				walletIDEquals: this.walletDTO.id,
 			};
 			this.transactionDTOs = await this.transactionResourceService.getAllTransactionsUsingGET(filters).toPromise();
 		} catch(e) {
