@@ -48,7 +48,7 @@
             <mat-header-cell *matHeaderCellDef>Ricevente</mat-header-cell>
             <mat-cell *matCellDef="let e">
 				<span *ngFor="let giveHave of e.giveHaves">
-					<div *ngIf="giveHave.type == 'INPUT'">
+					<div *ngIf="giveHave.type == 'INPUT'" [ngClass]="{'active': (e.walletId == walletId)}">
 						<span>{{ giveHave.wallet.eopoo | eopooName }}</span> |
 						<span>{{ giveHave.wallet.description }}</span>
 					</div>

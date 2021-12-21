@@ -119,7 +119,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 
 
 	// Transaction
-	transactionDC: string[] = ['id','creationDateTime','sender','reciver'];
+	transactionDC: string[] = ['id','creationDateTime', 'amount', 'sender','reciver'];
     transactionDTOs: TransactionDTO[];
     transactionError: any;
 

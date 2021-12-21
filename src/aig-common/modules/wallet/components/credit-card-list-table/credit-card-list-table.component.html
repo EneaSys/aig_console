@@ -19,6 +19,11 @@
             <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
         </ng-container>
 
+		<ng-container matColumnDef="eopoo">
+            <mat-header-cell *matHeaderCellDef>Anagrafica</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.wallet.eopoo.id }}|{{ e.wallet.eopoo | eopooName }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="code">
             <mat-header-cell *matHeaderCellDef>Codice</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.code }}</mat-cell>

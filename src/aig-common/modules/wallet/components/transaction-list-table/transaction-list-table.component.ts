@@ -17,6 +17,8 @@ export class AigTransactionListTableComponent implements OnInit {
     displayColumns: string[];
     @Input()
     dataSource: TransactionDTO[];
+	@Input()
+	walletId: number;
 
     constructor(
         private transactionResourceService: TransactionResourceService,
@@ -28,7 +30,5 @@ export class AigTransactionListTableComponent implements OnInit {
 
     ngOnInit(): void { }
 
-	totals = {
-		
-	}
+	totals = { }
 }

@@ -6,6 +6,7 @@ import { FoodProductRequestDTO } from 'aig-solidarety';
 import * as jsPDF from 'jspdf'
 import { ItFiscalCodeService } from 'aig-common/modules/standard/services/itFiscalCode.service';
 import { AigSolidarityRequestCalculatorService } from 'aig-common/modules/solidarity/services/solidarityRequestCalulator.service';
+import { FormDataDTO } from 'aig-generic';
 
 @Component({
     templateUrl: './solidarity-request-module-page.component.html',
@@ -15,16 +16,17 @@ export class AigSolidarityRequestModulePageComponent extends GenericComponent {
     constructor(
         private route: ActivatedRoute,
         public itFiscalCodeService: ItFiscalCodeService,
+		public calculatorService: AigSolidarityRequestCalculatorService,
         public aigSolidarityRequestCalculatorService: AigSolidarityRequestCalculatorService,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
 
-    foodProductRequestDTO: FoodProductRequestDTO;
+    formDataDTO: FormDataDTO;
     instructor;
 
     loadComponent() {
-        this.foodProductRequestDTO = this.route.snapshot.data.helpRequest;
-        this.instructor = this.foodProductRequestDTO.familyUnit.note.split('|');
+        this.formDataDTO = this.route.snapshot.data.helpRequest;
+        this.instructor = this.formDataDTO.s15.split('|');
     }
 
     @ViewChild('module', { static: false }) module: ElementRef;
@@ -47,7 +49,7 @@ export class AigSolidarityRequestModulePageComponent extends GenericComponent {
             width: 190
         });
 
-        doc.save('modulo_' + this.foodProductRequestDTO.id + '.pdf');
+        doc.save('modulo_' + this.formDataDTO.id + '.pdf');
     }
     
 }

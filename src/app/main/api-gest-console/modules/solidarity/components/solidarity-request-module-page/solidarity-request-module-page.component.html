@@ -4,34 +4,27 @@
 
         <div class="card mb-16">
             <button class="ml-8" mat-stroked-button color="accent"
-                [routerLink]="'/solidarity/request/detail/' + (foodProductRequestDTO.id - 1) + '/module'">Precedente</button>
+                [routerLink]="'/solidarity/request/detail/' + (formDataDTO.id - 1) + '/module'">Precedente</button>
             <button class="ml-8" mat-stroked-button color="accent"
-                [routerLink]="'/solidarity/request/detail/' + (foodProductRequestDTO.id + 1) + '/module'">Prossimo</button>
+                [routerLink]="'/solidarity/request/detail/' + (formDataDTO.id + 1) + '/module'">Prossimo</button>
 
-            <h3 *ngIf="foodProductRequestDTO.note != '3'">Non stampare</h3>
+            <h3 *ngIf="formDataDTO.n4 != 10">Non stampare</h3>
 
             <div class="h1 m-16">
                 Stato:
-                <span *ngIf="foodProductRequestDTO.note == '1'" style="color: gray;">Da istruire</span>
-                <span *ngIf="foodProductRequestDTO.note == '2'" style="color: blue;">In valutazione</span>
-                <span *ngIf="foodProductRequestDTO.note == '3'" style="color: green;">Approvata</span>
-                <span *ngIf="foodProductRequestDTO.note == '4'" style="color: red;">Non ammissibile</span>
-                <span *ngIf="foodProductRequestDTO.note == '5'" style="color: brown;">Duplicata</span>
-                <span *ngIf="foodProductRequestDTO.note == '6'" style="color: blueviolet;">Soccorso
-                    istruttorio</span>
-                <span *ngIf="foodProductRequestDTO.note == '7'" style="color: brown;">Rinunciato</span>
-                <span *ngIf="foodProductRequestDTO.note == '8'" style="color: orange;">Integrato</span>
+                <span [ngStyle]="{'color': calculatorService.getStatus4(formDataDTO.n4).color}">{{ calculatorService.getStatus4(formDataDTO.n4).des }}</span>
             </div>
-            <h5 *ngIf="foodProductRequestDTO.note != '3'">{{ foodProductRequestDTO.familyUnit.surname }}
-                {{ foodProductRequestDTO.familyUnit.name }}</h5>
-            <button class="ml-8" mat-stroked-button color="accent" printSectionId="module" ngxPrint
-                *ngIf="foodProductRequestDTO.note == '3'">Stampa</button>
+            <h5 *ngIf="formDataDTO.n4 != 10">
+				{{ formDataDTO.s2 }}
+                {{ formDataDTO.s3 }}
+			</h5>
+            <button class="ml-8" mat-stroked-button color="accent" printSectionId="module" ngxPrint *ngIf="formDataDTO.n4 == 10">Stampa</button>
         </div>
 
-        <div class="card" *ngIf="foodProductRequestDTO.note == '3'">
+        <div class="card" *ngIf="formDataDTO.n4 == 10">
 
             <div id="module" #module class="content">
-                <h1>{{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }} ({{ foodProductRequestDTO.id }})</h1>
+                <h1>{{ formDataDTO.s2 }} {{ formDataDTO.s3 }} ({{ formDataDTO.id }})</h1>
 
                 <br>
 
@@ -46,27 +39,27 @@
                     <br>Comune di Santa Maria La Carità
                 </p>
 
-                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> DOMANDA DI AMMISSIONE MISURA DI SOLIDARIETA’ ALIMENTARE
+                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> DOMANDA DI AMMISSIONE FONDO DI SOLIDARIETA’ ALIMENTARE in attuazione del D.L. n.73 del 25/05/2021, art. 53. Agevolazioni straordinarie: generi alimentari di prima necessità, buoni spesa digitali
                 </p>
                 <p style="padding: 0 0 0 30px;">
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">Il
+                    <span *ngIf="itFiscalCodeService.sessoCf(formDataDTO.s4) == 'M'">Il
                         sottoscritto</span>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">La
+                    <span *ngIf="itFiscalCodeService.sessoCf(formDataDTO.s4) == 'F'">La
                         sottoscritta</span>
-                    {{ foodProductRequestDTO.familyUnit.surname }} {{ foodProductRequestDTO.familyUnit.name }}
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'M'">nato
+                    {{ formDataDTO.s3 }} {{ formDataDTO.s2 }}
+                    <span *ngIf="itFiscalCodeService.sessoCf(formDataDTO.s4) == 'M'">nato
                     </span>
-                    <span *ngIf="itFiscalCodeService.sessoCf(foodProductRequestDTO.familyUnit.taxId) == 'F'">nata
+                    <span *ngIf="itFiscalCodeService.sessoCf(formDataDTO.s4) == 'F'">nata
                     </span>
-                    a {{ itFiscalCodeService.comuneCf(foodProductRequestDTO.familyUnit.taxId) }}
-                    il {{ itFiscalCodeService.dataCf(foodProductRequestDTO.familyUnit.taxId) }}
+                    a {{ itFiscalCodeService.comuneCf(formDataDTO.s4) }}
+                    il {{ itFiscalCodeService.dataCf(formDataDTO.s4) }}
                     residente in Santa Maria la Carità (Na)
-                    alla via {{ foodProductRequestDTO.familyUnit.address }},
-                    {{ foodProductRequestDTO.familyUnit.civicNumber }},
-                    codice Fiscale {{ foodProductRequestDTO.familyUnit.taxId.toUpperCase() }},
-                    cell {{ foodProductRequestDTO.familyUnit.mobile }},
-                    <span *ngIf="(foodProductRequestDTO.familyUnit.email != '')">email
-                        {{ foodProductRequestDTO.familyUnit.email }},</span>
+                    alla via {{ formDataDTO.s7 }},
+                    {{ formDataDTO.s8 }},
+                    codice Fiscale {{ formDataDTO.s4.toUpperCase() }},
+                    cell {{ formDataDTO.s6 }},
+                    <span *ngIf="(formDataDTO.s5 != '')">email
+                        {{ formDataDTO.s5 }},</span>
                         in riferimento all’Avviso Pubblico  “Misura di Solidarietà alimentare in attuazione del D.L. 154/2020”
                 </p>
 
@@ -81,28 +74,30 @@
                     <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
                         Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
                         veridicità delle stesse;</li>
+					<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio per l'acquisto esclusivo di generi di prima necessità secondo le normative vigenti;</li>
+					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>
                 </ul>
 
                 <h3>Chiede</h3>
                 <p style="padding: 0 0 0 30px;">
-                    di essere ammesso all'erogazione di buoni spesa alimentari;
+                    di essere ammesso all'erogazione di buoni spesa alimentari digitali, il cui importo spettante sarà caricarto sulla propria tessera sanitaria/carta d'identità elettronica;
                 </p>
 
                 <h3>Dichiara</h3>
                 <ul>
                     <li>
-                        di possedere al 01/01/2021 un saldo disponibile di conto corrente bancario/postale 
+                        di possedere al 30/09/2021 un saldo disponibile di conto corrente bancario/postale 
                         e/o un saldo derivante da libretti di risparmio bancari/postali, 
-                        complessivamente per l'intero nucleo familiare non superiore a € 5.000,00 e precisamente: 
-						<span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'A'"> Meno di € 2.000,00</span>
-                    	<span *ngIf="foodProductRequestDTO.familyUnit.telephone == 'B'"> Tra € 2.000,01 a € 5.000,00</span>
+                        complessivamente per l'intero nucleo familiare non superiore a € 6.000,00 e precisamente: 
+						<span *ngIf="formDataDTO.s1 == 'A'"> Meno di € 4.000,00</span>
+                    	<span *ngIf="formDataDTO.s1 == 'B'"> Tra € 4.000,01 a € 6.000,00</span>
                     </li>
 
                     <li>
                         che pertanto il proprio nucleo familiare, come si evince dallo STATO DI FAMIGLIA è composto da:
-                        {{ foodProductRequestDTO.familyUnit.adultNumber }} adulti
-                        <span *ngIf="(foodProductRequestDTO.familyUnit.childrenNumber != '')">
-                            e {{ foodProductRequestDTO.familyUnit.childrenNumber }} minori (0-18 anni)
+                        {{ formDataDTO.n1 }} adulti
+                        <span *ngIf="formDataDTO.n2 > 0">
+                            e {{ formDataDTO.n2 }} minori (0-18 anni)
                         </span>
                         complessivi presenti nel nucleo familiare;
                     </li>
@@ -111,16 +106,15 @@
                         che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
                     </li>
                     <li>
-                        <span *ngIf="foodProductRequestDTO.familyUnit.city == ''">
-                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Gennaio 2021, non
+                        <span *ngIf="formDataDTO.s10 == 'A'">
+                            <u>FASCIA A</u> - essere disoccupato/inoccupato a far data dal 1 Settembre 2021, non
                             beneficiare di alcuna
                             misura di sostegno al reddito e che l’intero nucleo familiare non percepisce alcun reddito;
                         </span>
-                        <span *ngIf="foodProductRequestDTO.familyUnit.city != ''">
-                            <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo
-                            non superiore ad € 900,00 mensili e precisamente pari a:
-                            <b>{{ foodProductRequestDTO.requestStatusBIncomeMar | currency: "EUR" }}</b>
-                            derivante da: {{ foodProductRequestDTO.familyUnit.city }};
+                        <span *ngIf="formDataDTO.s10 == 'B'">
+                            <u>FASCIA B</u> - disporre per il proprio nucleo familiare di un reddito netto complessivo nel mese di settembre 2021
+                            non superiore ad € 1.000,00 mensili e precisamente pari a:
+                            <b>{{ formDataDTO.n3 | currency: "EUR" }}</b>;
                         </span>
                     </li>
                     <li>
@@ -129,13 +123,13 @@
                         GDPR (Regolamento UE 679/2016);
                     </li>
 					<li>
-						di ricevere l'importo di: <b>{{ aigSolidarityRequestCalculatorService.calculate(foodProductRequestDTO) | currency: 'EUR' }}</b> di buoni spesa
+						di ricevere l'importo di: <b>{{ aigSolidarityRequestCalculatorService.calculate4(formDataDTO) | currency: 'EUR' }}</b> di buoni spesa
 					</li>
                 </ul>
 
 				<br>
                 <p>Si allega alla presente, valido documento di riconoscimento;</p>
-                <p>Santa Maria la Carità, 26/06/2021</p>
+                <p>Santa Maria la Carità, 21/12/2021</p>
 
                 <div style="text-align: right;">
                     <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span

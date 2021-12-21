@@ -113,6 +113,11 @@
                         <span>Details</span>
                     </button>
 
+					<button mat-menu-item [routerLink]="'/solidarity/request/detail/' + element.id + '/module'">
+                        <mat-icon>details</mat-icon>
+                        <span>Domanda</span>
+                    </button>
+
                     <button mat-menu-item (click)="editFormData(element)">
                         <mat-icon>edit</mat-icon>
                         <span>Edit</span>
