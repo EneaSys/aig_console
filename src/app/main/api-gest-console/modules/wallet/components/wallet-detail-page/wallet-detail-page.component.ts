@@ -140,6 +140,8 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		try {
 			let filters = {
 				walletIDEquals: this.walletDTO.id,
+				size: 500,
+				sort: ['transactionCreationDateTime,desc']
 			};
 			this.transactionDTOs = await this.transactionResourceService.getAllTransactionsUsingGET(filters).toPromise();
 		} catch(e) {

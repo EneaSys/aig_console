@@ -47,9 +47,9 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 
 	private initSearch() {
 		this.searchForm = this._formBuilder.group({
-            id: [''],
-            code: [''],
-            walletId: [''],
+            id: [null],
+            code: [null],
+            walletId: [null],
         });
 
 		this.filters = {};
