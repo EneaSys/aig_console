@@ -43,6 +43,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		this.loadPos();
 		this.loadCreditCard();
 		this.loadTransaction();
+		this.loadCredit();
     }
 
     async reloadPage() {
@@ -51,6 +52,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		this.loadPos();
 		this.loadCreditCard();
 		this.loadTransaction();
+		this.loadCredit();
     }
 
     editWallet(walletDTO: WalletDTO) {
@@ -73,6 +75,17 @@ export class AigWalletDetailPageComponent extends GenericComponent {
     }
 
     
+	// Balance section
+	balance: number;
+	async loadCredit() {
+		try {
+			this.balance = await this.walletResourceService.getWalletBalanceUsingGET(this.walletDTO.id).toPromise();
+		} catch(e) {
+			this.posError = e;
+		}
+	}
+
+
 
 	// POS Section
 	posDC: string[] = ["name", "username", "password", "buttons"];
