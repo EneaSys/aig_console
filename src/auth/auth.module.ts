@@ -1,22 +1,73 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthOktaImplModule } from './impl/auth-okta-impl.module';
-
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
+import { PigesAuthModule } from '../@piges-auth/piges-auth.module';
+import { RouterModule } from '@angular/router';
+import { OktaAuthModule, OktaCallbackComponent, OktaLoginRedirectComponent, OKTA_CONFIG } from '@okta/okta-angular';
+import { AuthPigesImplService } from './impl/piges/auth-piges-impl.service';
+import { PigesAuthCallbackComponent } from '@piges-auth/piges-auth-callback.component';
+import { PIGES_CONFIG } from '@piges-auth/pigest.export';
+
+var url = location.protocol + '//' + location.host;
+
+// Okta
+const oktaConfig = {
+    issuer: 'https://oauth2.innova-s.com/oauth2/ausuw3xfhUTtDnmk4356',
+    redirectUri: url + '/implicit/callback',
+    clientId: '0oauw2o08aTx59dvx356'
+}
+// Piges
+const pigesConfig = {
+	serverUrl: 'https://auth.piges.io',
+	clientId: '799gvm543j1dk1im08augie769',
+	clientSecret: '',
+	redirectUrl: url + '/piges/auth/callback',
+	//idp_identifier: ''//'apigest-okta'
+}
+
+const routes = [
+	// Okta
+	{
+        path: 'implicit/callback',
+        component: OktaCallbackComponent
+    },
+    {
+        path: 'login',
+        component: OktaLoginRedirectComponent
+    },
+	// Piges
+    {
+        path: 'piges/auth/callback',
+        component: PigesAuthCallbackComponent,
+    },
+];
 
 @NgModule({
     declarations: [ ],
     imports: [ 
         CommonModule,
 
-        AuthOktaImplModule,
+		OktaAuthModule,
+		PigesAuthModule,
+
+		RouterModule.forRoot(routes)
     ],
     exports: [],
     providers: [
         AuthService,
         AuthGuardService,
+		
+		// Okta
+		{ provide: OKTA_CONFIG, useValue: oktaConfig },
+		//AuthOktaImplService,
+        //AuthGuardOktaImplService,
+
+		// Piges
+		{ provide: PIGES_CONFIG, useValue: pigesConfig },
+		AuthPigesImplService,
+        //AuthGuardPigesImplService,
     ],
 })
 export class AuthModule {}

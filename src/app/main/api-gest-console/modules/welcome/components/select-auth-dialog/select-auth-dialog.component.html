@@ -1,7 +1,7 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar matDialogTitle class="mat-accent m-0">
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="title dialog-title">Seleziona contesto</span>
+            <span class="title dialog-title">Login</span>
             <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
                 <mat-icon>close</mat-icon>
             </button>
@@ -15,39 +15,20 @@
 			</div>
 		</div>
 		
-		<div *ngIf="error == 1">
-			<p>Problemi nel caricamento dei contesti.</p>
-		</div>
-		<div *ngIf="error == 2">
-			<p>Problemi nel settaggio del contesto.</p>
-		</div>
-
 		<div *ngIf="!loading && dataSource.length == 0">
-			<p>Il tuo utente non ha contesti associati.</p>
+			<p>Nessun sistema di autenticazione attivo.</p>
 		</div>
 
         <mat-table #table [dataSource]="dataSource" *ngIf="!loading && dataSource.length > 0">
 			<ng-container matColumnDef="name">
 				<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-				<mat-cell *matCellDef="let e"> {{ e.contextName }} </mat-cell>
+				<mat-cell *matCellDef="let e"> {{ e.name }} </mat-cell>
 			</ng-container>
-	
-			<ng-container matColumnDef="contextCode">
-				<mat-header-cell *matHeaderCellDef> ContextCode </mat-header-cell>
-				<mat-cell *matCellDef="let e"> {{ e.contextCode }} </mat-cell>
-			</ng-container>
-			
-			<ng-container matColumnDef="selectContext">
-				<mat-header-cell *matHeaderCellDef></mat-header-cell>
-				<mat-cell *matCellDef="let e">
-					<button class="mr-8" mat-stroked-button color="accent" (click)="setDefaultContextAndGoToHome(e)">Seleziona</button>
-				</mat-cell>
-			</ng-container>
-			
+				
 			<ng-container matColumnDef="buttons">
 				<mat-header-cell *matHeaderCellDef></mat-header-cell>
 				<mat-cell *matCellDef="let e">
-					<button class="mr-8" mat-stroked-button color="accent" (click)="setDefaultContext(e)">Predefinito</button>
+					<button class="mr-8" mat-stroked-button color="accent" (click)="goToAuth(e)">LOGIN</button>
 				</mat-cell>
 			</ng-container>
 	

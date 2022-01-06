@@ -37,8 +37,8 @@
 					<div fxLayout="row" fxLayoutAlign="center center">
 						<img class="avatar mr-0 mr-sm-16" [src]="loggedUser.image">
 						<span class="username mr-12" fxHide fxShow.gt-sm>
-							{{ loggedUser.firstName }}
-							{{ loggedUser.lastName }}
+							{{ loggedUser.given_name }}
+							{{ loggedUser.family_name }}
 						</span>
 						<mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
 					</div>

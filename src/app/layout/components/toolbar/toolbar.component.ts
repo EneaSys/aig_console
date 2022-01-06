@@ -153,9 +153,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     private loggedUserInfo(user: any) {
         if (user != undefined) {
             this.loggedUser = user;
-
+			
             const md5 = new Md5();
-            this.loggedUser.image = 'https://secure.gravatar.com/avatar/' + md5.appendStr(this.loggedUser.email).end();
+            this.loggedUser.image = 'https://secure.gravatar.com/avatar/' + md5.appendStr(this.loggedUser.family_name).end();
 
             this.loadedUserInfo = true;
         } else {

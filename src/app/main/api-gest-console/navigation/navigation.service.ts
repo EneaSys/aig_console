@@ -34,6 +34,7 @@ export class AigModuleNavigationService {
     private async _loadNavigation(navigationId: string) {
         try {
             // controlla se loggato e se contesto settato
+			await this.userPermissionMemoryResourceService.cleanUserPermission1().toPromise();
             var permissions: string[] = await this.userPermissionMemoryResourceService.getUserPermission().toPromise();
             // potrei aggiungere anche permessi da jwt ad esempio i roles
             this.userPermissions = permissions;

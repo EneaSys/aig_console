@@ -12,15 +12,20 @@ import { AigSelectContextDialogComponent } from './components/select-context-dia
 import { AigWelcomePageComponent } from './components/welcome-page/welcome-page.component';
 import { RouterModule } from '@angular/router';
 import { welcomeRoute } from './components/welcome.route';
+import { AigSelectAuthDialogComponent } from './components/select-auth-dialog/select-auth-dialog.component';
 
 @NgModule({
 	declarations: [
 		AigWelcomePageComponent,
 		AigHomePageComponent,
 		AigSelectContextDialogComponent,
+		AigSelectAuthDialogComponent,
+
 	],
 	entryComponents: [
 		AigSelectContextDialogComponent,
+		AigSelectAuthDialogComponent,
+		
 	],
     imports: [
 		RouterModule.forChild(welcomeRoute),

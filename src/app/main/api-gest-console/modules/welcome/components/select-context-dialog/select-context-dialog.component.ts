@@ -13,13 +13,11 @@ import { AigModuleNavigationService } from '../../../../navigation/navigation.se
 export class AigSelectContextDialogComponent implements OnInit {
 	displayedColumns: string[] = ['name', 'selectContext'];
 	dataSource: any[];
-	error: any;
+	error: number;
 	loading: boolean = true;
 	
 	constructor(
 		private aigContextRepositoryService: AigContextRepositoryService,
-		private userPermissionMemoryResourceService: UserPermissionMemoryResourceService,
-		private aigModuleNavigationService: AigModuleNavigationService,
 		private router: Router,
 		private wsUserContextService: WsUserContextService,
         public matDialogRef: MatDialogRef<AigSelectContextDialogComponent>,
@@ -35,19 +33,23 @@ export class AigSelectContextDialogComponent implements OnInit {
 			this.dataSource = await this.wsUserContextService.getMyContexts().toPromise();
 			this.loading = false;
 		} catch(e) {
-			this.error = e;
+			this.error = 1;
 		}
 	}
 	
 	async setDefaultContextAndGoToHome(context: IContext) {
 		this.loading = true;
+		try {
+			await this.aigContextRepositoryService.setDefaultContext(context);
+			this.router.navigate(['/home-page']);
+			this.matDialogRef.close();	
+		} catch (error) {
+			this.error = 2;
+			this.loading = false;
+		}
+	}
 
-		await this.aigContextRepositoryService.setDefaultContext(context);
-		this.router.navigate(['/home-page']);
+	async setDefaultContext(context: IContext) {
 
-		await this.userPermissionMemoryResourceService.cleanUserPermission1().toPromise();
-		this.aigModuleNavigationService.reloadNavigation();
-		
-		this.matDialogRef.close();
 	}
 }
