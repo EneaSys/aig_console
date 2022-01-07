@@ -20,6 +20,8 @@ import { AigFormTypeListPageComponent } from './components/form-type-list-page/f
 import { AigFormDataListPageComponent } from './components/form-data-list-page/form-data-list-page.component';
 import { AigFormDataDetailPageComponent } from './components/form-data-detail-page/form-data-detail-page.component';
 import { FormDataResolver } from 'aig-common/modules/generic/resolver/form-data.resolver';
+import { AigFormDataDetailPage3Component } from './components/form-data-detail-page-3/form-data-detail-page-3.component';
+import { AigFormDataDetailPage2Component } from './components/form-data-detail-page-2/form-data-detail-page-2.component';
 
 export const aigGenericRoute: Routes = [
     {
@@ -122,6 +124,22 @@ export const aigGenericRoute: Routes = [
                     {
                         path: 'detail/:id',
                         component: AigFormDataDetailPageComponent,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            formData: FormDataResolver,
+                        },
+                    },
+					{
+                        path: 'detail-2/:id',
+                        component: AigFormDataDetailPage2Component,
+                        canActivate: [ AuthGuardService ],
+                        resolve: {
+                            formData: FormDataResolver,
+                        },
+                    },
+					{
+                        path: 'detail-3/:id',
+                        component: AigFormDataDetailPage3Component,
                         canActivate: [ AuthGuardService ],
                         resolve: {
                             formData: FormDataResolver,

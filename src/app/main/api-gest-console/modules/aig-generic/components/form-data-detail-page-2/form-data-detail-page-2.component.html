@@ -1,0 +1,127 @@
+<div id="aig-form-data-detail-page-2" class="page-layout blank">
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+        <div class="widget p-16" fxFlex.gt-sm="40">
+            <div class="fuse-card auto-width p-2">
+				<div class="h4 m-8 ml-16">ID: {{ formDataDTO.id }}</div>
+                <div class="h4 m-8 ml-16 mb-0 secondary-text">data inserimento: {{ formDataDTO.d1  |date: 'dd/MM/yyyy'}}</div>
+				<div class="h1 m-16">{{ formDataDTO.s3 }} {{ formDataDTO.s2 }}</div>
+				<div class="h4 m-8 ml-16">CF: <b>{{ formDataDTO.s4 }}</b></div>
+				<div class="h4 m-8 ml-16">email: <b>{{ formDataDTO.s5 }}</b></div>
+				<div class="h4 m-8 ml-16">cell: <b>{{ formDataDTO.s6 }}</b></div>
+				<div class="h4 m-8 ml-16">indirizzo: <b>{{ formDataDTO.s7 }}, {{ formDataDTO.s8 }}</b></div>
+            </div>
+        </div>
+
+        <div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-2">
+				
+				<div class="h4 m-8 ml-16">adulti: <b>{{ formDataDTO.n1 }}</b></div>
+				<div class="h4 m-8 ml-16">bambini: <b>{{ formDataDTO.n2 }}</b></div>
+				<div *ngIf="formDataDTO.n3" class="h4 m-8 ml-16">reddito: <b>{{ formDataDTO.n3 | currency: 'EUR' }}</b></div>
+            </div>
+        </div>
+		<div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-2">
+				
+				<div class="h4 m-8 ml-16">affitto: <b>{{ formDataDTO.n5 }}</b></div>
+				<div class="h4 m-8 ml-16">data stipula contratto: <b>{{ formDataDTO.d2 |date: 'dd/MM/yyyy' }}</b></div>
+				<div class="h4 m-8 ml-16">data registrazione contratto: <b>{{ formDataDTO.d3 |date: 'dd/MM/yyyy'  }}</b></div>
+				<div class="h4 m-8 ml-16">riferimento contratto: <b>{{ formDataDTO.s10 }}</b></div>
+            </div>
+        </div>
+
+		<div class="widget p-16" fxFlex.gt-sm="30">
+            <div class="fuse-card auto-width p-8">
+				<h1 [ngStyle]="{'color': calculatorService.getStatus4(formDataDTO.n4).color}">{{ calculatorService.getStatus4(formDataDTO.n4).des }}</h1>
+				<span *ngIf="instructor">Istruttore: <b>{{ instructor.name }}</b></span>
+            </div>
+
+			<div class="fuse-card auto-width p-8 mt-8" *ngIf="checkUserCanManage()">
+				<span [ngSwitch]="formDataDTO.n4">
+				<p *ngSwitchCase="">
+					<button mat-stroked-button color="primary" (click)="setStatus(1)">Prendi in carica</button>
+				</p>
+				<p *ngSwitchCase="1">
+					<button mat-stroked-button color="primary" (click)="setStatus(2)">Soccorso istruttorio</button>
+					
+					<button mat-stroked-button color="primary" (click)="setStatus(10)">Approva</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(7)">Rifiutata</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(9)">Non ammissibile</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(8)">Nulla</button>
+				</p>
+				<p *ngSwitchCase="2">
+					<button mat-stroked-button color="primary" (click)="setStatus(10)">Approva</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(7)">Rifiutata</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(9)">Non ammissibile</button>
+					<button mat-stroked-button color="primary" (click)="setStatus(8)">Nulla</button>
+				</p>
+				<p *ngSwitchDefault>
+					<button mat-stroked-button color="primary" (click)="setStatus(1)">Riesamina</button>
+				</p>
+				</span>
+            </div>
+			<div class="fuse-card auto-width p-8 mt-8" *ngIf="!checkUserCanManage()">
+				Istanza in lavorazione da altro istruttore
+			</div>
+        </div>
+
+    </div>
+
+	<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start" fxLayoutAlign.gt-sm="start start">
+
+		<div class="widget p-16" fxFlex.gt-sm="70">
+            <div class="fuse-card auto-width p-2">
+				<div class="h4 m-8 ml-16">Stato di famiglia</div>
+				<table style="width: 100%;">
+                    <tr>
+                        <th>Richiedente</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>CF</th>
+                        <th>Data nascita</th>
+                        <th>Domande</th>
+                    </tr>
+                    <tr *ngFor="let familyMember of this.family">
+                        <td><span *ngIf="familyMember.codice_fiscale_non_validato == formDataDTO.s4">X</span></td>
+                        <td>{{ familyMember.nome }}</td>
+                        <td>{{ familyMember.cognome }}</td>
+                        <td>{{ familyMember.codice_fiscale_non_validato }}</td>
+                        <td>{{ familyMember.data_nascita }}</td>
+                        <td>{{ familyMember.numero_domande }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="widget p-16" fxFlex.gt-sm="30" *ngIf="formDataDTO.n4 == 10">
+            <div class="fuse-card auto-width p-2">
+				<div class="h4 m-8 ml-16">Importo bonus affitti</div>
+				<div class="h1 m-16">{{ calculatorService.calculate4(formDataDTO) | currency: 'EUR' }}</div>
+            </div>
+        </div>
+	
+	</div>
+
+</div>
+
+		<!--
+				<div class="h1 m-16">n4:{{ formDataDTO.n4 }}</div>
+				<div class="h1 m-16">n5:{{ formDataDTO.n5 }}</div>
+				<div class="h1 m-16">n6:{{ formDataDTO.n6 }}</div>
+				<div class="h1 m-16">n7:{{ formDataDTO.n7 }}</div>
+				<div class="h1 m-16">n8:{{ formDataDTO.n8 }}</div>
+				<div class="h1 m-16">n9:{{ formDataDTO.n9 }}</div>
+				<div class="h1 m-16">n10:{{ formDataDTO.n10 }}</div>
+
+				<div class="h1 m-16">s11:{{ formDataDTO.s11 }}</div>
+				<div class="h1 m-16">s12:{{ formDataDTO.s12 }}</div>
+				<div class="h1 m-16">s13:{{ formDataDTO.s13 }}</div>
+				<div class="h1 m-16">s14:{{ formDataDTO.s14 }}</div>
+				<div class="h1 m-16">s15:{{ formDataDTO.s15 }}</div>
+				<div class="h1 m-16">s16:{{ formDataDTO.s16 }}</div>
+				<div class="h1 m-16">s17:{{ formDataDTO.s17 }}</div>
+				<div class="h1 m-16">s18:{{ formDataDTO.s18 }}</div>
+				<div class="h1 m-16">s19:{{ formDataDTO.s19 }}</div>
+-->

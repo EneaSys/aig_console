@@ -18,7 +18,7 @@ import { AigEopooDetailPageComponent } from './components/eopoo-detail-page/eopo
 import { AigAddressNewUpdateModalComponent } from './components/address-new-update-modal/address-new-update-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
 import { AigGenericEopooListPageComponent } from './components/generic-eopoo-list-page/generic-eopoo-list-page.component';
 import { AigGenericEopooNewUpdateDialogComponent } from './components/generic-eopoo-new-update-dialog/generic-eopoo-new-update-dialog.component';
 import { AigAddressListPageComponent } from './components/address-list-page/address-list-page.component';
@@ -36,6 +36,8 @@ import { AigFormTypeNewUpdateDialogComponent } from './components/form-type-new-
 import { AigFormDataNewUpdateDialogComponent } from './components/form-data-new-update-dialog/form-data-new-update-dialog.component';
 import { AigFormDataListPageComponent } from './components/form-data-list-page/form-data-list-page.component';
 import { AigFormDataDetailPageComponent } from './components/form-data-detail-page/form-data-detail-page.component';
+import { AigFormDataDetailPage3Component } from './components/form-data-detail-page-3/form-data-detail-page-3.component';
+import { AigFormDataDetailPage2Component } from './components/form-data-detail-page-2/form-data-detail-page-2.component';
 
 @NgModule({
     imports: [
@@ -60,6 +62,7 @@ import { AigFormDataDetailPageComponent } from './components/form-data-detail-pa
         MatInputModule,
         MatAutocompleteModule,
 		
+		MatNativeDateModule,
     ],
     declarations: [
         AigGenericHeaderComponent,
@@ -93,7 +96,10 @@ import { AigFormDataDetailPageComponent } from './components/form-data-detail-pa
 
         AigFormDataNewUpdateDialogComponent,
 		AigFormDataListPageComponent,
-		AigFormDataDetailPageComponent
+		AigFormDataDetailPageComponent,
+
+		AigFormDataDetailPage3Component,
+		AigFormDataDetailPage2Component,
 
     ],
     entryComponents: [
@@ -110,6 +116,7 @@ import { AigFormDataDetailPageComponent } from './components/form-data-detail-pa
 
     ],
     providers: [
+		{ provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
 
     ],
 })

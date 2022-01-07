@@ -53,6 +53,7 @@ export class AigFormDataListPageComponent extends GenericComponent {
 			s3: [''],
 			s4: [''],
             n4: [''],
+			formTypeId: [''],
         });
 
         this.formDataDC = ["id", "s2", "s3", "s4", "s10", "n4", "buttons"];
@@ -112,6 +113,10 @@ export class AigFormDataListPageComponent extends GenericComponent {
 		} else {
 			let filters: any = {};
 			filters = this.formDataSearchFormGroup.value;
+
+			if(filters.formTypeId) {
+				this.formDataFilters.formTypeIdEquals = filters.formTypeId;
+			}
 	
 			if(filters.s2) {
 				this.formDataFilters.s2Contains = filters.s2;
