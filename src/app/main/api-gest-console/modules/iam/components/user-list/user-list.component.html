@@ -11,16 +11,16 @@
                                 <button mat-raised-button (click)="showAllUser()">Resetta filtri</button>
                             </div>
                             <form [formGroup]="userSearchFormGroup" (ngSubmit)="userSearchWithFilter()" class="p-8">
-                                <div fxLayout="row">
+								<div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput type="text" formControlName="firstName">
+                                        <mat-label>id</mat-label>
+                                        <input matInput type="text" formControlName="id">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Last Name</mat-label>
-                                        <input matInput type="text" formControlName="lastName">
+                                        <mat-label>Usercode</mat-label>
+                                        <input matInput type="text" formControlName="userCode">
                                     </mat-form-field>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="end top">

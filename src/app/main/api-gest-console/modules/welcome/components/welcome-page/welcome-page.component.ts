@@ -74,7 +74,8 @@ export class AigWelcomePageComponent extends GenericComponent {
 	}
 	
 	logout() {
-		this.authService.logout(location.href);
+		var url = location.protocol + '//' + location.host;
+		this.authService.logout(url + "/welcome-page");
 	}
 
 }

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { ContextUserDTO } from 'aig-entity-manager';
  
 @Component({
     selector: 'aig-users-table',
@@ -33,8 +34,8 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void { }
 
-    disactivate(userCode: string):void {
-        var deactivateUserSubscription = this.userResourceService.deactivateUserUsingDELETE(userCode).subscribe(
+    disactivate(user: ContextUserDTO):void {
+        var deactivateUserSubscription = this.userResourceService.deactivateUserUsingDELETE(user.userCode).subscribe(
             (userDTO: UserDTO) => {
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("User Deactivated", null, {duration: 2000,});
@@ -47,8 +48,8 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
         this.subscriptions.push(deactivateUserSubscription);
     }
 
-    reactivate(userCode: string):void {
-        var reactivateUserSubscription = this.userResourceService.reactivateUserUsingPUT(userCode).subscribe(
+    reactivate(user: ContextUserDTO):void {
+        var reactivateUserSubscription = this.userResourceService.reactivateUserUsingPUT(user.userCode).subscribe(
             (userDTO: UserDTO) => {
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("User Reactivated", null, {duration: 2000,});
@@ -58,8 +59,8 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
         this.subscriptions.push(reactivateUserSubscription);
     }
 
-    userDetail(userCode: String) {
-        this.router.navigate(['iam', 'user', userCode]);
+    userDetail(user: ContextUserDTO) {
+        this.router.navigate(['iam', 'user', user.id]);
     }
 
     

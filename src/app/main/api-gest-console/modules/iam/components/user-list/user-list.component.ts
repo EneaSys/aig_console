@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserResourceService, UserDTO } from 'api-gest';
 import { MatDialog } from '@angular/material/dialog';
 import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
@@ -7,6 +6,7 @@ import { AigGenericComponentService } from 'app/main/api-gest-console/generic-co
 import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { ContextUserDTO, ContextUserResourceService } from 'aig-entity-manager';
 
 @Component({
     templateUrl: './user-list.component.html',
@@ -14,28 +14,13 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AigUserListComponent extends GenericComponent {
     constructor(
-        private userResourceService: UserResourceService,
+        private contextUserResourceService: ContextUserResourceService,
         private _formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
         private dialog: MatDialog,
         aigGenericComponentService: AigGenericComponentService,
     ) { super(aigGenericComponentService) }
-/** 
-    displayedColumns: string[] = ['usercode', 'firstName', 'lastName', 'email', 'status', 'type', 'buttons'];
-    userDTOs: UserDTO[];
-    error: any;
 
-    filter = {
-        seller: null,
-    }
-
-    pageable = {
-        page: 0,
-        size: 20,
-    }
-    length: number = 500;
-    index: number;
-    */
     loadPage() {
         this.initUserSearch();
 
@@ -53,20 +38,20 @@ export class AigUserListComponent extends GenericComponent {
 	userFilters: any;
 
 	userLength: number;
-	userDTOs: UserDTO[];
+	userDTOs: ContextUserDTO[];
 	userError: any;
 
 	userDC: string[];
 
     private initUserSearch() {
-		this.userDC = ['usercode', 'firstName', 'lastName', 'email', 'status', 'type', 'buttons'];
+		this.userDC = ['usercode', 'email', 'status', 'type', 'buttons'];
 
 		this.userPaginationSize = 20;
 		
 
 		this.userSearchFormGroup = this._formBuilder.group({
 			id: [''],
-			name: [''],
+			userCode: [''],
 		});
 	}
     
@@ -85,7 +70,7 @@ export class AigUserListComponent extends GenericComponent {
 		this.userFilters.size = this.userPaginationSize;
 
 		try {                                                                       
-			this.userLength = await this.userResourceService.countUsersUsingGET(this.userFilters.id).toPromise();  
+			this.userLength = await this.contextUserResourceService.countContextUsersUsingGET({}).toPromise();
 			
 			if(this.userLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -93,7 +78,7 @@ export class AigUserListComponent extends GenericComponent {
 				return;
 			}
 
-			this.userDTOs = await this.userResourceService.getAllUsersUsingGET(this.userFilters.id).toPromise();
+			this.userDTOs = await this.contextUserResourceService.getAllContextUsersUsingGET({}).toPromise();
 		} catch (e) {
 			this.userError = e;
 		}
