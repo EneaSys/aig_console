@@ -38,7 +38,7 @@ export class AigContextUserNewUpdateFormComponent implements OnInit {
 
 	types: any[] = [
 		{
-			value: 'USER',
+			value: 'PERSON',
 			desc: 'Utente'
 		},
 		{

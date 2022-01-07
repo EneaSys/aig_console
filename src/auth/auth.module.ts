@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
@@ -9,6 +10,8 @@ import { OktaAuthModule, OktaCallbackComponent, OktaLoginRedirectComponent, OKTA
 import { AuthPigesImplService } from './impl/piges/auth-piges-impl.service';
 import { PigesAuthCallbackComponent } from '@piges-auth/piges-auth-callback.component';
 import { PIGES_CONFIG } from '@piges-auth/pigest.export';
+
+registerLocaleData(localeIt);
 
 var url = location.protocol + '//' + location.host;
 
@@ -59,6 +62,8 @@ const routes = [
         AuthService,
         AuthGuardService,
 		
+		{ provide: LOCALE_ID, useValue: 'it'},
+
 		// Okta
 		{ provide: OKTA_CONFIG, useValue: oktaConfig },
 		//AuthOktaImplService,
