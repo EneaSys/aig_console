@@ -20,7 +20,7 @@ export class AigTransactionListPageComponent extends GenericComponent {
 
 	dataSource: TransactionDTO[];
 	size: number;
-	displayColumns: string[] = ['id','creationDateTime','sender','reciver','buttons'];
+	displayColumns: string[] = ['id','creationDateTime', 'amount', 'sender','reciver','buttons'];
 	error: any;
 
 	loadPage() {
@@ -44,13 +44,13 @@ export class AigTransactionListPageComponent extends GenericComponent {
 
 	searchForm: FormGroup;
 	filters: any;
+	paginator: any = {};
 
 	private initSearch() {
 		this.searchForm = this._formBuilder.group({
-            id: [''],
+            id: [null],
+			walletId: [null],
         });
-
-		this.filters = {};
 	}
 
 	resetFilters() {
@@ -60,21 +60,29 @@ export class AigTransactionListPageComponent extends GenericComponent {
 	}
 
 	paginationEvent(pageEvent: PageEvent) {
-		this.filters.page = pageEvent.pageIndex;
-		this.filters.size = pageEvent.pageSize;
+		this.paginator.page = pageEvent.pageIndex;
+		this.paginator.size = pageEvent.pageSize;
 		this.search();
+	}
+	
+	initFilter() {
+		this.filters = { ...this.paginator };
+		this.filters.sort = ['transactionCreationDateTime,desc'];
 	}
 
 	async search() {
 		let formValue = this.searchForm.value;
+		this.initFilter();
 		
 		let searchedId = formValue.id;
 		if (searchedId != null) {
 			this.searchForm.reset();
-			this.filters.idEquals = searchedId;
+			this.filters.transactionIDEquals = searchedId;
 		} else {
 			
-
+			if(formValue.walletId) {
+				this.filters.walletIDEquals = formValue.walletId;
+			}
 			
 		}
 
@@ -93,7 +101,12 @@ export class AigTransactionListPageComponent extends GenericComponent {
 
 
 	async publish() {
-		await this.transactionResourceService.publishTransactionUsingGET(this.filters).toPromise();
-		await this.giveHaveResourceService.publishGiveHaveUsingGET(this.filters).toPromise();
+		let transactionFilters = { ...this.paginator };
+		transactionFilters.idEquals = this.filters.transactionIDEquals;
+		await this.transactionResourceService.publishTransactionUsingGET(transactionFilters).toPromise();
+		
+		let giveHaveFilters = { ...this.paginator };
+		giveHaveFilters.transactionIdEquals = this.filters.transactionIDEquals;
+		await this.giveHaveResourceService.publishGiveHaveUsingGET(giveHaveFilters).toPromise();
 	}
 }

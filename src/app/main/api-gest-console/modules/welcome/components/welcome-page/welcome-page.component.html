@@ -24,7 +24,7 @@
 			<div *ngIf="!loggedUser && pageLoaded" class="subtitle">
 				<p>Per usare questo software è necessario effettuare il login.</p>
 
-				<button mat-raised-button color="accent" [routerLink]="'/home-page'">Login</button>
+				<button mat-raised-button color="accent" (click)="login()">Login</button>
 			</div>
 
 			<div *ngIf="loggedUser && pageLoaded" class="subtitle">
@@ -34,6 +34,7 @@
 				<span> </span>
 				<button mat-raised-button color="accent" (click)="selectContext()">Seleziona contesto</button>
 			</div>
+			
 		</div>
 	</div>
 </div>

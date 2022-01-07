@@ -43,6 +43,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		this.loadPos();
 		this.loadCreditCard();
 		this.loadTransaction();
+		this.loadCredit();
     }
 
     async reloadPage() {
@@ -51,6 +52,7 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 		this.loadPos();
 		this.loadCreditCard();
 		this.loadTransaction();
+		this.loadCredit();
     }
 
     editWallet(walletDTO: WalletDTO) {
@@ -73,6 +75,17 @@ export class AigWalletDetailPageComponent extends GenericComponent {
     }
 
     
+	// Balance section
+	balance: number;
+	async loadCredit() {
+		try {
+			this.balance = await this.walletResourceService.getWalletBalanceUsingGET(this.walletDTO.id).toPromise();
+		} catch(e) {
+			this.posError = e;
+		}
+	}
+
+
 
 	// POS Section
 	posDC: string[] = ["name", "username", "password", "buttons"];
@@ -119,14 +132,16 @@ export class AigWalletDetailPageComponent extends GenericComponent {
 
 
 	// Transaction
-	transactionDC: string[] = ['id','creationDateTime','sender','reciver'];
+	transactionDC: string[] = ['id','creationDateTime', 'amount', 'sender','reciver'];
     transactionDTOs: TransactionDTO[];
     transactionError: any;
 
     async loadTransaction() {
 		try {
 			let filters = {
-				walletIdEquals: this.walletDTO.id,
+				walletIDEquals: this.walletDTO.id,
+				size: 500,
+				sort: ['transactionCreationDateTime,desc']
 			};
 			this.transactionDTOs = await this.transactionResourceService.getAllTransactionsUsingGET(filters).toPromise();
 		} catch(e) {

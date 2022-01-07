@@ -108,9 +108,24 @@
                 </button>
 
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item [routerLink]="'/g5c/form-data/detail/' + element.id">
+                    <button *ngIf="element.formTypeId == 1" mat-menu-item [routerLink]="'/g5c/form-data/detail/' + element.id">
                         <mat-icon>details</mat-icon>
                         <span>Details</span>
+                    </button>
+
+					<button *ngIf="element.formTypeId == 1" mat-menu-item [routerLink]="'/solidarity/request/detail/' + element.id + '/module'">
+                        <mat-icon>details</mat-icon>
+                        <span>Domanda</span>
+                    </button>
+
+					<button *ngIf="element.formTypeId == 2" mat-menu-item [routerLink]="'/g5c/form-data/detail-2/' + element.id">
+                        <mat-icon>details</mat-icon>
+                        <span>dettagli</span>
+                    </button>
+
+					<button *ngIf="element.formTypeId == 3" mat-menu-item [routerLink]="'/g5c/form-data/detail-3/' + element.id">
+                        <mat-icon>details</mat-icon>
+                        <span>dettagli</span>
                     </button>
 
                     <button mat-menu-item (click)="editFormData(element)">

@@ -18,20 +18,22 @@
 
         <ng-container matColumnDef="creationDateTime">
             <mat-header-cell *matHeaderCellDef>Data transazione</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.creationDateTime }}</mat-cell>
+            <mat-cell *matCellDef="let e">{{ e.creationDateTime | date: 'dd-MM-yyyy HH:mm:ss' }}</mat-cell>
         </ng-container>
 
 		<ng-container matColumnDef="amount">
             <mat-header-cell *matHeaderCellDef>Importo</mat-header-cell>
-            <mat-cell *matCellDef="let e">{{ e.amount }}</mat-cell>
+            <mat-cell *matCellDef="let e">
+				<span>{{ calc(e) | currency: 'EUR' }}</span>
+			</mat-cell>
         </ng-container>
 
 		<ng-container matColumnDef="sender">
             <mat-header-cell *matHeaderCellDef>Inviante</mat-header-cell>
             <mat-cell *matCellDef="let e">
 				<span *ngFor="let giveHave of e.giveHaves">
-					<div *ngIf="giveHave.type == 'OUTPUT'">
-						<span>{{ giveHave.wallet.eopoo | eopooName }}</span><br>
+					<div *ngIf="giveHave.type == 'OUTPUT'" [ngClass]="{'active': walletId == giveHave.wallet.id}">
+						<span>{{ giveHave.wallet.eopoo | eopooName }}</span> |
 						<span>{{ giveHave.wallet.description }}</span>
 					</div>
 				</span>
@@ -42,8 +44,8 @@
             <mat-header-cell *matHeaderCellDef>Ricevente</mat-header-cell>
             <mat-cell *matCellDef="let e">
 				<span *ngFor="let giveHave of e.giveHaves">
-					<div *ngIf="giveHave.type == 'INPUT'">
-						<span>{{ giveHave.wallet.eopoo | eopooName }}</span><br>
+					<div *ngIf="giveHave.type == 'INPUT'" [ngClass]="{'active': walletId == giveHave.wallet.id}">
+						<span>{{ giveHave.wallet.eopoo | eopooName }}</span> |
 						<span>{{ giveHave.wallet.description }}</span>
 					</div>
 				</span>

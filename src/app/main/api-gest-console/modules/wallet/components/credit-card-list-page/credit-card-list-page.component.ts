@@ -20,7 +20,7 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 
 	dataSource: CreditCardDTO[];
 	size: number;
-	displayColumns: string[] = ['id', 'wallet', 'code', 'buttons'];
+	displayColumns: string[] = ['id', 'eopoo', 'wallet', 'code', 'pin', 'buttons'];
 	error: any;
 
 	loadPage() {
@@ -47,9 +47,9 @@ export class AigCreditCardListPageComponent extends GenericComponent {
 
 	private initSearch() {
 		this.searchForm = this._formBuilder.group({
-            id: [''],
-            code: [''],
-            walletId: [''],
+            id: [null],
+            code: [null],
+            walletId: [null],
         });
 
 		this.filters = {};

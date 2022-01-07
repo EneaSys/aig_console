@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 import { EventService } from 'aig-common/event-manager/event.service';
-import { CreditCardDTO, TransactionDTO, TransactionResourceService } from 'aig-wallet';
+import { CreditCardDTO, GiveHaveDTO, TransactionDTO, TransactionResourceService } from 'aig-wallet';
 
 
 @Component({
@@ -17,6 +17,8 @@ export class AigTransactionListTableComponent implements OnInit {
     displayColumns: string[];
     @Input()
     dataSource: TransactionDTO[];
+	@Input()
+	walletId: number;
 
     constructor(
         private transactionResourceService: TransactionResourceService,
@@ -26,6 +28,19 @@ export class AigTransactionListTableComponent implements OnInit {
         private dialog: MatDialog,
     ) { }
 
+	totals = { };
+
     ngOnInit(): void { }
+
+	calc(transaction: TransactionDTO) {
+		transaction.giveHaves.forEach((giveHave: GiveHaveDTO) => {
+			if(giveHave.type == 'INPUT') {
+				this.totals[giveHave.transactionId] =+ giveHave.amount;
+			}
+		});
+		
+		return this.totals[transaction.id];
+	}
+
 
 }

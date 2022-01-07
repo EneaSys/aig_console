@@ -5,8 +5,7 @@ import { Location } from '@angular/common';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable, Subscriber, from, Subject } from 'rxjs';
 
-import { TenantContextResourceService, TenantContextDTO } from 'api-gest';
-import { TenantContextResourceService as TenantContextResourceService2 } from 'aig-management';
+import { TenantContextDTO, TenantContextResourceService as TenantContextResourceService } from 'aig-management';
 import { IContext } from './Context.model';
 
 @Injectable()
@@ -15,8 +14,7 @@ export class AigContextRepositoryService {
         private localStorage: LocalStorageService,
         private router: Router,
         private location: Location,
-        private tenantContextResourceService: TenantContextResourceService,
-		private tenantContextResourceService2: TenantContextResourceService2,
+		private tenantContextResourceService: TenantContextResourceService,
     ) { }
 
     private currentContextObservable: Subject<IContext> = new Subject<IContext>();
@@ -46,7 +44,7 @@ export class AigContextRepositoryService {
         try {
             let secureContext: IContext = await this.loadValidContext(context.contextCode);
             this.setDefaultContextInMemory(secureContext);
-            this._setCurrentContext(secureContext);
+        	this._setCurrentContext(secureContext);
         } catch(e) { }
     }
 
@@ -187,8 +185,7 @@ export class AigContextRepositoryService {
 			let filter = {
 				tenantContextCodeEquals: contextCode
 			};
-			this.tenantContextResourceService2.getAllTenantContextsUsingGET(filter)
-            //this.tenantContextResourceService.getAllTenantContextsUsingGET(null, null, contextCode, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+			this.tenantContextResourceService.getAllTenantContextsUsingGET(filter)
             .subscribe(
                 (TenantContextDTOs: TenantContextDTO[]) => {
                     let validContext: IContext = {
@@ -378,6 +375,9 @@ export class AigContextRepositoryService {
 
         private isPageWithoutContext(): boolean {
             if(this.location.path().startsWith('/implicit/callback')) {
+                return true;
+			}
+			if(this.location.path().startsWith('/piges/auth/callback')) {
                 return true;
 			}
 			if(this.location.path().startsWith('/welcome-page')) {

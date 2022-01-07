@@ -100,9 +100,10 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 			filters.procurementIDEquals = searchedId;
 		} else {
 			filters = this.procurementSearchFormGroup.value;
+			console.log (filters);
 
 			if (filters.contractorEopoo){
-				filters.contractorEopooCodeEquals = filters.contractorEopoo.id;
+				filters.contractorCodeEquals = filters.contractorEopoo.id;
 				filters.contractorEopoo = null;
 			}
 			if (filters.totalAmountStart){

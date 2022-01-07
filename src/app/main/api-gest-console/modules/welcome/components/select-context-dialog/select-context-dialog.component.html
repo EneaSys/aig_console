@@ -15,7 +15,18 @@
 			</div>
 		</div>
 		
-        <mat-table #table [dataSource]="dataSource" *ngIf="!loading">
+		<div *ngIf="error == 1">
+			<p>Problemi nel caricamento dei contesti.</p>
+		</div>
+		<div *ngIf="error == 2">
+			<p>Problemi nel settaggio del contesto.</p>
+		</div>
+
+		<div *ngIf="!loading && dataSource.length == 0">
+			<p>Il tuo utente non ha contesti associati.</p>
+		</div>
+
+        <mat-table #table [dataSource]="dataSource" *ngIf="!loading && dataSource.length > 0">
 			<ng-container matColumnDef="name">
 				<mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
 				<mat-cell *matCellDef="let e"> {{ e.contextName }} </mat-cell>

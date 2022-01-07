@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IAuthService } from './IAuthService';
-import { AuthOktaImplService } from './impl/auth-okta-impl.service';
+import { AuthPigesImplService } from './impl/piges/auth-piges-impl.service';
 
 @Injectable()
-export class AuthService extends AuthOktaImplService implements IAuthService {
-    
+export class AuthService extends AuthPigesImplService implements IAuthService {
+	
 }

@@ -9,11 +9,19 @@
 </div>
 <div *ngIf="error == null && dataSource != null">
 
-    <mat-table #table [dataSource]="dataSource">
+    <button class="m-4" mat-raised-button (click)="exporter.exportTable('csv')">CSV</button>
+    <button class="m-4"mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'graduatoria', sheet: 'graduatoria', Props: {Author: 'ApiGest'}})">Excel</button>
+
+    <mat-table #table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter" >
 
         <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
             <mat-cell *matCellDef="let e">{{ e.id }}</mat-cell>
+        </ng-container>
+
+		<ng-container matColumnDef="eopoo">
+            <mat-header-cell *matHeaderCellDef>Anagrafica</mat-header-cell>
+            <mat-cell *matCellDef="let e">{{ e.wallet.eopoo.id }}|{{ e.wallet.eopoo | eopooName }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="code">

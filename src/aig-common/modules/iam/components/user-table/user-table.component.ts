@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
-import { UserResourceService, UserDTO } from 'api-gest';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventService } from 'aig-common/event-manager/event.service';
+import { ContextUserDTO, UserDTO, UserResourceService } from 'aig-entity-manager';
+import { AigUserService } from '../../services/form/user.service';
  
 @Component({
     selector: 'aig-users-table',
@@ -15,7 +16,8 @@ import { EventService } from 'aig-common/event-manager/event.service';
 })
 export class AigUserTableComponent implements OnInit, OnDestroy {
     constructor(
-        private userResourceService: UserResourceService,
+		private aigUserService: AigUserService,
+		private userResourceService: UserResourceService,
         private _snackBar: MatSnackBar,
         private router: Router,
         private eventService: EventService,
@@ -33,22 +35,22 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void { }
 
-    disactivate(userCode: string):void {
-        var deactivateUserSubscription = this.userResourceService.deactivateUserUsingDELETE(userCode).subscribe(
-            (userDTO: UserDTO) => {
-                this.eventService.reloadCurrentPage();
-                this._snackBar.open("User Deactivated", null, {duration: 2000,});
-            },
-            (error: any) => {
-                this._snackBar.open("User not Deactivated: " + error, null, {duration: 2000,});
-            }
-        );
+	async reload(user: ContextUserDTO) {
+		await this.aigUserService.reloadPermissions(user.userCode).toPromise();
+	}
 
-        this.subscriptions.push(deactivateUserSubscription);
+    async disactivate(user: ContextUserDTO) {
+		try {
+			let userDTO: UserDTO = await this.userResourceService.deactivateUserUsingDELETE(user.userCode).toPromise();
+			this.eventService.reloadCurrentPage();
+			this._snackBar.open("User Deactivated", null, {duration: 2000,});	
+		} catch (error) {
+			this._snackBar.open("User not Deactivated: " + error, null, {duration: 2000,});
+		}
     }
 
-    reactivate(userCode: string):void {
-        var reactivateUserSubscription = this.userResourceService.reactivateUserUsingPUT(userCode).subscribe(
+    reactivate(user: ContextUserDTO):void {
+        var reactivateUserSubscription = this.userResourceService.reactivateUserUsingPUT(user.userCode).subscribe(
             (userDTO: UserDTO) => {
                 this.eventService.reloadCurrentPage();
                 this._snackBar.open("User Reactivated", null, {duration: 2000,});
@@ -58,8 +60,8 @@ export class AigUserTableComponent implements OnInit, OnDestroy {
         this.subscriptions.push(reactivateUserSubscription);
     }
 
-    userDetail(userCode: String) {
-        this.router.navigate(['iam', 'user', userCode]);
+    userDetail(user: ContextUserDTO) {
+        this.router.navigate(['iam', 'user', user.id]);
     }
 
     

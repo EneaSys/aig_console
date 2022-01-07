@@ -11,7 +11,7 @@ import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
-import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
+import { IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotTypeDTO } from 'aig-standard';
 import { AigPartecipationNewUpdateDialogComponent } from '../partecipation-new-update-dialog/partecipation-new-update-dialog.component';
 
 @Component({
@@ -92,6 +92,7 @@ export class AigProcurementLotListPageComponent extends AigIppGenericComponent {
 
 	resetFiltersProcurementLot() {
         this.procurementLotSearchFormGroup.reset();
+		this.procurementLotSearchFormGroup.controls.procurementLotOfferExpiryDateStart.setValue(new Date());
 		this.procurementLotSearchWithFilter();
     }
 

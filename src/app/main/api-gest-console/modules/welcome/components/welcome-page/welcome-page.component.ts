@@ -2,10 +2,10 @@ import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material";
 import { FuseConfigService } from "@fuse/services/config.service";
 import { FuseSplashScreenService } from "@fuse/services/splash-screen.service";
-import { UserClaims } from "@okta/okta-angular";
 import { AuthService } from "auth/auth.service";
 import { GenericComponent } from "../../../../generic-component/generic-component";
 import { AigGenericComponentService } from "../../../../generic-component/generic-component.service";
+import { AigSelectAuthDialogComponent } from "../select-auth-dialog/select-auth-dialog.component";
 import { AigSelectContextDialogComponent } from "../select-context-dialog/select-context-dialog.component";
 
 @Component({
@@ -50,6 +50,7 @@ export class AigWelcomePageComponent extends GenericComponent {
 	}
 
 	reloadPage() {
+		console.log("reload page");
 		this.pageLoaded = false;
 		this.checkConnectedUser();
 	}
@@ -57,11 +58,15 @@ export class AigWelcomePageComponent extends GenericComponent {
 	async checkConnectedUser() {
 		this.loggedUser = false;
 		if(await this.authService.isAuthenticated()) {
-			let user: UserClaims = await this.authService.getUser();
-			this.name = user.firstName + " " + user.lastName;
+			let user: any = await this.authService.getUser();
+			this.name = user.given_name + " " + user.family_name;
 			this.loggedUser = true;
 		}
 		this.pageLoaded = true;
+	}
+
+	login() {
+		this.dialog.open(AigSelectAuthDialogComponent, { data: {  } });
 	}
 
 	selectContext() {
@@ -69,8 +74,8 @@ export class AigWelcomePageComponent extends GenericComponent {
 	}
 	
 	logout() {
-		this.authService.logout();
-		this.reloadPage();
+		var url = location.protocol + '//' + location.host;
+		this.authService.logout(url + "/welcome-page");
 	}
 
 }
