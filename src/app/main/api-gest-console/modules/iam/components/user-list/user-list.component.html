@@ -59,7 +59,7 @@
             <mat-paginator #paginator [length]="userLength" [pageIndex]="this.userFilters.page" [pageSize]="this.userPaginationSize" [pageSizeOptions]="[10, 20, 50]" (page)="userPaginationEvent($event)">
             </mat-paginator>
 
-            <button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add user">
+			<button mat-fab class="accent" id="add-user-button" (click)="newUser()" aria-label="add user">
                 <mat-icon>person_add</mat-icon>
             </button>
         </div>

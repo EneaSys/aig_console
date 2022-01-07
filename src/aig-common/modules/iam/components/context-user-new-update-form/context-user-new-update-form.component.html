@@ -1,0 +1,72 @@
+<form *ngIf="step.form" [formGroup]="contextUserNewUpdateForm" (ngSubmit)="submit()">
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+
+		<mat-form-field appearance="outline" fxFlex="50">
+			<mat-label>Tipo utente</mat-label>
+			<mat-select formControlName="type">
+				<mat-option *ngFor="let type of types" [value]="type.value">
+					{{ type.desc }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field appearance="outline" fxFlex="50" class="ml-4">
+			<mat-label>Stato</mat-label>
+			<mat-select formControlName="status">
+				<mat-option *ngFor="let state of status" [value]="state.value">
+					{{ state.desc }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+	</div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+
+		<mat-form-field appearance="outline" fxFlex="100">
+			<mat-label>Codice utente</mat-label>
+			<input formControlName="userCode" matInput [matAutocomplete]="userCodeAutocomplete">
+			<mat-autocomplete #userCodeAutocomplete="matAutocomplete">
+				<mat-option *ngFor="let module of modules" [value]="module.value">
+					{{ module.desc }}
+				</mat-option>
+			</mat-autocomplete>
+		</mat-form-field>
+
+	</div>
+
+	<div fxLayout="row" fxLayoutAlign="start start">
+
+		<mat-form-field appearance="outline" fxFlex="100">
+			<mat-label>Note</mat-label>
+			<input formControlName="note" matInput>
+		</mat-form-field>
+
+	</div>
+
+	<div fxLayout="row" fxLayoutAlign="end top">
+		<button *ngIf="!isUpdate" type="submit" mat-raised-button color="accent">Crea</button>
+		<button *ngIf="isUpdate" type="submit" mat-raised-button color="accent">Aggiorna</button>
+	</div>
+
+</form>
+
+<div *ngIf="step.loading" fxLayoutAlign="center">
+	<mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="step.complete">
+	<h1 *ngIf="!isUpdate">Creazione ok</h1>
+	<h1 *ngIf="isUpdate">Aggiornamento ok</h1>
+
+	<hr>
+
+	<pre>{{ contextUserResult | json }}</pre>
+
+	<div *ngIf="!isUpdate">
+		<br>
+		<hr>
+		<button *ngIf="!isUpdate" mat-stroked-button color="primary" (click)="newContextUser()">Crea nuovo</button>
+	</div>
+</div>

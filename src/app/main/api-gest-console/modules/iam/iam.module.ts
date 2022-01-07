@@ -40,6 +40,7 @@ import { AigRoleCustomDetailComponent } from './components/custom-role-detail-pa
 import { CommonGenericModule } from 'aig-common/modules/generic/common-generic.module';
 import { AiguserEopooAssociateDialogComponent } from './components/user-eopoo-associate-dialog/user-eopoo-associate-dialog.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AigContextUserNewUpdateDialogComponent } from './components/context-user-new-update-dialog/context-user-new-update-dialog.component';
 
 
 
@@ -94,6 +95,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
         AiguserEopooAssociateDialogComponent,
+
+		AigContextUserNewUpdateDialogComponent,
        
 
     ],
@@ -105,6 +108,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         AigRoleAssociateDialogComponent,
         AigGroupAssociateDialogComponent,
         AiguserEopooAssociateDialogComponent,
+		AigContextUserNewUpdateDialogComponent,
+
+
     ],
     providers: [ ],
     exports: [

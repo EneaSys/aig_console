@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select'; 
 
 import { AigCommonModule } from '../../common.module';
 
@@ -37,6 +38,8 @@ import { CommonGenericModule } from '../generic/common-generic.module';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material';
 import { AigEntityDetailGroupComponent } from './components/entity-detail-group/entity-detail-group.component';
 import { AigEntityDetailRoleCustomComponent } from './components/entity-detail-role-custom/entity-detail-role-custom.component';
+import { AigContextUserNewUpdateFormComponent } from './components/context-user-new-update-form/context-user-new-update-form.component';
+import { AigUserService } from 'aig-common/old-common/services/context-user.service';
 
 @NgModule({
     imports: [
@@ -60,6 +63,7 @@ import { AigEntityDetailRoleCustomComponent } from './components/entity-detail-r
         MatFormFieldModule,
         MatAutocompleteModule,
         MatMenuModule,
+		MatSelectModule,
         
 
     ],
@@ -86,6 +90,8 @@ import { AigEntityDetailRoleCustomComponent } from './components/entity-detail-r
         AigEntityDetailGroupComponent,
         AigEntityDetailRoleCustomComponent,
 
+		AigContextUserNewUpdateFormComponent,
+
     ],
     exports: [
         AigRoleAssignationsToGroupsPipe,
@@ -108,8 +114,9 @@ import { AigEntityDetailRoleCustomComponent } from './components/entity-detail-r
         AigRoleAssociateComponent,
         AigUserEopooAssociateFormComponent,
         AigEntityDetailGroupComponent,
-        AigEntityDetailRoleCustomComponent
+        AigEntityDetailRoleCustomComponent,
 
+		AigContextUserNewUpdateFormComponent,
 
         
     ],
@@ -118,6 +125,9 @@ import { AigEntityDetailRoleCustomComponent } from './components/entity-detail-r
         AigAutocompleteFunctionService,
         
         AigValidatorService,
+		AigUserService,
+
+
        
     ],
 })

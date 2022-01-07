@@ -49,6 +49,7 @@
             <mat-cell *matCellDef="let e">
                 <button class="mr-8" mat-stroked-button color="accent" (click)="userDetail(e)">Details</button>
                 <button class="mr-8" mat-stroked-button color="accent" *ngIf="e.status === 'ACTIVE'" (click)="disactivate(e)">Disactivate</button>
+				<button class="mr-8" mat-stroked-button color="accent" *ngIf="e.status === 'ACTIVE'" (click)="reload(e)">Reload perm</button>
                 <button class="mr-8" mat-stroked-button color="accent" *ngIf="e.status === 'DISABLED'" (click)="reactivate(e)">Reactivate</button>
             </mat-cell>
         </ng-container>

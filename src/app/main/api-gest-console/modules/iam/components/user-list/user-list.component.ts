@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AigUserNewDialogComponent } from '../user-new-dialog/user-new-dialog.component';
 import { GenericComponent } from 'app/main/api-gest-console/generic-component/generic-component';
 import { AigGenericComponentService } from 'app/main/api-gest-console/generic-component/generic-component.service';
 import { PageEvent } from '@angular/material/paginator';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { ContextUserDTO, ContextUserResourceService } from 'aig-entity-manager';
+import { AigContextUserNewUpdateDialogComponent } from '../context-user-new-update-dialog/context-user-new-update-dialog.component';
 
 @Component({
     templateUrl: './user-list.component.html',
@@ -70,7 +70,7 @@ export class AigUserListComponent extends GenericComponent {
 		this.userFilters.size = this.userPaginationSize;
 
 		try {                                                                       
-			this.userLength = await this.contextUserResourceService.countContextUsersUsingGET({}).toPromise();
+			this.userLength = await this.contextUserResourceService.countContextUsersUsingGET(this.userFilters).toPromise();
 			
 			if(this.userLength == 0) {
 				this._snackBar.open("Nessun valore trovato con questi parametri!", null, {duration: 2000,});
@@ -78,7 +78,7 @@ export class AigUserListComponent extends GenericComponent {
 				return;
 			}
 
-			this.userDTOs = await this.contextUserResourceService.getAllContextUsersUsingGET({}).toPromise();
+			this.userDTOs = await this.contextUserResourceService.getAllContextUsersUsingGET(this.userFilters).toPromise();
 		} catch (e) {
 			this.userError = e;
 		}
@@ -117,34 +117,10 @@ export class AigUserListComponent extends GenericComponent {
 		this.searchUser(0);
 	}
 
-/**
-    pageEvent(event: PageEvent) {
-        this.pageable.size = event.pageSize;
-        this.loadUser(event.pageIndex);
-    }
-
-    private async loadUser(page: number) {
-        this.userDTOs = null;
-
-        this.index = page
-        this.pageable.page = page;
-
-        try {
-            this.userDTOs = await this.userResourceService.getAllUsersUsingGET(null,null,null,null,null,null,null,null,this.pageable.page,this.pageable.size,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null).toPromise();
-        } catch(e) {
-            this.error = e;
-        }
-    } */
-
-    //			---- !WAREHOUSE TABLE AND SEARCH SECTION ----
-
     newUser() {
-        this.dialog.open(AigUserNewDialogComponent, { data: {} });
+        this.dialog.open(AigContextUserNewUpdateDialogComponent, { data: {} });
     }
 
-    /*async publish() {
-		await this.buyerResourceService.publishUsingGET(this.buyerFilters).toPromise();
-	}*/
 
 
 }

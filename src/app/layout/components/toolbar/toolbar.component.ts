@@ -213,7 +213,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }
 
     logout() {
-        this.authService.logout('/');
+        var url = location.protocol + '//' + location.host;
+		this.authService.logout(url + "/welcome-page");
     }
 
     setCurrentContext(context: IContext): void {
