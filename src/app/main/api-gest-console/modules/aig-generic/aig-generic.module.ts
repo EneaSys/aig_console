@@ -59,6 +59,7 @@ import { AigFormDataDetailPageComponent } from './components/form-data-detail-pa
         MatFormFieldModule,
         MatInputModule,
         MatAutocompleteModule,
+		
     ],
     declarations: [
         AigGenericHeaderComponent,

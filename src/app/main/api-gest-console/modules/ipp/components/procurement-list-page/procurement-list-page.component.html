@@ -23,16 +23,16 @@
                                 </div>
 
 								<div fxLayout="row">
-                                    <mat-form-field appearance="outline" fxFlex="100">
-                                        <mat-label>Stazione appaltante</mat-label>
-                                        <input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
-                                        <mat-autocomplete #contractorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
-                                            <mat-option *ngFor="let eopoo of filteredContractorEopoo | async" [value]="eopoo">
+									<mat-form-field appearance="outline" fxFlex="100">
+										<mat-label>Stazione appaltante</mat-label>
+										<input formControlName="contractorEopoo" matInput [matAutocomplete]="contractorEopooAutocomplete">
+										<mat-autocomplete #contractorEopooAutocomplete="matAutocomplete" [displayWith]="genericAutocompleteDisplayService.eopooDisplayFn">
+											<mat-option *ngFor="let eopoo of filteredContractorEopoo | async" [value]="eopoo">
 												{{ eopoo | eopooName }}
 											</mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </div>
+										</mat-autocomplete>
+									</mat-form-field>
+								</div>
 
 								<div fxLayout="row">
                                     <mat-form-field appearance="outline" fxFlex="100">
