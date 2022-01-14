@@ -123,11 +123,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.loadContextMenu();
     }
 
-    private loadUserInfo() {
+    private async loadUserInfo() {
         if (this.isAuthenticated) {
             this.authService.getUser().then((user: any) => {
                 this.loggedUserInfo(user)
-            });   
+            }).catch((e:any)=> {
+				console.log("err", e);
+			});
         }
     }
 

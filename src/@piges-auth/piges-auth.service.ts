@@ -57,37 +57,39 @@ export class PigesAuthService {
 			if(tokenInMemory !== null) {
 				this._tokenInMemory = tokenInMemory;
 			}
-			console.log("red token from memory")
 			this._tokenReading = false;
 		}
 		return this._tokenInMemory;
 	}
 
-	async getUser(n: number = 1): Promise<any> {
+	async getUser(forceReload: boolean = false, n: number = 1): Promise<any> {
 		if(this._userReading) {
 			await this.delay(100);
-			return this.getUser(++n);
+			return this.getUser(false, ++n);
 		}
-		if(this._userInfo === undefined) {
+		if(this._userInfo === undefined || forceReload) {
 			this._userReading = true;
 			try {
 				let token = await this.getToken();
 			
 				if(token === undefined) {
-					this.authenticationState.next(false);
 					throw 'not_logged_user';
 				}
-				// TODO controlla se token scaduto
-	
-				console.log("get info from backend");
-				this._userInfo = await this.http.get(this.pigesConfig.serverUrl + "/oauth2/userInfo", {
-					headers: new HttpHeaders().set('Authorization', 'Bearer ' + token.access_token),
-				}).toPromise();
 
+				try {
+					this._userInfo = await this.http.get(this.pigesConfig.serverUrl + "/oauth2/userInfo", {
+						headers: new HttpHeaders().set('Authorization', 'Bearer ' + token.access_token),
+					}).toPromise();	
+				} catch (e) {
+					console.log(e);
+					throw 'expired_token';
+				}
+				
 				if(this._userInfo !== null) {
 					this.authenticationState.next(true);
 				}
 			} catch (error) {
+				this.authenticationState.next(false);
 				throw error;
 			} finally {
 				this._userReading = false;
