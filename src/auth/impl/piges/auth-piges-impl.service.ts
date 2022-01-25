@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PigesAuthService } from '@piges-auth/piges-auth.service';
+import { PigesAuthService } from '@piges/auth-angular';
 import { IAuthService } from '../../IAuthService';
 
 @Injectable()
