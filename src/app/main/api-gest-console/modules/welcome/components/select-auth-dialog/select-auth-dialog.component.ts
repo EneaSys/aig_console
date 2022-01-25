@@ -31,7 +31,7 @@ export class AigSelectAuthDialogComponent implements OnInit {
 				},
 				{
 					name: 'Espami',
-					idpIdentifier: 'ya75g8a',
+					idpIdentifier: 'espami.net',
 				},
 			];
 			this.loading = false;
