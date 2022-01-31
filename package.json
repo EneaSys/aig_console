@@ -44,7 +44,7 @@
     "@ngrx/store": "8.0.0-beta.2",
     "@ngrx/store-devtools": "8.0.0-beta.2",
     "@ngx-translate/core": "11.0.1",
-    "@piges/auth-angular": "0.0.7",
+    "@piges/auth-angular": "0.0.10",
     "@swimlane/dragula": "3.8.0",
     "@swimlane/ngx-charts": "11.1.0",
     "@swimlane/ngx-datatable": "15.0.0",

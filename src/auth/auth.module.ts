@@ -1,11 +1,12 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import localeIt from '@angular/common/locales/it';
+
+import { PigesAuthModule, PigesAuthCallbackComponent, PIGES_CONFIG } from '@piges/auth-angular';
 
 import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
-import { PigesAuthModule, PigesAuthCallbackComponent, PIGES_CONFIG } from '@piges/auth-angular';
-import { RouterModule } from '@angular/router';
 import { AuthPigesImplService } from './impl/piges/auth-piges-impl.service';
 
 registerLocaleData(localeIt);
