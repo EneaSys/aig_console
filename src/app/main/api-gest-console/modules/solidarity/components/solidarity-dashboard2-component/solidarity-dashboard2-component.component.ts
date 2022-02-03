@@ -20,7 +20,8 @@ export class AigSolidarityDashboard2Component extends GenericComponent {
 
     async loadComponent() {
 		let filter = {
-			size: 500
+			size: 500,
+			"formTypeIdEquals": 2
 		};
         this.formDataDTOs = await this.formDataResourceService.getAllFormDataUsingGET(filter).toPromise();
 
