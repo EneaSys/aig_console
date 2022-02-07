@@ -39,7 +39,7 @@
                     <br>Comune di Santa Maria La Carità
                 </p>
 
-                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> DOMANDA DI AMMISSIONE FONDO DI SOLIDARIETA’ ALIMENTARE in attuazione del D.L. n.73 del 25/05/2021, art. 53. Agevolazioni straordinarie: generi alimentari di prima necessità, buoni spesa digitali
+                <p style="padding: 0 0 0 0; "><b>Oggetto:</b> FONDO DI SOLIDARIETA’ in attuazione del D. L. n. 73 del 25/05/2021, art. 53. Agevolazioni straordinarie: sostegno ai canoni di locazione per le abitazioni principali
                 </p>
                 <p style="padding: 0 0 0 30px;">
                     <span *ngIf="itFiscalCodeService.sessoCf(formDataDTO.s4) == 'M'">Il
@@ -60,7 +60,7 @@
                     cell {{ formDataDTO.s6 }},
                     <span *ngIf="(formDataDTO.s5 != '')">email
                         {{ formDataDTO.s5 }},</span>
-                        in riferimento all’Avviso Pubblico  “Misura di Solidarietà alimentare in attuazione del D.L. 154/2020”
+                        in riferimento all’AVVISO PUBBLICO “FONDO DI SOLIDARIETA’ in attuazione del D.L. n. 73 del 25/05/2021, art. 53
                 </p>
 
 
@@ -74,18 +74,38 @@
                     <li>che tutte le informazioni fornite saranno trasmesse dal Comune di Santa Maria la Carità alle
                         Autorità competenti (Guardia di Finanza, Agenzia delle Entrate) per i controlli di rito sulla
                         veridicità delle stesse;</li>
-					<li>che i buoni spesa alimentari digitali potranno essere spesi nei negozi aderenti del territorio per l'acquisto esclusivo di generi di prima necessità secondo le normative vigenti;</li>
-					<li>che utilizzerà personalmente i buoni spesa digitali, pena la revoca del beneficio;</li>
                 </ul>
 
                 <h3>Chiede</h3>
                 <p style="padding: 0 0 0 30px;">
-                    di essere ammesso all'erogazione di buoni spesa alimentari digitali, il cui importo spettante sarà caricarto sulla propria tessera sanitaria/carta d'identità elettronica;
+                    di essere ammesso all’erogazione del contributo per il sostegno ai canoni di locazione per le abitazioni principali;
                 </p>
 
                 <h3>Dichiara</h3>
                 <ul>
-                    <li>
+					<li>
+						di avere la residenza anagrafica nel Comune e nell'immobile per il quale è richiesto il contributo;
+					</li>
+					<li>
+						che la suddetta istanza è l’unica presentata dal proprio nucleo familiare;
+					</li>
+					<li>
+						di essere titolare, per l'anno 2020, di un contratto di locazione ad uso abitativo, regolarmente registrato, relativo ad un immobile non di edilizia residenziale pubblica;
+					</li>
+					<li>
+						di essere consapevole che il contributo previsto dall'art.11 della L.n.431/98 non può essere cumulato con contributi erogati da altri Enti per la stessa finalità;
+					</li>
+					<li>
+						di possedere un valore ISE pari ad {{ formDataDTO.n3 | currency: 'EUR' }};
+					</li>
+					<li>
+						che è stato stipulato in data {{ formDataDTO.d2 | date }} regolare contratto di fitto ad uso abitativo, per un importo mensile {{ formDataDTO.n5 | currency: 'EUR' }} registrato presso l'Agenzia delle Entrate in data {{ formDataDTO.d3 | date }} al numero {{ formDataDTO.s10 }}
+					</li>
+					<li *ngIf="formDataDTO.s9 != ''">
+						che l'accredito dell'eventuale contributo spettante sull'Iban {{ formDataDTO.s9 }}
+					</li>
+                    <!--
+					<li>
                         di possedere al 30/09/2021 un saldo disponibile di conto corrente bancario/postale 
                         e/o un saldo derivante da libretti di risparmio bancari/postali, 
                         complessivamente per l'intero nucleo familiare non superiore a € 6.000,00 e precisamente: 
@@ -117,19 +137,20 @@
                             <b>{{ formDataDTO.n3 | currency: "EUR" }}</b>;
                         </span>
                     </li>
+					<li>
+						di ricevere l'importo di: <b>{{ aigSolidarityRequestCalculatorService.calculate4(formDataDTO) | currency: 'EUR' }}</b> di buoni spesa
+					</li>
+					-->
                     <li>
                         di autorizzare il trattamento dei dati personali ai sensi dell’art. 13 del Decreto Legislativo
                         30 Giugno 2003, n. 196 “Codice in materia di protezione dei dati personali” e dell’art. 13 del
                         GDPR (Regolamento UE 679/2016);
                     </li>
-					<li>
-						di ricevere l'importo di: <b>{{ aigSolidarityRequestCalculatorService.calculate4(formDataDTO) | currency: 'EUR' }}</b> di buoni spesa
-					</li>
                 </ul>
 
 				<br>
                 <p>Si allega alla presente, valido documento di riconoscimento;</p>
-                <p>Santa Maria la Carità, 21/12/2021</p>
+                <p>Santa Maria la Carità, 01/02/2022</p>
 
                 <div style="text-align: right;">
                     <p>Firma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
@@ -137,7 +158,7 @@
                 </div>
 
                 <br><br><br><br><br>
-                <p>Pratica istruita da: {{ instructor[1] }}</p>
+                <p>Pratica istruita da: </p>
             </div>
 
         </div>
