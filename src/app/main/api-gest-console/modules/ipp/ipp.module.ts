@@ -18,7 +18,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FuseSidebarModule } from '@fuse/components';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule, MatTabsModule } from '@angular/material';
+import { MatPaginatorModule, MatDatepickerModule, MatSliderModule, MatCardModule, MatList, MatListModule, MatSlideToggleModule, MatSelectModule, MatMenuModule, MatTabsModule} from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper'; 
+
 import { AgmCoreModule } from '@agm/core';
 import { AigProcurementDetailPageComponent } from './components/procurement-detail-page/procurement-detail-page.component';
 import { AigProcurementNewUpdateDialogComponent } from './components/procurement-new-update-dialog/procurement-new-update-dialog.component';
@@ -66,132 +68,137 @@ import { AigProcurementLotCategoryNewUpdateDialogComponent } from './components/
 import { AgalItalianLegislationModule } from '@agal-italianlegislation/agal-italianlegislation.module';
 import { AigConsorzioManagerPageComponent } from './components/consorzio-manager-page/consorzio-manager-page.component';
 import { AigEntityManagerApiModule } from 'aig-entity-manager';
+import { AigProcurementComplexNewDialogComponent } from './components/procurement-complex-new-dialog/procurement-complex-new-dialog.component';
 
 
 
 @NgModule({
-    imports: [
-        RouterModule.forChild(ippRoute),
+	imports: [
+		RouterModule.forChild(ippRoute),
 
-        CommonModule,
-        AigCommonIppModule,
-        AigItalianLegislationApiModule,
-        CommonGenericModule,
+		CommonModule,
+		AigCommonIppModule,
+		AigItalianLegislationApiModule,
+		CommonGenericModule,
 		AgalItalianLegislationModule,
 		AigEntityManagerApiModule,
-       
-        FormsModule,
-        ReactiveFormsModule,
-        
-        FuseSharedModule,
-        FuseSidebarModule,
 
-        TranslateModule,
-        
-        MatIconModule,
-        MatTabsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatTableModule,
-        MatChipsModule,
-        MatSnackBarModule,
-        MatToolbarModule,
-        MatProgressSpinnerModule,
-        MatAutocompleteModule,
-        MatPaginatorModule,
-        MatDatepickerModule,
-        MatSliderModule,
-        MatCardModule,
-        MatListModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        MatSlideToggleModule,
-        MatIconModule,
-        MatMenuModule,
+		FormsModule,
+		ReactiveFormsModule,
+
+		FuseSharedModule,
+		FuseSidebarModule,
+
+		TranslateModule,
+
+		MatIconModule,
+		MatTabsModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatButtonModule,
+		MatTableModule,
+		MatChipsModule,
+		MatSnackBarModule,
+		MatToolbarModule,
+		MatProgressSpinnerModule,
+		MatAutocompleteModule,
+		MatPaginatorModule,
+		MatDatepickerModule,
+		MatSliderModule,
+		MatCardModule,
+		MatListModule,
+		MatSelectModule,
+		MatAutocompleteModule,
+		MatSlideToggleModule,
+		MatIconModule,
+		MatMenuModule,
+		MatStepperModule,
 
 
 
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyALOoLRTrkbbyx1rC932uBL1Hz-dKIEN8E',
-            libraries: ['places', 'drawing', 'geometry']
-           }),
-    ],
-    providers: [
-    ],
-    declarations: [
-        AigIppHeaderComponent,
+		AgmCoreModule.forRoot({
+			apiKey: 'AIzaSyALOoLRTrkbbyx1rC932uBL1Hz-dKIEN8E',
+			libraries: ['places', 'drawing', 'geometry']
+		}),
+	],
+	providers: [
 
-        AigConsorzioManagerPageComponent,
+	],
+	declarations: [
+		AigIppHeaderComponent,
 
-        AigPreparationModalityListPageComponent,
-        AigPreparationModalityNewUpdateDialogComponent,
-        AigPreparationModalityDetailPageComponent,
+		AigConsorzioManagerPageComponent,
 
-        AigProcurementLotCategoryNewUpdateDialogComponent,
+		AigPreparationModalityListPageComponent,
+		AigPreparationModalityNewUpdateDialogComponent,
+		AigPreparationModalityDetailPageComponent,
 
-        AigPartecipationModalityListPageComponent,
-        AigPartecipationModalityNewUpdateDialogComponent,
-        AigPartecipationModalityDetailPageComponent,
+		AigProcurementLotCategoryNewUpdateDialogComponent,
+		AigProcurementComplexNewDialogComponent,
 
-        AigProcurementListPageComponent,
-        AigProcurementLotListPageComponent,
-        AigDossierListPageComponent,
-        AigPartecipationListPageComponent,
-        AigPartecipationStatusListPageComponent,
-        AigPreparationListPageComponent,
-        AigPreparationStatusListPageComponent,
-        AigInsurancePolicyListPageComponent,
-        AigDesignatedCompanyListPageComponent,
-        AigInsurancePolicyStatusListPageComponent,
-        
+		AigPartecipationModalityListPageComponent,
+		AigPartecipationModalityNewUpdateDialogComponent,
+		AigPartecipationModalityDetailPageComponent,
 
-       
-        AigProcurementNewUpdateDialogComponent,
-        AigProcurementLotNewUpdateDialogComponent,
-        AigDossierNewUpdateDialogComponent,
-        AigPartecipationNewUpdateDialogComponent,
-        AigPartecipationStatusNewUpdateDialogComponent,
-        AigPreparationNewUpdateDialogComponent,
-        AigPreparationStatusNewUpdateDialogComponent,
-        AigInsurancePolicyNewUpdateDialogComponent,
-        AigDesignatedCompanyNewUpdateDialogComponent,
-        AigInsurancePolicyStatusNewUpdateDialogComponent,
+		AigProcurementListPageComponent,
+		AigProcurementLotListPageComponent,
+		AigDossierListPageComponent,
+		AigPartecipationListPageComponent,
+		AigPartecipationStatusListPageComponent,
+		AigPreparationListPageComponent,
+		AigPreparationStatusListPageComponent,
+		AigInsurancePolicyListPageComponent,
+		AigDesignatedCompanyListPageComponent,
+		AigInsurancePolicyStatusListPageComponent,
 
-        AigPartecipationDetailPageComponent,
-        AigDossierDetailPageComponent,
-        AigPartecipationStatusDetailPageComponent,
-        AigProcurementDetailPageComponent,
-        AigProcurementLotDetailPageComponent,
-        AigPreparationDetailPageComponent,
-        AigPreparationStatusDetailPageComponent,
-        AigInsurancePolicyDetailPageComponent,
-        AigDesignatedCompanyDetailPageComponent,
-        AigInsurancePolicyStatusDetailPageComponent,
 
-        
-    ],
-    exports: [
-        AigProcurementLotListPageComponent,
 
-    ],
+		AigProcurementNewUpdateDialogComponent,
+		AigProcurementLotNewUpdateDialogComponent,
+		AigDossierNewUpdateDialogComponent,
+		AigPartecipationNewUpdateDialogComponent,
+		AigPartecipationStatusNewUpdateDialogComponent,
+		AigPreparationNewUpdateDialogComponent,
+		AigPreparationStatusNewUpdateDialogComponent,
+		AigInsurancePolicyNewUpdateDialogComponent,
+		AigDesignatedCompanyNewUpdateDialogComponent,
+		AigInsurancePolicyStatusNewUpdateDialogComponent,
 
-    entryComponents: [
-        AigPartecipationModalityNewUpdateDialogComponent,
-        AigPreparationModalityNewUpdateDialogComponent,
-        AigProcurementLotCategoryNewUpdateDialogComponent,
+		AigPartecipationDetailPageComponent,
+		AigDossierDetailPageComponent,
+		AigPartecipationStatusDetailPageComponent,
+		AigProcurementDetailPageComponent,
+		AigProcurementLotDetailPageComponent,
+		AigPreparationDetailPageComponent,
+		AigPreparationStatusDetailPageComponent,
+		AigInsurancePolicyDetailPageComponent,
+		AigDesignatedCompanyDetailPageComponent,
+		AigInsurancePolicyStatusDetailPageComponent,
 
-        AigProcurementNewUpdateDialogComponent,
-        AigProcurementLotNewUpdateDialogComponent,
-        AigDossierNewUpdateDialogComponent,
-        AigPartecipationNewUpdateDialogComponent,
-        AigPartecipationStatusNewUpdateDialogComponent,
-        AigPreparationNewUpdateDialogComponent,
-        AigPreparationStatusNewUpdateDialogComponent,
-        AigInsurancePolicyNewUpdateDialogComponent,
-        AigDesignatedCompanyNewUpdateDialogComponent,
-        AigInsurancePolicyStatusNewUpdateDialogComponent,
 
-    ],
+	],
+	exports: [
+		AigProcurementLotListPageComponent,
+
+	],
+
+	entryComponents: [
+		AigPartecipationModalityNewUpdateDialogComponent,
+		AigPreparationModalityNewUpdateDialogComponent,
+		AigProcurementLotCategoryNewUpdateDialogComponent,
+		AigProcurementComplexNewDialogComponent,
+
+		AigProcurementNewUpdateDialogComponent,
+		AigProcurementLotNewUpdateDialogComponent,
+		AigDossierNewUpdateDialogComponent,
+		AigPartecipationNewUpdateDialogComponent,
+		AigPartecipationStatusNewUpdateDialogComponent,
+		AigPreparationNewUpdateDialogComponent,
+		AigPreparationStatusNewUpdateDialogComponent,
+		AigInsurancePolicyNewUpdateDialogComponent,
+		AigDesignatedCompanyNewUpdateDialogComponent,
+		AigInsurancePolicyStatusNewUpdateDialogComponent,
+
+	],
 })
-export class AigIppModule {}
+export class AigIppModule { }

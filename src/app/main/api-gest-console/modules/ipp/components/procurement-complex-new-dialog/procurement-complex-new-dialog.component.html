@@ -1,0 +1,55 @@
+<div class="dialog-content-wrapper">
+
+	<mat-toolbar matDialogTitle class="mat-accent m-0">
+		<mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+			<span class="title dialog-title">Crea gara</span>
+			<button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+				<mat-icon>close</mat-icon>
+			</button>
+		</mat-toolbar-row>
+	</mat-toolbar>
+
+	<div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+		<div [hidden]="creating != 0">
+			<mat-horizontal-stepper [linear]="true" #stepper>
+				<mat-step [completed]="stepControl.procurement">
+					<ng-template matStepLabel>Gara</ng-template>
+					<aig-procurement-new-update-form [notSubmit]="true" (procurementChange)="submitProcurement($event)">
+					</aig-procurement-new-update-form>
+				</mat-step>
+				<mat-step [completed]="stepControl.procurementLot">
+					<ng-template matStepLabel>Lotto</ng-template>
+					<aig-procurement-lot-new-update-form *ngIf="stepControl.procurement" [notSubmit]="true"
+						(procurementLotChange)="submitProcurementLot($event)" [procurement]="procurement">
+					</aig-procurement-lot-new-update-form>
+				</mat-step>
+				<mat-step>
+					<ng-template matStepLabel>Verifica</ng-template>
+					<div fxLayout="row" fxLayoutAlign="center center">
+						<button mat-raised-button color="accent" (click)="create()">CONFERMA</button>
+					</div>
+					<hr>
+					<aig-procurement-detail-box *ngIf="procurement" [procurement]="procurement">
+					</aig-procurement-detail-box>
+					<aig-procurement-lot-list-table [dataSource]="procurementLots"
+						[displayColumns]="['cig','description','amount']"></aig-procurement-lot-list-table>
+				</mat-step>
+			</mat-horizontal-stepper>
+		</div>
+
+		<div *ngIf="creating > 0">
+			<div *ngIf="creating == 1" fxLayout="row" fxLayoutAlign="center center">
+				<mat-spinner></mat-spinner>
+			</div>
+			<div *ngIf="creating == 2" fxLayout="row" fxLayoutAlign="center center">
+				OK
+			</div>
+			<div *ngIf="creating == 3">
+				ERROR
+			</div>
+			
+			<aig-procurement-detail-box *ngIf="procurement" [procurement]="procurement"></aig-procurement-detail-box>
+			<aig-procurement-lot-list-table [dataSource]="procurementLots" [displayColumns]="['cig','description','amount']"></aig-procurement-lot-list-table>
+		</div>
+		
+	</div>

@@ -13,5 +13,5 @@ export class AigProcurementLotDetailBoxComponent extends AigIppCommonGenericComp
     ngOnInit(): void {}
 
     @Input()
-    procurementLot: ProcurementLotDTO;
+    procurementLot: any; //TODO CAMBIARE IN ProcurementLotDTO
 }

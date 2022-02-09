@@ -15,7 +15,7 @@
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc">
 						<!-- Filed of entity -->
 						<th *ngSwitchCase="'_ck'" style="width:50px"></th>
-						<th *ngSwitchCase="'id'" style="width:auto" pResizableColumn pSortableColumn="id">id</th>
+						<th *ngSwitchCase="'id'" style="width:50px" pResizableColumn pSortableColumn="id">id</th>
 						<th *ngSwitchCase="'cig'" style="width:150px" pResizableColumn>cig</th>
 						<th *ngSwitchCase="'description'" style="width:25%" pResizableColumn pSortableColumn="procurementLotDescription">descrizione</th>
 						<th *ngSwitchCase="'offerExpiryDate'" style="width:100px" pResizableColumn pSortableColumn="procurementLotOfferExpiryDate">data di scadenza offerta</th>
@@ -54,7 +54,7 @@
 						<!-- Filed of entity -->
 						<td *ngSwitchCase="'_ck'"><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
 						<td *ngSwitchCase="'id'">{{ e.id }}</td>
-						<td *ngSwitchCase="'cig'">{{ e.cig }}<a href="https://dati.anticorruzione.it/superset/dettaglio_cig/{{ e.cig }}" target="_BLANK">anac</a></td>
+						<td *ngSwitchCase="'cig'">{{ e.cig }} - <a href="https://dati.anticorruzione.it/superset/dettaglio_cig/{{ e.cig }}" target="_BLANK">anac</a></td>
 						<td *ngSwitchCase="'description'">{{ e.description }}</td>
 						<td *ngSwitchCase="'offerExpiryDate'">{{ e.offerExpiryDate | date }}</td>
 						<td *ngSwitchCase="'baseAmount'">{{ e.baseAmount | currency: 'EUR' }}</td>
