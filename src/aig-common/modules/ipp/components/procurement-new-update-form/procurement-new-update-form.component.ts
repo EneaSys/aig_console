@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -6,11 +6,8 @@ import { AigValidator } from 'aig-common/AigValidator';
 import { EventService } from 'aig-common/event-manager/event.service';
 import { AigGenericAutocompleteFilterService } from 'aig-common/modules/generic/services/form/autocomplete-filter.service';
 import { AigGenericAutocompleteDisplayService } from 'aig-common/modules/generic/services/form/autocomplete-function.service';
-import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standard/services/autocomplete-filter.service';
-import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 import { EopooDTO } from 'aig-generic';
 import { ProcurementDTO, ProcurementResourceService } from 'aig-italianlegislation';
-import { IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO, IlPpProcurementStatusDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -19,54 +16,40 @@ import { Observable } from 'rxjs';
     styleUrls: ['./procurement-new-update-form.component.scss']
 })
 export class AigProcurementNewUpdateFormComponent implements OnInit {
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
+	@Input()
+    procurement: ProcurementDTO;
 
+	@Input()
+    notSubmit: boolean = false;
+	@Output()
+	procurementChange = new EventEmitter<ProcurementDTO>();
+	
     constructor(
         private _formBuilder: FormBuilder,
         public genericAutocompleteFilterService: AigGenericAutocompleteFilterService,
         public genericAutocompleteDisplayService: AigGenericAutocompleteDisplayService,
-        private standardAutocompleteFilterService: AigStandardAutocompleteFilterService,
-        public standardAutocompleteDisplayService: AigStandardAutocompleteDisplayService,
         private _fuseProgressBarService: FuseProgressBarService,
         private _snackBar: MatSnackBar,
         private procurementResourceService: ProcurementResourceService,
         private eventService: EventService,
     ) { }
 
-    @Input()
-    procurement: ProcurementDTO;
-
     procurementNewUpdateForm: FormGroup;
 
     isUpdate: boolean = false;
-
     procurementResult: any;
 
     filteredEopoo: Observable<EopooDTO[]>;
-    filteredProcurementStatus: Observable<IlPpProcurementStatusDTO[]>;
-    filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
-    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
-    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
-
 
     ngOnInit(): void {
         this.procurementNewUpdateForm = this._formBuilder.group({
-            id: [''],
-            contractorEopoo: ['',[Validators.required, AigValidator.haveId]],
+            id: [null],
+            contractorEopoo: [null, [Validators.required, AigValidator.haveId]],
             
-			description: ['', Validators.required],
+			description: [null, Validators.required],
             
-			status: ['', [Validators.required, AigValidator.haveCode]],
-            sector: ['', [Validators.required, AigValidator.haveCode]],
-            procedure: ['', [Validators.required, AigValidator.haveCode]],
-            modality: ['', [Validators.required, AigValidator.haveCode]],
-
-			code: [''],
-            ref:[''],
+			code: [null],
+            ref:[null],
         })
         
         if (this.procurement != null && this.procurement.id != null) {
@@ -75,57 +58,58 @@ export class AigProcurementNewUpdateFormComponent implements OnInit {
         }
         
         this.filteredEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementNewUpdateForm.controls['contractorEopoo'].valueChanges);
-        this.filteredProcurementStatus = this.standardAutocompleteFilterService.filterIlPpProcurementStatus(this.procurementNewUpdateForm.controls['status'].valueChanges);
-        this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementNewUpdateForm.controls['procedure'].valueChanges);
-        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementNewUpdateForm.controls['sector'].valueChanges);
-        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementNewUpdateForm.controls['modality'].valueChanges);
     }
+
+	submitError: string = undefined;
 
     async submit() {
         if (!this.procurementNewUpdateForm.valid) {
             return;
         }
 
-        this._fuseProgressBarService.show();
-        
-        this.setStep("loading");
-
         let procurement: any = this.procurementNewUpdateForm.value;
-        
-        procurement.contractorEopooCode = this.procurementNewUpdateForm.value.contractorEopoo.id;
-        procurement.statusCode = this.procurementNewUpdateForm.value.status.code;
-        procurement.procedureCode = this.procurementNewUpdateForm.value.procedure.code;
-        procurement.sectorCode = this.procurementNewUpdateForm.value.sector.code;
-        procurement.modalityCode = this.procurementNewUpdateForm.value.modality.code;
+		{
+			procurement.contractorEopooCode = this.procurementNewUpdateForm.value.contractorEopoo.id;
+		}
+		this.procurementResult = procurement;
+		
+		if(!this.notSubmit) {
+			try {
+				this._fuseProgressBarService.show();
+				this.setStep("loading");
+				this.submitError = undefined;
+	
+				let postOrPut: string;
+	
+				if (this.isUpdate) {
+					await this.procurementResourceService.updateProcurementUsingPUT(procurement).toPromise();
+					postOrPut = "updated";
+				} else {
+					await this.procurementResourceService.createProcurementUsingPOST(procurement).toPromise();
+					postOrPut = "created";
+				}
+				this.eventService.reloadCurrentPage();
+			} catch (e) {
+				this.submitError = "Error: " + e.error.title;
+				this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
+			} finally {
+				this._fuseProgressBarService.hide();
+			}
+		}
 
-        try {
-            let postOrPut: string;
-
-            if (this.isUpdate) {
-                await this.procurementResourceService.updateProcurementUsingPUT(procurement).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.procurementResourceService.createProcurementUsingPOST(procurement).toPromise();
-                postOrPut = "created";
-            }
-
-            this.procurementResult = procurement;
-
-            this.eventService.reloadCurrentPage();
-  
-            this.setStep("complete");
-
-        } catch (e) {
-            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-            this.setStep("form");
-        }
-
-        this._fuseProgressBarService.hide();
+		this.procurementChange.emit(this.procurementResult);
+		this.setStep("complete");
     }
 
     newProcurement() {
         this.setStep("form");
     }
+
+	step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
 
     private setStep(stepToShow: string){
         this.step.form = false;

@@ -24,7 +24,7 @@ export class AigProcurementLotListTableComponent extends AigIppCommonGenericComp
     ) { super(_fuseTranslationLoaderService); }
 
     @Input()
-    error: any;
+    error: any = null;
     @Input()
     displayColumns: string[];
     @Input()

@@ -59,7 +59,7 @@
 
 					<ng-container *ngFor="let dc of dcs" [ngSwitch]="dc" >
 						<td *ngSwitchCase="'_ck'" ><p-tableCheckbox [value]="e"></p-tableCheckbox></td>
-						<td *ngSwitchCase="'id'">{{ e.id }}/21</td>
+						<td *ngSwitchCase="'id'">{{ e.id }}</td>
 						<td *ngSwitchCase="'proposerEopoo'">{{ e.proposerEopoo | eopooName }}</td>
 						<td *ngSwitchCase="'type.name'">{{ e.type.name}}</td>
 						<td *ngSwitchCase="'siteInspection'">

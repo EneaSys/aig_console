@@ -59,8 +59,8 @@
 							<div fxLayout="row">
 								<mat-form-field appearance="outline" fxFlex="100">
 									<mat-label>Categorie</mat-label>
-									<mat-select formControlName="procurementLotCategories" multiple>
-										<mat-option *ngFor="let category of filteredIppLotCategory | async" [value]="category">
+									<mat-select formControlName="ippCategory" multiple>
+										<mat-option *ngFor="let category of filteredIppCategory | async" [value]="category">
 											{{ category.name }}
 										</mat-option>
 									</mat-select>
@@ -70,9 +70,9 @@
 							<div fxLayout="row">
 								<mat-form-field appearance="outline" fxFlex="100">
 									<mat-label>Criterio di aggiudicazione</mat-label>
-									<input formControlName="awardCriterion" matInput [matAutocomplete]="awardCriterionAutocomplete">
-									<mat-autocomplete #awardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
-										<mat-option *ngFor="let awardCriterion of filteredAwardCriterion | async" [value]="awardCriterion">{{ awardCriterion.name }}</mat-option>
+									<input formControlName="ippAwardCriterion" matInput [matAutocomplete]="ippAwardCriterionAutocomplete">
+									<mat-autocomplete #ippAwardCriterionAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotAwardCriterionDisplayFn">
+										<mat-option *ngFor="let awardCriterion of filteredIppAwardCriterion | async" [value]="awardCriterion">{{ awardCriterion.name }}</mat-option>
 									</mat-autocomplete>
 								</mat-form-field>
 							</div>
@@ -80,9 +80,45 @@
 							<div fxLayout="row">
 								<mat-form-field appearance="outline" fxFlex="100">
 									<mat-label>Tipo Lotto</mat-label>
-									<input formControlName="procurementLotType" matInput [matAutocomplete]="typeAutocomplete">
-									<mat-autocomplete #typeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
-										<mat-option *ngFor="let type of filteredIppLotType | async" [value]="type">{{ type.name }}</mat-option>
+									<input formControlName="ippType" matInput [matAutocomplete]="ippTypeAutocomplete">
+									<mat-autocomplete #ippTypeAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippLotTypeDisplayFn">
+										<mat-option *ngFor="let type of filteredIppType | async" [value]="type">{{ type.name }}</mat-option>
+									</mat-autocomplete>
+								</mat-form-field>
+							</div>
+
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Modalità</mat-label>
+									<input formControlName="ippModality" matInput [matAutocomplete]="ippModalityAutocomplete">
+									<mat-autocomplete #ippModalityAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippModalityDisplayFn">
+										<mat-option *ngFor="let modality of filteredIppModality | async" [value]="modality">
+											{{ modality.name }}
+										</mat-option>
+									</mat-autocomplete>
+								</mat-form-field>
+							</div>
+
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Procedura</mat-label>
+									<input formControlName="ippProcedure" matInput [matAutocomplete]="ippProcedureAutocomplete">
+									<mat-autocomplete #ippProcedureAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippProcedureDisplayFn">
+										<mat-option *ngFor="let procedure of filteredIppProcedure | async" [value]="procedure">
+											{{ procedure.name }}
+										</mat-option>
+									</mat-autocomplete>
+								</mat-form-field>
+							</div>
+
+							<div fxLayout="row">
+								<mat-form-field appearance="outline" fxFlex="100">
+									<mat-label>Settore</mat-label>
+									<input formControlName="ippSector" matInput [matAutocomplete]="ippSectorAutocomplete">
+									<mat-autocomplete #ippSectorAutocomplete="matAutocomplete" [displayWith]="standardAutocompleteDisplayService.ippSectorDisplayFn">
+										<mat-option *ngFor="let sector of filteredIppSector | async" [value]="sector">
+											{{ sector.name }}
+										</mat-option>
 									</mat-autocomplete>
 								</mat-form-field>
 							</div>
@@ -134,7 +170,7 @@
                 [filters]="procurementLotFilters">
 			</agal-procurement-lot-list-loader>
 
-            <button mat-fab class="accent" id="add-procurement-lot-button" (click)="newProcurementLot()"
+            <button mat-fab class="accent" id="add-procurement-complex-button" (click)="newProcurementComplex()"
                 aria-label="add procurement lot">
                 <mat-icon>add</mat-icon>
             </button>

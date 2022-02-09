@@ -57,9 +57,6 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 	procurementFilters: any;
 
 	filteredContractorEopoo: Observable<EopooDTO[]>;
-	filteredProcurementModality: Observable<IlPpProcurementModalityDTO[]>;
-	filteredProcurementProcedure: Observable<IlPpProcurementProcedureDTO[]>;
-	filteredProcurementSector: Observable<IlPpProcurementSectorDTO[]>;
 
 	private initProcurementSearch() {
 
@@ -73,17 +70,10 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 			procurementRefContains: [''],
 			procurementCodeEquals: [''],
 			status: [''],
-			ilPpProcurementModality: [''],
-			ilPpProcurementProcedure: [''],
-			ilPpProcurementSector: [''],
 		});
 
 		this.filteredContractorEopoo = this.genericAutocompleteFilterService.filterEopoo(this.procurementSearchFormGroup.controls['contractorEopoo'].valueChanges);
-		this.filteredProcurementModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementSearchFormGroup.controls['ilPpProcurementModality'].valueChanges);
-		this.filteredProcurementProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementSearchFormGroup.controls['ilPpProcurementProcedure'].valueChanges);
-		this.filteredProcurementSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementSearchFormGroup.controls['ilPpProcurementSector'].valueChanges);
-		
-		
+
 	}
 
 	resetFiltersProcurement() {
@@ -113,18 +103,6 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 				filters.procurementAmountLessThanOrEqual = filters.totalAmountEnd;
 			}
 			filters.procurementCodeEquals = (filters.procurementCodeEquals != "") ? filters.procurementCodeEquals : null;
-			if (filters.ilPpProcurementModality) {
-				filters.procurementModalityCodeEquals = filters.ilPpProcurementModality.code;
-				filters.ilPpProcurementModality = null;
-			}
-			if (filters.ilPpProcurementProcedure) {
-				filters.procurementProcedureCodeEquals = filters.ilPpProcurementProcedure.code;
-				filters.ilPpProcurementProcedure = null;
-			}
-			if (filters.ilPpProcurementSector) {
-				filters.procurementSectorCodeEquals = filters.ilPpProcurementSector.code;
-				filters.ilPpProcurementSector = null;
-			}
 		}
 		this.procurementFilters = filters;
 	}
@@ -134,7 +112,7 @@ export class AigProcurementListPageComponent extends AigIppGenericComponent {
 
 
 
-	newTableColumns: string[] = ['_ck', 'contractorEopoo', 'description', 'modality', 'procedure', 'status'];
+	newTableColumns: string[] = ['_ck', 'contractorEopoo', 'description'];
 	newTableButtons: any[] = [
 		
 		{

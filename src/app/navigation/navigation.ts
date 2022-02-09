@@ -54,15 +54,6 @@ export const navigation: FuseNavigation[] = [
         title    : 'Public Procurement',
         type     : 'group',
         children : [
-			{
-                id       : 'procurement-list-page',
-                title    : 'Procurement',
-                translate: 'NAV.IPP.PROCUREMENT',
-                type     : 'item',
-                icon     : 'business_center',
-                url      : '/ipp/procurement',
-                permission: ['il.pp.ui.p8t.list'],
-            },
             {
                 id       : 'procurement-lot-list-page',
                 title    : 'Procurement Lot',

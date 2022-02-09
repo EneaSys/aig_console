@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
@@ -9,7 +9,7 @@ import { AigStandardAutocompleteFilterService } from 'aig-common/modules/standar
 import { AigStandardAutocompleteDisplayService } from 'aig-common/modules/standard/services/autocomplete-function.service';
 
 import { ProcurementDTO, ProcurementLotDTO, ProcurementLotResourceService,  } from 'aig-italianlegislation';
-import { CityDTO, CpvDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotStatusDTO, IlPpProcurementLotTypeDTO } from 'aig-standard';
+import { CityDTO, CpvDTO, IlPpProcurementLotAwardCriterionDTO, IlPpProcurementLotCategoryDTO, IlPpProcurementLotStatusDTO, IlPpProcurementLotTypeDTO, IlPpProcurementModalityDTO, IlPpProcurementProcedureDTO, IlPpProcurementSectorDTO } from 'aig-standard';
 import { Observable } from 'rxjs';
 import { AigIppAutocompleteDisplayService } from '../../service/autocomplete-display.service';
 import { AigIppAutocompleteService } from '../../service/autocomplete-filter.service';
@@ -27,15 +27,13 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 	@Input()
     procurementLot: ProcurementLotDTO;
 
+	@Input()
+    notSubmit: boolean = false;
+	@Output()
+	procurementLotChange = new EventEmitter<ProcurementLotDTO>();
+
     @Input()
     procurement: ProcurementDTO;
-
-
-    step: any = {
-        form: true,
-        loading: false,
-        complete: false
-    };
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -69,6 +67,9 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
     filteredIppLotCategory: Observable<IlPpProcurementLotCategoryDTO[]>;
     filteredProcurementLotAwardCriterion: Observable<IlPpProcurementLotAwardCriterionDTO[]>;
     filteredProcurementLotStatus: Observable<IlPpProcurementLotStatusDTO[]>;
+	filteredIppProcedure: Observable<IlPpProcurementProcedureDTO[]>;
+    filteredIppSector: Observable<IlPpProcurementSectorDTO[]>;
+    filteredIppModality: Observable<IlPpProcurementModalityDTO[]>;
 	filteredLocality: Observable<CityDTO[]>;
 
 
@@ -82,9 +83,13 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 			
 			type: [null, [Validators.required, AigValidator.haveCode] ],
             awardCriterion: [null, [Validators.required, AigValidator.haveCode] ],
-            status: [null, [Validators.required, AigValidator.haveCode] ],
+			sector: ['', [Validators.required, AigValidator.haveCode]],
+            procedure: ['', [Validators.required, AigValidator.haveCode]],
+            modality: ['', [Validators.required, AigValidator.haveCode]],
 			cpv: [null, [AigValidator.haveCode]],
 
+            status: [null, [Validators.required, AigValidator.haveCode] ],
+			
             description: [null, Validators.required],
             offerExpiryDate: [null, Validators.required],
             baseAmount: [null, Validators.required],
@@ -112,6 +117,9 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
         this.filteredProcurementLotAwardCriterion = this.standardAutocompleteFilterService.filterIlPpProcurementLotAwardCriterion(this.procurementLotNewUpdateForm.controls['awardCriterion'].valueChanges);
         this.filteredProcurementLotStatus = this.standardAutocompleteFilterService.filterIlPpProcurementLotStatus(this.procurementLotNewUpdateForm.controls['status'].valueChanges);
 		this.filteredLocality = this.standardAutocompleteFilterService.filterCity(this.procurementLotNewUpdateForm.controls['workLocation'].valueChanges);
+		this.filteredIppProcedure = this.standardAutocompleteFilterService.filterIppProcedure(this.procurementLotNewUpdateForm.controls['procedure'].valueChanges);
+        this.filteredIppSector = this.standardAutocompleteFilterService.filterIppSector(this.procurementLotNewUpdateForm.controls['sector'].valueChanges);
+        this.filteredIppModality = this.standardAutocompleteFilterService.filterIppModality(this.procurementLotNewUpdateForm.controls['modality'].valueChanges);
     }
 
 	candidacyChecked(isCandidacy: boolean) {
@@ -130,60 +138,76 @@ export class AigProcurementLotNewUpdateFormComponent implements OnInit {
 		descriptionFormControl.updateValueAndValidity();
 	}
 
+	submitError: string = undefined;
+
     async submit() {
         if (!this.procurementLotNewUpdateForm.valid) {
             return;
         }
-
-        this._fuseProgressBarService.show();
-        this.setStep("loading");
-
-        let procurementLot: any = this.procurementLotNewUpdateForm.value;
-        procurementLot.procurementId = this.procurementLotNewUpdateForm.value.procurement.id;
+		let procurementLot: any = { ...this.procurementLotNewUpdateForm.value };
+		{
+			console.log(this.procurementLotNewUpdateForm.value.procurement);
+			procurementLot.procurementId = this.procurementLotNewUpdateForm.value.procurement.id;
         
-        procurementLot.typeCode = this.procurementLotNewUpdateForm.value.type.code;
-        procurementLot.awardCriterionCode = this.procurementLotNewUpdateForm.value.awardCriterion.code;
-        procurementLot.statusCode = this.procurementLotNewUpdateForm.value.status.code;
-
-		procurementLot.workLocationCode = (this.procurementLotNewUpdateForm.value.workLocation) ? this.procurementLotNewUpdateForm.value.workLocation.code : null;
-		procurementLot.cpvCode = (this.procurementLotNewUpdateForm.value.cpv) ? this.procurementLotNewUpdateForm.value.cpv.code : null;
-		
+			procurementLot.typeCode = this.procurementLotNewUpdateForm.value.type.code;
+			procurementLot.awardCriterionCode = this.procurementLotNewUpdateForm.value.awardCriterion.code;
+			procurementLot.procedureCode = this.procurementLotNewUpdateForm.value.procedure.code;
+			procurementLot.sectorCode = this.procurementLotNewUpdateForm.value.sector.code;
+			procurementLot.modalityCode = this.procurementLotNewUpdateForm.value.modality.code;
+	
+			procurementLot.statusCode = this.procurementLotNewUpdateForm.value.status.code;
+	
+			procurementLot.workLocationCode = (this.procurementLotNewUpdateForm.value.workLocation) ? this.procurementLotNewUpdateForm.value.workLocation.code : null;
+			procurementLot.cpvCode = (this.procurementLotNewUpdateForm.value.cpv) ? this.procurementLotNewUpdateForm.value.cpv.code : null;
+			
+			procurementLot.procurement = null;
+			procurementLot.type = null;
+			procurementLot.awardCriterion = null;
+			procurementLot.status = null;
+			procurementLot.workLocation = null;
+			procurementLot.cpv = null;
+		}
 		this.procurementLotResult = procurementLot;
+		console.log(this.procurementLotResult);
+
+		if(!this.notSubmit) {
+			try {
+				this._fuseProgressBarService.show();
+        		this.setStep("loading");
+				this.submitError = undefined;
+
+				let postOrPut: string;
+	
+				if (this.isUpdate) {
+					await this.procurementLotResourceService.updateProcurementLotUsingPUT(procurementLot).toPromise();
+					postOrPut = "updated";
+				} else {
+					await this.procurementLotResourceService.createProcurementLotUsingPOST(procurementLot).toPromise();
+					postOrPut = "created";
+				}
+	
+				this.eventService.reloadCurrentPage();
+			} catch (e) {
+				this.submitError = "Error: " + e.error.title;
+				this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
+			} finally {
+				this._fuseProgressBarService.hide();
+			}
+		}
 		
-		procurementLot.procurement = null;
-		procurementLot.type = null;
-		procurementLot.awardCriterion = null;
-		procurementLot.status = null;
-		procurementLot.workLocation = null;
-		procurementLot.cpv = null;
-
-        try {
-            let postOrPut: string;
-
-            if (this.isUpdate) {
-                await this.procurementLotResourceService.updateProcurementLotUsingPUT(procurementLot).toPromise();
-                postOrPut = "updated";
-            } else {
-                await this.procurementLotResourceService.createProcurementLotUsingPOST(procurementLot).toPromise();
-                postOrPut = "created";
-            }
-
-            this.procurementLotResult = procurementLot;
-
-            this.eventService.reloadCurrentPage();
-  
-            this.setStep("complete");
-        } catch (e) {
-            this._snackBar.open("Error: " + e.error.title, null, { duration: 5000, });
-            this.setStep("form");
-        }
-        this._fuseProgressBarService.hide();
+		this.procurementLotChange.emit(this.procurementLotResult);
+		this.setStep("complete");
     }
 
     newProcurementLot() {
         this.setStep("form");
     }
 
+	step: any = {
+        form: true,
+        loading: false,
+        complete: false
+    };
     private setStep(stepToShow: string){
         this.step.form = false;
         this.step.loading = false;
