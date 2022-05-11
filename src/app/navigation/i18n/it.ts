@@ -17,7 +17,7 @@ export const locale = {
             },
             'IPP': {
                 'PROCUREMENT': "Gare d'appalto",
-                'PROCUREMENT-LOT': "Lotti di gara",
+                'PROCUREMENT-LOT': "Gare pubblicate",
                 'PARTECIPATION': "Partecipazioni",
             }
         },
