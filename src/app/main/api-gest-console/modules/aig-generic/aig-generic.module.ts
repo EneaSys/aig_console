@@ -38,6 +38,7 @@ import { AigFormDataListPageComponent } from './components/form-data-list-page/f
 import { AigFormDataDetailPageComponent } from './components/form-data-detail-page/form-data-detail-page.component';
 import { AigFormDataDetailPage3Component } from './components/form-data-detail-page-3/form-data-detail-page-3.component';
 import { AigFormDataDetailPage2Component } from './components/form-data-detail-page-2/form-data-detail-page-2.component';
+import { AigFormDataDetailPage4Component } from './components/form-data-detail-page-4/form-data-detail-page-4.component';
 
 @NgModule({
     imports: [
@@ -100,6 +101,7 @@ import { AigFormDataDetailPage2Component } from './components/form-data-detail-p
 
 		AigFormDataDetailPage3Component,
 		AigFormDataDetailPage2Component,
+		AigFormDataDetailPage4Component,
 
     ],
     entryComponents: [

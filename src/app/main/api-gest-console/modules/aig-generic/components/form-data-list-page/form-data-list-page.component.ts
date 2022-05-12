@@ -24,8 +24,8 @@ export class AigFormDataListPageComponent extends GenericComponent {
 
     loadPage() {
         this.initFormDataSearch();
-
-        this.showAllFormData();
+		this.clearFiltersFormData();
+        this.formDataSearchWithFilter();
     }
 
     reloadPage() {
@@ -48,19 +48,18 @@ export class AigFormDataListPageComponent extends GenericComponent {
         this.formDataPaginationSize = 10;
 
         this.formDataSearchFormGroup = this._formBuilder.group({
-			id: [''],
-			s2: [''],
-			s3: [''],
-			s4: [''],
-            n4: [''],
-			formTypeId: [''],
+			id: [null],
+			s2: [null],
+			s3: [null],
+			s4: [null],
+            n4: [null],
+			formTypeId: [4],
         });
 
         this.formDataDC = ["id", "s2", "s3", "s4", "s10", "n4", "buttons"];
     }
 
     private clearFiltersFormData() {
-		this.formDataSearchFormGroup.reset();
         this.formDataFilters = {
 			idEquals: null,
             page: 0,
